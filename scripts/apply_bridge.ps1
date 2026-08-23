@@ -147,17 +147,11 @@ static void reg_cataclysm_ai_api( sol::state &lua )
 }
 '@
 
+# Insert at a unique, stable function boundary instead of depending on the
+# formatting of the preceding debug binding block.
 Replace-Once `
-'    luna::set_fx( lib, "save_game", []() -> bool { return g->save( false ); } );
-    luna::finalize_lib( lib );
-}
-
-static tm *local_time_impl()' `
-('    luna::set_fx( lib, "save_game", []() -> bool { return g->save( false ); } );
-    luna::finalize_lib( lib );
-}' + $bridge + '
-
-static tm *local_time_impl()') `
+'static tm *local_time_impl()' `
+((Convert-ToLf $bridge).TrimEnd("`n") + "`n`nstatic tm *local_time_impl()") `
 "bridge insertion"
 
 Replace-Once `
