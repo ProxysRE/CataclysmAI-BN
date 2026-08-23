@@ -136,6 +136,93 @@ jobs:
             throw "Cataclysm AI sidecar launcher missing from distribution: $server"
           }
 
+      - name: Runtime smoke-test
+        shell: pwsh
+        run: |
+          $dist = "$env:GITHUB_WORKSPACE\artifact\CataclysmBN-CataclysmAI"
+          $exe = Join-Path "$dist" "cataclysm-bn-tiles.exe"
+          $userDir = "$env:GITHUB_WORKSPACE\runtime-user"
+          $typesPath = "$env:GITHUB_WORKSPACE\cataclysm_ai_types.lua"
+          Remove-Item -Recurse -Force "$userDir" -ErrorAction SilentlyContinue
+          Remove-Item -Force "$typesPath" -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Force -Path "$userDir" | Out-Null
+
+          # Validate that the packaged mod can be discovered and loaded by BN.
+          # Force headless-friendly SDL/GPU backends on the hosted runner.
+          $env:SDL_VIDEODRIVER = "dummy"
+          Push-Location "$dist"
+          try {
+            & "$exe" --gpu-backend software --userdir "$userDir" --check-mods cataclysm_ai
+            if ($LASTEXITCODE -ne 0) {
+              throw "Bright Nights --check-mods cataclysm_ai failed with exit code $LASTEXITCODE"
+            }
+
+            # Generate LuaLS declarations from the actual compiled executable.
+            # This proves the C++ bridge is registered in Lua, not merely compiled.
+            & "$exe" --userdir "$userDir" --lua-types "$typesPath"
+            if ($LASTEXITCODE -ne 0) {
+              throw "Bright Nights --lua-types failed with exit code $LASTEXITCODE"
+            }
+          }
+          finally {
+            Pop-Location
+          }
+
+          if (-not (Test-Path "$typesPath")) {
+            throw "Lua type declaration file was not generated"
+          }
+          $types = Get-Content -Raw -Path "$typesPath"
+          if ($types -notmatch "cataclysm_ai" -or $types -notmatch "exchange") {
+            throw "Compiled Lua API does not expose cataclysm_ai.exchange"
+          }
+          Write-Host "Lua bridge registration smoke-test passed."
+
+          # Exercise the exact packaged Python sidecar with a real request/response
+          # file exchange. The game-facing C++ exchange itself is exercised manually
+          # in the first playable runtime test after this CI artifact is produced.
+          $serverScript = Join-Path "$dist" "data\mods\CataclysmAI\server\cataclysm_ai_server.py"
+          if (-not (Test-Path "$serverScript")) {
+            throw "Packaged Python sidecar is missing: $serverScript"
+          }
+
+          $configDir = Join-Path "$userDir" "config"
+          New-Item -ItemType Directory -Force -Path "$configDir" | Out-Null
+          $requestPath = Join-Path "$configDir" "cataclysm_ai_request.txt"
+          $responsePath = Join-Path "$configDir" "cataclysm_ai_response.txt"
+          Remove-Item -Force "$requestPath", "$responsePath" -ErrorAction SilentlyContinue
+
+          $serverProcess = Start-Process -FilePath "python" `
+            -ArgumentList @("$serverScript", "--config-dir", "$configDir") `
+            -PassThru -NoNewWindow
+          try {
+            Start-Sleep -Milliseconds 500
+            @"
+          CATAI/1
+          NPC_NAME: CI Tester
+          NPC_HP_PERCENT: 100
+          PLAYER_TEXT:
+          bridge smoke test
+          "@ | Set-Content -Path "$requestPath" -Encoding UTF8 -NoNewline
+
+            for ($i = 0; $i -lt 100 -and -not (Test-Path "$responsePath"); $i++) {
+              Start-Sleep -Milliseconds 100
+            }
+            if (-not (Test-Path "$responsePath")) {
+              throw "Cataclysm AI sidecar did not produce a response within 10 seconds"
+            }
+
+            $response = Get-Content -Raw -Path "$responsePath"
+            if ($response -notmatch "\[ECHO\]" -or $response -notmatch "bridge smoke test") {
+              throw "Unexpected Cataclysm AI sidecar response: $response"
+            }
+            Write-Host "Sidecar file-IPC round-trip smoke-test passed: $response"
+          }
+          finally {
+            if ($serverProcess -and -not $serverProcess.HasExited) {
+              Stop-Process -Id $serverProcess.Id -Force -ErrorAction SilentlyContinue
+            }
+          }
+
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
         with:
