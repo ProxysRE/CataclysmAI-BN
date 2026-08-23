@@ -97,13 +97,19 @@ static std::string cataclysm_ai_exchange_impl( const std::string &request, int t
             std::ostringstream buffer;
             buffer << in.rdbuf();
             if( in.bad() ) {
+                in.close();
                 std::remove( response_path.c_str() );
+                std::remove( request_path.c_str() );
                 return error_prefix + "could not read response";
             }
 
             std::string response = buffer.str();
+            in.close();
+
+            // Windows will not delete a file while an open stream still owns it.
             std::remove( response_path.c_str() );
             std::remove( request_path.c_str() );
+
             if( response.size() > max_message_size ) {
                 return error_prefix + "response exceeds 1 MiB";
             }
