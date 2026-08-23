@@ -10,12 +10,18 @@ if (-not (Test-Path $target)) {
     throw "catalua_bindings.cpp not found at $target"
 }
 
-# actions/checkout materializes the upstream source with CRLF on the Windows
-# runner. Keep all guarded patch patterns canonical LF so the same patcher is
-# deterministic on both GitHub Windows runners and local Unix checkouts.
-$text = [IO.File]::ReadAllText($target).Replace("`r`n", "`n")
+function Convert-ToLf([string]$Value) {
+    return $Value.Replace("`r`n", "`n").Replace("`r", "`n")
+}
+
+# Both the upstream C++ file and this PowerShell script are checked out with
+# CRLF on GitHub's Windows runner. Canonicalize both sides of every guarded
+# replacement so the patch is independent of checkout line-ending policy.
+$text = Convert-ToLf ([IO.File]::ReadAllText($target))
 
 function Replace-Once([string]$Needle, [string]$Replacement, [string]$Name) {
+    $Needle = Convert-ToLf $Needle
+    $Replacement = Convert-ToLf $Replacement
     $count = ([regex]::Matches($script:text, [regex]::Escape($Needle))).Count
     if ($count -ne 1) {
         throw "Patch guard '$Name' expected exactly 1 match, found $count. Upstream BN changed."
