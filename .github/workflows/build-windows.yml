@@ -5,24 +5,59 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   build-windows:
     runs-on: windows-2022
     timeout-minutes: 180
 
     env:
-      VCPKG_ROOT: C:\vcpkg
+      VCPKG_BINARY_SOURCES: "default"
+      BN_REF: "660c2618548844449f88bdeae7af702b9f0cc83c"
 
     steps:
       - name: Checkout Cataclysm AI CI repository
         uses: actions/checkout@v4
 
-      - name: Checkout latest Bright Nights
+      - name: Checkout pinned Bright Nights
         uses: actions/checkout@v4
         with:
           repository: cataclysmbn/Cataclysm-BN
-          ref: main
+          ref: ${{ env.BN_REF }}
           path: bn
+
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Install stable CMake
+        uses: lukka/get-cmake@v3.31.6
+
+      - name: Export GitHub Actions cache variables
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.exportVariable("ACTIONS_CACHE_URL", process.env.ACTIONS_CACHE_URL || "")
+            core.exportVariable("ACTIONS_RESULTS_URL", process.env.ACTIONS_RESULTS_URL || "")
+            core.exportVariable("ACTIONS_RUNTIME_TOKEN", process.env.ACTIONS_RUNTIME_TOKEN || "")
+
+      - name: Configure vcpkg binary cache
+        shell: pwsh
+        run: |
+          "VCPKG_BINARY_SOURCES=clear;x-gha,readwrite" >> $env:GITHUB_ENV
+
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@main
+        id: runvcpkg
+        with:
+          vcpkgDirectory: "${{ github.workspace }}/../b/vcpkg"
+
+      - name: Integrate vcpkg
+        shell: pwsh
+        run: vcpkg integrate install
 
       - name: Apply Cataclysm AI engine bridge
         shell: pwsh
@@ -35,28 +70,65 @@ jobs:
           New-Item -ItemType Directory -Force -Path $dst | Out-Null
           Copy-Item -Path "$env:GITHUB_WORKSPACE\mod\CataclysmAI\*" -Destination $dst -Recurse -Force
 
-      - name: Verify runner vcpkg
-        shell: pwsh
-        run: |
-          if (-not (Test-Path "$env:VCPKG_ROOT\vcpkg.exe")) {
-            git clone https://github.com/microsoft/vcpkg.git "$env:VCPKG_ROOT"
-            & "$env:VCPKG_ROOT\bootstrap-vcpkg.bat" -disableMetrics
-          }
-          & "$env:VCPKG_ROOT\vcpkg.exe" version
-
       - name: Configure Bright Nights
         shell: pwsh
-        working-directory: bn
-        run: .\setup.ps1 -Preset windows-tiles-sounds-x64-msvc
+        run: |
+          $src = "$env:GITHUB_WORKSPACE\bn"
+          $build = "$src\out\build\windows-tiles-sounds-x64-msvc"
+          cmake -G Ninja `
+            -S "$src" `
+            -B "$build" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_PROJECT_INCLUDE_BEFORE="$src\build-scripts\windows-tiles-sounds-x64-msvc.cmake" `
+            -DCMAKE_TOOLCHAIN_FILE="$src\build-scripts\MSVC.cmake" `
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static `
+            -DDYNAMIC_LINKING=False `
+            -DCURSES=False `
+            -DLOCALIZE=False `
+            -DTILES=True `
+            -DSOUND=True `
+            -DTESTS=False `
+            -DRELEASE=ON `
+            -DJSON_FORMAT=OFF `
+            -DCATA_FORMAT_TARGETS=OFF `
+            -DCMAKE_INSTALL_MESSAGE=NEVER
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: Build Bright Nights
         shell: pwsh
-        working-directory: bn
-        run: cmake --build --preset windows-msvc-release --target cataclysm-bn-tiles
+        run: |
+          $build = "$env:GITHUB_WORKSPACE\bn\out\build\windows-tiles-sounds-x64-msvc"
+          cmake --build "$build" --config Release --target cataclysm-bn-tiles
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-      - name: Stage runnable Cataclysm AI build
+      - name: Create runnable distribution
         shell: pwsh
-        run: .\scripts\stage_artifact.ps1 -BnRoot "$env:GITHUB_WORKSPACE\bn"
+        run: |
+          $src = "$env:GITHUB_WORKSPACE\bn"
+          $build = "$src\out\build\windows-tiles-sounds-x64-msvc"
+          $dist = "$env:GITHUB_WORKSPACE\artifact\CataclysmBN-CataclysmAI"
+          Remove-Item -Recurse -Force "$dist" -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Force -Path "$dist" | Out-Null
+          cmake --install "$build" --prefix "$dist" --config Release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          @"
+          Cataclysm AI bridge prototype 0.1
+          Bright Nights commit: $env:BN_REF
+          Cataclysm AI commit: $env:GITHUB_SHA
+          "@ | Set-Content -Path "$dist\CATACLYSM_AI_BUILD.txt" -Encoding UTF8
+
+          $exe = Join-Path "$dist" "cataclysm-bn-tiles.exe"
+          if (-not (Test-Path "$exe")) {
+            throw "Installed game executable not found: $exe"
+          }
+          & "$exe" --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          $server = Join-Path "$dist" "data\mods\CataclysmAI\server\start_echo_server.bat"
+          if (-not (Test-Path "$server")) {
+            throw "Cataclysm AI sidecar launcher missing from distribution: $server"
+          }
 
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
