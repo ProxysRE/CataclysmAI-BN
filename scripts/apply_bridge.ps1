@@ -10,7 +10,10 @@ if (-not (Test-Path $target)) {
     throw "catalua_bindings.cpp not found at $target"
 }
 
-$text = [IO.File]::ReadAllText($target)
+# actions/checkout materializes the upstream source with CRLF on the Windows
+# runner. Keep all guarded patch patterns canonical LF so the same patcher is
+# deterministic on both GitHub Windows runners and local Unix checkouts.
+$text = [IO.File]::ReadAllText($target).Replace("`r`n", "`n")
 
 function Replace-Once([string]$Needle, [string]$Replacement, [string]$Name) {
     $count = ([regex]::Matches($script:text, [regex]::Escape($Needle))).Count
