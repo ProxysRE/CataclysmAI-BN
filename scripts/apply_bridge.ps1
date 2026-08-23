@@ -10,9 +10,18 @@ if (-not (Test-Path $target)) {
     throw "catalua_bindings.cpp not found at $target"
 }
 
-$text = [IO.File]::ReadAllText($target)
+function Convert-ToLf([string]$Value) {
+    return $Value.Replace("`r`n", "`n").Replace("`r", "`n")
+}
+
+# Both the upstream C++ file and this PowerShell script are checked out with
+# CRLF on GitHub's Windows runner. Canonicalize both sides of every guarded
+# replacement so the patch is independent of checkout line-ending policy.
+$text = Convert-ToLf ([IO.File]::ReadAllText($target))
 
 function Replace-Once([string]$Needle, [string]$Replacement, [string]$Name) {
+    $Needle = Convert-ToLf $Needle
+    $Replacement = Convert-ToLf $Replacement
     $count = ([regex]::Matches($script:text, [regex]::Escape($Needle))).Count
     if ($count -ne 1) {
         throw "Patch guard '$Name' expected exactly 1 match, found $count. Upstream BN changed."
@@ -138,17 +147,11 @@ static void reg_cataclysm_ai_api( sol::state &lua )
 }
 '@
 
+# Insert at a unique, stable function boundary instead of depending on the
+# formatting of the preceding debug binding block.
 Replace-Once `
-'    luna::set_fx( lib, "save_game", []() -> bool { return g->save( false ); } );
-    luna::finalize_lib( lib );
-}
-
-static tm *local_time_impl()' `
-('    luna::set_fx( lib, "save_game", []() -> bool { return g->save( false ); } );
-    luna::finalize_lib( lib );
-}' + $bridge + '
-
-static tm *local_time_impl()') `
+'static tm *local_time_impl()' `
+((Convert-ToLf $bridge).TrimEnd("`n") + "`n`nstatic tm *local_time_impl()") `
 "bridge insertion"
 
 Replace-Once `
