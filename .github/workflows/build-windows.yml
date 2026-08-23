@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -47,7 +49,11 @@ jobs:
       - name: Configure vcpkg binary cache
         shell: pwsh
         run: |
-          "VCPKG_BINARY_SOURCES=clear;x-gha,readwrite" >> $env:GITHUB_ENV
+          $mode = "readwrite"
+          if ("${{ github.event_name }}" -eq "pull_request") {
+            $mode = "read"
+          }
+          "VCPKG_BINARY_SOURCES=clear;x-gha,$mode" >> $env:GITHUB_ENV
 
       - name: Install vcpkg
         uses: lukka/run-vcpkg@main
