@@ -1,0 +1,67 @@
+name: Build Cataclysm AI for Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-windows:
+    runs-on: windows-2022
+    timeout-minutes: 180
+
+    env:
+      VCPKG_ROOT: C:\vcpkg
+
+    steps:
+      - name: Checkout Cataclysm AI CI repository
+        uses: actions/checkout@v4
+
+      - name: Checkout latest Bright Nights
+        uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: main
+          path: bn
+
+      - name: Apply Cataclysm AI engine bridge
+        shell: pwsh
+        run: .\scripts\apply_bridge.ps1 -BnRoot "$env:GITHUB_WORKSPACE\bn"
+
+      - name: Install Cataclysm AI mod into source tree
+        shell: pwsh
+        run: |
+          $dst = "$env:GITHUB_WORKSPACE\bn\data\mods\CataclysmAI"
+          New-Item -ItemType Directory -Force -Path $dst | Out-Null
+          Copy-Item -Path "$env:GITHUB_WORKSPACE\mod\CataclysmAI\*" -Destination $dst -Recurse -Force
+
+      - name: Verify runner vcpkg
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "$env:VCPKG_ROOT\vcpkg.exe")) {
+            git clone https://github.com/microsoft/vcpkg.git "$env:VCPKG_ROOT"
+            & "$env:VCPKG_ROOT\bootstrap-vcpkg.bat" -disableMetrics
+          }
+          & "$env:VCPKG_ROOT\vcpkg.exe" version
+
+      - name: Configure Bright Nights
+        shell: pwsh
+        working-directory: bn
+        run: .\setup.ps1 -Preset windows-tiles-sounds-x64-msvc
+
+      - name: Build Bright Nights
+        shell: pwsh
+        working-directory: bn
+        run: cmake --build --preset windows-msvc-release --target cataclysm-bn-tiles
+
+      - name: Stage runnable Cataclysm AI build
+        shell: pwsh
+        run: .\scripts\stage_artifact.ps1 -BnRoot "$env:GITHUB_WORKSPACE\bn"
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: CataclysmBN-CataclysmAI-Windows
+          path: artifact/CataclysmBN-CataclysmAI
+          if-no-files-found: error
+          compression-level: 6
