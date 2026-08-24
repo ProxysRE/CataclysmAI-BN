@@ -35,3 +35,131 @@ jobs:
 
       - name: Check Lua syntax
         run: luac5.3 -p stock-bn-prototype/mod/CataclysmAI/main.lua
+
+  stock-nightly-load-test:
+    name: Official Windows BN loads Lua bridge
+    runs-on: windows-2022
+    timeout-minutes: 20
+    env:
+      BN_TAG: "2026-08-24"
+      BN_ASSET: "cbn-windows-tiles-x64-msvc-no-soundpack-2026-08-24.zip"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download official Bright Nights nightly
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $url = "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/$env:BN_TAG/$env:BN_ASSET"
+          $zip = Join-Path $env:RUNNER_TEMP "bright-nights.zip"
+          Write-Host "Downloading official stock BN asset: $url"
+          Invoke-WebRequest -Uri $url -OutFile $zip
+          if (-not (Test-Path $zip)) { throw "BN archive was not downloaded" }
+          Write-Host "Downloaded $((Get-Item $zip).Length) bytes"
+
+      - name: Unpack stock Bright Nights and locate executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $zip = Join-Path $env:RUNNER_TEMP "bright-nights.zip"
+          $extract = Join-Path $env:RUNNER_TEMP "bright-nights"
+          Expand-Archive -Path $zip -DestinationPath $extract -Force
+          $exe = Get-ChildItem -Path $extract -Recurse -File -Filter "cataclysm-bn-tiles.exe" | Select-Object -First 1
+          if (-not $exe) {
+            Get-ChildItem -Path $extract -Recurse -Depth 2 | Select-Object FullName
+            throw "cataclysm-bn-tiles.exe not found in official archive"
+          }
+          $gameDir = $exe.Directory.FullName
+          "CATAI_BN_EXE=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "CATAI_BN_DIR=$gameDir" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "Stock executable: $($exe.FullName)"
+          Write-Host "Stock game directory: $gameDir"
+          Get-ChildItem -Path $gameDir | Select-Object Name, Length, Mode
+
+      - name: Install Cataclysm AI as a user mod
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $userDir = Join-Path $env:RUNNER_TEMP "catai-stock-user"
+          $modRoot = Join-Path $userDir "mods"
+          $modDest = Join-Path $modRoot "CataclysmAI"
+          New-Item -ItemType Directory -Force -Path $modRoot | Out-Null
+          Copy-Item -Path "stock-bn-prototype/mod/CataclysmAI" -Destination $modDest -Recurse -Force
+          "CATAI_USER_DIR=$userDir" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "CATAI_MOD_DIR=$modDest" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "Installed mod at $modDest"
+          Get-ChildItem -Path $modDest -Recurse | Select-Object FullName, Length
+
+      - name: Inject stock require probe
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $probeDir = Join-Path $env:CATAI_BN_DIR "data/lua/lib/catai_runtime"
+          New-Item -ItemType Directory -Force -Path $probeDir | Out-Null
+          $probePath = Join-Path $probeDir "stock_probe.lua"
+          @'
+          return {
+            protocol = 1,
+            token = "CATAI_STOCK_REQUIRE_OK"
+          }
+          '@ | Set-Content -Path $probePath -Encoding utf8
+
+          $mainLua = Join-Path $env:CATAI_MOD_DIR "main.lua"
+          @'
+
+          -- CI-only probe appended after checkout copy. This is not part of the shipped mod.
+          local catai_probe = require("lib.catai_runtime.stock_probe")
+          assert(type(catai_probe) == "table", "Cataclysm AI stock require probe returned non-table")
+          assert(catai_probe.protocol == 1, "Cataclysm AI stock require probe protocol mismatch")
+          assert(catai_probe.token == "CATAI_STOCK_REQUIRE_OK", "Cataclysm AI stock require probe token mismatch")
+          gdebug.log_info("CATAI_STOCK_REQUIRE_OK")
+          package.loaded["lib.catai_runtime.stock_probe"] = nil
+          '@ | Add-Content -Path $mainLua -Encoding utf8
+
+          Write-Host "Probe module: $probePath"
+          Write-Host "Probe appended to: $mainLua"
+
+      - name: Load mod in official stock executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Continue"
+          $stdout = Join-Path $env:RUNNER_TEMP "stock-bn-stdout.txt"
+          Push-Location $env:CATAI_BN_DIR
+          try {
+            & $env:CATAI_BN_EXE `
+              "--basepath=$env:CATAI_BN_DIR" `
+              "--userdir=$env:CATAI_USER_DIR" `
+              "--dont-debugmsg" `
+              "--check-mods" `
+              "cataclysm_ai" 2>&1 | Tee-Object -FilePath $stdout
+            $exitCode = $LASTEXITCODE
+          } finally {
+            Pop-Location
+          }
+
+          Write-Host "cataclysm-bn-tiles.exe exit code: $exitCode"
+          if (Test-Path $stdout) {
+            Write-Host "--- stock BN stdout/stderr ---"
+            Get-Content $stdout
+          }
+
+          $debugLog = Join-Path $env:CATAI_USER_DIR "config/debug.log"
+          if (Test-Path $debugLog) {
+            Write-Host "--- stock BN debug.log tail ---"
+            Get-Content $debugLog -Tail 200
+          } else {
+            Write-Warning "No debug.log found at $debugLog"
+          }
+
+          if ($exitCode -ne 0) {
+            throw "Official stock BN rejected Cataclysm AI (exit $exitCode)"
+          }
+          if (-not (Test-Path $debugLog)) {
+            throw "Official stock BN exited successfully but did not create debug.log"
+          }
+          $probeHit = Select-String -Path $debugLog -SimpleMatch "CATAI_STOCK_REQUIRE_OK" -Quiet
+          if (-not $probeHit) {
+            throw "Stock BN loaded the mod but the custom require() probe was not observed"
+          }
+          Write-Host "Official stock BN loaded Cataclysm AI and resolved the runtime require() probe."
