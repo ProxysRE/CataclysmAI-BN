@@ -116,19 +116,46 @@ jobs:
             throw "cata_test-tiles.exe was not found."
           }
 
+          Write-Host "Test executable: $($testExe.FullName)"
+          Write-Host "Discovering Cataclysm AI runtime test..."
+          & $testExe.FullName --list-tests "[cataclysm_ai]"
+          $listExitCode = $LASTEXITCODE
+          if ($listExitCode -ne 0) {
+            throw "Catch2 could not discover [cataclysm_ai] tests; exit code $listExitCode."
+          }
+
           $sidecarScript = "${{ github.workspace }}/project/sidecar/cataclysm_ai_sidecar.py"
-          $testConfigDir = "${{ github.workspace }}/bn/test_user_dir/config"
+          $testUserDir = "${{ github.workspace }}/bn/test_user_dir"
+          $testConfigDir = Join-Path $testUserDir "config"
+          $sidecarStdout = "${{ github.workspace }}/sidecar.stdout.log"
+          $sidecarStderr = "${{ github.workspace }}/sidecar.stderr.log"
+
           $sidecar = Start-Process -FilePath "python" `
-            -ArgumentList @($sidecarScript, "--once", "--timeout", "15", "--config-dir", $testConfigDir) `
-            -PassThru -NoNewWindow
+            -ArgumentList @($sidecarScript, "--once", "--timeout", "180", "--config-dir", $testConfigDir) `
+            -RedirectStandardOutput $sidecarStdout `
+            -RedirectStandardError $sidecarStderr `
+            -PassThru
 
           Start-Sleep -Milliseconds 250
-          Write-Host "Test executable: $($testExe.FullName)"
-          & $testExe.FullName "[cataclysm_ai]"
+          Write-Host "Sidecar PID: $($sidecar.Id)"
+          Write-Host "Explicit test user dir: $testUserDir"
+
+          & $testExe.FullName "--user-dir=$testUserDir" "[cataclysm_ai]"
           $testExitCode = $LASTEXITCODE
 
-          $sidecar.WaitForExit()
+          if (-not $sidecar.WaitForExit(10000)) {
+            Write-Host "Sidecar did not exit within 10 seconds after cata_test; stopping it."
+            Stop-Process -Id $sidecar.Id -Force -ErrorAction SilentlyContinue
+            $sidecar.WaitForExit()
+          }
           $sidecarExitCode = $sidecar.ExitCode
+
+          Write-Host "--- Python sidecar stdout ---"
+          if (Test-Path $sidecarStdout) { Get-Content $sidecarStdout }
+          Write-Host "--- Python sidecar stderr ---"
+          if (Test-Path $sidecarStderr) { Get-Content $sidecarStderr }
+          Write-Host "cata_test exit code: $testExitCode"
+          Write-Host "sidecar exit code: $sidecarExitCode"
 
           if ($testExitCode -ne 0) {
             throw "Cataclysm AI Python ECHO Lua runtime test failed with exit code $testExitCode."
