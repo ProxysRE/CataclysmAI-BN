@@ -1,8 +1,8 @@
-# Stock Bright Nights AI bridge prototype
+# Stock Bright Nights AI bridge
 
-This prototype targets an **unmodified official Cataclysm: Bright Nights Windows archive**. It does not compile, patch, or replace `cataclysm-bn-tiles.exe`.
+This prototype runs with an **unmodified official Cataclysm: Bright Nights Windows build**. It does not compile, patch, or replace `cataclysm-bn-tiles.exe`.
 
-The first milestone is deliberately only deterministic ECHO. A real LLM provider comes after this transport is proven in a normal stock game world.
+The stock-binary transport has been validated live in a persistent Windows world with both the synthetic bridge test and a real NPC ECHO exchange.
 
 ## Transport
 
@@ -10,16 +10,19 @@ The first milestone is deliberately only deterministic ECHO. A real LLM provider
 player types a line in BN
         |
         v
-Lua mod writes game.mod_storage["cataclysm_ai"].ipc_request
+Lua writes game.mod_storage["cataclysm_ai"].ipc_request
         |
         v
-gdebug.save_game()
+ONE forced gdebug.save_game() for the new outbound request
         |
         v
 <BN user dir>/save/<world>/lua_state.json
         |
         v
-Python companion reads the request
+Python companion decodes BN's serialized Lua table
+        |
+        v
+Provider generates/reuses a response
         |
         v
 <BN>/data/lua/lib/catai_runtime/response_<id>.lua
@@ -28,32 +31,67 @@ Python companion reads the request
 Lua require("lib.catai_runtime.response_<id>")
         |
         v
-NPC / bridge test displays the returned text
+NPC displays the returned text
 ```
 
 No DLL injection, binary patching, CMake, vcpkg, `io`, `os`, `loadfile`, or custom game executable is required.
 
-## Why this works in stock BN
+## Save behavior
 
-Bright Nights already provides the two mechanisms required by the bridge:
+A new external AI request currently needs one normal BN save because stock Lua has no direct writable file/socket API suitable for the outbound bridge. The save publishes `game.mod_storage` to the world's `lua_state.json`.
 
-1. `game.mod_storage` is serialized by the engine during a normal save. `game::save()` writes the Lua state to the world's `lua_state.json` file.
-2. BN leaves `require()` enabled and installs its own C++ Lua module searcher. `lib.*` modules are resolved from `data/lua/lib/` and loaded by the engine itself.
+The original prototype also forced a second full save after consuming every response just to persist an ACK. That has been removed.
 
-This matters because stock BN deliberately disables Lua `dofile`, `loadfile`, `load`, and `loadstring`; this prototype does not rely on any of them.
+After a response is consumed, Lua clears the request **in live `mod_storage` only**. The cleared state is persisted naturally by the next ordinary game save or by the next AI request. Therefore receiving an answer does not itself trigger another full-world save.
 
-## What is already verified against an official executable
+Expected steady-state behavior:
 
-The dedicated Windows CI job downloads the pinned official Bright Nights `2026-08-24` MSVC nightly archive and runs its shipped `cataclysm-bn-tiles.exe`. Without rebuilding BN, the stock executable has already demonstrated that it can:
+```text
+new player line -> one save -> Python response -> NPC answer -> no ACK save
+```
 
-- discover Cataclysm AI from the explicit user mod directory;
-- load the real `main.lua`;
-- resolve a Python-writable `data/lua/lib/catai_runtime/*.lua` module through stock `require()`;
-- expose `game.mod_storage[game.current_mod]` to the mod;
-- accept an `ipc_request` table in that storage;
-- execute `gdebug.save_game()` successfully (`CATAI_STOCK_SAVE_RESULT=true`).
+## Idempotent companion cache
 
-`--check-mods` creates a temporary test world and deliberately deletes it immediately after the mod check. For that reason the CI job does **not** pretend that an external polling process should be able to catch that transient test world's `lua_state.json`. The Python side of parsing/publishing is validated separately by its deterministic self-test. The remaining end-to-end milestone is the same transport in a normal persistent world, where the save is not deleted underneath the companion.
+Removing the forced ACK save creates one crash/restart edge case: the on-disk `lua_state.json` may still contain an already-processed request until BN next saves.
+
+To prevent that from causing another LLM/provider call, the companion stores the exact result of processed requests in:
+
+```text
+<BN>/data/lua/lib/catai_runtime/companion_cache.json
+```
+
+The cache key includes both the world-state path and `request_id`. On a companion restart, a stale request is answered from the cached result instead of calling the provider again.
+
+The cache is bounded and written atomically. Old ACK-based saves remain readable for backwards compatibility.
+
+## Provider layer
+
+Transport and response generation are now separated:
+
+```text
+sidecar/providers.py
+```
+
+Current provider:
+
+- `EchoProvider` — deterministic transport verification.
+
+The sidecar accepts:
+
+```text
+--provider echo
+```
+
+A real LLM provider can now be added without changing save parsing, polling, response-module publication, or the BN Lua transport.
+
+## Why stock BN can do this
+
+Bright Nights already supplies the two mechanisms needed by the bridge:
+
+1. `game.mod_storage` is serialized by the engine during a normal save to the world's `lua_state.json`.
+2. `require()` remains enabled and uses BN's C++ Lua module searcher, so `lib.*` modules can be loaded from `data/lua/lib/` even though stock BN disables Lua `dofile`, `loadfile`, `load`, and `loadstring`.
+
+Python decodes BN's actual `serialize_lua_table()` representation (`entries` plus typed key/value wrappers), not an ordinary-JSON approximation.
 
 ## Files
 
@@ -65,74 +103,66 @@ stock-bn-prototype/
     modinfo.json
     main.lua
   sidecar/
+    providers.py
     cataclysm_ai_stock_sidecar.py
 ```
 
-The companion creates this directory automatically:
+The companion creates:
 
 ```text
 <BN>/data/lua/lib/catai_runtime/
 ```
 
-## Recommended Windows live ECHO test
+## Windows launch
 
-1. Unpack a recent official Windows Bright Nights archive into a writable directory.
-2. Double-click `run_stock_bn_ai.cmd` and enter the directory containing `cataclysm-bn-tiles.exe`.
+1. Unpack an official Windows Bright Nights archive into a writable directory.
+2. Double-click `run_stock_bn_ai.cmd`.
+3. Enter the directory containing `cataclysm-bn-tiles.exe`.
+4. Create/load a world with **Cataclysm AI** enabled.
 
-You can also drag/pass the BN directory as the first argument, or run the Python launcher directly:
+Direct launcher equivalent:
 
 ```powershell
 python launch_stock_bn_ai.py "C:\Games\Cataclysm-BN"
 ```
 
-The launcher:
+The launcher installs the user mod, starts the companion, starts the **unmodified** BN executable with explicit `--basepath` and `--userdir`, and stops the companion when BN exits.
 
-- locates `cataclysm-bn-tiles.exe`;
-- copies `CataclysmAI` to the explicit BN user mod directory;
-- verifies that `data/lua/lib/catai_runtime/` is writable;
-- starts the Python companion with the same user directory;
-- starts the **unmodified** stock executable with explicit `--basepath` and `--userdir` arguments;
-- stops the companion when BN exits.
+## Live tests
 
-This removes dependence on the shell's current working directory and on BN's implicit Windows path behavior.
+### Transport test
 
-### Phase 1: transport-only bridge test
+Action menu -> **AI bridge test**.
 
-3. Create or load a world with **Cataclysm AI** enabled.
-4. Open the in-game action menu and choose **AI bridge test**.
-5. The first invocation writes a synthetic `ping` request and performs a normal save. In the companion console you should see the request and publication of a `response_bridge_test_*.lua` module.
-6. Open **AI bridge test** again.
-7. Expected game messages include:
+First invocation sends `ping`; second invocation consumes the response.
+
+Expected:
 
 ```text
 Cataclysm AI bridge test response: [ECHO:Bridge Test] ping
 Cataclysm AI bridge test: SUCCESS
 ```
 
-This proves the complete persistent-world transport independently of NPC selection and dialogue UI.
+This full round trip has been confirmed in a real persistent Windows BN world.
 
-### Phase 2: NPC ECHO
+### NPC test
 
-8. Stand next to an NPC.
-9. Open the action menu and choose **AI dialogue**.
-10. Select the adjacent NPC and enter:
+Stand next to an NPC:
 
-```text
-ping
-```
+1. Action menu -> **AI dialogue**.
+2. Select the NPC.
+3. Enter `ping`.
+4. After the companion publishes the response, open **AI dialogue** again and select the same NPC.
 
-11. The first invocation saves the request. Open **AI dialogue** again and select the same NPC.
-12. Expected NPC text:
+Expected:
 
 ```text
 [ECHO:<NPC name>] ping
 ```
 
-The mod then persists an ACK so a companion restart cannot replay the consumed request.
+This real-NPC route has also been confirmed live.
 
-### Separate user-data directory
-
-If desired, keep test saves/config outside the BN archive:
+## Separate user directory
 
 ```powershell
 python launch_stock_bn_ai.py `
@@ -140,59 +170,27 @@ python launch_stock_bn_ai.py `
   --user-dir "C:\Games\CataclysmAI-Test-User"
 ```
 
-### Install/path validation without launching BN
+Bright Nights requires option name/value as separate arguments; do not use `--userdir=...`.
 
-```powershell
-python launch_stock_bn_ai.py `
-  "C:\Games\Cataclysm-BN" `
-  --user-dir "C:\Games\CataclysmAI-Test-User" `
-  --install-only
-```
-
-The GitHub Windows stock-binary job uses this same `--install-only` path before asking the official executable to load the mod.
-
-## Manual diagnostic launch
-
-The launcher is preferred, but the companion can still be run directly:
-
-```powershell
-python sidecar\cataclysm_ai_stock_sidecar.py `
-  --game-dir "C:\Games\Cataclysm-BN" `
-  --user-dir "C:\Games\CataclysmAI-Test-User"
-```
-
-Then launch BN with matching paths. Bright Nights requires the option name and value as separate arguments; it does not accept the `--userdir=...` form:
-
-```powershell
-C:\Games\Cataclysm-BN\cataclysm-bn-tiles.exe `
-  --basepath "C:\Games\Cataclysm-BN" `
-  --userdir "C:\Games\CataclysmAI-Test-User"
-```
-
-Or provide the companion directories directly:
-
-```powershell
-python sidecar\cataclysm_ai_stock_sidecar.py `
-  --save-root "C:\Games\CataclysmAI-Test-User\save" `
-  --response-dir "C:\Games\Cataclysm-BN\data\lua\lib\catai_runtime"
-```
-
-The stock executable also supports `--paths`, which can print its resolved user/config/data paths if a package uses an unusual layout.
-
-## Automated validation against an official executable
+## Automated validation
 
 The dedicated workflow does **not build Cataclysm**.
 
-It has two complementary layers:
+It validates:
 
-1. **Python/Lua protocol checks** — Python compilation, companion self-test, and Lua 5.3 syntax. The self-test creates a representative `lua_state.json`, parses the request, generates an ECHO response module, and validates ACK handling.
-2. **Official Windows BN IPC primitives** — downloads the pinned stock MSVC nightly, installs Cataclysm AI through `launch_stock_bn_ai.py --install-only`, and runs the shipped `cataclysm-bn-tiles.exe --check-mods cataclysm_ai`. CI-only probes assert stock `require()`, `game.mod_storage`, and successful `gdebug.save_game()`.
+- `providers.py` Python syntax;
+- companion Python syntax;
+- launcher Python syntax;
+- sidecar self-test using BN's real typed Lua-table JSON representation;
+- provider output and persistent response-cache replay;
+- Lua 5.3 syntax;
+- installation through the stock launcher;
+- loading the actual mod with the official pinned Windows BN executable;
+- stock `require()` from `data/lua/lib/catai_runtime/`;
+- `game.mod_storage` access;
+- successful `gdebug.save_game()`.
 
-The nightly is pinned deliberately so changes in upstream releases cannot silently change what a given commit was validated against.
-
-## Companion self-test
-
-This test does not launch BN. It validates JSON request parsing, request IDs, ECHO generation, Lua response escaping, and ACK parsing:
+Run the local companion self-test with:
 
 ```powershell
 python sidecar\cataclysm_ai_stock_sidecar.py --self-test
@@ -206,25 +204,21 @@ Expected:
 
 ## Protocol v1
 
-Outbound request stored in `lua_state.json`:
+Outbound logical request (BN stores this in its own typed Lua serialization):
 
 ```json
 {
-  "cataclysm_ai": {
-    "ipc_request": {
-      "protocol": 1,
-      "request_id": "42_7",
-      "npc_id": "42",
-      "npc_name": "Old Guard",
-      "player_name": "Survivor",
-      "player_text": "ping",
-      "current_turn": "..."
-    }
-  }
+  "protocol": 1,
+  "request_id": "42_7",
+  "npc_id": "42",
+  "npc_name": "Old Guard",
+  "player_name": "Survivor",
+  "player_text": "ping",
+  "current_turn": "..."
 }
 ```
 
-Inbound response module:
+Inbound module:
 
 ```lua
 return {
@@ -235,26 +229,15 @@ return {
 }
 ```
 
-After consumption Lua clears `ipc_request`, writes `ipc_ack`, and saves again.
+## Next engineering layer
 
-## Important prototype limitation
+With transport and real NPC ECHO proven, the next work is no longer bridge research:
 
-The outbound path currently calls a **normal game save for each external AI request**, and another save when the response is acknowledged. This is acceptable for proving a stock-binary bridge, but it is not the final transport for high-frequency autonomous NPC AI.
-
-If ECHO works, the next engineering decision is measured rather than speculative:
-
-- keep save/require IPC for low-frequency dialogue and planning if save latency is acceptable; or
-- replace only the transport with a tiny runtime bridge/injected helper while keeping the official BN executable and all Lua gameplay logic.
-
-Either route avoids rebuilding Cataclysm itself.
-
-## After ECHO
-
-Only after the stock-binary ECHO route is confirmed in a normal world:
-
-1. replace `make_response()` with a provider abstraction (`EchoProvider`, later LLM provider);
+1. add a real model provider behind the provider interface;
 2. send richer NPC/world context;
-3. add external long-term memory;
+3. add external long-term NPC memory;
 4. define a strict structured action schema;
-5. execute only allow-listed actions through existing BN Lua bindings;
-6. test Lua-driven NPC planning (`game.npc_ai_functions`) at a deliberately low request cadence.
+5. execute only allow-listed actions through stock BN Lua bindings;
+6. later use Lua NPC AI hooks for low-frequency planning/autonomy.
+
+The remaining forced save is therefore a transport-performance limitation, not a blocker for dialogue, memory, relationships, quests, or low-frequency planning.
