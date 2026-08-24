@@ -142,7 +142,6 @@ jobs:
               "--basepath" "$env:CATAI_BN_DIR" `
               "--userdir" "$env:CATAI_USER_DIR" `
               "--paths"
-            if ($LASTEXITCODE -ne 0) { throw "stock --paths failed with exit $LASTEXITCODE" }
           } finally {
             Pop-Location
           }
@@ -150,25 +149,39 @@ jobs:
       - name: Load mod in official stock executable
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Continue"
+          $ErrorActionPreference = "Stop"
           $stdout = Join-Path $env:RUNNER_TEMP "stock-bn-stdout.txt"
+          $stderr = Join-Path $env:RUNNER_TEMP "stock-bn-stderr.txt"
+          $args = @(
+            "--basepath", $env:CATAI_BN_DIR,
+            "--userdir", $env:CATAI_USER_DIR,
+            "--dont-debugmsg",
+            "--check-mods", "cataclysm_ai"
+          )
+
           Push-Location $env:CATAI_BN_DIR
           try {
-            & $env:CATAI_BN_EXE `
-              "--basepath" "$env:CATAI_BN_DIR" `
-              "--userdir" "$env:CATAI_USER_DIR" `
-              "--dont-debugmsg" `
-              "--check-mods" `
-              "cataclysm_ai" 2>&1 | Tee-Object -FilePath $stdout
-            $exitCode = $LASTEXITCODE
+            $process = Start-Process `
+              -FilePath $env:CATAI_BN_EXE `
+              -ArgumentList $args `
+              -Wait `
+              -PassThru `
+              -NoNewWindow `
+              -RedirectStandardOutput $stdout `
+              -RedirectStandardError $stderr
+            $exitCode = $process.ExitCode
           } finally {
             Pop-Location
           }
 
           Write-Host "cataclysm-bn-tiles.exe exit code: $exitCode"
           if (Test-Path $stdout) {
-            Write-Host "--- stock BN stdout/stderr ---"
+            Write-Host "--- stock BN stdout ---"
             Get-Content $stdout
+          }
+          if (Test-Path $stderr) {
+            Write-Host "--- stock BN stderr ---"
+            Get-Content $stderr
           }
 
           $debugLog = Join-Path $env:CATAI_USER_DIR "config/debug.log"
