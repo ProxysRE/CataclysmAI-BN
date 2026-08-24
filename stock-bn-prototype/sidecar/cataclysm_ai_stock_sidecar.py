@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cataclysm AI companion prototype for an unmodified Bright Nights build.
+"""Cataclysm AI companion for an unmodified Bright Nights build.
 
 Outbound IPC is entirely stock BN:
   Lua -> game.mod_storage -> gdebug.save_game() -> <world>/lua_state.json
@@ -7,8 +7,8 @@ Outbound IPC is entirely stock BN:
 Inbound IPC is also stock BN:
   Python -> data/lua/lib/catai_runtime/response_<id>.lua -> Lua require()
 
-The current provider is deterministic ECHO. The transport is intentionally
-proven before any real LLM provider is added.
+The transport is provider-agnostic. The current default provider is deterministic
+ECHO; later providers plug in without changing the BN transport layer.
 """
 
 from __future__ import annotations
@@ -23,8 +23,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from providers import Provider, ProviderResponse, create_provider
+
 MOD_ID = "cataclysm_ai"
 PROTOCOL_VERSION = 1
+CACHE_VERSION = 1
+CACHE_FILENAME = "companion_cache.json"
+CACHE_LIMIT = 256
 
 
 @dataclass(frozen=True)
@@ -121,18 +126,22 @@ def load_json(path: Path) -> dict[str, Any] | None:
         with path.open("r", encoding="utf-8") as handle:
             value = json.load(handle)
     except (FileNotFoundError, PermissionError, json.JSONDecodeError, OSError):
-        # Normal while BN is atomically replacing or still writing a save.
         return None
     return value if isinstance(value, dict) else None
 
 
-def decode_bn_lua_object(value: Any) -> Any:
-    """Decode one object produced by BN's serialize_lua_object().
+def write_json_atomic(path: Path, value: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_suffix(path.suffix + ".tmp")
+    temp.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+        newline="\n",
+    )
+    os.replace(temp, path)
 
-    Bright Nights does not write Lua tables to lua_state.json as ordinary JSON
-    objects. Each Lua key/value is tagged, e.g. {"type":"string","data":"x"},
-    and nested tables use {"type":"lua_table","data":{"entries":[...]}}.
-    """
+
+def decode_bn_lua_object(value: Any) -> Any:
     if not isinstance(value, dict):
         raise ValueError(f"invalid BN Lua value: expected object, got {type(value).__name__}")
 
@@ -154,7 +163,6 @@ def decode_bn_lua_object(value: Any) -> Any:
 
 
 def decode_bn_lua_table(value: Any) -> dict[Any, Any]:
-    """Decode BN's serialize_lua_table() representation into a Python dict."""
     if value is None:
         return {}
     if not isinstance(value, dict):
@@ -189,13 +197,11 @@ def request_from_state(path: Path) -> tuple[Request | None, str | None]:
         return None, None
 
     try:
-        # save_world_lua_state() calls serialize_lua_table() directly for each
-        # mod, so the top-level mod value is the table body ({entries:[...]}),
-        # not a {type:"lua_table", data:...} wrapper.
         mod_state = decode_bn_lua_table(serialized_mod_state)
     except ValueError as exc:
         raise ValueError(f"could not decode {MOD_ID} state in {path}: {exc}") from exc
 
+    # Backwards compatibility with worlds saved by the first ACK-based build.
     ack = mod_state.get("ipc_ack")
     ack_id = str(ack) if ack is not None else None
 
@@ -246,19 +252,92 @@ def newest_world_state(save_root: Path) -> Path | None:
     return candidates[0][1]
 
 
-def make_response(request: Request) -> str:
-    """Deterministic transport test. Replace with a real provider later."""
-    return f"[ECHO:{request.npc_name}] {request.player_text}"
+def cache_key(request: Request) -> str:
+    try:
+        state = str(request.state_path.resolve())
+    except OSError:
+        state = str(request.state_path)
+    return f"{state}|{request.request_id}"
 
 
-def run(save_root: Path, response_dir: Path, poll_seconds: float, once: bool) -> int:
+def load_response_cache(path: Path) -> dict[str, dict[str, Any]]:
+    root = load_json(path)
+    if root is None or root.get("version") != CACHE_VERSION:
+        return {}
+    entries = root.get("entries")
+    if not isinstance(entries, dict):
+        return {}
+
+    cleaned: dict[str, dict[str, Any]] = {}
+    for key, value in entries.items():
+        if not isinstance(key, str) or not isinstance(value, dict):
+            continue
+        request_id = value.get("request_id")
+        text = value.get("text", "")
+        error = value.get("error")
+        if not isinstance(request_id, str) or not isinstance(text, str):
+            continue
+        if error is not None and not isinstance(error, str):
+            continue
+        cleaned[key] = {
+            "request_id": request_id,
+            "text": text,
+            "error": error,
+        }
+    return cleaned
+
+
+def save_response_cache(path: Path, entries: dict[str, dict[str, Any]]) -> None:
+    if len(entries) > CACHE_LIMIT:
+        entries = dict(list(entries.items())[-CACHE_LIMIT:])
+    write_json_atomic(path, {"version": CACHE_VERSION, "entries": entries})
+
+
+def cached_result(
+    cache: dict[str, dict[str, Any]], request: Request
+) -> ProviderResponse | None:
+    entry = cache.get(cache_key(request))
+    if not entry or entry.get("request_id") != request.request_id:
+        return None
+    return ProviderResponse(text=str(entry.get("text", "")), error=entry.get("error"))
+
+
+def remember_result(
+    cache_path: Path,
+    cache: dict[str, dict[str, Any]],
+    request: Request,
+    result: ProviderResponse,
+) -> None:
+    key = cache_key(request)
+    cache.pop(key, None)
+    cache[key] = {
+        "request_id": request.request_id,
+        "text": result.text,
+        "error": result.error,
+    }
+    if len(cache) > CACHE_LIMIT:
+        cache.pop(next(iter(cache)), None)
+    save_response_cache(cache_path, cache)
+
+
+def run(
+    save_root: Path,
+    response_dir: Path,
+    poll_seconds: float,
+    once: bool,
+    provider: Provider,
+) -> int:
     clear_stale_responses(response_dir)
+    cache_path = response_dir / CACHE_FILENAME
+    cache = load_response_cache(cache_path)
     seen: set[tuple[str, str]] = set()
     last_state: Path | None = None
 
     log(f"save root: {save_root}")
     log(f"response modules: {response_dir}")
-    log("provider: deterministic ECHO")
+    log(f"provider: {provider.name}")
+    if cache:
+        log(f"loaded {len(cache)} cached response(s)")
 
     while True:
         state_path = newest_world_state(save_root)
@@ -284,31 +363,43 @@ def run(save_root: Path, response_dir: Path, poll_seconds: float, once: bool) ->
                 pass
 
         if request is not None:
-            key = (str(request.state_path), request.request_id)
-            if key not in seen:
-                seen.add(key)
+            seen_key = (str(request.state_path), request.request_id)
+            if seen_key not in seen:
+                seen.add(seen_key)
                 log(
                     f"request {request.request_id}: npc={request.npc_name!r} "
                     f"player={request.player_name!r} text={request.player_text!r}"
                 )
+
+                result = cached_result(cache, request)
+                if result is not None:
+                    log(f"replaying cached response for {request.request_id}")
+                else:
+                    try:
+                        result = provider.respond(request)
+                        remember_result(cache_path, cache, request, result)
+                    except Exception as exc:
+                        log(
+                            f"request {request.request_id} failed: "
+                            f"{type(exc).__name__}: {exc}",
+                            error=True,
+                        )
+                        result = ProviderResponse(error=f"{type(exc).__name__}: {exc}")
+
                 try:
-                    response = make_response(request)
-                    path = publish_response(response_dir, request.request_id, text=response)
+                    path = publish_response(
+                        response_dir,
+                        request.request_id,
+                        text=result.text,
+                        error=result.error,
+                    )
                     log(f"published {path}")
                 except Exception as exc:
                     log(
-                        f"request {request.request_id} failed: "
+                        f"could not publish response {request.request_id}: "
                         f"{type(exc).__name__}: {exc}",
                         error=True,
                     )
-                    try:
-                        publish_response(
-                            response_dir,
-                            request.request_id,
-                            error=f"{type(exc).__name__}: {exc}",
-                        )
-                    except Exception as publish_exc:
-                        log(f"could not publish error response: {publish_exc}", error=True)
 
                 if once:
                     return 0
@@ -317,7 +408,6 @@ def run(save_root: Path, response_dir: Path, poll_seconds: float, once: bool) ->
 
 
 def bn_value(value: Any) -> dict[str, Any]:
-    """Test-only encoder matching the subset of BN serialization we consume."""
     if isinstance(value, bool):
         return {"type": "bool", "data": value}
     if isinstance(value, int):
@@ -345,10 +435,9 @@ def self_test() -> int:
         save_root = root / "save"
         world = save_root / "Test World"
         response_dir = root / "data" / "lua" / "lib" / "catai_runtime"
+        cache_path = response_dir / CACHE_FILENAME
         world.mkdir(parents=True)
 
-        # Match Bright Nights' real save_world_lua_state()/serialize_lua_table()
-        # representation rather than a convenient ordinary-JSON approximation.
         logical_mod_state = {
             "request_seq": 7,
             "ipc_request": {
@@ -375,14 +464,26 @@ def self_test() -> int:
         assert request.player_text == "Hello | world\nagain"
         assert newest_world_state(save_root) == state_path
 
-        response = make_response(request)
-        path = publish_response(response_dir, request.request_id, text=response)
+        provider = create_provider("echo")
+        result = provider.respond(request)
+        assert result.error is None
+        assert result.text == "[ECHO:Old Guard] Hello | world\nagain"
+
+        remember_result(cache_path, {}, request, result)
+        reloaded_cache = load_response_cache(cache_path)
+        replay = cached_result(reloaded_cache, request)
+        assert replay == result
+
+        path = publish_response(
+            response_dir,
+            request.request_id,
+            text=result.text,
+            error=result.error,
+        )
         payload = path.read_text(encoding="utf-8")
         assert 'request_id = "42_7"' in payload
         assert 'text = "[ECHO:Old Guard] Hello | world\\nagain"' in payload
 
-        # Lua assignment to nil removes the key entirely; model the persisted
-        # ACK exactly as acknowledge_response() does in the game.
         logical_mod_state.pop("ipc_request", None)
         logical_mod_state["ipc_ack"] = "42_7"
         state = {MOD_ID: bn_table(logical_mod_state)}
@@ -419,6 +520,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Explicit data/lua/lib/catai_runtime directory",
     )
+    parser.add_argument(
+        "--provider",
+        default="echo",
+        choices=("echo",),
+        help="Response provider. Only deterministic echo is enabled in this milestone.",
+    )
     parser.add_argument("--poll-ms", type=int, default=100, help="Polling period in milliseconds")
     parser.add_argument("--once", action="store_true", help="Exit after publishing one response")
     parser.add_argument("--self-test", action="store_true", help="Run transport self-test and exit")
@@ -451,7 +558,12 @@ def main() -> int:
     else:
         raise SystemExit("provide --game-dir or --response-dir")
 
-    return run(save_root, response_dir, args.poll_ms / 1000.0, args.once)
+    try:
+        provider = create_provider(args.provider)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
+
+    return run(save_root, response_dir, args.poll_ms / 1000.0, args.once, provider)
 
 
 if __name__ == "__main__":
