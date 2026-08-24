@@ -1,4 +1,4 @@
-name: Build and test minimal Cataclysm AI bridge for Windows
+name: Build and test Cataclysm AI bridge plus Python sidecar for Windows
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-windows:
-    name: Cataclysm AI bridge runtime / Windows MSVC
+    name: Cataclysm AI Python ECHO runtime / Windows MSVC
     runs-on: windows-2022
 
     steps:
@@ -26,7 +26,13 @@ jobs:
           path: bn
           fetch-depth: 1
 
-      - name: Apply minimal Lua bridge and runtime test
+      - name: Validate Python ECHO sidecar
+        shell: pwsh
+        run: |
+          python --version
+          python -m py_compile "${{ github.workspace }}/project/sidecar/cataclysm_ai_sidecar.py"
+
+      - name: Apply minimal Lua bridge and Python ECHO runtime test
         shell: pwsh
         working-directory: bn
         run: |
@@ -101,7 +107,7 @@ jobs:
             --config Release `
             --target cataclysm-bn-tiles cata_test-tiles
 
-      - name: Run Cataclysm AI Lua round-trip test
+      - name: Run Cataclysm AI Python ECHO round-trip test
         shell: pwsh
         working-directory: bn
         run: |
@@ -109,10 +115,26 @@ jobs:
           if ($null -eq $testExe) {
             throw "cata_test-tiles.exe was not found."
           }
+
+          $sidecarScript = "${{ github.workspace }}/project/sidecar/cataclysm_ai_sidecar.py"
+          $testConfigDir = "${{ github.workspace }}/bn/test_user_dir/config"
+          $sidecar = Start-Process -FilePath "python" `
+            -ArgumentList @($sidecarScript, "--once", "--timeout", "15", "--config-dir", $testConfigDir) `
+            -PassThru -NoNewWindow
+
+          Start-Sleep -Milliseconds 250
           Write-Host "Test executable: $($testExe.FullName)"
           & $testExe.FullName "[cataclysm_ai]"
-          if ($LASTEXITCODE -ne 0) {
-            throw "Cataclysm AI Lua runtime round-trip test failed with exit code $LASTEXITCODE."
+          $testExitCode = $LASTEXITCODE
+
+          $sidecar.WaitForExit()
+          $sidecarExitCode = $sidecar.ExitCode
+
+          if ($testExitCode -ne 0) {
+            throw "Cataclysm AI Python ECHO Lua runtime test failed with exit code $testExitCode."
+          }
+          if ($sidecarExitCode -ne 0) {
+            throw "Python ECHO sidecar failed with exit code $sidecarExitCode."
           }
 
       - name: Verify executable
@@ -130,6 +152,6 @@ jobs:
       - name: Upload compiled executable
         uses: actions/upload-artifact@v4
         with:
-          name: cataclysm-ai-runtime-tested-bridge-windows-exe
+          name: cataclysm-ai-python-echo-tested-windows-exe
           path: ${{ env.BN_EXE }}
           if-no-files-found: error
