@@ -20,7 +20,7 @@ jobs:
       BN_REF: "660c2618548844449f88bdeae7af702b9f0cc83c"
 
     steps:
-      - name: Checkout Cataclysm AI CI repository
+      - name: Checkout Cataclysm AI repository
         uses: actions/checkout@v4
 
       - name: Checkout pinned Bright Nights
@@ -65,6 +65,25 @@ jobs:
         shell: pwsh
         run: vcpkg integrate install
 
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: windows-cataclysm-ai-${{ env.BN_REF }}
+          restore-keys: |
+            windows-cataclysm-ai-${{ env.BN_REF }}
+            windows-cataclysm-ai-
+          max-size: 3G
+          verbose: 2
+          save: ${{ github.event_name != 'pull_request' }}
+
+      - name: Configure ccache for MSVC
+        shell: pwsh
+        run: |
+          "CCACHE_BASEDIR=${{ github.workspace }}" >> $env:GITHUB_ENV
+          "CCACHE_SLOPPINESS=include_file_ctime,include_file_mtime,time_macros,pch_defines" >> $env:GITHUB_ENV
+          "CCACHE_NOHASHDIR=1" >> $env:GITHUB_ENV
+          "CCACHE_COMPILERCHECK=content" >> $env:GITHUB_ENV
+
       - name: Apply Cataclysm AI engine bridge
         shell: pwsh
         run: .\scripts\apply_bridge.ps1 -BnRoot "$env:GITHUB_WORKSPACE\bn"
@@ -93,19 +112,54 @@ jobs:
             -DLOCALIZE=False `
             -DTILES=True `
             -DSOUND=True `
-            -DTESTS=False `
+            -DTESTS=True `
             -DRELEASE=ON `
             -DJSON_FORMAT=OFF `
             -DCATA_FORMAT_TARGETS=OFF `
+            -DLUA_DOCS_ON_BUILD=OFF `
             -DCMAKE_INSTALL_MESSAGE=NEVER
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-      - name: Build Bright Nights
+      - name: Build Bright Nights and tests
         shell: pwsh
         run: |
           $build = "$env:GITHUB_WORKSPACE\bn\out\build\windows-tiles-sounds-x64-msvc"
-          cmake --build "$build" --config Release --target cataclysm-bn-tiles
+          cmake --build "$build" --config Release --target cataclysm-bn-tiles cata_test-tiles
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Run Cataclysm AI Lua binding test
+        shell: pwsh
+        run: |
+          $src = "$env:GITHUB_WORKSPACE\bn"
+          $build = "$src\out\build\windows-tiles-sounds-x64-msvc"
+          $testExe = Get-ChildItem -Path $build -Filter "cata_test-tiles.exe" -Recurse | Select-Object -First 1
+          if (-not $testExe) {
+            throw "cata_test-tiles.exe was not found under $build"
+          }
+          Push-Location $src
+          try {
+            & $testExe.FullName "[cataclysm_ai]"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          } finally {
+            Pop-Location
+          }
+
+      - name: Check Bright Nights mods
+        shell: pwsh
+        run: |
+          $src = "$env:GITHUB_WORKSPACE\bn"
+          $build = "$src\out\build\windows-tiles-sounds-x64-msvc"
+          $gameExe = Get-ChildItem -Path $build -Filter "cataclysm-bn-tiles.exe" -Recurse | Select-Object -First 1
+          if (-not $gameExe) {
+            throw "cataclysm-bn-tiles.exe was not found under $build"
+          }
+          Push-Location $src
+          try {
+            & $gameExe.FullName --check-mods
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          } finally {
+            Pop-Location
+          }
 
       - name: Create runnable distribution
         shell: pwsh
@@ -115,8 +169,13 @@ jobs:
           $dist = "$env:GITHUB_WORKSPACE\artifact\CataclysmBN-CataclysmAI"
           Remove-Item -Recurse -Force "$dist" -ErrorAction SilentlyContinue
           New-Item -ItemType Directory -Force -Path "$dist" | Out-Null
+
           cmake --install "$build" --prefix "$dist" --config Release
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+          $modDst = Join-Path $dist "data\mods\CataclysmAI"
+          New-Item -ItemType Directory -Force -Path $modDst | Out-Null
+          Copy-Item -Path "$env:GITHUB_WORKSPACE\mod\CataclysmAI\*" -Destination $modDst -Recurse -Force
 
           @"
           Cataclysm AI bridge prototype 0.1
@@ -124,15 +183,15 @@ jobs:
           Cataclysm AI commit: $env:GITHUB_SHA
           "@ | Set-Content -Path "$dist\CATACLYSM_AI_BUILD.txt" -Encoding UTF8
 
-          $exe = Join-Path "$dist" "cataclysm-bn-tiles.exe"
-          if (-not (Test-Path "$exe")) {
+          $exe = Join-Path $dist "cataclysm-bn-tiles.exe"
+          if (-not (Test-Path $exe)) {
             throw "Installed game executable not found: $exe"
           }
-          & "$exe" --version
+          & $exe --version
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-          $server = Join-Path "$dist" "data\mods\CataclysmAI\server\start_echo_server.bat"
-          if (-not (Test-Path "$server")) {
+          $server = Join-Path $dist "data\mods\CataclysmAI\server\start_echo_server.bat"
+          if (-not (Test-Path $server)) {
             throw "Cataclysm AI sidecar launcher missing from distribution: $server"
           }
 
