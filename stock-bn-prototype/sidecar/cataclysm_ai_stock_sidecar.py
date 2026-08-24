@@ -111,6 +111,20 @@ def response_file(runtime_dir: Path, request_id: str) -> Path:
     return runtime_dir / f"response_{safe}.lua"
 
 
+def clear_stale_responses(runtime_dir: Path) -> None:
+    runtime_dir.mkdir(parents=True, exist_ok=True)
+    removed = 0
+    for pattern in ("response_*.lua", "response_*.lua.tmp"):
+        for path in runtime_dir.glob(pattern):
+            try:
+                path.unlink()
+                removed += 1
+            except FileNotFoundError:
+                pass
+    if removed:
+        log(f"removed {removed} stale runtime response file(s)")
+
+
 def publish_response(runtime_dir: Path, request_id: str, *, text: str = "", error: str | None = None) -> Path:
     runtime_dir.mkdir(parents=True, exist_ok=True)
     target = response_file(runtime_dir, request_id)
@@ -205,6 +219,7 @@ def follow_lines(path: Path, poll_seconds: float) -> Iterable[str]:
 
 def run(debug_log: Path, runtime_dir: Path, poll_seconds: float, once: bool) -> int:
     seen: set[str] = set()
+    clear_stale_responses(runtime_dir)
 
     log(f"debug log: {debug_log}")
     log(f"runtime dir: {runtime_dir}")
@@ -253,6 +268,23 @@ def run(debug_log: Path, runtime_dir: Path, poll_seconds: float, once: bool) -> 
     return 0
 
 
+def self_test() -> int:
+    sample = (
+        "12:00:00.000 : INFO LUA : CATAI_REQ|1|42_7|42|Old%20Guard|Survivor|"
+        "Hello%7Cworld%0Aagain|day%201"
+    )
+    request = parse_request(sample)
+    assert request is not None
+    assert request.request_id == "42_7"
+    assert request.npc_name == "Old Guard"
+    assert request.player_text == "Hello|world\nagain"
+    assert parse_ack("INFO CATAI_ACK|1|42_7") == "42_7"
+    assert parse_ack("INFO unrelated") is None
+    assert lua_string('a\\b"c\n') == '"a\\\\b\\"c\\n"'
+    log("self-test passed")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Cataclysm AI bridge for an unmodified Bright Nights build")
     parser.add_argument("--game-dir", type=Path, help="Root directory of the unpacked Bright Nights build")
@@ -260,11 +292,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--mod-dir", type=Path, help="Explicit CataclysmAI mod directory")
     parser.add_argument("--poll-ms", type=int, default=50, help="Log polling period in milliseconds")
     parser.add_argument("--once", action="store_true", help="Exit after the first request is answered")
+    parser.add_argument("--self-test", action="store_true", help="Run protocol/parser self-test and exit")
     return parser
 
 
 def main() -> int:
     args = build_parser().parse_args()
+
+    if args.self_test:
+        return self_test()
 
     game_dir = args.game_dir.resolve() if args.game_dir else None
     if args.debug_log:
