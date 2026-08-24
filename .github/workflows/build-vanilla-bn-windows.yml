@@ -1,4 +1,4 @@
-name: Build pristine Bright Nights for Windows
+name: Build and test Cataclysm AI bridge plus Python sidecar for Windows
 
 on:
   workflow_dispatch:
@@ -9,10 +9,15 @@ on:
 
 jobs:
   build-windows:
-    name: Vanilla BN / Windows MSVC
+    name: Cataclysm AI Python ECHO runtime / Windows MSVC
     runs-on: windows-2022
 
     steps:
+      - name: Checkout Cataclysm AI project
+        uses: actions/checkout@v4
+        with:
+          path: project
+
       - name: Checkout pristine Bright Nights
         uses: actions/checkout@v4
         with:
@@ -20,6 +25,25 @@ jobs:
           ref: 17a0df280e6d009402bcc41ffafbce12670c4b99
           path: bn
           fetch-depth: 1
+
+      - name: Validate Python ECHO sidecar
+        shell: pwsh
+        run: |
+          python --version
+          python -m py_compile "${{ github.workspace }}/project/sidecar/cataclysm_ai_sidecar.py"
+
+      - name: Apply minimal Lua bridge and Python ECHO runtime test
+        shell: pwsh
+        working-directory: bn
+        run: |
+          $bridgePatch = "${{ github.workspace }}/project/patches/minimal-lua-bridge.patch"
+          $testPatch = "${{ github.workspace }}/project/patches/runtime-exchange-test.patch"
+          git apply --check $bridgePatch
+          git apply $bridgePatch
+          git apply --check $testPatch
+          git apply $testPatch
+          git diff --check
+          git diff --stat
 
       - name: Setup MSVC environment
         uses: ilammy/msvc-dev-cmd@v1
@@ -51,7 +75,7 @@ jobs:
         shell: pwsh
         run: vcpkg integrate install
 
-      - name: Configure pristine Bright Nights
+      - name: Configure Bright Nights with Cataclysm AI bridge tests
         shell: pwsh
         working-directory: bn
         env:
@@ -69,19 +93,107 @@ jobs:
             -DLOCALIZE=False `
             -DTILES=True `
             -DSOUND=True `
-            -DTESTS=False `
+            -DTESTS=True `
             -DRELEASE=OFF `
             -DJSON_FORMAT=OFF `
             -DCATA_FORMAT_TARGETS=OFF `
             -DCMAKE_INSTALL_MESSAGE=NEVER
 
-      - name: Build pristine Bright Nights
+      - name: Build Bright Nights and Lua tests
         shell: pwsh
         working-directory: bn
         run: |
           cmake --build "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" `
             --config Release `
-            --target cataclysm-bn-tiles
+            --target cataclysm-bn-tiles cata_test-tiles
+
+      - name: Run Cataclysm AI Python ECHO round-trip test
+        shell: pwsh
+        working-directory: bn
+        run: |
+          $testExe = Get-ChildItem "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" -Filter "cata_test-tiles.exe" -Recurse | Select-Object -First 1
+          if ($null -eq $testExe) {
+            throw "cata_test-tiles.exe was not found."
+          }
+
+          Write-Host "Test executable: $($testExe.FullName)"
+          Write-Host "Discovering Cataclysm AI runtime test..."
+          & $testExe.FullName --list-tests "[cataclysm_ai]"
+          $listExitCode = $LASTEXITCODE
+          if ($listExitCode -ne 0) {
+            throw "Catch2 could not discover [cataclysm_ai] tests; exit code $listExitCode."
+          }
+
+          $sidecarScript = "${{ github.workspace }}/project/sidecar/cataclysm_ai_sidecar.py"
+          $testUserDir = "${{ github.workspace }}/bn/test_user_dir"
+          $testConfigDir = Join-Path $testUserDir "config"
+          $sidecarStdout = "${{ github.workspace }}/sidecar.stdout.log"
+          $sidecarStderr = "${{ github.workspace }}/sidecar.stderr.log"
+          $requestFile = Join-Path $testConfigDir "cataclysm_ai_request.txt"
+          $responseFile = Join-Path $testConfigDir "cataclysm_ai_response.txt"
+
+          Remove-Item $sidecarStdout -Force -ErrorAction SilentlyContinue
+          Remove-Item $sidecarStderr -Force -ErrorAction SilentlyContinue
+
+          Write-Host "Explicit test user dir: $testUserDir"
+          Write-Host "Expected sidecar config dir: $testConfigDir"
+          Write-Host "Expected request file: $requestFile"
+          Write-Host "Expected response file: $responseFile"
+
+          $sidecar = Start-Process -FilePath "python" `
+            -ArgumentList @($sidecarScript, "--once", "--timeout", "600", "--config-dir", $testConfigDir) `
+            -RedirectStandardOutput $sidecarStdout `
+            -RedirectStandardError $sidecarStderr `
+            -PassThru
+
+          Start-Sleep -Milliseconds 250
+          if ($sidecar.HasExited) {
+            Write-Host "Sidecar exited before cata_test started. Exit code: $($sidecar.ExitCode)"
+          } else {
+            Write-Host "Sidecar PID: $($sidecar.Id)"
+          }
+
+          & $testExe.FullName "--user-dir=$testUserDir" "[cataclysm_ai]"
+          $testExitCode = $LASTEXITCODE
+
+          if (-not $sidecar.WaitForExit(15000)) {
+            Write-Host "Sidecar did not exit within 15 seconds after cata_test; stopping it."
+            Stop-Process -Id $sidecar.Id -Force -ErrorAction SilentlyContinue
+            $sidecar.WaitForExit()
+          }
+          $sidecarExitCode = $sidecar.ExitCode
+
+          Write-Host "--- Python sidecar stdout ---"
+          if (Test-Path $sidecarStdout) { Get-Content $sidecarStdout }
+          Write-Host "--- Python sidecar stderr ---"
+          if (Test-Path $sidecarStderr) { Get-Content $sidecarStderr }
+
+          Write-Host "--- IPC path state after test ---"
+          Write-Host "config exists: $(Test-Path $testConfigDir)"
+          Write-Host "request exists: $(Test-Path $requestFile)"
+          Write-Host "response exists: $(Test-Path $responseFile)"
+          if (Test-Path $requestFile) {
+            Write-Host "request contents:"
+            Get-Content $requestFile -Raw
+          }
+          if (Test-Path $responseFile) {
+            Write-Host "response contents:"
+            Get-Content $responseFile -Raw
+          }
+          if (Test-Path $testUserDir) {
+            Write-Host "--- Test user directory tree ---"
+            Get-ChildItem $testUserDir -Force -Recurse | Select-Object FullName, Length, LastWriteTime
+          }
+
+          Write-Host "cata_test exit code: $testExitCode"
+          Write-Host "sidecar exit code: $sidecarExitCode"
+
+          if ($testExitCode -ne 0) {
+            throw "Cataclysm AI Python ECHO Lua runtime test failed with exit code $testExitCode."
+          }
+          if ($sidecarExitCode -ne 0) {
+            throw "Python ECHO sidecar failed with exit code $sidecarExitCode."
+          }
 
       - name: Verify executable
         shell: pwsh
@@ -98,6 +210,6 @@ jobs:
       - name: Upload compiled executable
         uses: actions/upload-artifact@v4
         with:
-          name: vanilla-cataclysm-bn-windows-exe
+          name: cataclysm-ai-python-echo-tested-windows-exe
           path: ${{ env.BN_EXE }}
           if-no-files-found: error
