@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 """Cataclysm AI companion for an unmodified Bright Nights build.
 
-Outbound IPC is entirely stock BN:
+Outbound IPC is stock BN:
   Lua -> game.mod_storage -> gdebug.save_game() -> <world>/lua_state.json
 
-Inbound IPC is also stock BN:
+Inbound IPC is stock BN:
   Python -> data/lua/lib/catai_runtime/response_<id>.lua -> Lua require()
 
-The transport is provider-agnostic. The current default provider is a
-deterministic dialogue-context probe; later model providers plug in without
-changing the BN transport layer.
+Transport, persistent NPC memory, and response providers are separate layers.
 """
 
 from __future__ import annotations
@@ -24,12 +22,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from memory import MemoryStore
 from providers import Provider, ProviderResponse, create_provider
 
 MOD_ID = "cataclysm_ai"
 PROTOCOL_VERSION = 1
 CACHE_VERSION = 1
 CACHE_FILENAME = "companion_cache.json"
+MEMORY_FILENAME = "npc_memory.json"
 CACHE_LIMIT = 256
 
 
@@ -150,7 +150,6 @@ def decode_bn_lua_object(value: Any) -> Any:
 
     value_type = value.get("type")
     data = value.get("data")
-
     if value_type == "string":
         return str(data if data is not None else "")
     if value_type == "int":
@@ -161,7 +160,6 @@ def decode_bn_lua_object(value: Any) -> Any:
         return bool(data)
     if value_type == "lua_table":
         return decode_bn_lua_table(data)
-
     raise ValueError(f"unsupported BN Lua serialized type: {value_type!r}")
 
 
@@ -204,10 +202,8 @@ def request_from_state(path: Path) -> tuple[Request | None, str | None]:
     except ValueError as exc:
         raise ValueError(f"could not decode {MOD_ID} state in {path}: {exc}") from exc
 
-    # Backwards compatibility with worlds saved by the first ACK-based build.
     ack = mod_state.get("ipc_ack")
     ack_id = str(ack) if ack is not None else None
-
     raw = mod_state.get("ipc_request")
     if not isinstance(raw, dict):
         return None, ack_id
@@ -249,8 +245,7 @@ def request_from_state(path: Path) -> tuple[Request | None, str | None]:
 def newest_world_state(save_root: Path) -> Path | None:
     candidates: list[tuple[int, Path]] = []
     try:
-        paths = save_root.glob("*/lua_state.json")
-        for path in paths:
+        for path in save_root.glob("*/lua_state.json"):
             try:
                 candidates.append((path.stat().st_mtime_ns, path))
             except FileNotFoundError:
@@ -291,11 +286,7 @@ def load_response_cache(path: Path) -> dict[str, dict[str, Any]]:
             continue
         if error is not None and not isinstance(error, str):
             continue
-        cleaned[key] = {
-            "request_id": request_id,
-            "text": text,
-            "error": error,
-        }
+        cleaned[key] = {"request_id": request_id, "text": text, "error": error}
     return cleaned
 
 
@@ -338,6 +329,7 @@ def run(
     poll_seconds: float,
     once: bool,
     provider: Provider,
+    memory_store: MemoryStore,
 ) -> int:
     clear_stale_responses(response_dir)
     cache_path = response_dir / CACHE_FILENAME
@@ -347,6 +339,7 @@ def run(
 
     log(f"save root: {save_root}")
     log(f"response modules: {response_dir}")
+    log(f"memory store: {memory_store.path}")
     log(f"provider: {provider.name}")
     if cache:
         log(f"loaded {len(cache)} cached response(s)")
@@ -378,10 +371,11 @@ def run(
             seen_key = (str(request.state_path), request.request_id)
             if seen_key not in seen:
                 seen.add(seen_key)
+                memory = memory_store.view(request)
                 log(
                     f"request {request.request_id}: npc={request.npc_name!r} "
                     f"player={request.player_name!r} text={request.player_text!r} "
-                    f"context_v={request.context_version}"
+                    f"context_v={request.context_version} memory={memory.exchange_count}"
                 )
 
                 result = cached_result(cache, request)
@@ -389,7 +383,7 @@ def run(
                     log(f"replaying cached response for {request.request_id}")
                 else:
                     try:
-                        result = provider.respond(request)
+                        result = provider.respond(request, memory)
                         remember_result(cache_path, cache, request, result)
                     except Exception as exc:
                         log(
@@ -398,6 +392,16 @@ def run(
                             error=True,
                         )
                         result = ProviderResponse(error=f"{type(exc).__name__}: {exc}")
+
+                # Do this for both fresh and cached successful results. If a crash
+                # occurred after cache persistence but before memory persistence,
+                # replay repairs memory without another provider/model call.
+                if result.error is None and request.npc_id != "bridge_test":
+                    try:
+                        if memory_store.remember_exchange(request, result.text):
+                            log(f"remembered exchange {request.request_id} for npc {request.npc_id}")
+                    except Exception as exc:
+                        log(f"could not persist NPC memory: {exc}", error=True)
 
                 try:
                     path = publish_response(
@@ -442,6 +446,61 @@ def bn_table(value: dict[Any, Any]) -> dict[str, Any]:
     return {"entries": entries} if entries else {}
 
 
+def _test_context() -> dict[str, Any]:
+    return {
+        "npc": {
+            "id": "42",
+            "name": "Old Guard",
+            "personality": {
+                "aggression": 2,
+                "bravery": 5,
+                "collector": 1,
+                "altruism": 4,
+            },
+            "opinion_of_player": {
+                "trust": 3,
+                "fear": 1,
+                "value": 2,
+                "anger": 0,
+                "owed": 0,
+            },
+            "relationship": {
+                "enemy": False,
+                "following": True,
+                "player_ally": True,
+                "guarding": False,
+                "patrolling": False,
+                "travelling": False,
+                "turned_hostile": False,
+                "guaranteed_hostile": False,
+            },
+            "state": {
+                "pain": 0,
+                "perceived_pain": 0,
+                "stamina": 1000,
+                "stamina_max": 1000,
+                "morale": 10,
+                "hostile_anger_level": 20,
+            },
+        },
+        "player": {
+            "name": "Survivor",
+            "state": {
+                "pain": 4,
+                "perceived_pain": 4,
+                "stamina": 900,
+                "stamina_max": 1000,
+                "morale": 5,
+            },
+        },
+        "world": {
+            "current_turn": "day 1",
+            "npc_danger_assessment": 0.25,
+            "npc_current_target": "",
+        },
+    }
+
+
 def self_test() -> int:
     with tempfile.TemporaryDirectory(prefix="catai-test-") as tmp:
         root = Path(tmp)
@@ -449,60 +508,9 @@ def self_test() -> int:
         world = save_root / "Test World"
         response_dir = root / "data" / "lua" / "lib" / "catai_runtime"
         cache_path = response_dir / CACHE_FILENAME
+        memory_path = root / "state" / MEMORY_FILENAME
         world.mkdir(parents=True)
 
-        dialogue_context = {
-            "npc": {
-                "id": "42",
-                "name": "Old Guard",
-                "personality": {
-                    "aggression": 2,
-                    "bravery": 5,
-                    "collector": 1,
-                    "altruism": 4,
-                },
-                "opinion_of_player": {
-                    "trust": 3,
-                    "fear": 1,
-                    "value": 2,
-                    "anger": 0,
-                    "owed": 0,
-                },
-                "relationship": {
-                    "enemy": False,
-                    "following": True,
-                    "player_ally": True,
-                    "guarding": False,
-                    "patrolling": False,
-                    "travelling": False,
-                    "turned_hostile": False,
-                    "guaranteed_hostile": False,
-                },
-                "state": {
-                    "pain": 0,
-                    "perceived_pain": 0,
-                    "stamina": 1000,
-                    "stamina_max": 1000,
-                    "morale": 10,
-                    "hostile_anger_level": 20,
-                },
-            },
-            "player": {
-                "name": "Survivor",
-                "state": {
-                    "pain": 4,
-                    "perceived_pain": 4,
-                    "stamina": 900,
-                    "stamina_max": 1000,
-                    "morale": 5,
-                },
-            },
-            "world": {
-                "current_turn": "day 1",
-                "npc_danger_assessment": 0.25,
-                "npc_current_target": "",
-            },
-        }
         logical_mod_state = {
             "request_seq": 7,
             "ipc_request": {
@@ -514,7 +522,7 @@ def self_test() -> int:
                 "player_text": "Hello | world\nagain",
                 "current_turn": "day 1",
                 "context_version": 1,
-                "context": dialogue_context,
+                "context": _test_context(),
             },
         }
         state = {MOD_ID: bn_table(logical_mod_state)}
@@ -523,52 +531,81 @@ def self_test() -> int:
 
         decoded = decode_bn_lua_table(state[MOD_ID])
         assert decoded == logical_mod_state
-
         request, ack = request_from_state(state_path)
-        assert ack is None
-        assert request is not None
+        assert ack is None and request is not None
         assert request.request_id == "42_7"
-        assert request.player_text == "Hello | world\nagain"
         assert request.context_version == 1
         assert request.context["npc"]["opinion_of_player"]["trust"] == 3
         assert request.context["npc"]["personality"]["bravery"] == 5
         assert request.context["player"]["state"]["pain"] == 4
         assert newest_world_state(save_root) == state_path
 
-        echo_provider = create_provider("echo")
-        echo_result = echo_provider.respond(request)
+        memory_store = MemoryStore(memory_path)
+        memory0 = memory_store.view(request)
+        assert memory0.exchange_count == 0
+
+        echo_result = create_provider("echo").respond(request, memory0)
         assert echo_result.error is None
         assert echo_result.text == "[ECHO:Old Guard] Hello | world\nagain"
 
-        context_provider = create_provider("context")
-        result = context_provider.respond(request)
-        assert result.error is None
-        assert result.text.startswith("[CTX:Old Guard] trust=3 fear=1 anger=0 value=2")
-        assert "ally=true following=true enemy=false" in result.text
-        assert "npc_pain=0 player_pain=4 danger=0.25 target=-" in result.text
+        context_result = create_provider("context").respond(request, memory0)
+        assert context_result.error is None
+        assert context_result.text.startswith("[CTX:Old Guard] trust=3 fear=1 anger=0 value=2")
+        assert "ally=true following=true enemy=false" in context_result.text
 
-        remember_result(cache_path, {}, request, result)
-        reloaded_cache = load_response_cache(cache_path)
-        replay = cached_result(reloaded_cache, request)
-        assert replay == result
+        memory_provider = create_provider("memory")
+        first_result = memory_provider.respond(request, memory0)
+        assert first_result.error is None
+        assert "previous_exchanges=0; last_player=-" in first_result.text
+        assert memory_store.remember_exchange(request, first_result.text)
+        assert not memory_store.remember_exchange(request, first_result.text)
+
+        request2 = Request(
+            request_id="42_8",
+            npc_id=request.npc_id,
+            npc_name=request.npc_name,
+            player_name=request.player_name,
+            player_text="Do you remember me?",
+            current_turn="day 2",
+            context_version=request.context_version,
+            context=request.context,
+            state_path=request.state_path,
+        )
+        memory1 = memory_store.view(request2)
+        assert memory1.exchange_count == 1
+        assert memory1.last_exchange is not None
+        assert memory1.last_exchange.player_text == "Hello | world\nagain"
+        second_result = memory_provider.respond(request2, memory1)
+        assert "previous_exchanges=1" in second_result.text
+        assert "last_player=Hello | world again" in second_result.text
+        assert memory_store.remember_exchange(request2, second_result.text)
+
+        reloaded_memory = MemoryStore(memory_path).view(request2)
+        assert reloaded_memory.exchange_count == 2
+        assert reloaded_memory.last_exchange is not None
+        assert reloaded_memory.last_exchange.player_text == "Do you remember me?"
+
+        remember_result(cache_path, {}, request, context_result)
+        replay = cached_result(load_response_cache(cache_path), request)
+        assert replay == context_result
 
         path = publish_response(
             response_dir,
             request.request_id,
-            text=result.text,
-            error=result.error,
+            text=context_result.text,
+            error=context_result.error,
         )
         payload = path.read_text(encoding="utf-8")
         assert 'request_id = "42_7"' in payload
-        assert '[CTX:Old Guard]' in payload
-        assert 'Hello | world\\nagain' in payload
+        assert "[CTX:Old Guard]" in payload
+        assert "Hello | world\\nagain" in payload
 
         logical_mod_state.pop("ipc_request", None)
         logical_mod_state["ipc_ack"] = "42_7"
         state = {MOD_ID: bn_table(logical_mod_state)}
         state_path.write_text(json.dumps(state), encoding="utf-8")
-        request, ack = request_from_state(state_path)
-        assert request is None
+        old_request, ack = request_from_state(state_path)
+        assert old_request is None
         assert ack == "42_7"
 
     log("self-test passed")
@@ -600,14 +637,19 @@ def build_parser() -> argparse.ArgumentParser:
         help="Explicit data/lua/lib/catai_runtime directory",
     )
     parser.add_argument(
+        "--state-dir",
+        type=Path,
+        help="Companion persistent state directory. Defaults to <user-dir>/cataclysm_ai.",
+    )
+    parser.add_argument(
         "--provider",
-        default="context",
-        choices=("echo", "context"),
-        help="Response provider. Context probe is the current pre-model milestone.",
+        default="memory",
+        choices=("echo", "context", "memory"),
+        help="Response provider. Persistent memory probe is the current pre-model milestone.",
     )
     parser.add_argument("--poll-ms", type=int, default=100, help="Polling period in milliseconds")
     parser.add_argument("--once", action="store_true", help="Exit after publishing one response")
-    parser.add_argument("--self-test", action="store_true", help="Run transport self-test and exit")
+    parser.add_argument("--self-test", action="store_true", help="Run transport/memory self-test and exit")
     return parser
 
 
@@ -616,7 +658,6 @@ def main() -> int:
 
     if args.self_test:
         return self_test()
-
     if args.poll_ms < 25:
         raise SystemExit("--poll-ms must be at least 25")
 
@@ -637,12 +678,28 @@ def main() -> int:
     else:
         raise SystemExit("provide --game-dir or --response-dir")
 
+    if args.state_dir:
+        state_dir = args.state_dir.resolve()
+    elif user_dir:
+        state_dir = user_dir / "cataclysm_ai"
+    else:
+        state_dir = save_root.parent / "cataclysm_ai"
+    state_dir.mkdir(parents=True, exist_ok=True)
+
     try:
         provider = create_provider(args.provider)
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc
 
-    return run(save_root, response_dir, args.poll_ms / 1000.0, args.once, provider)
+    memory_store = MemoryStore(state_dir / MEMORY_FILENAME)
+    return run(
+        save_root,
+        response_dir,
+        args.poll_ms / 1000.0,
+        args.once,
+        provider,
+        memory_store,
+    )
 
 
 if __name__ == "__main__":
