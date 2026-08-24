@@ -1,0 +1,101 @@
+name: Build pristine Bright Nights for Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-windows:
+    name: Vanilla BN / Windows MSVC
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout pristine Bright Nights
+        uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: 17a0df280e6d009402bcc41ffafbce12670c4b99
+          path: bn
+          fetch-depth: 1
+
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Install stable CMake
+        uses: lukka/get-cmake@v3.31.6
+
+      - name: Export GitHub Actions cache environment variables
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.exportVariable("ACTIONS_CACHE_URL", process.env.ACTIONS_CACHE_URL || "")
+            core.exportVariable("ACTIONS_RESULTS_URL", process.env.ACTIONS_RESULTS_URL || "")
+            core.exportVariable("ACTIONS_RUNTIME_TOKEN", process.env.ACTIONS_RUNTIME_TOKEN || "")
+
+      - name: Configure vcpkg binary cache
+        shell: pwsh
+        run: |
+          "VCPKG_BINARY_SOURCES=clear;x-gha,readwrite" >> $env:GITHUB_ENV
+
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@main
+        with:
+          vcpkgDirectory: "${{ github.workspace }}/vcpkg"
+
+      - name: Integrate vcpkg
+        shell: pwsh
+        run: vcpkg integrate install
+
+      - name: Configure pristine Bright Nights
+        shell: pwsh
+        working-directory: bn
+        env:
+          VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}\bn\.github\vcpkg_triplets
+        run: |
+          cmake -G Ninja `
+            -S "${{ github.workspace }}/bn" `
+            -B "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" `
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DCMAKE_PROJECT_INCLUDE_BEFORE="${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/bn/build-scripts/MSVC.cmake" `
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static `
+            -DDYNAMIC_LINKING=False `
+            -DCURSES=False `
+            -DLOCALIZE=False `
+            -DTILES=True `
+            -DSOUND=True `
+            -DTESTS=False `
+            -DRELEASE=OFF `
+            -DJSON_FORMAT=OFF `
+            -DCATA_FORMAT_TARGETS=OFF `
+            -DCMAKE_INSTALL_MESSAGE=NEVER
+
+      - name: Build pristine Bright Nights
+        shell: pwsh
+        working-directory: bn
+        run: |
+          cmake --build "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" `
+            --config Release `
+            --target cataclysm-bn-tiles
+
+      - name: Verify executable
+        shell: pwsh
+        working-directory: bn
+        run: |
+          $exe = Get-ChildItem "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" -Filter "cataclysm-bn-tiles.exe" -Recurse | Select-Object -First 1
+          if ($null -eq $exe) {
+            throw "Build finished but cataclysm-bn-tiles.exe was not found."
+          }
+          Write-Host "Built executable: $($exe.FullName)"
+          & $exe.FullName --version
+          "BN_EXE=$($exe.FullName)" >> $env:GITHUB_ENV
+
+      - name: Upload compiled executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: vanilla-cataclysm-bn-windows-exe
+          path: ${{ env.BN_EXE }}
+          if-no-files-found: error
