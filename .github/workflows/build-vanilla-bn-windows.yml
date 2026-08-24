@@ -1,4 +1,4 @@
-name: Build minimal Cataclysm AI bridge for Windows
+name: Build and test minimal Cataclysm AI bridge for Windows
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-windows:
-    name: Cataclysm AI bridge / Windows MSVC
+    name: Cataclysm AI bridge runtime / Windows MSVC
     runs-on: windows-2022
 
     steps:
@@ -26,13 +26,16 @@ jobs:
           path: bn
           fetch-depth: 1
 
-      - name: Apply minimal Lua bridge
+      - name: Apply minimal Lua bridge and runtime test
         shell: pwsh
         working-directory: bn
         run: |
-          $patch = "${{ github.workspace }}/project/patches/minimal-lua-bridge.patch"
-          git apply --check $patch
-          git apply $patch
+          $bridgePatch = "${{ github.workspace }}/project/patches/minimal-lua-bridge.patch"
+          $testPatch = "${{ github.workspace }}/project/patches/runtime-exchange-test.patch"
+          git apply --check $bridgePatch
+          git apply $bridgePatch
+          git apply --check $testPatch
+          git apply $testPatch
           git diff --check
           git diff --stat
 
@@ -66,7 +69,7 @@ jobs:
         shell: pwsh
         run: vcpkg integrate install
 
-      - name: Configure Bright Nights with Cataclysm AI bridge
+      - name: Configure Bright Nights with Cataclysm AI bridge tests
         shell: pwsh
         working-directory: bn
         env:
@@ -84,19 +87,33 @@ jobs:
             -DLOCALIZE=False `
             -DTILES=True `
             -DSOUND=True `
-            -DTESTS=False `
+            -DTESTS=True `
             -DRELEASE=OFF `
             -DJSON_FORMAT=OFF `
             -DCATA_FORMAT_TARGETS=OFF `
             -DCMAKE_INSTALL_MESSAGE=NEVER
 
-      - name: Build Bright Nights with Cataclysm AI bridge
+      - name: Build Bright Nights and Lua tests
         shell: pwsh
         working-directory: bn
         run: |
           cmake --build "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" `
             --config Release `
-            --target cataclysm-bn-tiles
+            --target cataclysm-bn-tiles cata_test-tiles
+
+      - name: Run Cataclysm AI Lua round-trip test
+        shell: pwsh
+        working-directory: bn
+        run: |
+          $testExe = Get-ChildItem "${{ github.workspace }}/bn/out/build/windows-tiles-sounds-x64-msvc" -Filter "cata_test-tiles.exe" -Recurse | Select-Object -First 1
+          if ($null -eq $testExe) {
+            throw "cata_test-tiles.exe was not found."
+          }
+          Write-Host "Test executable: $($testExe.FullName)"
+          & $testExe.FullName "[cataclysm_ai]"
+          if ($LASTEXITCODE -ne 0) {
+            throw "Cataclysm AI Lua runtime round-trip test failed with exit code $LASTEXITCODE."
+          }
 
       - name: Verify executable
         shell: pwsh
@@ -113,6 +130,6 @@ jobs:
       - name: Upload compiled executable
         uses: actions/upload-artifact@v4
         with:
-          name: cataclysm-ai-minimal-bridge-windows-exe
+          name: cataclysm-ai-runtime-tested-bridge-windows-exe
           path: ${{ env.BN_EXE }}
           if-no-files-found: error
