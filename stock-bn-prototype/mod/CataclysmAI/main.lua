@@ -3,6 +3,9 @@ local mod = game.mod_runtime[mod_id]
 local storage = game.mod_storage[mod_id]
 
 storage.request_seq = storage.request_seq or 0
+-- v1 used a separately persisted ACK and therefore forced a second full game
+-- save after every response. Keep old saves compatible, but stop producing it.
+storage.ipc_ack = nil
 mod.pending = mod.pending or {}
 
 local BRIDGE_TEST_ID = "bridge_test"
@@ -54,12 +57,11 @@ local function persist_request(npc_id, npc_name, player_text)
         player_text = player_text,
         current_turn = tostring(gapi.current_turn())
     }
-    storage.ipc_ack = nil
     mod.pending[npc_id] = request_id
 
     -- Stock BN serializes game.mod_storage to <world>/lua_state.json as part
-    -- of a normal save. This gives the external companion a deterministic,
-    -- engine-supported outbound channel without io/os/loadfile or a custom EXE.
+    -- of a normal save. This is the only forced save in a dialogue exchange:
+    -- it publishes the new outbound request to the external companion.
     if not gdebug.save_game() then
         storage.ipc_request = nil
         mod.pending[npc_id] = nil
@@ -69,17 +71,17 @@ local function persist_request(npc_id, npc_name, player_text)
     return request_id, nil
 end
 
-local function acknowledge_response(npc_id, request_id)
+local function consume_response(npc_id, request_id)
     mod.pending[npc_id] = nil
 
     if storage.ipc_request and tostring(storage.ipc_request.request_id or "") == request_id then
         storage.ipc_request = nil
     end
-    storage.ipc_ack = request_id
 
-    -- Persist the ACK so a companion restart cannot mistake an already-consumed
-    -- request for new work.
-    gdebug.save_game()
+    -- Deliberately DO NOT call save_game() here. The cleared request remains in
+    -- live mod_storage and will be persisted by the next ordinary game save or
+    -- by the next AI request. The companion keeps an idempotent response cache,
+    -- so a stale on-disk request cannot cause a second LLM call after restart.
 end
 
 local function pending_request_id(npc_id)
@@ -108,7 +110,7 @@ local function consume_pending_response(npc_id)
         return nil, err, true
     end
 
-    acknowledge_response(npc_id, request_id)
+    consume_response(npc_id, request_id)
     return response, nil, true
 end
 
