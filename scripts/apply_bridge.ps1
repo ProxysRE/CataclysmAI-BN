@@ -10,42 +10,55 @@ if (-not (Test-Path $target)) {
     throw "catalua_bindings.cpp not found at $target"
 }
 
-$text = [IO.File]::ReadAllText($target)
+# Normalize the checked-out Windows file to LF while patching.  This keeps the
+# guarded anchors independent from Git's checkout line-ending policy.
+$text = [IO.File]::ReadAllText($target).Replace("`r`n", "`n")
 
 function Replace-Once([string]$Needle, [string]$Replacement, [string]$Name) {
-    $count = ([regex]::Matches($script:text, [regex]::Escape($Needle))).Count
+    $needleLf = $Needle.Replace("`r`n", "`n").TrimEnd("`r", "`n")
+    $replacementLf = $Replacement.Replace("`r`n", "`n").TrimEnd("`r", "`n")
+    $count = ([regex]::Matches($script:text, [regex]::Escape($needleLf))).Count
     if ($count -ne 1) {
         throw "Patch guard '$Name' expected exactly 1 match, found $count. Upstream BN changed."
     }
-    $script:text = $script:text.Replace($Needle, $Replacement)
+    $script:text = $script:text.Replace($needleLf, $replacementLf)
 }
 
-Replace-Once `
-'#include <cstdint>
+$standardIncludes = @'
+#include <cstdint>
 #include <ctime>
-#include <chrono>' `
-'#include <cstddef>
+#include <chrono>
+'@
+
+$standardIncludesPatched = @'
+#include <cstddef>
 #include <cstdint>
 #include <cstdio>
 #include <ctime>
 #include <chrono>
 #include <fstream>
 #include <sstream>
-#include <thread>' `
-"standard includes"
+#include <thread>
+'@
 
-Replace-Once `
-'#include "npc.h"
+Replace-Once $standardIncludes $standardIncludesPatched "standard includes"
+
+$pathIncludes = @'
+#include "npc.h"
 #include "player.h"
-#include "rng.h"' `
-'#include "npc.h"
+#include "rng.h"
+'@
+
+$pathIncludesPatched = @'
+#include "npc.h"
 #include "player.h"
 #include "path_info.h"
-#include "rng.h"' `
-"path_info include"
+#include "rng.h"
+'@
+
+Replace-Once $pathIncludes $pathIncludesPatched "path_info include"
 
 $bridge = @'
-
 static std::string cataclysm_ai_exchange_impl( const std::string &request, int timeout_ms )
 {
     static constexpr std::size_t max_message_size = 1024 * 1024;
@@ -138,26 +151,22 @@ static void reg_cataclysm_ai_api( sol::state &lua )
 }
 '@
 
-Replace-Once `
-'    luna::set_fx( lib, "save_game", []() -> bool { return g->save( false ); } );
-    luna::finalize_lib( lib );
-}
+# Insert the bridge immediately before the stable local_time helper rather than
+# depending on whitespace inside reg_debug_api.
+Replace-Once "static tm *local_time_impl()" ($bridge.TrimEnd("`r", "`n") + "`n`nstatic tm *local_time_impl()") "bridge insertion"
 
-static tm *local_time_impl()' `
-('    luna::set_fx( lib, "save_game", []() -> bool { return g->save( false ); } );
-    luna::finalize_lib( lib );
-}' + $bridge + '
+$registration = @'
+    reg_debug_api( lua );
+    reg_game_api( lua );
+'@
 
-static tm *local_time_impl()') `
-"bridge insertion"
-
-Replace-Once `
-'    reg_debug_api( lua );
-    reg_game_api( lua );' `
-'    reg_debug_api( lua );
+$registrationPatched = @'
+    reg_debug_api( lua );
     reg_cataclysm_ai_api( lua );
-    reg_game_api( lua );' `
-"bridge registration"
+    reg_game_api( lua );
+'@
+
+Replace-Once $registration $registrationPatched "bridge registration"
 
 [IO.File]::WriteAllText($target, $text, (New-Object Text.UTF8Encoding($false)))
 Write-Host "Cataclysm AI bridge applied to $target"
