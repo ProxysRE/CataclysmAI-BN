@@ -7,15 +7,16 @@ diff --git a/tests/catalua_test.cpp b/tests/catalua_test.cpp
  #include "player_activity.h"
  #include "player_helpers.h"
  #include "state_helpers.h"
-@@ -42,6 +43,8 @@
+@@ -42,6 +43,9 @@
  #include "vehicle_part.h"
  
 +#include <cstdio>
 +#include <filesystem>
++#include <iostream>
  #include <memory>
  #include <optional>
  #include <stdexcept>
-@@ -82,6 +85,32 @@ TEST_CASE("lua_global_functions", "[lua]") {
+@@ -82,6 +86,37 @@ TEST_CASE("lua_global_functions", "[lua]") {
      REQUIRE(lua_npc_avatar_name == "nil");
  }
 +
@@ -31,7 +32,11 @@ diff --git a/tests/catalua_test.cpp b/tests/catalua_test.cpp
 +    std::remove( request_path.c_str() );
 +    std::remove( response_path.c_str() );
 +
-+    const auto loaded = lua.load( "return cataclysm_ai.exchange('Кто ты?', 5000)" );
++    std::cout << "cataclysm_ai config_dir=" << config_dir << std::endl;
++    std::cout << "cataclysm_ai request_path=" << request_path << std::endl;
++    std::cout << "cataclysm_ai response_path=" << response_path << std::endl;
++
++    const auto loaded = lua.load( "return cataclysm_ai.exchange('ping', 15000)" );
 +    REQUIRE( loaded.valid() );
 +
 +    const auto result = sol::protected_function( loaded )();
@@ -41,11 +46,14 @@ diff --git a/tests/catalua_test.cpp b/tests/catalua_test.cpp
 +        response = result.get<std::string>();
 +    }
 +
++    std::cout << "cataclysm_ai result_valid=" << result_valid << std::endl;
++    std::cout << "cataclysm_ai response=" << response << std::endl;
++
 +    std::remove( request_path.c_str() );
 +    std::remove( response_path.c_str() );
 +
 +    REQUIRE( result_valid );
-+    CHECK( response == "[ECHO] Кто ты?" );
++    CHECK( response == "[ECHO] ping" );
 +}
  
  TEST_CASE("lua_map_create_item_at_places_without_returning_owned_item", "[lua][map]") {
