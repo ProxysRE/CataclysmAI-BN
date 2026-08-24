@@ -272,7 +272,8 @@ jobs:
           $responsePayload = Get-Content $responsePath -Raw
           Write-Host "--- generated response module ---"
           Write-Host $responsePayload
-          if ($responsePayload -notlike "*request_id = \"$env:CATAI_CI_REQUEST_ID\"*") {
+          $expectedRequestId = 'request_id = "' + $env:CATAI_CI_REQUEST_ID + '"'
+          if (-not $responsePayload.Contains($expectedRequestId)) {
             throw "Generated response module has the wrong request_id"
           }
           if ($responsePayload -notlike "*stock outbound ping*") {
