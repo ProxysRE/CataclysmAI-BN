@@ -7,8 +7,9 @@ Outbound IPC is entirely stock BN:
 Inbound IPC is also stock BN:
   Python -> data/lua/lib/catai_runtime/response_<id>.lua -> Lua require()
 
-The transport is provider-agnostic. The current default provider is deterministic
-ECHO; later providers plug in without changing the BN transport layer.
+The transport is provider-agnostic. The current default provider is a
+deterministic dialogue-context probe; later model providers plug in without
+changing the BN transport layer.
 """
 
 from __future__ import annotations
@@ -40,6 +41,8 @@ class Request:
     player_name: str
     player_text: str
     current_turn: str
+    context_version: int
+    context: dict[str, Any]
     state_path: Path
 
 
@@ -220,6 +223,13 @@ def request_from_state(path: Path) -> tuple[Request | None, str | None]:
     if ack_id == request_id:
         return None, ack_id
 
+    try:
+        context_version = int(raw.get("context_version", 0))
+    except (TypeError, ValueError):
+        context_version = 0
+    raw_context = raw.get("context")
+    context: dict[str, Any] = raw_context if isinstance(raw_context, dict) else {}
+
     return (
         Request(
             request_id=request_id,
@@ -228,6 +238,8 @@ def request_from_state(path: Path) -> tuple[Request | None, str | None]:
             player_name=str(raw.get("player_name", "")),
             player_text=str(raw.get("player_text", "")),
             current_turn=str(raw.get("current_turn", "")),
+            context_version=context_version,
+            context=context,
             state_path=path,
         ),
         ack_id,
@@ -368,7 +380,8 @@ def run(
                 seen.add(seen_key)
                 log(
                     f"request {request.request_id}: npc={request.npc_name!r} "
-                    f"player={request.player_name!r} text={request.player_text!r}"
+                    f"player={request.player_name!r} text={request.player_text!r} "
+                    f"context_v={request.context_version}"
                 )
 
                 result = cached_result(cache, request)
@@ -438,6 +451,58 @@ def self_test() -> int:
         cache_path = response_dir / CACHE_FILENAME
         world.mkdir(parents=True)
 
+        dialogue_context = {
+            "npc": {
+                "id": "42",
+                "name": "Old Guard",
+                "personality": {
+                    "aggression": 2,
+                    "bravery": 5,
+                    "collector": 1,
+                    "altruism": 4,
+                },
+                "opinion_of_player": {
+                    "trust": 3,
+                    "fear": 1,
+                    "value": 2,
+                    "anger": 0,
+                    "owed": 0,
+                },
+                "relationship": {
+                    "enemy": False,
+                    "following": True,
+                    "player_ally": True,
+                    "guarding": False,
+                    "patrolling": False,
+                    "travelling": False,
+                    "turned_hostile": False,
+                    "guaranteed_hostile": False,
+                },
+                "state": {
+                    "pain": 0,
+                    "perceived_pain": 0,
+                    "stamina": 1000,
+                    "stamina_max": 1000,
+                    "morale": 10,
+                    "hostile_anger_level": 20,
+                },
+            },
+            "player": {
+                "name": "Survivor",
+                "state": {
+                    "pain": 4,
+                    "perceived_pain": 4,
+                    "stamina": 900,
+                    "stamina_max": 1000,
+                    "morale": 5,
+                },
+            },
+            "world": {
+                "current_turn": "day 1",
+                "npc_danger_assessment": 0.25,
+                "npc_current_target": "",
+            },
+        }
         logical_mod_state = {
             "request_seq": 7,
             "ipc_request": {
@@ -448,6 +513,8 @@ def self_test() -> int:
                 "player_name": "Survivor",
                 "player_text": "Hello | world\nagain",
                 "current_turn": "day 1",
+                "context_version": 1,
+                "context": dialogue_context,
             },
         }
         state = {MOD_ID: bn_table(logical_mod_state)}
@@ -462,12 +529,23 @@ def self_test() -> int:
         assert request is not None
         assert request.request_id == "42_7"
         assert request.player_text == "Hello | world\nagain"
+        assert request.context_version == 1
+        assert request.context["npc"]["opinion_of_player"]["trust"] == 3
+        assert request.context["npc"]["personality"]["bravery"] == 5
+        assert request.context["player"]["state"]["pain"] == 4
         assert newest_world_state(save_root) == state_path
 
-        provider = create_provider("echo")
-        result = provider.respond(request)
+        echo_provider = create_provider("echo")
+        echo_result = echo_provider.respond(request)
+        assert echo_result.error is None
+        assert echo_result.text == "[ECHO:Old Guard] Hello | world\nagain"
+
+        context_provider = create_provider("context")
+        result = context_provider.respond(request)
         assert result.error is None
-        assert result.text == "[ECHO:Old Guard] Hello | world\nagain"
+        assert result.text.startswith("[CTX:Old Guard] trust=3 fear=1 anger=0 value=2")
+        assert "ally=true following=true enemy=false" in result.text
+        assert "npc_pain=0 player_pain=4 danger=0.25 target=-" in result.text
 
         remember_result(cache_path, {}, request, result)
         reloaded_cache = load_response_cache(cache_path)
@@ -482,7 +560,8 @@ def self_test() -> int:
         )
         payload = path.read_text(encoding="utf-8")
         assert 'request_id = "42_7"' in payload
-        assert 'text = "[ECHO:Old Guard] Hello | world\\nagain"' in payload
+        assert '[CTX:Old Guard]' in payload
+        assert 'Hello | world\\nagain' in payload
 
         logical_mod_state.pop("ipc_request", None)
         logical_mod_state["ipc_ack"] = "42_7"
@@ -522,9 +601,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--provider",
-        default="echo",
-        choices=("echo",),
-        help="Response provider. Only deterministic echo is enabled in this milestone.",
+        default="context",
+        choices=("echo", "context"),
+        help="Response provider. Context probe is the current pre-model milestone.",
     )
     parser.add_argument("--poll-ms", type=int, default=100, help="Polling period in milliseconds")
     parser.add_argument("--once", action="store_true", help="Exit after publishing one response")
