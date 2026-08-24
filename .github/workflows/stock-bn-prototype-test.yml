@@ -22,8 +22,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Compile Python sidecar
-        run: python -m py_compile stock-bn-prototype/sidecar/cataclysm_ai_stock_sidecar.py
+      - name: Compile Python tools
+        run: |
+          python -m py_compile stock-bn-prototype/sidecar/cataclysm_ai_stock_sidecar.py
+          python -m py_compile stock-bn-prototype/launch_stock_bn_ai.py
 
       - name: Run sidecar self-test
         run: python stock-bn-prototype/sidecar/cataclysm_ai_stock_sidecar.py --self-test
@@ -46,6 +48,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Download official Bright Nights nightly
         shell: pwsh
@@ -77,15 +84,21 @@ jobs:
           Write-Host "Stock game directory: $gameDir"
           Get-ChildItem -Path $gameDir | Select-Object Name, Length, Mode
 
-      - name: Install Cataclysm AI as a user mod
+      - name: Install Cataclysm AI through the stock launcher
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           $userDir = Join-Path $env:RUNNER_TEMP "catai-stock-user"
-          $modRoot = Join-Path $userDir "mods"
-          $modDest = Join-Path $modRoot "CataclysmAI"
-          New-Item -ItemType Directory -Force -Path $modRoot | Out-Null
-          Copy-Item -Path "stock-bn-prototype/mod/CataclysmAI" -Destination $modDest -Recurse -Force
+          python stock-bn-prototype/launch_stock_bn_ai.py `
+            "$env:CATAI_BN_DIR" `
+            --user-dir "$userDir" `
+            --install-only
+          if ($LASTEXITCODE -ne 0) { throw "stock launcher install-only validation failed" }
+
+          $modDest = Join-Path $userDir "mods/CataclysmAI"
+          if (-not (Test-Path (Join-Path $modDest "main.lua"))) {
+            throw "launcher did not install CataclysmAI/main.lua"
+          }
           "CATAI_USER_DIR=$userDir" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "CATAI_MOD_DIR=$modDest" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           Write-Host "Installed mod at $modDest"
@@ -108,7 +121,7 @@ jobs:
           $mainLua = Join-Path $env:CATAI_MOD_DIR "main.lua"
           @'
 
-          -- CI-only probe appended after checkout copy. This is not part of the shipped mod.
+          -- CI-only probe appended after launcher installation. This is not part of the shipped mod.
           local catai_probe = require("lib.catai_runtime.stock_probe")
           assert(type(catai_probe) == "table", "Cataclysm AI stock require probe returned non-table")
           assert(catai_probe.protocol == 1, "Cataclysm AI stock require probe protocol mismatch")
