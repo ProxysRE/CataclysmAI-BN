@@ -72,7 +72,10 @@ def ensure_runtime_dir(game_dir: Path) -> Path:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Run Cataclysm AI with an unmodified Bright Nights Windows build"
+        description=(
+            "Run Cataclysm AI with an unmodified Bright Nights Windows build. "
+            "Unknown arguments after '--' are forwarded to Bright Nights."
+        )
     )
     parser.add_argument(
         "game_dir",
@@ -89,16 +92,14 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Install/validate the mod and paths, but do not start BN or the companion",
     )
-    parser.add_argument(
-        "game_args",
-        nargs=argparse.REMAINDER,
-        help="Extra arguments passed to BN after a literal --",
-    )
     return parser
 
 
 def main() -> int:
-    args = build_parser().parse_args()
+    parser = build_parser()
+    args, game_args = parser.parse_known_args()
+    if game_args and game_args[0] == "--":
+        game_args = game_args[1:]
 
     requested_root = args.game_dir.expanduser().resolve()
     if not requested_root.is_dir():
@@ -119,6 +120,8 @@ def main() -> int:
     log(f"runtime responses: {response_dir}")
 
     if args.install_only:
+        if game_args:
+            log(f"ignoring forwarded BN arguments in --install-only mode: {game_args}")
         log("installation/path validation passed")
         return 0
 
@@ -137,11 +140,8 @@ def main() -> int:
         str(exe),
         f"--basepath={game_dir}",
         f"--userdir={user_dir}",
+        *game_args,
     ]
-    extra_args = list(args.game_args)
-    if extra_args and extra_args[0] == "--":
-        extra_args = extra_args[1:]
-    game_cmd.extend(extra_args)
 
     log("starting Python companion")
     companion = subprocess.Popen(companion_cmd, cwd=HERE)
