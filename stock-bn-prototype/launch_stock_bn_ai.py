@@ -136,10 +136,14 @@ def main() -> int:
         "--user-dir",
         str(user_dir),
     ]
+    # Bright Nights' CLI parser requires the option and its value as separate
+    # argv entries. It does not accept --basepath=... or --userdir=....
     game_cmd = [
         str(exe),
-        f"--basepath={game_dir}",
-        f"--userdir={user_dir}",
+        "--basepath",
+        str(game_dir),
+        "--userdir",
+        str(user_dir),
         *game_args,
     ]
 
