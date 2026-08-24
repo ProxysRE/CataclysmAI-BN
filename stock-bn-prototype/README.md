@@ -2,7 +2,7 @@
 
 This prototype targets an **unmodified official Cataclysm: Bright Nights Windows archive**. It does not compile, patch, or replace `cataclysm-bn-tiles.exe`.
 
-The first milestone is deliberately only deterministic ECHO. A real LLM provider comes after this transport is proven in a stock game build.
+The first milestone is deliberately only deterministic ECHO. A real LLM provider comes after this transport is proven in a normal stock game world.
 
 ## Transport
 
@@ -41,6 +41,19 @@ Bright Nights already provides the two mechanisms required by the bridge:
 2. BN leaves `require()` enabled and installs its own C++ Lua module searcher. `lib.*` modules are resolved from `data/lua/lib/` and loaded by the engine itself.
 
 This matters because stock BN deliberately disables Lua `dofile`, `loadfile`, `load`, and `loadstring`; this prototype does not rely on any of them.
+
+## What is already verified against an official executable
+
+The dedicated Windows CI job downloads the pinned official Bright Nights `2026-08-24` MSVC nightly archive and runs its shipped `cataclysm-bn-tiles.exe`. Without rebuilding BN, the stock executable has already demonstrated that it can:
+
+- discover Cataclysm AI from the explicit user mod directory;
+- load the real `main.lua`;
+- resolve a Python-writable `data/lua/lib/catai_runtime/*.lua` module through stock `require()`;
+- expose `game.mod_storage[game.current_mod]` to the mod;
+- accept an `ipc_request` table in that storage;
+- execute `gdebug.save_game()` successfully (`CATAI_STOCK_SAVE_RESULT=true`).
+
+`--check-mods` creates a temporary test world and deliberately deletes it immediately after the mod check. For that reason the CI job does **not** pretend that an external polling process should be able to catch that transient test world's `lua_state.json`. The Python side of parsing/publishing is validated separately by its deterministic self-test. The remaining end-to-end milestone is the same transport in a normal persistent world, where the save is not deleted underneath the companion.
 
 ## Files
 
@@ -130,12 +143,12 @@ python sidecar\cataclysm_ai_stock_sidecar.py `
   --user-dir "C:\Games\CataclysmAI-Test-User"
 ```
 
-Then launch BN with matching paths:
+Then launch BN with matching paths. Bright Nights requires the option name and value as separate arguments; it does not accept the `--userdir=...` form:
 
 ```powershell
 C:\Games\Cataclysm-BN\cataclysm-bn-tiles.exe `
-  --basepath="C:\Games\Cataclysm-BN" `
-  --userdir="C:\Games\CataclysmAI-Test-User"
+  --basepath "C:\Games\Cataclysm-BN" `
+  --userdir "C:\Games\CataclysmAI-Test-User"
 ```
 
 Or provide the companion directories directly:
@@ -152,10 +165,10 @@ The stock executable also supports `--paths`, which can print its resolved user/
 
 The dedicated workflow does **not build Cataclysm**.
 
-It has two layers:
+It has two complementary layers:
 
-1. Python/Lua protocol checks: Python compilation, companion self-test, and Lua 5.3 syntax.
-2. Stock Windows load test: download the official Bright Nights `2026-08-24` MSVC nightly archive, install the mod through `launch_stock_bn_ai.py --install-only`, inject a CI-only `require()` probe, and run the shipped `cataclysm-bn-tiles.exe --check-mods cataclysm_ai`.
+1. **Python/Lua protocol checks** — Python compilation, companion self-test, and Lua 5.3 syntax. The self-test creates a representative `lua_state.json`, parses the request, generates an ECHO response module, and validates ACK handling.
+2. **Official Windows BN IPC primitives** — downloads the pinned stock MSVC nightly, installs Cataclysm AI through `launch_stock_bn_ai.py --install-only`, and runs the shipped `cataclysm-bn-tiles.exe --check-mods cataclysm_ai`. CI-only probes assert stock `require()`, `game.mod_storage`, and successful `gdebug.save_game()`.
 
 The nightly is pinned deliberately so changes in upstream releases cannot silently change what a given commit was validated against.
 
@@ -219,7 +232,7 @@ Either route avoids rebuilding Cataclysm itself.
 
 ## After ECHO
 
-Only after the stock-binary ECHO route is confirmed:
+Only after the stock-binary ECHO route is confirmed in a normal world:
 
 1. replace `make_response()` with a provider abstraction (`EchoProvider`, later LLM provider);
 2. send richer NPC/world context;
