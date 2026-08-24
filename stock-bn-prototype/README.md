@@ -28,7 +28,7 @@ Python companion reads the request
 Lua require("lib.catai_runtime.response_<id>")
         |
         v
-NPC says the returned text
+NPC / bridge test displays the returned text
 ```
 
 No DLL injection, binary patching, CMake, vcpkg, `io`, `os`, `loadfile`, or custom game executable is required.
@@ -59,6 +59,7 @@ The dedicated Windows CI job downloads the pinned official Bright Nights `2026-0
 
 ```text
 stock-bn-prototype/
+  run_stock_bn_ai.cmd
   launch_stock_bn_ai.py
   mod/CataclysmAI/
     modinfo.json
@@ -73,16 +74,18 @@ The companion creates this directory automatically:
 <BN>/data/lua/lib/catai_runtime/
 ```
 
-## Recommended Windows ECHO test
+## Recommended Windows live ECHO test
 
 1. Unpack a recent official Windows Bright Nights archive into a writable directory.
-2. From this prototype directory run:
+2. Double-click `run_stock_bn_ai.cmd` and enter the directory containing `cataclysm-bn-tiles.exe`.
+
+You can also drag/pass the BN directory as the first argument, or run the Python launcher directly:
 
 ```powershell
 python launch_stock_bn_ai.py "C:\Games\Cataclysm-BN"
 ```
 
-The launcher does all path-sensitive setup itself:
+The launcher:
 
 - locates `cataclysm-bn-tiles.exe`;
 - copies `CataclysmAI` to the explicit BN user mod directory;
@@ -91,20 +94,35 @@ The launcher does all path-sensitive setup itself:
 - starts the **unmodified** stock executable with explicit `--basepath` and `--userdir` arguments;
 - stops the companion when BN exits.
 
-This removes dependence on the shell's current working directory and on BN's implicit Windows portable-path behavior.
+This removes dependence on the shell's current working directory and on BN's implicit Windows path behavior.
+
+### Phase 1: transport-only bridge test
 
 3. Create or load a world with **Cataclysm AI** enabled.
-4. Stand next to an NPC.
-5. Open the in-game action menu and choose **AI dialogue**.
-6. Select the adjacent NPC and enter:
+4. Open the in-game action menu and choose **AI bridge test**.
+5. The first invocation writes a synthetic `ping` request and performs a normal save. In the companion console you should see the request and publication of a `response_bridge_test_*.lua` module.
+6. Open **AI bridge test** again.
+7. Expected game messages include:
+
+```text
+Cataclysm AI bridge test response: [ECHO:Bridge Test] ping
+Cataclysm AI bridge test: SUCCESS
+```
+
+This proves the complete persistent-world transport independently of NPC selection and dialogue UI.
+
+### Phase 2: NPC ECHO
+
+8. Stand next to an NPC.
+9. Open the action menu and choose **AI dialogue**.
+10. Select the adjacent NPC and enter:
 
 ```text
 ping
 ```
 
-7. BN performs a normal save. The companion should detect the new request in that world's `lua_state.json` and print that it published `response_<id>.lua`.
-8. Open **AI dialogue** again and select the same NPC.
-9. The NPC should say:
+11. The first invocation saves the request. Open **AI dialogue** again and select the same NPC.
+12. Expected NPC text:
 
 ```text
 [ECHO:<NPC name>] ping
