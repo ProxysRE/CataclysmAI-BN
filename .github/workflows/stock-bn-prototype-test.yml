@@ -24,6 +24,7 @@ jobs:
 
       - name: Compile Python tools
         run: |
+          python -m py_compile stock-bn-prototype/sidecar/providers.py
           python -m py_compile stock-bn-prototype/sidecar/cataclysm_ai_stock_sidecar.py
           python -m py_compile stock-bn-prototype/launch_stock_bn_ai.py
 
