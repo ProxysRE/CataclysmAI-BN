@@ -1,14 +1,17 @@
 """Response providers for the stock Bright Nights companion.
 
 The bridge transport is deliberately provider-agnostic. Providers receive the
-validated request decoded from Bright Nights and return text (or a provider
-error) without knowing anything about Lua modules, save files, or polling.
+validated Bright Nights request plus a read-only per-NPC memory view and return
+text (or a provider error) without knowing about Lua modules, save polling, or
+memory persistence details.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Protocol
+
+from memory import MemoryView
 
 
 @dataclass(frozen=True)
@@ -20,7 +23,7 @@ class ProviderResponse:
 class Provider(Protocol):
     name: str
 
-    def respond(self, request: Any) -> ProviderResponse:
+    def respond(self, request: Any, memory: MemoryView) -> ProviderResponse:
         """Generate one response for a validated Cataclysm AI request."""
 
 
@@ -29,7 +32,8 @@ class EchoProvider:
 
     name = "deterministic ECHO"
 
-    def respond(self, request: Any) -> ProviderResponse:
+    def respond(self, request: Any, memory: MemoryView) -> ProviderResponse:
+        del memory
         return ProviderResponse(text=f"[ECHO:{request.npc_name}] {request.player_text}")
 
 
@@ -42,18 +46,12 @@ def _bool_text(value: Any) -> str:
 
 
 class ContextProbeProvider:
-    """Deterministic provider that proves the dialogue context reached Python.
-
-    This is intentionally not an AI model. It turns selected context fields back
-    into NPC speech so a live game test can validate the schema before model
-    prompts, memory, or structured actions depend on it.
-    """
+    """Deterministic provider that proves dialogue context reached Python."""
 
     name = "dialogue context probe"
 
-    def respond(self, request: Any) -> ProviderResponse:
-        # Keep the synthetic bridge test stable even when this provider is the
-        # default. The transport-only SUCCESS assertion should remain useful.
+    def respond(self, request: Any, memory: MemoryView) -> ProviderResponse:
+        del memory
         if request.npc_id == "bridge_test":
             return ProviderResponse(text=f"[ECHO:{request.npc_name}] {request.player_text}")
 
@@ -103,10 +101,37 @@ class ContextProbeProvider:
         return ProviderResponse(text=text)
 
 
+class MemoryProbeProvider:
+    """Proves that the same NPC receives dialogue history across requests/restarts."""
+
+    name = "persistent NPC memory probe"
+
+    def respond(self, request: Any, memory: MemoryView) -> ProviderResponse:
+        if request.npc_id == "bridge_test":
+            return ProviderResponse(text=f"[ECHO:{request.npc_name}] {request.player_text}")
+
+        last = memory.last_exchange
+        if last is None:
+            previous = "-"
+        else:
+            previous = last.player_text.replace("\r", " ").replace("\n", " ")
+            if len(previous) > 120:
+                previous = previous[:117] + "..."
+
+        return ProviderResponse(
+            text=(
+                f"[MEM:{request.npc_name}] previous_exchanges={memory.exchange_count}; "
+                f"last_player={previous} | {request.player_text}"
+            )
+        )
+
+
 def create_provider(name: str) -> Provider:
     normalized = name.strip().lower()
     if normalized == "echo":
         return EchoProvider()
     if normalized in {"context", "context-probe"}:
         return ContextProbeProvider()
+    if normalized in {"memory", "memory-probe"}:
+        return MemoryProbeProvider()
     raise ValueError(f"unknown provider {name!r}")
