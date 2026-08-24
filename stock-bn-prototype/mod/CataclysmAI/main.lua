@@ -9,6 +9,7 @@ storage.ipc_ack = nil
 mod.pending = mod.pending or {}
 
 local BRIDGE_TEST_ID = "bridge_test"
+local CONTEXT_VERSION = 1
 
 local function npc_key(npc)
     return tostring(npc:getID():get_value())
@@ -42,7 +43,72 @@ local function load_response(request_id)
     return response, nil
 end
 
-local function persist_request(npc_id, npc_name, player_text)
+local function build_dialogue_context(npc)
+    local avatar = gapi.get_avatar()
+    local personality = npc.personality
+    local opinion = npc.op_of_u
+    local target = npc:current_target()
+
+    local target_name = ""
+    if target then
+        target_name = target:get_name()
+    end
+
+    return {
+        npc = {
+            id = npc_key(npc),
+            name = npc:get_name(),
+            personality = {
+                aggression = personality.aggression,
+                bravery = personality.bravery,
+                collector = personality.collector,
+                altruism = personality.altruism
+            },
+            opinion_of_player = {
+                trust = opinion.trust,
+                fear = opinion.fear,
+                value = opinion.value,
+                anger = opinion.anger,
+                owed = opinion.owed
+            },
+            relationship = {
+                enemy = npc:is_enemy(),
+                following = npc:is_following(),
+                player_ally = npc:is_player_ally(),
+                guarding = npc:is_guarding(),
+                patrolling = npc:is_patrolling(),
+                travelling = npc:is_travelling(),
+                turned_hostile = npc:turned_hostile(),
+                guaranteed_hostile = npc:guaranteed_hostile()
+            },
+            state = {
+                pain = npc:get_pain(),
+                perceived_pain = npc:get_perceived_pain(),
+                stamina = npc:get_stamina(),
+                stamina_max = npc:get_stamina_max(),
+                morale = npc:get_morale_level(),
+                hostile_anger_level = npc:hostile_anger_level()
+            }
+        },
+        player = {
+            name = avatar:get_name(),
+            state = {
+                pain = avatar:get_pain(),
+                perceived_pain = avatar:get_perceived_pain(),
+                stamina = avatar:get_stamina(),
+                stamina_max = avatar:get_stamina_max(),
+                morale = avatar:get_morale_level()
+            }
+        },
+        world = {
+            current_turn = tostring(gapi.current_turn()),
+            npc_danger_assessment = npc:danger_assessment(),
+            npc_current_target = target_name
+        }
+    }
+end
+
+local function persist_request(npc_id, npc_name, player_text, context)
     storage.request_seq = storage.request_seq + 1
 
     local request_id = npc_id .. "_" .. tostring(storage.request_seq)
@@ -55,7 +121,9 @@ local function persist_request(npc_id, npc_name, player_text)
         npc_name = npc_name,
         player_name = avatar:get_name(),
         player_text = player_text,
-        current_turn = tostring(gapi.current_turn())
+        current_turn = tostring(gapi.current_turn()),
+        context_version = CONTEXT_VERSION,
+        context = context or {}
     }
     mod.pending[npc_id] = request_id
 
@@ -166,7 +234,7 @@ mod.run_bridge_test = function()
         return
     end
 
-    local request_id, request_err = persist_request(BRIDGE_TEST_ID, "Bridge Test", "ping")
+    local request_id, request_err = persist_request(BRIDGE_TEST_ID, "Bridge Test", "ping", {})
     if not request_id then
         gapi.add_msg("Cataclysm AI bridge test failed: " .. tostring(request_err))
         return
@@ -201,7 +269,8 @@ mod.open_ai_dialogue = function()
     end
 
     local npc_id = npc_key(npc)
-    local request_id, err = persist_request(npc_id, npc:get_name(), player_text)
+    local context = build_dialogue_context(npc)
+    local request_id, err = persist_request(npc_id, npc:get_name(), player_text, context)
     if not request_id then
         gapi.add_msg("Cataclysm AI: " .. tostring(err))
         return
