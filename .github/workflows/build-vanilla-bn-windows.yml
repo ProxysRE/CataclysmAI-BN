@@ -129,22 +129,35 @@ jobs:
           $testConfigDir = Join-Path $testUserDir "config"
           $sidecarStdout = "${{ github.workspace }}/sidecar.stdout.log"
           $sidecarStderr = "${{ github.workspace }}/sidecar.stderr.log"
+          $requestFile = Join-Path $testConfigDir "cataclysm_ai_request.txt"
+          $responseFile = Join-Path $testConfigDir "cataclysm_ai_response.txt"
+
+          Remove-Item $sidecarStdout -Force -ErrorAction SilentlyContinue
+          Remove-Item $sidecarStderr -Force -ErrorAction SilentlyContinue
+
+          Write-Host "Explicit test user dir: $testUserDir"
+          Write-Host "Expected sidecar config dir: $testConfigDir"
+          Write-Host "Expected request file: $requestFile"
+          Write-Host "Expected response file: $responseFile"
 
           $sidecar = Start-Process -FilePath "python" `
-            -ArgumentList @($sidecarScript, "--once", "--timeout", "180", "--config-dir", $testConfigDir) `
+            -ArgumentList @($sidecarScript, "--once", "--timeout", "600", "--config-dir", $testConfigDir) `
             -RedirectStandardOutput $sidecarStdout `
             -RedirectStandardError $sidecarStderr `
             -PassThru
 
           Start-Sleep -Milliseconds 250
-          Write-Host "Sidecar PID: $($sidecar.Id)"
-          Write-Host "Explicit test user dir: $testUserDir"
+          if ($sidecar.HasExited) {
+            Write-Host "Sidecar exited before cata_test started. Exit code: $($sidecar.ExitCode)"
+          } else {
+            Write-Host "Sidecar PID: $($sidecar.Id)"
+          }
 
           & $testExe.FullName "--user-dir=$testUserDir" "[cataclysm_ai]"
           $testExitCode = $LASTEXITCODE
 
-          if (-not $sidecar.WaitForExit(10000)) {
-            Write-Host "Sidecar did not exit within 10 seconds after cata_test; stopping it."
+          if (-not $sidecar.WaitForExit(15000)) {
+            Write-Host "Sidecar did not exit within 15 seconds after cata_test; stopping it."
             Stop-Process -Id $sidecar.Id -Force -ErrorAction SilentlyContinue
             $sidecar.WaitForExit()
           }
@@ -154,6 +167,24 @@ jobs:
           if (Test-Path $sidecarStdout) { Get-Content $sidecarStdout }
           Write-Host "--- Python sidecar stderr ---"
           if (Test-Path $sidecarStderr) { Get-Content $sidecarStderr }
+
+          Write-Host "--- IPC path state after test ---"
+          Write-Host "config exists: $(Test-Path $testConfigDir)"
+          Write-Host "request exists: $(Test-Path $requestFile)"
+          Write-Host "response exists: $(Test-Path $responseFile)"
+          if (Test-Path $requestFile) {
+            Write-Host "request contents:"
+            Get-Content $requestFile -Raw
+          }
+          if (Test-Path $responseFile) {
+            Write-Host "response contents:"
+            Get-Content $responseFile -Raw
+          }
+          if (Test-Path $testUserDir) {
+            Write-Host "--- Test user directory tree ---"
+            Get-ChildItem $testUserDir -Force -Recurse | Select-Object FullName, Length, LastWriteTime
+          }
+
           Write-Host "cata_test exit code: $testExitCode"
           Write-Host "sidecar exit code: $sidecarExitCode"
 
