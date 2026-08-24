@@ -1,4 +1,4 @@
-name: Build pristine Bright Nights for Windows
+name: Build minimal Cataclysm AI bridge for Windows
 
 on:
   workflow_dispatch:
@@ -9,10 +9,15 @@ on:
 
 jobs:
   build-windows:
-    name: Vanilla BN / Windows MSVC
+    name: Cataclysm AI bridge / Windows MSVC
     runs-on: windows-2022
 
     steps:
+      - name: Checkout Cataclysm AI project
+        uses: actions/checkout@v4
+        with:
+          path: project
+
       - name: Checkout pristine Bright Nights
         uses: actions/checkout@v4
         with:
@@ -20,6 +25,16 @@ jobs:
           ref: 17a0df280e6d009402bcc41ffafbce12670c4b99
           path: bn
           fetch-depth: 1
+
+      - name: Apply minimal Lua bridge
+        shell: pwsh
+        working-directory: bn
+        run: |
+          $patch = "${{ github.workspace }}/project/patches/minimal-lua-bridge.patch"
+          git apply --check $patch
+          git apply $patch
+          git diff --check
+          git diff --stat
 
       - name: Setup MSVC environment
         uses: ilammy/msvc-dev-cmd@v1
@@ -51,7 +66,7 @@ jobs:
         shell: pwsh
         run: vcpkg integrate install
 
-      - name: Configure pristine Bright Nights
+      - name: Configure Bright Nights with Cataclysm AI bridge
         shell: pwsh
         working-directory: bn
         env:
@@ -75,7 +90,7 @@ jobs:
             -DCATA_FORMAT_TARGETS=OFF `
             -DCMAKE_INSTALL_MESSAGE=NEVER
 
-      - name: Build pristine Bright Nights
+      - name: Build Bright Nights with Cataclysm AI bridge
         shell: pwsh
         working-directory: bn
         run: |
@@ -98,6 +113,6 @@ jobs:
       - name: Upload compiled executable
         uses: actions/upload-artifact@v4
         with:
-          name: vanilla-cataclysm-bn-windows-exe
+          name: cataclysm-ai-minimal-bridge-windows-exe
           path: ${{ env.BN_EXE }}
           if-no-files-found: error
