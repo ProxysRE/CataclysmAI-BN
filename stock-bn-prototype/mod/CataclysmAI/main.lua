@@ -1,9 +1,10 @@
 local mod_id = game.current_mod
 local mod = game.mod_runtime[mod_id]
+local storage = game.mod_storage[mod_id]
 
 mod.root_path = game.current_mod_path
 mod.pending = mod.pending or {}
-mod.request_seq = mod.request_seq or 0
+storage.request_seq = storage.request_seq or 0
 
 local function percent_encode(value)
     local text = tostring(value or "")
@@ -36,6 +37,9 @@ local function load_response(request_id)
     if type(response) ~= "table" then
         return nil, "response chunk did not return a table"
     end
+    if tonumber(response.protocol) ~= 1 then
+        return nil, "response protocol mismatch"
+    end
     if tostring(response.request_id or "") ~= tostring(request_id) then
         return nil, "response request_id mismatch"
     end
@@ -44,10 +48,10 @@ local function load_response(request_id)
 end
 
 local function emit_request(npc, player_text)
-    mod.request_seq = mod.request_seq + 1
+    storage.request_seq = storage.request_seq + 1
 
     local npc_id = npc_key(npc)
-    local request_id = npc_id .. "_" .. tostring(mod.request_seq)
+    local request_id = npc_id .. "_" .. tostring(storage.request_seq)
     local avatar = gapi.get_avatar()
 
     local wire = table.concat({
@@ -76,8 +80,8 @@ local function show_pending_response(npc)
     local response, err = load_response(request_id)
     if not response then
         gapi.add_msg("Cataclysm AI: response is not ready yet.")
-        if err and not tostring(err):find("No such file", 1, true) then
-            gdebug.log_warn("CATAI response read error for " .. request_id .. ": " .. tostring(err))
+        if err then
+            gdebug.log_info("CATAI_WAIT|1|" .. request_id .. "|" .. percent_encode(err))
         end
         return false
     end
