@@ -1,0 +1,124 @@
+diff --git a/src/catalua_bindings.h b/src/catalua_bindings.h
+--- a/src/catalua_bindings.h
++++ b/src/catalua_bindings.h
+@@ -18,6 +18,7 @@ void reg_creature_family( sol::state &lua );
+ void reg_creature( sol::state &lua );
+ void reg_damage_instance( sol::state &lua );
+ void reg_debug_api( sol::state &lua );
++auto reg_cataclysm_ai_api( sol::state &lua ) -> void;
+ void reg_date_time_api( sol::state &lua );
+ void reg_distribution_grid( sol::state &lua );
+ void reg_effect( sol::state &lua );
+diff --git a/src/catalua_bindings.cpp b/src/catalua_bindings.cpp
+--- a/src/catalua_bindings.cpp
++++ b/src/catalua_bindings.cpp
+@@ -1067,6 +1067,7 @@ void cata::reg_all_bindings( sol::state &lua )
+     override_default_print( lua );
+     forbid_unsafe_functions( lua );
+     reg_debug_api( lua );
++    reg_cataclysm_ai_api( lua );
+     reg_game_api( lua );
+     reg_locale_api( lua );
+     reg_date_time_api( lua );
+diff --git a/src/catalua_bindings_cataclysm_ai.cpp b/src/catalua_bindings_cataclysm_ai.cpp
+new file mode 100644
+--- /dev/null
++++ b/src/catalua_bindings_cataclysm_ai.cpp
+@@ -0,0 +1,101 @@
++#include "catalua_bindings.h"
++#include "catalua_luna.h"
++#include "catalua_luna_doc.h"
++
++#include <algorithm>
++#include <chrono>
++#include <cstddef>
++#include <cstdio>
++#include <fstream>
++#include <iterator>
++#include <string>
++#include <thread>
++
++#include "path_info.h"
++
++namespace
++{
++
++constexpr std::size_t max_exchange_bytes = 1024 * 1024;
++constexpr int min_timeout_ms = 250;
++constexpr int max_timeout_ms = 300000;
++constexpr auto poll_interval = std::chrono::milliseconds( 50 );
++
++auto make_error( const std::string &message ) -> std::string
++{
++    return "CATAI_ERROR:" + message;
++}
++
++auto cataclysm_ai_exchange_impl( const std::string &request, const int timeout_ms ) -> std::string
++{
++    if( request.size() > max_exchange_bytes ) {
++        return make_error( "request_too_large" );
++    }
++
++    const auto timeout = std::clamp( timeout_ms, min_timeout_ms, max_timeout_ms );
++    const auto config_dir = PATH_INFO::config_dir();
++    const auto request_path = config_dir + "cataclysm_ai_request.txt";
++    const auto request_tmp_path = request_path + ".tmp";
++    const auto response_path = config_dir + "cataclysm_ai_response.txt";
++
++    std::remove( request_tmp_path.c_str() );
++    std::remove( request_path.c_str() );
++    std::remove( response_path.c_str() );
++
++    {
++        auto output = std::ofstream( request_tmp_path, std::ios::binary | std::ios::trunc );
++        if( !output ) {
++            return make_error( "request_open_failed" );
++        }
++        output.write( request.data(), static_cast<std::streamsize>( request.size() ) );
++        output.close();
++        if( !output ) {
++            std::remove( request_tmp_path.c_str() );
++            return make_error( "request_write_failed" );
++        }
++    }
++
++    if( std::rename( request_tmp_path.c_str(), request_path.c_str() ) != 0 ) {
++        std::remove( request_tmp_path.c_str() );
++        return make_error( "request_publish_failed" );
++    }
++
++    const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds( timeout );
++    while( std::chrono::steady_clock::now() < deadline ) {
++        auto input = std::ifstream( response_path, std::ios::binary );
++        if( input ) {
++            auto response = std::string( std::istreambuf_iterator<char>( input ),
++                                         std::istreambuf_iterator<char>() );
++            input.close();
++            std::remove( response_path.c_str() );
++            std::remove( request_path.c_str() );
++
++            if( response.size() > max_exchange_bytes ) {
++                return make_error( "response_too_large" );
++            }
++            return response;
++        }
++
++        std::this_thread::sleep_for( poll_interval );
++    }
++
++    std::remove( request_path.c_str() );
++    return make_error( "timeout" );
++}
++
++} // namespace
++
++auto cata::detail::reg_cataclysm_ai_api( sol::state &lua ) -> void
++{
++    DOC( "Synchronous file-IPC bridge to an external Cataclysm AI sidecar." );
++    auto lib = luna::begin_lib( lua, "cataclysm_ai" );
++
++    DOC( "Send a UTF-8 request to the external sidecar and wait for its UTF-8 response." );
++    luna::set_fx( lib, "exchange", &cataclysm_ai_exchange_impl );
++
++    luna::finalize_lib( lib );
++}
