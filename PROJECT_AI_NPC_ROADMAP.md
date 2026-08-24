@@ -10,7 +10,9 @@ The player should be able to speak to an NPC in free-form text. Bright Nights pr
 
 This project deliberately does **not** target microphone input, speech-to-text, text-to-speech, or real-time voice interaction. Bright Nights is turn-based, so the intended interaction is textual.
 
-The AI layer should augment vanilla NPC systems rather than replace them wholesale. Vanilla code remains authoritative for trading, missions, inventory, movement, combat, faction rules, relationship values, and other game mechanics.
+The AI layer should augment vanilla NPC systems rather than replace them wholesale. Vanilla code remains authoritative for trading, missions, inventory, movement, combat, faction rules, relationship values, map state and other game mechanics.
+
+A major long-term goal is that AI dialogue should be grounded in the **actual persistent world of the current save**. NPCs should be able to have biographies tied to real generated cities, buildings, roads and landmarks rather than hallucinated geography.
 
 ## 2. Core architecture
 
@@ -47,7 +49,7 @@ The file-IPC approach is intentional for the first implementation:
 
 ## 3. Non-negotiable design rule
 
-**The LLM may propose an intent, but it must never directly mutate the game world.**
+**The LLM may propose an intent or narrative interpretation, but it must never directly mutate the game world.**
 
 Bad design:
 
@@ -63,13 +65,15 @@ LLM -> intent: GIVE_ITEM
     -> vanilla / trusted game code performs the action or rejects it
 ```
 
-The same rule applies to relationship changes, missions, movement, inventory, combat, faction state, map state, spawning, rewards, and any other mechanical effect.
+The same rule applies to relationship changes, missions, movement, inventory, combat, faction state, map state, spawning, rewards, map markers and any other mechanical effect.
+
+For biographies, the same principle applies in reverse: trusted game code supplies real world facts first; the LLM may turn those facts into prose, but it may not silently invent persistent locations or physical objects and treat them as already real.
 
 ## 4. Development rule
 
 Work one verified layer at a time.
 
-Do not mix bridge changes, dialogue integration, Python, LLM calls, packaging, and gameplay actions into one untestable step.
+Do not mix bridge changes, dialogue integration, Python, LLM calls, packaging, gameplay actions and world-generation changes into one untestable step.
 
 Preferred progression:
 
@@ -81,7 +85,9 @@ pristine BN baseline
 -> free-form dialogue UI
 -> real LLM
 -> NPC/world context
+-> world-grounded biography
 -> memory
+-> knowledge boundary
 -> validated gameplay intents
 -> advanced social / autonomous systems
 ```
@@ -173,23 +179,7 @@ The objective is to prevent every NPC from sounding like the same generic assist
 
 **Difficulty:** Low–Medium.
 
-#### B2. Persistent conversation memory
-
-Give each NPC a stable identity key and persist:
-
-- recent conversation history;
-- important facts;
-- promises;
-- insults;
-- favors;
-- relationship-relevant events;
-- compact long-term summaries.
-
-Do not continuously resend the full lifetime chat log. Maintain recent context plus summarized long-term memory.
-
-**Difficulty:** Medium.
-
-#### B3. Local world context
+#### B2. Local world context
 
 Provide selected current information:
 
@@ -204,6 +194,153 @@ Provide selected current information:
 
 **Difficulty:** Medium. The challenge is extracting and compressing useful game state rather than calling the model.
 
+#### B3. World-grounded biography
+
+Generate an NPC's backstory from **real persistent overmap facts** instead of letting the LLM invent arbitrary geography.
+
+Bright Nights already maintains overmap-level information for generated parts of the world, including city records, overmap terrain, roads, building/location types and major landmarks. Detailed local mapgen, loot, many spawns and map extras may happen later when an overmap terrain tile is actually generated as a local map.
+
+The biography system should therefore use a trusted game-side **biography seed**.
+
+Example seed:
+
+```text
+NPC: Boris
+Age: 37
+Profession: mechanic
+
+Origin city: New Franklin
+Former home: house at OMT (548, 322, 0)
+Nearby landmark: fire station across the road
+Nearby workplace candidate: garage 6 OMT north-west
+```
+
+The LLM may then turn this into natural prose such as:
+
+```text
+I'm from New Franklin. I lived almost opposite the fire station,
+across the road. Before the Cataclysm I worked at a garage nearby.
+```
+
+The important property is that **New Franklin, the house, the fire station and the garage are real locations in that save**.
+
+##### B3.1 Persist structured biography facts
+
+Do not store only prose. Persist canonical references where possible:
+
+```json
+{
+  "origin_city": "New Franklin",
+  "home_omt": [548, 322, 0],
+  "work_omt": [542, 316, 0],
+  "landmarks": [
+    {
+      "type": "fire_station",
+      "omt": [550, 322, 0]
+    }
+  ]
+}
+```
+
+This allows later systems to use the same facts for dialogue, map markers, knowledge, missions and memories without asking the model to reconstruct coordinates from prose.
+
+##### B3.2 Three truth levels
+
+The biography system must explicitly distinguish:
+
+**Hard world facts** — supplied by trusted BN state and safe to state as facts:
+
+- city name, position and size;
+- real overmap terrain / building type;
+- roads;
+- nearby landmarks;
+- directions and distances;
+- major overmap specials that already exist.
+
+**Generated biography facts** — invented by the LLM but constrained not to contradict hard facts:
+
+- the NPC lived there with a spouse;
+- the NPC worked at the nearby garage;
+- personal relationships;
+- habits, memories, opinions and ordinary life history.
+
+**Unresolved physical facts** — details that must not be asserted as persistent reality before the relevant local map exists, unless a later trusted system commits them:
+
+- exact room layout;
+- a specific object under a specific bed;
+- a particular weapon in a basement;
+- exact furniture placement;
+- exact corpse / loot / monster presence.
+
+Early versions should simply forbid or soften unresolved physical claims.
+
+##### B3.3 Lazy initialization
+
+Do **not** call an LLM for every generated NPC immediately.
+
+Recommended flow:
+
+```text
+NPC exists normally in BN
+-> first meaningful AI interaction
+-> no biography record exists
+-> trusted code selects / validates origin city, home, work candidate and landmarks
+-> sidecar asks LLM to turn the seed into a biography
+-> structured seed + generated biography are saved permanently for that NPC ID
+```
+
+A cheap deterministic geographic seed may be assigned before the first LLM call if that improves stability.
+
+##### B3.4 Population plausibility
+
+The nearest city should not automatically become every NPC's hometown.
+
+Origin selection can later account for:
+
+- local residents;
+- nearby-city migrants;
+- more distant refugees;
+- faction context;
+- profession;
+- plausible residential terrain;
+- plausible workplace terrain.
+
+Profession should influence probabilities without becoming a hard rule. A mechanic may plausibly work near a garage, a doctor near a clinic or hospital, and a firefighter near a fire station, while home and workplace remain separate locations.
+
+##### B3.5 Later gameplay use
+
+Once structured biography locations exist, later stages may safely support utterances such as:
+
+```text
+Where did you live?
+Can you show me your house on the map?
+Where did you work?
+Do you know a pharmacy in your old town?
+```
+
+A future trusted intent may add a map marker such as `Boris's former home` using the stored OMT coordinate.
+
+The biography becomes part of the NPC's initial knowledge and long-term memory rather than a decorative paragraph.
+
+**Difficulty:** Medium for the first version; Medium–High for profession-aware migration, robust knowledge integration and map-marker/gameplay use.
+
+#### B4. Persistent conversation memory
+
+Give each NPC a stable identity key and persist:
+
+- recent conversation history;
+- important facts;
+- promises;
+- insults;
+- favors;
+- relationship-relevant events;
+- compact long-term summaries;
+- the canonical world-grounded biography seed and important biography facts.
+
+Do not continuously resend the full lifetime chat log. Maintain recent context plus summarized long-term memory.
+
+**Difficulty:** Medium.
+
 ### C. Knowledge and consequences — MEDIUM to HIGH difficulty
 
 #### C1. NPC knowledge boundary
@@ -212,6 +349,7 @@ Separate **what exists in the game** from **what this NPC actually knows**.
 
 Possible knowledge sources:
 
+- own biography and origin locations;
 - own faction;
 - own missions;
 - personally visited locations;
@@ -220,7 +358,7 @@ Possible knowledge sources:
 - rumors;
 - player-provided information.
 
-Do not expose omniscient world state to the LLM by default.
+Do not expose omniscient world state to the LLM by default. A world-grounded biography may give an NPC knowledge of its home town and associated landmarks without giving it knowledge of every generated location in the save.
 
 **Difficulty:** Medium–High, mostly because of game design and state modeling.
 
@@ -306,6 +444,20 @@ The LLM identifies the intent. Vanilla mission code determines available mission
 
 **Difficulty:** High.
 
+#### D4. Biography-aware location intents
+
+Use validated structured biography references for safe interactions such as:
+
+```text
+Show me where your old house was.
+Mark your workplace on my map.
+Which road leads toward your home town?
+```
+
+The LLM identifies the requested location; trusted game code resolves the stored reference and decides whether the NPC knows enough to reveal it and whether a map marker may be added.
+
+**Difficulty:** High, but significantly safer than allowing free-form coordinates from model output.
+
 ### E. Deep social awareness — HIGH difficulty
 
 #### E1. Several NPCs in one conversation
@@ -341,7 +493,7 @@ Relevant witnesses can convert these events into persistent memories and later m
 
 ### F. Experimental endgame systems — VERY HIGH / EXTREME difficulty
 
-These should be attempted only after the ordinary dialogue system, memory, context and safe gameplay intents are stable and polished.
+These should be attempted only after the ordinary dialogue system, memory, context, world-grounded biography and safe gameplay intents are stable and polished.
 
 #### F1. Autonomous NPC goals and planning
 
@@ -363,11 +515,30 @@ NPCs may formulate new missions using strictly validated templates.
 
 Do not allow the LLM to invent arbitrary item IDs, monster IDs, map coordinates or rewards and directly inject them into the world.
 
-Recommended implementation is a bounded library of mission templates whose parameters are selected and validated by game code.
+World-grounded biography can supply validated mission locations. For example, an NPC may ask the player to return to its real former home or workplace, but mission creation must still use trusted templates and validated coordinates.
 
 **Difficulty:** Very High.
 
-#### F3. Autonomous social simulation
+#### F3. Narrative-backed future mapgen
+
+Very late experiment: allow selected unresolved biography details to become real when an ungenerated local map is eventually generated.
+
+Example:
+
+```text
+NPC says: "I hid a family photograph under my bed."
+-> system stores a validated persistent narrative detail tied to home_omt
+-> when that OMT is first locally generated, a trusted mapgen hook attempts to realize the detail
+-> if placement is impossible, the game uses a deterministic fallback or marks the detail unresolved
+```
+
+This must never work by executing arbitrary LLM instructions. It requires a small whitelist of supported persistent detail templates such as a named keepsake, cache, note or other bounded object placement.
+
+This feature is intentionally deferred because local mapgen may not yet exist when the biography is written, and consistency across save/load, mapgen variants and failures is difficult.
+
+**Difficulty:** Very High / Extreme.
+
+#### F4. Autonomous social simulation
 
 Long-term possible scope:
 
@@ -398,14 +569,17 @@ Required:
 
 ### Stage B — Believable NPC
 
-Goal: conversations feel character-specific and continuous.
+Goal: conversations feel character-specific, continuous and grounded in the actual save.
 
 Add:
 
 - personality;
-- persistent memory;
 - local context;
+- world-grounded biography;
+- persistent memory;
 - stable NPC identity.
+
+The first biography implementation should stop at existing overmap facts and generated prose. It should not modify future local mapgen.
 
 ### Stage C — Knowledge and social consequences
 
@@ -414,6 +588,7 @@ Goal: NPCs know only what they should know and conversation matters mechanically
 Add:
 
 - knowledge boundary;
+- biography facts as part of personal knowledge;
 - validated relationship effects;
 - better context filtering.
 
@@ -426,7 +601,8 @@ Add progressively:
 - wait / follow / guard and other narrow commands;
 - trade intent;
 - vanilla mission intent;
-- selected inventory interactions.
+- selected inventory interactions;
+- biography-aware map/location intents.
 
 ### Stage E — Deep memory and social interaction
 
@@ -438,12 +614,13 @@ Add:
 - several-NPC conversations;
 - rumors / shared social facts if practical.
 
-### Stage F — Experimental autonomy
+### Stage F — Experimental autonomy and narrative world realization
 
 Only after all earlier stages are stable:
 
 - autonomous plans;
 - bounded generated missions;
+- selected narrative-backed future mapgen;
 - autonomous social simulation.
 
 ## 8. What should be implemented early vs late
@@ -465,6 +642,8 @@ Only after all earlier stages are stable:
 
 - richer personality;
 - local world context;
+- world-grounded biography using existing overmap facts;
+- persistent structured biography references;
 - knowledge filtering;
 - relationship consequences;
 - a small whitelist of gameplay intents.
@@ -474,6 +653,7 @@ Only after all earlier stages are stable:
 - complex inventory commands;
 - natural-language trading edge cases;
 - mission integration;
+- biography-aware map markers and location actions;
 - multi-NPC conversations;
 - event/witness memory.
 
@@ -481,6 +661,7 @@ Only after all earlier stages are stable:
 
 - autonomous planning;
 - generated missions;
+- narrative-backed future mapgen;
 - continuous NPC-to-NPC social simulation.
 
 ## 9. Safety / robustness rules for the implementation
@@ -491,10 +672,12 @@ Only after all earlier stages are stable:
 4. Unknown or invalid intents degrade to dialogue-only output.
 5. All numerical deltas are bounded by game-side limits.
 6. All item, monster, mission, faction and location identifiers are resolved by trusted game code.
-7. Timeouts must return control to the player cleanly.
-8. Sidecar failure must not corrupt saves or block normal vanilla dialogue permanently.
-9. Vanilla dialogue remains available as a fallback.
-10. Keep logs sufficient to reproduce sidecar, parsing and intent failures.
+7. Biography coordinates and landmark identities originate from trusted world-state extraction, not free-form LLM output.
+8. Distinguish hard world facts, generated biography facts and unresolved physical facts.
+9. Timeouts must return control to the player cleanly.
+10. Sidecar failure must not corrupt saves or block normal vanilla dialogue permanently.
+11. Vanilla dialogue remains available as a fallback.
+12. Keep logs sufficient to reproduce sidecar, parsing, intent, biography and world-reference failures.
 
 ## 10. Testing gates
 
@@ -507,8 +690,11 @@ Preferred proof levels:
 3. **Round-trip proof** — request leaves BN and a response returns.
 4. **Integration proof** — the real dialogue flow displays the result.
 5. **Persistence proof** — save/reload keeps required memory/state.
-6. **Failure proof** — sidecar absent, timeout, malformed response and provider errors fail gracefully.
-7. **Gameplay proof** — any action intent is validated and cannot bypass vanilla rules.
+6. **World-grounding proof** — biography references resolve to the same real city/building/landmark after save/reload.
+7. **Knowledge proof** — NPC does not gain unrelated omniscient map knowledge from biography extraction.
+8. **Failure proof** — sidecar absent, timeout, malformed response and provider errors fail gracefully.
+9. **Gameplay proof** — any action intent is validated and cannot bypass vanilla rules.
+10. **Future-mapgen proof** — required only if Stage F narrative-backed mapgen is ever implemented; persistent narrative details survive generation variants and fail safely.
 
 ## 11. Immediate next milestones
 
@@ -523,9 +709,11 @@ At the time of writing, the project is moving through these gates:
 [next] ECHO reply shown as the NPC's actual dialogue response
 [next] replace ECHO responder with an LLM provider
 [next] add minimal NPC identity/context
+[next] add local world context
+[next] prototype world-grounded biography seed from real overmap data
 ```
 
-Do not skip directly to autonomous NPC systems before these milestones are stable.
+Do not skip directly to autonomous NPC systems or narrative mapgen before these milestones are stable.
 
 ## 12. CI / build policy
 
@@ -535,12 +723,88 @@ For development, prefer hosted CI and ready artifacts instead of requiring repea
 
 Packaging is secondary to functional proof. A modified executable that compiles, launches and passes runtime integration tests is more important than a polished distribution archive during early development.
 
-## 13. Definition of the intended mature system
+## 13. World-grounded biography architecture notes
+
+This section is the reference for future implementation work on biographies.
+
+### 13.1 What the game knows before local mapgen
+
+The overmap layer can already hold persistent macro geography for generated overmaps: cities, their names and positions, overmap terrain, roads and building/location terrain types. Local mapgen later resolves an OMT into detailed map squares, furniture, items, many spawns and map extras.
+
+Therefore biography generation should preferentially query **existing overmaps**. It may deliberately generate additional overmaps only when a design decision explicitly calls for that; it should not casually expand the world merely to create an NPC biography.
+
+### 13.2 Canonical biography record
+
+A future implementation should keep a structured sidecar/game record similar to:
+
+```json
+{
+  "npc_id": "...",
+  "origin": {
+    "city_name": "New Franklin",
+    "city_center_omt": [542, 318, 0],
+    "home_omt": [548, 322, 0],
+    "work_omt": [542, 316, 0]
+  },
+  "known_landmarks": [
+    {
+      "terrain": "fire_station",
+      "omt": [550, 322, 0],
+      "relation": "across the road from former home"
+    }
+  ],
+  "generated_summary": "...",
+  "schema_version": 1
+}
+```
+
+Exact field names are not yet frozen. Coordinates and terrain IDs must remain machine-readable even when a localized human-readable description is also stored.
+
+### 13.3 Determinism and identity
+
+Once assigned, origin/home/work references must not be rerolled merely because the player starts another conversation. The record belongs to the stable NPC identity and survives save/reload.
+
+If an referenced overmap terrain later changes because gameplay destroys or transforms the location, the biography remains historical truth: the NPC **used to live there**. Current-world context may separately describe what is there now.
+
+### 13.4 LLM prompt rule
+
+The prompt should clearly separate:
+
+```text
+CANONICAL WORLD FACTS
+CANONICAL NPC FACTS
+ALLOWED CREATIVE GAPS
+UNKNOWN / DO NOT ASSERT AS FACT
+```
+
+The model may narrativize the first two and creatively fill the third, but must not convert the fourth into canonical persistent facts.
+
+### 13.5 Relationship with future missions
+
+Biography is not itself a mission generator. It supplies validated locations that later mission templates may use.
+
+Example future chain:
+
+```text
+NPC has home_omt
+-> player asks about family belongings
+-> LLM proposes intent / narrative hook
+-> game selects an allowed retrieve-keepsake mission template
+-> trusted code validates home_omt and mission parameters
+-> mission system creates the objective
+```
+
+This preserves the project rule that the LLM proposes meaning while the game owns mechanics.
+
+## 14. Definition of the intended mature system
 
 A mature version should let the player naturally say things such as:
 
 ```text
 Who are you?
+Where did you live before the Cataclysm?
+What was near your house?
+Can you show me your old home on the map?
 What happened here?
 Do you remember me?
 Do you know where the hospital is?
@@ -550,6 +814,6 @@ I brought the medicine you asked for.
 Why are you angry with me?
 ```
 
-The NPC should answer according to its identity, knowledge, memory, relationship and present situation. When the utterance implies a mechanical action, Bright Nights should validate and execute that action through trusted game systems.
+The NPC should answer according to its identity, knowledge, memory, relationship, biography and present situation. Geographic claims derived from its biography should correspond to the actual persistent world of the current save. When the utterance implies a mechanical action, Bright Nights should validate and execute that action through trusted game systems.
 
-That is the target: **natural language as an additional interface to a persistent, game-aware NPC — not an omnipotent LLM controlling the simulation directly.**
+That is the target: **natural language as an additional interface to a persistent, game-aware NPC whose personal history belongs to the actual procedural world — not an omnipotent LLM controlling or inventing the simulation directly.**
