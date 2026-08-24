@@ -142,7 +142,10 @@ jobs:
               player_text = "stock outbound ping",
               current_turn = tostring(gapi.current_turn())
           }
-          assert(gdebug.save_game(), "Cataclysm AI stock save_game probe failed")
+          gdebug.log_info("CATAI_STOCK_SAVE_BEGIN")
+          local catai_saved = gdebug.save_game()
+          gdebug.log_info("CATAI_STOCK_SAVE_RESULT=" .. tostring(catai_saved))
+          assert(catai_saved, "Cataclysm AI stock save_game probe failed")
           gdebug.log_info("CATAI_STOCK_SAVE_OK")
           '@ | Add-Content -Path $mainLua -Encoding utf8
 
@@ -172,6 +175,9 @@ jobs:
           $sidecarErr = Join-Path $env:RUNNER_TEMP "catai-sidecar-stderr.txt"
           $sidecarScript = Join-Path $env:GITHUB_WORKSPACE "stock-bn-prototype/sidecar/cataclysm_ai_stock_sidecar.py"
           $responsePath = Join-Path $env:CATAI_BN_DIR "data/lua/lib/catai_runtime/response_$env:CATAI_CI_REQUEST_ID.lua"
+          $transportError = $null
+          $exitCode = $null
+          $sidecarExit = $null
 
           $sidecarArgs = @(
             $sidecarScript,
@@ -212,11 +218,12 @@ jobs:
             }
 
             if (-not $sidecar.WaitForExit(10000)) {
+              $transportError = "Python sidecar did not observe the stock BN save request"
               $sidecar.Kill()
               $sidecar.WaitForExit()
-              throw "Python sidecar did not observe the stock BN save request"
+            } else {
+              $sidecarExit = $sidecar.ExitCode
             }
-            $sidecarExit = $sidecar.ExitCode
           } finally {
             if (-not $sidecar.HasExited) {
               $sidecar.Kill()
@@ -246,11 +253,27 @@ jobs:
           $debugLog = Join-Path $env:CATAI_USER_DIR "config/debug.log"
           if (Test-Path $debugLog) {
             Write-Host "--- stock BN debug.log tail ---"
-            Get-Content $debugLog -Tail 240
+            Get-Content $debugLog -Tail 320
           } else {
             Write-Warning "No debug.log found at $debugLog"
           }
 
+          $saveRoot = Join-Path $env:CATAI_USER_DIR "save"
+          Write-Host "--- stock user save tree ---"
+          if (Test-Path $saveRoot) {
+            Get-ChildItem -Path $saveRoot -Recurse -Force | Select-Object FullName, Length, LastWriteTime
+            $luaStates = @(Get-ChildItem -Path $saveRoot -Recurse -File -Filter "lua_state.json" -ErrorAction SilentlyContinue)
+            foreach ($state in $luaStates) {
+              Write-Host "--- lua_state.json: $($state.FullName) ---"
+              Get-Content $state.FullName -Raw
+            }
+          } else {
+            Write-Warning "No save root found at $saveRoot"
+          }
+
+          if ($transportError) {
+            throw $transportError
+          }
           if ($exitCode -ne 0) {
             throw "Official stock BN rejected Cataclysm AI (exit $exitCode)"
           }
