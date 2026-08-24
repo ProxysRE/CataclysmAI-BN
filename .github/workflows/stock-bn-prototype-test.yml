@@ -133,6 +133,20 @@ jobs:
           Write-Host "Probe module: $probePath"
           Write-Host "Probe appended to: $mainLua"
 
+      - name: Show stock resolved paths
+        shell: pwsh
+        run: |
+          Push-Location $env:CATAI_BN_DIR
+          try {
+            & $env:CATAI_BN_EXE `
+              "--basepath" "$env:CATAI_BN_DIR" `
+              "--userdir" "$env:CATAI_USER_DIR" `
+              "--paths"
+            if ($LASTEXITCODE -ne 0) { throw "stock --paths failed with exit $LASTEXITCODE" }
+          } finally {
+            Pop-Location
+          }
+
       - name: Load mod in official stock executable
         shell: pwsh
         run: |
@@ -141,8 +155,8 @@ jobs:
           Push-Location $env:CATAI_BN_DIR
           try {
             & $env:CATAI_BN_EXE `
-              "--basepath=$env:CATAI_BN_DIR" `
-              "--userdir=$env:CATAI_USER_DIR" `
+              "--basepath" "$env:CATAI_BN_DIR" `
+              "--userdir" "$env:CATAI_USER_DIR" `
               "--dont-debugmsg" `
               "--check-mods" `
               "cataclysm_ai" 2>&1 | Tee-Object -FilePath $stdout
