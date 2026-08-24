@@ -5,6 +5,8 @@ local storage = game.mod_storage[mod_id]
 storage.request_seq = storage.request_seq or 0
 mod.pending = mod.pending or {}
 
+local BRIDGE_TEST_ID = "bridge_test"
+
 local function npc_key(npc)
     return tostring(npc:getID():get_value())
 end
@@ -37,10 +39,9 @@ local function load_response(request_id)
     return response, nil
 end
 
-local function persist_request(npc, player_text)
+local function persist_request(npc_id, npc_name, player_text)
     storage.request_seq = storage.request_seq + 1
 
-    local npc_id = npc_key(npc)
     local request_id = npc_id .. "_" .. tostring(storage.request_seq)
     local avatar = gapi.get_avatar()
 
@@ -48,7 +49,7 @@ local function persist_request(npc, player_text)
         protocol = 1,
         request_id = request_id,
         npc_id = npc_id,
-        npc_name = npc:get_name(),
+        npc_name = npc_name,
         player_name = avatar:get_name(),
         player_text = player_text,
         current_turn = tostring(gapi.current_turn())
@@ -81,8 +82,7 @@ local function acknowledge_response(npc_id, request_id)
     gdebug.save_game()
 end
 
-local function show_pending_response(npc)
-    local npc_id = npc_key(npc)
+local function pending_request_id(npc_id)
     local request_id = mod.pending[npc_id]
 
     -- Runtime state is intentionally not saved. Recover a pending request from
@@ -94,17 +94,38 @@ local function show_pending_response(npc)
         end
     end
 
+    return request_id
+end
+
+local function consume_pending_response(npc_id)
+    local request_id = pending_request_id(npc_id)
     if not request_id then
-        return true
+        return nil, nil, false
     end
 
     local response, err = load_response(request_id)
     if not response then
-        gapi.add_msg("Cataclysm AI: response is not ready yet.")
-        return false
+        return nil, err, true
     end
 
     acknowledge_response(npc_id, request_id)
+    return response, nil, true
+end
+
+local function show_pending_response(npc)
+    local npc_id = npc_key(npc)
+    local response, err, had_pending = consume_pending_response(npc_id)
+
+    if not had_pending then
+        return true
+    end
+    if not response then
+        gapi.add_msg("Cataclysm AI: response is not ready yet.")
+        if err then
+            gdebug.log_info("Cataclysm AI pending response " .. npc_id .. ": " .. tostring(err))
+        end
+        return false
+    end
 
     if response.ok == false then
         gapi.add_msg("Cataclysm AI error: " .. tostring(response.error or "unknown companion error"))
@@ -113,6 +134,43 @@ local function show_pending_response(npc)
 
     npc:say(tostring(response.text or ""))
     return true
+end
+
+mod.run_bridge_test = function()
+    local response, err, had_pending = consume_pending_response(BRIDGE_TEST_ID)
+
+    if had_pending then
+        if not response then
+            gapi.add_msg("Cataclysm AI bridge test: response is not ready yet.")
+            if err then
+                gdebug.log_info("Cataclysm AI bridge test pending: " .. tostring(err))
+            end
+            return
+        end
+
+        if response.ok == false then
+            gapi.add_msg("Cataclysm AI bridge test failed: " .. tostring(response.error or "unknown companion error"))
+            return
+        end
+
+        local text = tostring(response.text or "")
+        gapi.add_msg("Cataclysm AI bridge test response: " .. text)
+        if text == "[ECHO:Bridge Test] ping" then
+            gapi.add_msg("Cataclysm AI bridge test: SUCCESS")
+            gdebug.log_info("CATAI_LIVE_BRIDGE_TEST_OK")
+        else
+            gapi.add_msg("Cataclysm AI bridge test: unexpected ECHO payload")
+        end
+        return
+    end
+
+    local request_id, request_err = persist_request(BRIDGE_TEST_ID, "Bridge Test", "ping")
+    if not request_id then
+        gapi.add_msg("Cataclysm AI bridge test failed: " .. tostring(request_err))
+        return
+    end
+
+    gapi.add_msg("Cataclysm AI bridge test request " .. request_id .. " sent. Run AI bridge test again to read the response.")
 end
 
 mod.open_ai_dialogue = function()
@@ -140,7 +198,8 @@ mod.open_ai_dialogue = function()
         return
     end
 
-    local request_id, err = persist_request(npc, player_text)
+    local npc_id = npc_key(npc)
+    local request_id, err = persist_request(npc_id, npc:get_name(), player_text)
     if not request_id then
         gapi.add_msg("Cataclysm AI: " .. tostring(err))
         return
@@ -148,6 +207,15 @@ mod.open_ai_dialogue = function()
 
     gapi.add_msg("Cataclysm AI: request " .. request_id .. " sent. Open AI dialogue again to receive the answer.")
 end
+
+gapi.register_action_menu_entry({
+    id = "CATAI_BRIDGE_TEST",
+    name = "AI bridge test",
+    category = "misc",
+    fn = function()
+        return mod.run_bridge_test()
+    end
+})
 
 gapi.register_action_menu_entry({
     id = "CATAI_DIALOGUE",
