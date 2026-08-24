@@ -2,7 +2,7 @@
 """Minimal external sidecar for Cataclysm: Bright Nights AI IPC.
 
 For this integration stage the sidecar deliberately implements only an ECHO
-provider.  It watches the same request/response files used by the C++ Lua
+provider. It watches the same request/response files used by the C++ Lua
 binding, reads one UTF-8 request, and publishes one UTF-8 response atomically.
 """
 
@@ -19,6 +19,10 @@ RESPONSE_FILE = "cataclysm_ai_response.txt"
 RESPONSE_TMP_FILE = "cataclysm_ai_response.txt.tmp"
 MAX_EXCHANGE_BYTES = 1024 * 1024
 POLL_INTERVAL_SECONDS = 0.025
+
+
+def log(message: str, *, stderr: bool = False) -> None:
+    print(message, file=sys.stderr if stderr else sys.stdout, flush=True)
 
 
 def default_config_dir() -> Path:
@@ -58,27 +62,40 @@ def publish_response(config_dir: Path, response: str) -> None:
 
 
 def serve_once(config_dir: Path, timeout_seconds: float) -> int:
-    config_dir.mkdir(parents=True, exist_ok=True)
     request_path = config_dir / REQUEST_FILE
+    response_path = config_dir / RESPONSE_FILE
     deadline = time.monotonic() + timeout_seconds
 
+    log(f"sidecar config dir: {config_dir}")
+    log(f"sidecar request path: {request_path}")
+    log(f"sidecar response path: {response_path}")
+    log(f"sidecar timeout: {timeout_seconds:.1f}s")
+
     while time.monotonic() < deadline:
-        if request_path.is_file():
-            try:
+        try:
+            # Bright Nights' test bootstrap removes and recreates --user-dir.
+            # Re-establish config on every poll so the sidecar survives that reset.
+            config_dir.mkdir(parents=True, exist_ok=True)
+
+            if request_path.is_file():
                 request = read_request(request_path)
+                log(f"sidecar received request ({len(request.encode('utf-8'))} bytes): {request!r}")
+
                 response = make_echo_response(request)
                 publish_response(config_dir, response)
-            except (OSError, UnicodeError, ValueError) as exc:
-                print(f"sidecar error: {exc}", file=sys.stderr)
-                return 2
-
-            print(f"request: {request}")
-            print(f"response: {response}")
-            return 0
+                log(f"sidecar published response ({len(response.encode('utf-8'))} bytes): {response!r}")
+                return 0
+        except FileNotFoundError:
+            # The test process may remove --user-dir between mkdir and file access.
+            # Treat that as a transient bootstrap race and keep polling.
+            pass
+        except (OSError, UnicodeError, ValueError) as exc:
+            log(f"sidecar error: {type(exc).__name__}: {exc}", stderr=True)
+            return 2
 
         time.sleep(POLL_INTERVAL_SECONDS)
 
-    print(f"sidecar timeout waiting for {request_path}", file=sys.stderr)
+    log(f"sidecar timeout waiting for {request_path}", stderr=True)
     return 3
 
 
@@ -109,7 +126,10 @@ def main() -> int:
     config_dir = args.config_dir if args.config_dir is not None else default_config_dir()
 
     if not args.once:
-        print("continuous mode is intentionally deferred; use --once for this integration stage", file=sys.stderr)
+        log(
+            "continuous mode is intentionally deferred; use --once for this integration stage",
+            stderr=True,
+        )
         return 4
 
     return serve_once(config_dir.resolve(), args.timeout)
