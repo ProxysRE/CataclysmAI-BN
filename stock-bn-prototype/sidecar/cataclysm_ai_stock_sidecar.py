@@ -381,7 +381,9 @@ def self_test() -> int:
         assert 'request_id = "42_7"' in payload
         assert 'text = "[ECHO:Old Guard] Hello | world\\nagain"' in payload
 
-        logical_mod_state["ipc_request"] = {}
+        # Lua assignment to nil removes the key entirely; model the persisted
+        # ACK exactly as acknowledge_response() does in the game.
+        logical_mod_state.pop("ipc_request", None)
         logical_mod_state["ipc_ack"] = "42_7"
         state = {MOD_ID: bn_table(logical_mod_state)}
         state_path.write_text(json.dumps(state), encoding="utf-8")
