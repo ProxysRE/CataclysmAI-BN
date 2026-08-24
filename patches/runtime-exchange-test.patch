@@ -1,0 +1,82 @@
+diff --git a/tests/catalua_test.cpp b/tests/catalua_test.cpp
+--- a/tests/catalua_test.cpp
++++ b/tests/catalua_test.cpp
+@@ -29,6 +29,7 @@
+ #include "options.h"
++#include "path_info.h"
+ #include "player_activity.h"
+ #include "player_helpers.h"
+ #include "state_helpers.h"
+@@ -42,9 +43,13 @@
+ #include "vehicle_part.h"
+ 
++#include <chrono>
++#include <cstdio>
++#include <filesystem>
++#include <fstream>
++#include <iterator>
+ #include <memory>
+ #include <optional>
+ #include <stdexcept>
+ #include <string>
++#include <thread>
+ #include <vector>
+@@ -82,6 +87,60 @@ TEST_CASE("lua_global_functions", "[lua]") {
+     REQUIRE(lua_npc_avatar_name == "nil");
+ }
++
++TEST_CASE( "cataclysm_ai_exchange_round_trip", "[lua][cataclysm_ai]" )
++{
++    auto lua = make_lua_state();
++
++    const auto config_dir = PATH_INFO::config_dir();
++    std::filesystem::create_directories( config_dir );
++
++    const auto request_path = config_dir + "cataclysm_ai_request.txt";
++    const auto response_path = config_dir + "cataclysm_ai_response.txt";
++    std::remove( request_path.c_str() );
++    std::remove( response_path.c_str() );
++
++    const auto loaded = lua.load( "return cataclysm_ai.exchange('PING', 5000)" );
++    REQUIRE( loaded.valid() );
++
++    std::string request_seen;
++    bool responder_completed = false;
++    std::thread responder( [&]() {
++        const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds( 4 );
++        while( std::chrono::steady_clock::now() < deadline ) {
++            auto input = std::ifstream( request_path, std::ios::binary );
++            if( input ) {
++                request_seen = std::string( std::istreambuf_iterator<char>( input ),
++                                            std::istreambuf_iterator<char>() );
++                input.close();
++
++                auto output = std::ofstream( response_path, std::ios::binary | std::ios::trunc );
++                output << "PONG";
++                output.close();
++                responder_completed = static_cast<bool>( output );
++                return;
++            }
++            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
++        }
++    } );
++
++    const auto result = sol::protected_function( loaded )();
++    responder.join();
++
++    const auto result_valid = result.valid();
++    std::string response;
++    if( result_valid ) {
++        response = result.get<std::string>();
++    }
++
++    std::remove( request_path.c_str() );
++    std::remove( response_path.c_str() );
++
++    REQUIRE( result_valid );
++    CHECK( responder_completed );
++    CHECK( request_seen == "PING" );
++    CHECK( response == "PONG" );
++}
+ 
+ TEST_CASE("lua_map_create_item_at_places_without_returning_owned_item", "[lua][map]") {
