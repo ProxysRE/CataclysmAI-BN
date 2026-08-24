@@ -39,12 +39,13 @@ jobs:
         run: luac5.3 -p stock-bn-prototype/mod/CataclysmAI/main.lua
 
   stock-nightly-load-test:
-    name: Official Windows BN loads Lua bridge
+    name: Official Windows BN stock IPC bridge
     runs-on: windows-2022
     timeout-minutes: 20
     env:
       BN_TAG: "2026-08-24"
       BN_ASSET: "cbn-windows-tiles-x64-msvc-no-soundpack-2026-08-24.zip"
+      CATAI_CI_REQUEST_ID: "ci_stock_1"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -104,7 +105,7 @@ jobs:
           Write-Host "Installed mod at $modDest"
           Get-ChildItem -Path $modDest -Recurse | Select-Object FullName, Length
 
-      - name: Inject stock require probe
+      - name: Inject stock IPC probes
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
@@ -121,17 +122,32 @@ jobs:
           $mainLua = Join-Path $env:CATAI_MOD_DIR "main.lua"
           @'
 
-          -- CI-only probe appended after launcher installation. This is not part of the shipped mod.
+          -- CI-only probes appended after launcher installation. They are not part of the shipped mod.
           local catai_probe = require("lib.catai_runtime.stock_probe")
           assert(type(catai_probe) == "table", "Cataclysm AI stock require probe returned non-table")
           assert(catai_probe.protocol == 1, "Cataclysm AI stock require probe protocol mismatch")
           assert(catai_probe.token == "CATAI_STOCK_REQUIRE_OK", "Cataclysm AI stock require probe token mismatch")
           gdebug.log_info("CATAI_STOCK_REQUIRE_OK")
           package.loaded["lib.catai_runtime.stock_probe"] = nil
+
+          local catai_storage = game.mod_storage[game.current_mod]
+          assert(type(catai_storage) == "table", "Cataclysm AI stock mod_storage is unavailable")
+          catai_storage.ipc_ack = nil
+          catai_storage.ipc_request = {
+              protocol = 1,
+              request_id = "ci_stock_1",
+              npc_id = "ci_npc",
+              npc_name = "CI NPC",
+              player_name = "CI Player",
+              player_text = "stock outbound ping",
+              current_turn = tostring(gapi.current_turn())
+          }
+          assert(gdebug.save_game(), "Cataclysm AI stock save_game probe failed")
+          gdebug.log_info("CATAI_STOCK_SAVE_OK")
           '@ | Add-Content -Path $mainLua -Encoding utf8
 
           Write-Host "Probe module: $probePath"
-          Write-Host "Probe appended to: $mainLua"
+          Write-Host "IPC probes appended to: $mainLua"
 
       - name: Show stock resolved paths
         shell: pwsh
@@ -146,35 +162,70 @@ jobs:
             Pop-Location
           }
 
-      - name: Load mod in official stock executable
+      - name: Run stock Lua to Python transport
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
           $stdout = Join-Path $env:RUNNER_TEMP "stock-bn-stdout.txt"
           $stderr = Join-Path $env:RUNNER_TEMP "stock-bn-stderr.txt"
-          $args = @(
+          $sidecarOut = Join-Path $env:RUNNER_TEMP "catai-sidecar-stdout.txt"
+          $sidecarErr = Join-Path $env:RUNNER_TEMP "catai-sidecar-stderr.txt"
+          $sidecarScript = Join-Path $env:GITHUB_WORKSPACE "stock-bn-prototype/sidecar/cataclysm_ai_stock_sidecar.py"
+          $responsePath = Join-Path $env:CATAI_BN_DIR "data/lua/lib/catai_runtime/response_$env:CATAI_CI_REQUEST_ID.lua"
+
+          $sidecarArgs = @(
+            $sidecarScript,
+            "--game-dir", $env:CATAI_BN_DIR,
+            "--user-dir", $env:CATAI_USER_DIR,
+            "--poll-ms", "50",
+            "--once"
+          )
+          $sidecar = Start-Process `
+            -FilePath "python" `
+            -ArgumentList $sidecarArgs `
+            -PassThru `
+            -NoNewWindow `
+            -RedirectStandardOutput $sidecarOut `
+            -RedirectStandardError $sidecarErr
+
+          $bnArgs = @(
             "--basepath", $env:CATAI_BN_DIR,
             "--userdir", $env:CATAI_USER_DIR,
             "--dont-debugmsg",
             "--check-mods", "cataclysm_ai"
           )
 
-          Push-Location $env:CATAI_BN_DIR
           try {
-            $process = Start-Process `
-              -FilePath $env:CATAI_BN_EXE `
-              -ArgumentList $args `
-              -Wait `
-              -PassThru `
-              -NoNewWindow `
-              -RedirectStandardOutput $stdout `
-              -RedirectStandardError $stderr
-            $exitCode = $process.ExitCode
+            Push-Location $env:CATAI_BN_DIR
+            try {
+              $process = Start-Process `
+                -FilePath $env:CATAI_BN_EXE `
+                -ArgumentList $bnArgs `
+                -Wait `
+                -PassThru `
+                -NoNewWindow `
+                -RedirectStandardOutput $stdout `
+                -RedirectStandardError $stderr
+              $exitCode = $process.ExitCode
+            } finally {
+              Pop-Location
+            }
+
+            if (-not $sidecar.WaitForExit(10000)) {
+              $sidecar.Kill()
+              $sidecar.WaitForExit()
+              throw "Python sidecar did not observe the stock BN save request"
+            }
+            $sidecarExit = $sidecar.ExitCode
           } finally {
-            Pop-Location
+            if (-not $sidecar.HasExited) {
+              $sidecar.Kill()
+              $sidecar.WaitForExit()
+            }
           }
 
           Write-Host "cataclysm-bn-tiles.exe exit code: $exitCode"
+          Write-Host "Cataclysm AI sidecar exit code: $sidecarExit"
           if (Test-Path $stdout) {
             Write-Host "--- stock BN stdout ---"
             Get-Content $stdout
@@ -183,11 +234,19 @@ jobs:
             Write-Host "--- stock BN stderr ---"
             Get-Content $stderr
           }
+          if (Test-Path $sidecarOut) {
+            Write-Host "--- sidecar stdout ---"
+            Get-Content $sidecarOut
+          }
+          if (Test-Path $sidecarErr) {
+            Write-Host "--- sidecar stderr ---"
+            Get-Content $sidecarErr
+          }
 
           $debugLog = Join-Path $env:CATAI_USER_DIR "config/debug.log"
           if (Test-Path $debugLog) {
             Write-Host "--- stock BN debug.log tail ---"
-            Get-Content $debugLog -Tail 200
+            Get-Content $debugLog -Tail 240
           } else {
             Write-Warning "No debug.log found at $debugLog"
           }
@@ -195,11 +254,28 @@ jobs:
           if ($exitCode -ne 0) {
             throw "Official stock BN rejected Cataclysm AI (exit $exitCode)"
           }
+          if ($sidecarExit -ne 0) {
+            throw "Cataclysm AI sidecar failed during stock transport test (exit $sidecarExit)"
+          }
           if (-not (Test-Path $debugLog)) {
             throw "Official stock BN exited successfully but did not create debug.log"
           }
-          $probeHit = Select-String -Path $debugLog -SimpleMatch "CATAI_STOCK_REQUIRE_OK" -Quiet
-          if (-not $probeHit) {
+          if (-not (Select-String -Path $debugLog -SimpleMatch "CATAI_STOCK_REQUIRE_OK" -Quiet)) {
             throw "Stock BN loaded the mod but the custom require() probe was not observed"
           }
-          Write-Host "Official stock BN loaded Cataclysm AI and resolved the runtime require() probe."
+          if (-not (Select-String -Path $debugLog -SimpleMatch "CATAI_STOCK_SAVE_OK" -Quiet)) {
+            throw "Stock BN did not confirm the save-based outbound IPC probe"
+          }
+          if (-not (Test-Path $responsePath)) {
+            throw "Sidecar exited successfully but no response module was published at $responsePath"
+          }
+          $responsePayload = Get-Content $responsePath -Raw
+          Write-Host "--- generated response module ---"
+          Write-Host $responsePayload
+          if ($responsePayload -notlike "*request_id = \"$env:CATAI_CI_REQUEST_ID\"*") {
+            throw "Generated response module has the wrong request_id"
+          }
+          if ($responsePayload -notlike "*stock outbound ping*") {
+            throw "Generated response module does not contain the ECHO payload"
+          }
+          Write-Host "Official stock BN completed Lua -> save -> Python -> response.lua transport."
