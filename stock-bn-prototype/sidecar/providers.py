@@ -19,6 +19,7 @@ from memory import MemoryView
 
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 OPENAI_MODELS_URL = "https://api.openai.com/v1/models"
+OPENAI_ME_URL = "https://api.openai.com/v1/me"
 DEFAULT_OPENAI_MODEL = "gpt-5.6"
 DEFAULT_OPENAI_TIMEOUT = 120.0
 MAX_PROMPT_HISTORY = 8
@@ -168,12 +169,7 @@ The player's current line is in-world speech directed at you."""
 
 
 def build_openai_payload(request: Any, memory: MemoryView, model: str) -> dict[str, Any]:
-    """Build the first live request in the exact two-field quickstart shape.
-
-    We intentionally place NPC instructions inside the single input string for
-    this milestone. Once a real account proves the base request, we can restore
-    the dedicated `instructions` field and other optional controls.
-    """
+    """Build the first live request in the exact two-field quickstart shape."""
     context_text = json.dumps(
         request.context,
         ensure_ascii=False,
@@ -220,6 +216,20 @@ def extract_openai_text(response: Any) -> str:
     return "\n".join(pieces).strip()
 
 
+def normalize_openai_api_key(value: str) -> str:
+    """Normalize common clipboard/config wrappers without revealing the secret."""
+    key = value.strip()
+    if len(key) >= 2 and key[0] == key[-1] and key[0] in {'"', "'", "`"}:
+        key = key[1:-1].strip()
+    if key.upper().startswith("OPENAI_API_KEY="):
+        key = key.split("=", 1)[1].strip()
+        if len(key) >= 2 and key[0] == key[-1] and key[0] in {'"', "'", "`"}:
+            key = key[1:-1].strip()
+    if key.lower().startswith("bearer "):
+        key = key[7:].strip()
+    return key
+
+
 def _compact(value: str, limit: int = 320) -> str:
     value = value.strip().replace("\r", " ").replace("\n", " ")
     if len(value) > limit:
@@ -250,6 +260,9 @@ class _HttpOutcome:
     body: str = ""
     request_id: str = ""
     reason: str = ""
+    server: str = ""
+    via: str = ""
+    transport: str = "direct"
 
 
 def _request_openai(
@@ -259,46 +272,78 @@ def _request_openai(
     api_key: str,
     timeout: float,
     payload: dict[str, Any] | None = None,
+    direct: bool = True,
 ) -> _HttpOutcome:
     data = None
     if payload is not None:
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-    request = urllib.request.Request(
-        url,
-        data=data,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-            "User-Agent": "CataclysmAI-BN/stock-lua-prototype",
-        },
-        method=method,
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Accept": "application/json",
+        "User-Agent": "CataclysmAI-BN/stock-lua-prototype",
+    }
+    if payload is not None:
+        headers["Content-Type"] = "application/json"
+
+    request = urllib.request.Request(url, data=data, headers=headers, method=method)
+    transport = "direct" if direct else "system-proxy"
+
+    # urllib's default opener inherits proxy configuration from the environment
+    # and, on Windows, from system Internet settings. The Cataclysm companion
+    # should contact api.openai.com directly unless a direct connection fails.
+    opener = (
+        urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        if direct
+        else urllib.request.build_opener()
     )
+
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with opener.open(request, timeout=timeout) as response:
             body = response.read().decode("utf-8", errors="replace")
-            request_id = response.headers.get("x-request-id", "") if response.headers else ""
-            return _HttpOutcome(response.status, body, request_id, str(response.reason or ""))
+            response_headers = response.headers
+            return _HttpOutcome(
+                response.status,
+                body,
+                response_headers.get("x-request-id", "") if response_headers else "",
+                str(response.reason or ""),
+                response_headers.get("server", "") if response_headers else "",
+                response_headers.get("via", "") if response_headers else "",
+                transport,
+            )
     except urllib.error.HTTPError as exc:
         try:
             body = exc.read().decode("utf-8", errors="replace")
         except Exception:
             body = ""
-        request_id = exc.headers.get("x-request-id", "") if exc.headers else ""
-        return _HttpOutcome(exc.code, body, request_id, str(exc.reason or ""))
+        response_headers = exc.headers
+        return _HttpOutcome(
+            exc.code,
+            body,
+            response_headers.get("x-request-id", "") if response_headers else "",
+            str(exc.reason or ""),
+            response_headers.get("server", "") if response_headers else "",
+            response_headers.get("via", "") if response_headers else "",
+            transport,
+        )
     except urllib.error.URLError as exc:
-        return _HttpOutcome(None, reason=f"network error: {exc.reason}")
+        return _HttpOutcome(None, reason=f"network error: {exc.reason}", transport=transport)
     except TimeoutError:
-        return _HttpOutcome(None, reason="request timed out")
+        return _HttpOutcome(None, reason="request timed out", transport=transport)
     except OSError as exc:
-        return _HttpOutcome(None, reason=f"network error: {exc}")
+        return _HttpOutcome(None, reason=f"network error: {exc}", transport=transport)
 
 
 def _describe_outcome(label: str, outcome: _HttpOutcome) -> str:
     if outcome.status is None:
-        return f"{label}={outcome.reason or 'network failure'}"
-    text = f"{label}=HTTP {outcome.status}"
+        return f"{label}[{outcome.transport}]={outcome.reason or 'network failure'}"
+    text = f"{label}[{outcome.transport}]=HTTP {outcome.status}"
     if outcome.request_id:
         text += f" request_id={outcome.request_id}"
+    if outcome.server:
+        text += f" server={_compact(outcome.server, 60)}"
+    if outcome.via:
+        text += f" via={_compact(outcome.via, 60)}"
     if outcome.body and not (200 <= outcome.status < 300):
         text += f" body={_compact(outcome.body, 220)}"
     elif outcome.reason and not (200 <= outcome.status < 300):
@@ -316,34 +361,63 @@ class OpenAIProvider:
         model: str | None = None,
         timeout: float = DEFAULT_OPENAI_TIMEOUT,
     ) -> None:
-        self.api_key = (api_key if api_key is not None else os.environ.get("OPENAI_API_KEY", "")).strip()
+        raw_key = api_key if api_key is not None else os.environ.get("OPENAI_API_KEY", "")
+        self.api_key = normalize_openai_api_key(raw_key)
         self.model = (model if model is not None else os.environ.get("CATAI_OPENAI_MODEL", DEFAULT_OPENAI_MODEL)).strip()
         self.timeout = timeout
-        self.name = f"OpenAI Responses API ({self.model or DEFAULT_OPENAI_MODEL})"
+        self.name = f"OpenAI Responses API ({self.model or DEFAULT_OPENAI_MODEL}, direct HTTPS)"
 
     def _diagnose_400(self, primary: _HttpOutcome) -> str:
-        model_url = OPENAI_MODELS_URL + "/" + urllib.parse.quote(self.model, safe="")
-        model_check = _request_openai(
+        identity = _request_openai(
             method="GET",
-            url=model_url,
+            url=OPENAI_ME_URL,
             api_key=self.api_key,
             timeout=min(self.timeout, 30.0),
+            direct=True,
         )
 
+        model_check: _HttpOutcome | None = None
         probe: _HttpOutcome | None = None
-        if model_check.status is not None and 200 <= model_check.status < 300:
-            probe = _request_openai(
-                method="POST",
-                url=OPENAI_RESPONSES_URL,
+        if identity.status is not None and 200 <= identity.status < 300:
+            model_url = OPENAI_MODELS_URL + "/" + urllib.parse.quote(self.model, safe="")
+            model_check = _request_openai(
+                method="GET",
+                url=model_url,
                 api_key=self.api_key,
-                timeout=min(self.timeout, 45.0),
-                payload={"model": self.model, "input": "Reply exactly with OK."},
+                timeout=min(self.timeout, 30.0),
+                direct=True,
+            )
+            if model_check.status is not None and 200 <= model_check.status < 300:
+                probe = _request_openai(
+                    method="POST",
+                    url=OPENAI_RESPONSES_URL,
+                    api_key=self.api_key,
+                    timeout=min(self.timeout, 45.0),
+                    payload={"model": self.model, "input": "Reply exactly with OK."},
+                    direct=True,
+                )
+
+        # If the direct identity request itself gets the same opaque 400, compare
+        # it to urllib's system-proxy route. This exposes a Windows proxy/filter
+        # without asking the player to run curl or PowerShell manually.
+        system_identity: _HttpOutcome | None = None
+        if identity.status == 400 and not identity.request_id and not identity.body:
+            system_identity = _request_openai(
+                method="GET",
+                url=OPENAI_ME_URL,
+                api_key=self.api_key,
+                timeout=min(self.timeout, 30.0),
+                direct=False,
             )
 
         parts = [
             _describe_outcome("dialogue", primary),
-            _describe_outcome("model_lookup", model_check),
+            _describe_outcome("identity", identity),
         ]
+        if system_identity is not None:
+            parts.append(_describe_outcome("identity", system_identity))
+        if model_check is not None:
+            parts.append(_describe_outcome("model_lookup", model_check))
         if probe is not None:
             parts.append(_describe_outcome("minimal_response", probe))
         return "OpenAI diagnostic: " + "; ".join(parts)
@@ -359,6 +433,10 @@ class OpenAIProvider:
             return ProviderResponse(
                 error="OpenAI API key is not configured. Run the Cataclysm AI launcher again and configure the key."
             )
+        if any(ch.isspace() for ch in self.api_key):
+            return ProviderResponse(
+                error="Stored OpenAI API key contains whitespace. Reconfigure it from the API key clipboard value."
+            )
         if not self.model:
             return ProviderResponse(error="OpenAI model is not configured")
 
@@ -368,7 +446,19 @@ class OpenAIProvider:
             api_key=self.api_key,
             timeout=self.timeout,
             payload=build_openai_payload(request, memory, self.model),
+            direct=True,
         )
+        if outcome.status is None:
+            # Some environments require a configured proxy. Fall back only when
+            # direct HTTPS cannot establish a connection at all.
+            outcome = _request_openai(
+                method="POST",
+                url=OPENAI_RESPONSES_URL,
+                api_key=self.api_key,
+                timeout=self.timeout,
+                payload=build_openai_payload(request, memory, self.model),
+                direct=False,
+            )
         if outcome.status is None:
             return ProviderResponse(error=f"OpenAI {outcome.reason or 'network failure'}")
         if not (200 <= outcome.status < 300):
