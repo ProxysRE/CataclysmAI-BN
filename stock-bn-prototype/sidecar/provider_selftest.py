@@ -15,6 +15,7 @@ from providers import (
     build_openai_payload,
     create_provider,
     extract_openai_text,
+    normalize_openai_api_key,
 )
 
 
@@ -118,10 +119,18 @@ def main() -> int:
     assert extract_openai_text(raw_response) == "Красный. Я помню."
     assert extract_openai_text({"output_text": "  Прямой ответ.  "}) == "Прямой ответ."
 
+    assert normalize_openai_api_key(" sk-test ") == "sk-test"
+    assert normalize_openai_api_key('OPENAI_API_KEY="sk-test"') == "sk-test"
+    assert normalize_openai_api_key("Bearer sk-test") == "sk-test"
+    assert normalize_openai_api_key("`sk-test`") == "sk-test"
+
     no_key = OpenAIProvider(api_key="", model="gpt-test")
     missing = no_key.respond(request, memory)
     assert missing.error is not None
     assert "API key" in missing.error
+
+    normalized = OpenAIProvider(api_key='OPENAI_API_KEY="sk-test"', model="gpt-test")
+    assert normalized.api_key == "sk-test"
 
     bridge_request = SimpleNamespace(
         npc_id="bridge_test",
