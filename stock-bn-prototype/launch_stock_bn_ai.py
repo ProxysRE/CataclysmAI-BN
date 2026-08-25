@@ -26,7 +26,8 @@ SIDECAR = HERE / "sidecar" / "cataclysm_ai_stock_sidecar.py"
 STATE_DIR_NAME = "cataclysm_ai"
 CONFIG_FILENAME = "config.json"
 CONFIG_VERSION = 1
-DEFAULT_OPENAI_MODEL = "gpt-5.6-terra"
+DEFAULT_OPENAI_MODEL = "gpt-5.6"
+LEGACY_DEFAULT_MODELS = {"gpt-5.6-terra"}
 
 
 def log(message: str) -> None:
@@ -176,9 +177,10 @@ def resolve_openai_configuration(
     """Resolve API key/model without ever printing the key.
 
     OPENAI_API_KEY wins over the local config. The model can be overridden with
-    CATAI_OPENAI_MODEL. If no key exists, an interactive normal launch offers a
-    one-time clipboard/hidden-input setup; skipping keeps the deterministic
-    memory probe.
+    CATAI_OPENAI_MODEL. A previously auto-saved experimental default is migrated
+    to the documented gpt-5.6 alias. If no key exists, an interactive normal
+    launch offers a one-time clipboard/hidden-input setup; skipping keeps the
+    deterministic memory probe.
     """
     config_path = state_dir / CONFIG_FILENAME
     config = load_config(config_path)
@@ -189,7 +191,12 @@ def resolve_openai_configuration(
 
     env_model = os.environ.get("CATAI_OPENAI_MODEL", "").strip()
     saved_model = str(config.get("openai_model", "")).strip()
-    model = env_model or saved_model or DEFAULT_OPENAI_MODEL
+    migrated_model = not env_model and saved_model in LEGACY_DEFAULT_MODELS
+    model = env_model or (DEFAULT_OPENAI_MODEL if migrated_model else saved_model) or DEFAULT_OPENAI_MODEL
+
+    if migrated_model and saved_key:
+        save_openai_config(config_path, saved_key, model)
+        log(f"updated saved default model to {model}")
 
     if force_prompt or not api_key:
         if not sys.stdin.isatty():
