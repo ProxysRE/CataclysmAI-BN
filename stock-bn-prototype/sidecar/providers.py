@@ -20,6 +20,7 @@ OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 DEFAULT_OPENAI_MODEL = "gpt-5.6-terra"
 DEFAULT_OPENAI_TIMEOUT = 120.0
 MAX_PROMPT_HISTORY = 8
+DIAGNOSTIC_PREFIXES = ("[ECHO:", "[CTX:", "[MEM:")
 
 
 @dataclass(frozen=True)
@@ -141,8 +142,13 @@ def _history_text(memory: MemoryView) -> str:
 
     lines: list[str] = []
     for exchange in exchanges:
+        # Early live milestones intentionally stored ECHO/CTX/MEM probe output.
+        # Keep the player's side of those exchanges (it may contain important
+        # facts) but never teach the real model that diagnostic text is NPC speech.
         lines.append(f"PLAYER: {exchange.player_text}")
-        lines.append(f"NPC: {exchange.npc_text}")
+        npc_text = exchange.npc_text.lstrip()
+        if not npc_text.startswith(DIAGNOSTIC_PREFIXES):
+            lines.append(f"NPC: {exchange.npc_text}")
     return "\n".join(lines)
 
 
@@ -184,7 +190,7 @@ def build_openai_payload(request: Any, memory: MemoryView, model: str) -> dict[s
         "input": input_text,
         "reasoning": {"effort": "low"},
         "text": {"verbosity": "low"},
-        "max_output_tokens": 320,
+        "max_output_tokens": 512,
         "store": False,
     }
 
