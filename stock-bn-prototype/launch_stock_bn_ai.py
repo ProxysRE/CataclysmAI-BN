@@ -111,6 +111,63 @@ def save_openai_config(path: Path, api_key: str, model: str) -> None:
         pass
 
 
+def read_windows_clipboard() -> str:
+    """Read clipboard text on Windows without printing it or adding dependencies."""
+    if os.name != "nt":
+        return ""
+
+    creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+    try:
+        completed = subprocess.run(
+            [
+                "powershell.exe",
+                "-NoLogo",
+                "-NoProfile",
+                "-NonInteractive",
+                "-Command",
+                "Get-Clipboard -Raw",
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=8,
+            creationflags=creationflags,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return ""
+
+    if completed.returncode != 0:
+        return ""
+    return completed.stdout.strip()
+
+
+def prompt_for_openai_key() -> str:
+    """Get an API key interactively without requiring the user to type it."""
+    if os.name == "nt":
+        print("Copy the OpenAI API key to the Windows clipboard first.")
+        print("Then press Enter here; the launcher will read it without displaying it.")
+        print("Type M for hidden manual input, or S to skip OpenAI setup.")
+        choice = input("API key setup [Enter=clipboard / M=manual / S=skip]: ").strip().lower()
+
+        if choice in {"s", "skip"}:
+            return ""
+        if choice in {"m", "manual"}:
+            return getpass.getpass("OpenAI API key (hidden input): ").strip()
+        if choice not in {"", "c", "clipboard"}:
+            print("Unknown choice; trying the clipboard.")
+
+        clipboard_key = read_windows_clipboard()
+        if clipboard_key:
+            log("read OpenAI API key from Windows clipboard")
+            return clipboard_key
+
+        print("Could not read a non-empty API key from the Windows clipboard.")
+        print("Copy the key and run again, or use manual hidden input now.")
+        return getpass.getpass("OpenAI API key (hidden input, Enter=skip): ").strip()
+
+    return getpass.getpass("OpenAI API key (hidden input, Enter=skip): ").strip()
+
+
 def resolve_openai_configuration(
     state_dir: Path,
     *,
@@ -120,7 +177,8 @@ def resolve_openai_configuration(
 
     OPENAI_API_KEY wins over the local config. The model can be overridden with
     CATAI_OPENAI_MODEL. If no key exists, an interactive normal launch offers a
-    one-time hidden prompt; an empty answer keeps the deterministic memory probe.
+    one-time clipboard/hidden-input setup; skipping keeps the deterministic
+    memory probe.
     """
     config_path = state_dir / CONFIG_FILENAME
     config = load_config(config_path)
@@ -140,14 +198,15 @@ def resolve_openai_configuration(
         print()
         log("OpenAI API key is not configured for real NPC dialogue." if not api_key else "Replacing the saved OpenAI API key.")
         print("The key will be stored only in the local Cataclysm AI state directory.")
-        print("Press Enter without a key to keep using the deterministic memory probe.")
-        entered = getpass.getpass("OpenAI API key (hidden input): ").strip()
+        entered = prompt_for_openai_key()
         if entered:
             api_key = entered
             save_openai_config(config_path, api_key, model)
             log(f"saved local OpenAI configuration: {config_path}")
         elif force_prompt and api_key:
             log("kept the existing OpenAI API key")
+        elif not api_key:
+            log("OpenAI setup skipped; keeping the deterministic memory probe")
 
     return api_key, model
 
