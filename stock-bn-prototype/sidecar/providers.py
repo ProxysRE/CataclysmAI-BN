@@ -315,7 +315,14 @@ def create_provider(name: str) -> Provider:
         return EchoProvider()
     if normalized in {"context", "context-probe"}:
         return ContextProbeProvider()
-    if normalized in {"memory", "memory-probe"}:
+    # Keep the sidecar's existing default name backwards-compatible: once a key
+    # is configured, the default "memory" mode transparently graduates to the
+    # real model while preserving the memory probe as a no-key fallback.
+    if normalized == "memory":
+        if os.environ.get("OPENAI_API_KEY", "").strip():
+            return OpenAIProvider()
+        return MemoryProbeProvider()
+    if normalized == "memory-probe":
         return MemoryProbeProvider()
     if normalized in {"openai", "model"}:
         return OpenAIProvider()
