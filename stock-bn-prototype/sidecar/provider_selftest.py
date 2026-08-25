@@ -75,17 +75,15 @@ def main() -> int:
 
     payload = build_openai_payload(request, memory, DEFAULT_OPENAI_MODEL)
     assert DEFAULT_OPENAI_MODEL == "gpt-5.6"
+    assert set(payload) == {"model", "input"}
     assert payload["model"] == DEFAULT_OPENAI_MODEL
-    assert payload["store"] is False
-    assert payload["max_output_tokens"] == 512
-    assert "reasoning" not in payload
-    assert "text" not in payload
+    assert "NPC ROLE INSTRUCTIONS:" in payload["input"]
     assert "Запомни: мой любимый цвет — красный" in payload["input"]
     assert "Ладно, запомню." in payload["input"]
     assert "PLAYER: Проверка памяти" in payload["input"]
     assert "[MEM:Old Guard]" not in payload["input"]
     assert request.player_text in payload["input"]
-    assert request.npc_name in payload["instructions"]
+    assert request.npc_name in payload["input"]
 
     long_memory = MemoryView(
         npc_id="42",
