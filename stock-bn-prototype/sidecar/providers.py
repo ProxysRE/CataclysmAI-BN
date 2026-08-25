@@ -17,7 +17,7 @@ from typing import Any, Protocol
 from memory import MemoryView
 
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
-DEFAULT_OPENAI_MODEL = "gpt-5.6-terra"
+DEFAULT_OPENAI_MODEL = "gpt-5.6"
 DEFAULT_OPENAI_TIMEOUT = 120.0
 MAX_PROMPT_HISTORY = 8
 DIAGNOSTIC_PREFIXES = ("[ECHO:", "[CTX:", "[MEM:")
@@ -184,12 +184,13 @@ def build_openai_payload(request: Any, memory: MemoryView, model: str) -> dict[s
         + "\n\nPLAYER SAYS NOW:\n"
         + request.player_text
     )
+    # Keep the first live model request deliberately close to the official
+    # Responses API quickstart. Optional reasoning/verbosity knobs can be added
+    # only after the base request is proven against a real account.
     return {
         "model": model,
         "instructions": _npc_instructions(request),
         "input": input_text,
-        "reasoning": {"effort": "low"},
-        "text": {"verbosity": "low"},
         "max_output_tokens": 512,
         "store": False,
     }
@@ -293,7 +294,11 @@ class OpenAIProvider:
                 error_body = exc.read().decode("utf-8", errors="replace")
             except Exception:
                 error_body = ""
-            return ProviderResponse(error=_openai_error_message(exc.code, error_body))
+            error = _openai_error_message(exc.code, error_body)
+            request_id = exc.headers.get("x-request-id", "") if exc.headers else ""
+            if request_id:
+                error += f" [request_id={request_id}]"
+            return ProviderResponse(error=error)
         except urllib.error.URLError as exc:
             return ProviderResponse(error=f"OpenAI network error: {exc.reason}")
         except TimeoutError:
