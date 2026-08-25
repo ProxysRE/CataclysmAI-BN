@@ -74,10 +74,12 @@ def main() -> int:
     )
 
     payload = build_openai_payload(request, memory, DEFAULT_OPENAI_MODEL)
+    assert DEFAULT_OPENAI_MODEL == "gpt-5.6"
     assert payload["model"] == DEFAULT_OPENAI_MODEL
     assert payload["store"] is False
-    assert payload["reasoning"]["effort"] == "low"
     assert payload["max_output_tokens"] == 512
+    assert "reasoning" not in payload
+    assert "text" not in payload
     assert "Запомни: мой любимый цвет — красный" in payload["input"]
     assert "Ладно, запомню." in payload["input"]
     assert "PLAYER: Проверка памяти" in payload["input"]
