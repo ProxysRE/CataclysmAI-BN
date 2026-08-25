@@ -6,9 +6,14 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+    paths:
+      - ".github/workflows/build-vanilla-bn-windows.yml"
+      - "patches/**"
+      - "sidecar/**"
 
 jobs:
   build-windows:
+    if: github.event_name != 'pull_request' || github.head_ref != 'dev/stock-bn-lua-ipc'
     name: Vanilla BN / Windows MSVC
     runs-on: windows-2022
 
