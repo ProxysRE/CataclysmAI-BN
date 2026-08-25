@@ -118,13 +118,19 @@ Responses API requests use `store: false`.
 
 ### API key setup
 
-The easiest Windows path is simply to run:
+OpenAI API access and API billing are separate from a ChatGPT subscription. Create an API-platform key at:
+
+```text
+https://platform.openai.com/api-keys
+```
+
+The easiest Windows path is then simply to run:
 
 ```text
 run_stock_bn_ai.cmd
 ```
 
-On the first normal launch with no existing key, the launcher asks for an OpenAI API key using hidden console input. If supplied, it stores the key locally in:
+On the first normal launch with no existing key, the launcher asks for the API key using hidden console input. If supplied, it stores the key locally in:
 
 ```text
 <BN user dir>/cataclysm_ai/config.json
@@ -142,7 +148,7 @@ python launch_stock_bn_ai.py "C:\Games\Cataclysm-BN" --configure-openai
 
 If the prompt is left empty and no environment key exists, Cataclysm AI continues using the deterministic `[MEM:...]` provider instead of preventing BN from starting.
 
-OpenAI API access/billing is separate from a ChatGPT subscription. Create/manage API credentials in the OpenAI API platform; do not share the key in issues, logs, screenshots, or chat messages.
+Never share the API key in GitHub issues, logs, screenshots, or chat messages.
 
 ## Windows launch
 
@@ -181,7 +187,7 @@ Stand next to an NPC:
 5. After the companion logs `published`, open **AI dialogue** again and select the same NPC.
 6. The NPC says the provider response. Receiving it causes no ACK save.
 
-With no API key this still returns the diagnostic `[MEM:...]` response. With a configured key it returns model-generated NPC speech.
+With no API key this returns the diagnostic `[MEM:...]` response. With a configured key it returns model-generated NPC speech.
 
 ## Automated validation
 
