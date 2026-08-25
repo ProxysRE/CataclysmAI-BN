@@ -284,9 +284,11 @@ def load_response_cache(path: Path) -> dict[str, dict[str, Any]]:
         error = value.get("error")
         if not isinstance(request_id, str) or not isinstance(text, str):
             continue
-        if error is not None and not isinstance(error, str):
+        # Provider/API errors are retryable and must never become sticky cached
+        # responses. This also discards error entries written by older builds.
+        if error is not None:
             continue
-        cleaned[key] = {"request_id": request_id, "text": text, "error": error}
+        cleaned[key] = {"request_id": request_id, "text": text, "error": None}
     return cleaned
 
 
@@ -302,7 +304,7 @@ def cached_result(
     entry = cache.get(cache_key(request))
     if not entry or entry.get("request_id") != request.request_id:
         return None
-    return ProviderResponse(text=str(entry.get("text", "")), error=entry.get("error"))
+    return ProviderResponse(text=str(entry.get("text", "")), error=None)
 
 
 def remember_result(
@@ -312,11 +314,18 @@ def remember_result(
     result: ProviderResponse,
 ) -> None:
     key = cache_key(request)
+    if result.error is not None:
+        # Do not cache API/config/network errors. A corrected configuration or a
+        # later retry must be able to call the provider again.
+        if cache.pop(key, None) is not None:
+            save_response_cache(cache_path, cache)
+        return
+
     cache.pop(key, None)
     cache[key] = {
         "request_id": request.request_id,
         "text": result.text,
-        "error": result.error,
+        "error": None,
     }
     if len(cache) > CACHE_LIMIT:
         cache.pop(next(iter(cache)), None)
@@ -334,6 +343,9 @@ def run(
     clear_stale_responses(response_dir)
     cache_path = response_dir / CACHE_FILENAME
     cache = load_response_cache(cache_path)
+    # Rewrite once so error entries left by older builds are physically removed.
+    if cache_path.exists():
+        save_response_cache(cache_path, cache)
     seen: set[tuple[str, str]] = set()
     last_state: Path | None = None
 
@@ -588,6 +600,32 @@ def self_test() -> int:
         remember_result(cache_path, {}, request, context_result)
         replay = cached_result(load_response_cache(cache_path), request)
         assert replay == context_result
+
+        # Errors must never survive in the idempotency cache. Verify both a fresh
+        # failed result and a legacy on-disk error entry are ignored.
+        error_cache: dict[str, dict[str, Any]] = {}
+        remember_result(
+            cache_path,
+            error_cache,
+            request2,
+            ProviderResponse(error="temporary API failure"),
+        )
+        assert cached_result(error_cache, request2) is None
+        legacy_key = cache_key(request2)
+        write_json_atomic(
+            cache_path,
+            {
+                "version": CACHE_VERSION,
+                "entries": {
+                    legacy_key: {
+                        "request_id": request2.request_id,
+                        "text": "",
+                        "error": "HTTP 400",
+                    }
+                },
+            },
+        )
+        assert load_response_cache(cache_path) == {}
 
         path = publish_response(
             response_dir,
