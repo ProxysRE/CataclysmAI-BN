@@ -1,0 +1,125 @@
+name: Build BN Highways DEV0.1 for Windows
+on:
+  push:
+    branches: [build/highways-dev01-windows]
+    paths: ['.github/workflows/build-highways-windows.yml', 'highways/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: highways-windows-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  BN_BASE: c621aaf42fa182473aad10feea2b55647704dcf1
+jobs:
+  shaders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: c621aaf42fa182473aad10feea2b55647704dcf1
+      - name: Install shadercross dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf autoconf-archive automake libtool libltdl-dev
+      - name: Install shadercross
+        run: bash build-scripts/install-shadercross-vcpkg.sh
+      - name: Generate shaders
+        run: bash build-scripts/generate-shaders.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: highways-shaders
+          path: data/shaders/
+          if-no-files-found: error
+  windows:
+    needs: shaders
+    runs-on: windows-2022
+    timeout-minutes: 180
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: bn
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: package
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: c621aaf42fa182473aad10feea2b55647704dcf1
+          path: bn
+      - name: Validate and apply highway patch
+        run: |
+          $patch = "${{ github.workspace }}/package/highways/highway_foundation.patch"
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "cbd67ba3e390b3f023cccc75e89d74be2dca71acea246f0f9f4b451bbc64bfb2") { throw "Highway patch checksum mismatch" }
+          git apply --check $patch
+          if ($LASTEXITCODE -ne 0) { throw "Patch does not apply" }
+          git apply $patch
+          if ($LASTEXITCODE -ne 0) { throw "Patch failed" }
+          python utilities/highway/check_mapgen.py
+          if ($LASTEXITCODE -ne 0) { throw "Mapgen validation failed" }
+      - uses: actions/download-artifact@v4
+        with:
+          name: highways-shaders
+          path: bn/data/shaders
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - uses: lukka/get-cmake@v3.31.6
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            core.exportVariable("ACTIONS_CACHE_URL", process.env.ACTIONS_CACHE_URL || "")
+            core.exportVariable("ACTIONS_RESULTS_URL", process.env.ACTIONS_RESULTS_URL || "")
+            core.exportVariable("ACTIONS_RUNTIME_TOKEN", process.env.ACTIONS_RUNTIME_TOKEN || "")
+      - name: Configure vcpkg cache
+        run: |
+          "VCPKG_BINARY_SOURCES=clear;x-gha,readwrite" >> $env:GITHUB_ENV
+      - uses: lukka/run-vcpkg@main
+        with:
+          vcpkgDirectory: "${{ github.workspace }}/vcpkg"
+      - name: Integrate vcpkg
+        run: vcpkg integrate install
+      - name: Configure Windows game
+        env:
+          VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}/bn/.github/vcpkg_triplets
+        run: |
+          cmake -G Ninja -S . -B out/build/highways -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROJECT_INCLUDE_BEFORE="${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/bn/build-scripts/MSVC.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=False -DCURSES=False -DLOCALIZE=True -DTILES=True -DSOUND=True -DTESTS=False -DRELEASE=ON -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
+          if ($LASTEXITCODE -ne 0) { throw "CMake configuration failed" }
+      - name: Compile translations
+        run: |
+          $msgfmt = Join-Path $PWD "build-data/gettext/bin/msgfmt.exe"
+          Get-ChildItem lang/po -Filter "*.po" | ForEach-Object {
+            $language = $_.BaseName
+            $destination = "lang/mo/$language/LC_MESSAGES"
+            New-Item -ItemType Directory -Force $destination | Out-Null
+            & $msgfmt -o "$destination/cataclysm-bn.mo" $_.FullName
+            if ($LASTEXITCODE -ne 0) { throw "Translation compilation failed: $language" }
+          }
+      - name: Build Windows executable
+        run: |
+          cmake --build out/build/highways --target cataclysm-bn-tiles --parallel 4
+          if ($LASTEXITCODE -ne 0) { throw "Windows compilation failed" }
+      - name: Package complete game
+        run: |
+          "BN Highways DEV0.1; base $env:BN_BASE; patch ${{ github.sha }}" | Set-Content VERSION.txt
+          cmake --install out/build/highways --prefix "${{ github.workspace }}/CBN_Highways_DEV0.1_Windows" --config Release
+          if ($LASTEXITCODE -ne 0) { throw "Game installation failed" }
+          $dist = "${{ github.workspace }}/CBN_Highways_DEV0.1_Windows"
+          $exe = Join-Path $dist "cataclysm-bn-tiles.exe"
+          if (!(Test-Path $exe)) { throw "Missing executable" }
+          if (!(Test-Path "$dist/data/json/mapgen/bn_highways.json")) { throw "Missing highway mapgens" }
+          $deps = dumpbin /DEPENDENTS $exe
+          if ($deps -match "SDL3") { throw "Unexpected SDL DLL dependency" }
+          & $exe --version
+          if ($LASTEXITCODE -ne 0) { throw "Executable version check failed" }
+          Set-Content "$dist/HIGHWAYS_README.txt" "Create a NEW TEST WORLD. Enable Experimental highway network. Keep Highway spacing at 3. Do not change these options after world generation. DEV0.1 uses ground-level crossings and flat bridges. This package includes the Windows executable and matching game data."
+      - name: Upload playable Windows package
+        uses: actions/upload-artifact@v4
+        with:
+          name: CBN_Highways_DEV0.1_Windows
+          path: CBN_Highways_DEV0.1_Windows/
+          if-no-files-found: error
+          retention-days: 30
