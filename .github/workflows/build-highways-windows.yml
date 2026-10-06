@@ -24,7 +24,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y autoconf autoconf-archive automake libtool libltdl-dev
+      - name: Prefetch GNU dependencies from a reachable mirror
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/vcpkg-shadercross-downloads"
+          for source in automake/automake-1.17.tar.gz gperf/gperf-3.3.tar.gz; do
+            curl --fail --location --retry 3 --connect-timeout 20 --max-time 120 "https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/$source" --output "$RUNNER_TEMP/vcpkg-shadercross-downloads/${source##*/}"
+          done
       - name: Install shadercross
+        env:
+          VCPKG_DOWNLOADS: ${{ runner.temp }}/vcpkg-shadercross-downloads
         run: bash build-scripts/install-shadercross-vcpkg.sh
       - name: Generate shaders
         run: bash build-scripts/generate-shaders.sh
@@ -42,6 +51,9 @@ jobs:
         shell: pwsh
         working-directory: bn
     steps:
+      - name: Preserve LF in the checksummed patch
+        working-directory: .
+        run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
         with:
           path: package
