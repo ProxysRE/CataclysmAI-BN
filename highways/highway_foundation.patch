@@ -1,0 +1,1875 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 5bb85dd..59bce93 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -151,3 +151,10 @@ rg -C2 -i 'speedway' lang/po/ko.po | rg -v '^(#:|--)' | head -n 20
+ - When fixing a bug, preserve requested behavior and visible content unless the user explicitly asks to remove it; fix the underlying issue instead of suppressing the affected feature.
+ - When reviewing PRs that stop tracking generated or externally pulled files, verify ignore rules by running the generator/pull command or checking `git status --ignored`; do not assume removed tracked files are ignored.
+ - When generated or externally pulled files are removed from tracking, verify all CI and release consumers still receive required files or directories.
++
++## Highway foundation validation
++
++When editing highway mapgens, verify the central median at both north/south and east/west OMT seams. Pavement connectivity alone does not verify carriageway alignment. Render the JSON geometry and check two 15-square carriageways separated by the two guardrail squares, including rotated templates.
++Native mapgen tests must temporarily set `disable_mapgen = false` and restore it: `clear_all_state()` defaults to the generic test mapgen. Check an actual road edge or guardrail as well as pavement.
++
++Highway corridor finalization must run after forest trailheads as well as regular specials: trailhead placement can add local roads after `place_specials()`. Keep the complete-generation regression test; reserve/finalize unit tests alone do not cover these late connections.
+diff --git a/data/json/items/book/maps.json b/data/json/items/book/maps.json
+index b330e8b..5aa92f3 100644
+--- a/data/json/items/book/maps.json
++++ b/data/json/items/book/maps.json
+@@ -88,6 +88,7 @@
+       "radius": 180,
+       "terrain": [
+         "hiway",
++        "bn_highway",
+         "road",
+         "bridge",
+         "dam",
+@@ -116,6 +117,7 @@
+       "radius": 180,
+       "terrain": [
+         "hiway",
++        "bn_highway",
+         "road",
+         "bridge",
+         "dam",
+@@ -145,6 +147,7 @@
+       "radius": 180,
+       "terrain": [
+         "hiway",
++        "bn_highway",
+         "road",
+         "bridge",
+         "dam",
+@@ -251,6 +254,7 @@
+       "radius": 180,
+       "terrain": [
+         "hiway",
++        "bn_highway",
+         "road",
+         "bridge",
+         "dam",
+@@ -276,6 +280,7 @@
+       "radius": 180,
+       "terrain": [
+         "hiway",
++        "bn_highway",
+         "road",
+         "bridge",
+         "dam",
+@@ -335,6 +340,7 @@
+       "radius": 180,
+       "terrain": [
+         "hiway",
++        "bn_highway",
+         "road",
+         "bridge",
+         "dam",
+@@ -373,7 +379,7 @@
+     "use_action": {
+       "type": "reveal_map",
+       "radius": 90,
+-      "terrain": [ "hiway", "road", "bridge", "dam", "field", "swamp", "forest", "lake", "river" ],
++      "terrain": [ "hiway", "bn_highway", "road", "bridge", "dam", "field", "swamp", "forest", "lake", "river" ],
+       "message": "You add terrain and roads to your map."
+     }
+   }
+diff --git a/data/json/mapgen/bn_highways.json b/data/json/mapgen/bn_highways.json
+new file mode 100644
+index 0000000..66af01a
+--- /dev/null
++++ b/data/json/mapgen/bn_highways.json
+@@ -0,0 +1,842 @@
++[
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "||||................||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..................**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||................||||"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "||||................||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..................**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||................||||",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg................gggg"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_nw",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "||||||||...............|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||...............|"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_nw_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "||||||||...............|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||...............|"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_nw_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "||||||||...............|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||...............|"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_ne",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............||||||||"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_ne_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............||||||||"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_ne_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............||||||||"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_sw",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "||||||||...............|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_sw_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "||||||||...............|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_sw_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "||||||||...............|",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|...............|"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_se",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............||||||||",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_se_bridge",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_water_dp",
++      "rows": [
++        "|...............||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............||||||||",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg"
++      ],
++      "terrain": { "g": "t_water_dp", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_se_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "|...............||||||||",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg"
++      ],
++      "terrain": { "g": "t_grass", ".": "t_pavement", "*": "t_pavement_y", "|": "t_guardrail" }
++    }
++  }
++]
+diff --git a/data/json/overmap/overmap_connections.json b/data/json/overmap/overmap_connections.json
+index 078ee58..a2bb7a1 100644
+--- a/data/json/overmap/overmap_connections.json
++++ b/data/json/overmap/overmap_connections.json
+@@ -5,7 +5,7 @@
+     "default_terrain": "road",
+     "subtypes": [
+       { "terrain": "road_nesw_manhole", "locations": [  ] },
+-      { "terrain": "road", "locations": [ "field", "road" ] },
++      { "terrain": "road", "locations": [ "field", "road", "bn_highway_land" ] },
+       { "terrain": "road", "locations": [ "forest_without_trail" ], "basic_cost": 20 },
+       { "terrain": "road", "locations": [ "forest_trail" ], "basic_cost": 25 },
+       { "terrain": "road", "locations": [ "swamp" ], "basic_cost": 40 },
+diff --git a/data/json/overmap/overmap_terrain/bn_highways.json b/data/json/overmap/overmap_terrain/bn_highways.json
+new file mode 100644
+index 0000000..63d235c
+--- /dev/null
++++ b/data/json/overmap/overmap_terrain/bn_highways.json
+@@ -0,0 +1,266 @@
++[
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w",
++    "copy-from": "generic_transportation",
++    "name": "highway",
++    "sym": "\u2502",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u2502",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u2502",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e",
++    "copy-from": "generic_transportation",
++    "name": "highway",
++    "sym": "\u2502",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u2502",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u2502",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n",
++    "copy-from": "generic_transportation",
++    "name": "highway",
++    "sym": "\u2500",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u2500",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u2500",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s",
++    "copy-from": "generic_transportation",
++    "name": "highway",
++    "sym": "\u2500",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u2500",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u2500",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_nw",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_nw_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_nw_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_ne",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_ne_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_ne_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_sw",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_sw_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_sw_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_se",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_se_bridge",
++    "copy-from": "generic_transportation",
++    "name": "highway, flat bridge",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE", "RIVER", "IS_BRIDGE" ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_se_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, ground-level crossing",
++    "sym": "\u253c",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [ "NO_ROTATE" ]
++  }
++]
+diff --git a/data/json/overmap/special_locations.json b/data/json/overmap/special_locations.json
+index a4501fa..981fc86 100644
+--- a/data/json/overmap/special_locations.json
++++ b/data/json/overmap/special_locations.json
+@@ -129,5 +129,27 @@
+     "type": "overmap_location",
+     "id": "lake_shore",
+     "terrains": [ "lake_shore" ]
++  },
++  {
++    "type": "overmap_location",
++    "id": "bn_highway_land",
++    "terrains": [
++      "bn_highway_ns_w",
++      "bn_highway_ns_w_crossing",
++      "bn_highway_ns_e",
++      "bn_highway_ns_e_crossing",
++      "bn_highway_ew_n",
++      "bn_highway_ew_n_crossing",
++      "bn_highway_ew_s",
++      "bn_highway_ew_s_crossing",
++      "bn_highway_junction_nw",
++      "bn_highway_junction_nw_crossing",
++      "bn_highway_junction_ne",
++      "bn_highway_junction_ne_crossing",
++      "bn_highway_junction_sw",
++      "bn_highway_junction_sw_crossing",
++      "bn_highway_junction_se",
++      "bn_highway_junction_se_crossing"
++    ]
+   }
+ ]
+diff --git a/docs/en/dev/explanation/highway_foundation.md b/docs/en/dev/explanation/highway_foundation.md
+new file mode 100644
+index 0000000..b894235
+--- /dev/null
++++ b/docs/en/dev/explanation/highway_foundation.md
+@@ -0,0 +1,62 @@
++# Highway foundation (DEV0.1)
++
++This is an experimental native BN feature inspired by DDA highways, not a complete port of DDA's generator.
++
++## Scope
++
++`BN_HIGHWAYS` defaults to `false`. Enable it when creating a **new test world**.
++`BN_HIGHWAY_SPACING` defaults to `3` overmaps, with a range of 1–8.
++Keep both settings unchanged after generation begins. Existing regions are never rebuilt.
++The feature only runs in the primary overworld; it does not generate highways in pocket dimensions.
++Highways are independent of `CITY_SIZE`, so they can be tested in a world without cities.
++
++The first foundation uses a regular orthogonal network with two adjacent OMTs per highway.
++Each OMT is 24×24 map squares, with a 15-square carriageway, markings, a shoulder, and guardrails.
++The road offsets are derived from signed overmap coordinates with a fixed unsigned hash.
++There is no additional RNG consumption, seed-dependent topology, or new save-file format.
++Topology versioning and world-seeded irregular routes are deferred.
++
++Reservations are placed after natural terrain and before cities. Local roads are allowed to cross
++these reservations. After city roads and again after special and trailhead connections, the highway corridor is
++restored; access openings extend through both carriageways and are retained on repeated finalization.
++Ordinary land specials cannot occupy highway terrain. Special placement constraints themselves
++are unchanged; very dense city settings still require field testing.
++New terrain IDs are recognized by land-vehicle overmap routing and road-revealing maps.
++No new monster groups, vehicle spawns, items, or gameplay balance changes are introduced.
++
++## Deliberate limitations
++
++- Highway junctions and local road access are **ground-level** pavement crossings, not interchanges.
++- Water crossings use **flat bridges** at z=0. Their shoulders retain water, but the pavement blocks
++  boats across the corridor. Raised bridges, navigable underpasses, and ramps are the next stage.
++- The network is regular and does not route around terrain, cities, or lakes.
++- No retrofit of existing saves, migration to a different topology, or transition to a legacy
++  neighboring region is implemented. Continuity is guaranteed by the planner only when newly
++  generated neighboring regions use the same enabled settings.
++- Do not remove the patched data from a world containing the new terrain IDs.
++- Windows builds and manual vehicle driving must be verified separately from Linux build tests.
++
++## Architecture
++
++- `src/overmap/highway_grid.*`: pure coordinate planner, no game state or terrain dependencies.
++- `src/overmap/highway_generation.*`: reserve/finalize adapter using native BN terrain IDs.
++- `src/overmap/overmap.cpp`: generation stage ordering.
++- `data/json/mapgen/bn_highways.json`: 24 road, access, junction, and flat-bridge mapgens.
++- `data/json/overmap/overmap_terrain/bn_highways.json`: corresponding OMT definitions.
++- `tests/highway_grid_test.cpp`: all neighboring edges for spacing 1–8 and signed coordinates.
++- `tests/highway_test.cpp`: full generation, road access, idempotent finalization, water classification.
++- `utilities/highway/check_mapgen.py`: actual JSON pavement connectivity and geometry checks.
++
++## Validation commands
++
++```sh
++cmake --build <build-directory> --target cataclysm-bn-tiles cata_test-tiles json_formatter
++./<test-binary> '[highway]'
++python3 utilities/highway/check_mapgen.py
++./<game-binary> --check-mods bn
++```
++
++For manual testing, enable highways in a new world, reveal the overmap with the debug menu,
++and inspect the two-tile corridors. Traverse a region edge in both directions, drive through a
++junction and a local road access, cross water, save/reload, and check the same route again.
++Expected limitations above are not acceptance claims for the full DDA feature set.
+diff --git a/src/options.cpp b/src/options.cpp
+index cee32dc..941c11a 100644
+--- a/src/options.cpp
++++ b/src/options.cpp
+@@ -2816,6 +2816,14 @@ void options_manager::add_options_world_default()
+          0, 8, 4
+        );
+ 
++    add( "BN_HIGHWAYS", world_default, translate_marker( "Experimental highway network" ),
++         translate_marker( "Generate a connected two-carriageway highway grid in newly generated overworld regions.  Foundation version uses ground-level crossings and flat bridges.  Use a new test world; existing regions are not rebuilt." ),
++         false );
++
++    add( "BN_HIGHWAY_SPACING", world_default, translate_marker( "Highway spacing" ),
++         translate_marker( "Distance between parallel highways, in overmaps.  Keep this setting unchanged after world generation begins." ),
++         1, 8, 3 );
++
+     add( "SPECIALS_DENSITY", world_default, translate_marker( "Overmap specials density factor" ),
+          translate_marker( "A scaling factor that determines density of overmap specials." ),
+          0.01, 10.0, 1, 0.1
+diff --git a/src/overmap/highway_generation.cpp b/src/overmap/highway_generation.cpp
+new file mode 100644
+index 0000000..2a6cfe6
+--- /dev/null
++++ b/src/overmap/highway_generation.cpp
+@@ -0,0 +1,119 @@
++#include "highway_generation.h"
++
++#include "game_constants.h"
++#include "omdata.h"
++#include "overmap.h"
++
++#include <ranges>
++#include <string>
++#include <unordered_set>
++
++namespace {
++auto terrain_name(highway::tile_kind kind) -> std::string {
++    using enum highway::tile_kind;
++    switch (kind) {
++        case north_south_west:
++            return "bn_highway_ns_w";
++        case north_south_east:
++            return "bn_highway_ns_e";
++        case east_west_north:
++            return "bn_highway_ew_n";
++        case east_west_south:
++            return "bn_highway_ew_s";
++        case junction_north_west:
++            return "bn_highway_junction_nw";
++        case junction_north_east:
++            return "bn_highway_junction_ne";
++        case junction_south_west:
++            return "bn_highway_junction_sw";
++        case junction_south_east:
++            return "bn_highway_junction_se";
++        case none:
++            return "";
++    }
++    return "";
++}
++
++auto paired_position(const highway::reserved_tile& tile) -> tripoint_om_omt {
++    using enum highway::tile_kind;
++    switch (tile.kind) {
++        case north_south_west:
++            return tile.pos + tripoint_east;
++        case north_south_east:
++            return tile.pos + tripoint_west;
++        case east_west_north:
++            return tile.pos + tripoint_south;
++        case east_west_south:
++            return tile.pos + tripoint_north;
++        default:
++            return tile.pos;
++    }
++}
++
++auto local_road_crosses(const highway::reserved_tile& tile, const oter_id& terrain) -> bool {
++    if (!is_ot_match("road", terrain, ot_match_type::prefix)) { return false; }
++    using enum highway::tile_kind;
++    switch (tile.kind) {
++        case north_south_west:
++        case north_south_east:
++            return terrain->has_connection(om_direction::type::east)
++                || terrain->has_connection(om_direction::type::west);
++        case east_west_north:
++        case east_west_south:
++            return terrain->has_connection(om_direction::type::north)
++                || terrain->has_connection(om_direction::type::south);
++        default:
++            return true;
++    }
++}
++} // namespace
++
++auto highway::is_highway(const oter_id& terrain) -> bool {
++    return is_ot_match("bn_highway", terrain, ot_match_type::prefix);
++}
++
++auto highway::reserve(overmap& om, const grid_options& opts) -> std::vector<reserved_tile> {
++    auto result = std::vector<reserved_tile>();
++    // Other dimensions have their own world generation and must not inherit highways.
++    if (!om.get_dimension_id().str().empty()) { return result; }
++    const auto layout = plan_grid(opts, OMAPX);
++    if (!layout.vertical && !layout.horizontal) { return result; }
++    result.reserve((layout.vertical ? 2 * OMAPY : 0) + (layout.horizontal ? 2 * OMAPX : 0));
++    using namespace std::views;
++    for (const auto x : iota(0, OMAPX)) {
++        for (const auto y : iota(0, OMAPY)) {
++            const auto kind = layout.at(x, y);
++            if (kind == tile_kind::none) { continue; }
++            const auto pos = tripoint_om_omt(x, y, 0);
++            const auto& previous = om.ter(pos);
++            auto name = terrain_name(kind);
++            if (previous->is_river() || previous->is_lake() || previous->is_lake_shore()) {
++                name += "_bridge";
++            }
++            const auto terrain = oter_id(name);
++            om.ter_set(pos, terrain);
++            result.push_back({.pos = pos, .terrain = terrain, .kind = kind});
++        }
++    }
++    return result;
++}
++
++auto highway::finalize(overmap& om, const std::vector<reserved_tile>& tiles) -> void {
++    auto crossings = std::unordered_set<tripoint_om_omt>();
++    // A local road may replace a reservation. Open BOTH carriageways at its access point.
++    for (const auto& tile : tiles) {
++        if (local_road_crosses(tile, om.ter(tile.pos))
++            || (is_highway(om.ter(tile.pos))
++                && om.ter(tile.pos).id().str().ends_with("_crossing"))) {
++            crossings.insert(tile.pos);
++            crossings.insert(paired_position(tile));
++        }
++    }
++    for (const auto& tile : tiles) {
++        const auto terrain =
++            crossings.contains(tile.pos)
++                ? oter_id(terrain_name(tile.kind) + "_crossing")
++                : tile.terrain;
++        om.ter_set(tile.pos, terrain);
++    }
++}
+diff --git a/src/overmap/highway_generation.h b/src/overmap/highway_generation.h
+new file mode 100644
+index 0000000..b2f1f8a
+--- /dev/null
++++ b/src/overmap/highway_generation.h
+@@ -0,0 +1,22 @@
++#pragma once
++
++#include "coordinates.h"
++#include "highway_grid.h"
++#include "type_id.h"
++
++#include <vector>
++
++class overmap;
++
++namespace highway {
++struct reserved_tile {
++    tripoint_om_omt pos;
++    oter_id terrain;
++    tile_kind kind;
++};
++
++/// Reserve before cities; restore after local roads and before specials.
++auto reserve(overmap& om, const grid_options& opts) -> std::vector<reserved_tile>;
++auto finalize(overmap& om, const std::vector<reserved_tile>& tiles) -> void;
++auto is_highway(const oter_id& terrain) -> bool;
++} // namespace highway
+diff --git a/src/overmap/highway_grid.cpp b/src/overmap/highway_grid.cpp
+new file mode 100644
+index 0000000..36d3f32
+--- /dev/null
++++ b/src/overmap/highway_grid.cpp
+@@ -0,0 +1,47 @@
++#include "highway_grid.h"
++
++#include <cstdint>
++
++namespace {
++auto axis_offset(int coordinate, int extent) -> int {
++    // Defined unsigned arithmetic also handles negative world coordinates.
++    auto mixed = static_cast<std::uint32_t>(coordinate);
++    mixed ^= mixed >> 16;
++    mixed *= 0x7feb352dU;
++    mixed ^= mixed >> 15;
++    mixed *= 0x846ca68bU;
++    mixed ^= mixed >> 16;
++    const auto variance = extent / 6;
++    return extent / 2 - 1 + static_cast<int>(mixed % (2 * variance + 1)) - variance;
++}
++} // namespace
++
++auto highway::plan_grid(const grid_options& opts, int extent) -> grid {
++    auto result = grid{};
++    if (opts.spacing < 1 || extent < 12) { return result; }
++    if (opts.overmap_x % opts.spacing == 0) {
++        result.vertical = axis_offset(opts.overmap_x, extent);
++    }
++    if (opts.overmap_y % opts.spacing == 0) {
++        result.horizontal = axis_offset(opts.overmap_y, extent);
++    }
++    return result;
++}
++
++auto highway::grid::at(int x, int y) const -> tile_kind {
++    const auto on_vertical = vertical && (x == *vertical || x == *vertical + 1);
++    const auto on_horizontal = horizontal && (y == *horizontal || y == *horizontal + 1);
++    if (on_vertical && on_horizontal) {
++        if (y == *horizontal) {
++            return x == *vertical ? tile_kind::junction_north_west : tile_kind::junction_north_east;
++        }
++        return x == *vertical ? tile_kind::junction_south_west : tile_kind::junction_south_east;
++    }
++    if (on_vertical) {
++        return x == *vertical ? tile_kind::north_south_west : tile_kind::north_south_east;
++    }
++    if (on_horizontal) {
++        return y == *horizontal ? tile_kind::east_west_north : tile_kind::east_west_south;
++    }
++    return tile_kind::none;
++}
+diff --git a/src/overmap/highway_grid.h b/src/overmap/highway_grid.h
+new file mode 100644
+index 0000000..c7cd84e
+--- /dev/null
++++ b/src/overmap/highway_grid.h
+@@ -0,0 +1,36 @@
++#pragma once
++
++#include <optional>
++
++namespace highway {
++
++/// Foundation topology: independent of RNG state and overmap generation order.
++/// Spacing is measured in overmaps; coordinate zero always contains both axes.
++struct grid_options {
++    int overmap_x = 0;
++    int overmap_y = 0;
++    int spacing = 3;
++};
++
++enum class tile_kind {
++    none,
++    north_south_west,
++    north_south_east,
++    east_west_north,
++    east_west_south,
++    junction_north_west,
++    junction_north_east,
++    junction_south_west,
++    junction_south_east
++};
++
++struct grid {
++    std::optional<int> vertical;
++    std::optional<int> horizontal;
++    auto at(int x, int y) const -> tile_kind;
++};
++
++/// extent is the side length of an overmap, allowing isolated topology tests.
++auto plan_grid(const grid_options& opts, int extent) -> grid;
++
++} // namespace highway
+diff --git a/src/overmap/overmap.cpp b/src/overmap/overmap.cpp
+index 8dd44ba..710f2ec 100644
+--- a/src/overmap/overmap.cpp
++++ b/src/overmap/overmap.cpp
+@@ -17,6 +17,7 @@
+ #include "fstream_utils.h"
+ #include "game.h"
+ #include "generic_factory.h"
++#include "highway_generation.h"
+ #include "init.h"
+ #include "json.h"
+ #include "line.h"
+@@ -3152,16 +3153,27 @@ void overmap::generate(
+         place_forests();
+         place_swamps();
+     }
++    const auto highway_tiles =
++        get_option<bool>("BN_HIGHWAYS")
++            ? highway::reserve(
++                  *this, {.overmap_x = pos().x(),
++                          .overmap_y = pos().y(),
++                          .spacing = get_option<int>("BN_HIGHWAY_SPACING")})
++            : std::vector<highway::reserved_tile>();
+     place_cities();
+     if (settings->forest_trail.chance > 0) { place_forest_trails(); }
+     place_roads(north, east, south, west);
+     // Isolated cities reuse normal city generation but stay disconnected from external roads.
+     place_isolated_cities();
++    highway::finalize(*this, highway_tiles);
+     place_specials(enabled_specials);
+     // Optional regional lake columns fill untouched underground default terrain below lakes.
+     place_lake_columns();
+     if (settings->forest_trail.chance > 0) { place_forest_trailheads(); }
+ 
++    // Specials and trailheads may create additional local roads across the corridor.
++    highway::finalize(*this, highway_tiles);
++
+     polish_rivers(north, east, south, west);
+ 
+     // Place the monsters, now that the terrain is laid out
+diff --git a/src/overmap/overmapbuffer.cpp b/src/overmap/overmapbuffer.cpp
+index 005a157..fbec4c7 100644
+--- a/src/overmap/overmapbuffer.cpp
++++ b/src/overmap/overmapbuffer.cpp
+@@ -13,6 +13,7 @@
+ #include "fluid_grid.h"
+ #include "game.h"
+ #include "game_constants.h"
++#include "highway_generation.h"
+ #include "int_id.h"
+ #include "line.h"
+ #include "map/map.h"
+@@ -883,7 +884,7 @@ static auto get_terrain_cost(
+     if (params.only_known_by_player && !omb.seen(omt_pos)) { return -1; }
+     if (params.avoid_danger && omb.is_marked_dangerous(omt_pos)) { return -1; }
+     const oter_id& oter = omb.ter_existing(omt_pos);
+-    if (is_ot_match("road", oter, ot_match_type::type)
++    if (highway::is_highway(oter) || is_ot_match("road", oter, ot_match_type::type)
+         || is_ot_match("bridge", oter, ot_match_type::type)
+         || is_ot_match("bridge_road", oter, ot_match_type::type)
+         || is_ot_match("bridgehead_ground", oter, ot_match_type::type)
+diff --git a/tests/highway_grid_test.cpp b/tests/highway_grid_test.cpp
+new file mode 100644
+index 0000000..e0b8b99
+--- /dev/null
++++ b/tests/highway_grid_test.cpp
+@@ -0,0 +1,25 @@
++#include "catch/catch.hpp"
++#include "game_constants.h"
++#include "overmap/highway_grid.h"
++
++#include <ranges>
++
++TEST_CASE("highway_grid_matches_all_neighbor_edges", "[highway][overmap]") {
++    using namespace std::views;
++    for (const auto spacing : iota(1, 9)) {
++        for (const auto x : iota(-12, 13)) {
++            for (const auto y : iota(-12, 13)) {
++                const auto center =
++                    highway::plan_grid({.overmap_x = x, .overmap_y = y, .spacing = spacing}, OMAPX);
++                const auto east = highway::
++                    plan_grid({.overmap_x = x + 1, .overmap_y = y, .spacing = spacing}, OMAPX);
++                const auto south = highway::
++                    plan_grid({.overmap_x = x, .overmap_y = y + 1, .spacing = spacing}, OMAPX);
++                for (const auto offset : iota(0, OMAPX)) {
++                    CHECK(center.at(OMAPX - 1, offset) == east.at(0, offset));
++                    CHECK(center.at(offset, OMAPY - 1) == south.at(offset, 0));
++                }
++            }
++        }
++    }
++}
+diff --git a/tests/highway_test.cpp b/tests/highway_test.cpp
+new file mode 100644
+index 0000000..5bbbeeb
+--- /dev/null
++++ b/tests/highway_test.cpp
+@@ -0,0 +1,140 @@
++#include "cata_utility.h"
++#include "catch/catch.hpp"
++#include "game_constants.h"
++#include "map/mapbuffer_registry.h"
++#include "mapgen/mapgen_constructor.h"
++#include "options_helpers.h"
++#include "overmap/highway_generation.h"
++#include "overmap/highway_grid.h"
++#include "overmap/omdata.h"
++#include "overmap/overmap.h"
++#include "overmap/overmap_special.h"
++#include "overmap/overmapbuffer.h"
++#include "state_helpers.h"
++
++#include <array>
++#include <memory>
++#include <ranges>
++#include <string_view>
++
++TEST_CASE("highway_reservation_and_road_access", "[highway][overmap]") {
++    clear_all_state();
++    auto om = std::make_unique<overmap>(point_abs_om(0, 0));
++    const auto layout = highway::plan_grid({}, OMAPX);
++    REQUIRE(layout.vertical);
++    REQUIRE(layout.horizontal);
++    const auto tiles = highway::reserve(*om, {});
++    CHECK(tiles.size() == 4 * OMAPX - 4);
++    const auto west = tripoint_om_omt(*layout.vertical, 5, 0);
++    const auto east = west + tripoint_east;
++    const auto parallel = tripoint_om_omt(*layout.vertical, 8, 0);
++    om->ter_set(parallel, oter_id("road_ns"));
++    om->ter_set(west, oter_id("road_ew"));
++    highway::finalize(*om, tiles);
++    CHECK(om->ter(parallel) == oter_id("bn_highway_ns_w"));
++    CHECK(om->ter(west) == oter_id("bn_highway_ns_w_crossing"));
++    CHECK(om->ter(east) == oter_id("bn_highway_ns_e_crossing"));
++    highway::finalize(*om, tiles);
++    CHECK(om->ter(west) == oter_id("bn_highway_ns_w_crossing"));
++    CHECK(om->ter(east) == oter_id("bn_highway_ns_e_crossing"));
++    for (const auto& tile : tiles) { CHECK(highway::is_highway(om->ter(tile.pos))); }
++}
++
++TEST_CASE("highway_flat_bridge_retains_water_classification", "[highway][overmap]") {
++    clear_all_state();
++    auto om = std::make_unique<overmap>(point_abs_om());
++    const auto layout = highway::plan_grid({}, OMAPX);
++    const auto pos = tripoint_om_omt(*layout.vertical, 7, 0);
++    om->ter_set(pos, oter_id("river_center"));
++    const auto tiles = highway::reserve(*om, {});
++    highway::finalize(*om, tiles);
++    CHECK(om->ter(pos) == oter_id("bn_highway_ns_w_bridge"));
++    CHECK(om->ter(pos)->is_river());
++    CHECK(om->ter(pos)->has_flag(oter_flags::is_bridge));
++}
++
++TEST_CASE("highway_survives_complete_overmap_generation", "[highway][overmap][slow]") {
++    clear_all_state();
++    const auto enabled = override_option("BN_HIGHWAYS", "true");
++    const auto spacing = override_option("BN_HIGHWAY_SPACING", "3");
++    // Generate south first, then the junction, then east (including negative coordinates).
++    for (const auto& address : std::array<
++             point_abs_om, 3>{point_abs_om(-3, 1), point_abs_om(-3, 0), point_abs_om(-2, 0)}) {
++        auto batch = overmap_specials::get_default_batch(address);
++        ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
++        const auto& om = ACTIVE_OVERMAP_BUFFER.get(address);
++        const auto layout = highway::
++            plan_grid({.overmap_x = address.x(), .overmap_y = address.y(), .spacing = 3}, OMAPX);
++        using namespace std::views;
++        for (const auto x : iota(0, OMAPX)) {
++            for (const auto y : iota(0, OMAPY)) {
++                if (layout.at(x, y) != highway::tile_kind::none) {
++                    INFO(address.to_string()
++                         << " local " << x << "," << y << " terrain "
++                         << om.ter(tripoint_om_omt(x, y, 0)).id().str());
++                    CHECK(highway::is_highway(om.ter(tripoint_om_omt(x, y, 0))));
++                }
++            }
++        }
++    }
++}
++
++TEST_CASE("highway_skips_other_dimensions", "[highway][overmap]") {
++    clear_all_state();
++    auto om = std::make_unique<overmap>(point_abs_om(), dimension_id("highway_test_dimension"));
++    CHECK(highway::reserve(*om, {}).empty());
++}
++
++TEST_CASE("highway_disabled_does_not_reserve_overmap_terrain", "[highway][overmap][slow]") {
++    clear_all_state();
++    const auto disabled = override_option("BN_HIGHWAYS", "false");
++    const auto city_size = override_option("CITY_SIZE", "0");
++    const auto address = point_abs_om(0, 0);
++    auto batch = overmap_special_batch(address, {});
++    ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
++    const auto& om = ACTIVE_OVERMAP_BUFFER.get(address);
++    using namespace std::views;
++    for (const auto x : iota(0, OMAPX)) {
++        for (const auto y : iota(0, OMAPY)) {
++            CHECK_FALSE(highway::is_highway(om.ter(tripoint_om_omt(x, y, 0))));
++        }
++    }
++}
++
++TEST_CASE("highway_json_mapgens_generate_real_pavement", "[highway][mapgen][slow]") {
++    clear_all_state();
++    const auto city_size = override_option("CITY_SIZE", "0");
++    const auto address = point_abs_om(10, 10);
++    auto batch = overmap_special_batch(address, {});
++    ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
++    auto& om = ACTIVE_OVERMAP_BUFFER.get(address);
++    const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
++    disable_mapgen = false;
++    auto index = 0;
++    for (const auto& name :
++         std::array{"ns_w", "ns_e", "ew_n", "ew_s", "junction_nw", "junction_ne", "junction_sw",
++                    "junction_se"}) {
++        for (const auto& suffix : std::array{"", "_bridge", "_crossing"}) {
++            const auto id = std::string("bn_highway_") + name + suffix;
++            INFO(id);
++            const auto local = tripoint_om_omt(30 + index, 30, 0);
++            om.ter_set(local, oter_id(id));
++            auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
++            REQUIRE(
++                generator.generate(project_combine(address, local), calendar::turn).is_generated());
++            CHECK(generator.ter(point_omt_ms(10, 10)) == ter_id("t_pavement"));
++            CHECK(generator.ter(point_omt_ms(12, 12)) == ter_id("t_pavement"));
++            if (std::string_view(name).starts_with("ns_")
++                && std::string_view(suffix) != "_crossing") {
++                CHECK(generator.ter(point_omt_ms(name[3] == 'w' ? 7 : 16, 0))
++                      == ter_id("t_guardrail"));
++            }
++            if (std::string_view(name).starts_with("ew_")
++                && std::string_view(suffix) != "_crossing") {
++                CHECK(generator.ter(point_omt_ms(0, name[3] == 'n' ? 7 : 16))
++                      == ter_id("t_guardrail"));
++            }
++            ++index;
++        }
++    }
++}
+diff --git a/utilities/highway/check_mapgen.py b/utilities/highway/check_mapgen.py
+new file mode 100644
+index 0000000..cf595f5
+--- /dev/null
++++ b/utilities/highway/check_mapgen.py
+@@ -0,0 +1,55 @@
++#!/usr/bin/env python3
++"""Check highway JSON identifiers and actual pavement connectivity without loading a world."""
++from collections import deque
++from pathlib import Path
++import json
++
++ROOT = Path(__file__).resolve().parents[2]
++TERRAINS = json.loads((ROOT / 'data/json/overmap/overmap_terrain/bn_highways.json').read_text())
++MAPGENS = json.loads((ROOT / 'data/json/mapgen/bn_highways.json').read_text())
++rows = {x['om_terrain']: x['object']['rows'] for x in MAPGENS}
++assert len(rows) == len(MAPGENS) == len(TERRAINS) == 24
++assert set(rows) == {x['id'] for x in TERRAINS}
++for name, tile in rows.items():
++    assert len(tile) == 24 and all(len(row) == 24 for row in tile), name
++    assert set(''.join(tile)) <= set('g.*|'), name
++    assert any('.' in row for row in tile), name
++
++
++def joined(nw, ne, sw, se):
++    return [a + b for a, b in zip(nw, ne)] + [a + b for a, b in zip(sw, se)]
++
++
++def connected(tile, ports):
++    todo = deque([ports[0]])
++    visited = {ports[0]}
++    while todo:
++        x, y = todo.popleft()
++        for xx, yy in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
++            if (0 <= yy < len(tile) and 0 <= xx < len(tile[yy])
++                    and tile[yy][xx] in '.*' and (xx, yy) not in visited):
++                visited.add((xx, yy))
++                todo.append((xx, yy))
++    assert all(p in visited for p in ports), ports
++
++
++junction = joined(*(rows['bn_highway_junction_' + q] for q in ('nw', 'ne', 'sw', 'se')))
++ports = [(15, 0), (32, 0), (15, 47), (32, 47), (0, 15), (0, 32), (47, 15), (47, 32)]
++connected(junction, ports)
++# The median stays closed along straight roads, opens only at access points.
++ns = [a + b for a, b in zip(rows['bn_highway_ns_w'], rows['bn_highway_ns_e'])]
++assert all(row[23:25] == '||' for row in ns)
++connected(ns, [(15, 0), (15, 23)])
++connected(ns, [(32, 0), (32, 23)])
++ns_access = [a + b for a, b in zip(rows['bn_highway_ns_w_crossing'], rows['bn_highway_ns_e_crossing'])]
++connected(ns_access, [(15, 0), (32, 0), (15, 23), (32, 23), (0, 11), (47, 11)])
++ew_access = rows['bn_highway_ew_n_crossing'] + rows['bn_highway_ew_s_crossing']
++connected(ew_access, [(0, 15), (0, 32), (23, 15), (23, 32), (11, 0), (11, 47)])
++# OMT seams must preserve the full width of both carriageways.
++assert ns[0].replace('*', '.') == ns[-1].replace('*', '.')
++ew = rows['bn_highway_ew_n'] + rows['bn_highway_ew_s']
++assert ew[23] == ew[24] == '|' * 24
++assert sum(r[0] in '.*' for r in ew) == 30
++assert sum(c in '.*' for c in ns[0]) == 30
++assert [r[0].replace('*', '.') for r in ew] == [r[-1].replace('*', '.') for r in ew]
++print('PASS: 24 mapgens, terrain IDs, road widths, median, junction and access connectivity')
