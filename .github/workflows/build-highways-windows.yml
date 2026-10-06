@@ -121,7 +121,7 @@ jobs:
             }
           } finally { $zip.Dispose() }
           if ($count -lt 20) { throw "Missing release translations: found $count" }
-          if (!(Test-Path "lang/mo/ru/LC_MESSAGES/cataclysm-bn.mo")) { throw "Missing Russian translation" }
+          if (!(Test-Path "lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo")) { throw "Missing Russian translation" }
           Write-Host "Restored $count translation files from the official 2026-10-01 release"
       - name: Build Windows executable
         run: |
