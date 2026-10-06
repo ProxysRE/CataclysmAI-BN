@@ -100,16 +100,29 @@ jobs:
         run: |
           cmake -G Ninja -S . -B out/build/highways -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROJECT_INCLUDE_BEFORE="${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/bn/build-scripts/MSVC.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=False -DCURSES=False -DLOCALIZE=True -DTILES=True -DSOUND=True -DTESTS=False -DRELEASE=ON -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
           if ($LASTEXITCODE -ne 0) { throw "CMake configuration failed" }
-      - name: Compile translations
+      - name: Restore official release translations
         run: |
-          $msgfmt = Join-Path $PWD "build-data/gettext/bin/msgfmt.exe"
-          Get-ChildItem lang/po -Filter "*.po" | ForEach-Object {
-            $language = $_.BaseName
-            $destination = "lang/mo/$language/LC_MESSAGES"
-            New-Item -ItemType Directory -Force $destination | Out-Null
-            & $msgfmt -o "$destination/cataclysm-bn.mo" $_.FullName
-            if ($LASTEXITCODE -ne 0) { throw "Translation compilation failed: $language" }
-          }
+          $archive = Join-Path $env:RUNNER_TEMP "bn-official-translations.zip"
+          Invoke-WebRequest -Uri "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/2026-10-01/cbn-windows-tiles-x64-msvc-no-soundpack-2026-10-01.zip" -OutFile $archive
+          if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLower() -ne "9cfb9f4890f5dbd9a89f7c048e005dc100fe4ed42ed43a40ed6034f237e11de3") { throw "Official release checksum mismatch" }
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $zip = [System.IO.Compression.ZipFile]::OpenRead($archive)
+          $count = 0
+          try {
+            foreach ($entry in $zip.Entries) {
+              if ($entry.FullName -match '(^|/)lang/mo/(?<relative>.+\.mo)$') {
+                $relative = $Matches.relative
+                if (($relative -split '/') -contains '..') { throw "Unsafe translation path" }
+                $destination = Join-Path (Join-Path $PWD "lang/mo") $relative
+                New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null
+                [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $destination, $true)
+                $count++
+              }
+            }
+          } finally { $zip.Dispose() }
+          if ($count -lt 20) { throw "Missing release translations: found $count" }
+          if (!(Test-Path "lang/mo/ru/LC_MESSAGES/cataclysm-bn.mo")) { throw "Missing Russian translation" }
+          Write-Host "Restored $count translation files from the official 2026-10-01 release"
       - name: Build Windows executable
         run: |
           cmake --build out/build/highways --target cataclysm-bn-tiles --parallel 4
