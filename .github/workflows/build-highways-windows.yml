@@ -95,6 +95,10 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 patch decompression failed" }
           $port = "${{ github.workspace }}/package/highways/highways_dev03.patch"
           if ((Get-FileHash $port -Algorithm SHA256).Hash.ToLower() -ne "fc7146670825efae5158d8506db99c6898fbd828c025364d58eff5aa60f6dbc7") { throw "DEV0.3 checksum mismatch" }
+          python "${{ github.workspace }}/package/highways/dev03/prepare_dev03_patch.py" $port "$port.normalized"
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 patch normalization failed" }
+          $port = "$port.normalized"
+          if ((Get-FileHash $port -Algorithm SHA256).Hash.ToLower() -ne "f265299fa3022cf8ae011d74525c1dd52d968a706d1517aa2c2734c4ae901ed6") { throw "Normalized DEV0.3 checksum mismatch" }
           git apply --check $port
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 patch does not apply" }
           git apply $port
@@ -105,6 +109,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 fix does not apply" }
           git apply $fix
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 fix failed" }
+          $fix02 = "${{ github.workspace }}/package/highways/highways_dev03_fix02.patch"
+          if ((Get-FileHash $fix02 -Algorithm SHA256).Hash.ToLower() -ne "46d347010c2c72206d71073118c6d2e261b107f7058afb8f385b76f2afd275de") { throw "DEV0.3 predecessor fix checksum mismatch" }
+          git apply --check $fix02
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 predecessor fix does not apply" }
+          git apply $fix02
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 predecessor fix failed" }
           python utilities/highway/check_dda_geometry.py
           if ($LASTEXITCODE -ne 0) { throw "DDA geometry validation failed" }
           python utilities/highway/check_overpasses.py

@@ -1,0 +1,25 @@
+diff --git a/src/mapgen/mapgen.cpp b/src/mapgen/mapgen.cpp
+index e43b165..e721fda 100644
+--- a/src/mapgen/mapgen.cpp
++++ b/src/mapgen/mapgen.cpp
+@@ -3829,7 +3829,7 @@ void mapgen_function_json::generate(mapgendata& md) {
+         {
+             ZoneScopedN("mapgen_json_predecessor");
+             mapgendata predecessor_mapgen_dat(md, effective_predecessor);
+-            run_mapgen_func(effective_predecessor.id().str(), predecessor_mapgen_dat);
++            run_mapgen_func(effective_predecessor->get_mapgen_id(), predecessor_mapgen_dat);
+         }
+ 
+         // Now we have to do some rotation shenanigans. We need to ensure that
+@@ -6234,8 +6234,9 @@ auto mapgen_function_needs_main_thread(const std::shared_ptr<mapgen_function>& f
+     if (!func) { return false; }
+     if (func->is_lua_generator()) { return true; }
+     const auto json_func = std::dynamic_pointer_cast<mapgen_function_json>(func);
+-    return json_func && json_func->predecessor_mapgen != oter_str_id::NULL_ID()
+-        && oter_mapgen.has_direct_lua_generator(json_func->predecessor_mapgen.id().str());
++    return json_func && (json_func->uses_highway_predecessor
++        || (json_func->predecessor_mapgen != oter_str_id::NULL_ID()
++            && oter_mapgen.has_direct_lua_generator(json_func->predecessor_mapgen.id().str())));
+ }
+ 
+ auto mapgen_has_any_direct_lua_generator() -> bool {
