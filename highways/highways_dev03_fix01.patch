@@ -1,0 +1,25 @@
+diff --git a/src/overmap/overmap.cpp b/src/overmap/overmap.cpp
+index 08558c6..c8836a3 100644
+--- a/src/overmap/overmap.cpp
++++ b/src/overmap/overmap.cpp
+@@ -3159,9 +3159,10 @@ void overmap::generate(
+         place_forests();
+         place_swamps();
+     }
+-    polish_rivers(north, east, south, west);
++    const auto highways_enabled = get_option<bool>("BN_HIGHWAYS") && get_dimension_id().str().empty();
++    if (highways_enabled) { polish_rivers(north, east, south, west); }
+     auto highway_generator = highway::dda::generator(*this);
+-    auto highway_paths = get_option<bool>("BN_HIGHWAYS") && get_dimension_id().str().empty()
++    auto highway_paths = highways_enabled
+         ? highway_generator.place_highways({north, east, south, west})
+         : std::vector<highway::dda::highway_route>();
+     place_cities();
+@@ -3177,6 +3178,7 @@ void overmap::generate(
+ 
+     // Specials and trailheads may create additional local roads across the corridor.
+     highway_generator.finalize_highways(highway_paths);
++    if (!highways_enabled) { polish_rivers(north, east, south, west); }
+ 
+     // Place the monsters, now that the terrain is laid out
+     place_mongroups();

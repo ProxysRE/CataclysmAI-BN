@@ -1,4 +1,4 @@
-name: Build BN Highways DEV0.2 for Windows
+name: Build BN Highways DEV0.3 for Windows
 on:
   push:
     branches: [build/highways-dev01-windows]
@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: highways-windows-${{ github.ref }}
   cancel-in-progress: true
@@ -16,15 +17,27 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
+      - name: Reuse verified shaders for the pinned BN base
+        id: reuse
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: highways-shaders
+          run-id: 37643122759
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: data/shaders/
       - uses: actions/checkout@v4
+        if: steps.reuse.outcome != 'success'
         with:
           repository: cataclysmbn/Cataclysm-BN
           ref: c621aaf42fa182473aad10feea2b55647704dcf1
       - name: Install shadercross dependencies
+        if: steps.reuse.outcome != 'success'
         run: |
           sudo apt-get update
           sudo apt-get install -y autoconf autoconf-archive automake libtool libltdl-dev
       - name: Prefetch GNU dependencies from a reachable mirror
+        if: steps.reuse.outcome != 'success'
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/vcpkg-shadercross-downloads"
@@ -32,10 +45,12 @@ jobs:
             curl --fail --location --retry 3 --connect-timeout 20 --max-time 120 "https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/$source" --output "$RUNNER_TEMP/vcpkg-shadercross-downloads/${source##*/}"
           done
       - name: Install shadercross
+        if: steps.reuse.outcome != 'success'
         env:
           VCPKG_DOWNLOADS: ${{ runner.temp }}/vcpkg-shadercross-downloads
         run: bash build-scripts/install-shadercross-vcpkg.sh
       - name: Generate shaders
+        if: steps.reuse.outcome != 'success'
         run: bash build-scripts/generate-shaders.sh
       - uses: actions/upload-artifact@v4
         with:
@@ -76,6 +91,22 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.2 patch does not apply" }
           git apply $upgrade
           if ($LASTEXITCODE -ne 0) { throw "DEV0.2 patch failed" }
+          python -c "import base64,gzip,pathlib; p=pathlib.Path(r'${{ github.workspace }}/package/highways/dev03'); pathlib.Path(r'${{ github.workspace }}/package/highways/highways_dev03.patch').write_bytes(gzip.decompress(base64.b64decode(''.join((p/('highways_dev03.patch.gz.base64.'+str(i))).read_text() for i in range(3)))))"
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 patch decompression failed" }
+          $port = "${{ github.workspace }}/package/highways/highways_dev03.patch"
+          if ((Get-FileHash $port -Algorithm SHA256).Hash.ToLower() -ne "fc7146670825efae5158d8506db99c6898fbd828c025364d58eff5aa60f6dbc7") { throw "DEV0.3 checksum mismatch" }
+          git apply --check $port
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 patch does not apply" }
+          git apply $port
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 patch failed" }
+          $fix = "${{ github.workspace }}/package/highways/highways_dev03_fix01.patch"
+          if ((Get-FileHash $fix -Algorithm SHA256).Hash.ToLower() -ne "e1227411004205640535548690798a0bb23c5f6a9a4eb3a58c41ecdb89655fa0") { throw "DEV0.3 fix checksum mismatch" }
+          git apply --check $fix
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 fix does not apply" }
+          git apply $fix
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 fix failed" }
+          python utilities/highway/check_dda_geometry.py
+          if ($LASTEXITCODE -ne 0) { throw "DDA geometry validation failed" }
           python utilities/highway/check_overpasses.py
           if ($LASTEXITCODE -ne 0) { throw "Overpass geometry validation failed" }
           python utilities/highway/check_mapgen.py
@@ -107,7 +138,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("src/overmap/highway_elevation.h", "src/overmap/highway_generation.cpp", "src/overmap/highway_generation.h", "tests/highway_test.cpp", "tests/highway_elevation_test.cpp", "tests/highway_overpass_mapgen_test.cpp", "utilities/highway/check_elevation.cpp")
+          $files = @("src/overmap/highway_dda.h", "src/overmap/highway_dda.cpp", "src/overmap/highway_dda_adapter.cpp", "src/overmap/overmap.h", "src/overmap/omdata.h", "src/overmap/overmap.cpp", "src/mapgen/mapgen.cpp", "src/mapgen/mapgen.h", "src/savegame.cpp", "tests/highway_dda_test.cpp", "src/overmap/highway_elevation.h", "src/overmap/highway_generation.cpp", "src/overmap/highway_generation.h", "tests/highway_test.cpp", "tests/highway_elevation_test.cpp", "tests/highway_overpass_mapgen_test.cpp", "utilities/highway/check_elevation.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "Highway formatting failed" }
       - name: Configure Windows game
@@ -156,15 +187,15 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: highways-dev02-test-log
+          name: highways-dev03-test-log
           path: bn/highways-tests.log
           if-no-files-found: ignore
       - name: Package complete game
         run: |
-          "BN Highways DEV0.2; base $env:BN_BASE; patch ${{ github.sha }}" | Set-Content VERSION.txt
-          cmake --install out/build/highways --prefix "${{ github.workspace }}/CBN_Highways_DEV0.2_Windows" --config Release
+          "BN Highways DEV0.3; base $env:BN_BASE; patch ${{ github.sha }}" | Set-Content VERSION.txt
+          cmake --install out/build/highways --prefix "${{ github.workspace }}/CBN_Highways_DEV0.3_Windows" --config Release
           if ($LASTEXITCODE -ne 0) { throw "Game installation failed" }
-          $dist = "${{ github.workspace }}/CBN_Highways_DEV0.2_Windows"
+          $dist = "${{ github.workspace }}/CBN_Highways_DEV0.3_Windows"
           $exe = Join-Path $dist "cataclysm-bn-tiles.exe"
           if (!(Test-Path $exe)) { throw "Missing executable" }
           if (!(Test-Path "$dist/data/json/mapgen/bn_highways.json")) { throw "Missing highway mapgens" }
@@ -172,11 +203,11 @@ jobs:
           if ($deps -match "SDL3") { throw "Unexpected SDL DLL dependency" }
           & $exe --version
           if ($LASTEXITCODE -ne 0) { throw "Executable version check failed" }
-          Set-Content "$dist/HIGHWAYS_README.txt" "Create a NEW TEST WORLD. Enable Experimental highway network. Keep Highway spacing at 3. Do not change these options after world generation. DEV0.2 adds highway flyovers and selected local-road underpasses. Surface access points and paired flat water bridges remain. Dedicated exit ramps and routing around towns are not implemented. Existing generated terrain is not upgraded. This package includes the Windows executable and matching game data."
+          Set-Content "$dist/HIGHWAYS_README.txt" "Create a NEW TEST WORLD and enable Experimental highway network, spacing 3. DEV0.3 ports DDA's highway planner and original mapgen geometry: bends, slants, cloverleaf/trumpet junctions, diamond exits, bridges and vehicle ramps. BN adapts grid settings, terrain predecessors and road crossings. Existing generated terrain is not upgraded; back up older saves. Windows executable and matching data are included."
       - name: Upload playable Windows package
         uses: actions/upload-artifact@v4
         with:
-          name: CBN_Highways_DEV0.2_Windows
-          path: CBN_Highways_DEV0.2_Windows/
+          name: CBN_Highways_DEV0.3_Windows
+          path: CBN_Highways_DEV0.3_Windows/
           if-no-files-found: error
           retention-days: 30
