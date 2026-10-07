@@ -1,0 +1,2551 @@
+diff --git a/data/json/mapgen/bn_highway_overpasses.json b/data/json/mapgen/bn_highway_overpasses.json
+new file mode 100644
+index 0000000..196a469
+--- /dev/null
++++ b/data/json/mapgen/bn_highway_overpasses.json
+@@ -0,0 +1,1366 @@
++[
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggg#ggggggggggggg#g",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggg#ggggggggggggg#g",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_under_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggg#ggggggggggggg#g",
++        "gggggggggggggggggggggggg",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "..**..**..**..**..**..**",
++        "..**..**..**..**..**..**",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "gggggggggggggggggggggggg",
++        "gggggggg#ggggggggggggg#g",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_ramp_up_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|uuuuuuuuuuuuuuu|",
++        "ggggggg|UUUUUUUUUUUUUUU|",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_ramp_up_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "ggggggg|DDDDDDDDDDDDDDD|",
++        "ggggggg|ddddddddddddddd|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_ramp_down_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg#################",
++        "ggggggg|UUUUUUUUUUUUUUU|",
++        "ggggggg|uuuuuuuuuuuuuuu|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_w_ramp_down_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|...............|",
++        "ggggggg|.......*.......|",
++        "ggggggg|.......*.......|",
++        "ggggggg|...............|",
++        "ggggggg|ddddddddddddddd|",
++        "ggggggg|DDDDDDDDDDDDDDD|",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "..**..**..**..**..**..**",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gg#gggggggggggggggggg#gg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gg#gggggggggggggggggg#gg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_under_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gg#g................g#gg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gg#g.......**.......g#gg",
++        "gggg.......**.......gggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_ramp_up_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "|||||||||||||###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "..**..**..*uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "|||||||||||||###########"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_ramp_up_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "ggggggggggg|||||||||||||",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd.**..**..**",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "ggggggggggg|||||||||||||"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_ramp_down_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "###########|||||||||||||",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu*..**..**..",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########|||||||||||||"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_n_ramp_down_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "|||||||||||||ggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "**..**..**.dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "|||||||||||||ggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "g#ggggggggggggg#gggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "g#ggggggggggggg#gggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_under_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "g#ggggggggggggg#gggggggg",
++        "gggggggggggggggggggggggg",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "..**..**..**..**..**..**",
++        "..**..**..**..**..**..**",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "gggggggggggggggggggggggg",
++        "g#ggggggggggggg#gggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_ramp_up_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|uuuuuuuuuuuuuuu|ggggggg",
++        "|UUUUUUUUUUUUUUU|ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_ramp_up_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "|DDDDDDDDDDDDDDD|ggggggg",
++        "|ddddddddddddddd|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_ramp_down_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "#################ggggggg",
++        "|UUUUUUUUUUUUUUU|ggggggg",
++        "|uuuuuuuuuuuuuuu|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ns_e_ramp_down_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|...............|ggggggg",
++        "|.......*.......|ggggggg",
++        "|.......*.......|ggggggg",
++        "|...............|ggggggg",
++        "|ddddddddddddddd|ggggggg",
++        "|DDDDDDDDDDDDDDD|ggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "..**..**..**..**..**..**",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gg#gggggggggggggggggg#gg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gg#gggggggggggggggggg#gg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_under_crossing",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggg................gggg",
++        "gg#g................g#gg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gg#g.......**.......g#gg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg",
++        "gggg................gggg",
++        "gggg................gggg",
++        "gggg.......**.......gggg",
++        "gggg.......**.......gggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_ramp_up_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "|||||||||||||###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "..**..**..*uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "...........uU###########",
++        "|||||||||||||###########",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_ramp_up_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "ggggggggggg|||||||||||||",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd.**..**..**",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "gggggggggggDd...........",
++        "ggggggggggg|||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_ramp_down_ground",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "###########|||||||||||||",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu*..**..**..",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########Uu...........",
++        "###########|||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_ew_s_ramp_down_deck",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "|||||||||||||ggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "**..**..**.dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "...........dDggggggggggg",
++        "|||||||||||||ggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_open_air",
++        ".": "t_pavement_hw_air",
++        "*": "t_pavement_y_hw_air",
++        "|": "t_guardrail_hw_air",
++        "D": "t_ramp_down_low",
++        "d": "t_ramp_down_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_nw_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggg#ggggggggggggg#g",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_ne_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "g#ggggggggggggg#gggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_sw_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggg#ggggggggggggg#g",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "bn_highway_junction_se_under",
++    "method": "json",
++    "object": {
++      "fill_ter": "t_grass",
++      "rows": [
++        "||||||||||||||||||||||||",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "**..**..**..**..**..**..",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "........................",
++        "||||||||||||||||||||||||",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg",
++        "g#ggggggggggggg#gggggggg",
++        "gggggggggggggggggggggggg",
++        "gggggggggggggggggggggggg"
++      ],
++      "terrain": {
++        "g": "t_grass",
++        ".": "t_pavement",
++        "*": "t_pavement_y",
++        "|": "t_guardrail",
++        "#": "t_concrete_wall",
++        "u": "t_ramp_up_low",
++        "U": "t_ramp_up_high"
++      }
++    }
++  }
++]
+diff --git a/data/json/overmap/overmap_terrain/bn_highway_overpasses.json b/data/json/overmap/overmap_terrain/bn_highway_overpasses.json
+new file mode 100644
+index 0000000..7962084
+--- /dev/null
++++ b/data/json/overmap/overmap_terrain/bn_highway_overpasses.json
+@@ -0,0 +1,418 @@
++[
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "│",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_under_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_ramp_up_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_ramp_up_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "│",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_ramp_down_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_w_ramp_down_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "│",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "─",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_under_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_ramp_up_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_ramp_up_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "─",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_ramp_down_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_n_ramp_down_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "─",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "│",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_under_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_ramp_up_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_ramp_up_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "│",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_ramp_down_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "│",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ns_e_ramp_down_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "│",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ns",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "─",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_under_crossing",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_ramp_up_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_ramp_up_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "─",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_ramp_down_ground",
++    "copy-from": "generic_transportation",
++    "name": "highway, approach",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_ew_s_ramp_down_deck",
++    "copy-from": "generic_transportation",
++    "name": "highway, elevated roadway",
++    "sym": "─",
++    "color": "light_cyan",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_nw_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_ne_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_sw_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "bn_highway_junction_se_under",
++    "copy-from": "generic_transportation",
++    "name": "highway, underpass",
++    "sym": "─",
++    "color": "light_gray",
++    "see_cost": 2,
++    "looks_like": "hiway_ew",
++    "flags": [
++      "NO_ROTATE"
++    ]
++  }
++]
+diff --git a/docs/en/dev/explanation/highway_overpasses.md b/docs/en/dev/explanation/highway_overpasses.md
+new file mode 100644
+index 0000000..9af8ef9
+--- /dev/null
++++ b/docs/en/dev/explanation/highway_overpasses.md
+@@ -0,0 +1,36 @@
++# Highway DEV0.2: grade separation preview
++
++Applies after the tested DEV0.1 foundation on BN c621aaf42fa182473aad10feea2b55647704dcf1.
++
++North/south highways pass above east/west highways at their 2x2 crossing. Both
++carriageways ascend together before the crossing and descend together after it.
++The lower highway retains its 15-square carriageways and closed central median.
++
++Selected local-road crossings pass beneath the highway. Crossings separated by
++up to three overmap squares share one elevated segment. The first eligible local
++crossing in each 24-square district remains an at-grade access point. Other
++crossings remain at grade where there is no safe approach space. An approach
++never replaces a retained local road. Dedicated interchange exit ramps are not
++implemented in this preview; the highway's approaches change its elevation.
++
++All raised sections begin and end within their overmap. Water and existing
++upper-level specials block elevation. Paired water crossings now reserve a flat
++bridge for both highway halves and cannot turn into a surface local intersection.
++Longer raised water bridges and highway routing around towns remain future work.
++
++Mapgens reuse BN's vehicle ramp terrain and concrete bridge deck terrain. New
++IDs are additive: DEV0.1 IDs remain available for existing saves. Generated
++terrain is not retroactively replaced. Test in a new world with BN_HIGHWAYS on,
++spacing 3, or in previously ungenerated territory. Keep world options unchanged.
++
++Validation:
++
++- `python utilities/highway/check_mapgen.py`: original foundation geometry.
++- `python utilities/highway/check_overpasses.py`: all 32 new mapgens, lane widths,
++  medians, paired slopes, unobstructed lower roads and rotated geometry.
++- `g++ -std=c++23 utilities/highway/check_elevation.cpp -o check_elevation`:
++  standalone planner checks across 10,000 reproducible layouts and the original
++  test save's crossing coordinates.
++- Build the game and `cata_test-tiles`, then run `[highway],[vehicle][ramp]`.
++  Native tests explicitly enable real mapgen and drive a motorcycle over the
++  generated approaches in both directions for all four carriageway templates.
+diff --git a/src/overmap/highway_elevation.h b/src/overmap/highway_elevation.h
+new file mode 100644
+index 0000000..1ec4d93
+--- /dev/null
++++ b/src/overmap/highway_elevation.h
+@@ -0,0 +1,74 @@
++#pragma once
++
++#include <algorithm>
++#include <ranges>
++#include <vector>
++
++namespace highway {
++enum class elevation { ground, ascend, deck, descend };
++
++struct elevation_input {
++    bool crossing = false;
++    bool junction = false;
++    bool blocked = false;
++};
++
++/// Keep surface access in each district; merge nearby overpasses into one viaduct.
++/// Every elevated run has two approaches entirely inside this overmap.
++inline auto plan_elevation(const std::vector<elevation_input>& input) -> std::vector<elevation> {
++    const auto size = static_cast<int>(input.size());
++    auto result = std::vector<elevation>(size, elevation::ground);
++    if (size < 5) { return result; }
++    auto blocked = std::vector<bool>(size);
++    using namespace std::views;
++    for (const auto i : iota(0, size)) { blocked[i] = input[i].blocked; }
++    blocked[0] = blocked[size - 1] = true;
++    // Access points remain at grade until dedicated interchange ramps are available.
++    auto district = -1;
++    for (const auto i : iota(0, size)) {
++        const auto near_junction = std::ranges::any_of(
++            iota(std::max(0, i - 4), std::min(size, i + 5)),
++            [&](const auto j) { return input[j].junction; });
++        if (input[i].crossing && !input[i].junction && !near_junction && i / 24 != district) {
++            blocked[i] = true;
++            district = i / 24;
++        }
++    }
++    auto candidates = std::vector<int>();
++    // A retained crossing must never become an embankment approach for its neighbor.
++    // Propagate this constraint through contiguous groups until both ends have room.
++    auto changed = true;
++    while (changed) {
++        changed = false;
++        for (const auto i : iota(1, size - 1)) {
++            if ((input[i].crossing || input[i].junction) && !blocked[i]
++                && (i < 2 || i >= size - 2 || blocked[i - 1] || blocked[i + 1])) {
++                blocked[i] = true;
++                changed = true;
++            }
++        }
++    }
++    for (const auto i : iota(2, size - 2)) {
++        if ((input[i].crossing || input[i].junction) && !blocked[i]) { candidates.push_back(i); }
++    }
++    auto first = -1;
++    auto last = -1;
++    const auto emit = [&]() {
++        if (first < 0) { return; }
++        result[first - 1] = elevation::ascend;
++        for (const auto i : iota(first, last + 1)) { result[i] = elevation::deck; }
++        result[last + 1] = elevation::descend;
++    };
++    for (const auto i : candidates) {
++        if (first >= 0 && (i - last > 3 || std::ranges::any_of(
++                iota(last, i + 1), [&](const auto j) { return blocked[j]; }))) {
++            emit();
++            first = -1;
++        }
++        if (first < 0) { first = i; }
++        last = i;
++    }
++    emit();
++    return result;
++}
++} // namespace highway
+diff --git a/src/overmap/highway_generation.cpp b/src/overmap/highway_generation.cpp
+index 2a6cfe6..829e738 100644
+--- a/src/overmap/highway_generation.cpp
++++ b/src/overmap/highway_generation.cpp
+@@ -1,10 +1,12 @@
+ #include "highway_generation.h"
++#include "highway_elevation.h"
+ 
+ #include "game_constants.h"
+ #include "omdata.h"
+ #include "overmap.h"
+ 
+ #include <ranges>
++#include <optional>
+ #include <string>
+ #include <unordered_set>
+ 
+@@ -91,10 +93,20 @@ auto highway::reserve(overmap& om, const grid_options& opts) -> std::vector<rese
+                 name += "_bridge";
+             }
+             const auto terrain = oter_id(name);
+-            om.ter_set(pos, terrain);
+             result.push_back({.pos = pos, .terrain = terrain, .kind = kind});
+         }
+     }
++    auto water = std::unordered_set<tripoint_om_omt>();
++    for (const auto& tile : result) {
++        if (tile.terrain->is_river()) {
++            water.insert(tile.pos);
++            water.insert(paired_position(tile));
++        }
++    }
++    for (auto& tile : result) {
++        if (water.contains(tile.pos)) { tile.terrain = oter_id(terrain_name(tile.kind) + "_bridge"); }
++        om.ter_set(tile.pos, tile.terrain);
++    }
+     return result;
+ }
+ 
+@@ -111,9 +123,91 @@ auto highway::finalize(overmap& om, const std::vector<reserved_tile>& tiles) ->
+     }
+     for (const auto& tile : tiles) {
+         const auto terrain =
+-            crossings.contains(tile.pos)
++            crossings.contains(tile.pos) && !tile.terrain->is_river()
+                 ? oter_id(terrain_name(tile.kind) + "_crossing")
+                 : tile.terrain;
+         om.ter_set(tile.pos, terrain);
+     }
+ }
++
++namespace {
++struct axis_options {
++    bool vertical;
++    int coordinate;
++    std::optional<int> junction;
++};
++
++auto elevate_axis(overmap& om, const axis_options& opts) -> void {
++    const auto extent = opts.vertical ? OMAPY : OMAPX;
++    auto input = std::vector<highway::elevation_input>(extent);
++    const auto position = [&](const auto i, const auto half) {
++        return opts.vertical ? tripoint_om_omt(opts.coordinate + half, i, 0)
++                             : tripoint_om_omt(i, opts.coordinate + half, 0);
++    };
++    using namespace std::views;
++    for (const auto i : iota(0, extent)) {
++        for (const auto half : iota(0, 2)) {
++            const auto pos = position(i, half);
++            const auto& terrain = om.ter(pos);
++            input[i].crossing = input[i].crossing || terrain.id().str().ends_with("_crossing");
++            input[i].blocked = input[i].blocked || terrain->is_river()
++                               || om.ter(pos + tripoint_above) != oter_id("open_air");
++        }
++        if (opts.junction) {
++            if (opts.vertical) {
++                input[i].junction = i == *opts.junction || i == *opts.junction + 1;
++            } else if (i >= *opts.junction - 3 && i <= *opts.junction + 4) {
++                // The east/west highway stays below the north/south flyover.
++                input[i].blocked = true;
++            }
++        }
++    }
++    if (opts.vertical && opts.junction) {
++        const auto j = *opts.junction;
++        // Either elevate the complete 2x2 crossing or retain its original mapgen.
++        if (std::ranges::any_of(iota(j - 1, j + 3), [&](const auto i) { return input[i].blocked; })) {
++            input[j].blocked = input[j + 1].blocked = true;
++        }
++    }
++    const auto plan = highway::plan_elevation(input);
++    for (const auto i : iota(0, extent)) {
++        if (plan[i] == highway::elevation::ground) { continue; }
++        for (const auto half : iota(0, 2)) {
++            const auto pos = position(i, half);
++            const auto prefix = std::string("bn_highway_")
++                                + (opts.vertical ? (half == 0 ? "ns_w" : "ns_e")
++                                                 : (half == 0 ? "ew_n" : "ew_s"));
++            auto ground = prefix + "_under";
++            auto above = prefix + "_deck";
++            if (plan[i] == highway::elevation::ascend || plan[i] == highway::elevation::descend) {
++                const auto ramp = plan[i] == highway::elevation::ascend ? "_ramp_up" : "_ramp_down";
++                ground = prefix + ramp + "_ground";
++                above = prefix + ramp + "_deck";
++            } else if (input[i].junction) {
++                ground = "bn_highway_junction_"
++                         + std::string(i == *opts.junction ? "n" : "s")
++                         + (half == 0 ? "w_under" : "e_under");
++            } else if (input[i].crossing) {
++                ground += "_crossing";
++            }
++            om.ter_set(pos, oter_id(ground));
++            om.ter_set(pos + tripoint_above, oter_id(above));
++        }
++    }
++}
++} // namespace
++
++auto highway::elevate(overmap& om, const std::vector<reserved_tile>& tiles) -> void {
++    auto vertical = std::optional<int>();
++    auto horizontal = std::optional<int>();
++    for (const auto& tile : tiles) {
++        if (tile.kind == tile_kind::north_south_west) { vertical = tile.pos.x(); }
++        if (tile.kind == tile_kind::east_west_north) { horizontal = tile.pos.y(); }
++    }
++    if (vertical) {
++        elevate_axis(om, {.vertical = true, .coordinate = *vertical, .junction = horizontal});
++    }
++    if (horizontal) {
++        elevate_axis(om, {.vertical = false, .coordinate = *horizontal, .junction = vertical});
++    }
++}
+diff --git a/src/overmap/highway_generation.h b/src/overmap/highway_generation.h
+index b2f1f8a..a8b0898 100644
+--- a/src/overmap/highway_generation.h
++++ b/src/overmap/highway_generation.h
+@@ -18,5 +18,7 @@ struct reserved_tile {
+ /// Reserve before cities; restore after local roads and before specials.
+ auto reserve(overmap& om, const grid_options& opts) -> std::vector<reserved_tile>;
+ auto finalize(overmap& om, const std::vector<reserved_tile>& tiles) -> void;
++/// Run once, after the final restoration of local road crossings.
++auto elevate(overmap& om, const std::vector<reserved_tile>& tiles) -> void;
+ auto is_highway(const oter_id& terrain) -> bool;
+ } // namespace highway
+diff --git a/src/overmap/overmap.cpp b/src/overmap/overmap.cpp
+index 710f2ec..83dbb52 100644
+--- a/src/overmap/overmap.cpp
++++ b/src/overmap/overmap.cpp
+@@ -3173,6 +3173,7 @@ void overmap::generate(
+ 
+     // Specials and trailheads may create additional local roads across the corridor.
+     highway::finalize(*this, highway_tiles);
++    highway::elevate(*this, highway_tiles);
+ 
+     polish_rivers(north, east, south, west);
+ 
+diff --git a/tests/highway_elevation_test.cpp b/tests/highway_elevation_test.cpp
+new file mode 100644
+index 0000000..512648b
+--- /dev/null
++++ b/tests/highway_elevation_test.cpp
+@@ -0,0 +1,64 @@
++#include "catch/catch.hpp"
++#include "overmap/highway_elevation.h"
++
++#include <random>
++#include <ranges>
++
++TEST_CASE("highway_elevation_preserves_access_and_merges_nearby_crossings", "[highway]") {
++    auto input = std::vector<highway::elevation_input>(180);
++    input[18].crossing = input[22].crossing = input[25].crossing = true;
++    input[59].junction = input[60].junction = true;
++    const auto plan = highway::plan_elevation(input);
++    using enum highway::elevation;
++    CHECK(plan[18] == ground);
++    CHECK(plan[21] == ascend);
++    CHECK(plan[22] == deck);
++    CHECK(plan[23] == descend);
++    CHECK(plan[25] == ground);
++    CHECK(plan[58] == ascend);
++    CHECK(plan[59] == deck);
++    CHECK(plan[60] == deck);
++    CHECK(plan[61] == descend);
++}
++
++TEST_CASE("highway_elevation_never_leaves_an_open_ended_viaduct", "[highway]") {
++    auto random = std::mt19937(602);
++    using namespace std::views;
++    using enum highway::elevation;
++    // Dense roads, water, occupied upper levels and overmap edges in reproducible combinations.
++    for (const auto iteration : iota(0, 2000)) {
++        INFO(iteration);
++        auto input = std::vector<highway::elevation_input>(180);
++        for (auto& value : input) {
++            value.crossing = random() % 5 == 0;
++            value.blocked = random() % 17 == 0;
++        }
++        const auto plan = highway::plan_elevation(input);
++        CHECK(plan.front() == ground);
++        CHECK(plan.back() == ground);
++        auto on_deck = false;
++        for (const auto i : iota(0, 180)) {
++            CAPTURE(i);
++            if (input[i].blocked) { CHECK(plan[i] == ground); }
++            if (input[i].crossing) {
++                CHECK((plan[i] == ground || plan[i] == deck));
++            }
++            if (plan[i] == ascend) {
++                CHECK_FALSE(on_deck);
++                REQUIRE(i + 1 < 180);
++                CHECK(plan[i + 1] == deck);
++                on_deck = true;
++            } else if (plan[i] == descend) {
++                CHECK(on_deck);
++                REQUIRE(i > 0);
++                CHECK(plan[i - 1] == deck);
++                on_deck = false;
++            } else if (plan[i] == deck) {
++                CHECK(on_deck);
++            } else {
++                CHECK_FALSE(on_deck);
++            }
++        }
++        CHECK_FALSE(on_deck);
++    }
++}
+diff --git a/tests/highway_overpass_mapgen_test.cpp b/tests/highway_overpass_mapgen_test.cpp
+new file mode 100644
+index 0000000..066a120
+--- /dev/null
++++ b/tests/highway_overpass_mapgen_test.cpp
+@@ -0,0 +1,134 @@
++#include "cata_utility.h"
++#include "catch/catch.hpp"
++#include "map/map.h"
++#include "map/mapbuffer_registry.h"
++#include "mapgen/mapgen_constructor.h"
++#include "map_helpers.h"
++#include "options_helpers.h"
++#include "overmap/overmap.h"
++#include "overmap/overmap_special.h"
++#include "overmap/overmapbuffer.h"
++#include "state_helpers.h"
++#include "vehicle/vehicle.h"
++
++#include <array>
++#include <ranges>
++#include <string>
++
++TEST_CASE("highway_overpass_mapgens_have_real_floors_and_paired_ramps", "[highway][mapgen]") {
++    clear_all_state();
++    const auto city_size = override_option("CITY_SIZE", "0");
++    const auto address = point_abs_om(10, 10);
++    auto batch = overmap_special_batch(address, {});
++    ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
++    auto& om = ACTIVE_OVERMAP_BUFFER.get(address);
++    const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
++    disable_mapgen = false;
++    auto index = 0;
++    for (const auto& half : std::array{"ns_w", "ns_e", "ew_n", "ew_s"}) {
++        const auto vertical = std::string(half).starts_with("ns");
++        const auto lane = half[3] == 'w' || half[3] == 'n' ? 10 : 5;
++        const auto edge = half[3] == 'w' || half[3] == 'n' ? 7 : 16;
++        const auto at = [&](const auto across, const auto along) {
++            return vertical ? point_omt_ms(across, along) : point_omt_ms(along, across);
++        };
++        for (const auto& suffix : std::array{
++                 "_deck", "_under", "_under_crossing", "_ramp_up_ground", "_ramp_up_deck",
++                 "_ramp_down_ground", "_ramp_down_deck"}) {
++            const auto id = std::string("bn_highway_") + half + suffix;
++            INFO(id);
++            const auto part = std::string(suffix);
++            const auto upper = part.ends_with("deck");
++            const auto local = tripoint_om_omt(30 + index++, 30, upper ? 1 : 0);
++            om.ter_set(local, oter_id(id));
++            auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
++            REQUIRE(generator.generate(project_combine(address, local), calendar::turn).is_generated());
++            if (part.starts_with("_ramp")) {
++                const auto up = part.starts_with("_ramp_up");
++                CHECK(generator.ter(at(lane, up ? 11 : 12)) ==
++                      ter_id(upper ? "t_ramp_down_low" : "t_ramp_up_low"));
++                CHECK(generator.ter(at(lane, up ? 12 : 11)) ==
++                      ter_id(upper ? "t_ramp_down_high" : "t_ramp_up_high"));
++                CHECK(generator.ter(at(lane, up ? 2 : 21)) ==
++                      ter_id(upper ? "t_open_air" : "t_pavement"));
++                CHECK(generator.ter(at(lane, up ? 21 : 2)) ==
++                      ter_id(upper ? "t_pavement_hw_air" : "t_concrete_wall"));
++                CHECK(generator.ter(at(edge, up ? 21 : 2)) ==
++                      ter_id(upper ? "t_guardrail_hw_air" : "t_concrete_wall"));
++            } else if (upper) {
++                CHECK(generator.ter(at(lane, 0)) == ter_id("t_pavement_hw_air"));
++                CHECK(generator.ter(at(edge, 0)) == ter_id("t_guardrail_hw_air"));
++            } else if (part == "_under_crossing") {
++                CHECK(generator.ter(at(0, 10)) == ter_id("t_pavement"));
++                CHECK(generator.ter(at(23, 10)) == ter_id("t_pavement"));
++            }
++        }
++    }
++    for (const auto& quadrant : std::array{"nw", "ne", "sw", "se"}) {
++        const auto local = tripoint_om_omt(30 + index++, 30, 0);
++        om.ter_set(local, oter_id(std::string("bn_highway_junction_") + quadrant + "_under"));
++        auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
++        REQUIRE(generator.generate(project_combine(address, local), calendar::turn).is_generated());
++        const auto lane = quadrant[0] == 'n' ? 10 : 5;
++        const auto median = quadrant[0] == 'n' ? 23 : 0;
++        CHECK(generator.ter(point_omt_ms(0, lane)) == ter_id("t_pavement"));
++        CHECK(generator.ter(point_omt_ms(23, lane)) == ter_id("t_pavement"));
++        CHECK(generator.ter(point_omt_ms(12, median)) == ter_id("t_guardrail"));
++    }
++}
++
++TEST_CASE("vehicle_drives_over_generated_highway_ramps", "[highway][vehicle][ramp]") {
++    using namespace std::views;
++    for (const auto& half : std::array{"ns_w", "ns_e", "ew_n", "ew_s"}) {
++        for (const auto& direction : std::array{"up", "down"}) {
++            clear_all_state();
++            calendar::turn = calendar::turn_zero;
++            const auto city_size = override_option("CITY_SIZE", "0");
++            const auto address = point_abs_om(10, 10);
++            auto batch = overmap_special_batch(address, {});
++            ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
++            auto& om = ACTIVE_OVERMAP_BUFFER.get(address);
++            const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
++            disable_mapgen = false;
++            auto& here = get_map();
++            build_test_map(ter_id("t_pavement"));
++            const auto vertical = std::string(half).starts_with("ns");
++            const auto up = std::string(direction) == "up";
++            const auto prefix = std::string("bn_highway_") + half + "_ramp_" + direction;
++            INFO(prefix);
++            for (const auto z : iota(0, 2)) {
++                const auto local = tripoint_om_omt(40, 40, z);
++                om.ter_set(local, oter_id(prefix + (z == 0 ? "_ground" : "_deck")));
++                auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
++                REQUIRE(generator.generate(project_combine(address, local), calendar::turn).is_generated());
++                for (const auto x : iota(0, 24)) {
++                    for (const auto y : iota(0, 24)) {
++                        here.ter_set(tripoint_bub_ms(44 + x, 44 + y, z), generator.ter(point_omt_ms(x, y)));
++                    }
++                }
++                here.invalidate_map_cache(z);
++                here.build_map_cache(z, true);
++            }
++            const auto lane = half[3] == 'w' || half[3] == 'n' ? 10 : 5;
++            const auto start = vertical ? tripoint_bub_ms(44 + lane, 50, up ? 0 : 1)
++                                       : tripoint_bub_ms(50, 44 + lane, up ? 0 : 1);
++            auto* vehicle = here.add_vehicle(vproto_id("motorcycle"), start,
++                                             vertical ? 90_degrees : 0_degrees, 1, 0);
++            REQUIRE(vehicle != nullptr);
++            vehicle->tags.insert("IN_CONTROL_OVERRIDE");
++            vehicle->engine_on = true;
++            vehicle->cruise_velocity = vehicle->velocity = 179;
++            for (const auto cycle : iota(0, 15)) {
++                CAPTURE(cycle);
++                here.vehmove();
++                REQUIRE_FALSE(vehicle->skidding);
++            }
++            CHECK(vehicle->bub_ms_location().z() == (up ? 1 : 0));
++            CHECK(vehicle->velocity > 0);
++            for (const auto& pos : vehicle->get_points()) {
++                CHECK(pos.z() == (up ? 1 : 0));
++            }
++            here.destroy_vehicle(vehicle);
++        }
++    }
++}
+diff --git a/tests/highway_test.cpp b/tests/highway_test.cpp
+index 5bbbeeb..9603b1d 100644
+--- a/tests/highway_test.cpp
++++ b/tests/highway_test.cpp
+@@ -138,3 +138,57 @@ TEST_CASE("highway_json_mapgens_generate_real_pavement", "[highway][mapgen][slow
+         }
+     }
+ }
++
++TEST_CASE("highway_grade_separation_keeps_both_levels_connected", "[highway][overmap]") {
++    clear_all_state();
++    auto om = std::make_unique<overmap>(point_abs_om());
++    const auto layout = highway::plan_grid({}, OMAPX);
++    const auto tiles = highway::reserve(*om, {});
++    for (const auto y : std::array{18, 22}) {
++        om->ter_set(tripoint_om_omt(*layout.vertical, y, 0), oter_id("road_ew"));
++    }
++    highway::finalize(*om, tiles);
++    highway::elevate(*om, tiles);
++    const auto x = *layout.vertical;
++    const auto y = *layout.horizontal;
++    CHECK(om->ter(tripoint_om_omt(x, 18, 0)) == oter_id("bn_highway_ns_w_crossing"));
++    CHECK(om->ter(tripoint_om_omt(x, 21, 0)) == oter_id("bn_highway_ns_w_ramp_up_ground"));
++    CHECK(om->ter(tripoint_om_omt(x, 22, 0)) == oter_id("bn_highway_ns_w_under_crossing"));
++    CHECK(om->ter(tripoint_om_omt(x + 1, 22, 0)) == oter_id("bn_highway_ns_e_under_crossing"));
++    CHECK(om->ter(tripoint_om_omt(x, 22, 1)) == oter_id("bn_highway_ns_w_deck"));
++    CHECK(om->ter(tripoint_om_omt(x, 23, 0)) == oter_id("bn_highway_ns_w_ramp_down_ground"));
++    CHECK(om->ter(tripoint_om_omt(x, y, 0)) == oter_id("bn_highway_junction_nw_under"));
++    CHECK(om->ter(tripoint_om_omt(x + 1, y + 1, 0)) == oter_id("bn_highway_junction_se_under"));
++    CHECK(om->ter(tripoint_om_omt(x, y, 1)) == oter_id("bn_highway_ns_w_deck"));
++    CHECK(om->ter(tripoint_om_omt(x, y - 1, 0)) == oter_id("bn_highway_ns_w_ramp_up_ground"));
++    CHECK(om->ter(tripoint_om_omt(x, y + 2, 0)) == oter_id("bn_highway_ns_w_ramp_down_ground"));
++}
++
++TEST_CASE("highway_bridge_covers_both_carriageways", "[highway][overmap]") {
++    clear_all_state();
++    auto om = std::make_unique<overmap>(point_abs_om());
++    const auto layout = highway::plan_grid({}, OMAPX);
++    const auto west = tripoint_om_omt(*layout.vertical, 7, 0);
++    om->ter_set(west, oter_id("river_center"));
++    const auto tiles = highway::reserve(*om, {});
++    om->ter_set(west, oter_id("road_ew"));
++    highway::finalize(*om, tiles);
++    highway::elevate(*om, tiles);
++    CHECK(om->ter(west) == oter_id("bn_highway_ns_w_bridge"));
++    CHECK(om->ter(west + tripoint_east) == oter_id("bn_highway_ns_e_bridge"));
++    CHECK(om->ter(west + tripoint_above) == oter_id("open_air"));
++}
++
++TEST_CASE("highway_flyover_does_not_overwrite_existing_upper_special", "[highway][overmap]") {
++    clear_all_state();
++    auto om = std::make_unique<overmap>(point_abs_om());
++    const auto layout = highway::plan_grid({}, OMAPX);
++    const auto tiles = highway::reserve(*om, {});
++    const auto pos = tripoint_om_omt(*layout.vertical, *layout.horizontal, 0);
++    om->ter_set(pos + tripoint_above, oter_id("field"));
++    highway::finalize(*om, tiles);
++    highway::elevate(*om, tiles);
++    CHECK(om->ter(pos) == oter_id("bn_highway_junction_nw"));
++    CHECK(om->ter(pos + tripoint_above) == oter_id("field"));
++    CHECK(om->ter(pos + tripoint_south + tripoint_above) == oter_id("open_air"));
++}
+diff --git a/utilities/highway/check_elevation.cpp b/utilities/highway/check_elevation.cpp
+new file mode 100644
+index 0000000..f619193
+--- /dev/null
++++ b/utilities/highway/check_elevation.cpp
+@@ -0,0 +1,53 @@
++#include "../../src/overmap/highway_elevation.h"
++
++#include <array>
++#include <cassert>
++#include <iostream>
++#include <random>
++#include <ranges>
++
++/// Standalone topology check; native game and driving tests run separately in CI.
++auto main() -> int {
++    auto random = std::mt19937(602);
++    using namespace std::views;
++    using enum highway::elevation;
++    for (const auto iteration : iota(0, 10000)) {
++        auto input = std::vector<highway::elevation_input>(180);
++        for (auto& value : input) {
++            value.crossing = random() % 5 == 0;
++            value.blocked = random() % 17 == 0;
++        }
++        const auto plan = highway::plan_elevation(input);
++        assert(plan.front() == ground && plan.back() == ground);
++        auto elevated = false;
++        for (const auto i : iota(0, 180)) {
++            assert(!input[i].blocked || plan[i] == ground);
++            assert(!input[i].crossing || plan[i] == ground || plan[i] == deck);
++            if (plan[i] == ascend) {
++                assert(!elevated && plan[i + 1] == deck);
++                elevated = true;
++            } else if (plan[i] == descend) {
++                assert(elevated && plan[i - 1] == deck);
++                elevated = false;
++            } else {
++                assert((plan[i] == deck) == elevated);
++            }
++        }
++        assert(!elevated);
++        (void)iteration;
++    }
++    auto input = std::vector<highway::elevation_input>(180);
++    for (const auto y : std::array{18, 22, 25, 28, 30, 34, 36, 39, 42, 95, 97, 100, 136, 137, 148, 167}) {
++        input[y].crossing = true;
++    }
++    input[59].junction = input[60].junction = true;
++    input[12].blocked = true;
++    const auto plan = highway::plan_elevation(input);
++    std::cout << "PASS: 10,000 reproducible network layouts; original save's NS crossings:\n";
++    for (const auto i : iota(0, 180)) {
++        if (plan[i] != ground || input[i].crossing) {
++            std::cout << i << ':' << static_cast<int>(plan[i]) << ' ';
++        }
++    }
++    std::cout << '\n';
++}
+diff --git a/utilities/highway/check_overpasses.py b/utilities/highway/check_overpasses.py
+new file mode 100644
+index 0000000..6e850bc
+--- /dev/null
++++ b/utilities/highway/check_overpasses.py
+@@ -0,0 +1,52 @@
++#!/usr/bin/env python3
++"""Verify 3D lane continuity, median seams, matched slopes and unobstructed underpasses."""
++import json
++from pathlib import Path
++ROOT = Path(__file__).resolve().parents[2]
++entries = json.loads((ROOT / 'data/json/mapgen/bn_highway_overpasses.json').read_text())
++terrains = json.loads((ROOT / 'data/json/overmap/overmap_terrain/bn_highway_overpasses.json').read_text())
++rows = {e['om_terrain']: e['object']['rows'] for e in entries}
++assert len(rows) == len(entries) == len(terrains) == 32
++assert set(rows) == {e['id'] for e in terrains}
++for e in entries:
++    name, obj = e['om_terrain'], e['object']
++    assert len(obj['rows']) == 24 and all(len(r) == 24 for r in obj['rows']), name
++    assert set(''.join(obj['rows'])) <= obj['terrain'].keys(), name
++
++
++def transpose(tile):
++    return [''.join(r[x] for r in tile) for x in range(24)]
++
++
++for half, lo, hi in [('w', 8, 22), ('e', 1, 15)]:
++    for suffix in ['deck', 'under', 'under_crossing', 'ramp_up_ground', 'ramp_up_deck',
++                   'ramp_down_ground', 'ramp_down_deck']:
++        assert transpose(rows[f'bn_highway_ns_{half}_{suffix}']) == rows[
++            f'bn_highway_ew_{"n" if half == "w" else "s"}_{suffix}']
++    deck = rows[f'bn_highway_ns_{half}_deck']
++    assert all(r[lo-1] == r[hi+1] == '|' for r in deck)
++    assert all(sum(c in '.*' for c in r) == 15 for r in deck)
++    for direction in ['up', 'down']:
++        low = rows[f'bn_highway_ns_{half}_ramp_{direction}_ground']
++        top = rows[f'bn_highway_ns_{half}_ramp_{direction}_deck']
++        if direction == 'down':
++            low, top = low[::-1], top[::-1]
++        for x in range(lo, hi+1):
++            assert low[11][x] == 'u' and low[12][x] == 'U'
++            assert top[11][x] == 'D' and top[12][x] == 'd'
++            assert all(low[y][x] in '.*' and top[y][x] == 'g' for y in range(11))
++            assert all(low[y][x] == '#' and top[y][x] in '.*' for y in range(13, 24))
++        assert top[-1].replace('*', '.') == deck[0].replace('*', '.')
++    under = rows[f'bn_highway_ns_{half}_under_crossing']
++    assert all(under[y][x] in '.*' for y in range(4,20) for x in range(24))
++ns = [a+b for a,b in zip(rows['bn_highway_ns_w_deck'], rows['bn_highway_ns_e_deck'])]
++assert all(r[23:25] == '||' for r in ns)
++ew = rows['bn_highway_ew_n_deck'] + rows['bn_highway_ew_s_deck']
++assert ew[23] == ew[24] == '|' * 24
++for rowhalf in 'ns':
++    for colhalf in 'we':
++        tile = rows[f'bn_highway_junction_{rowhalf}{colhalf}_under']
++        lo, hi = (8,22) if rowhalf == 'n' else (1,15)
++        assert all(tile[y][x] in '.*' for y in range(lo,hi+1) for x in range(24))
++        assert all(tile[y][x] == '|' for y in [lo-1, hi+1] for x in range(24))
++print('PASS: 32 mapgens; matched two-level ramps; 2x15 lanes; NS/EW medians; lower crossings')
+diff --git a/utilities/highway/generate_overpasses.py b/utilities/highway/generate_overpasses.py
+new file mode 100644
+index 0000000..6f36a1d
+--- /dev/null
++++ b/utilities/highway/generate_overpasses.py
+@@ -0,0 +1,82 @@
++#!/usr/bin/env python3
++"""Reproduce DEV0.2 mapgens: 15-square carriageways, paired ramps and two-level crossings."""
++import json
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parents[2]
++base = json.loads((ROOT / 'data/json/mapgen/bn_highways.json').read_text())
++base = {entry['om_terrain']: entry['object']['rows'] for entry in base}
++mapgens, terrains = [], []
++GROUND = {'g': 't_grass', '.': 't_pavement', '*': 't_pavement_y', '|': 't_guardrail',
++          '#': 't_concrete_wall', 'u': 't_ramp_up_low', 'U': 't_ramp_up_high'}
++DECK = {'g': 't_open_air', '.': 't_pavement_hw_air', '*': 't_pavement_y_hw_air',
++        '|': 't_guardrail_hw_air', 'D': 't_ramp_down_low', 'd': 't_ramp_down_high'}
++
++
++def transpose(rows):
++    return [''.join(row[x] for row in rows) for x in range(24)]
++
++
++def add(name, rows, palette, elevated=False):
++    mapgens.append({'type': 'mapgen', 'om_terrain': name, 'method': 'json',
++                    'object': {'fill_ter': palette['g'], 'rows': rows, 'terrain': palette}})
++    terrains.append({'type': 'overmap_terrain', 'id': name, 'copy-from': 'generic_transportation',
++                     'name': ('highway, elevated roadway' if elevated else
++                              'highway, approach' if '_ramp_' in name else
++                              'highway, underpass'),
++                     'sym': '\u2502' if '_ns_' in name else '\u2500',
++                     'color': 'light_cyan' if elevated else 'light_gray',
++                     'see_cost': 2, 'looks_like': 'hiway_ns' if '_ns_' in name else 'hiway_ew',
++                     'flags': ['NO_ROTATE']})
++
++
++for half, lo, hi in [('w', 8, 22), ('e', 1, 15)]:
++    straight = base['bn_highway_ns_' + half]
++    for orientation, target_half in [('ns', half), ('ew', 'n' if half == 'w' else 's')]:
++        orient = (lambda rows: rows) if orientation == 'ns' else transpose
++        prefix = 'bn_highway_' + orientation + '_' + target_half
++        add(prefix + '_deck', orient(straight), DECK, True)
++        for crossing in [False, True]:
++            rows = [['g'] * 24 for _ in range(24)]
++            if crossing:
++                for y in range(4, 20):
++                    rows[y] = ['.'] * 24
++                    if y in (11, 12):
++                        rows[y] = ['*' if x % 4 >= 2 else '.' for x in range(24)]
++            for y in (2, 21):
++                for x in (lo, hi):
++                    rows[y][x] = '#'
++            add(prefix + '_under' + ('_crossing' if crossing else ''),
++                orient([''.join(row) for row in rows]), GROUND)
++        for direction in ['up', 'down']:
++            ground, deck = [], []
++            for y in range(24):
++                bottom, top = list(straight[y]), ['g'] * 24
++                for x in range(lo - 1, hi + 2):
++                    if y > 12:
++                        bottom[x] = '#'
++                    if y >= 11:
++                        top[x] = '|' if x in (lo - 1, hi + 1) else (
++                            'D' if y == 11 else 'd' if y == 12 else straight[y][x])
++                    if lo <= x <= hi and y in (11, 12):
++                        bottom[x] = 'u' if y == 11 else 'U'
++                ground.append(''.join(bottom))
++                deck.append(''.join(top))
++            if direction == 'down':
++                ground.reverse()
++                deck.reverse()
++            add(prefix + '_ramp_' + direction + '_ground', orient(ground), GROUND)
++            add(prefix + '_ramp_' + direction + '_deck', orient(deck), DECK, True)
++
++for quadrant in ['nw', 'ne', 'sw', 'se']:
++    half = quadrant[0]
++    rows = [list(row) for row in base['bn_highway_ew_' + half]]
++    # Piers stand outside the lower highway's carriageway and guardrails.
++    for x in ((8, 22) if quadrant[1] == 'w' else (1, 15)):
++        rows[2 if half == 'n' else 21][x] = '#'
++    add('bn_highway_junction_' + quadrant + '_under', [''.join(row) for row in rows], GROUND)
++
++for path, content in [('data/json/mapgen/bn_highway_overpasses.json', mapgens),
++                      ('data/json/overmap/overmap_terrain/bn_highway_overpasses.json', terrains)]:
++    (ROOT / path).write_text(json.dumps(content, ensure_ascii=False, indent=2) + '\n')
++print(f'Generated {len(mapgens)} paired overpass templates')

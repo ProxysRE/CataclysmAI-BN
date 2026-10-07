@@ -1,4 +1,4 @@
-name: Build BN Highways DEV0.1 for Windows
+name: Build BN Highways DEV0.2 for Windows
 on:
   push:
     branches: [build/highways-dev01-windows]
@@ -70,6 +70,14 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Patch does not apply" }
           git apply $patch
           if ($LASTEXITCODE -ne 0) { throw "Patch failed" }
+          $upgrade = "${{ github.workspace }}/package/highways/highways_dev02.patch"
+          if ((Get-FileHash $upgrade -Algorithm SHA256).Hash.ToLower() -ne "3a31504e46a249270e0cfe931c895d130c555aca0347d2be2564f4173049936f") { throw "DEV0.2 checksum mismatch" }
+          git apply --check $upgrade
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.2 patch does not apply" }
+          git apply $upgrade
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.2 patch failed" }
+          python utilities/highway/check_overpasses.py
+          if ($LASTEXITCODE -ne 0) { throw "Overpass geometry validation failed" }
           python utilities/highway/check_mapgen.py
           if ($LASTEXITCODE -ne 0) { throw "Mapgen validation failed" }
       - uses: actions/download-artifact@v4
@@ -94,11 +102,19 @@ jobs:
           vcpkgDirectory: "${{ github.workspace }}/vcpkg"
       - name: Integrate vcpkg
         run: vcpkg integrate install
+      - name: Format changed highway code before compilation
+        run: |
+          $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
+          if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
+          if (!(Test-Path $formatter)) { throw "Missing clang-format" }
+          $files = @("src/overmap/highway_elevation.h", "src/overmap/highway_generation.cpp", "src/overmap/highway_generation.h", "tests/highway_test.cpp", "tests/highway_elevation_test.cpp", "tests/highway_overpass_mapgen_test.cpp", "utilities/highway/check_elevation.cpp")
+          & $formatter -i @files
+          if ($LASTEXITCODE -ne 0) { throw "Highway formatting failed" }
       - name: Configure Windows game
         env:
           VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}/bn/.github/vcpkg_triplets
         run: |
-          cmake -G Ninja -S . -B out/build/highways -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROJECT_INCLUDE_BEFORE="${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/bn/build-scripts/MSVC.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=False -DCURSES=False -DLOCALIZE=True -DTILES=True -DSOUND=True -DTESTS=False -DRELEASE=ON -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
+          cmake -G Ninja -S . -B out/build/highways -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROJECT_INCLUDE_BEFORE="${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/bn/build-scripts/MSVC.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=False -DCURSES=False -DLOCALIZE=True -DTILES=True -DSOUND=True -DTESTS=True -DRELEASE=ON -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
           if ($LASTEXITCODE -ne 0) { throw "CMake configuration failed" }
       - name: Restore official release translations
         run: |
@@ -125,14 +141,30 @@ jobs:
           Write-Host "Restored $count translation files from the official 2026-10-01 release"
       - name: Build Windows executable
         run: |
-          cmake --build out/build/highways --target cataclysm-bn-tiles --parallel 4
+          cmake --build out/build/highways --target cataclysm-bn-tiles cata_test-tiles --parallel 4
           if ($LASTEXITCODE -ne 0) { throw "Windows compilation failed" }
+      - name: Test real highway generation and vehicle ramps
+        env:
+          CATA_TEST_COMPUTE_ACCELERATION: cpu
+          SDL_AUDIODRIVER: dummy
+        run: |
+          $test = Get-ChildItem out/build/highways -Filter cata_test-tiles.exe -Recurse | Select-Object -First 1
+          if (!$test) { throw "Missing native test executable" }
+          & $test.FullName "[highway],[vehicle][ramp]" --rng-seed 602 --reporter compact --user-dir=./highway_ci_test_user/ 2>&1 | Tee-Object highways-tests.log
+          if ($LASTEXITCODE -ne 0) { throw "Native highway/ramp tests failed" }
+      - name: Upload test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: highways-dev02-test-log
+          path: bn/highways-tests.log
+          if-no-files-found: ignore
       - name: Package complete game
         run: |
-          "BN Highways DEV0.1; base $env:BN_BASE; patch ${{ github.sha }}" | Set-Content VERSION.txt
-          cmake --install out/build/highways --prefix "${{ github.workspace }}/CBN_Highways_DEV0.1_Windows" --config Release
+          "BN Highways DEV0.2; base $env:BN_BASE; patch ${{ github.sha }}" | Set-Content VERSION.txt
+          cmake --install out/build/highways --prefix "${{ github.workspace }}/CBN_Highways_DEV0.2_Windows" --config Release
           if ($LASTEXITCODE -ne 0) { throw "Game installation failed" }
-          $dist = "${{ github.workspace }}/CBN_Highways_DEV0.1_Windows"
+          $dist = "${{ github.workspace }}/CBN_Highways_DEV0.2_Windows"
           $exe = Join-Path $dist "cataclysm-bn-tiles.exe"
           if (!(Test-Path $exe)) { throw "Missing executable" }
           if (!(Test-Path "$dist/data/json/mapgen/bn_highways.json")) { throw "Missing highway mapgens" }
@@ -140,11 +172,11 @@ jobs:
           if ($deps -match "SDL3") { throw "Unexpected SDL DLL dependency" }
           & $exe --version
           if ($LASTEXITCODE -ne 0) { throw "Executable version check failed" }
-          Set-Content "$dist/HIGHWAYS_README.txt" "Create a NEW TEST WORLD. Enable Experimental highway network. Keep Highway spacing at 3. Do not change these options after world generation. DEV0.1 uses ground-level crossings and flat bridges. This package includes the Windows executable and matching game data."
+          Set-Content "$dist/HIGHWAYS_README.txt" "Create a NEW TEST WORLD. Enable Experimental highway network. Keep Highway spacing at 3. Do not change these options after world generation. DEV0.2 adds highway flyovers and selected local-road underpasses. Surface access points and paired flat water bridges remain. Dedicated exit ramps and routing around towns are not implemented. Existing generated terrain is not upgraded. This package includes the Windows executable and matching game data."
       - name: Upload playable Windows package
         uses: actions/upload-artifact@v4
         with:
-          name: CBN_Highways_DEV0.1_Windows
-          path: CBN_Highways_DEV0.1_Windows/
+          name: CBN_Highways_DEV0.2_Windows
+          path: CBN_Highways_DEV0.2_Windows/
           if-no-files-found: error
           retention-days: 30
