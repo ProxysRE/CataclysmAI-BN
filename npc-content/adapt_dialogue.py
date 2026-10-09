@@ -1,9 +1,78 @@
 #!/usr/bin/env python3
 """Translate proven BN-compatible constructs; retain and report unresolved ones."""
 import argparse
+import ast
 import collections
 import json
+import math
+import operator
+import re
 from pathlib import Path
+
+
+def constant(expression):
+    """Evaluate arithmetic literals only; never execute source text."""
+    operations = {ast.Add: operator.add, ast.Sub: operator.sub,
+                  ast.Mult: operator.mul, ast.Div: operator.truediv}
+
+    def visit(node):
+        if isinstance(node, ast.Constant) and type(node.value) in (int, float):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in operations:
+            return operations[type(node.op)](visit(node.left), visit(node.right))
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub):
+            return -visit(node.operand)
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "ceil" and len(node.args) == 1 and not node.keywords:
+            return math.ceil(visit(node.args[0]))
+        raise ValueError("Not constant arithmetic")
+
+    return visit(ast.parse(expression, mode="eval").body)
+
+
+def expand_eocs(value, definitions, counts, variables=None, stack=()):
+    variables = variables or {}
+    if isinstance(value, list):
+        return [expand_eocs(entry, definitions, counts, variables, stack) for entry in value]
+    if not isinstance(value, dict):
+        return value
+    if set(value) == {"context_val"} and value["context_val"] in variables:
+        return variables[value["context_val"]]
+    if "run_eocs" in value:
+        names = value["run_eocs"]
+        names = [names] if isinstance(names, str) else names
+        context = {**variables, **value.get("variables", {})}
+        effects = []
+        for name in names:
+            if name not in definitions or name in stack:
+                raise ValueError(f"Unknown or recursive EOC: {name}")
+            definition = definitions[name]
+            required = definition.get("condition", {}).get("expects_vars", [])
+            if set(required) - context.keys():
+                raise ValueError(f"Missing EOC context for {name}")
+            if definition.get("condition", {}) and not required:
+                raise ValueError(f"Conditional EOC cannot be statically expanded: {name}")
+            expanded = expand_eocs(definition["effect"], definitions, counts, context, stack + (name,))
+            for entry in expanded:
+                effects.extend(entry if isinstance(entry, list) else [entry])
+            counts["inlined_eoc_calls"] += 1
+        return effects
+    result = {}
+    for key, entry in value.items():
+        if key == "math":
+            expressions = []
+            for expression in entry:
+                if isinstance(expression, str):
+                    for name, literal in variables.items():
+                        if type(literal) in (int, float):
+                            expression = re.sub(r"\b_" + re.escape(name) + r"\b", str(literal), expression)
+                expressions.append(expression)
+            result[key] = expressions
+        else:
+            expanded = expand_eocs(entry, definitions, counts, variables, stack)
+            if key == "effect" and isinstance(expanded, list):
+                expanded = [part for item in expanded for part in (item if isinstance(item, list) else [item])]
+            result[key] = expanded
+    return result
 
 
 def adapt(value, counts):
@@ -11,6 +80,31 @@ def adapt(value, counts):
         return [adapt(entry, counts) for entry in value]
     if not isinstance(value, dict):
         return value
+    if "math" in value and len(value["math"]) == 1:
+        expression = value["math"][0]
+        if isinstance(expression, str):
+            match = re.fullmatch(r"u_(\w+)\s*(==|!=|>=|<=|>|<|\+=|-=|=)\s*(.+)", expression)
+            if match:
+                name, operation, rhs = match.groups()
+                try:
+                    number = constant(rhs)
+                except (ValueError, SyntaxError, ZeroDivisionError):
+                    number = None
+                if number is not None and math.isfinite(number):
+                    if operation == "=":
+                        counts["constant_numeric_assignment"] += 1
+                        return {"u_add_var": name, "value": str(number)}
+                    if float(number).is_integer():
+                        if operation in {"+=", "-="}:
+                            counts["constant_numeric_adjustment"] += 1
+                            return {"u_adjust_var": name, "adjustment": int(number) * (-1 if operation == "-=" else 1)}
+                        counts["integer_numeric_condition"] += 1
+                        return {"u_compare_var": name, "op": operation, "value": int(number)}
+    for source in ("set_string_var", "copy_var"):
+        target = value.get("target_var", {})
+        if source in value and isinstance(value[source], str) and set(target) == {"u_val"}:
+            counts["constant_string_assignment"] += 1
+            return {"u_add_var": target["u_val"], "value": value[source]}
     if "compare_string" in value:
         operands = value["compare_string"]
         if len(operands) == 2:
@@ -41,7 +135,8 @@ def main():
     counts = collections.Counter()
     unresolved = collections.Counter()
     unsupported = {"math", "run_eocs", "queue_eocs", "u_set_fac_relation",
-                   "u_consume_item", "u_add_faction_trust", "shopkeeper_consumption_rates"}
+                   "u_add_faction_trust", "shopkeeper_consumption_rates",
+                   "u_spawn_item", "set_string_var", "copy_var"}
 
     def inspect(value):
         if isinstance(value, dict):
@@ -53,8 +148,11 @@ def main():
             for entry in value:
                 inspect(entry)
 
-    for source in sorted(args.source.rglob("*.json")):
-        data = adapt(json.loads(source.read_text()), counts)
+    sources = {source: json.loads(source.read_text()) for source in sorted(args.source.rglob("*.json"))}
+    definitions = {entry["id"]: entry for entries in sources.values() for entry in entries if entry.get("type") == "effect_on_condition"}
+    for source, entries in sources.items():
+        entries = [entry for entry in entries if entry.get("type") != "effect_on_condition"]
+        data = adapt(expand_eocs(entries, definitions, counts), counts)
         inspect(data)
         target = args.output / source.relative_to(args.source)
         target.parent.mkdir(parents=True, exist_ok=True)

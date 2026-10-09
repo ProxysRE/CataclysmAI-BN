@@ -45,3 +45,7 @@ is gzip compressed and base64 encoded to make the source checkpoint portable.
 Missing DDA locations, items, characters, missions and engine behavior are part of the port scope, including transitive dependencies. Do not replace them with stubs or remove their dialogue branches. The dependency checkpoint includes original quest items and scrap-trader route definitions. It is a conservative candidate set, not a mod load list.
 
 `adapt_dialogue.py` translates constant string equality to BN variable conditions and converts NPC shopkeeper fields. It preserves unresolved math/EOC effects and reports them. Native validation remains pending.
+
+## Dialogue adapter progress
+
+Pinned BN condition.cpp, npctalk.cpp and npc_class.cpp were inspected. Static EOC calls are inlined with required-context and recursion checks. Constant arithmetic uses an AST allowlist, never eval. Assignments, integer comparisons and integer adjustments use BN variables. Fractional comparisons and timers remain unresolved rather than being truncated. Ammo exchange coefficients and ceil rounding, consumption-before-credit order and weapon cleanup-before-selection were checked. Upstream EOC definitions remain in the source checkpoint; generated dialogue replaces them with their expanded actions. Item consumption is already supported by this BN version. Remaining features include dynamic item awards, variable arithmetic, timers, faction relations and shop consumption policy.
