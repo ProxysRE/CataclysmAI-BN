@@ -1,0 +1,321 @@
+--- a/src/condition.cpp
++++ b/src/condition.cpp
+@@ -1,4 +1,5 @@
+ #include "condition.h"
++#include "artisan_bn_bridge.h"
+ 
+ #include "auto_pickup.h"
+ #include "avatar.h"
+@@ -915,7 +916,21 @@
+         }
+         return conditionals;
+     };
+-    if( jo.has_array( "and" ) ) {
++    if( jo.has_object( "dda_expression" ) ) {
++        const auto expression = dda_port::read_expression( jo.get_object( "dda_expression" ) );
++        found_sub_member = true;
++        condition = [expression]( const auto &d ) {
++            if( !d.alpha ) {
++                return false;
++            }
++            const auto result = dda_port::evaluate_for_player( expression, *d.alpha );
++            if( !result ) {
++                debugmsg( "%s", result.error() );
++                return false;
++            }
++            return *result != 0;
++        };
++    } else if( jo.has_array( "and" ) ) {
+         std::vector<conditional_t> and_conditionals = parse_array( jo, "and" );
+         found_sub_member = true;
+         condition = [and_conditionals]( const T & d ) {
+--- a/src/npctalk.cpp
++++ b/src/npctalk.cpp
+@@ -1,4 +1,5 @@
+ #include "npctalk.h"
++#include "artisan_bn_bridge.h"
+ 
+ #include "activity_type.h"
+ #include "auto_pickup.h"
+@@ -3000,7 +3001,24 @@
+ {
+     talk_effect_fun_t subeffect_fun;
+     const bool is_npc = true;
+-    if( jo.has_string( "u_add_effect" ) ) {
++    if( jo.has_object( "dda_set_variable" ) ) {
++        const auto specification = jo.get_object( "dda_set_variable" );
++        const auto name = specification.get_string( "target" );
++        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [name, expression]( const auto &d ) {
++                if( !d.alpha ) {
++                    return;
++                }
++                const auto result = dda_port::evaluate_for_player( expression, *d.alpha );
++                if( !result ) {
++                    debugmsg( "%s", result.error() );
++                    return;
++                }
++                dda_port::store_numeric_value( *d.alpha, name, *result );
++            }
++        } );
++    } else if( jo.has_string( "u_add_effect" ) ) {
+         subeffect_fun.set_add_effect( jo, "u_add_effect" );
+     } else if( jo.has_string( "npc_add_effect" ) ) {
+         subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
+--- /dev/null
++++ b/src/artisan_expression.h
+@@ -0,0 +1,105 @@
++#pragma once
++
++#include <cmath>
++#include <expected>
++#include <optional>
++#include <string>
++#include <unordered_map>
++#include <vector>
++
++namespace dda_port {
++
++/// Expression IR compiled from pinned DDA artisan dialogue, independent of BN objects.
++struct expression {
++    std::string op;
++    double value = 0;
++    std::string name;
++    std::vector<expression> args;
++};
++
++struct evaluation_context {
++    const std::unordered_map<std::string, double> &variables;
++    double now_seconds = 0;
++};
++
++/// Return an error for malformed or non-finite calculations rather than granting rewards.
++inline auto evaluate( const expression &node, const evaluation_context &context )
++-> std::expected<double, std::string> {
++    const auto valid_number = []( const auto value ) -> std::expected<double, std::string> {
++        if( !std::isfinite( value ) ) {
++            return std::unexpected( "Non-finite dialogue expression" );
++        }
++        return value;
++    };
++    if( node.op == "literal" && node.args.empty() ) {
++        return valid_number( node.value );
++    }
++    if( node.op == "now" && node.args.empty() ) {
++        return valid_number( context.now_seconds );
++    }
++    if( node.op == "variable" && node.args.empty() ) {
++        const auto found = context.variables.find( node.name );
++        return valid_number( found == context.variables.end() ? 0.0 : found->second );
++    }
++    if( node.op == "has_var" && node.args.size() == 1 && node.args[0].op == "variable" ) {
++        return context.variables.contains( node.args[0].name ) ? 1.0 : 0.0;
++    }
++    if( node.args.size() == 1 ) {
++        const auto argument = evaluate( node.args[0], context );
++        if( !argument ) {
++            return std::unexpected( argument.error() );
++        }
++        if( node.op == "ceil" ) {
++            return valid_number( std::ceil( *argument ) );
++        }
++        if( node.op == "negate" ) {
++            return valid_number( -*argument );
++        }
++        if( node.op == "not" ) {
++            return *argument == 0 ? 1.0 : 0.0;
++        }
++    }
++    if( node.args.size() == 2 ) {
++        const auto lhs = evaluate( node.args[0], context );
++        const auto rhs = evaluate( node.args[1], context );
++        if( !lhs || !rhs ) {
++            return std::unexpected( !lhs ? lhs.error() : rhs.error() );
++        }
++        if( node.op == "add" ) {
++            return valid_number( *lhs + *rhs );
++        }
++        if( node.op == "subtract" ) {
++            return valid_number( *lhs - *rhs );
++        }
++        if( node.op == "multiply" ) {
++            return valid_number( *lhs * *rhs );
++        }
++        if( node.op == "divide" ) {
++            if( *rhs == 0 ) {
++                return std::unexpected( "Division by zero in dialogue expression" );
++            }
++            return valid_number( *lhs / *rhs );
++        }
++        if( node.op == "equal" ) {
++            return *lhs == *rhs ? 1.0 : 0.0;
++        }
++        if( node.op == "not_equal" ) {
++            return *lhs != *rhs ? 1.0 : 0.0;
++        }
++        if( node.op == "greater" ) {
++            return *lhs > *rhs ? 1.0 : 0.0;
++        }
++        if( node.op == "greater_equal" ) {
++            return *lhs >= *rhs ? 1.0 : 0.0;
++        }
++        if( node.op == "less" ) {
++            return *lhs < *rhs ? 1.0 : 0.0;
++        }
++        if( node.op == "less_equal" ) {
++            return *lhs <= *rhs ? 1.0 : 0.0;
++        }
++    }
++    return std::unexpected( "Unknown operation or invalid arity: " + node.op );
++}
++
++} // namespace dda_port
+--- /dev/null
++++ b/src/artisan_bn_bridge.h
+@@ -0,0 +1,91 @@
++#pragma once
++
++#include "artisan_expression.h"
++#include "calendar.h"
++#include "json.h"
++#include "player.h"
++
++#include <charconv>
++#include <array>
++#include <ranges>
++
++namespace dda_port {
++
++inline auto read_expression( const JsonObject &object ) -> expression {
++    auto result = expression{ .op = object.get_string( "op" ) };
++    if( result.op == "literal" ) {
++        result.value = object.get_float( "value" );
++    }
++    if( result.op == "variable" ) {
++        result.name = object.get_string( "name" );
++    }
++    if( object.has_array( "args" ) ) {
++        for( const auto entry : object.get_array( "args" ) ) {
++            result.args.push_back( read_expression( entry.get_object() ) );
++        }
++    }
++    const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var";
++    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now";
++    const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
++                        result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
++                        result.op == "less" || result.op == "less_equal";
++    if( ( !unary && !leaf && !binary ) || result.args.size() != ( unary ? 1U : binary ? 2U : 0U ) ) {
++        object.throw_error( "Invalid artisan expression operation or arity" );
++    }
++    if( result.op == "has_var" && result.args[0].op != "variable" ) {
++        object.throw_error( "has_var requires a variable" );
++    }
++    return result;
++}
++
++inline auto collect_values( const expression &node, const player &actor,
++                            std::unordered_map<std::string, double> &values ) -> std::expected<void, std::string> {
++    if( node.op == "has_var" ) {
++        const auto &name = node.args[0].name;
++        if( !actor.get_value( "npctalk_var_" + name ).empty() ) {
++            values.try_emplace( name, 0 );
++        }
++        return {};
++    }
++    if( node.op == "variable" ) {
++        const auto raw = actor.get_value( "npctalk_var_" + node.name );
++        if( !raw.empty() ) {
++            auto number = 0.0;
++            const auto parsed = std::from_chars( raw.data(), raw.data() + raw.size(), number );
++            if( parsed.ec != std::errc{} || parsed.ptr != raw.data() + raw.size() || !std::isfinite( number ) ) {
++                return std::unexpected( "Invalid numeric artisan variable: " + node.name );
++            }
++            values[node.name] = number;
++        }
++    }
++    for( const auto &child : node.args ) {
++        const auto collected = collect_values( child, actor, values );
++        if( !collected ) {
++            return collected;
++        }
++    }
++    return {};
++}
++
++inline auto evaluate_for_player( const expression &node, const player &actor )
++-> std::expected<double, std::string> {
++    auto values = std::unordered_map<std::string, double>{};
++    const auto collected = collect_values( node, actor, values );
++    if( !collected ) {
++        return std::unexpected( collected.error() );
++    }
++    return evaluate( node, {
++        .variables = values,
++        .now_seconds = to_seconds<double>( calendar::turn - calendar::turn_zero )
++    } );
++}
++
++inline auto store_numeric_value( player &actor, const std::string &name, const double value ) -> void {
++    auto text = std::array<char, 64>{};
++    const auto converted = std::to_chars( text.data(), text.data() + text.size(), value );
++    if( converted.ec == std::errc{} ) {
++        actor.set_value( "npctalk_var_" + name, std::string( text.data(), converted.ptr ) );
++    }
++}
++
++} // namespace dda_port
+--- /dev/null
++++ b/tests/dda_artisan_dialogue_test.cpp
+@@ -0,0 +1,51 @@
++#include "artisan_bn_bridge.h"
++#include "avatar.h"
++#include "calendar.h"
++#include "cata_utility.h"
++#include "catch/catch.hpp"
++#include "condition.h"
++#include "dialogue.h"
++#include "json.h"
++#include "state_helpers.h"
++
++#include <sstream>
++
++TEST_CASE( "artisan_native_timer_and_fractional_prices", "[dda_npc]" ) {
++    clear_all_state();
++    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
++    auto &actor = get_avatar();
++    actor.set_value( "npctalk_var_timer_started", "100" );
++    actor.set_value( "npctalk_var_wait_weeks", "3" );
++    auto input = std::istringstream( R"({"dda_expression":{"op":"greater_equal","args":[{"op":"subtract","args":[{"op":"now"},{"op":"variable","name":"timer_started"}]},{"op":"multiply","args":[{"op":"variable","name":"wait_weeks"},{"op":"literal","value":604800}]}]}})" );
++    // Three weeks expressed as a variable times one week.
++    auto parser = JsonIn( input );
++    const auto condition = conditional_t<dialogue>( parser.get_object() );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    calendar::turn = calendar::turn_zero + 100_seconds + 21_days - 1_seconds;
++    CHECK_FALSE( condition( conversation ) );
++    calendar::turn += 1_seconds;
++    CHECK( condition( conversation ) );
++
++    auto price_input = std::istringstream( R"({"dda_expression":{"op":"greater_equal","args":[{"op":"variable","name":"credit"},{"op":"divide","args":[{"op":"literal","value":77},{"op":"literal","value":2}]}]}})" );
++    auto price_parser = JsonIn( price_input );
++    const auto affordable = conditional_t<dialogue>( price_parser.get_object() );
++    actor.set_value( "npctalk_var_credit", "38" );
++    CHECK_FALSE( affordable( conversation ) );
++    actor.set_value( "npctalk_var_credit", "38.5" );
++    CHECK( affordable( conversation ) );
++}
++
++TEST_CASE( "artisan_native_variable_assignment", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    actor.set_value( "npctalk_var_credit", "39" );
++    auto input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"credit","expression":{"op":"subtract","args":[{"op":"variable","name":"credit"},{"op":"divide","args":[{"op":"literal","value":77},{"op":"literal","value":2}]}]}}}})" );
++    auto parser = JsonIn( input );
++    const auto effect = talk_effect_t( parser.get_object() );
++    REQUIRE( effect.effects.size() == 1 );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    effect.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_credit" ) == "0.5" );
++}

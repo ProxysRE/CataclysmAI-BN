@@ -8,6 +8,7 @@ import math
 import operator
 import re
 from pathlib import Path
+from compile_math import compile_expression
 
 
 def constant(expression):
@@ -100,6 +101,11 @@ def adapt(value, counts):
                             return {"u_adjust_var": name, "adjustment": int(number) * (-1 if operation == "-=" else 1)}
                         counts["integer_numeric_condition"] += 1
                         return {"u_compare_var": name, "op": operation, "value": int(number)}
+            compiled = compile_expression(expression)
+            counts["native_expression"] += 1
+            if "target" in compiled:
+                return {"dda_set_variable": compiled}
+            return {"dda_expression": compiled["expression"]}
     for source in ("set_string_var", "copy_var"):
         target = value.get("target_var", {})
         if source in value and isinstance(value[source], str) and set(target) == {"u_val"}:

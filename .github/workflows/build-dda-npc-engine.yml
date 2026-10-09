@@ -1,0 +1,166 @@
+name: Validate DDA NPC engine for Windows
+on:
+  push:
+    branches: [port/dda-npc-locations]
+    paths: ['.github/workflows/build-dda-npc-engine.yml', 'npc-content/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: dda-npc-engine-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  BN_BASE: c621aaf42fa182473aad10feea2b55647704dcf1
+jobs:
+  shaders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Reuse verified shaders for the pinned BN base
+        id: reuse
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: highways-shaders
+          run-id: 37643122759
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: data/shaders/
+      - uses: actions/checkout@v4
+        if: steps.reuse.outcome != 'success'
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: c621aaf42fa182473aad10feea2b55647704dcf1
+      - name: Install shadercross dependencies
+        if: steps.reuse.outcome != 'success'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf autoconf-archive automake libtool libltdl-dev
+      - name: Prefetch GNU dependencies from a reachable mirror
+        if: steps.reuse.outcome != 'success'
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/vcpkg-shadercross-downloads"
+          for source in automake/automake-1.17.tar.gz gperf/gperf-3.3.tar.gz; do
+            curl --fail --location --retry 3 --connect-timeout 20 --max-time 120 "https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/$source" --output "$RUNNER_TEMP/vcpkg-shadercross-downloads/${source##*/}"
+          done
+      - name: Install shadercross
+        if: steps.reuse.outcome != 'success'
+        env:
+          VCPKG_DOWNLOADS: ${{ runner.temp }}/vcpkg-shadercross-downloads
+        run: bash build-scripts/install-shadercross-vcpkg.sh
+      - name: Generate shaders
+        if: steps.reuse.outcome != 'success'
+        run: bash build-scripts/generate-shaders.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: highways-shaders
+          path: data/shaders/
+          if-no-files-found: error
+  windows:
+    needs: shaders
+    runs-on: windows-2022
+    timeout-minutes: 180
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: bn
+    steps:
+      - name: Preserve LF in the checksummed patch
+        working-directory: .
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+        with:
+          path: package
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: c621aaf42fa182473aad10feea2b55647704dcf1
+          path: bn
+      - name: Apply native NPC expression bridge
+        run: |
+          $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "678514543423089c0f9ef64fb44da6b2712c57df8bc7f22bc65ab3712ade45a2") { throw "NPC engine patch checksum mismatch" }
+          git apply --check $patch
+          if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
+          git apply $patch
+          if ($LASTEXITCODE -ne 0) { throw "NPC engine patch application failed" }
+      - uses: actions/download-artifact@v4
+        with:
+          name: highways-shaders
+          path: bn/data/shaders
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - uses: lukka/get-cmake@v3.31.6
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            core.exportVariable("ACTIONS_CACHE_URL", process.env.ACTIONS_CACHE_URL || "")
+            core.exportVariable("ACTIONS_RESULTS_URL", process.env.ACTIONS_RESULTS_URL || "")
+            core.exportVariable("ACTIONS_RUNTIME_TOKEN", process.env.ACTIONS_RUNTIME_TOKEN || "")
+      - name: Configure vcpkg cache
+        run: |
+          "VCPKG_BINARY_SOURCES=clear;x-gha,readwrite" >> $env:GITHUB_ENV
+      - uses: lukka/run-vcpkg@main
+        with:
+          vcpkgDirectory: "${{ github.workspace }}/vcpkg"
+      - name: Integrate vcpkg
+        run: vcpkg integrate install
+      - name: Format changed NPC code before compilation
+        run: |
+          $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
+          if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
+          if (!(Test-Path $formatter)) { throw "Missing clang-format" }
+          $files = @("src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "tests/dda_artisan_dialogue_test.cpp")
+          & $formatter -i @files
+          if ($LASTEXITCODE -ne 0) { throw "NPC formatting failed" }
+      - name: Configure Windows game
+        env:
+          VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}/bn/.github/vcpkg_triplets
+        run: |
+          cmake -G Ninja -S . -B out/build/highways -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROJECT_INCLUDE_BEFORE="${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/bn/build-scripts/MSVC.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=False -DCURSES=False -DLOCALIZE=True -DTILES=True -DSOUND=True -DTESTS=True -DRELEASE=ON -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
+          if ($LASTEXITCODE -ne 0) { throw "CMake configuration failed" }
+      - name: Restore official release translations
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP "bn-official-translations.zip"
+          Invoke-WebRequest -Uri "https://github.com/cataclysmbn/Cataclysm-BN/releases/download/2026-10-01/cbn-windows-tiles-x64-msvc-no-soundpack-2026-10-01.zip" -OutFile $archive
+          if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLower() -ne "9cfb9f4890f5dbd9a89f7c048e005dc100fe4ed42ed43a40ed6034f237e11de3") { throw "Official release checksum mismatch" }
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $zip = [System.IO.Compression.ZipFile]::OpenRead($archive)
+          $count = 0
+          try {
+            foreach ($entry in $zip.Entries) {
+              if ($entry.FullName -match '(^|/)lang/mo/(?<relative>.+\.mo)$') {
+                $relative = $Matches.relative
+                if (($relative -split '/') -contains '..') { throw "Unsafe translation path" }
+                $destination = Join-Path (Join-Path $PWD "lang/mo") $relative
+                New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null
+                [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $destination, $true)
+                $count++
+              }
+            }
+          } finally { $zip.Dispose() }
+          if ($count -lt 20) { throw "Missing release translations: found $count" }
+          if (!(Test-Path "lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo")) { throw "Missing Russian translation" }
+          Write-Host "Restored $count translation files from the official 2026-10-01 release"
+      - name: Build Windows executable
+        run: |
+          cmake --build out/build/highways --target cataclysm-bn-tiles cata_test-tiles --parallel 4
+          if ($LASTEXITCODE -ne 0) { throw "Windows compilation failed" }
+      - name: Test native artisan dialogue conditions and effects
+        env:
+          CATA_TEST_COMPUTE_ACCELERATION: cpu
+          SDL_AUDIODRIVER: dummy
+        run: |
+          $test = Get-ChildItem out/build/highways -Filter cata_test-tiles.exe -Recurse | Select-Object -First 1
+          if (!$test) { throw "Missing native test executable" }
+          & $test.FullName "[dda_npc]" --rng-seed 602 --reporter compact --user-dir=./npc_ci_test_user/ 2>&1 | Tee-Object npc-engine-tests.log
+          if ($LASTEXITCODE -ne 0) { throw "Native NPC engine tests failed" }
+      - name: Upload test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dda-npc-engine-test-log
+          path: bn/npc-engine-tests.log
+          if-no-files-found: ignore

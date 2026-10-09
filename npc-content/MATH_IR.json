@@ -1,0 +1,574 @@
+{
+  "has_var(u_timer_artisans_u_waiting_on_rounds)": {
+    "expression": {
+      "op": "has_var",
+      "args": [
+        {
+          "op": "variable",
+          "name": "timer_artisans_u_waiting_on_rounds"
+        }
+      ]
+    }
+  },
+  "!has_var(u_timer_artisans_u_waiting_on_rounds)": {
+    "expression": {
+      "op": "not",
+      "args": [
+        {
+          "op": "has_var",
+          "args": [
+            {
+              "op": "variable",
+              "name": "timer_artisans_u_waiting_on_rounds"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= 77 / 2": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "literal",
+              "value": 77
+            },
+            {
+              "op": "literal",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= 25 / 2": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "literal",
+              "value": 25
+            },
+            {
+              "op": "literal",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= 55 / 2": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "literal",
+              "value": 55
+            },
+            {
+              "op": "literal",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= 33 / 2": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "literal",
+              "value": 33
+            },
+            {
+              "op": "literal",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= 27 / 2": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "literal",
+              "value": 27
+            },
+            {
+              "op": "literal",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= 231 / 2": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "literal",
+              "value": 231
+            },
+            {
+              "op": "literal",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= u_number_artisans_gunsmith_sum0": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum0"
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit -= u_number_artisans_gunsmith_sum0": {
+    "target": "number_artisans_gunsmith_credit",
+    "expression": {
+      "op": "subtract",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum0"
+        }
+      ]
+    }
+  },
+  "u_timer_artisans_u_waiting_on_rounds = time('now')": {
+    "target": "timer_artisans_u_waiting_on_rounds",
+    "expression": {
+      "op": "now"
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= u_number_artisans_gunsmith_sum1": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum1"
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit -= u_number_artisans_gunsmith_sum1": {
+    "target": "number_artisans_gunsmith_credit",
+    "expression": {
+      "op": "subtract",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum1"
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= u_number_artisans_gunsmith_sum3": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum3"
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit -= u_number_artisans_gunsmith_sum3": {
+    "target": "number_artisans_gunsmith_credit",
+    "expression": {
+      "op": "subtract",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum3"
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit >= u_number_artisans_gunsmith_sum5": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum5"
+        }
+      ]
+    }
+  },
+  "u_number_artisans_gunsmith_credit -= u_number_artisans_gunsmith_sum5": {
+    "target": "number_artisans_gunsmith_credit",
+    "expression": {
+      "op": "subtract",
+      "args": [
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_credit"
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_sum5"
+        }
+      ]
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_rounds, 'unit':'hours') >= u_number_artisans_gunsmith_wait": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_rounds"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 3600
+            }
+          ]
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_gunsmith_wait"
+        }
+      ]
+    }
+  },
+  "ceil(u_number_artisans_gunsmith_wait * 8.333)": {
+    "expression": {
+      "op": "ceil",
+      "args": [
+        {
+          "op": "multiply",
+          "args": [
+            {
+              "op": "variable",
+              "name": "number_artisans_gunsmith_wait"
+            },
+            {
+              "op": "literal",
+              "value": 8.333
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_prototype) < time('7 d')": {
+    "expression": {
+      "op": "less",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_prototype"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "op": "literal",
+          "value": 604800
+        }
+      ]
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_prototype) > time('7 d')": {
+    "expression": {
+      "op": "greater",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_prototype"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "op": "literal",
+          "value": 604800
+        }
+      ]
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_prototype) < time('14 d')": {
+    "expression": {
+      "op": "less",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_prototype"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "op": "literal",
+          "value": 1209600
+        }
+      ]
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_prototype) > time('14 d')": {
+    "expression": {
+      "op": "greater",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_prototype"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "op": "literal",
+          "value": 1209600
+        }
+      ]
+    }
+  },
+  "u_timer_artisans_u_waiting_on_prototype = time('now')": {
+    "target": "timer_artisans_u_waiting_on_prototype",
+    "expression": {
+      "op": "now"
+    }
+  },
+  "u_timer_artisans_u_waiting_on_weapon = time('now')": {
+    "target": "timer_artisans_u_waiting_on_weapon",
+    "expression": {
+      "op": "now"
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_weapon, 'unit':'days') >= u_number_artisans_blacksmith_weapon_wait": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_weapon"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 86400
+            }
+          ]
+        },
+        {
+          "op": "variable",
+          "name": "number_artisans_blacksmith_weapon_wait"
+        }
+      ]
+    }
+  },
+  "u_timer_artisans_u_waiting_on_armor = time('now')": {
+    "target": "timer_artisans_u_waiting_on_armor",
+    "expression": {
+      "op": "now"
+    }
+  },
+  "time_since(u_timer_artisans_u_waiting_on_armor, 'unit':'days') >= u_number_artisans_blacksmith_wait*7": {
+    "expression": {
+      "op": "greater_equal",
+      "args": [
+        {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "op": "now"
+                },
+                {
+                  "op": "variable",
+                  "name": "timer_artisans_u_waiting_on_armor"
+                }
+              ]
+            },
+            {
+              "op": "literal",
+              "value": 86400
+            }
+          ]
+        },
+        {
+          "op": "multiply",
+          "args": [
+            {
+              "op": "variable",
+              "name": "number_artisans_blacksmith_wait"
+            },
+            {
+              "op": "literal",
+              "value": 7
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
