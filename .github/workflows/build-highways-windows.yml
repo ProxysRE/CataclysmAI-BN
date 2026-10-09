@@ -133,6 +133,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 data compatibility fix does not apply" }
           git apply $fix05
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 data compatibility fix failed" }
+          $fix06 = "${{ github.workspace }}/package/highways/highways_dev03_fix06.patch"
+          if ((Get-FileHash $fix06 -Algorithm SHA256).Hash.ToLower() -ne "a2872e1a8d7755d8d5c1901ace5756f433eda0889b7ab6d29bfd72c00116ea43") { throw "DEV0.3 flag reader fix checksum mismatch" }
+          git apply --check $fix06
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 flag reader fix does not apply" }
+          git apply $fix06
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 flag reader fix failed" }
           python utilities/highway/check_dda_dependencies.py
           if ($LASTEXITCODE -ne 0) { throw "DDA highway dependency validation failed" }
           python utilities/highway/check_dda_geometry.py

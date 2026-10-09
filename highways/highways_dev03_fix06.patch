@@ -1,0 +1,43 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 8dcdc59..5d05f08 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -161,3 +161,6 @@ Highway corridor finalization must run after forest trailheads as well as regula
+ 
+ `clear_all_state()` retains cached overmaps. Fresh-world highway generation tests must clear `ACTIVE_OVERMAP_BUFFER` after setting highway options; test legacy neighbors without endpoints separately. Do not change legacy-world termination behavior to satisfy a contaminated fresh-world test.
+ Run `utilities/highway/check_dda_dependencies.py` on the assembled BN data before Windows compilation. Preserve nested `flags`/`flags_any` conditions and special priorities through engine support; do not delete unsupported behavior to silence JSON loader errors.
++
++Parse overmap terrain flag names with the canonical `oter_flags_map`; BN has no `io::enum_to_string<oter_flags>` implementation. Syntax-only compilation cannot detect this missing linker symbol.
++Catch assertions containing `||` or `&&` must wrap the entire expression in parentheses so Catch does not attempt unsupported expression decomposition.
+diff --git a/src/mapgen/nested_neighbor_flags.h b/src/mapgen/nested_neighbor_flags.h
+index c59f606..80fa168 100644
+--- a/src/mapgen/nested_neighbor_flags.h
++++ b/src/mapgen/nested_neighbor_flags.h
+@@ -8,6 +8,7 @@
+ #include "line.h"
+ #include "mapgendata.h"
+ #include "overmap/omdata.h"
++#include "overmap/overmap.h"
+ 
+ #include <ranges>
+ #include <unordered_map>
+@@ -24,7 +25,18 @@ public:
+     explicit neighbor_flags( const JsonObject &object ) {
+         for( const auto dir : all_enum_values<direction>() ) {
+             auto flags = std::vector<oter_flags>{};
+-            object.read( io::enum_to_string( dir ), flags );
++            const auto member = io::enum_to_string( dir );
++            if( object.has_member( member ) ) {
++                auto input = object.get_array( member );
++                while( input.has_more() ) {
++                    const auto name = input.next_string();
++                    const auto found = oter_flags_map.find( name );
++                    if( found == oter_flags_map.end() ) {
++                        input.throw_error( "unknown overmap terrain flag: " + name );
++                    }
++                    flags.push_back( found->second );
++                }
++            }
+             if( !flags.empty() ) { neighbors_.emplace( dir, std::move( flags ) ); }
+         }
+     }
