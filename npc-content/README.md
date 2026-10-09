@@ -74,6 +74,11 @@ Locally verified: adapter regression checks; C++23 evaluator checks; item bridge
 syntax against pinned BN headers; patch applies to the pinned base. Full native
 reward/payment, fractional-credit and timer tests await Windows CI.
 
-Still required: faction sharing/trust, shop consumption policy, typed dependency
+Four nested armor-selection switches now preserve DDA threshold semantics:
+the last qualifying case in source order wins, including fractional thickness
+values. Native tests cover below-threshold, exact fractional boundaries and
+source order. Response-level boolean switches remain BN response switches.
+
+Still required: the measurement activity, faction sharing/trust, shop consumption policy, typed dependency
 closure, modern DDA item/mapgen schema adaptation, and full quest/location tests.
 The generated dialogue is not yet an installable mod.

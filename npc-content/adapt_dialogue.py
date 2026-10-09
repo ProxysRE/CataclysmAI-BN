@@ -135,6 +135,17 @@ def adapt(value, counts):
             return count["dda_expression"]
         raise ValueError(f"Unsupported artisan item count: {count}")
 
+    if "switch" in result and isinstance(result["switch"], dict):
+        if set(result) != {"switch", "cases"}:
+            raise ValueError(f"Unported switch options: {result}")
+        cases = []
+        for entry in result["cases"]:
+            if set(entry) != {"case", "effect"}:
+                raise ValueError(f"Unported case options: {entry}")
+            cases.append({"threshold": item_count(entry["case"]), "effect": entry["effect"]})
+        counts["dda_switch"] += 1
+        return {"dda_switch": {"expression": item_count(result["switch"]), "cases": cases}}
+
     for source, target in [("u_spawn_item", "dda_give_item"),
                            ("u_sell_item", "dda_transfer_item")]:
         if source in result and (source == "u_spawn_item" or isinstance(result.get("count"), dict)):
@@ -171,7 +182,7 @@ def main():
     unresolved = collections.Counter()
     unsupported = {"math", "run_eocs", "queue_eocs", "u_set_fac_relation",
                    "u_add_faction_trust", "shopkeeper_consumption_rates",
-                   "u_spawn_item", "set_string_var", "copy_var"}
+                   "u_spawn_item", "set_string_var", "copy_var", "u_assign_activity"}
 
     def inspect(value):
         if isinstance(value, dict):

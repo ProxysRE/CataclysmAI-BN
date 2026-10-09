@@ -17,6 +17,7 @@ assert sum(entry["type"] == "talk_topic" for entry in result) == 55
 assert counts["dda_give_item"] == 24
 assert counts["dda_transfer_item"] == 2
 assert counts["dda_has_items"] == 2
+assert counts["dda_switch"] == 4
 assert counts["inlined_eoc_calls"] == 126
 
 def walk(value):

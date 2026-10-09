@@ -113,3 +113,27 @@ TEST_CASE( "artisan_item_resolution_rejects_invalid_orders", "[dda_npc]" ) {
     actor.set_value( "npctalk_var_ordered_item", "missing_artisan_item" );
     CHECK_FALSE( dda_port::resolve_item( specification, actor ).has_value() );
 }
+
+TEST_CASE( "artisan_switch_uses_last_qualifying_threshold", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto input = std::istringstream( R"({"effect":{"dda_switch":{"expression":{"op":"variable","name":"thickness"},"cases":[{"threshold":{"op":"literal","value":1.2},"effect":{"u_add_var":"selected","value":"thin"}},{"threshold":{"op":"literal","value":6},"effect":{"u_add_var":"selected","value":"heavy"}},{"threshold":{"op":"literal","value":2},"effect":{"u_add_var":"selected","value":"last"}}]}}})" );
+    auto parser = JsonIn( input );
+    const auto effect = talk_effect_t( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    REQUIRE( effect.effects.size() == 1 );
+    actor.set_value( "npctalk_var_thickness", "1.19" );
+    effect.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_selected" ).empty() );
+    actor.set_value( "npctalk_var_thickness", "1.2" );
+    effect.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_selected" ) == "thin" );
+    actor.set_value( "npctalk_var_thickness", "1.99" );
+    effect.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_selected" ) == "thin" );
+    actor.set_value( "npctalk_var_thickness", "6" );
+    effect.effects.front()( conversation );
+    // Source order wins even when thresholds are not sorted.
+    CHECK( actor.get_value( "npctalk_var_selected" ) == "last" );
+}

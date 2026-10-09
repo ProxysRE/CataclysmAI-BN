@@ -6,6 +6,7 @@
     "native_expression": 134,
     "dda_has_items": 2,
     "dda_transfer_item": 2,
+    "dda_switch": 4,
     "inlined_eoc_calls": 126,
     "constant_string_assignment": 42,
     "npc_shopkeep_enum": 2,
@@ -13,6 +14,7 @@
   },
   "unresolved_retained": {
     "u_set_fac_relation": 2,
+    "u_assign_activity": 1,
     "u_add_faction_trust": 6,
     "shopkeeper_consumption_rates": 2
   },

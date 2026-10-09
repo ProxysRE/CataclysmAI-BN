@@ -53,12 +53,54 @@
  
  #include "activity_type.h"
  #include "auto_pickup.h"
-@@ -3000,7 +3002,47 @@
+@@ -3000,7 +3002,89 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
 -    if( jo.has_string( "u_add_effect" ) ) {
-+    if( jo.has_object( "dda_give_item" ) || jo.has_object( "dda_transfer_item" ) ) {
++    if( jo.has_object( "dda_switch" ) ) {
++        const auto specification = jo.get_object( "dda_switch" );
++        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
++        struct switch_case {
++            dda_port::expression threshold;
++            talk_effect_t effect;
++        };
++        auto cases = std::vector<switch_case>{};
++        for( const auto entry : specification.get_array( "cases" ) ) {
++            const auto object = entry.get_object();
++            const auto threshold = dda_port::read_expression( object.get_object( "threshold" ) );
++            cases.push_back( { .threshold = threshold, .effect = talk_effect_t( object ) } );
++        }
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [expression, cases]( const auto &d ) {
++                if( !d.alpha ) {
++                    return;
++                }
++                const auto value = dda_port::evaluate_for_player( expression, *d.alpha );
++                if( !value ) {
++                    debugmsg( "%s", value.error() );
++                    return;
++                }
++                const auto *selected = static_cast<const talk_effect_t *>( nullptr );
++                // DDA chooses the LAST qualifying case in source order, not an exact match.
++                for( const auto &entry : cases ) {
++                    const auto threshold = dda_port::evaluate_for_player( entry.threshold, *d.alpha );
++                    if( !threshold ) {
++                        debugmsg( "%s", threshold.error() );
++                        return;
++                    }
++                    if( *value >= *threshold ) {
++                        selected = &entry.effect;
++                    }
++                }
++                if( selected ) {
++                    for( const auto &effect : selected->effects ) {
++                        effect( d );
++                    }
++                }
++            }
++        } );
++    } else if( jo.has_object( "dda_give_item" ) || jo.has_object( "dda_transfer_item" ) ) {
 +        const auto transfer = jo.has_object( "dda_transfer_item" );
 +        const auto specification = dda_port::read_item_specification(
 +                                       jo.get_object( transfer ? "dda_transfer_item" : "dda_give_item" ) );
@@ -399,7 +441,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,115 @@
+@@ -0,0 +1,139 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -514,4 +556,28 @@
 +    REQUIRE( dda_port::resolve_item( specification, actor ).has_value() );
 +    actor.set_value( "npctalk_var_ordered_item", "missing_artisan_item" );
 +    CHECK_FALSE( dda_port::resolve_item( specification, actor ).has_value() );
++}
++
++TEST_CASE( "artisan_switch_uses_last_qualifying_threshold", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    auto input = std::istringstream( R"({"effect":{"dda_switch":{"expression":{"op":"variable","name":"thickness"},"cases":[{"threshold":{"op":"literal","value":1.2},"effect":{"u_add_var":"selected","value":"thin"}},{"threshold":{"op":"literal","value":6},"effect":{"u_add_var":"selected","value":"heavy"}},{"threshold":{"op":"literal","value":2},"effect":{"u_add_var":"selected","value":"last"}}]}}})" );
++    auto parser = JsonIn( input );
++    const auto effect = talk_effect_t( parser.get_object() );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    REQUIRE( effect.effects.size() == 1 );
++    actor.set_value( "npctalk_var_thickness", "1.19" );
++    effect.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_selected" ).empty() );
++    actor.set_value( "npctalk_var_thickness", "1.2" );
++    effect.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_selected" ) == "thin" );
++    actor.set_value( "npctalk_var_thickness", "1.99" );
++    effect.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_selected" ) == "thin" );
++    actor.set_value( "npctalk_var_thickness", "6" );
++    effect.effects.front()( conversation );
++    // Source order wins even when thresholds are not sorted.
++    CHECK( actor.get_value( "npctalk_var_selected" ) == "last" );
 +}

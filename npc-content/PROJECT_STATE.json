@@ -4,6 +4,7 @@
   "package": "Isolated Road",
   "native_compilation": "previous expression build running; expanded item tests awaiting CI",
   "remaining": [
+    "measurement activity",
     "faction sharing/trust",
     "shop policy adaptation",
     "typed dependency closure and item schema",
@@ -15,7 +16,8 @@
     "24 item rewards",
     "2 dynamic payment effects",
     "2 dynamic affordability conditions",
-    "fraction-preserving numeric comparisons and adjustments"
+    "fraction-preserving numeric comparisons and adjustments",
+    "4 nested armor-selection switches with DDA threshold semantics"
   ],
-  "base_commit": "21a493536cf3c8e6dfc48066a68af519d80f8c39"
+  "base_commit": "473a660ae44515ff73f1dc6f51bbd58db087a644"
 }
