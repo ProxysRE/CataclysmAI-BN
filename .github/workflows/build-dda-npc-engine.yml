@@ -80,7 +80,7 @@ jobs:
       - name: Apply native NPC expression bridge
         run: |
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "bfc3468bd73376758a80ffdbe5473965ac58765a99f413b6d7f651a0e206e0bb") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "1ec915c2296356c04d2a9f4b9bd3d62bb7afb1777077a1cb39e3daa9453cdf54") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

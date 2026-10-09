@@ -51,7 +51,7 @@ TEST_CASE( "artisan_measurements_take_calendar_time", "[dda_npc]" ) {
     calendar::turn = started + 10_minutes;
     actor.moves = 100;
     actor.activity->do_turn( actor );
-    CHECK( !actor.activity || actor.activity->id().is_null() );
+    CHECK( ( !actor.activity || actor.activity->id().is_null() ) );
 }
 
 TEST_CASE( "artisan_faction_trust_and_public_access_survive_save_load", "[dda_npc]" ) {
