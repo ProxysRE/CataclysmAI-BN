@@ -1,0 +1,1 @@
+Dependency source checkpoint, not installable. Concatenate source.part* in lexical order, base64-decode and gzip-decompress. Validate decoded SHA256 against DEPENDENCIES.json. Candidate matching is conservative and untyped; verify namespace and same-ID BN semantics before importing. Do not load all candidates indiscriminately.

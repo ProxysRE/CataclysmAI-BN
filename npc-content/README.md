@@ -39,3 +39,9 @@ Existing BN NPC content must be preserved when overlapping definitions differ.
 Pinned upstream versions and the payload digest are in `SOURCE_MANIFEST.json`.
 DDA JSON retains upstream authorship and CC-BY-SA 3.0 licensing. The payload
 is gzip compressed and base64 encoded to make the source checkpoint portable.
+
+## Dependency policy
+
+Missing DDA locations, items, characters, missions and engine behavior are part of the port scope, including transitive dependencies. Do not replace them with stubs or remove their dialogue branches. The dependency checkpoint includes original quest items and scrap-trader route definitions. It is a conservative candidate set, not a mod load list.
+
+`adapt_dialogue.py` translates constant string equality to BN variable conditions and converts NPC shopkeeper fields. It preserves unresolved math/EOC effects and reports them. Native validation remains pending.
