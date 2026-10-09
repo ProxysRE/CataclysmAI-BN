@@ -95,12 +95,9 @@ def adapt(value, counts):
                     if operation == "=":
                         counts["constant_numeric_assignment"] += 1
                         return {"u_add_var": name, "value": str(number)}
-                    if float(number).is_integer():
-                        if operation in {"+=", "-="}:
-                            counts["constant_numeric_adjustment"] += 1
-                            return {"u_adjust_var": name, "adjustment": int(number) * (-1 if operation == "-=" else 1)}
-                        counts["integer_numeric_condition"] += 1
-                        return {"u_compare_var": name, "op": operation, "value": int(number)}
+                    # BN's adjustment/comparison handlers use stoi on the old
+                    # variable, discarding fractional artisan credit. Keep all
+                    # reads and updates in the native numeric bridge.
             compiled = compile_expression(expression)
             counts["native_expression"] += 1
             if "target" in compiled:
@@ -122,6 +119,38 @@ def adapt(value, counts):
                         counts["string_equality"] += 1
                         return {target: variable[source], "value": literal}
     result = {key: adapt(entry, counts) for key, entry in value.items()}
+    def item_reference(item):
+        if isinstance(item, str):
+            return {"id": item}
+        if isinstance(item, dict) and set(item) == {"u_val"}:
+            return {"variable": item["u_val"]}
+        raise ValueError(f"Unsupported artisan item reference: {item}")
+
+    def item_count(count):
+        if type(count) in (int, float):
+            return {"op": "literal", "value": count}
+        if isinstance(count, dict) and set(count) == {"u_val"}:
+            return {"op": "variable", "name": count["u_val"]}
+        if isinstance(count, dict) and set(count) == {"dda_expression"}:
+            return count["dda_expression"]
+        raise ValueError(f"Unsupported artisan item count: {count}")
+
+    for source, target in [("u_spawn_item", "dda_give_item"),
+                           ("u_sell_item", "dda_transfer_item")]:
+        if source in result and (source == "u_spawn_item" or isinstance(result.get("count"), dict)):
+            allowed = {source, "count"}
+            if set(result) - allowed:
+                raise ValueError(f"Unported item effect options: {result}")
+            counts[target] += 1
+            return {target: {"item": item_reference(result[source]),
+                             "count": item_count(result.get("count", 1))}}
+    if "u_has_items" in result and isinstance(result["u_has_items"].get("count"), dict):
+        specification = result["u_has_items"]
+        if set(specification) != {"item", "count"} or set(result) != {"u_has_items"}:
+            raise ValueError(f"Unported item condition options: {result}")
+        counts["dda_has_items"] += 1
+        return {"dda_has_items": {"item": item_reference(specification["item"]),
+                                  "count": item_count(specification["count"])}}
     if result.get("type") == "npc" and result.get("mission") == "SHOPKEEP":
         result["mission"] = 7
         counts["npc_shopkeep_enum"] += 1

@@ -1,0 +1,31 @@
+Highway build run 37957572859: Windows binary compilation succeeded; native tests failed.
+Not a playable DEV0.3 release. NPC branch preserves this evidence without changing highway files.
+2026-10-09T16:56:44.1161550Z (continued from above) ERROR: Json error: data/json/overmap/overmap_special/dda_highways.json:351:19: Defining connection by terrain is deprecated, use explicit 'connection' instead.
+2026-10-09T16:56:44.1191254Z Json error: data/json/overmap/overmap_special/dda_highways.json:352:22: Invalid or misplaced field name "connection" in JSON data
+2026-10-09T16:56:44.1288868Z Json error: data/json/overmap/overmap_special/dda_highways.json:351:19: Invalid or misplaced field name "terrain" in JSON data
+2026-10-09T16:56:44.1312559Z 16:56:44.083 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\overmap\overmap.cpp:527 [deserialize] Json error: data/json/overmap/overmap_special/dda_highways.json:365:19: Defining connection by terrain is deprecated, use explicit 'connection' instead.
+2026-10-09T16:56:44.1353762Z Json error: data/json/overmap/overmap_special/dda_highways.json:366:22: Invalid or misplaced field name "connection" in JSON data
+2026-10-09T16:56:44.1377998Z Json error: data/json/overmap/overmap_special/dda_highways.json:365:19: Invalid or misplaced field name "terrain" in JSON data
+2026-10-09T16:56:44.1395157Z 16:56:44.088 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\overmap\overmap.cpp:527 [deserialize] Json error: data/json/overmap/overmap_special/dda_highways.json:3,059:19: Defining connection by terrain is deprecated, use explicit 'connection' instead.
+2026-10-09T16:56:44.1414010Z Json error: data/json/overmap/overmap_special/dda_highways.json:3,060:22: Invalid or misplaced field name "connection" in JSON data
+2026-10-09T16:56:44.1433058Z Json error: data/json/overmap/overmap_special/dda_highways.json:3,059:19: Invalid or misplaced field name "terrain" in JSON data
+2026-10-09T16:56:44.1446655Z 16:56:44.091 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\overmap\overmap.cpp:527 [deserialize] Json error: data/json/overmap/overmap_special/dda_highways.json:3,073:19: Defining connection by terrain is deprecated, use explicit 'connection' instead.
+2026-10-09T16:56:44.1472812Z Json error: data/json/overmap/overmap_special/dda_highways.json:3,074:22: Invalid or misplaced field name "connection" in JSON data
+2026-10-09T16:56:44.1484153Z Json error: data/json/overmap/overmap_special/dda_highways.json:3,073:19: Invalid or misplaced field name "terrain" in JSON data
+2026-10-09T16:56:44.1491190Z Json error: data/json/overmap/overmap_special/dda_highways.json:3,082:16: Invalid or misplaced field name "priority" in JSON data
+2026-10-09T16:56:44.1494567Z Json error: data/json/overmap/overmap_special/dda_highways.json:3,400:16: Invalid or misplaced field name "priority" in JSON data
+2026-10-09T16:56:53.4864156Z Json error: data/json/mapgen/dda_highways/specials/hw_fallback.json:50:23: Invalid or misplaced field name "flags_any" in JSON data
+2026-10-09T16:56:53.4883534Z Json error: data/json/mapgen/dda_highways/specials/hw_fallback.json:65:19: Invalid or misplaced field name "flags" in JSON data
+2026-10-09T16:56:53.4900049Z Json error: data/json/mapgen/dda_highways/specials/hw_fallback.json:77:19: Invalid or misplaced field name "flags" in JSON data
+2026-10-09T16:56:53.4916433Z Json error: data/json/mapgen/dda_highways/specials/hw_fallback.json:225:18: Invalid or misplaced field name "palettes" in JSON data
+2026-10-09T16:56:56.4701431Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "special_field_highway"
+2026-10-09T16:56:56.4719680Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "special_field_highway"
+2026-10-09T16:56:56.4723362Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "hw_railings_north"
+2026-10-09T16:56:56.4727215Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "hw_railings_north"
+2026-10-09T16:56:56.4730227Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "special_field_highway"
+2026-10-09T16:56:56.4731081Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "hw_railings_north"
+2026-10-09T16:56:57.3688442Z 16:56:56.467 ERROR DEBUGMSG : D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\src\generic_factory.h:462 [obj] invalid overmap terrain id "hw_railings_north"
+2026-10-09T16:57:34.8969422Z D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\tests\highway_test.cpp(81): failed: highway_count > 100 for: 2 > 100 with 1 message: '(0,-1)'
+2026-10-09T16:57:34.8974387Z D:\a\CataclysmAI-BN\CataclysmAI-BN\bn\tests\highway_test.cpp(92): failed: !(highway::dda::is_invalid(endpoint)) for: !true with 1 message: '(0,-1)'
+2026-10-09T16:57:52.8739267Z Failed 1 test case, failed 2 assertions.
+2026-10-09T16:57:53.7985106Z Treating result as failure due to error logged during initialization.

@@ -1,17 +1,32 @@
 --- a/src/condition.cpp
 +++ b/src/condition.cpp
-@@ -1,4 +1,5 @@
+@@ -1,4 +1,6 @@
  #include "condition.h"
 +#include "artisan_bn_bridge.h"
++#include "artisan_items.h"
  
  #include "auto_pickup.h"
  #include "avatar.h"
-@@ -915,7 +916,21 @@
+@@ -915,7 +917,35 @@
          }
          return conditionals;
      };
 -    if( jo.has_array( "and" ) ) {
-+    if( jo.has_object( "dda_expression" ) ) {
++    if( jo.has_object( "dda_has_items" ) ) {
++        const auto specification = dda_port::read_item_specification( jo.get_object( "dda_has_items" ) );
++        found_sub_member = true;
++        condition = [specification]( const auto &d ) {
++            if( !d.alpha ) {
++                return false;
++            }
++            const auto request = dda_port::resolve_item( specification, *d.alpha );
++            if( !request ) {
++                debugmsg( "%s", request.error() );
++                return false;
++            }
++            return dda_port::has_items( *d.alpha, *request );
++        };
++    } else if( jo.has_object( "dda_expression" ) ) {
 +        const auto expression = dda_port::read_expression( jo.get_object( "dda_expression" ) );
 +        found_sub_member = true;
 +        condition = [expression]( const auto &d ) {
@@ -31,18 +46,42 @@
          condition = [and_conditionals]( const T & d ) {
 --- a/src/npctalk.cpp
 +++ b/src/npctalk.cpp
-@@ -1,4 +1,5 @@
+@@ -1,4 +1,6 @@
  #include "npctalk.h"
 +#include "artisan_bn_bridge.h"
++#include "artisan_items.h"
  
  #include "activity_type.h"
  #include "auto_pickup.h"
-@@ -3000,7 +3001,24 @@
+@@ -3000,7 +3002,47 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
 -    if( jo.has_string( "u_add_effect" ) ) {
-+    if( jo.has_object( "dda_set_variable" ) ) {
++    if( jo.has_object( "dda_give_item" ) || jo.has_object( "dda_transfer_item" ) ) {
++        const auto transfer = jo.has_object( "dda_transfer_item" );
++        const auto specification = dda_port::read_item_specification(
++                                       jo.get_object( transfer ? "dda_transfer_item" : "dda_give_item" ) );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [specification, transfer]( const auto &d ) {
++                if( !d.alpha || ( transfer && !d.beta ) ) {
++                    return;
++                }
++                const auto request = dda_port::resolve_item( specification, *d.alpha );
++                if( !request ) {
++                    debugmsg( "%s", request.error() );
++                    return;
++                }
++                if( transfer ) {
++                    if( !dda_port::transfer_items( *d.alpha, *d.beta, *request ) ) {
++                        popup( _( "You don't have a %1$s!" ), item::nname( request->id ) );
++                    }
++                } else {
++                    dda_port::give_items( *d.alpha, *request );
++                }
++            }
++        } );
++    } else if( jo.has_object( "dda_set_variable" ) ) {
 +        const auto specification = jo.get_object( "dda_set_variable" );
 +        const auto name = specification.get_string( "target" );
 +        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
@@ -266,9 +305,103 @@
 +
 +} // namespace dda_port
 --- /dev/null
-+++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,51 @@
++++ b/src/artisan_items.h
+@@ -0,0 +1,90 @@
++#pragma once
++
 +#include "artisan_bn_bridge.h"
++#include "item.h"
++
++#include <limits>
++
++namespace dda_port {
++
++struct item_specification {
++    std::string id;
++    std::string variable;
++    expression count;
++};
++
++struct resolved_item {
++    itype_id id;
++    int count;
++};
++
++inline auto read_item_specification( const JsonObject &object ) -> item_specification {
++    const auto reference = object.get_object( "item" );
++    if( reference.has_string( "id" ) == reference.has_string( "variable" ) ) {
++        reference.throw_error( "An artisan item requires exactly one ID or variable" );
++    }
++    return {
++        .id = reference.get_string( "id", "" ),
++        .variable = reference.get_string( "variable", "" ),
++        .count = read_expression( object.get_object( "count" ) )
++    };
++}
++
++inline auto resolve_item( const item_specification &specification, const player &actor )
++-> std::expected<resolved_item, std::string> {
++    const auto id = itype_id( specification.variable.empty() ? specification.id :
++                             actor.get_value( "npctalk_var_" + specification.variable ) );
++    if( id.is_null() || !id.is_valid() ) {
++        return std::unexpected( "Unknown artisan item: " + id.str() );
++    }
++    const auto count = evaluate_for_player( specification.count, actor );
++    if( !count ) {
++        return std::unexpected( count.error() );
++    }
++    if( *count < 0 || *count > std::numeric_limits<int>::max() || std::trunc( *count ) != *count ) {
++        return std::unexpected( "Artisan item count must be a nonnegative integer" );
++    }
++    return resolved_item{ .id = id, .count = static_cast<int>( *count ) };
++}
++
++inline auto has_items( const player &actor, const resolved_item &request ) -> bool {
++    return item::count_by_charges( request.id ) ? actor.has_charges( request.id, request.count ) :
++           actor.has_amount( request.id, request.count );
++}
++
++/// DDA rewards use exact charges, load default ammunition, and drop overflow nearby.
++inline auto give_items( player &actor, const resolved_item &request ) -> void {
++    if( request.count == 0 ) {
++        return;
++    }
++    if( item::count_by_charges( request.id ) ) {
++        auto reward = item::spawn( request.id, calendar::turn );
++        reward->charges = request.count;
++        actor.i_add_or_drop( std::move( reward ) );
++        return;
++    }
++    for( const auto index : std::views::iota( 0, request.count ) ) {
++        static_cast<void>( index );
++        auto reward = item::spawn( request.id, calendar::turn );
++        if( !reward->ammo_default().is_null() ) {
++            reward->ammo_set( reward->ammo_default() );
++        }
++        actor.i_add_or_drop( std::move( reward ) );
++    }
++}
++
++/// Validate before removing anything so an insufficient payment leaves inventory intact.
++inline auto transfer_items( player &sender, player &recipient, const resolved_item &request ) -> bool {
++    if( !has_items( sender, request ) ) {
++        return false;
++    }
++    auto payment = item::count_by_charges( request.id ) ? sender.use_charges( request.id, request.count ) :
++                   sender.use_amount( request.id, request.count );
++    for( auto &entry : payment ) {
++        entry->set_owner( recipient );
++        recipient.i_add( std::move( entry ) );
++    }
++    return true;
++}
++
++} // namespace dda_port
+--- /dev/null
++++ b/tests/dda_artisan_dialogue_test.cpp
+@@ -0,0 +1,115 @@
++#include "artisan_bn_bridge.h"
++#include "artisan_items.h"
 +#include "avatar.h"
 +#include "calendar.h"
 +#include "cata_utility.h"
@@ -276,6 +409,7 @@
 +#include "condition.h"
 +#include "dialogue.h"
 +#include "json.h"
++#include "npc.h"
 +#include "state_helpers.h"
 +
 +#include <sstream>
@@ -318,4 +452,66 @@
 +    conversation.alpha = &actor;
 +    effect.effects.front()( conversation );
 +    CHECK( actor.get_value( "npctalk_var_credit" ) == "0.5" );
++    auto adjustment_input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"credit","expression":{"op":"add","args":[{"op":"variable","name":"credit"},{"op":"literal","value":12}]}}}})" );
++    auto adjustment_parser = JsonIn( adjustment_input );
++    const auto adjustment = talk_effect_t( adjustment_parser.get_object() );
++    REQUIRE( adjustment.effects.size() == 1 );
++    adjustment.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_credit" ) == "12.5" );
++}
++
++TEST_CASE( "artisan_dynamic_reward_and_payment", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    actor.wear_item( item::spawn( itype_id( "backpack" ), calendar::turn ), false );
++    actor.set_value( "npctalk_var_ordered_ammo", "9mm" );
++    actor.set_value( "npctalk_var_wait", "3" );
++    auto input = std::istringstream( R"({"effect":{"dda_give_item":{"item":{"variable":"ordered_ammo"},"count":{"op":"ceil","args":[{"op":"multiply","args":[{"op":"variable","name":"wait"},{"op":"literal","value":8.333}]}]}}}})" );
++    auto parser = JsonIn( input );
++    const auto reward = talk_effect_t( parser.get_object() );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    REQUIRE( reward.effects.size() == 1 );
++    reward.effects.front()( conversation );
++    CHECK( actor.charges_of( itype_id( "9mm" ) ) == 25 );
++
++    actor.set_value( "npctalk_var_price", "26" );
++    auto condition_input = std::istringstream( R"({"dda_has_items":{"item":{"id":"9mm"},"count":{"op":"variable","name":"price"}}})" );
++    auto condition_parser = JsonIn( condition_input );
++    const auto affordable = conditional_t<dialogue>( condition_parser.get_object() );
++    CHECK_FALSE( affordable( conversation ) );
++    auto recipient = npc{};
++    recipient.set_fac( faction_id( "your_followers" ) );
++    const auto payment = dda_port::resolved_item{ .id = itype_id( "9mm" ), .count = 26 };
++    CHECK_FALSE( dda_port::transfer_items( actor, recipient, payment ) );
++    CHECK( actor.charges_of( itype_id( "9mm" ) ) == 25 );
++
++    actor.set_value( "npctalk_var_price", "17" );
++    CHECK( affordable( conversation ) );
++    auto payment_input = std::istringstream( R"({"effect":{"dda_transfer_item":{"item":{"id":"9mm"},"count":{"op":"variable","name":"price"}}}})" );
++    auto payment_parser = JsonIn( payment_input );
++    const auto transfer = talk_effect_t( payment_parser.get_object() );
++    conversation.beta = &recipient;
++    REQUIRE( transfer.effects.size() == 1 );
++    transfer.effects.front()( conversation );
++    CHECK( actor.charges_of( itype_id( "9mm" ) ) == 8 );
++    CHECK( recipient.charges_of( itype_id( "9mm" ) ) == 17 );
++}
++
++TEST_CASE( "artisan_item_resolution_rejects_invalid_orders", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    const auto specification = dda_port::item_specification{
++        .variable = "ordered_item",
++        .count = { .op = "variable", .name = "quantity" }
++    };
++    actor.set_value( "npctalk_var_ordered_item", "9mm" );
++    for( const auto value : { "-1", "0.5", "2147483648", "nan", "not_a_number" } ) {
++        actor.set_value( "npctalk_var_quantity", value );
++        CHECK_FALSE( dda_port::resolve_item( specification, actor ).has_value() );
++    }
++    actor.set_value( "npctalk_var_quantity", "12" );
++    REQUIRE( dda_port::resolve_item( specification, actor ).has_value() );
++    actor.set_value( "npctalk_var_ordered_item", "missing_artisan_item" );
++    CHECK_FALSE( dda_port::resolve_item( specification, actor ).has_value() );
 +}

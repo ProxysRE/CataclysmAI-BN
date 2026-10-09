@@ -1,0 +1,21 @@
+{
+  "remote_branch": "port/dda-npc-locations",
+  "stage": "dynamic artisan rewards, payment and fractional-credit checkpoint",
+  "package": "Isolated Road",
+  "native_compilation": "previous expression build running; expanded item tests awaiting CI",
+  "remaining": [
+    "faction sharing/trust",
+    "shop policy adaptation",
+    "typed dependency closure and item schema",
+    "mapgen schema validation",
+    "full package native NPC/quest tests"
+  ],
+  "policy": "Port all missing DDA dependencies; no stubs or removed branches",
+  "implemented_unvalidated": [
+    "24 item rewards",
+    "2 dynamic payment effects",
+    "2 dynamic affordability conditions",
+    "fraction-preserving numeric comparisons and adjustments"
+  ],
+  "base_commit": "21a493536cf3c8e6dfc48066a68af519d80f8c39"
+}

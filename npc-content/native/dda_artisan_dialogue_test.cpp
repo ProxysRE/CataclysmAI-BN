@@ -1,4 +1,5 @@
 #include "artisan_bn_bridge.h"
+#include "artisan_items.h"
 #include "avatar.h"
 #include "calendar.h"
 #include "cata_utility.h"
@@ -6,6 +7,7 @@
 #include "condition.h"
 #include "dialogue.h"
 #include "json.h"
+#include "npc.h"
 #include "state_helpers.h"
 
 #include <sstream>
@@ -48,4 +50,66 @@ TEST_CASE( "artisan_native_variable_assignment", "[dda_npc]" ) {
     conversation.alpha = &actor;
     effect.effects.front()( conversation );
     CHECK( actor.get_value( "npctalk_var_credit" ) == "0.5" );
+    auto adjustment_input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"credit","expression":{"op":"add","args":[{"op":"variable","name":"credit"},{"op":"literal","value":12}]}}}})" );
+    auto adjustment_parser = JsonIn( adjustment_input );
+    const auto adjustment = talk_effect_t( adjustment_parser.get_object() );
+    REQUIRE( adjustment.effects.size() == 1 );
+    adjustment.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_credit" ) == "12.5" );
+}
+
+TEST_CASE( "artisan_dynamic_reward_and_payment", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    actor.wear_item( item::spawn( itype_id( "backpack" ), calendar::turn ), false );
+    actor.set_value( "npctalk_var_ordered_ammo", "9mm" );
+    actor.set_value( "npctalk_var_wait", "3" );
+    auto input = std::istringstream( R"({"effect":{"dda_give_item":{"item":{"variable":"ordered_ammo"},"count":{"op":"ceil","args":[{"op":"multiply","args":[{"op":"variable","name":"wait"},{"op":"literal","value":8.333}]}]}}}})" );
+    auto parser = JsonIn( input );
+    const auto reward = talk_effect_t( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    REQUIRE( reward.effects.size() == 1 );
+    reward.effects.front()( conversation );
+    CHECK( actor.charges_of( itype_id( "9mm" ) ) == 25 );
+
+    actor.set_value( "npctalk_var_price", "26" );
+    auto condition_input = std::istringstream( R"({"dda_has_items":{"item":{"id":"9mm"},"count":{"op":"variable","name":"price"}}})" );
+    auto condition_parser = JsonIn( condition_input );
+    const auto affordable = conditional_t<dialogue>( condition_parser.get_object() );
+    CHECK_FALSE( affordable( conversation ) );
+    auto recipient = npc{};
+    recipient.set_fac( faction_id( "your_followers" ) );
+    const auto payment = dda_port::resolved_item{ .id = itype_id( "9mm" ), .count = 26 };
+    CHECK_FALSE( dda_port::transfer_items( actor, recipient, payment ) );
+    CHECK( actor.charges_of( itype_id( "9mm" ) ) == 25 );
+
+    actor.set_value( "npctalk_var_price", "17" );
+    CHECK( affordable( conversation ) );
+    auto payment_input = std::istringstream( R"({"effect":{"dda_transfer_item":{"item":{"id":"9mm"},"count":{"op":"variable","name":"price"}}}})" );
+    auto payment_parser = JsonIn( payment_input );
+    const auto transfer = talk_effect_t( payment_parser.get_object() );
+    conversation.beta = &recipient;
+    REQUIRE( transfer.effects.size() == 1 );
+    transfer.effects.front()( conversation );
+    CHECK( actor.charges_of( itype_id( "9mm" ) ) == 8 );
+    CHECK( recipient.charges_of( itype_id( "9mm" ) ) == 17 );
+}
+
+TEST_CASE( "artisan_item_resolution_rejects_invalid_orders", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    const auto specification = dda_port::item_specification{
+        .variable = "ordered_item",
+        .count = { .op = "variable", .name = "quantity" }
+    };
+    actor.set_value( "npctalk_var_ordered_item", "9mm" );
+    for( const auto value : { "-1", "0.5", "2147483648", "nan", "not_a_number" } ) {
+        actor.set_value( "npctalk_var_quantity", value );
+        CHECK_FALSE( dda_port::resolve_item( specification, actor ).has_value() );
+    }
+    actor.set_value( "npctalk_var_quantity", "12" );
+    REQUIRE( dda_port::resolve_item( specification, actor ).has_value() );
+    actor.set_value( "npctalk_var_ordered_item", "missing_artisan_item" );
+    CHECK_FALSE( dda_port::resolve_item( specification, actor ).has_value() );
 }

@@ -1,17 +1,17 @@
 {
   "translated": {
     "string_equality": 59,
+    "dda_give_item": 24,
     "constant_numeric_assignment": 141,
-    "integer_numeric_condition": 16,
-    "native_expression": 49,
+    "native_expression": 134,
+    "dda_has_items": 2,
+    "dda_transfer_item": 2,
     "inlined_eoc_calls": 126,
     "constant_string_assignment": 42,
-    "constant_numeric_adjustment": 69,
     "npc_shopkeep_enum": 2,
     "shopkeeper_group": 2
   },
   "unresolved_retained": {
-    "u_spawn_item": 24,
     "u_set_fac_relation": 2,
     "u_add_faction_trust": 6,
     "shopkeeper_consumption_rates": 2

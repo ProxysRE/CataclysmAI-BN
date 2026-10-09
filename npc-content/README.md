@@ -44,12 +44,36 @@ is gzip compressed and base64 encoded to make the source checkpoint portable.
 
 Missing DDA locations, items, characters, missions and engine behavior are part of the port scope, including transitive dependencies. Do not replace them with stubs or remove their dialogue branches. The dependency checkpoint includes original quest items and scrap-trader route definitions. It is a conservative candidate set, not a mod load list.
 
-`adapt_dialogue.py` translates constant string equality to BN variable conditions and converts NPC shopkeeper fields. It preserves unresolved math/EOC effects and reports them. Native validation remains pending.
+## Dialogue adapter and native compatibility
 
-## Dialogue adapter progress
+The adapter retains all 55 topics and both missions. It expands 126 static EOC
+calls with required-context and recursion checks; originals remain preserved.
+Constant assignments use BN variables. All numeric reads and updates use a
+bounded expression IR: BN's integer variable handlers otherwise truncate
+fractional credit. 134 arithmetic occurrences now use the bridge, including
+prices, timers, timestamps and variable existence checks.
 
-Pinned BN condition.cpp, npctalk.cpp and npc_class.cpp were inspected. Static EOC calls are inlined with required-context and recursion checks. Constant arithmetic uses an AST allowlist, never eval. Assignments, integer comparisons and integer adjustments use BN variables. Fractional comparisons and timers remain unresolved rather than being truncated. Ammo exchange coefficients and ceil rounding, consumption-before-credit order and weapon cleanup-before-selection were checked. Upstream EOC definitions remain in the source checkpoint; generated dialogue replaces them with their expanded actions. Item consumption is already supported by this BN version. Remaining features include dynamic item awards, variable arithmetic, timers, faction relations and shop consumption policy.
+All 24 item rewards, two dynamic payments and two dynamic affordability checks
+now target native handlers. Item IDs may come from dialogue variables. Charge
+rewards receive the exact requested amount; ordinary rewards load default
+ammunition and drop nearby when the player lacks carrying capacity. Payments
+validate the complete amount before removing items and transfer ownership to
+the NPC. Invalid IDs, nonnumeric, fractional, negative and overflowing counts
+are rejected. These handlers cover the options present in the pinned artisan
+source; the adapter raises errors for other options instead of discarding them.
 
-## Native expression bridge
+Run `python check_artisan_adapter.py` after source preparation/adaptation.
+Run `python build_engine_patch.py --bn-source /path/to/pinned-bn` to restore
+staging from the exact BN commit, rebuild the engine patch and update only
+its workflow checksum. The Windows workflow formats touched files, builds both
+the game and Catch tests, and runs `[dda_npc]` with real avatars and NPCs.
+It retains the existing build when a newer checkpoint is pushed. It does not
+publish a playable NPC package yet.
 
-All 49 remaining artisan arithmetic occurrences compile into the bounded IR, including fractional prices, variable arithmetic, timestamp assignment, time_since and existence checks. `artisan_engine.patch` adds JSON expression conditions and numeric assignment effects to the pinned BN engine. The Windows workflow builds both game and tests and runs `[dda_npc]` using real avatar objects; it does not publish a playable NPC release. Standalone C++23 evaluator checks pass locally; native CI remains pending. Dynamic item identifiers/counts, faction sharing/trust, shop policies and other DDA JSON schema differences remain to be wired and validated. In particular expression objects nested inside item-count fields are not yet supported by the native item handlers.
+Locally verified: adapter regression checks; C++23 evaluator checks; item bridge
+syntax against pinned BN headers; patch applies to the pinned base. Full native
+reward/payment, fractional-credit and timer tests await Windows CI.
+
+Still required: faction sharing/trust, shop consumption policy, typed dependency
+closure, modern DDA item/mapgen schema adaptation, and full quest/location tests.
+The generated dialogue is not yet an installable mod.
