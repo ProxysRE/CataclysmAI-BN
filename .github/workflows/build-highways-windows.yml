@@ -115,6 +115,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 predecessor fix does not apply" }
           git apply $fix02
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 predecessor fix failed" }
+          $fix03 = "${{ github.workspace }}/package/highways/highways_dev03_fix03.patch"
+          if ((Get-FileHash $fix03 -Algorithm SHA256).Hash.ToLower() -ne "10c07766644c2852cdb7a4ea717b431eeb59cff3f61eb9f38ec142735e9d2285") { throw "DEV0.3 topology test fix checksum mismatch" }
+          git apply --check $fix03
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix does not apply" }
+          git apply $fix03
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix failed" }
           python utilities/highway/check_dda_geometry.py
           if ($LASTEXITCODE -ne 0) { throw "DDA geometry validation failed" }
           python utilities/highway/check_overpasses.py
@@ -221,3 +227,4 @@ jobs:
           path: CBN_Highways_DEV0.3_Windows/
           if-no-files-found: error
           retention-days: 30
+
