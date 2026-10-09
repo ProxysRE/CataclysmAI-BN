@@ -121,6 +121,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix does not apply" }
           git apply $fix03
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix failed" }
+          $fix04 = "${{ github.workspace }}/package/highways/highways_dev03_fix04.patch"
+          if ((Get-FileHash $fix04 -Algorithm SHA256).Hash.ToLower() -ne "e632e756ee3967fbfb86731d125bd152f134acce9e21156c7ce970be8a61cfae") { throw "DEV0.3 topology test fix checksum mismatch" }
+          git apply --check $fix04
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix does not apply" }
+          git apply $fix04
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix failed" }
           python utilities/highway/check_dda_geometry.py
           if ($LASTEXITCODE -ne 0) { throw "DDA geometry validation failed" }
           python utilities/highway/check_overpasses.py

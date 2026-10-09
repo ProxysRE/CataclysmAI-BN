@@ -1,0 +1,316 @@
+diff --git a/data/json/mapgen/dda_highways/highway.json b/data/json/mapgen/dda_highways/highway.json
+index 813cd7e..1ac3edb 100644
+--- a/data/json/mapgen/dda_highways/highway.json
++++ b/data/json/mapgen/dda_highways/highway.json
+@@ -1,6 +1,7 @@
+ [
+   {
+     "type": "mapgen",
++    "method": "json",
+     "om_terrain": [
+       "hw_reserved",
+       "hw_reserved_water"
+@@ -12,6 +13,7 @@
+   {
+     "om_terrain": "hw_road",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "open_air",
+       "place_nested": [
+@@ -41,6 +43,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_road_flat",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -136,6 +139,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_road_bridge_ramp",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -178,6 +182,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_bridge_road",
+     "type": "mapgen",
++    "method": "json",
+     "//": "currently a copy of the flat road, but could be different",
+     "object": {
+       "mapgensize": [
+@@ -221,6 +226,7 @@
+   {
+     "om_terrain": "hw_road_bridge",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fill_ter": "t_open_air",
+       "rows": [
+@@ -260,6 +266,7 @@
+   {
+     "om_terrain": "hw_supports",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "river_center",
+       "rows": [
+@@ -299,6 +306,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_underpass_road",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -330,6 +338,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_underpass",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -358,6 +367,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -402,6 +412,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fill_ter": "t_open_air",
+       "rows": [
+@@ -441,6 +452,7 @@
+   {
+     "om_terrain": "hw_three_lane",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "rows": [
+         ".......................|",
+@@ -481,6 +493,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+diff --git a/data/json/mapgen/dda_highways/specials/hw_bend.json b/data/json/mapgen/dda_highways/specials/hw_bend.json
+index 91edb4a..eefa9a6 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_bend.json
++++ b/data/json/mapgen/dda_highways/specials/hw_bend.json
+@@ -38,6 +38,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+diff --git a/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json b/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json
+index 818c6ad..a2f2e72 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json
++++ b/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json
+@@ -171,6 +171,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -485,6 +486,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fill_ter": "t_open_air",
+       "rows": [
+@@ -548,6 +550,7 @@
+   {
+     "om_terrain": "hw_railings",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fill_ter": "t_open_air",
+       "place_nested": [
+@@ -631,6 +634,7 @@
+   {
+     "nested_mapgen_id": "24x24_railings_full",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -654,6 +658,7 @@
+   {
+     "nested_mapgen_id": "24x24_railings_short",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         6,
+diff --git a/data/json/mapgen/dda_highways/specials/hw_diamond_interchange.json b/data/json/mapgen/dda_highways/specials/hw_diamond_interchange.json
+index b2e3f86..5fa55b9 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_diamond_interchange.json
++++ b/data/json/mapgen/dda_highways/specials/hw_diamond_interchange.json
+@@ -27,6 +27,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+diff --git a/data/json/mapgen/dda_highways/specials/hw_fallback.json b/data/json/mapgen/dda_highways/specials/hw_fallback.json
+index 8ac59de..6b5f64b 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_fallback.json
++++ b/data/json/mapgen/dda_highways/specials/hw_fallback.json
+@@ -5,6 +5,7 @@
+       "hw_fb_tee"
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -88,6 +89,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_fallback_intersection_grass",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -130,6 +132,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_fallback_intersection_north",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -172,6 +175,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_fallback_intersection_west",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -214,6 +218,7 @@
+   {
+     "om_terrain": "hw_fb_supports",
+     "type": "mapgen",
++    "method": "json",
+     "//": "dummy OMT that places hw_supports special in C++",
+     "object": {
+       "fallback_predecessor_mapgen": "open_air",
+@@ -234,6 +239,7 @@
+     ],
+     "//": "Placed by C++; a fallback for abruptly ended highways",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -283,6 +289,7 @@
+     ],
+     "//": "Placed by C++; a fallback for abruptly ended highways",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -356,6 +363,7 @@
+     ],
+     "//": "Placed by C++; a fallback for abruptly ended highways",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+diff --git a/data/json/mapgen/dda_highways/specials/hw_fb_supports.json b/data/json/mapgen/dda_highways/specials/hw_fb_supports.json
+index 8fc3f9f..920663f 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_fb_supports.json
++++ b/data/json/mapgen/dda_highways/specials/hw_fb_supports.json
+@@ -2,6 +2,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_fallback_intersection_support",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+@@ -41,6 +42,7 @@
+   {
+     "nested_mapgen_id": "24x24_highway_fallback_intersection_support",
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "mapgensize": [
+         24,
+diff --git a/data/json/mapgen/dda_highways/specials/hw_rest_area_parking.json b/data/json/mapgen/dda_highways/specials/hw_rest_area_parking.json
+index d9567a0..4b349fc 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_rest_area_parking.json
++++ b/data/json/mapgen/dda_highways/specials/hw_rest_area_parking.json
+@@ -23,6 +23,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+diff --git a/data/json/mapgen/dda_highways/specials/hw_slant_minor.json b/data/json/mapgen/dda_highways/specials/hw_slant_minor.json
+index e4fc8b8..b54ce6b 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_slant_minor.json
++++ b/data/json/mapgen/dda_highways/specials/hw_slant_minor.json
+@@ -18,6 +18,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -121,6 +122,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+diff --git a/data/json/mapgen/dda_highways/specials/hw_trumpet.json b/data/json/mapgen/dda_highways/specials/hw_trumpet.json
+index 73bebbe..b78bda7 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_trumpet.json
++++ b/data/json/mapgen/dda_highways/specials/hw_trumpet.json
+@@ -107,6 +107,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fallback_predecessor_mapgen": "field",
+       "rows": [
+@@ -323,6 +324,7 @@
+       ]
+     ],
+     "type": "mapgen",
++    "method": "json",
+     "object": {
+       "fill_ter": "t_open_air",
+       "rows": [
