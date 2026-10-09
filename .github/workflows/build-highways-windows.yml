@@ -127,6 +127,14 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix does not apply" }
           git apply $fix04
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 topology test fix failed" }
+          $fix05 = "${{ github.workspace }}/package/highways/highways_dev03_fix05.patch"
+          if ((Get-FileHash $fix05 -Algorithm SHA256).Hash.ToLower() -ne "261c8f91e0cb0c3fe577cc398276f16b350c7dbd73b19cfec7790bff19621be4") { throw "DEV0.3 data compatibility fix checksum mismatch" }
+          git apply --check $fix05
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 data compatibility fix does not apply" }
+          git apply $fix05
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 data compatibility fix failed" }
+          python utilities/highway/check_dda_dependencies.py
+          if ($LASTEXITCODE -ne 0) { throw "DDA highway dependency validation failed" }
           python utilities/highway/check_dda_geometry.py
           if ($LASTEXITCODE -ne 0) { throw "DDA geometry validation failed" }
           python utilities/highway/check_overpasses.py
@@ -160,7 +168,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("src/overmap/highway_dda.h", "src/overmap/highway_dda.cpp", "src/overmap/highway_dda_adapter.cpp", "src/overmap/overmap.h", "src/overmap/omdata.h", "src/overmap/overmap.cpp", "src/mapgen/mapgen.cpp", "src/mapgen/mapgen.h", "src/savegame.cpp", "tests/highway_dda_test.cpp", "src/overmap/highway_elevation.h", "src/overmap/highway_generation.cpp", "src/overmap/highway_generation.h", "tests/highway_test.cpp", "tests/highway_elevation_test.cpp", "tests/highway_overpass_mapgen_test.cpp", "utilities/highway/check_elevation.cpp")
+          $files = @("src/overmap/highway_dda.h", "src/overmap/highway_dda.cpp", "src/overmap/highway_dda_adapter.cpp", "src/overmap/overmap.h", "src/overmap/overmap_special.h", "src/mapgen/nested_neighbor_flags.h", "src/overmap/omdata.h", "src/overmap/overmap.cpp", "src/mapgen/mapgen.cpp", "src/mapgen/mapgen.h", "src/savegame.cpp", "tests/highway_dda_test.cpp", "src/overmap/highway_elevation.h", "src/overmap/highway_generation.cpp", "src/overmap/highway_generation.h", "tests/highway_test.cpp", "tests/highway_elevation_test.cpp", "tests/highway_overpass_mapgen_test.cpp", "utilities/highway/check_elevation.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "Highway formatting failed" }
       - name: Configure Windows game

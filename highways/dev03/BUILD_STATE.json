@@ -1,0 +1,27 @@
+{
+  "repository": "ProxysRE/CataclysmAI-BN",
+  "branch": "build/highways-dev01-windows",
+  "base_remote_commit": "4e71dab9d4291109c8617dc293128f8dd68f0482",
+  "local_fix05_commit": "9004204",
+  "fix05_sha256": "261c8f91e0cb0c3fe577cc398276f16b350c7dbd73b19cfec7790bff19621be4",
+  "previous_run": 37957572859,
+  "previous_result": "Windows binaries compiled; strict JSON loading failed and fresh-world generation test used stale cached overmaps",
+  "fix05": [
+    "Restore special_field_highway and rotating hw_railings terrain dependencies",
+    "Use explicit local_road connections without deprecated terrain fields",
+    "Preserve DDA flags/flags_any nested-mapgen conditions",
+    "Load palette metadata for predecessor-only mapgens without changing ASCII rows",
+    "Preserve special priority before BN area ordering",
+    "Expand trumpet bridge neighbor prefix into four valid type IDs",
+    "Clear cached overmaps for fresh-world test and retain legacy-neighbor termination regression"
+  ],
+  "local_validation": [
+    "patch applies to post-fix04 baseline",
+    "9 DDA geometry hashes unchanged",
+    "24 foundation and 32 overpass mapgens checked",
+    "assembled highway dependency closure checked",
+    "nested flag header syntax checked against BN headers"
+  ],
+  "native_validation": "Windows game and Catch tests requested by workflow; pending",
+  "playable_release_ready": false
+}

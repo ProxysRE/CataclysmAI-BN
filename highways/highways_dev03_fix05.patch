@@ -1,0 +1,402 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 59bce93..8dcdc59 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -158,3 +158,6 @@ When editing highway mapgens, verify the central median at both north/south and
+ Native mapgen tests must temporarily set `disable_mapgen = false` and restore it: `clear_all_state()` defaults to the generic test mapgen. Check an actual road edge or guardrail as well as pavement.
+ 
+ Highway corridor finalization must run after forest trailheads as well as regular specials: trailhead placement can add local roads after `place_specials()`. Keep the complete-generation regression test; reserve/finalize unit tests alone do not cover these late connections.
++
++`clear_all_state()` retains cached overmaps. Fresh-world highway generation tests must clear `ACTIVE_OVERMAP_BUFFER` after setting highway options; test legacy neighbors without endpoints separately. Do not change legacy-world termination behavior to satisfy a contaminated fresh-world test.
++Run `utilities/highway/check_dda_dependencies.py` on the assembled BN data before Windows compilation. Preserve nested `flags`/`flags_any` conditions and special priorities through engine support; do not delete unsupported behavior to silence JSON loader errors.
+diff --git a/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json b/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json
+index a2f2e72..139f103 100644
+--- a/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json
++++ b/data/json/mapgen/dda_highways/specials/hw_clover_leaf.json
+@@ -563,7 +563,10 @@
+           "neighbors": {
+             "north": [
+               "hw_clover_leaf_bridge_0_1",
+-              "hw_trumpet_bridge"
++              "hw_trumpet_bridge_0_0",
++              "hw_trumpet_bridge_1_0",
++              "hw_trumpet_bridge_0_1",
++              "hw_trumpet_bridge_1_1"
+             ]
+           }
+         },
+@@ -600,7 +603,10 @@
+           "neighbors": {
+             "south": [
+               "hw_clover_leaf_bridge_0_0",
+-              "hw_trumpet_bridge"
++              "hw_trumpet_bridge_0_0",
++              "hw_trumpet_bridge_1_0",
++              "hw_trumpet_bridge_0_1",
++              "hw_trumpet_bridge_1_1"
+             ]
+           }
+         },
+diff --git a/data/json/overmap/overmap_special/dda_highways.json b/data/json/overmap/overmap_special/dda_highways.json
+index 0b2514a..8d1d253 100644
+--- a/data/json/overmap/overmap_special/dda_highways.json
++++ b/data/json/overmap/overmap_special/dda_highways.json
+@@ -348,7 +348,6 @@
+           -1,
+           0
+         ],
+-        "terrain": "road",
+         "connection": "local_road",
+         "from": [
+           0,
+@@ -362,7 +361,6 @@
+           -1,
+           0
+         ],
+-        "terrain": "road",
+         "connection": "local_road",
+         "from": [
+           1,
+@@ -3056,7 +3054,6 @@
+           0,
+           0
+         ],
+-        "terrain": "road",
+         "connection": "local_road",
+         "from": [
+           -2,
+@@ -3070,7 +3067,6 @@
+           0,
+           0
+         ],
+-        "terrain": "road",
+         "connection": "local_road",
+         "from": [
+           3,
+diff --git a/data/json/overmap/overmap_terrain/dda_highways.json b/data/json/overmap/overmap_terrain/dda_highways.json
+index 29a80f4..5b2dce2 100644
+--- a/data/json/overmap/overmap_terrain/dda_highways.json
++++ b/data/json/overmap/overmap_terrain/dda_highways.json
+@@ -2688,5 +2688,24 @@
+       "REQUIRES_PREDECESSOR",
+       "RIVER"
+     ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "special_field_highway",
++    "copy-from": "special_field",
++    "extend": {
++      "flags": [
++        "HIGHWAY",
++        "HIGHWAY_SPECIAL"
++      ]
++    }
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "hw_railings",
++    "copy-from": "open_air",
++    "flags": [
++      "HIGHWAY"
++    ]
+   }
+ ]
+diff --git a/src/mapgen/mapgen.cpp b/src/mapgen/mapgen.cpp
+index e721fda..ef56182 100644
+--- a/src/mapgen/mapgen.cpp
++++ b/src/mapgen/mapgen.cpp
+@@ -48,6 +48,7 @@
+ #include "mapgen_constructor.h"
+ #include "mapgen_functions.h"
+ #include "mapgendata.h"
++#include "nested_neighbor_flags.h"
+ #include "mapgenformat.h"
+ #include "memory_fast.h"
+ #include "mission.h"
+@@ -2827,12 +2828,16 @@ public:
+     neighbor_oter_check neighbor_oters;
+     neighbor_join_check neighbor_joins;
+     neighbor_connection_check neighbor_connections;
++    mapgen::neighbor_flags neighbor_flags;
++    mapgen::neighbor_flags neighbor_flags_any;
+     jmapgen_int rotation = 0;
+     std::vector<int> required_z;
+     jmapgen_nested(const JsonObject& jsi)
+         : neighbor_oters(jsi.get_object("neighbors")),
+           neighbor_joins(jsi.get_object("joins")),
+-          neighbor_connections(jsi.get_object("connections")) {
++          neighbor_connections(jsi.get_object("connections")),
++          neighbor_flags(jsi.get_object("flags")),
++          neighbor_flags_any(jsi.get_object("flags_any")) {
+         jsi.read("check_z", required_z);
+         if (jsi.has_member("chunks")) {
+             load_weighted_list(jsi.get_member("chunks"), entries, 100);
+@@ -2846,7 +2851,8 @@ public:
+     auto get_entries(const mapgendata& dat) const -> const weighted_int_list<std::string>& {
+         if ((required_z.empty() || std::ranges::find(required_z, dat.zlevel()) != required_z.end())
+             && neighbor_oters.test(dat) && neighbor_joins.test(dat)
+-            && neighbor_connections.test(dat)) {
++            && neighbor_connections.test(dat) && neighbor_flags.test(dat, false)
++            && neighbor_flags_any.test(dat, true)) {
+             return entries;
+         } else {
+             return else_entries;
+@@ -2856,7 +2862,8 @@ public:
+         -> const nested_mapgen_ref_list& { // *NOPAD*
+         if ((required_z.empty() || std::ranges::find(required_z, dat.zlevel()) != required_z.end())
+             && neighbor_oters.test(dat) && neighbor_joins.test(dat)
+-            && neighbor_connections.test(dat)) {
++            && neighbor_connections.test(dat) && neighbor_flags.test(dat, false)
++            && neighbor_flags_any.test(dat, true)) {
+             ensure_resolved(entries, resolved_entries, resolved_entries_valid);
+             return resolved_entries;
+         } else {
+@@ -3541,6 +3548,12 @@ auto mapgen_function_json_base::setup_common(const JsonObject& jo) -> bool {
+             }
+         }
+         fallback_terrain_exists = true;
++    } else if( jo.has_array( "palettes" ) ) {
++        // DDA support markers inherit their whole terrain from a predecessor.
++        // Load their palette metadata even when there are no ASCII rows.
++        const auto palette = mapgen_palette::load_temp(
++                                 jo, mod_management::get_default_core_content_pack().str(), "" );
++        parameters = palette.get_parameters();
+     }
+ 
+     // No fill_ter? No format? GTFO.
+diff --git a/src/mapgen/nested_neighbor_flags.h b/src/mapgen/nested_neighbor_flags.h
+new file mode 100644
+index 0000000..c59f606
+--- /dev/null
++++ b/src/mapgen/nested_neighbor_flags.h
+@@ -0,0 +1,42 @@
++#pragma once
++
++#include <array>
++
++#include "all_enum_values.h"
++#include "enum_conversions.h"
++#include "json.h"
++#include "line.h"
++#include "mapgendata.h"
++#include "overmap/omdata.h"
++
++#include <ranges>
++#include <unordered_map>
++#include <vector>
++
++namespace mapgen {
++
++/// DDA nested-mapgen flags: OR within each direction, AND across directions.
++/// flags_any instead accepts a match in any listed direction.
++class neighbor_flags {
++    std::unordered_map<direction, std::vector<oter_flags>> neighbors_;
++
++public:
++    explicit neighbor_flags( const JsonObject &object ) {
++        for( const auto dir : all_enum_values<direction>() ) {
++            auto flags = std::vector<oter_flags>{};
++            object.read( io::enum_to_string( dir ), flags );
++            if( !flags.empty() ) { neighbors_.emplace( dir, std::move( flags ) ); }
++        }
++    }
++
++    auto test( const mapgendata &data, const bool any_direction ) const -> bool {
++        const auto matches = [&data]( const auto &entry ) {
++            const auto terrain = data.neighbor_at( entry.first );
++            return std::ranges::any_of( entry.second, [terrain]( const auto flag ) { return terrain->has_flag( flag ); } );
++        };
++        return neighbors_.empty() || ( any_direction ? std::ranges::any_of( neighbors_, matches ) :
++                                      std::ranges::all_of( neighbors_, matches ) );
++    }
++};
++
++} // namespace mapgen
+diff --git a/src/overmap/overmap.cpp b/src/overmap/overmap.cpp
+index c8836a3..e8d5d61 100644
+--- a/src/overmap/overmap.cpp
++++ b/src/overmap/overmap.cpp
+@@ -2567,6 +2567,7 @@ void overmap_special::load(const JsonObject& jo, const std::string& src) {
+ 
+     if (is_special) {
+         mandatory(jo, was_loaded, "occurrences", constraints_.occurrences);
++        optional(jo, was_loaded, "priority", priority_, 0);
+ 
+         assign(jo, "city_sizes", constraints_.city_size, strict);
+         assign(jo, "city_distance", constraints_.city_distance, strict);
+@@ -6367,6 +6368,9 @@ void overmap::place_specials(overmap_special_batch& enabled_specials) {
+     std::sort(
+         enabled_specials.begin(), enabled_specials.end(),
+         [&special_weight](const overmap_special_placement& a, const overmap_special_placement& b) {
++            if( a.special_details->get_priority() != b.special_details->get_priority() ) {
++                return a.special_details->get_priority() > b.special_details->get_priority();
++            }
+             return special_weight(a.special_details) > special_weight(b.special_details);
+         });
+ 
+diff --git a/src/overmap/overmap_special.h b/src/overmap/overmap_special.h
+index 6174fcf..c19952e 100644
+--- a/src/overmap/overmap_special.h
++++ b/src/overmap/overmap_special.h
+@@ -109,6 +109,7 @@ public:
+         return constraints_;
+     }
+     auto is_rotatable() const -> bool { return rotatable_; }
++    auto get_priority() const -> int { return priority_; }
+     auto can_spawn() const -> bool;
+     /** Returns terrain at the given point. */
+     auto get_terrain_at(const tripoint_rel_omt& p) const -> const oter_str_id&;
+@@ -167,6 +168,7 @@ private:
+     shared_ptr_fast<const overmap_special_data> data_;
+ 
+     bool rotatable_ = true;
++    int priority_ = 0;
+     overmap_special_spawns monster_spawns_;
+     cata::flat_set<std::string> flags_;
+ 
+diff --git a/tests/highway_dda_test.cpp b/tests/highway_dda_test.cpp
+index b96496c..4c22334 100644
+--- a/tests/highway_dda_test.cpp
++++ b/tests/highway_dda_test.cpp
+@@ -3,10 +3,13 @@
+ #include "game_constants.h"
+ #include "map/mapbuffer_registry.h"
+ #include "mapgen/mapgen_constructor.h"
++#include "mapgen/mapgendata.h"
++#include "mapgen/nested_neighbor_flags.h"
+ #include "options_helpers.h"
+ #include "overmap/highway_dda.h"
+ #include "overmap/overmap.h"
+ #include "overmap/overmapbuffer.h"
++#include "overmap/overmap_special.h"
+ #include "state_helpers.h"
+ 
+ #include <array>
+@@ -33,6 +36,49 @@ TEST_CASE("dda_highway_topology_has_reciprocal_edges", "[highway][dda]") {
+     }
+ }
+ 
++TEST_CASE("dda_nested_highway_flags_preserve_direction_semantics", "[highway][dda][mapgen]") {
++    clear_all_state();
++    auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
++    auto data = mapgendata(generator, mapgendata::dummy_settings);
++    for( auto &neighbor : data.t_nesw ) { neighbor = oter_id("forest"); }
++    auto input = std::istringstream(R"({"north":["HIGHWAY"],"west":["HIGHWAY"]})");
++    auto parser = JsonIn(input);
++    const auto flags = mapgen::neighbor_flags(parser.get_object());
++    CHECK_FALSE(flags.test(data, false));
++    CHECK_FALSE(flags.test(data, true));
++    data.t_nesw[0] = oter_id("hw_road_north");
++    CHECK_FALSE(flags.test(data, false));
++    CHECK(flags.test(data, true));
++    data.t_nesw[3] = oter_id("hw_road_west");
++    CHECK(flags.test(data, false));
++    CHECK(flags.test(data, true));
++    data.t_nesw[0] = oter_id("forest");
++    CHECK_FALSE(flags.test(data, false));
++    CHECK(flags.test(data, true));
++}
++
++TEST_CASE("dda_highway_dependencies_and_special_priorities_load", "[highway][dda]") {
++    CHECK(oter_str_id("special_field_highway").is_valid());
++    CHECK(oter_str_id("hw_railings_north").is_valid());
++    CHECK(oter_id("special_field_highway")->has_flag(oter_flags::highway_special));
++    CHECK(oter_id("hw_railings_north")->has_flag(oter_flags::highway));
++    CHECK(overmap_special_id("Highway Diamond Interchange")->get_priority() == 2);
++    CHECK(overmap_special_id("Highway Rest Area Parking")->get_priority() == 2);
++}
++
++TEST_CASE("dda_highway_terminates_at_legacy_neighbor_without_endpoint", "[highway][dda]") {
++    clear_all_state();
++    const auto spacing = override_option("BN_HIGHWAY_SPACING", "3");
++    auto legacy = std::make_unique<overmap>(point_abs_om(0, -1));
++    auto current = std::make_unique<overmap>(point_abs_om::zero());
++    auto generator = highway::dda::generator(*current);
++    auto paths = generator.place_highways({legacy.get(), nullptr, nullptr, nullptr});
++    CHECK(highway::dda::is_invalid(current->highway_connections[0]));
++    REQUIRE_FALSE(highway::dda::is_invalid(current->highway_connections[2]));
++    REQUIRE_FALSE(paths.empty());
++    generator.finalize_highways(paths);
++}
++
+ TEST_CASE("dda_highway_templates_keep_two_square_median_at_rotated_seams", "[highway][dda][mapgen][slow]") {
+     clear_all_state();
+     const auto disabled = override_option("BN_HIGHWAYS", "false");
+diff --git a/tests/highway_test.cpp b/tests/highway_test.cpp
+index 04435b3..c1950ae 100644
+--- a/tests/highway_test.cpp
++++ b/tests/highway_test.cpp
+@@ -58,6 +58,9 @@ TEST_CASE("highway_survives_complete_overmap_generation", "[highway][overmap][sl
+     clear_all_state();
+     const auto enabled = override_option("BN_HIGHWAYS", "true");
+     const auto spacing = override_option("BN_HIGHWAY_SPACING", "3");
++    // clear_all_state resets the local map, but retains overmaps from other tests.
++    // Legacy neighbors without highway endpoints intentionally terminate new routes.
++    ACTIVE_OVERMAP_BUFFER.clear();
+     // Generate the cloverleaf, then each neighbor; crossings must survive late specials.
+     const auto addresses = std::array{point_abs_om(0, 0), point_abs_om(0, -1),
+                                      point_abs_om(1, 0), point_abs_om(0, 1), point_abs_om(-1, 0)};
+diff --git a/utilities/highway/check_dda_dependencies.py b/utilities/highway/check_dda_dependencies.py
+new file mode 100644
+index 0000000..3dbd391
+--- /dev/null
++++ b/utilities/highway/check_dda_dependencies.py
+@@ -0,0 +1,57 @@
++#!/usr/bin/env python3
++"""Validate the DDA highway dependency closure against the assembled BN data."""
++import argparse
++import json
++from pathlib import Path
++
++root = Path(__file__).resolve().parents[2]
++parser = argparse.ArgumentParser(description=__doc__)
++parser.add_argument('--base-json', type=Path, default=root / 'data/json')
++args = parser.parse_args()
++terrain = set()
++palettes = set()
++nested = set()
++for directory in {args.base_json, root / 'data/json'}:
++    for path in directory.rglob('*.json'):
++        entries = json.loads(path.read_text(encoding='utf-8'))
++        if not isinstance(entries, list):
++            continue
++        for entry in entries:
++            if not isinstance(entry, dict):
++                continue
++            if entry.get('type') == 'overmap_terrain':
++                ids = entry.get('id', entry.get('abstract', []))
++                terrain.update([ids] if isinstance(ids, str) else ids)
++            if entry.get('type') == 'palette':
++                palettes.add(entry.get('id'))
++            if 'nested_mapgen_id' in entry:
++                nested.add(entry['nested_mapgen_id'])
++
++rotated = terrain | {identifier + '_' + suffix for identifier in terrain
++                     for suffix in ('north', 'east', 'south', 'west')}
++specials = json.loads((root / 'data/json/overmap/overmap_special/dda_highways.json').read_text())
++for special in specials:
++    for connection in special.get('connections', []):
++        assert 'terrain' not in connection, f"Deprecated connection in {special['id']}"
++        assert connection.get('connection') == 'local_road'
++    locations = special['overmaps']
++    if isinstance(locations, dict):
++        locations = locations.values()
++    for location in locations:
++        if 'overmap' not in location:
++            continue  # DDA clearance markers reserve space without replacing terrain.
++        assert location['overmap'] in rotated, f"Missing terrain: {location['overmap']}"
++for path in (root / 'data/json/mapgen/dda_highways').rglob('*.json'):
++    for entry in json.loads(path.read_text()):
++        assert entry['method'] == 'json', path
++        obj = entry['object']
++        for palette in obj.get('palettes', []):
++            assert palette in palettes, f'Missing palette: {palette}'
++        for placement in obj.get('place_nested', []):
++            for names in placement.get('neighbors', {}).values():
++                for name in [names] if isinstance(names, str) else names:
++                    assert name in terrain, f'Invalid neighbor terrain type: {name}'
++            for chunk in placement.get('chunks', []) + placement.get('else_chunks', []):
++                name = chunk if isinstance(chunk, str) else chunk[0]
++                assert name == 'null' or name in nested, f'Missing nested mapgen: {name}'
++print('PASS: highway special terrain, nested neighbor types, palettes, chunks and connection schema')
