@@ -18,7 +18,17 @@ assert counts["dda_give_item"] == 24
 assert counts["dda_transfer_item"] == 2
 assert counts["dda_has_items"] == 2
 assert counts["dda_switch"] == 4
+assert counts["dda_assign_activity"] == 1
+assert counts["dda_add_faction_trust"] == 6
+assert counts["dda_set_faction_relation"] == 2
 assert counts["inlined_eoc_calls"] == 126
+activity_source = json.loads((root / "activity_source.json").read_text())["definitions"][0]
+activity_target = json.loads((root / "native/dda_artisan_activities.json").read_text())[0]
+assert activity_source["based_on"] == "time"
+assert activity_source["activity_level"] == "NO_EXERCISE"
+for key in ("id", "type", "verb", "interruptable", "rooted", "refuel_fires", "auto_needs"):
+    assert activity_source[key] == activity_target[key]
+assert activity_target["no_resume"] is (not activity_source["can_resume"])
 
 def walk(value):
     if isinstance(value, dict):
@@ -40,4 +50,4 @@ except ValueError:
     pass
 else:
     raise AssertionError("Unsupported spawn options must not be silently dropped")
-print("PASS: 55 topics retained; 24 rewards, 2 payments, 2 affordability checks; fractional reads preserved")
+print("PASS: 55 topics; rewards/payments; fractional reads; 1 measurement action; 6 trust and 2 relation effects")

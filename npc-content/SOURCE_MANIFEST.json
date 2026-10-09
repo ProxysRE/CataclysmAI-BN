@@ -19,5 +19,14 @@
     "overmap/overmap_terrain/overmap_terrain_isolated_road.json",
     "overmap/overmap_special/specials.json",
     "npcs/factions.json"
+  ],
+  "additional_dependencies": [
+    {
+      "path": "data/json/player_activities.json",
+      "id": "ACT_MEASURE",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "checkpoint": "activity_source.json",
+      "definition_sha256_canonical": "eef55389e96ac32d68bf7331286851dce2aea10e40c2626ad2d3a2566559dd5f"
+    }
   ]
 }

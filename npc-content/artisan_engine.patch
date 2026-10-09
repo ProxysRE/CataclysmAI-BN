@@ -53,12 +53,75 @@
  
  #include "activity_type.h"
  #include "auto_pickup.h"
-@@ -3000,7 +3002,89 @@
+@@ -80,6 +82,7 @@
+ #include <cstddef>
+ #include <iterator>
+ #include <list>
++#include <limits>
+ #include <map>
+ #include <memory>
+ #include <ostream>
+@@ -3000,7 +3003,144 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
 -    if( jo.has_string( "u_add_effect" ) ) {
-+    if( jo.has_object( "dda_switch" ) ) {
++    if( jo.has_object( "dda_assign_activity" ) ) {
++        const auto specification = jo.get_object( "dda_assign_activity" );
++        const auto activity = activity_id( specification.get_string( "activity" ) );
++        const auto seconds = specification.get_int( "duration_seconds" );
++        if( seconds <= 0 || seconds > std::numeric_limits<int>::max() / to_moves<int>( 1_seconds ) ) {
++            specification.throw_error( "Invalid artisan activity duration" );
++        }
++        const auto moves = to_moves<int>( time_duration::from_seconds( seconds ) );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [activity, moves]( const auto &d ) {
++                if( !d.alpha ) { return; }
++                if( !activity.is_valid() ) {
++                    debugmsg( "Unknown artisan activity: %s", activity.str() );
++                    return;
++                }
++                d.alpha->assign_activity( activity, moves );
++            }
++        } );
++    } else if( jo.has_int( "dda_add_faction_trust" ) ) {
++        const auto adjustment = jo.get_int( "dda_add_faction_trust" );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [adjustment]( const auto &d ) {
++                const auto faction = d.beta ? d.beta->get_faction() : nullptr;
++                if( !faction ) {
++                    debugmsg( "Missing NPC faction for artisan trust" );
++                    return;
++                }
++                const auto value = static_cast<long long>( faction->trusts_u ) + adjustment;
++                if( value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() ) {
++                    debugmsg( "Artisan faction trust overflow" );
++                    return;
++                }
++                faction->trusts_u = static_cast<int>( value );
++            }
++        } );
++    } else if( jo.has_object( "dda_set_faction_relation" ) ) {
++        const auto specification = jo.get_object( "dda_set_faction_relation" );
++        const auto name = specification.get_string( "relation" );
++        const auto found = npc_factions::relation_strs.find( name );
++        if( found == npc_factions::relation_strs.end() ) {
++            specification.throw_error( "Unknown faction relation: " + name );
++        }
++        const auto rule = found->second;
++        const auto enabled = specification.get_bool( "enabled", true );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [rule, enabled]( const auto &d ) {
++                const auto player_faction = d.alpha ? d.alpha->get_faction() : nullptr;
++                const auto npc_faction = d.beta ? d.beta->get_faction() : nullptr;
++                if( !player_faction || !npc_faction ) {
++                    debugmsg( "Missing factions for artisan relationship" );
++                    return;
++                }
++                npc_faction->relations[player_faction->id.str()].set( rule, enabled );
++            }
++        } );
++    } else if( jo.has_object( "dda_switch" ) ) {
 +        const auto specification = jo.get_object( "dda_switch" );
 +        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
 +        struct switch_case {
@@ -144,6 +207,118 @@
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
+--- a/src/faction.h
++++ b/src/faction.h
+@@ -42,6 +42,7 @@
+     lets_you_in,
+     defend_your_space,
+     knows_your_voice,
++    share_public_goods,
+     // final value is the count
+     rel_types
+ };
+@@ -53,7 +54,8 @@
+         { "guard your stuff", guard_your_stuff },
+         { "lets you in", lets_you_in },
+         { "defends your space", defend_your_space },
+-        { "knows your voice", knows_your_voice }
++        { "knows your voice", knows_your_voice },
++        { "share public goods", share_public_goods }
+     }
+ };
+ } // namespace npc_factions
+@@ -77,6 +79,7 @@
+         std::string name;
+         int likes_u;
+         int respects_u;
++        int trusts_u = 0;
+         bool known_by_u;
+         faction_id id;
+         std::string desc;
+--- a/src/faction.cpp
++++ b/src/faction.cpp
+@@ -99,6 +99,7 @@
+     : name( jsobj.get_string( "name" ) )
+     , likes_u( jsobj.get_int( "likes_u" ) )
+     , respects_u( jsobj.get_int( "respects_u" ) )
++    , trusts_u( jsobj.get_int( "trusts_u", 0 ) )
+     , known_by_u( jsobj.get_bool( "known_by_u" ) )
+     , id( faction_id( jsobj.get_string( "id" ) ) )
+     , desc( jsobj.get_string( "description" ) )
+--- a/src/savegame_json.cpp
++++ b/src/savegame_json.cpp
+@@ -3666,6 +3666,8 @@
+     jo.read( "name", name );
+     jo.read( "likes_u", likes_u );
+     jo.read( "respects_u", respects_u );
++    trusts_u = 0;
++    jo.read( "trusts_u", trusts_u );
+     jo.read( "known_by_u", known_by_u );
+     jo.read( "size", size );
+     jo.read( "power", power );
+@@ -3689,6 +3691,7 @@
+     json.member( "name", name );
+     json.member( "likes_u", likes_u );
+     json.member( "respects_u", respects_u );
++    json.member( "trusts_u", trusts_u );
+     json.member( "known_by_u", known_by_u );
+     json.member( "size", size );
+     json.member( "power", power );
+--- a/src/activity_type.h
++++ b/src/activity_type.h
+@@ -78,6 +78,7 @@
+         translation verb_ = to_translation( "THIS IS A BUG" );
+         bool suspendable_ = true;
+         bool no_resume_ = false;
++        bool interruptable_ = true;
+         bool multi_activity_ = false;
+         bool refuel_fires = false;
+         bool auto_needs = false;
+@@ -118,6 +119,7 @@
+         bool no_resume() const {
+             return no_resume_;
+         }
++        auto interruptable() const -> bool { return interruptable_; }
+         bool multi_activity() const {
+             return multi_activity_;
+         }
+--- a/src/activity_type.cpp
++++ b/src/activity_type.cpp
+@@ -71,6 +71,7 @@
+     assign( jo, "verb", result.verb_, true );
+     assign( jo, "suspendable", result.suspendable_, true );
+     assign( jo, "no_resume", result.no_resume_, true );
++    assign( jo, "interruptable", result.interruptable_, false );
+     assign( jo, "special", result.special_, false );
+     assign( jo, "multi_activity", result.multi_activity_, false );
+     assign( jo, "refuel_fires", result.refuel_fires, false );
+--- a/src/player_activity.cpp
++++ b/src/player_activity.cpp
+@@ -74,10 +74,13 @@
+ static const activity_id ACT_WAIT_NPC( "ACT_WAIT_NPC" );
+ static const activity_id ACT_WAIT_STAMINA( "ACT_WAIT_STAMINA" );
+ static const activity_id ACT_WAIT_WEATHER( "ACT_WAIT_WEATHER" );
++namespace {
++const auto act_measure = activity_id( "ACT_MEASURE" );
++}
+ 
+ auto activity_uses_calendar_duration_progress( const activity_id &id ) -> bool
+ {
+-    return id == ACT_TRY_SLEEP || id == ACT_WAIT || id == ACT_WAIT_NPC ||
++    return id == act_measure || id == ACT_TRY_SLEEP || id == ACT_WAIT || id == ACT_WAIT_NPC ||
+            id == ACT_WAIT_STAMINA || id == ACT_WAIT_WEATHER;
+ }
+ 
+@@ -739,7 +742,8 @@
+ 
+ bool player_activity::is_distraction_ignored( distraction_type type ) const
+ {
+-    return ( get_distraction_manager().is_ignored( type ) ||
++    return ( ( !this->type.is_null() && !this->type->interruptable() ) ||
++             get_distraction_manager().is_ignored( type ) ||
+              ignored_distractions.contains( type ) );
+ }
+ 
 --- /dev/null
 +++ b/src/artisan_expression.h
 @@ -0,0 +1,105 @@
@@ -581,3 +756,123 @@
 +    // Source order wins even when thresholds are not sorted.
 +    CHECK( actor.get_value( "npctalk_var_selected" ) == "last" );
 +}
+--- /dev/null
++++ b/tests/dda_artisan_services_test.cpp
+@@ -0,0 +1,99 @@
++#include "activity_type.h"
++#include "avatar.h"
++#include "calendar.h"
++#include "cata_utility.h"
++#include "catch/catch.hpp"
++#include "dialogue.h"
++#include "distraction_manager.h"
++#include "faction.h"
++#include "json.h"
++#include "npc.h"
++#include "options_helpers.h"
++#include "player_activity.h"
++#include "state_helpers.h"
++
++#include <ranges>
++#include <sstream>
++
++TEST_CASE( "artisan_measurements_take_calendar_time", "[dda_npc]" ) {
++    clear_all_state();
++    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
++    const auto time_scale = override_option( "TIME_ACTION_SCALE", "100" );
++    // Crafting speed must not shorten measurements based on elapsed time.
++    const auto progress_scale = override_option( "ACTIVITY_PROGRESS_SCALE", "300" );
++    auto &actor = get_avatar();
++    auto input = std::istringstream( R"({"effect":{"dda_assign_activity":{"activity":"ACT_MEASURE","duration_seconds":600}}})" );
++    auto parser = JsonIn( input );
++    const auto effect = talk_effect_t( parser.get_object() );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    REQUIRE( effect.effects.size() == 1 );
++    effect.effects.front()( conversation );
++    REQUIRE( actor.activity );
++    REQUIRE( actor.activity->id() == activity_id( "ACT_MEASURE" ) );
++    CHECK( actor.activity->moves_total == to_moves<int>( 10_minutes ) );
++    CHECK( activity_id( "ACT_MEASURE" )->rooted() );
++    CHECK( activity_id( "ACT_MEASURE" )->no_resume() );
++    CHECK_FALSE( activity_id( "ACT_MEASURE" )->interruptable() );
++    CHECK( actor.activity->is_distraction_ignored( distraction_type::hostile_spotted_near ) );
++    // DDA's separate keyboard cancellation remains available.
++    CHECK( actor.activity->interruptable_with_kb );
++    const auto started = calendar::turn;
++    for( const auto tick : std::views::iota( 1, 600 ) ) {
++        calendar::turn = started + time_duration::from_seconds( tick );
++        actor.moves = 100;
++        REQUIRE( actor.activity );
++        actor.activity->do_turn( actor );
++    }
++    REQUIRE( actor.activity );
++    REQUIRE( actor.activity->id() == activity_id( "ACT_MEASURE" ) );
++    CHECK( actor.activity->moves_left == to_moves<int>( 1_seconds ) );
++    calendar::turn = started + 10_minutes;
++    actor.moves = 100;
++    actor.activity->do_turn( actor );
++    CHECK( !actor.activity || actor.activity->id().is_null() );
++}
++
++TEST_CASE( "artisan_faction_trust_and_public_access_survive_save_load", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    auto artisan = npc{};
++    artisan.set_fac( faction_id( "free_merchants" ) );
++    auto *fac = artisan.get_faction();
++    REQUIRE( fac );
++    const auto restore_faction = restore_on_out_of_scope<faction>( *fac );
++    fac->trusts_u = 4;
++    auto input = std::istringstream( R"({"effect":[{"dda_add_faction_trust":1},{"dda_set_faction_relation":{"relation":"share public goods","enabled":true}}]})" );
++    auto parser = JsonIn( input );
++    const auto effect = talk_effect_t( parser.get_object() );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &artisan;
++    REQUIRE( effect.effects.size() == 2 );
++    for( const auto &operation : effect.effects ) { operation( conversation ); }
++    CHECK( fac->trusts_u == 5 );
++    const auto player_faction = actor.get_faction()->id;
++    CHECK( fac->has_relationship( player_faction, npc_factions::share_public_goods ) );
++    CHECK_FALSE( fac->has_relationship( player_faction, npc_factions::share_my_stuff ) );
++    auto buffer = std::stringstream{};
++    auto output = JsonOut( buffer );
++    fac->serialize( output );
++    auto loaded = faction{};
++    auto save_parser = JsonIn( buffer );
++    loaded.deserialize( save_parser );
++    CHECK( loaded.trusts_u == 5 );
++    CHECK( loaded.has_relationship( player_faction, npc_factions::share_public_goods ) );
++
++    auto revoke_input = std::istringstream( R"({"effect":{"dda_set_faction_relation":{"relation":"share public goods","enabled":false}}})" );
++    auto revoke_parser = JsonIn( revoke_input );
++    const auto revoke = talk_effect_t( revoke_parser.get_object() );
++    REQUIRE( revoke.effects.size() == 1 );
++    revoke.effects.front()( conversation );
++    CHECK_FALSE( fac->has_relationship( player_faction, npc_factions::share_public_goods ) );
++
++    // Missing old-save fields must reset new trust instead of retaining stale data.
++    auto legacy_input = std::istringstream( R"({"id":"free_merchants","relations":{}})" );
++    auto legacy_parser = JsonIn( legacy_input );
++    loaded.deserialize( legacy_parser );
++    CHECK( loaded.trusts_u == 0 );
++}
+--- /dev/null
++++ b/data/json/dda_artisan_activities.json
+@@ -0,0 +1,15 @@
++[
++  {
++    "id": "ACT_MEASURE",
++    "type": "activity_type",
++    "verb": "getting measurements taken",
++    "interruptable": false,
++    "rooted": true,
++    "refuel_fires": true,
++    "auto_needs": true,
++    "no_resume": true,
++    "suspendable": false,
++    "rest_amount": 0.1,
++    "bubble_size_effect": "idle"
++  }
++]

@@ -82,3 +82,29 @@ source order. Response-level boolean switches remain BN response switches.
 Still required: the measurement activity, faction sharing/trust, shop consumption policy, typed dependency
 closure, modern DDA item/mapgen schema adaptation, and full quest/location tests.
 The generated dialogue is not yet an installable mod.
+
+## Measurements and faction state
+
+The pinned DDA ACT_MEASURE definition is preserved in activity_source.json.
+The patch adds its BN activity definition, a ten-minute dialogue assignment and
+calendar-based progress that is unaffected by crafting speed. DDA's noninterruptible
+setting suppresses automatic distractions; its separately enabled keyboard
+cancellation is retained. Rooting, automatic needs/fire refueling and inability
+to resume are retained using BN activity properties. BN's waiting rest model is
+used for the non-exercising activity; this does not introduce DDA's metabolism.
+
+Six quest trust increments now modify a separate trusts_u faction value.
+It loads from faction templates, persists in saves and defaults to zero in old
+saves. Two public-goods relation effects update the NPC faction's rule toward the
+player faction, with support for revoking the rule. The new relation is appended
+to BN's enum to preserve existing numeric relation IDs. This flag does NOT grant
+share_my_stuff. Its DDA consumer grants public-water access through basecamps;
+that camp access system still requires porting. Other DDA trust consumers and
+penalties will be wired with their corresponding content.
+
+Native Catch tests use a real avatar, NPC and faction save/load. They check the
+600-second action despite boosted crafting progress, automatic interruption,
+keyboard behavior, positive trust changes, relation revocation and old-save
+fallback. These expanded tests await Windows CI. The dialogue scanner now reports
+only the two shopkeeper_consumption_rates entries in its known-unsupported set;
+that is not a complete item/mapgen/schema compatibility claim.

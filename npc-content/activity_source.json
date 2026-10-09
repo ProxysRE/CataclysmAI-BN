@@ -1,0 +1,20 @@
+{
+  "source_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "source_path": "data/json/player_activities.json",
+  "license": "CC-BY-SA-3.0",
+  "definitions": [
+    {
+      "id": "ACT_MEASURE",
+      "//": "For characters getting crafting done",
+      "type": "activity_type",
+      "activity_level": "NO_EXERCISE",
+      "verb": "getting measurements taken",
+      "based_on": "time",
+      "interruptable": false,
+      "rooted": true,
+      "refuel_fires": true,
+      "auto_needs": true,
+      "can_resume": false
+    }
+  ]
+}

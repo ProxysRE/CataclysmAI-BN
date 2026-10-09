@@ -119,6 +119,22 @@ def adapt(value, counts):
                         counts["string_equality"] += 1
                         return {target: variable[source], "value": literal}
     result = {key: adapt(entry, counts) for key, entry in value.items()}
+    if "u_assign_activity" in result:
+        if set(result) != {"u_assign_activity", "duration"} or result["u_assign_activity"] != "ACT_MEASURE" or result["duration"] != "10 minutes":
+            raise ValueError(f"Unported activity effect: {result}")
+        counts["dda_assign_activity"] += 1
+        return {"dda_assign_activity": {"activity": "ACT_MEASURE", "duration_seconds": 600}}
+    if "u_add_faction_trust" in result:
+        if set(result) != {"u_add_faction_trust"} or type(result["u_add_faction_trust"]) is not int:
+            raise ValueError(f"Unported faction trust effect: {result}")
+        counts["dda_add_faction_trust"] += 1
+        return {"dda_add_faction_trust": result["u_add_faction_trust"]}
+    if "u_set_fac_relation" in result:
+        if set(result) - {"u_set_fac_relation", "set_value_to"} or not isinstance(result["u_set_fac_relation"], str):
+            raise ValueError(f"Unported faction relationship: {result}")
+        counts["dda_set_faction_relation"] += 1
+        return {"dda_set_faction_relation": {"relation": result["u_set_fac_relation"],
+                                              "enabled": result.get("set_value_to", True)}}
     def item_reference(item):
         if isinstance(item, str):
             return {"id": item}

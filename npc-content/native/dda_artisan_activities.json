@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ACT_MEASURE",
+    "type": "activity_type",
+    "verb": "getting measurements taken",
+    "interruptable": false,
+    "rooted": true,
+    "refuel_fires": true,
+    "auto_needs": true,
+    "no_resume": true,
+    "suspendable": false,
+    "rest_amount": 0.1,
+    "bubble_size_effect": "idle"
+  }
+]

@@ -80,7 +80,7 @@ jobs:
       - name: Apply native NPC expression bridge
         run: |
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "e22e81686b8a161e599feb5be0e6638588fcb79408c77469731a6f4006a25240") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "bfc3468bd73376758a80ffdbe5473965ac58765a99f413b6d7f651a0e206e0bb") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch
@@ -112,7 +112,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "tests/dda_artisan_dialogue_test.cpp")
+          $files = @("src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "NPC formatting failed" }
       - name: Configure Windows game

@@ -8,6 +8,8 @@ import subprocess
 from pathlib import Path
 
 root = Path(__file__).resolve().parent
+base_files = ("condition.cpp", "npctalk.cpp", "faction.h", "faction.cpp",
+              "savegame_json.cpp", "activity_type.h", "activity_type.cpp", "player_activity.cpp")
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--bn-source", type=Path,
                     help="Pinned BN checkout; restore staging before rebuilding")
@@ -16,7 +18,7 @@ if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
         raise ValueError("BN source is not the pinned base")
-    for name in ("condition.cpp", "npctalk.cpp"):
+    for name in base_files:
         relative = Path("src") / name
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -30,18 +32,23 @@ if args.bn_source:
     for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h"):
         (root / "engine_staging/src" / name).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
+    (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
+    (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
     subprocess.run(["git", "apply", "--directory=engine_staging", str(root / "artisan_engine.patch")], cwd=root, check=True)
 parts = []
-for name in ("condition.cpp", "npctalk.cpp"):
+for name in base_files:
     path = "src/" + name
     old = (root / "pinned" / path).read_text().splitlines(keepends=True)
     new = (root / "engine_staging" / path).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
 for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h",
-             "dda_artisan_dialogue_test.cpp"):
+             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff([], new, "/dev/null", "b/" + path))
+path = "data/json/dda_artisan_activities.json"
+parts.extend(difflib.unified_diff([], (root / "native/dda_artisan_activities.json").read_text().splitlines(keepends=True),
+                                "/dev/null", "b/" + path))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()
