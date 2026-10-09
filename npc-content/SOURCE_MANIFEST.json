@@ -1,0 +1,23 @@
+{
+  "DDA_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "BN_target_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "source_payload_sha256": "f928fcae4c9a0346a099366e742c6027d88bd85417ca9e1bb0d79808345e207d",
+  "license": "CC-BY-SA-3.0; inherited upstream credits",
+  "files": [
+    "npcs/isolated_road/isolated_road_jay_dialogue.json",
+    "npcs/isolated_road/isolated_road_npcs.json",
+    "npcs/isolated_road/isolated_road_jay_convert.json",
+    "npcs/isolated_road/isolated_road_item_groups.json",
+    "npcs/isolated_road/isolated_road_cody_prototype.json",
+    "npcs/isolated_road/isolated_road_cody_weaponsmith.json",
+    "npcs/isolated_road/isolated_road_worn.json",
+    "npcs/isolated_road/isolated_road_cody_fabricate.json",
+    "npcs/isolated_road/isolated_road_cody_dialogue.json",
+    "npcs/isolated_road/isolated_road_missions.json",
+    "mapgen/isolated_road/isolated_road_home_chunks.json",
+    "mapgen/isolated_road/isolated_road_mission_1.json",
+    "overmap/overmap_terrain/overmap_terrain_isolated_road.json",
+    "overmap/overmap_special/specials.json",
+    "npcs/factions.json"
+  ]
+}
