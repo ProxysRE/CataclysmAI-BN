@@ -1,0 +1,435 @@
+[
+  {
+    "source": "data/json/flags.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "id": "IRREMOVABLE",
+        "type": "json_flag",
+        "context": [
+          "GUNMOD"
+        ],
+        "info": "This item is a component of the gun it is attached to.  It can't be removed without destroying it.",
+        "inherit": false
+      },
+      {
+        "id": "NO_REPAIR",
+        "type": "json_flag",
+        "context": [
+          "GENERIC"
+        ],
+        "//": "Prevents repairing of this item even if otherwise suitable tools exist.",
+        "inherit": false
+      },
+      {
+        "id": "MAG_BULKY",
+        "type": "json_flag",
+        "context": []
+      },
+      {
+        "id": "MISSION_ITEM",
+        "type": "json_flag",
+        "context": []
+      },
+      {
+        "id": "TRADER_AVOID",
+        "type": "json_flag",
+        "context": []
+      },
+      {
+        "id": "MAG_COMPACT",
+        "type": "json_flag",
+        "context": []
+      },
+      {
+        "id": "NEEDS_UNFOLD",
+        "type": "json_flag",
+        "context": []
+      }
+    ]
+  },
+  {
+    "source": "data/json/materials.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "type": "material",
+        "id": "aluminum",
+        "name": "Aluminum",
+        "density": 10,
+        "specific_heat_liquid": 1.18,
+        "specific_heat_solid": 0.91,
+        "latent_heat": 398,
+        "reinforces": true,
+        "bash_resist": 0,
+        "cut_resist": 4,
+        "bullet_resist": 3,
+        "acid_resist": 4,
+        "fire_resist": 2,
+        "elec_resist": 0,
+        "chip_resist": 10,
+        "repaired_with": "material_aluminium_ingot",
+        "salvaged_into": "material_aluminium_ingot",
+        "dmg_adj": [
+          "dented",
+          "bent",
+          "smashed",
+          "destroyed"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched",
+        "compacts_into": [
+          "material_aluminium_ingot",
+          "aluminum_foil"
+        ]
+      },
+      {
+        "type": "material",
+        "id": "brass",
+        "name": "Brass",
+        "density": 30,
+        "specific_heat_liquid": 0.49,
+        "specific_heat_solid": 0.39,
+        "latent_heat": 205,
+        "reinforces": true,
+        "bash_resist": 3,
+        "cut_resist": 4,
+        "bullet_resist": 3,
+        "acid_resist": 16,
+        "fire_resist": 2,
+        "elec_resist": 0,
+        "chip_resist": 15,
+        "repaired_with": "cartridgebrass",
+        "salvaged_into": "cartridgebrass",
+        "dmg_adj": [
+          "marked",
+          "dented",
+          "smashed",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched"
+      },
+      {
+        "type": "material",
+        "id": "lead",
+        "name": "Lead",
+        "density": 100,
+        "specific_heat_liquid": 0.13,
+        "specific_heat_solid": 0.14,
+        "latent_heat": 2,
+        "reinforces": true,
+        "bash_resist": 0,
+        "cut_resist": 0,
+        "bullet_resist": 0,
+        "acid_resist": 8,
+        "fire_resist": 3,
+        "elec_resist": 1,
+        "chip_resist": 8,
+        "repaired_with": "lead",
+        "salvaged_into": "lead",
+        "dmg_adj": [
+          "marked",
+          "dented",
+          "smashed",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched",
+        "burn_products": [
+          [
+            "lead",
+            1
+          ]
+        ],
+        "compacts_into": [
+          "lead"
+        ]
+      },
+      {
+        "type": "material",
+        "id": "plastic",
+        "name": "Plastic",
+        "density": 8,
+        "specific_heat_liquid": 1.6,
+        "specific_heat_solid": 1.6,
+        "latent_heat": 50,
+        "reinforces": true,
+        "bash_resist": 2,
+        "cut_resist": 2,
+        "bullet_resist": 2,
+        "acid_resist": 9,
+        "fire_resist": 1,
+        "elec_resist": 2,
+        "chip_resist": 6,
+        "wind_resist": 90,
+        "repaired_with": "plastic_chunk",
+        "salvaged_into": "plastic_chunk",
+        "dmg_adj": [
+          "scratched",
+          {
+            "ctxt": "material damage adjective",
+            "str": "cut"
+          },
+          "cracked",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "gouged",
+        "burn_data": [
+          {
+            "fuel": 1,
+            "smoke": 2,
+            "burn": 1,
+            "volume_per_turn": "750 ml"
+          },
+          {
+            "fuel": 1,
+            "smoke": 3,
+            "burn": 2
+          },
+          {
+            "fuel": 1,
+            "smoke": 5,
+            "burn": 5
+          }
+        ]
+      },
+      {
+        "type": "material",
+        "id": "powder",
+        "name": "Powder",
+        "density": 1,
+        "specific_heat_liquid": 1.5,
+        "specific_heat_solid": 1.2,
+        "latent_heat": 10,
+        "bash_resist": 1,
+        "cut_resist": 1,
+        "bullet_resist": 1,
+        "acid_resist": 0,
+        "fire_resist": 0,
+        "elec_resist": 2,
+        "chip_resist": 0,
+        "dmg_adj": [
+          "lightly damaged",
+          "damaged",
+          "very damaged",
+          "thoroughly damaged"
+        ],
+        "bash_dmg_verb": "damaged",
+        "cut_dmg_verb": "damaged",
+        "burn_data": [
+          {
+            "fuel": 10,
+            "smoke": 2,
+            "burn": 10
+          },
+          {
+            "fuel": 10,
+            "smoke": 2,
+            "burn": 10
+          },
+          {
+            "fuel": 10,
+            "smoke": 2,
+            "burn": 10
+          }
+        ]
+      },
+      {
+        "type": "material",
+        "id": "steel",
+        "name": "Steel",
+        "density": 30,
+        "reinforces": true,
+        "bash_resist": 6,
+        "specific_heat_liquid": 0.82,
+        "specific_heat_solid": 0.45,
+        "latent_heat": 273,
+        "cut_resist": 6,
+        "bullet_resist": 5,
+        "acid_resist": 7,
+        "fire_resist": 3,
+        "elec_resist": 0,
+        "chip_resist": 20,
+        "repaired_with": "scrap",
+        "salvaged_into": "scrap",
+        "dmg_adj": [
+          "marked",
+          "dented",
+          "smashed",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched",
+        "burn_products": [
+          [
+            "scrap",
+            1
+          ]
+        ],
+        "compact_accepts": [
+          "budget_steel",
+          "hardsteel",
+          "iron"
+        ],
+        "compacts_into": [
+          "sheet_metal",
+          "steel_lump",
+          "steel_chunk",
+          "scrap"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "data/json/item_category.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "id": "other",
+        "type": "ITEM_CATEGORY",
+        "name": {
+          "str": "OTHER"
+        },
+        "zone": "LOOT_OTHER",
+        "sort_rank": 25
+      },
+      {
+        "id": "valuables",
+        "type": "ITEM_CATEGORY",
+        "name": {
+          "str": "VALUABLES"
+        },
+        "zone": "LOOT_VALUABLES",
+        "sort_rank": 64
+      }
+    ]
+  },
+  {
+    "source": "data/json/items/generic.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "type": "GENERIC",
+        "id": "usb_drive",
+        "symbol": ",",
+        "color": "white",
+        "name": {
+          "str": "USB drive"
+        },
+        "description": "A USB thumb drive.  Useful for holding software.",
+        "price": "100 USD",
+        "price_postapoc": "10 cent",
+        "material": "plastic",
+        "weight": "18 g",
+        "volume": "5 ml",
+        "to_hit": -3,
+        "category": "valuables"
+      }
+    ]
+  },
+  {
+    "source": "data/json/items/gunmod/stock.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "id": "wire_stock",
+        "type": "GUNMOD",
+        "name": {
+          "str": "folding wire stock"
+        },
+        "description": "A folding wire stock which folds up very compactly but needs unfolding before use.  It's somewhat wobbly but is better than nothing at all.  Increases the time needed to wield the weapon.",
+        "weight": "170 g",
+        "volume": "250 ml",
+        "integral_volume": "0 ml",
+        "integral_weight": "0 g",
+        "price": "300 USD",
+        "price_postapoc": "250 cent",
+        "material": [
+          "steel"
+        ],
+        "symbol": ":",
+        "color": "dark_gray",
+        "handling_modifier": -5,
+        "location": "stock",
+        "mod_target_category": [
+          [
+            "PISTOLS"
+          ],
+          [
+            "REVOLVERS"
+          ],
+          [
+            "SUBMACHINE_GUNS"
+          ],
+          [
+            "RIFLES"
+          ],
+          [
+            "MACHINE_GUNS"
+          ],
+          [
+            "GATLING_GUNS"
+          ],
+          [
+            "SHOTGUNS"
+          ]
+        ],
+        "flags": [
+          "NEEDS_UNFOLD"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "data/json/items/magazine/223.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "id": "stanag30",
+        "type": "MAGAZINE",
+        "name": {
+          "str": "STANAG 30-round magazine"
+        },
+        "//": "Tileset whitelist for rifle magazines",
+        "description": "A standard capacity 30-round box magazine for use with STANAG compatible rifles.",
+        "weight": "245 g",
+        "volume": "500 ml",
+        "price": "80 USD",
+        "price_postapoc": "250 cent",
+        "material": "steel",
+        "symbol": "#",
+        "color": "light_gray",
+        "ammo_type": [
+          "223",
+          "300blk"
+        ],
+        "capacity": 30,
+        "reliability": 8,
+        "flags": [
+          "MAG_COMPACT"
+        ]
+      }
+    ]
+  },
+  {
+    "source": "data/json/items/ammo_types.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "type": "ammunition_type",
+        "id": "223",
+        "//": "This is a 5.56x45mm round, but it's called 223 because legacy migration reasons.",
+        "name": "5.56x45mm",
+        "default": "556"
+      },
+      {
+        "type": "ammunition_type",
+        "id": "300blk",
+        "name": ".300 AAC Blackout",
+        "default": "300blk"
+      }
+    ]
+  }
+]

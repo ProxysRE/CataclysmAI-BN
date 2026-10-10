@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "rigid artisan shop stock and six-day restock interval",
+  "stage": "typed quest-item dependency graph: 37 definitions, 62 references; item schema review next",
   "package": "Isolated Road",
   "native_compilation": "previous expression/item/activity/faction checkpoint passed: 7 tests, 651 assertions; shop checkpoint awaits Windows CI",
   "remaining": [
@@ -23,5 +23,16 @@
     "run_id": 37998752359,
     "url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/37998752359",
     "status": "success"
+  },
+  "shop_checkpoint": {
+    "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
+    "run_id": 38083564048,
+    "status": "awaiting_windows_validation"
+  },
+  "quest_item_graph": {
+    "definitions": 37,
+    "edges": 62,
+    "unresolved_in_supported_reference_fields": 0,
+    "runtime_validated": false
   }
 }

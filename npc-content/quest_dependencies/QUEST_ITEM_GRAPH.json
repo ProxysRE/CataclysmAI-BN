@@ -1,0 +1,2029 @@
+{
+  "roots": [
+    "broken_kord",
+    "kord",
+    "casket74mag",
+    "545_ap",
+    "nano_fabricator_encryption_code"
+  ],
+  "nodes": [
+    {
+      "namespace": "ITEM_CATEGORY",
+      "id": "other",
+      "source": "BN/data/json/item_category.json",
+      "position": 0,
+      "definition": {
+        "id": "other",
+        "type": "ITEM_CATEGORY",
+        "name": {
+          "str": "OTHER"
+        },
+        "zone": "LOOT_OTHER",
+        "sort_rank": 25
+      }
+    },
+    {
+      "namespace": "ITEM_CATEGORY",
+      "id": "valuables",
+      "source": "BN/data/json/item_category.json",
+      "position": 1,
+      "definition": {
+        "id": "valuables",
+        "type": "ITEM_CATEGORY",
+        "name": {
+          "str": "VALUABLES"
+        },
+        "zone": "LOOT_VALUABLES",
+        "sort_rank": 64
+      }
+    },
+    {
+      "namespace": "ammunition_type",
+      "id": "223",
+      "source": "BN/data/json/items/ammo_types.json",
+      "position": 0,
+      "definition": {
+        "type": "ammunition_type",
+        "id": "223",
+        "//": "This is a 5.56x45mm round, but it's called 223 because legacy migration reasons.",
+        "name": "5.56x45mm",
+        "default": "556"
+      }
+    },
+    {
+      "namespace": "ammunition_type",
+      "id": "300blk",
+      "source": "BN/data/json/items/ammo_types.json",
+      "position": 1,
+      "definition": {
+        "type": "ammunition_type",
+        "id": "300blk",
+        "name": ".300 AAC Blackout",
+        "default": "300blk"
+      }
+    },
+    {
+      "namespace": "ammunition_type",
+      "id": "545x39",
+      "source": "items/ammo_types.json",
+      "position": 13,
+      "definition": {
+        "default": "545",
+        "id": "545x39",
+        "name": "5.45x39mm",
+        "type": "ammunition_type"
+      }
+    },
+    {
+      "namespace": "ascii_art",
+      "id": "545",
+      "source": "ascii_art/ammo/545x39.json",
+      "position": 0,
+      "definition": {
+        "id": "545",
+        "picture": [
+          "<color_magenta>;",
+          "<color_green>‼"
+        ],
+        "type": "ascii_art"
+      }
+    },
+    {
+      "namespace": "ascii_art",
+      "id": "545_ap",
+      "source": "ascii_art/ammo/545x39.json",
+      "position": 1,
+      "definition": {
+        "id": "545_ap",
+        "picture": [
+          "<color_dark_gray>;",
+          "<color_green>‼"
+        ],
+        "type": "ascii_art"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "545",
+      "source": "items/ammo/545x39.json",
+      "position": 0,
+      "definition": {
+        "//": ".222 52.8gr Mil FMJ, 21.3gr SF033 fl.",
+        "ammo_type": "545x39",
+        "ascii_picture": "545",
+        "casing": "545_casing",
+        "color": "yellow",
+        "count": 30,
+        "damage": {
+          "amount": 36,
+          "armor_penetration": 6,
+          "barrels": [
+            {
+              "amount": 11,
+              "barrel_length": "28 mm"
+            },
+            {
+              "amount": 12,
+              "barrel_length": "33 mm"
+            },
+            {
+              "amount": 13,
+              "barrel_length": "36 mm"
+            },
+            {
+              "amount": 14,
+              "barrel_length": "39 mm"
+            },
+            {
+              "amount": 15,
+              "barrel_length": "47 mm"
+            },
+            {
+              "amount": 16,
+              "barrel_length": "52 mm"
+            },
+            {
+              "amount": 17,
+              "barrel_length": "58 mm"
+            },
+            {
+              "amount": 18,
+              "barrel_length": "64 mm"
+            },
+            {
+              "amount": 19,
+              "barrel_length": "71 mm"
+            },
+            {
+              "amount": 20,
+              "barrel_length": "77 mm"
+            },
+            {
+              "amount": 21,
+              "barrel_length": "86 mm"
+            },
+            {
+              "amount": 22,
+              "barrel_length": "94 mm"
+            },
+            {
+              "amount": 23,
+              "barrel_length": "103 mm"
+            },
+            {
+              "amount": 24,
+              "barrel_length": "113 mm"
+            },
+            {
+              "amount": 25,
+              "barrel_length": "126 mm"
+            },
+            {
+              "amount": 26,
+              "barrel_length": "137 mm"
+            },
+            {
+              "amount": 27,
+              "barrel_length": "150 mm"
+            },
+            {
+              "amount": 28,
+              "barrel_length": "164 mm"
+            },
+            {
+              "amount": 29,
+              "barrel_length": "184 mm"
+            },
+            {
+              "amount": 30,
+              "barrel_length": "202 mm"
+            },
+            {
+              "amount": 31,
+              "barrel_length": "222 mm"
+            },
+            {
+              "amount": 32,
+              "barrel_length": "245 mm"
+            },
+            {
+              "amount": 33,
+              "barrel_length": "271 mm"
+            },
+            {
+              "amount": 34,
+              "barrel_length": "308 mm"
+            },
+            {
+              "amount": 35,
+              "barrel_length": "342 mm"
+            },
+            {
+              "amount": 36,
+              "barrel_length": "382 mm"
+            },
+            {
+              "amount": 37,
+              "barrel_length": "428 mm"
+            },
+            {
+              "amount": 38,
+              "barrel_length": "496 mm"
+            },
+            {
+              "amount": 39,
+              "barrel_length": "564 mm"
+            },
+            {
+              "amount": 40,
+              "barrel_length": "638 mm"
+            },
+            {
+              "amount": 41,
+              "barrel_length": "737 mm"
+            },
+            {
+              "amount": 42,
+              "barrel_length": "861 mm"
+            },
+            {
+              "amount": 43,
+              "barrel_length": "1035 mm"
+            },
+            {
+              "amount": 44,
+              "barrel_length": "1233 mm"
+            },
+            {
+              "amount": 45,
+              "barrel_length": "1238 mm"
+            }
+          ],
+          "damage_type": "bullet"
+        },
+        "description": "Domestically produced 5.45x39mm ammunition with a 56gr FMJ bullet.  The 5.45x39mm round was introduced along with the AK-74 in 1974.  It has superior wounding potential to the older 7.62x39mm round and quickly replaced it in Soviet military use.",
+        "dispersion": 30,
+        "effects": [
+          "COOKOFF"
+        ],
+        "flags": [
+          "IRREPLACEABLE_CONSUMABLE"
+        ],
+        "id": "545",
+        "longest_side": "40 mm",
+        "material": [
+          "brass",
+          "lead",
+          "powder"
+        ],
+        "name": {
+          "str_sp": "5.45x39mm FMJ"
+        },
+        "price": "1 USD",
+        "price_postapoc": "9 USD",
+        "range": 37,
+        "recoil": 1400,
+        "stack_size": 30,
+        "subtypes": [
+          "AMMO"
+        ],
+        "symbol": "=",
+        "type": "ITEM",
+        "volume": "134 ml",
+        "weight": "10 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "545_ap",
+      "source": "items/ammo/545x39.json",
+      "position": 1,
+      "definition": {
+        "ascii_picture": "545_ap",
+        "color": "yellow",
+        "copy-from": "545",
+        "description": "5.45x39mm ammunition with a 57gr bullet containing a mild steel penetrator, which penetrates armor marginally better than lead core projectiles.  Developed in 1974 by the Russian military, and banned from import into the US in 2014.",
+        "flags": [
+          "IRREPLACEABLE_CONSUMABLE"
+        ],
+        "id": "545_ap",
+        "name": {
+          "str_sp": "5.45x39mm AP"
+        },
+        "price": "3 USD 50 cent",
+        "price_postapoc": "9 USD",
+        "relative": {
+          "damage": {
+            "amount": -2,
+            "armor_penetration": 8,
+            "damage_type": "bullet"
+          }
+        },
+        "subtypes": [
+          "AMMO"
+        ],
+        "symbol": "=",
+        "type": "ITEM"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "ak74mag",
+      "source": "items/magazine/545x39.json",
+      "position": 0,
+      "definition": {
+        "//": "Crudely audited with ImageJ with online references.  These AK mags are difficult due to irregular shapes.",
+        "ammo_type": [
+          "545x39"
+        ],
+        "color": "light_gray",
+        "description": "A standard magazine made for 5.45x39mm rifles, made mostly of polymer with steel reinforcements.",
+        "flags": [
+          "MAG_COMPACT"
+        ],
+        "id": "ak74mag",
+        "longest_side": "210 mm",
+        "looks_like": "stanag30",
+        "material": [
+          "steel",
+          "plastic"
+        ],
+        "name": {
+          "str": "5.45mm 30-round AK magazine"
+        },
+        "pocket_data": [
+          {
+            "ammo_restriction": {
+              "545x39": 30
+            },
+            "pocket_type": "MAGAZINE",
+            "rigid": true
+          }
+        ],
+        "price": "15 USD",
+        "price_postapoc": "1 USD",
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "symbol": "#",
+        "type": "ITEM",
+        "variant_type": "gun",
+        "variants": [
+          {
+            "description": "A 30-round, curved box magazine for Kalashnikov AK-74 pattern firearms chambered in 5.45x39mm Soviet.  Generally made from steel-reinforced polymer, surplus examples found most utility within the contemporary United States in feeding semi-automatic examples of eastern bloc AK-74 rifles.",
+            "id": "ak74mag",
+            "name": {
+              "str": "AK-74 30-round magazine"
+            }
+          }
+        ],
+        "volume": "388 ml",
+        "weight": "170 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "bars",
+      "source": "items/gunmod/mechanism.json",
+      "position": 0,
+      "definition": {
+        "color": "red",
+        "description": "A complex set of parts designed to minimize recoil using a reciprocating counterweight.",
+        "flags": [
+          "IRREMOVABLE"
+        ],
+        "handling_modifier": 15,
+        "id": "bars",
+        "install_time": "15 m",
+        "integral_volume": "0 ml",
+        "location": "mechanism",
+        "material": [
+          "steel"
+        ],
+        "min_skills": [
+          [
+            "mechanics",
+            2
+          ],
+          [
+            "rifle",
+            3
+          ]
+        ],
+        "mod_targets": [
+          "kord"
+        ],
+        "name": {
+          "str": "balanced recoil system"
+        },
+        "price": "240 USD",
+        "price_postapoc": "5 USD",
+        "subtypes": [
+          "GUNMOD"
+        ],
+        "symbol": ":",
+        "type": "ITEM",
+        "volume": "250 ml",
+        "weight": "60 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "broken_kord",
+      "source": "items/generic.json",
+      "position": 7,
+      "definition": {
+        "category": "other",
+        "color": "light_gray",
+        "description": "A special forces Russian rifle chambered in 5.45 that someone has taken a plasma cutter to, cutting it in three places to comply with import restrictions.  This thing would have been hard to source, and thankfully its unique complex recoil balance system remains intact, unlike the receiver and barrel.  The telltale rainbow patterns of torch cuts mar the otherwise beautiful receiver.  A well-equipped gunsmith with time and materials could probably build a new one out of this…",
+        "flags": [
+          "TRADER_AVOID",
+          "NO_REPAIR",
+          "MISSION_ITEM"
+        ],
+        "id": "broken_kord",
+        "longest_side": "48 cm",
+        "looks_like": "kord",
+        "material": [
+          "steel",
+          "plastic"
+        ],
+        "name": {
+          "str": "Kord AK rifle (Demilled)",
+          "str_pl": "Kord AK rifles (Demilled)"
+        },
+        "price": "2 kUSD 500 USD",
+        "symbol": "(",
+        "type": "ITEM",
+        "variant_type": "gun",
+        "variants": [
+          {
+            "description": "A special forces Russian rifle chambered in 5.45 that someone has taken a plasma cutter to, cutting it in three places to comply with import restrictions.  This thing would have been hard to source, and thankfully its unique complex recoil balance system remains intact, unlike the receiver and barrel.  The telltale rainbow patterns of torch cuts mar the otherwise beautiful receiver.  A well-equipped gunsmith with time and materials could probably build a new one out of this…",
+            "id": "broken_kord",
+            "name": {
+              "str": "Kord 6P67 rifle (Demilled)",
+              "str_pl": "Kord 6P67 rifles (Demilled)"
+            }
+          }
+        ],
+        "volume": "2418 ml",
+        "weight": "3250 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "casket74mag",
+      "source": "items/magazine/545x39.json",
+      "position": 2,
+      "definition": {
+        "//": "Compared to 30rd and used online references.",
+        "ammo_type": [
+          "545x39"
+        ],
+        "color": "light_gray",
+        "description": "A 60-round polymer magazine compatible with 5.45x39mm rifles.",
+        "flags": [
+          "MAG_COMPACT"
+        ],
+        "id": "casket74mag",
+        "longest_side": "250 mm",
+        "looks_like": "stanag30",
+        "material": [
+          "steel",
+          "plastic"
+        ],
+        "name": {
+          "str": "5.45mm 60-round AK magazine"
+        },
+        "pocket_data": [
+          {
+            "ammo_restriction": {
+              "545x39": 60
+            },
+            "pocket_type": "MAGAZINE",
+            "rigid": true
+          }
+        ],
+        "price": "85 USD",
+        "price_postapoc": "2 USD 50 cent",
+        "reload_time": 130,
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "symbol": "#",
+        "type": "ITEM",
+        "variant_type": "gun",
+        "variants": [
+          {
+            "description": "A casket magazine that combines four stacks of 5.45x39mm Soviet ammunition into a solid brick of plastic, built for interfacing with the magazine wells of Kalashnikov-pattern firearms, namely the AK-74 assault rifle and subsequent derivatives.",
+            "id": "casket74mag",
+            "name": {
+              "str": "AK-74 60-round casket magazine"
+            }
+          }
+        ],
+        "volume": "924 ml",
+        "weight": "264 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "gun_base_rifle_semi",
+      "source": "items/classes/gun.json",
+      "position": 5,
+      "definition": {
+        "//": "Buttstrokes aren't that good compared to a real melee weapon.",
+        "abstract": "gun_base_rifle_semi",
+        "color": "light_gray",
+        "durability": 8,
+        "faults": [
+          {
+            "fault": "fault_gun_blackpowder"
+          },
+          {
+            "fault": "fault_gun_dirt"
+          },
+          {
+            "fault": "fault_gun_chamber_spent"
+          },
+          {
+            "fault": "fault_fail_to_feed"
+          },
+          {
+            "fault": "fault_stovepipe"
+          },
+          {
+            "fault": "fault_double_feed"
+          }
+        ],
+        "handling": 20,
+        "melee_damage": {
+          "bash": 13
+        },
+        "name": {
+          "//~": "NO_I18N",
+          "str": "base gun"
+        },
+        "reload": 150,
+        "reload_noise_volume": 10,
+        "sight_dispersion": 40,
+        "skill": "rifle",
+        "subtypes": [
+          "GUN"
+        ],
+        "symbol": "⨽",
+        "to_hit": {
+          "balance": "uneven",
+          "grip": "bad",
+          "length": "hand",
+          "surface": "any"
+        },
+        "type": "ITEM",
+        "weapon_category": [
+          "AUTOMATIC_RIFLES"
+        ]
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "kord",
+      "source": "items/gun/545x39.json",
+      "position": 0,
+      "definition": {
+        "//": "An exceptionally new AK style gun found illicitly as part of a quest.",
+        "ammo": [
+          "545x39"
+        ],
+        "barrel_length": "415 mm",
+        "barrel_volume": "250 ml",
+        "copy-from": "gun_base_rifle_semi",
+        "default_mods": [
+          "bars",
+          "wire_stock"
+        ],
+        "description": "A special forces Russian rifle chambered in 5.45.  This version uses standard Picatinny rails, has modern lightweight furniture and a unique complex recoil balance system for high fire rate with minimal recoil.  It combines the reliability of the AK series with the high-velocity, lightweight 5.45x39mm cartridge and accepts standard AK-74M magazines.",
+        "dispersion": 120,
+        "flags": [
+          "MISSION_ITEM"
+        ],
+        "id": "kord",
+        "longest_side": "96 cm",
+        "looks_like": "modular_ar15",
+        "material": [
+          "steel",
+          "plastic"
+        ],
+        "min_cycle_recoil": 1260,
+        "modes": [
+          [
+            "DEFAULT",
+            "semi-auto",
+            1
+          ],
+          [
+            "BURST",
+            "burst",
+            2
+          ],
+          [
+            "AUTO",
+            "auto",
+            4
+          ]
+        ],
+        "name": {
+          "str": "Kord AK rifle"
+        },
+        "pocket_data": [
+          {
+            "item_restriction": [
+              "ak74mag",
+              "rpk74mag",
+              "casket74mag"
+            ],
+            "pocket_type": "MAGAZINE_WELL"
+          }
+        ],
+        "price": "39 kUSD",
+        "price_postapoc": "40 USD",
+        "subtypes": [
+          "GUN"
+        ],
+        "type": "ITEM",
+        "valid_mod_locations": [
+          [
+            "barrel",
+            1
+          ],
+          [
+            "brass catcher",
+            1
+          ],
+          [
+            "mechanism",
+            2
+          ],
+          [
+            "rail mount",
+            1
+          ],
+          [
+            "sights",
+            1
+          ],
+          [
+            "sling",
+            1
+          ],
+          [
+            "stock accessory",
+            1
+          ],
+          [
+            "stock mount",
+            1
+          ],
+          [
+            "underbarrel mount",
+            1
+          ]
+        ],
+        "variant_type": "gun",
+        "variants": [
+          {
+            "description": "A special forces Russian rifle chambered in 5.45.  This version uses standard Picatinny rails, has modern lightweight furniture and a unique complex recoil balance system for high fire rate with minimal recoil.  It combines the reliability of the AK series with the high-velocity, lightweight 5.45x39mm cartridge and accepts standard AK-74M magazines.",
+            "id": "kord",
+            "name": {
+              "str": "Kord 6P67 rifle"
+            }
+          }
+        ],
+        "volume": "2418 ml",
+        "weight": "3250 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "modular_ar15",
+      "source": "items/gun/223.json",
+      "position": 0,
+      "definition": {
+        "//": "This is assumed to be the standard model matching the M16. Tileset whitelist for rifles",
+        "//2": "Numbers for weight, volume, and length calculations are based upon an AR-15's complete lower receiver. The difference will be made up for with integrated stats from the installable modular upper receivers.",
+        "ammo": [
+          "NULL"
+        ],
+        "copy-from": "gun_base_rifle_semi",
+        "description": "This ubiquitous rifle is the forefather of the M16 rifle series.  It is lightweight and accurate, but will malfunction if not properly maintained.  This one is a semi-automatic civilian version.",
+        "dispersion": 150,
+        "flags": [
+          "NO_TURRET"
+        ],
+        "id": "modular_ar15",
+        "longest_side": "520 mm",
+        "material": [
+          "aluminum",
+          "steel",
+          "plastic"
+        ],
+        "min_cycle_recoil": 1350,
+        "name": {
+          "str": "AR-15"
+        },
+        "price": "1 kUSD 250 USD",
+        "price_postapoc": "40 USD",
+        "subtypes": [
+          "GUN"
+        ],
+        "type": "ITEM",
+        "valid_mod_locations": [
+          [
+            "barrel",
+            1
+          ],
+          [
+            "bore",
+            1
+          ],
+          [
+            "mechanism",
+            2
+          ],
+          [
+            "sling",
+            1
+          ],
+          [
+            "stock accessory",
+            1
+          ],
+          [
+            "stock",
+            1
+          ]
+        ],
+        "volume": "1550 ml",
+        "weight": "902 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "nano_fabricator_encryption_code",
+      "source": "items/generic.json",
+      "position": 1,
+      "definition": {
+        "copy-from": "usb_drive_nano",
+        "description": "Some type of advanced data storage device, filled with credentials and licenses to operate the nano-fabricator.",
+        "id": "nano_fabricator_encryption_code",
+        "name": {
+          "str_sp": "nano-fabricator licensing USB"
+        },
+        "price": "100 USD",
+        "price_postapoc": "0 cent",
+        "type": "ITEM"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "rpk74mag",
+      "source": "items/magazine/545x39.json",
+      "position": 1,
+      "definition": {
+        "//": "Compared to 30rd and used online references.",
+        "ammo_type": [
+          "545x39"
+        ],
+        "color": "light_gray",
+        "description": "A 45-round polymer magazine compatible with 5.45x39mm rifles, though originally designed for use with Soviet light machine guns built upon similar design pattens.",
+        "flags": [
+          "MAG_BULKY"
+        ],
+        "id": "rpk74mag",
+        "longest_side": "285 mm",
+        "looks_like": "stanag30",
+        "material": [
+          "steel",
+          "plastic"
+        ],
+        "name": {
+          "str": "5.45mm 45-round AK magazine"
+        },
+        "pocket_data": [
+          {
+            "ammo_restriction": {
+              "545x39": 45
+            },
+            "pocket_type": "MAGAZINE",
+            "rigid": true
+          }
+        ],
+        "price": "85 USD",
+        "price_postapoc": "2 USD 50 cent",
+        "reload_time": 130,
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "symbol": "#",
+        "type": "ITEM",
+        "variant_type": "gun",
+        "variants": [
+          {
+            "description": "Originally built to feed Soviet RPK-74 light machine guns, this curved 45-round box magazine possesses an aggressive waffle texture pattern and also fits other Kalashnikov-based long guns, namely the AK-74 and modern civilian legal variants.",
+            "id": "rpk74mag",
+            "name": {
+              "str": "AK-74 45-round magazine"
+            }
+          }
+        ],
+        "volume": "528 ml",
+        "weight": "230 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "stanag30",
+      "source": "BN/data/json/items/magazine/223.json",
+      "position": 0,
+      "definition": {
+        "id": "stanag30",
+        "type": "MAGAZINE",
+        "name": {
+          "str": "STANAG 30-round magazine"
+        },
+        "//": "Tileset whitelist for rifle magazines",
+        "description": "A standard capacity 30-round box magazine for use with STANAG compatible rifles.",
+        "weight": "245 g",
+        "volume": "500 ml",
+        "price": "80 USD",
+        "price_postapoc": "250 cent",
+        "material": "steel",
+        "symbol": "#",
+        "color": "light_gray",
+        "ammo_type": [
+          "223",
+          "300blk"
+        ],
+        "capacity": 30,
+        "reliability": 8,
+        "flags": [
+          "MAG_COMPACT"
+        ]
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "usb_drive",
+      "source": "BN/data/json/items/generic.json",
+      "position": 0,
+      "definition": {
+        "type": "GENERIC",
+        "id": "usb_drive",
+        "symbol": ",",
+        "color": "white",
+        "name": {
+          "str": "USB drive"
+        },
+        "description": "A USB thumb drive.  Useful for holding software.",
+        "price": "100 USD",
+        "price_postapoc": "10 cent",
+        "material": "plastic",
+        "weight": "18 g",
+        "volume": "5 ml",
+        "to_hit": -3,
+        "category": "valuables"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "usb_drive_nano",
+      "source": "items/generic.json",
+      "position": 0,
+      "definition": {
+        "copy-from": "usb_drive",
+        "description": "A USB thumb drive.  Useful for holding software.  This one seems like it could get run over by a truck and be fine.",
+        "id": "usb_drive_nano",
+        "name": {
+          "str": "secured USB drive"
+        },
+        "type": "ITEM"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "wire_stock",
+      "source": "BN/data/json/items/gunmod/stock.json",
+      "position": 0,
+      "definition": {
+        "id": "wire_stock",
+        "type": "GUNMOD",
+        "name": {
+          "str": "folding wire stock"
+        },
+        "description": "A folding wire stock which folds up very compactly but needs unfolding before use.  It's somewhat wobbly but is better than nothing at all.  Increases the time needed to wield the weapon.",
+        "weight": "170 g",
+        "volume": "250 ml",
+        "integral_volume": "0 ml",
+        "integral_weight": "0 g",
+        "price": "300 USD",
+        "price_postapoc": "250 cent",
+        "material": [
+          "steel"
+        ],
+        "symbol": ":",
+        "color": "dark_gray",
+        "handling_modifier": -5,
+        "location": "stock",
+        "mod_target_category": [
+          [
+            "PISTOLS"
+          ],
+          [
+            "REVOLVERS"
+          ],
+          [
+            "SUBMACHINE_GUNS"
+          ],
+          [
+            "RIFLES"
+          ],
+          [
+            "MACHINE_GUNS"
+          ],
+          [
+            "GATLING_GUNS"
+          ],
+          [
+            "SHOTGUNS"
+          ]
+        ],
+        "flags": [
+          "NEEDS_UNFOLD"
+        ]
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "IRREMOVABLE",
+      "source": "BN/data/json/flags.json",
+      "position": 0,
+      "definition": {
+        "id": "IRREMOVABLE",
+        "type": "json_flag",
+        "context": [
+          "GUNMOD"
+        ],
+        "info": "This item is a component of the gun it is attached to.  It can't be removed without destroying it.",
+        "inherit": false
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "IRREPLACEABLE_CONSUMABLE",
+      "source": "flags.json",
+      "position": 28,
+      "definition": {
+        "id": "IRREPLACEABLE_CONSUMABLE",
+        "type": "json_flag"
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "MAG_BULKY",
+      "source": "BN/data/json/flags.json",
+      "position": 2,
+      "definition": {
+        "id": "MAG_BULKY",
+        "type": "json_flag",
+        "context": []
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "MAG_COMPACT",
+      "source": "BN/data/json/flags.json",
+      "position": 5,
+      "definition": {
+        "id": "MAG_COMPACT",
+        "type": "json_flag",
+        "context": []
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "MISSION_ITEM",
+      "source": "BN/data/json/flags.json",
+      "position": 3,
+      "definition": {
+        "id": "MISSION_ITEM",
+        "type": "json_flag",
+        "context": []
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "NEEDS_UNFOLD",
+      "source": "BN/data/json/flags.json",
+      "position": 6,
+      "definition": {
+        "id": "NEEDS_UNFOLD",
+        "type": "json_flag",
+        "context": []
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "NO_REPAIR",
+      "source": "BN/data/json/flags.json",
+      "position": 1,
+      "definition": {
+        "id": "NO_REPAIR",
+        "type": "json_flag",
+        "context": [
+          "GENERIC"
+        ],
+        "//": "Prevents repairing of this item even if otherwise suitable tools exist.",
+        "inherit": false
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "NO_TURRET",
+      "source": "flags.json",
+      "position": 25,
+      "definition": {
+        "//": "This flag should only be applied to GUN definitions, it will prevent generation of a turret vehicle part for the gun.  This blocks fake guns, or player unobtainable ones from appearing in turret list.",
+        "id": "NO_TURRET",
+        "type": "json_flag"
+      }
+    },
+    {
+      "namespace": "json_flag",
+      "id": "TRADER_AVOID",
+      "source": "BN/data/json/flags.json",
+      "position": 4,
+      "definition": {
+        "id": "TRADER_AVOID",
+        "type": "json_flag",
+        "context": []
+      }
+    },
+    {
+      "namespace": "material",
+      "id": "aluminum",
+      "source": "BN/data/json/materials.json",
+      "position": 0,
+      "definition": {
+        "type": "material",
+        "id": "aluminum",
+        "name": "Aluminum",
+        "density": 10,
+        "specific_heat_liquid": 1.18,
+        "specific_heat_solid": 0.91,
+        "latent_heat": 398,
+        "reinforces": true,
+        "bash_resist": 0,
+        "cut_resist": 4,
+        "bullet_resist": 3,
+        "acid_resist": 4,
+        "fire_resist": 2,
+        "elec_resist": 0,
+        "chip_resist": 10,
+        "repaired_with": "material_aluminium_ingot",
+        "salvaged_into": "material_aluminium_ingot",
+        "dmg_adj": [
+          "dented",
+          "bent",
+          "smashed",
+          "destroyed"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched",
+        "compacts_into": [
+          "material_aluminium_ingot",
+          "aluminum_foil"
+        ]
+      }
+    },
+    {
+      "namespace": "material",
+      "id": "brass",
+      "source": "BN/data/json/materials.json",
+      "position": 1,
+      "definition": {
+        "type": "material",
+        "id": "brass",
+        "name": "Brass",
+        "density": 30,
+        "specific_heat_liquid": 0.49,
+        "specific_heat_solid": 0.39,
+        "latent_heat": 205,
+        "reinforces": true,
+        "bash_resist": 3,
+        "cut_resist": 4,
+        "bullet_resist": 3,
+        "acid_resist": 16,
+        "fire_resist": 2,
+        "elec_resist": 0,
+        "chip_resist": 15,
+        "repaired_with": "cartridgebrass",
+        "salvaged_into": "cartridgebrass",
+        "dmg_adj": [
+          "marked",
+          "dented",
+          "smashed",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched"
+      }
+    },
+    {
+      "namespace": "material",
+      "id": "lead",
+      "source": "BN/data/json/materials.json",
+      "position": 2,
+      "definition": {
+        "type": "material",
+        "id": "lead",
+        "name": "Lead",
+        "density": 100,
+        "specific_heat_liquid": 0.13,
+        "specific_heat_solid": 0.14,
+        "latent_heat": 2,
+        "reinforces": true,
+        "bash_resist": 0,
+        "cut_resist": 0,
+        "bullet_resist": 0,
+        "acid_resist": 8,
+        "fire_resist": 3,
+        "elec_resist": 1,
+        "chip_resist": 8,
+        "repaired_with": "lead",
+        "salvaged_into": "lead",
+        "dmg_adj": [
+          "marked",
+          "dented",
+          "smashed",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched",
+        "burn_products": [
+          [
+            "lead",
+            1
+          ]
+        ],
+        "compacts_into": [
+          "lead"
+        ]
+      }
+    },
+    {
+      "namespace": "material",
+      "id": "plastic",
+      "source": "BN/data/json/materials.json",
+      "position": 3,
+      "definition": {
+        "type": "material",
+        "id": "plastic",
+        "name": "Plastic",
+        "density": 8,
+        "specific_heat_liquid": 1.6,
+        "specific_heat_solid": 1.6,
+        "latent_heat": 50,
+        "reinforces": true,
+        "bash_resist": 2,
+        "cut_resist": 2,
+        "bullet_resist": 2,
+        "acid_resist": 9,
+        "fire_resist": 1,
+        "elec_resist": 2,
+        "chip_resist": 6,
+        "wind_resist": 90,
+        "repaired_with": "plastic_chunk",
+        "salvaged_into": "plastic_chunk",
+        "dmg_adj": [
+          "scratched",
+          {
+            "ctxt": "material damage adjective",
+            "str": "cut"
+          },
+          "cracked",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "gouged",
+        "burn_data": [
+          {
+            "fuel": 1,
+            "smoke": 2,
+            "burn": 1,
+            "volume_per_turn": "750 ml"
+          },
+          {
+            "fuel": 1,
+            "smoke": 3,
+            "burn": 2
+          },
+          {
+            "fuel": 1,
+            "smoke": 5,
+            "burn": 5
+          }
+        ]
+      }
+    },
+    {
+      "namespace": "material",
+      "id": "powder",
+      "source": "BN/data/json/materials.json",
+      "position": 4,
+      "definition": {
+        "type": "material",
+        "id": "powder",
+        "name": "Powder",
+        "density": 1,
+        "specific_heat_liquid": 1.5,
+        "specific_heat_solid": 1.2,
+        "latent_heat": 10,
+        "bash_resist": 1,
+        "cut_resist": 1,
+        "bullet_resist": 1,
+        "acid_resist": 0,
+        "fire_resist": 0,
+        "elec_resist": 2,
+        "chip_resist": 0,
+        "dmg_adj": [
+          "lightly damaged",
+          "damaged",
+          "very damaged",
+          "thoroughly damaged"
+        ],
+        "bash_dmg_verb": "damaged",
+        "cut_dmg_verb": "damaged",
+        "burn_data": [
+          {
+            "fuel": 10,
+            "smoke": 2,
+            "burn": 10
+          },
+          {
+            "fuel": 10,
+            "smoke": 2,
+            "burn": 10
+          },
+          {
+            "fuel": 10,
+            "smoke": 2,
+            "burn": 10
+          }
+        ]
+      }
+    },
+    {
+      "namespace": "material",
+      "id": "steel",
+      "source": "BN/data/json/materials.json",
+      "position": 5,
+      "definition": {
+        "type": "material",
+        "id": "steel",
+        "name": "Steel",
+        "density": 30,
+        "reinforces": true,
+        "bash_resist": 6,
+        "specific_heat_liquid": 0.82,
+        "specific_heat_solid": 0.45,
+        "latent_heat": 273,
+        "cut_resist": 6,
+        "bullet_resist": 5,
+        "acid_resist": 7,
+        "fire_resist": 3,
+        "elec_resist": 0,
+        "chip_resist": 20,
+        "repaired_with": "scrap",
+        "salvaged_into": "scrap",
+        "dmg_adj": [
+          "marked",
+          "dented",
+          "smashed",
+          "shattered"
+        ],
+        "bash_dmg_verb": "dented",
+        "cut_dmg_verb": "scratched",
+        "burn_products": [
+          [
+            "scrap",
+            1
+          ]
+        ],
+        "compact_accepts": [
+          "budget_steel",
+          "hardsteel",
+          "iron"
+        ],
+        "compacts_into": [
+          "sheet_metal",
+          "steel_lump",
+          "steel_chunk",
+          "scrap"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "ammo_type"
+    },
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "ascii_art",
+        "545"
+      ],
+      "field": "ascii_picture"
+    },
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "json_flag",
+        "IRREPLACEABLE_CONSUMABLE"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "material",
+        "brass"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "material",
+        "lead"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "material",
+        "powder"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "545_ap"
+      ],
+      "to": [
+        "ascii_art",
+        "545_ap"
+      ],
+      "field": "ascii_picture"
+    },
+    {
+      "from": [
+        "item",
+        "545_ap"
+      ],
+      "to": [
+        "item",
+        "545"
+      ],
+      "field": "copy-from"
+    },
+    {
+      "from": [
+        "item",
+        "545_ap"
+      ],
+      "to": [
+        "json_flag",
+        "IRREPLACEABLE_CONSUMABLE"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "ak74mag"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "ammo_type"
+    },
+    {
+      "from": [
+        "item",
+        "ak74mag"
+      ],
+      "to": [
+        "json_flag",
+        "MAG_COMPACT"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "ak74mag"
+      ],
+      "to": [
+        "item",
+        "stanag30"
+      ],
+      "field": "looks_like"
+    },
+    {
+      "from": [
+        "item",
+        "ak74mag"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "ak74mag"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "ak74mag"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "pocket_data.ammo_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "bars"
+      ],
+      "to": [
+        "json_flag",
+        "IRREMOVABLE"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "bars"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "ITEM_CATEGORY",
+        "other"
+      ],
+      "field": "category"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "json_flag",
+        "MISSION_ITEM"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "json_flag",
+        "NO_REPAIR"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "json_flag",
+        "TRADER_AVOID"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "item",
+        "kord"
+      ],
+      "field": "looks_like"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "broken_kord"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "casket74mag"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "ammo_type"
+    },
+    {
+      "from": [
+        "item",
+        "casket74mag"
+      ],
+      "to": [
+        "json_flag",
+        "MAG_COMPACT"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "casket74mag"
+      ],
+      "to": [
+        "item",
+        "stanag30"
+      ],
+      "field": "looks_like"
+    },
+    {
+      "from": [
+        "item",
+        "casket74mag"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "casket74mag"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "casket74mag"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "pocket_data.ammo_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "ammo"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "field": "copy-from"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "bars"
+      ],
+      "field": "default_mods"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "wire_stock"
+      ],
+      "field": "default_mods"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "json_flag",
+        "MISSION_ITEM"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "modular_ar15"
+      ],
+      "field": "looks_like"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "ak74mag"
+      ],
+      "field": "pocket_data.item_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "casket74mag"
+      ],
+      "field": "pocket_data.item_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "kord"
+      ],
+      "to": [
+        "item",
+        "rpk74mag"
+      ],
+      "field": "pocket_data.item_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "modular_ar15"
+      ],
+      "to": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "field": "copy-from"
+    },
+    {
+      "from": [
+        "item",
+        "modular_ar15"
+      ],
+      "to": [
+        "json_flag",
+        "NO_TURRET"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "modular_ar15"
+      ],
+      "to": [
+        "material",
+        "aluminum"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "modular_ar15"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "modular_ar15"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "nano_fabricator_encryption_code"
+      ],
+      "to": [
+        "item",
+        "usb_drive_nano"
+      ],
+      "field": "copy-from"
+    },
+    {
+      "from": [
+        "item",
+        "rpk74mag"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "ammo_type"
+    },
+    {
+      "from": [
+        "item",
+        "rpk74mag"
+      ],
+      "to": [
+        "json_flag",
+        "MAG_BULKY"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "rpk74mag"
+      ],
+      "to": [
+        "item",
+        "stanag30"
+      ],
+      "field": "looks_like"
+    },
+    {
+      "from": [
+        "item",
+        "rpk74mag"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "rpk74mag"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "rpk74mag"
+      ],
+      "to": [
+        "ammunition_type",
+        "545x39"
+      ],
+      "field": "pocket_data.ammo_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "stanag30"
+      ],
+      "to": [
+        "ammunition_type",
+        "223"
+      ],
+      "field": "ammo_type"
+    },
+    {
+      "from": [
+        "item",
+        "stanag30"
+      ],
+      "to": [
+        "ammunition_type",
+        "300blk"
+      ],
+      "field": "ammo_type"
+    },
+    {
+      "from": [
+        "item",
+        "stanag30"
+      ],
+      "to": [
+        "json_flag",
+        "MAG_COMPACT"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "stanag30"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "usb_drive"
+      ],
+      "to": [
+        "ITEM_CATEGORY",
+        "valuables"
+      ],
+      "field": "category"
+    },
+    {
+      "from": [
+        "item",
+        "usb_drive"
+      ],
+      "to": [
+        "material",
+        "plastic"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
+        "usb_drive_nano"
+      ],
+      "to": [
+        "item",
+        "usb_drive"
+      ],
+      "field": "copy-from"
+    },
+    {
+      "from": [
+        "item",
+        "wire_stock"
+      ],
+      "to": [
+        "json_flag",
+        "NEEDS_UNFOLD"
+      ],
+      "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "wire_stock"
+      ],
+      "to": [
+        "material",
+        "steel"
+      ],
+      "field": "material"
+    }
+  ],
+  "obligations": [],
+  "support_definition_schema_review_required": [
+    "ITEM_CATEGORY",
+    "ammunition_type",
+    "ascii_art",
+    "json_flag",
+    "material"
+  ],
+  "release_ready": false,
+  "source_sha256": "a0d3c496d67a0c45fe66297d42e3acf3a9d8f0dbb645741b9bf7e4303e091c09"
+}

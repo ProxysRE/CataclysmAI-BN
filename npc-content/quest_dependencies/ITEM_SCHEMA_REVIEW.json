@@ -1,0 +1,151 @@
+{
+  "items": [
+    {
+      "id": "545",
+      "source": "items/ammo/545x39.json",
+      "target_type": "AMMO",
+      "checks": [
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "98f1bfed39c2e3a288810de2aa90b3d69d72b18f41412289b464f640765655df",
+      "runtime_validated": false
+    },
+    {
+      "id": "545_ap",
+      "source": "items/ammo/545x39.json",
+      "target_type": "AMMO",
+      "checks": [
+        "compare relative damage/armor-penetration arithmetic against BN loader"
+      ],
+      "source_definition_sha256": "67c05453b168d450cb80ccaf1eaed29bb776420757af4b2faeed73915ce5862a",
+      "runtime_validated": false
+    },
+    {
+      "id": "ak74mag",
+      "source": "items/magazine/545x39.json",
+      "target_type": "MAGAZINE",
+      "checks": [
+        "native item variant representation; do not discard names/descriptions",
+        "translate magazine capacity and allowed magazines; audit other pocket semantics",
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "39654fea234b86c54f4b46cb2ad256c6587eb078fcc33fc26d66b66406608207",
+      "runtime_validated": false
+    },
+    {
+      "id": "bars",
+      "source": "items/gunmod/mechanism.json",
+      "target_type": "GUNMOD",
+      "checks": [],
+      "source_definition_sha256": "274018bda487b6894013883aa020e5a8065999c9202e37b128c0eb9a9320a257",
+      "runtime_validated": false
+    },
+    {
+      "id": "broken_kord",
+      "source": "items/generic.json",
+      "target_type": "GENERIC",
+      "checks": [
+        "native item variant representation; do not discard names/descriptions",
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "99e10234810af700d8efd741d3c8099eefa2ccd79357b8ec682a63d2f15bfc9e",
+      "runtime_validated": false
+    },
+    {
+      "id": "casket74mag",
+      "source": "items/magazine/545x39.json",
+      "target_type": "MAGAZINE",
+      "checks": [
+        "native item variant representation; do not discard names/descriptions",
+        "translate magazine capacity and allowed magazines; audit other pocket semantics",
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "db1a2861685cc57c1834d9f6f031f6f3733b523dabfeadeac8a52a6f8750dad8",
+      "runtime_validated": false
+    },
+    {
+      "id": "gun_base_rifle_semi",
+      "source": "items/classes/gun.json",
+      "target_type": "GUN",
+      "checks": [],
+      "source_definition_sha256": "c673f3b11f4f23a418d2dcafbfd4e496e4efe1ec04d2aa60d90c1c3e16ca1f38",
+      "runtime_validated": false
+    },
+    {
+      "id": "kord",
+      "source": "items/gun/545x39.json",
+      "target_type": "GUN",
+      "checks": [
+        "native item variant representation; do not discard names/descriptions",
+        "translate magazine capacity and allowed magazines; audit other pocket semantics",
+        "barrel length versus BN barrel volume and ranged calculations",
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "4bc1f887787560ad86e6a5c197139e0e3ef7ad2e3613283809552627c593b44a",
+      "runtime_validated": false
+    },
+    {
+      "id": "modular_ar15",
+      "source": "items/gun/223.json",
+      "target_type": "GUN",
+      "checks": [
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "b6cc516d78560445a22a03a5320e0f71706355a83a558dd71fabc9a99987599c",
+      "runtime_validated": false
+    },
+    {
+      "id": "nano_fabricator_encryption_code",
+      "source": "items/generic.json",
+      "target_type": "GENERIC",
+      "checks": [],
+      "source_definition_sha256": "3f02d5ec16db43f3c3449b133fe3d742076e8519551a9d5dad785f1670af5ec4",
+      "runtime_validated": false
+    },
+    {
+      "id": "rpk74mag",
+      "source": "items/magazine/545x39.json",
+      "target_type": "MAGAZINE",
+      "checks": [
+        "native item variant representation; do not discard names/descriptions",
+        "translate magazine capacity and allowed magazines; audit other pocket semantics",
+        "dimension support in pinned BN item loader"
+      ],
+      "source_definition_sha256": "fa8d2e07a50ab450c8a11f034f75ca4802d51f5cae91aa871fe58dedb7031471",
+      "runtime_validated": false
+    },
+    {
+      "id": "stanag30",
+      "source": "BN/data/json/items/magazine/223.json",
+      "target_type": "MAGAZINE",
+      "checks": [],
+      "source_definition_sha256": "c2234673d3f7ea51c5465ede9fff4ba10484820963e29718b748494dc69ba2fe",
+      "runtime_validated": false
+    },
+    {
+      "id": "usb_drive",
+      "source": "BN/data/json/items/generic.json",
+      "target_type": "GENERIC",
+      "checks": [],
+      "source_definition_sha256": "1a9b347b41807ae8aa0d6476b75b390d07cc0d187076f5d5bfc709aec39a0872",
+      "runtime_validated": false
+    },
+    {
+      "id": "usb_drive_nano",
+      "source": "items/generic.json",
+      "target_type": "GENERIC",
+      "checks": [],
+      "source_definition_sha256": "d0e55ebd69e032b6b4c3d09752c29a46f533f6061585ffcb6a386baef866b739",
+      "runtime_validated": false
+    },
+    {
+      "id": "wire_stock",
+      "source": "BN/data/json/items/gunmod/stock.json",
+      "target_type": "GUNMOD",
+      "checks": [],
+      "source_definition_sha256": "5e27732ce3ac4c9043ed7711410fc2245773f16186c87b9fa5bc041db5cfd29a",
+      "runtime_validated": false
+    }
+  ],
+  "release_ready": false
+}
