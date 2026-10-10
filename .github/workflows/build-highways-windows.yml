@@ -145,6 +145,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 field and isolation fix does not apply" }
           git apply $fix07
           if ($LASTEXITCODE -ne 0) { throw "DEV0.3 field and isolation fix failed" }
+          $fix08 = "${{ github.workspace }}/package/highways/highways_dev03_fix08.patch"
+          if ((Get-FileHash $fix08 -Algorithm SHA256).Hash.ToLower() -ne "297629260b229a321d6435c097823082ddac444fecf63e32aae88c0e60f03d38") { throw "DEV0.3 cleanup flag fix checksum mismatch" }
+          git apply --check $fix08
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 cleanup flag fix does not apply" }
+          git apply $fix08
+          if ($LASTEXITCODE -ne 0) { throw "DEV0.3 cleanup flag fix failed" }
           python utilities/highway/check_dda_dependencies.py
           if ($LASTEXITCODE -ne 0) { throw "DDA highway dependency validation failed" }
           python utilities/highway/check_dda_geometry.py

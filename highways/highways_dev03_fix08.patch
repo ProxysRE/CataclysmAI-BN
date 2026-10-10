@@ -1,0 +1,60 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 981c30e..c4bd58b 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -166,3 +166,5 @@ Parse overmap terrain flag names with the canonical `oter_flags_map`; BN has no
+ Catch assertions containing `||` or `&&` must wrap the entire expression in parentheses so Catch does not attempt unsupported expression decomposition.
+ 
+ Overmap buffer clearing does not delete the test world's saved overmaps. For fresh-network integration tests, verify an unused intersection and its neighbor halo with `get_existing()` before generation; keep separate legacy-neighbor tests. Port lookalike terrain's predecessor mapgen definitions as well as its overmap terrain, including DDA `mapgen/special.json` dependencies.
++
++Mapgen flags must reach the generation context even when the argument map is empty, for both full and nested JSON generators. Cover terrain cleanup with guaranteed preexisting furniture, not only random predecessor plants.
+diff --git a/src/mapgen/mapgen.cpp b/src/mapgen/mapgen.cpp
+index ef56182..8a0d09a 100644
+--- a/src/mapgen/mapgen.cpp
++++ b/src/mapgen/mapgen.cpp
+@@ -3884,7 +3884,7 @@ void mapgen_function_json::generate(mapgendata& md) {
+         }
+     };
+ 
+-    if (args.map.empty()) {
++    if (args.map.empty() && flags.empty()) {
+         apply_contents(md);
+     } else {
+         auto md_with_params = std::optional<mapgendata>{};
+@@ -3941,7 +3941,7 @@ void mapgen_function_json_nested::nest(
+         }
+     };
+ 
+-    if (args.map.empty()) {
++    if (args.map.empty() && flags.empty()) {
+         apply_contents(md);
+     } else {
+         auto md_with_params = std::optional<mapgendata>{};
+diff --git a/tests/highway_dda_test.cpp b/tests/highway_dda_test.cpp
+index c013ed2..778ca8f 100644
+--- a/tests/highway_dda_test.cpp
++++ b/tests/highway_dda_test.cpp
+@@ -136,10 +136,23 @@ TEST_CASE("dda_highway_templates_keep_two_square_median_at_rotated_seams", "[hig
+             auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
+             INFO(suffix << " z=" << z);
+             REQUIRE(generator.generate(project_combine(address, local), calendar::turn).is_generated());
++            // Guarantee predecessor furniture exists, rather than depending on
++            // random field/forest flowers. The overlay must clear it on roads.
++            for (const auto x : std::views::iota(0, 24)) {
++                for (const auto y : std::views::iota(0, 24)) {
++                    generator.furn_set(point_omt_ms(x, y), furn_id("f_dandelion"));
++                }
++            }
++            auto data = mapgendata(project_combine(address, local), generator, 0.0f,
++                                   calendar::turn, nullptr, ACTIVE_OVERMAP_BUFFER);
++            REQUIRE(run_mapgen_func(oter_id(std::string("hw_road_") + suffix)->get_mapgen_id(), data));
+             for (const auto y : std::views::iota(0, 24)) {
+                 CHECK(generator.ter(at(23, y)) == ter_id("t_guardrail"));
+                 CHECK(generator.ter(at(8, y)) == ter_id("t_pavement"));
+                 CHECK(generator.ter(at(22, y)) == ter_id("t_pavement"));
++                CHECK(generator.furn(at(23, y)) == furn_id("f_null"));
++                CHECK(generator.furn(at(8, y)) == furn_id("f_null"));
++                CHECK(generator.furn(at(22, y)) == furn_id("f_null"));
+             }
+             if (z == 1) { CHECK(generator.ter(at(0, 12)) == ter_id("t_open_air")); }
+         }
