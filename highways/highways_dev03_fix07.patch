@@ -1,0 +1,140 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 5d05f08..981c30e 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -164,3 +164,5 @@ Run `utilities/highway/check_dda_dependencies.py` on the assembled BN data befor
+ 
+ Parse overmap terrain flag names with the canonical `oter_flags_map`; BN has no `io::enum_to_string<oter_flags>` implementation. Syntax-only compilation cannot detect this missing linker symbol.
+ Catch assertions containing `||` or `&&` must wrap the entire expression in parentheses so Catch does not attempt unsupported expression decomposition.
++
++Overmap buffer clearing does not delete the test world's saved overmaps. For fresh-network integration tests, verify an unused intersection and its neighbor halo with `get_existing()` before generation; keep separate legacy-neighbor tests. Port lookalike terrain's predecessor mapgen definitions as well as its overmap terrain, including DDA `mapgen/special.json` dependencies.
+diff --git a/data/json/mapgen/dda_highways/special_field.json b/data/json/mapgen/dda_highways/special_field.json
+new file mode 100644
+index 0000000..4162b35
+--- /dev/null
++++ b/data/json/mapgen/dda_highways/special_field.json
+@@ -0,0 +1,8 @@
++[
++  {
++    "type": "mapgen",
++    "om_terrain": "special_field_highway",
++    "method": "json",
++    "object": { "predecessor_mapgen": "field" }
++  }
++]
+diff --git a/tests/highway_dda_test.cpp b/tests/highway_dda_test.cpp
+index 4c22334..c013ed2 100644
+--- a/tests/highway_dda_test.cpp
++++ b/tests/highway_dda_test.cpp
+@@ -4,6 +4,7 @@
+ #include "map/mapbuffer_registry.h"
+ #include "mapgen/mapgen_constructor.h"
+ #include "mapgen/mapgendata.h"
++#include "mapgen/mapgen.h"
+ #include "mapgen/nested_neighbor_flags.h"
+ #include "options_helpers.h"
+ #include "overmap/highway_dda.h"
+@@ -64,6 +65,33 @@ TEST_CASE("dda_highway_dependencies_and_special_priorities_load", "[highway][dda
+     CHECK(oter_id("hw_railings_north")->has_flag(oter_flags::highway));
+     CHECK(overmap_special_id("Highway Diamond Interchange")->get_priority() == 2);
+     CHECK(overmap_special_id("Highway Rest Area Parking")->get_priority() == 2);
++    CHECK(has_mapgen_for("special_field_highway"));
++}
++
++TEST_CASE("dda_highway_interchange_field_uses_real_field_mapgen", "[highway][dda][mapgen]") {
++    clear_all_state();
++    const auto disabled = override_option("BN_HIGHWAYS", "false");
++    const auto city_size = override_option("CITY_SIZE", "0");
++    const auto address = point_abs_om(20, 20);
++    auto batch = overmap_special_batch(address, {});
++    ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
++    auto &om = ACTIVE_OVERMAP_BUFFER.get(address);
++    const auto local = tripoint_om_omt(40, 40, 0);
++    om.ter_set(local, oter_id("special_field_highway"));
++    const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
++    disable_mapgen = false;
++    auto generator = mapgen_constructor(MAPBUFFER_REGISTRY.primary());
++    REQUIRE(generator.generate(project_combine(address, local), calendar::turn).is_generated());
++    auto field_floor_count = 0;
++    for( const auto x : std::views::iota(0, 24) ) {
++        for( const auto y : std::views::iota(0, 24) ) {
++            const auto terrain = generator.ter(point_omt_ms(x, y));
++            CHECK(terrain != ter_id("t_null"));
++            field_floor_count += terrain == ter_id("t_grass") || terrain == ter_id("t_dirt") ||
++                                 terrain == ter_id("t_grass_dead");
++        }
++    }
++    CHECK(field_floor_count > 0);
+ }
+ 
+ TEST_CASE("dda_highway_terminates_at_legacy_neighbor_without_endpoint", "[highway][dda]") {
+diff --git a/tests/highway_test.cpp b/tests/highway_test.cpp
+index c1950ae..3aa7133 100644
+--- a/tests/highway_test.cpp
++++ b/tests/highway_test.cpp
+@@ -61,9 +61,18 @@ TEST_CASE("highway_survives_complete_overmap_generation", "[highway][overmap][sl
+     // clear_all_state resets the local map, but retains overmaps from other tests.
+     // Legacy neighbors without highway endpoints intentionally terminate new routes.
+     ACTIVE_OVERMAP_BUFFER.clear();
++    // The test world's origin can already exist on disk; clearing the buffer
++    // does not delete it. Check an unused grid intersection and its full halo.
++    const auto center = point_abs_om(300, 300);
++    for( const auto x : std::views::iota( -2, 3 ) ) {
++        for( const auto y : std::views::iota( -2, 3 ) ) {
++            REQUIRE( ACTIVE_OVERMAP_BUFFER.get_existing( center + point_rel_om( x, y ) ) == nullptr );
++        }
++    }
+     // Generate the cloverleaf, then each neighbor; crossings must survive late specials.
+-    const auto addresses = std::array{point_abs_om(0, 0), point_abs_om(0, -1),
+-                                     point_abs_om(1, 0), point_abs_om(0, 1), point_abs_om(-1, 0)};
++    const auto addresses = std::array{center, center + point_rel_om(0, -1),
++                                     center + point_rel_om(1, 0), center + point_rel_om(0, 1),
++                                     center + point_rel_om(-1, 0)};
+     for (const auto& address : addresses) {
+         auto batch = overmap_specials::get_default_batch(address);
+         ACTIVE_OVERMAP_BUFFER.create_custom_overmap(address, batch);
+@@ -81,9 +90,9 @@ TEST_CASE("highway_survives_complete_overmap_generation", "[highway][overmap][sl
+         }
+         INFO(address.to_string());
+         CHECK(highway_count > 100);
+-        if (address != point_abs_om::zero()) {
+-            const auto direction = address.x() > 0 ? 1 : address.y() > 0 ? 2 : address.x() < 0 ? 3 : 0;
+-            const auto endpoint = ACTIVE_OVERMAP_BUFFER.get(point_abs_om::zero()).highway_connections[direction];
++        if (address != center) {
++            const auto direction = address.x() > center.x() ? 1 : address.y() > center.y() ? 2 : address.x() < center.x() ? 3 : 0;
++            const auto endpoint = ACTIVE_OVERMAP_BUFFER.get(center).highway_connections[direction];
+             const auto opposite = om.highway_connections[(direction + 2) % 4];
+             REQUIRE_FALSE(highway::dda::is_invalid(endpoint));
+             REQUIRE_FALSE(highway::dda::is_invalid(opposite));
+diff --git a/utilities/highway/check_dda_dependencies.py b/utilities/highway/check_dda_dependencies.py
+index 3dbd391..816a29e 100644
+--- a/utilities/highway/check_dda_dependencies.py
++++ b/utilities/highway/check_dda_dependencies.py
+@@ -11,6 +11,7 @@ args = parser.parse_args()
+ terrain = set()
+ palettes = set()
+ nested = set()
++mapgen = set()
+ for directory in {args.base_json, root / 'data/json'}:
+     for path in directory.rglob('*.json'):
+         entries = json.loads(path.read_text(encoding='utf-8'))
+@@ -24,9 +25,19 @@ for directory in {args.base_json, root / 'data/json'}:
+                 terrain.update([ids] if isinstance(ids, str) else ids)
+             if entry.get('type') == 'palette':
+                 palettes.add(entry.get('id'))
++            if entry.get('type') == 'mapgen':
++                ids = entry.get('om_terrain', [])
++                if isinstance(ids, str):
++                    mapgen.add(ids)
++                elif isinstance(ids, list):
++                    mapgen.update(identifier for identifier in ids if isinstance(identifier, str))
+             if 'nested_mapgen_id' in entry:
+                 nested.add(entry['nested_mapgen_id'])
+ 
++assert 'special_field_highway' in mapgen, 'Missing highway lookalike field mapgen'
++field_mapgen = json.loads((root / 'data/json/mapgen/dda_highways/special_field.json').read_text())
++assert field_mapgen[0]['object']['predecessor_mapgen'] == 'field', 'DDA field predecessor changed'
++
+ rotated = terrain | {identifier + '_' + suffix for identifier in terrain
+                      for suffix in ('north', 'east', 'south', 'west')}
+ specials = json.loads((root / 'data/json/overmap/overmap_special/dda_highways.json').read_text())
