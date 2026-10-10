@@ -9,7 +9,8 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent
 base_files = ("condition.cpp", "npctalk.cpp", "faction.h", "faction.cpp",
-              "savegame_json.cpp", "activity_type.h", "activity_type.cpp", "player_activity.cpp")
+              "savegame_json.cpp", "activity_type.h", "activity_type.cpp", "player_activity.cpp",
+              "npc.cpp", "npc_class.cpp", "npc_class.h")
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--bn-source", type=Path,
                     help="Pinned BN checkout; restore staging before rebuilding")

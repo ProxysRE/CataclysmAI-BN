@@ -79,7 +79,7 @@ the last qualifying case in source order wins, including fractional thickness
 values. Native tests cover below-threshold, exact fractional boundaries and
 source order. Response-level boolean switches remain BN response switches.
 
-Still required: the measurement activity, faction sharing/trust, shop consumption policy, typed dependency
+Still required: trade-zone stock consumption/distribution, camp sharing consumers, typed dependency
 closure, modern DDA item/mapgen schema adaptation, and full quest/location tests.
 The generated dialogue is not yet an installable mod.
 
@@ -105,6 +105,16 @@ penalties will be wired with their corresponding content.
 Native Catch tests use a real avatar, NPC and faction save/load. They check the
 600-second action despite boosted crafting progress, automatic interruption,
 keyboard behavior, positive trust changes, relation revocation and old-save
-fallback. These expanded tests await Windows CI. The dialogue scanner now reports
-only the two shopkeeper_consumption_rates entries in its known-unsupported set;
+fallback. These expanded tests passed Windows CI: seven cases, 651 assertions. The dialogue scanner now reports
+no entries in its known-unsupported set after preserving the obsolete shop metadata;
 that is not a complete item/mapgen/schema compatibility claim.
+
+## Rigid shop stock
+
+Windows checkpoint 49492f77b125de38a654a286582802fed1f2449b passed all seven native tests (651 assertions), including measurements and faction persistence.
+
+The artisan adapter now preserves the single shop group's rigid property and the pinned DDA default six-day restock interval. Native rigid groups call item_group::items_from exactly once, independently of the wealth target, while regular BN shops keep their previous value/volume loop and three-day default. RESTOCK_DELAY_MULT remains a BN user setting applied to both. Ownership and faction currency generation are retained. Unsupported per-group restrictions raise an adapter error.
+
+The source shopkeeper_consumption_rates string is retained as legacy metadata: the pinned DDA npc_class::load no longer reads it. DDA now consumes and distributes stock through trade zones (consume_items_in_zones/distribute_items_to_npc_zones). Those consumers still require porting; this patch does not claim to reproduce that system. BN's existing inventory replacement remains in use until then.
+
+Native regression seeds a deterministic one-plank rigid collection, tests single sampling, no early restock and the exact six-day boundary, and checks stock BN defaults. The replacement Windows build is pending. Zero entries in the dialogue scanner's known-unsupported set does not mean that the complete content package is ready.

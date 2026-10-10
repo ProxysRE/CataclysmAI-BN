@@ -319,6 +319,81 @@
               ignored_distractions.contains( type ) );
  }
  
+--- a/src/npc.cpp
++++ b/src/npc.cpp
+@@ -1912,7 +1912,7 @@
+         return;
+     }
+ 
+-    restock = calendar::turn + 3_days * get_option<float>( "RESTOCK_DELAY_MULT" );
++    restock = calendar::turn + myclass->shop_restock_interval() * get_option<float>( "RESTOCK_DELAY_MULT" );
+     if( is_player_ally() ) {
+         return;
+     }
+@@ -1945,7 +1945,17 @@
+ 
+     int count = 0;
+     bool last_item = false;
+-    while( shop_value > 0 && total_space > 0_ml && !last_item ) {
++    // DDA rigid groups are sampled exactly once, independently of shop value.
++    if( myclass->is_rigid_shop() ) {
++        auto stock = item_group::items_from( from, calendar::turn );
++        for( auto &entry : stock ) {
++            if( !entry->is_null() ) {
++                entry->set_owner( *this );
++                ret.push_back( std::move( entry ) );
++            }
++        }
++    }
++    while( !myclass->is_rigid_shop() && shop_value > 0 && total_space > 0_ml && !last_item ) {
+         detached_ptr<item> tmpit = item_group::item_from( from, calendar::turn );
+         if( !tmpit->is_null() && total_space >= tmpit->volume() ) {
+             tmpit->set_owner( *this );
+--- a/src/npc_class.cpp
++++ b/src/npc_class.cpp
+@@ -235,6 +235,13 @@
+ 
+     optional( jo, was_loaded, "shopkeeper_item_group", shopkeeper_item_group,
+               item_group_id( "EMPTY_GROUP" ) );
++    optional( jo, was_loaded, "dda_shop_rigid", dda_shop_rigid, false );
++    optional( jo, was_loaded, "dda_shop_restock_interval", dda_shop_restock_interval, 3_days );
++    if( dda_shop_restock_interval <= 0_seconds ) {
++        jo.throw_error( "shop restock interval must be positive", "dda_shop_restock_interval" );
++    }
++    // Retained source metadata: the pinned DDA loader no longer uses this field.
++    optional( jo, was_loaded, "shopkeeper_consumption_rates", legacy_shop_consumption_rates );
+     optional( jo, was_loaded, "worn_override", worn_override );
+     optional( jo, was_loaded, "carry_override", carry_override );
+     optional( jo, was_loaded, "weapon_override", weapon_override );
+--- a/src/npc_class.h
++++ b/src/npc_class.h
+@@ -1,4 +1,6 @@
+ #pragma once
++
++#include "calendar.h"
+ 
+ #include <functional>
+ #include <map>
+@@ -62,6 +64,10 @@
+         std::map<skill_id, distribution> bonus_skills;
+ 
+         item_group_id shopkeeper_item_group = item_group_id( "EMPTY_GROUP" );
++        bool dda_shop_rigid = false;
++        time_duration dda_shop_restock_interval = 3_days;
++        std::string legacy_shop_consumption_rates;
++
+ 
+     public:
+         npc_class_id id;
+@@ -90,6 +96,8 @@
+         int roll_skill( const skill_id & ) const;
+ 
+         const item_group_id &get_shopkeeper_items() const;
++        auto is_rigid_shop() const -> bool { return dda_shop_rigid; }
++        auto shop_restock_interval() const -> time_duration { return dda_shop_restock_interval; }
+ 
+         void load( const JsonObject &jo, const std::string &src );
+ 
 --- /dev/null
 +++ b/src/artisan_expression.h
 @@ -0,0 +1,105 @@
@@ -758,7 +833,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_artisan_services_test.cpp
-@@ -0,0 +1,99 @@
+@@ -0,0 +1,141 @@
 +#include "activity_type.h"
 +#include "avatar.h"
 +#include "calendar.h"
@@ -769,6 +844,8 @@
 +#include "faction.h"
 +#include "json.h"
 +#include "npc.h"
++#include "npc_class.h"
++#include "item_group.h"
 +#include "options_helpers.h"
 +#include "player_activity.h"
 +#include "state_helpers.h"
@@ -857,6 +934,46 @@
 +    auto legacy_parser = JsonIn( legacy_input );
 +    loaded.deserialize( legacy_parser );
 +    CHECK( loaded.trusts_u == 0 );
++}
++
++TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_npc]" ) {
++    clear_all_state();
++    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
++    const auto delay = override_option( "RESTOCK_DELAY_MULT", "1" );
++    auto group_input = std::istringstream( R"({"items":[["plank",100]]})" );
++    auto group_parser = JsonIn( group_input );
++    const auto group_id = item_group_id( "dda_artisan_test_rigid_stock" );
++    item_group::load_item_group( group_parser.get_object(), group_id, "collection" );
++    auto class_input = std::istringstream( R"({"id":"dda_artisan_test_rigid_class","name":"Test artisan","job_description":"Native shop regression","common":false,"shopkeeper_item_group":"dda_artisan_test_rigid_stock","dda_shop_rigid":true,"dda_shop_restock_interval":"6 days","shopkeeper_consumption_rates":"basic_shop_rates"})" );
++    auto class_parser = JsonIn( class_input );
++    npc_class::load_npc_class( class_parser.get_object(), "dda_artisan_test" );
++    const auto class_id = npc_class_id( "dda_artisan_test_rigid_class" );
++    REQUIRE( class_id.is_valid() );
++    CHECK( class_id->is_rigid_shop() );
++    CHECK( class_id->shop_restock_interval() == 6_days );
++    auto merchant = npc{};
++    merchant.myclass = class_id;
++    merchant.setpos( get_avatar().bub_pos() );
++    merchant.set_fac( faction_id( "free_merchants" ) );
++    calendar::turn = calendar::turn_zero + 1_days;
++    merchant.shop_restock();
++    REQUIRE( merchant.amount_of( itype_id( "plank" ) ) == 1 );
++    const auto due = merchant.restock;
++    CHECK( due == calendar::turn + 6_days );
++    merchant.i_add( item::spawn( itype_id( "plank" ), calendar::turn ) );
++    calendar::turn = due - 1_seconds;
++    merchant.shop_restock();
++    CHECK( merchant.amount_of( itype_id( "plank" ) ) == 2 );
++    calendar::turn = due;
++    merchant.shop_restock();
++    CHECK( merchant.amount_of( itype_id( "plank" ) ) == 1 );
++
++    auto legacy_input = std::istringstream( R"({"name":"Legacy shop","job_description":"Default policy"})" );
++    auto legacy_parser = JsonIn( legacy_input );
++    auto legacy = npc_class{};
++    legacy.load( legacy_parser.get_object(), "dda_artisan_test" );
++    CHECK_FALSE( legacy.is_rigid_shop() );
++    CHECK( legacy.shop_restock_interval() == 3_days );
 +}
 --- /dev/null
 +++ b/data/json/dda_artisan_activities.json

@@ -51,3 +51,16 @@ except ValueError:
 else:
     raise AssertionError("Unsupported spawn options must not be silently dropped")
 print("PASS: 55 topics; rewards/payments; fractional reads; 1 measurement action; 6 trust and 2 relation effects")
+
+shops = [node for node in walk(result) if node.get("type") == "npc_class"]
+assert len(shops) == 2
+assert all(node["dda_shop_rigid"] is True for node in shops)
+assert all(node["dda_shop_restock_interval"] == "6 days" for node in shops)
+assert all(node["shopkeeper_consumption_rates"] == "basic_shop_rates" for node in shops)
+try:
+    adapt({"type":"npc_class", "shopkeeper_item_group":[{"group":"test", "rigid":True, "condition":True}]}, collections.Counter())
+except ValueError:
+    pass
+else:
+    raise AssertionError("Unsupported shop restrictions must not be silently dropped")
+print("PASS: both artisan shops preserve rigid sampling and six-day restock; legacy metadata retained")

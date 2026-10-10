@@ -15,8 +15,6 @@
     "npc_shopkeep_enum": 2,
     "shopkeeper_group": 2
   },
-  "unresolved_retained": {
-    "shopkeeper_consumption_rates": 2
-  },
+  "unresolved_retained": {},
   "release_ready": false
 }

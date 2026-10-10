@@ -184,6 +184,11 @@ def adapt(value, counts):
     if result.get("type") == "npc_class":
         groups = result.get("shopkeeper_item_group")
         if isinstance(groups, list) and len(groups) == 1 and "group" in groups[0]:
+            unsupported = set(groups[0]) - {"group", "rigid"}
+            if unsupported:
+                raise ValueError(f"Unsupported shop group options: {sorted(unsupported)}")
+            result["dda_shop_rigid"] = groups[0].get("rigid", False)
+            result["dda_shop_restock_interval"] = result.pop("restock_interval", "6 days")
             result["shopkeeper_item_group"] = groups[0]["group"]
             counts["shopkeeper_group"] += 1
     return result
@@ -197,7 +202,7 @@ def main():
     counts = collections.Counter()
     unresolved = collections.Counter()
     unsupported = {"math", "run_eocs", "queue_eocs", "u_set_fac_relation",
-                   "u_add_faction_trust", "shopkeeper_consumption_rates",
+                   "u_add_faction_trust",
                    "u_spawn_item", "set_string_var", "copy_var", "u_assign_activity"}
 
     def inspect(value):
