@@ -129,16 +129,18 @@ TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_n
     REQUIRE_FALSE( merchant.is_player_ally() );
     calendar::turn = calendar::turn_zero + 1_days;
     merchant.shop_restock();
-    REQUIRE( merchant.amount_of( itype_id( "2x4" ) ) == 1 );
+    REQUIRE( merchant.charges_of( itype_id( "2x4" ) ) == 1 );
+    REQUIRE( item::count_by_charges( itype_id( "2x4" ) ) );
     const auto due = merchant.restock;
     CHECK( due == calendar::turn + 6_days );
     merchant.i_add( item::spawn( itype_id( "2x4" ), calendar::turn ) );
+    REQUIRE( merchant.charges_of( itype_id( "2x4" ) ) == 2 );
     calendar::turn = due - 1_seconds;
     merchant.shop_restock();
-    CHECK( merchant.amount_of( itype_id( "2x4" ) ) == 2 );
+    CHECK( merchant.charges_of( itype_id( "2x4" ) ) == 2 );
     calendar::turn = due;
     merchant.shop_restock();
-    CHECK( merchant.amount_of( itype_id( "2x4" ) ) == 1 );
+    CHECK( merchant.charges_of( itype_id( "2x4" ) ) == 1 );
 
     auto legacy_input = std::istringstream( R"({"name":"Legacy shop","job_description":"Default policy"})" );
     auto legacy_parser = JsonIn( legacy_input );

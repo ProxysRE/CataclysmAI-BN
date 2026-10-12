@@ -2,7 +2,7 @@
   "remote_branch": "port/dda-npc-locations",
   "stage": "Native faction limited-area flag persistence; camp registration boundary verified from official sources",
   "package": "Isolated Road",
-  "native_compilation": "Latest Windows code compiles; contained reward regression passed. Rigid shop regression failed because default NPC/player IDs alias; fixture now uses distinct ID and explicitly checks non-allied state.",
+  "native_compilation": "Windows compilation successful; reward/container and faction persistence tests passed. Shop stock test counted merged charge-based planks as objects; corrected to charges_of with count_by_charges precondition.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -50,9 +50,8 @@
     "epilogues": 2
   },
   "last_run": {
-    "id": 38239146113,
-    "status": "failed_shop_fixture",
+    "id": 38258666159,
     "compile": "success",
-    "contained_reward_test": "passed"
+    "status": "one_failed_stock_quantity_assertion"
   }
 }
