@@ -78,9 +78,13 @@
             "npc_first_topic": "TALK_ENG_LIGHTHOUSE_WORKING"
           },
           {
-            "math": [
-              "n_time_lighthouse_wait = time('now')"
-            ]
+            "dda_set_variable": {
+              "target": "time_lighthouse_wait",
+              "expression": {
+                "op": "now"
+              },
+              "actor": "npc"
+            }
           }
         ]
       }
@@ -90,38 +94,74 @@
     "type": "talk_topic",
     "id": "TALK_ENG_LIGHTHOUSE_WORKING",
     "dynamic_line": {
-      "math": [
-        "time_since(n_time_lighthouse_wait) > time('2 d')"
-      ],
-      "yes": {
-        "npc_has_trait": "Exp_Eng_Electrical1Fake2",
-        "yes": {
-          "gendered_line": "Boss, here's the thing… just don't be mad, please.  I lied that I'm good at this… I thought I could figure it out, but it's far beyond my comprehension.  I'm sorry.",
-          "relevant_genders": [
-            "npc"
-          ]
-        },
-        "no": {
-          "npc_has_trait": "Exp_Eng_Electrical0Fake2",
-          "yes": {
-            "gendered_line": "Boss, here's the thing… just don't be mad, please.  I lied that I know something about this… I thought I could figure it out, but it's far beyond my comprehension.  I'm sorry.",
-            "relevant_genders": [
-              "npc"
+      "dda_expression": {
+        "op": "greater",
+        "args": [
+          {
+            "op": "divide",
+            "args": [
+              {
+                "op": "subtract",
+                "args": [
+                  {
+                    "op": "now"
+                  },
+                  {
+                    "op": "variable",
+                    "name": "time_lighthouse_wait",
+                    "actor": "npc"
+                  }
+                ]
+              },
+              {
+                "op": "literal",
+                "value": 1
+              }
             ]
           },
-          "no": "All done, boss.  Tell that fisherman to try it in action."
-        }
-      },
-      "no": "I'm still working, boss."
+          {
+            "op": "literal",
+            "value": 172800
+          }
+        ]
+      }
     },
     "speaker_effect": {
       "sentinel": "done",
       "condition": {
         "and": [
           {
-            "math": [
-              "time_since(n_time_lighthouse_wait) > time('2 d')"
-            ]
+            "dda_expression": {
+              "op": "greater",
+              "args": [
+                {
+                  "op": "divide",
+                  "args": [
+                    {
+                      "op": "subtract",
+                      "args": [
+                        {
+                          "op": "now"
+                        },
+                        {
+                          "op": "variable",
+                          "name": "time_lighthouse_wait",
+                          "actor": "npc"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "literal",
+                      "value": 1
+                    }
+                  ]
+                },
+                {
+                  "op": "literal",
+                  "value": 172800
+                }
+              ]
+            }
           },
           {
             "not": {
@@ -154,9 +194,37 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "time_since(n_time_lighthouse_wait) > time('2 d')"
-              ]
+              "dda_expression": {
+                "op": "greater",
+                "args": [
+                  {
+                    "op": "divide",
+                    "args": [
+                      {
+                        "op": "subtract",
+                        "args": [
+                          {
+                            "op": "now"
+                          },
+                          {
+                            "op": "variable",
+                            "name": "time_lighthouse_wait",
+                            "actor": "npc"
+                          }
+                        ]
+                      },
+                      {
+                        "op": "literal",
+                        "value": 1
+                      }
+                    ]
+                  },
+                  {
+                    "op": "literal",
+                    "value": 172800
+                  }
+                ]
+              }
             },
             {
               "or": [

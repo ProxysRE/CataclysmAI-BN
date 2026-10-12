@@ -12,7 +12,9 @@ import re
 def compile_node(node):
     if isinstance(node, ast.Constant) and type(node.value) in (int, float):
         return {"op": "literal", "value": node.value}
-    if isinstance(node, ast.Name) and node.id.startswith("u_"):
+    if isinstance(node, ast.Name) and node.id.startswith(("u_", "n_")):
+        if node.id.startswith("n_"):
+            return {"op": "variable", "name": node.id[2:], "actor": "npc"}
         return {"op": "variable", "name": node.id[2:]}
     binary = {ast.Add: "add", ast.Sub: "subtract", ast.Mult: "multiply", ast.Div: "divide"}
     if isinstance(node, ast.BinOp) and type(node.op) in binary:
@@ -56,13 +58,19 @@ def compile_expression(expression):
     expression = re.sub(r"'unit'\s*:", "unit=", expression.strip())
     if expression.startswith("!"):
         expression = "not " + expression[1:]
-    assignment = re.fullmatch(r"(u_\w+)\s*(\+=|-=|=(?!=))\s*(.+)", expression)
+    increment = re.fullmatch(r"([un]_\w+)\s*(\+\+|--)", expression)
+    if increment:
+        expression = increment[1] + (" += 1" if increment[2] == "++" else " -= 1")
+    assignment = re.fullmatch(r"([un]_\w+)\s*(\+=|-=|=(?!=))\s*(.+)", expression)
     if assignment:
         target, operator, rhs = assignment.groups()
         compiled = compile_node(ast.parse(rhs, mode="eval").body)
         if operator != "=":
-            compiled = {"op": "add" if operator == "+=" else "subtract", "args": [{"op": "variable", "name": target[2:]}, compiled]}
-        return {"target": target[2:], "expression": compiled}
+            compiled = {"op": "add" if operator == "+=" else "subtract", "args": [compile_node(ast.Name(id=target)), compiled]}
+        result = {"target": target[2:], "expression": compiled}
+        if target.startswith("n_"):
+            result["actor"] = "npc"
+        return result
     return {"expression": compile_node(ast.parse(expression, mode="eval").body)}
 
 

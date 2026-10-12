@@ -18,6 +18,11 @@ inline auto read_expression( const JsonObject &object ) -> expression {
     }
     if( result.op == "variable" ) {
         result.name = object.get_string( "name" );
+        const auto actor = object.get_string( "actor", "player" );
+        if( actor != "player" && actor != "npc" ) {
+            object.throw_error( "Unknown dialogue variable actor" );
+        }
+        result.npc_actor = actor == "npc";
     }
     if( object.has_array( "args" ) ) {
         for( const auto entry : object.get_array( "args" ) ) {
@@ -38,28 +43,38 @@ inline auto read_expression( const JsonObject &object ) -> expression {
     return result;
 }
 
-inline auto collect_values( const expression &node, const player &actor,
+struct expression_actors {
+    const player &actor;
+    const player *npc = nullptr;
+};
+
+inline auto collect_values( const expression &node, const expression_actors &actors,
                             std::unordered_map<std::string, double> &values ) -> std::expected<void, std::string> {
+    const auto &variable = node.op == "has_var" ? node.args[0] : node;
+    const auto *actor = variable.npc_actor ? actors.npc : &actors.actor;
+    if( ( node.op == "variable" || node.op == "has_var" ) && !actor ) {
+        return std::unexpected( "NPC dialogue variable requires an NPC actor" );
+    }
     if( node.op == "has_var" ) {
         const auto &name = node.args[0].name;
-        if( !actor.get_value( "npctalk_var_" + name ).empty() ) {
-            values.try_emplace( name, 0 );
+        if( !actor->get_value( "npctalk_var_" + name ).empty() ) {
+            values.try_emplace( variable.npc_actor ? "@npc:" + name : name, 0 );
         }
         return {};
     }
     if( node.op == "variable" ) {
-        const auto raw = actor.get_value( "npctalk_var_" + node.name );
+        const auto raw = actor->get_value( "npctalk_var_" + node.name );
         if( !raw.empty() ) {
             auto number = 0.0;
             const auto parsed = std::from_chars( raw.data(), raw.data() + raw.size(), number );
             if( parsed.ec != std::errc{} || parsed.ptr != raw.data() + raw.size() || !std::isfinite( number ) ) {
                 return std::unexpected( "Invalid numeric artisan variable: " + node.name );
             }
-            values[node.name] = number;
+            values[node.npc_actor ? "@npc:" + node.name : node.name] = number;
         }
     }
     for( const auto &child : node.args ) {
-        const auto collected = collect_values( child, actor, values );
+        const auto collected = collect_values( child, actors, values );
         if( !collected ) {
             return collected;
         }
@@ -67,10 +82,10 @@ inline auto collect_values( const expression &node, const player &actor,
     return {};
 }
 
-inline auto evaluate_for_player( const expression &node, const player &actor )
+inline auto evaluate_for_player( const expression &node, const player &actor, const player *npc = nullptr )
 -> std::expected<double, std::string> {
     auto values = std::unordered_map<std::string, double>{};
-    const auto collected = collect_values( node, actor, values );
+    const auto collected = collect_values( node, { .actor = actor, .npc = npc }, values );
     if( !collected ) {
         return std::unexpected( collected.error() );
     }

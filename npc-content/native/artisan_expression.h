@@ -15,6 +15,7 @@ struct expression {
     double value = 0;
     std::string name;
     std::vector<expression> args;
+    bool npc_actor = false;
 };
 
 struct evaluation_context {
@@ -38,11 +39,11 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
         return valid_number( context.now_seconds );
     }
     if( node.op == "variable" && node.args.empty() ) {
-        const auto found = context.variables.find( node.name );
+        const auto found = context.variables.find( node.npc_actor ? "@npc:" + node.name : node.name );
         return valid_number( found == context.variables.end() ? 0.0 : found->second );
     }
     if( node.op == "has_var" && node.args.size() == 1 && node.args[0].op == "variable" ) {
-        return context.variables.contains( node.args[0].name ) ? 1.0 : 0.0;
+        return context.variables.contains( node.args[0].npc_actor ? "@npc:" + node.args[0].name : node.args[0].name ) ? 1.0 : 0.0;
     }
     if( node.args.size() == 1 ) {
         const auto argument = evaluate( node.args[0], context );

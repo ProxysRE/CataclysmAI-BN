@@ -22,3 +22,5 @@ Missing dependencies are part of these packages, including weapons, ammunition, 
 This scope does not currently promise a wholesale merge of every unrelated DDA subsystem, all recipes/equipment, every monster, vehicles, mutations and the entire DDA map catalog. Such content is included when required by the agreed NPC/location packages. Additional standalone DDA content can expand the project later.
 
 Validation gates: preserve pinned upstream provenance, resolve typed dependencies, adapt schemas, load the package in native BN, test quests/map generation and build Windows. Current engine test success does not mean all source packages have passed those gates.
+
+Expansion agreed: standalone DDA locations are also planned, beyond NPC dependencies. Audit missing or substantially expanded BN locations and port them with their encounters/monsters/items and generation dependencies. The paranormal church and large emergency-response settlement mentioned by the user are identification candidates; do not assign exact source IDs until verified.

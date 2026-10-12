@@ -163,12 +163,8 @@
         "text": "How are you doing?",
         "topic": "TALK_lighthouse_man_hay",
         "condition": {
-          "compare_string": [
-            "yes",
-            {
-              "npc_val": "flag_help_helped_lighthouse_man"
-            }
-          ]
+          "npc_has_var": "flag_help_helped_lighthouse_man",
+          "value": "yes"
         }
       },
       {
@@ -179,40 +175,64 @@
         "text": "Care to trade?",
         "topic": "TALK_lighthouse_man_1",
         "condition": {
-          "compare_string": [
-            "yes",
-            {
-              "npc_val": "flag_help_helped_lighthouse_man"
-            }
-          ]
+          "npc_has_var": "flag_help_helped_lighthouse_man",
+          "value": "yes"
         },
         "effect": "start_trade"
       },
       {
         "text": "Has anyone come recently?",
         "condition": {
-          "compare_string": [
-            "yes",
-            {
-              "u_val": "global_safe_space_lighthouse_fixed"
-            }
-          ]
+          "u_has_var": "global_safe_space_lighthouse_fixed",
+          "value": "yes"
         },
         "trial": {
           "type": "CONDITION",
           "condition": {
-            "math": [
-              "time_since(n_time_survivors_wait) >= time('14 d')"
-            ]
+            "dda_expression": {
+              "op": "greater_equal",
+              "args": [
+                {
+                  "op": "divide",
+                  "args": [
+                    {
+                      "op": "subtract",
+                      "args": [
+                        {
+                          "op": "now"
+                        },
+                        {
+                          "op": "variable",
+                          "name": "time_survivors_wait",
+                          "actor": "npc"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "literal",
+                      "value": 1
+                    }
+                  ]
+                },
+                {
+                  "op": "literal",
+                  "value": 1209600
+                }
+              ]
+            }
           }
         },
         "success": {
           "topic": "TALK_lighthouse_man_survivors_yes",
           "effect": [
             {
-              "math": [
-                "n_time_survivors_wait = time('now')"
-              ]
+              "dda_set_variable": {
+                "target": "time_survivors_wait",
+                "expression": {
+                  "op": "now"
+                },
+                "actor": "npc"
+              }
             },
             {
               "mapgen_update": "lighthouse_man_survivor",
@@ -288,9 +308,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 0"
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 0
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -299,9 +330,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         }
       },
       {
@@ -310,9 +356,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 1 "
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 1
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -321,9 +378,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         }
       },
       {
@@ -332,9 +404,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 2 "
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 2
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -343,9 +426,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         }
       },
       {
@@ -354,9 +452,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 3 "
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 3
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -365,9 +474,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         }
       },
       {
@@ -376,9 +500,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 4 "
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 4
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -387,9 +522,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         }
       },
       {
@@ -397,9 +547,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 5 "
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 5
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -408,9 +569,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         },
         "topic": "TALK_lighthouse_man_cleaned_done"
       },
@@ -419,9 +595,20 @@
         "condition": {
           "and": [
             {
-              "math": [
-                "n_count_cleaning_lighthouse_man == 6 "
-              ]
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 6
+                  }
+                ]
+              }
             },
             "at_safe_space",
             {
@@ -430,9 +617,24 @@
           ]
         },
         "effect": {
-          "math": [
-            "n_count_cleaning_lighthouse_man++"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
         },
         "topic": "TALK_MISSION_INQUIRE"
       },
@@ -736,9 +938,20 @@
     "description": "Clean lighthouse from <zombies> with Mikhail.",
     "goal": "MGOAL_CONDITION",
     "goal_condition": {
-      "math": [
-        "n_count_cleaning_lighthouse_man == 7 "
-      ]
+      "dda_expression": {
+        "op": "equal",
+        "args": [
+          {
+            "op": "variable",
+            "name": "count_cleaning_lighthouse_man",
+            "actor": "npc"
+          },
+          {
+            "op": "literal",
+            "value": 7
+          }
+        ]
+      }
     },
     "difficulty": 0,
     "value": 5000,
@@ -749,9 +962,14 @@
           "npc_first_topic": "TALK_lighthouse_man_cleaning"
         },
         {
-          "math": [
-            "n_count_cleaning_lighthouse_man = 0"
-          ]
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "literal",
+              "value": 0
+            },
+            "actor": "npc"
+          }
         }
       ]
     },
@@ -938,12 +1156,8 @@
     "description": "Mikhail asked you to find someone, who have enough expertise to fix the mechanism of lighthouse.",
     "goal": "MGOAL_CONDITION",
     "goal_condition": {
-      "compare_string": [
-        "ready",
-        {
-          "u_val": "global_safe_space_lighthouse_fixed"
-        }
-      ]
+      "u_has_var": "global_safe_space_lighthouse_fixed",
+      "value": "ready"
     },
     "difficulty": 0,
     "value": 100000,
@@ -969,9 +1183,13 @@
       },
       "effect": [
         {
-          "math": [
-            "n_time_survivors_wait = time('now')"
-          ]
+          "dda_set_variable": {
+            "target": "time_survivors_wait",
+            "expression": {
+              "op": "now"
+            },
+            "actor": "npc"
+          }
         },
         {
           "u_add_var": "global_safe_space_lighthouse_fixed",

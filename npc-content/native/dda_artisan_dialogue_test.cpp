@@ -12,6 +12,32 @@
 
 #include <sstream>
 
+TEST_CASE( "lighthouse_timer_belongs_to_the_npc", "[dda_npc]" ) {
+    clear_all_state();
+    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
+    auto &actor = get_avatar();
+    auto engineer = npc{};
+    actor.set_value( "npctalk_var_time_lighthouse_wait", "999" );
+    calendar::turn = calendar::turn_zero + 1_days;
+    auto input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"time_lighthouse_wait","actor":"npc","expression":{"op":"now"}}}})" );
+    auto parser = JsonIn( input );
+    const auto effect = talk_effect_t( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &engineer;
+    REQUIRE( effect.effects.size() == 1 );
+    effect.effects.front()( conversation );
+    CHECK( engineer.get_value( "npctalk_var_time_lighthouse_wait" ) == "86400" );
+    CHECK( actor.get_value( "npctalk_var_time_lighthouse_wait" ) == "999" );
+    auto condition_input = std::istringstream( R"({"dda_expression":{"op":"greater","args":[{"op":"subtract","args":[{"op":"now"},{"op":"variable","name":"time_lighthouse_wait","actor":"npc"}]},{"op":"literal","value":172800}]}})" );
+    auto condition_parser = JsonIn( condition_input );
+    const auto ready = conditional_t<dialogue>( condition_parser.get_object() );
+    calendar::turn += 2_days;
+    CHECK_FALSE( ready( conversation ) );
+    calendar::turn += 1_seconds;
+    CHECK( ready( conversation ) );
+}
+
 TEST_CASE( "prisoner_mission_reward_preserves_its_container", "[dda_npc]" ) {
     clear_all_state();
     auto &actor = get_avatar();

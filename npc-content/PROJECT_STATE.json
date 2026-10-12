@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Lighthouse family/survivor source and dialogue staging; port scope documented",
+  "stage": "Native NPC variable/timer scope for all 23 lighthouse expressions; Windows validation pending",
   "package": "Isolated Road",
   "native_compilation": "SUCCESS: Windows run 38270507639, 9 native cases and 671 assertions",
   "remaining": [
@@ -57,7 +57,9 @@
     "npcs": 4,
     "missions": 7,
     "talk_topic_definitions": 26,
-    "blocked_definitions": 6,
-    "runtime_validated": false
-  }
+    "blocked_definitions": 0,
+    "runtime_validated": false,
+    "native_timer_test": "pending_windows"
+  },
+  "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification"
 }

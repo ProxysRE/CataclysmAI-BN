@@ -10,52 +10,10 @@
   "translated": {
     "npc_guard_patrol_enum": 3,
     "string_equality": 19,
+    "native_expression": 23,
     "npc_guard_enum": 1
   },
-  "blocked_definitions": [
-    {
-      "file": "data/json/npcs/Lighthouse_Family/NPC_lighthouse_man.json",
-      "id": [
-        "TALK_lighthouse_man_1",
-        "TALK_lighthouse_man_Background",
-        "TALK_lighthouse_man_hay",
-        "TALK_lighthouse_man_survivors_yes",
-        "TALK_lighthouse_man_survivors_no"
-      ],
-      "reason": "Unsupported DDA arithmetic: Name(id='n_time_survivors_wait', ctx=Load())",
-      "source_preserved": true
-    },
-    {
-      "file": "data/json/npcs/Lighthouse_Family/NPC_lighthouse_man.json",
-      "id": "TALK_lighthouse_man_cleaning",
-      "reason": "Unsupported DDA arithmetic: Name(id='n_count_cleaning_lighthouse_man', ctx=Load())",
-      "source_preserved": true
-    },
-    {
-      "file": "data/json/npcs/Lighthouse_Family/NPC_lighthouse_man.json",
-      "id": "MISSION_lighthouse_man_2",
-      "reason": "Unsupported DDA arithmetic: Name(id='n_count_cleaning_lighthouse_man', ctx=Load())",
-      "source_preserved": true
-    },
-    {
-      "file": "data/json/npcs/Lighthouse_Family/NPC_lighthouse_man.json",
-      "id": "MISSION_lighthouse_man_5",
-      "reason": "invalid syntax (<unknown>, line 1)",
-      "source_preserved": true
-    },
-    {
-      "file": "data/json/npcs/Lighthouse_Family/TALK_fix_lighthouse.json",
-      "id": "TALK_ENG_LIGHTHOUSE_2",
-      "reason": "invalid syntax (<unknown>, line 1)",
-      "source_preserved": true
-    },
-    {
-      "file": "data/json/npcs/Lighthouse_Family/TALK_fix_lighthouse.json",
-      "id": "TALK_ENG_LIGHTHOUSE_WORKING",
-      "reason": "Unsupported DDA arithmetic: Name(id='n_time_lighthouse_wait', ctx=Load())",
-      "source_preserved": true
-    }
-  ],
+  "blocked_definitions": [],
   "required_reviews": [
     "Global TALK_FRIEND/GIVE_ITEM/USE_ITEM/RADIO definitions must merge into BN topics, never replace them",
     "Duplicate topic IDs use upstream extension semantics; no dictionary overwrite",
