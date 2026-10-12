@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Native faction limited-area flag persistence; camp registration boundary verified from official sources",
+  "stage": "Lighthouse family/survivor source and dialogue staging; port scope documented",
   "package": "Isolated Road",
-  "native_compilation": "Windows compilation successful; reward/container and faction persistence tests passed. Shop stock test counted merged charge-based planks as objects; corrected to charges_of with count_by_charges precondition.",
+  "native_compilation": "SUCCESS: Windows run 38270507639, 9 native cases and 671 assertions",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -22,9 +22,8 @@
   "remote_head": "f0523ff46e1f00826e9e459e4c291e05afbd6107",
   "remote_tree": "215f8059ec6ffa486fe3f1d14c67dbf910b99131",
   "latest_fix_checkpoint": {
-    "head": "49492f77b125de38a654a286582802fed1f2449b",
-    "run_id": 37998752359,
-    "url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/37998752359",
+    "head": "f6b5d14a86cf6124cff1d0bc8f563c545e6009cb",
+    "run_id": 38270507639,
     "status": "success"
   },
   "shop_checkpoint": {
@@ -53,5 +52,12 @@
     "id": 38258666159,
     "compile": "success",
     "status": "one_failed_stock_quantity_assertion"
+  },
+  "lighthouse": {
+    "npcs": 4,
+    "missions": 7,
+    "talk_topic_definitions": 26,
+    "blocked_definitions": 6,
+    "runtime_validated": false
   }
 }

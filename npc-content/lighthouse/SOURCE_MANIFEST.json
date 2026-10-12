@@ -1,0 +1,12 @@
+{
+  "DDA_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "BN_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "license": "CC-BY-SA-3.0; upstream credits retained",
+  "files": {
+    "data/json/npcs/Lighthouse_Family/NPC_lighthouse_girl.json": "b1a4b5159f0fc51030070621afcd1d4f33d351a00f7f034e37b0f8b38f9caa2a",
+    "data/json/npcs/Lighthouse_Family/NPC_lighthouse_man.json": "5229a7d0e7a3c84325c9e085965a662b2025f9cf5b25e66832520119f0b6f6a4",
+    "data/json/npcs/Lighthouse_Family/NPC_lighthouse_woman.json": "27646b6cc9d8d2ae7c7a0e8ba24842d463d640edc95573dbab14ef3823dfdccb",
+    "data/json/npcs/Lighthouse_Family/TALK_fix_lighthouse.json": "3354b1149bee378c5b00f39460ff88181033b2b280a3e50ae6db9034887e571b",
+    "data/json/npcs/Lighthouse_Family/npc_survivor.json": "9ae40a2fb3bd1da47ed9b6f97d942c9f3fcf1f948cef098fe94e3c482ec3a95d"
+  }
+}

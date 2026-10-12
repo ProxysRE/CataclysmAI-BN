@@ -196,6 +196,9 @@ def adapt(value, counts):
     if result.get("type") == "npc" and result.get("mission") == "GUARD_PATROL":
         result["mission"] = 8
         counts["npc_guard_patrol_enum"] += 1
+    if result.get("type") == "npc" and result.get("mission") == "GUARD":
+        result["mission"] = 7
+        counts["npc_guard_enum"] += 1
     if result.get("type") == "npc_class":
         groups = result.get("shopkeeper_item_group")
         if isinstance(groups, list) and len(groups) == 1 and "group" in groups[0]:
