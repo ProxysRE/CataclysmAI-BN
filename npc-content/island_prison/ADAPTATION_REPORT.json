@@ -7,7 +7,10 @@
     "npc": 3,
     "npc_class": 1,
     "talk_topic": 18,
-    "mission_definition": 1
+    "mission_definition": 1,
+    "overmap_special": 2,
+    "overmap_terrain": 1,
+    "snippet": 1
   },
   "translated": {
     "npc_guard_patrol_enum": 3,

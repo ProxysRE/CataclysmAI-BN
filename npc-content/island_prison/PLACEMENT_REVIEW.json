@@ -1,0 +1,69 @@
+{
+  "terrain_ids": 86,
+  "all_terrain_mapgen_references_resolved": true,
+  "specials": [
+    {
+      "id": "Alcatraz Prison",
+      "cells": 131,
+      "prison_cells": 36,
+      "z_levels": [
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "camp_cells": []
+    },
+    {
+      "id": "Island prison",
+      "cells": 130,
+      "prison_cells": 50,
+      "z_levels": [
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "camp_cells": [
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "prison_island_1_6_north",
+          "camp": "prisoners",
+          "camp_name": "Holdouts"
+        }
+      ]
+    }
+  ],
+  "epilogues_resolved": true,
+  "engine_gaps": [
+    {
+      "feature": "prisoners camp placement",
+      "source": "Island prison overmap cell [0,1,0]",
+      "action": "Port camp registration/ownership; preserve camp and camp_name fields"
+    },
+    {
+      "feature": "faction nutrition and limited area claim",
+      "action": "BN requires integer food_supply; DDA uses timestamped calorie/vitamin stocks and limited_area_claim. Native model/consumers must be ported; no lossy calorie-only substitution."
+    }
+  ],
+  "external_terrain_and_location_references": [
+    "lake_surface",
+    "lake_water_cube",
+    "lake_bed",
+    "solid_earth",
+    "empty_rock"
+  ],
+  "runtime_validated": false
+}

@@ -17,3 +17,5 @@ The military-ID mission reward now uses the native item bridge with its explicit
 NPC mission modes use the pinned BN npc.h enum: SHOPKEEP = 3 and GUARD_PATROL = 8. This also corrects the earlier artisan adapter value, which incorrectly selected a guard mode for traders.
 
 Remaining work includes faction schema and epilogues, dependency closure, overmap placement and native load/quest tests. Runtime validation and release readiness remain false.
+
+Placement checkpoint: both original special layouts are preserved, including the prisoners camp cell. Staging expands 86 island/alcatraz terrain IDs without replacing the ordinary BN prison. All 86 have mapgen entries; unique coordinates and both prisoner epilogue references pass static checks. Run check_prison_placement.py to reproduce. Native lake placement, camp ownership and faction nutrition remain pending; staging is not loadable stock BN faction data.

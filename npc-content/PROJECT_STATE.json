@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Island prison dialogue/contained reward bridge; Windows CI pending",
+  "stage": "Island prison placement/terrain/epilogue checkpoint; native faction and camp compatibility pending",
   "package": "Isolated Road",
   "native_compilation": "Windows game compiled; shop test failed due to missing fixture ID plank, replaced with verified BN ID 2x4",
   "remaining": [
@@ -43,6 +43,9 @@
     "missions": 1,
     "mapgen": 14,
     "release_ready": false,
-    "next": "faction schema, overmap placement and dependency closure"
+    "next": "native camp placement and faction nutrition/claim model; typed item/trait closure",
+    "terrain_ids": 86,
+    "special_layouts": 2,
+    "epilogues": 2
   }
 }

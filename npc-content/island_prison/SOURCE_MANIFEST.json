@@ -8,9 +8,23 @@
     "data/json/mapgen/prison/prison_island.json": "5cda9ce8bf5ffdaa518009d75ed65c1709ecc9c6ce05f1ec677897bdefc76604",
     "data/json/mapgen_palettes/prison.json": "90fcf33321da55df0dfce6e2137347b8ab250c9c32e76e9541e7620e2a3f8d21",
     "data/json/npcs/factions.json": "8f8c0491e75d2798baf9075f48bd91877ecb9f4c7de60f08e8b0ba412fe9677d",
-    "data/json/npcs/island_prison/prisoners.json": "716e61e1009a803ebcf1506de670078300190a21a07866f1ae40ff9c02260612"
+    "data/json/npcs/island_prison/prisoners.json": "716e61e1009a803ebcf1506de670078300190a21a07866f1ae40ff9c02260612",
+    "data/json/overmap/overmap_special/specials.json": "0e51a75a4cb77b52cd3e8c3c7840123fe4403caae5cca5bec07699d2059cf4b7",
+    "data/json/overmap/overmap_terrain/overmap_terrain_public_institutional.json": "88f7312f3c428e11498bcfe5265fdb2dd03264bc63f275b3a15e1e9979df2559",
+    "data/json/snippets/epilogue_factions.json": "60d1a024d5a4b87f9b3796b283a9fa3db9f4084918aae58dd66053d2a5823033"
   },
   "factions_selection": [
     "prisoners"
-  ]
+  ],
+  "selections": {
+    "specials.json": [
+      "Island prison",
+      "Alcatraz Prison"
+    ],
+    "epilogue_factions.json": [
+      "epilogue_faction_prisoners_0",
+      "epilogue_faction_prisoners_150"
+    ],
+    "terrain": "source combined terrain definition preserved; staging selects island/alcatraz IDs only"
+  }
 }

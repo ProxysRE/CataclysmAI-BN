@@ -29,6 +29,17 @@ for relative, digest in manifest["files"].items():
                                  "source_preserved": True})
         if entry["type"] == "mapgen":
             entry["method"] = "json"
+        if entry["type"] == "overmap_terrain":
+            identifiers = entry["id"]
+            for identifier in identifiers:
+                if not identifier.startswith(("prison_island", "prison_alcatraz")):
+                    continue
+                variant = copy.deepcopy(entry)
+                variant["id"] = identifier
+                variant.pop("vision_levels", None)
+                variant["see_cost"] = 5
+                result.append(variant)
+            continue
         result.append(entry)
     target = root / "staging" / relative
     target.parent.mkdir(parents=True, exist_ok=True)

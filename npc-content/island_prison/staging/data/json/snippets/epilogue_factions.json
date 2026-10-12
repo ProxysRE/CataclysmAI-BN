@@ -1,0 +1,16 @@
+[
+  {
+    "type": "snippet",
+    "category": "epilogue_factions",
+    "text": [
+      {
+        "id": "epilogue_faction_prisoners_0",
+        "text": "    The former prisoners may have gained their freedom during <the_cataclysm>, but remained trapped on the island, surrounded by carnivorous terrors.  Infighting and near-starvation destroyed the group when one of them found a boat and attempted to steal it.  Those who remained took the craft and sailed away, never to be seen again…"
+      },
+      {
+        "id": "epilogue_faction_prisoners_150",
+        "text": "    The prisoners succeeded in their escape and sailed to the mainland.  They found <the_cataclysm> unforgiving and harsh, struggling to survive.  When two of them died in a shootout with a Hell's Raiders caravan, they packed all their possessions and sailed back to the prison, which they transformed into a fortress away from the world…"
+      }
+    ]
+  }
+]
