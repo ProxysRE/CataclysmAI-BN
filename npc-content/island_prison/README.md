@@ -12,4 +12,8 @@ This checkpoint preserves all three NPCs, eighteen topics and the leader's milit
 
 46 constant string comparisons use BN variable conditions. The survival level >= 2 check uses BN's existing `u_has_skill`, whose pinned condition.cpp handler compares `get_skill_level(skill) >= level`. No new skill-expression engine is needed for this check. Original IDs and dialogue branches remain.
 
-The mission stays verbatim because its bean reward explicitly requests `can_medium` as its container; the current native item bridge cannot represent this yet. Do not drop that option or substitute a loose food item. Remaining work includes the guard-patrol enum, faction schema and epilogues, dependency closure, overmap placement and native load/quest tests. Runtime validation and release readiness are false.
+The military-ID mission reward now uses the native item bridge with its explicit can_medium container. The implementation follows pinned DDA receive_item: one container receives one item with the requested charge count, then i_add_or_drop gives the filled container to the player. Both IDs were verified in pinned BN JSON. A native regression test checks the actual container and its beans, not merely the inventory count. Windows validation is pending.
+
+NPC mission modes use the pinned BN npc.h enum: SHOPKEEP = 3 and GUARD_PATROL = 8. This also corrects the earlier artisan adapter value, which incorrectly selected a guard mode for traders.
+
+Remaining work includes faction schema and epilogues, dependency closure, overmap placement and native load/quest tests. Runtime validation and release readiness remain false.

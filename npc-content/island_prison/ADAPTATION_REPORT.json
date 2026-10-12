@@ -10,18 +10,14 @@
     "mission_definition": 1
   },
   "translated": {
+    "npc_guard_patrol_enum": 3,
     "string_equality": 46,
-    "native_skill_threshold": 1
+    "native_skill_threshold": 1,
+    "dda_give_item": 1,
+    "contained_reward": 1
   },
-  "blocked_definitions": [
-    {
-      "id": "MISSION_PRISONER_LEADER_GET_ID_CARD",
-      "reason": "Unported item effect options: {'u_spawn_item': 'can_beans', 'container': 'can_medium'}",
-      "source_preserved": true
-    }
-  ],
+  "blocked_definitions": [],
   "required_reviews": [
-    "GUARD_PATROL mission enum",
     "faction food/relations/epilogues schema",
     "mapgen and overmap placement dependencies",
     "item/trait dependency closure"

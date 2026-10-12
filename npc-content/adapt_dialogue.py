@@ -170,11 +170,19 @@ def adapt(value, counts):
                            ("u_sell_item", "dda_transfer_item")]:
         if source in result and (source == "u_spawn_item" or isinstance(result.get("count"), dict)):
             allowed = {source, "count"}
+            if source == "u_spawn_item":
+                allowed.add("container")
             if set(result) - allowed:
                 raise ValueError(f"Unported item effect options: {result}")
             counts[target] += 1
-            return {target: {"item": item_reference(result[source]),
-                             "count": item_count(result.get("count", 1))}}
+            specification = {"item": item_reference(result[source]),
+                             "count": item_count(result.get("count", 1))}
+            if "container" in result:
+                if not isinstance(result["container"], str) or not result["container"]:
+                    raise ValueError("Reward container must be a nonempty static ID")
+                specification["container"] = result["container"]
+                counts["contained_reward"] += 1
+            return {target: specification}
     if "u_has_items" in result and isinstance(result["u_has_items"].get("count"), dict):
         specification = result["u_has_items"]
         if set(specification) != {"item", "count"} or set(result) != {"u_has_items"}:
@@ -183,8 +191,11 @@ def adapt(value, counts):
         return {"dda_has_items": {"item": item_reference(specification["item"]),
                                   "count": item_count(specification["count"])}}
     if result.get("type") == "npc" and result.get("mission") == "SHOPKEEP":
-        result["mission"] = 7
+        result["mission"] = 3
         counts["npc_shopkeep_enum"] += 1
+    if result.get("type") == "npc" and result.get("mission") == "GUARD_PATROL":
+        result["mission"] = 8
+        counts["npc_guard_patrol_enum"] += 1
     if result.get("type") == "npc_class":
         groups = result.get("shopkeeper_item_group")
         if isinstance(groups, list) and len(groups) == 1 and "group" in groups[0]:

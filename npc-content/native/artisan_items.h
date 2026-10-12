@@ -11,11 +11,13 @@ struct item_specification {
     std::string id;
     std::string variable;
     expression count;
+    std::string container;
 };
 
 struct resolved_item {
     itype_id id;
     int count;
+    itype_id container;
 };
 
 inline auto read_item_specification( const JsonObject &object ) -> item_specification {
@@ -26,7 +28,8 @@ inline auto read_item_specification( const JsonObject &object ) -> item_specific
     return {
         .id = reference.get_string( "id", "" ),
         .variable = reference.get_string( "variable", "" ),
-        .count = read_expression( object.get_object( "count" ) )
+        .count = read_expression( object.get_object( "count" ) ),
+        .container = object.get_string( "container", "" )
     };
 }
 
@@ -44,7 +47,11 @@ inline auto resolve_item( const item_specification &specification, const player 
     if( *count < 0 || *count > std::numeric_limits<int>::max() || std::trunc( *count ) != *count ) {
         return std::unexpected( "Artisan item count must be a nonnegative integer" );
     }
-    return resolved_item{ .id = id, .count = static_cast<int>( *count ) };
+    const auto container = itype_id( specification.container );
+    if( !specification.container.empty() && !container.is_valid() ) {
+        return std::unexpected( "Unknown reward container: " + specification.container );
+    }
+    return resolved_item{ .id = id, .count = static_cast<int>( *count ), .container = container };
 }
 
 inline auto has_items( const player &actor, const resolved_item &request ) -> bool {
@@ -54,6 +61,14 @@ inline auto has_items( const player &actor, const resolved_item &request ) -> bo
 
 /// DDA rewards use exact charges, load default ammunition, and drop overflow nearby.
 inline auto give_items( player &actor, const resolved_item &request ) -> void {
+    if( !request.container.str().empty() && !request.container.is_null() ) {
+        auto container = item::spawn( request.container, calendar::turn );
+        auto reward = item::spawn( request.id, calendar::turn );
+        reward->charges = request.count;
+        container->put_in( std::move( reward ) );
+        actor.i_add_or_drop( std::move( container ) );
+        return;
+    }
     if( request.count == 0 ) {
         return;
     }

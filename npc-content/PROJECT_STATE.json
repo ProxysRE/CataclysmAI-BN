@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Island prison additive staging; artisan shop test fixture corrected; native CI pending",
+  "stage": "Island prison dialogue/contained reward bridge; Windows CI pending",
   "package": "Isolated Road",
   "native_compilation": "Windows game compiled; shop test failed due to missing fixture ID plank, replaced with verified BN ID 2x4",
   "remaining": [
@@ -13,7 +13,9 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "implemented_unvalidated": [
     "rigid shop item groups sampled exactly once",
-    "six-day artisan restock interval; stock BN defaults remain three days"
+    "six-day artisan restock interval; stock BN defaults remain three days",
+    "Contained prison quest rewards following pinned DDA receive_item",
+    "Correct BN mission enums: SHOPKEEP=3, GUARD_PATROL=8"
   ],
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "remote_head": "f0523ff46e1f00826e9e459e4c291e05afbd6107",
@@ -41,6 +43,6 @@
     "missions": 1,
     "mapgen": 14,
     "release_ready": false,
-    "next": "contained mission rewards, placement and dependency closure"
+    "next": "faction schema, overmap placement and dependency closure"
   }
 }

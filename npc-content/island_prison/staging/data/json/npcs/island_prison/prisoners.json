@@ -6,7 +6,7 @@
     "name_suffix": "prisoner",
     "class": "NC_THUG_PRISONER",
     "attitude": 0,
-    "mission": "GUARD_PATROL",
+    "mission": 8,
     "chat": "TALK_PRISONER_GENERIC",
     "faction": "prisoners"
   },
@@ -17,7 +17,7 @@
     "name_suffix": "gatekeeper",
     "class": "NC_THUG_PRISONER",
     "attitude": 0,
-    "mission": "GUARD_PATROL",
+    "mission": 8,
     "chat": "TALK_PRISONER_GREET",
     "faction": "prisoners"
   },
@@ -28,7 +28,7 @@
     "name_suffix": "leader of prisoners",
     "class": "NC_THUG_PRISONER",
     "attitude": 0,
-    "mission": "GUARD_PATROL",
+    "mission": 8,
     "chat": "TALK_PRISONER_LEADER_GREET",
     "faction": "prisoners",
     "mission_offered": "MISSION_PRISONER_LEADER_GET_ID_CARD"
@@ -1145,8 +1145,16 @@
           "u_lose_var": "mission_accepted_prisoner_leader_mission"
         },
         {
-          "u_spawn_item": "can_beans",
-          "container": "can_medium"
+          "dda_give_item": {
+            "item": {
+              "id": "can_beans"
+            },
+            "count": {
+              "op": "literal",
+              "value": 1
+            },
+            "container": "can_medium"
+          }
         }
       ]
     }

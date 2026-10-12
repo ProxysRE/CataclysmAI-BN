@@ -35,7 +35,7 @@ for relative, digest in manifest["files"].items():
     target.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
 report = {"definitions": dict(types), "translated": dict(counts),
           "blocked_definitions": blockers,
-          "required_reviews": ["GUARD_PATROL mission enum", "faction food/relations/epilogues schema",
+          "required_reviews": ["faction food/relations/epilogues schema",
                                "mapgen and overmap placement dependencies", "item/trait dependency closure"],
           "runtime_validated": False, "release_ready": False}
 (root / "ADAPTATION_REPORT.json").write_text(json.dumps(report, indent=2) + "\n")

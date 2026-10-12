@@ -12,6 +12,24 @@
 
 #include <sstream>
 
+TEST_CASE( "prisoner_mission_reward_preserves_its_container", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    actor.wear_item( item::spawn( itype_id( "backpack" ), calendar::turn ), false );
+    auto input = std::istringstream( R"({"effect":{"dda_give_item":{"item":{"id":"can_beans"},"count":{"op":"literal","value":1},"container":"can_medium"}}})" );
+    auto parser = JsonIn( input );
+    const auto reward = talk_effect_t( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    REQUIRE( reward.effects.size() == 1 );
+    reward.effects.front()( conversation );
+    auto containers = actor.all_items_with_id( itype_id( "can_medium" ) );
+    REQUIRE( containers.size() == 1 );
+    REQUIRE_FALSE( containers.front()->contents.empty() );
+    CHECK( containers.front()->contents.front().typeId() == itype_id( "can_beans" ) );
+    CHECK( containers.front()->contents.front().charges == 1 );
+}
+
 TEST_CASE( "artisan_native_timer_and_fractional_prices", "[dda_npc]" ) {
     clear_all_state();
     const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
