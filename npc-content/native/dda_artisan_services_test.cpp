@@ -104,7 +104,7 @@ TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_n
     clear_all_state();
     const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
     const auto delay = override_option( "RESTOCK_DELAY_MULT", "1" );
-    auto group_input = std::istringstream( R"({"items":[["plank",100]]})" );
+    auto group_input = std::istringstream( R"({"items":[["2x4",100]]})" );
     auto group_parser = JsonIn( group_input );
     const auto group_id = item_group_id( "dda_artisan_test_rigid_stock" );
     item_group::load_item_group( group_parser.get_object(), group_id, "collection" );
@@ -121,16 +121,16 @@ TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_n
     merchant.set_fac( faction_id( "free_merchants" ) );
     calendar::turn = calendar::turn_zero + 1_days;
     merchant.shop_restock();
-    REQUIRE( merchant.amount_of( itype_id( "plank" ) ) == 1 );
+    REQUIRE( merchant.amount_of( itype_id( "2x4" ) ) == 1 );
     const auto due = merchant.restock;
     CHECK( due == calendar::turn + 6_days );
-    merchant.i_add( item::spawn( itype_id( "plank" ), calendar::turn ) );
+    merchant.i_add( item::spawn( itype_id( "2x4" ), calendar::turn ) );
     calendar::turn = due - 1_seconds;
     merchant.shop_restock();
-    CHECK( merchant.amount_of( itype_id( "plank" ) ) == 2 );
+    CHECK( merchant.amount_of( itype_id( "2x4" ) ) == 2 );
     calendar::turn = due;
     merchant.shop_restock();
-    CHECK( merchant.amount_of( itype_id( "plank" ) ) == 1 );
+    CHECK( merchant.amount_of( itype_id( "2x4" ) ) == 1 );
 
     auto legacy_input = std::istringstream( R"({"name":"Legacy shop","job_description":"Default policy"})" );
     auto legacy_parser = JsonIn( legacy_input );
