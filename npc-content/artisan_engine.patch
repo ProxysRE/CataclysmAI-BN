@@ -227,14 +227,16 @@
      }
  };
  } // namespace npc_factions
-@@ -77,6 +79,7 @@
+@@ -77,7 +79,9 @@
          std::string name;
          int likes_u;
          int respects_u;
 +        int trusts_u = 0;
          bool known_by_u;
++        bool limited_area_claim = false;
          faction_id id;
          std::string desc;
+         int size; // How big is our sphere of influence?
 --- a/src/faction.cpp
 +++ b/src/faction.cpp
 @@ -99,6 +99,7 @@
@@ -245,25 +247,45 @@
      , known_by_u( jsobj.get_bool( "known_by_u" ) )
      , id( faction_id( jsobj.get_string( "id" ) ) )
      , desc( jsobj.get_string( "description" ) )
+@@ -113,6 +114,7 @@
+         currency = itype_id::NULL_ID();
+     }
+     lone_wolf_faction = jsobj.get_bool( "lone_wolf_faction", false );
++    limited_area_claim = jsobj.get_bool( "limited_area_claim", false );
+     load_relations( jsobj );
+     mon_faction = mfaction_str_id( jsobj.get_string( "mon_faction", "human" ) );
+     for( const JsonObject jao : jsobj.get_array( "epilogues" ) ) {
+@@ -430,6 +432,7 @@
+                     if( fac_temp.id == id ) {
+                         elem.second.currency = fac_temp.currency;
+                         elem.second.lone_wolf_faction = fac_temp.lone_wolf_faction;
++                        elem.second.limited_area_claim = fac_temp.limited_area_claim;
+                         elem.second.name = fac_temp.name;
+                         elem.second.desc = fac_temp.desc;
+                         elem.second.mon_faction = fac_temp.mon_faction;
 --- a/src/savegame_json.cpp
 +++ b/src/savegame_json.cpp
-@@ -3666,6 +3666,8 @@
+@@ -3666,7 +3666,10 @@
      jo.read( "name", name );
      jo.read( "likes_u", likes_u );
      jo.read( "respects_u", respects_u );
 +    trusts_u = 0;
 +    jo.read( "trusts_u", trusts_u );
      jo.read( "known_by_u", known_by_u );
++    limited_area_claim = jo.get_bool( "limited_area_claim", false );
      jo.read( "size", size );
      jo.read( "power", power );
-@@ -3689,6 +3691,7 @@
+     if( !jo.read( "food_supply", food_supply ) ) {
+@@ -3689,7 +3692,9 @@
      json.member( "name", name );
      json.member( "likes_u", likes_u );
      json.member( "respects_u", respects_u );
 +    json.member( "trusts_u", trusts_u );
      json.member( "known_by_u", known_by_u );
++    json.member( "limited_area_claim", limited_area_claim );
      json.member( "size", size );
      json.member( "power", power );
+     json.member( "food_supply", food_supply );
 --- a/src/activity_type.h
 +++ b/src/activity_type.h
 @@ -78,6 +78,7 @@
@@ -866,7 +888,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_artisan_services_test.cpp
-@@ -0,0 +1,146 @@
+@@ -0,0 +1,149 @@
 +#include "activity_type.h"
 +#include "avatar.h"
 +#include "calendar.h"
@@ -934,6 +956,7 @@
 +    REQUIRE( fac );
 +    const auto restore_faction = restore_on_out_of_scope<faction>( *fac );
 +    fac->trusts_u = 4;
++    fac->limited_area_claim = true;
 +    auto input = std::istringstream( R"({"effect":[{"dda_add_faction_trust":1},{"dda_set_faction_relation":{"relation":"share public goods","enabled":true}}]})" );
 +    auto parser = JsonIn( input );
 +    const auto effect = talk_effect_t( parser.get_object() );
@@ -953,6 +976,7 @@
 +    auto save_parser = JsonIn( buffer );
 +    loaded.deserialize( save_parser );
 +    CHECK( loaded.trusts_u == 5 );
++    CHECK( loaded.limited_area_claim );
 +    CHECK( loaded.has_relationship( player_faction, npc_factions::share_public_goods ) );
 +
 +    auto revoke_input = std::istringstream( R"({"effect":{"dda_set_faction_relation":{"relation":"share public goods","enabled":false}}})" );
@@ -967,6 +991,7 @@
 +    auto legacy_parser = JsonIn( legacy_input );
 +    loaded.deserialize( legacy_parser );
 +    CHECK( loaded.trusts_u == 0 );
++    CHECK_FALSE( loaded.limited_area_claim );
 +}
 +
 +TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_npc]" ) {

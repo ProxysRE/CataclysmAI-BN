@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Fix native shop actor identity before validating remaining prison engine dependencies",
+  "stage": "Native faction limited-area flag persistence; camp registration boundary verified from official sources",
   "package": "Isolated Road",
   "native_compilation": "Latest Windows code compiles; contained reward regression passed. Rigid shop regression failed because default NPC/player IDs alias; fixture now uses distinct ID and explicitly checks non-allied state.",
   "remaining": [
@@ -15,7 +15,8 @@
     "rigid shop item groups sampled exactly once",
     "six-day artisan restock interval; stock BN defaults remain three days",
     "Contained prison quest rewards following pinned DDA receive_item",
-    "Correct BN mission enums: SHOPKEEP=3, GUARD_PATROL=8"
+    "Correct BN mission enums: SHOPKEEP=3, GUARD_PATROL=8",
+    "limited_area_claim faction template/save round-trip; ownership consumers pending"
   ],
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "remote_head": "f0523ff46e1f00826e9e459e4c291e05afbd6107",

@@ -65,6 +65,7 @@ TEST_CASE( "artisan_faction_trust_and_public_access_survive_save_load", "[dda_np
     REQUIRE( fac );
     const auto restore_faction = restore_on_out_of_scope<faction>( *fac );
     fac->trusts_u = 4;
+    fac->limited_area_claim = true;
     auto input = std::istringstream( R"({"effect":[{"dda_add_faction_trust":1},{"dda_set_faction_relation":{"relation":"share public goods","enabled":true}}]})" );
     auto parser = JsonIn( input );
     const auto effect = talk_effect_t( parser.get_object() );
@@ -84,6 +85,7 @@ TEST_CASE( "artisan_faction_trust_and_public_access_survive_save_load", "[dda_np
     auto save_parser = JsonIn( buffer );
     loaded.deserialize( save_parser );
     CHECK( loaded.trusts_u == 5 );
+    CHECK( loaded.limited_area_claim );
     CHECK( loaded.has_relationship( player_faction, npc_factions::share_public_goods ) );
 
     auto revoke_input = std::istringstream( R"({"effect":{"dda_set_faction_relation":{"relation":"share public goods","enabled":false}}})" );
@@ -98,6 +100,7 @@ TEST_CASE( "artisan_faction_trust_and_public_access_survive_save_load", "[dda_np
     auto legacy_parser = JsonIn( legacy_input );
     loaded.deserialize( legacy_parser );
     CHECK( loaded.trusts_u == 0 );
+    CHECK_FALSE( loaded.limited_area_claim );
 }
 
 TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_npc]" ) {
