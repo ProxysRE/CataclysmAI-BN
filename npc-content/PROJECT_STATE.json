@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "typed quest-item dependency graph: 37 definitions, 62 references; item schema review next",
+  "stage": "Island prison additive staging; artisan shop test fixture corrected; native CI pending",
   "package": "Isolated Road",
-  "native_compilation": "previous expression/item/activity/faction checkpoint passed: 7 tests, 651 assertions; shop checkpoint awaits Windows CI",
+  "native_compilation": "Windows game compiled; shop test failed due to missing fixture ID plank, replaced with verified BN ID 2x4",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -34,5 +34,13 @@
     "edges": 62,
     "unresolved_in_supported_reference_fields": 0,
     "runtime_validated": false
+  },
+  "island_prison": {
+    "npc": 3,
+    "talk_topics": 18,
+    "missions": 1,
+    "mapgen": 14,
+    "release_ready": false,
+    "next": "contained mission rewards, placement and dependency closure"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "DDA_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "BN_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "license": "CC-BY-SA-3.0; upstream credits retained",
+  "files": {
+    "data/json/itemgroups/Locations_MapExtras/prison_item_groups.json": "c106bfc00ba354116bb7b6812120f1b804babe0caabb59a9bb9b31ea0dae1019",
+    "data/json/mapgen/prison/prison_alcatraz.json": "b7b18ff92107ddea08b470176d0e3d6640e4c28bf721dd18e7c17cee59f9a23b",
+    "data/json/mapgen/prison/prison_island.json": "5cda9ce8bf5ffdaa518009d75ed65c1709ecc9c6ce05f1ec677897bdefc76604",
+    "data/json/mapgen_palettes/prison.json": "90fcf33321da55df0dfce6e2137347b8ab250c9c32e76e9541e7620e2a3f8d21",
+    "data/json/npcs/factions.json": "8f8c0491e75d2798baf9075f48bd91877ecb9f4c7de60f08e8b0ba412fe9677d",
+    "data/json/npcs/island_prison/prisoners.json": "716e61e1009a803ebcf1506de670078300190a21a07866f1ae40ff9c02260612"
+  },
+  "factions_selection": [
+    "prisoners"
+  ]
+}

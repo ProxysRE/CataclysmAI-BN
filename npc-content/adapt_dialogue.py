@@ -84,6 +84,10 @@ def adapt(value, counts):
     if "math" in value and len(value["math"]) == 1:
         expression = value["math"][0]
         if isinstance(expression, str):
+            skill = re.fullmatch(r"u_skill\('([a-zA-Z0-9_]+)'\)\s*>=\s*(\d+)", expression.strip())
+            if skill:
+                counts["native_skill_threshold"] += 1
+                return {"u_has_skill": {"skill": skill[1], "level": int(skill[2])}}
             match = re.fullmatch(r"u_(\w+)\s*(==|!=|>=|<=|>|<|\+=|-=|=)\s*(.+)", expression)
             if match:
                 name, operation, rhs = match.groups()
