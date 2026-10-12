@@ -116,9 +116,14 @@ TEST_CASE( "artisan_rigid_shop_samples_once_and_obeys_restock_interval", "[dda_n
     CHECK( class_id->is_rigid_shop() );
     CHECK( class_id->shop_restock_interval() == 6_days );
     auto merchant = npc{};
+    // Default-constructed actors can share an unassigned ID. BN treats equal
+    // character IDs as the same ally and intentionally skips shop restocking.
+    merchant.setID( character_id( 123456 ) );
+    REQUIRE( merchant.getID() != get_avatar().getID() );
     merchant.myclass = class_id;
     merchant.setpos( get_avatar().bub_pos() );
     merchant.set_fac( faction_id( "free_merchants" ) );
+    REQUIRE_FALSE( merchant.is_player_ally() );
     calendar::turn = calendar::turn_zero + 1_days;
     merchant.shop_restock();
     REQUIRE( merchant.amount_of( itype_id( "2x4" ) ) == 1 );
