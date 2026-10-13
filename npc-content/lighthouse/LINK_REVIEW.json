@@ -1,0 +1,22 @@
+{
+  "terrain_mapgen_ids": 13,
+  "missions": 7,
+  "update_mapgen_ids": [
+    "fbmc_lighthouse_0",
+    "fbmc_lighthouse_root_cellar",
+    "lighthouse_man_survivor"
+  ],
+  "missing_update_ids": [],
+  "external_mission_targets": [
+    "house_04_basement"
+  ],
+  "schema_reviews": [
+    "NPC location and safe-space conditions",
+    "goal-condition contexts",
+    "mission NPC placement and target updates",
+    "overmap terrain abstract inheritance, risk/safety flags and travel/vision fields",
+    "camp recipes and camp engine",
+    "BN common-dialogue merging"
+  ],
+  "runtime_validated": false
+}

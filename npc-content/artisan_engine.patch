@@ -748,7 +748,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,183 @@
+@@ -0,0 +1,201 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -758,10 +758,28 @@
 +#include "condition.h"
 +#include "dialogue.h"
 +#include "json.h"
++#include "mission.h"
 +#include "npc.h"
 +#include "state_helpers.h"
 +
 +#include <sstream>
++
++TEST_CASE( "lighthouse_cleanup_goal_reads_mission_giver_counter", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    auto giver = npc{};
++    actor.set_value( "npctalk_var_count_cleaning_lighthouse_man", "7" );
++    giver.set_value( "npctalk_var_count_cleaning_lighthouse_man", "6" );
++    auto input = std::istringstream( R"({"dda_expression":{"op":"equal","args":[{"op":"variable","name":"count_cleaning_lighthouse_man","actor":"npc"},{"op":"literal","value":7}]}})" );
++    auto parser = JsonIn( input );
++    const auto goal = conditional_t<mission_goal_condition_context>( parser.get_object() );
++    auto context = mission_goal_condition_context{};
++    context.alpha = &actor;
++    context.beta = &giver;
++    CHECK_FALSE( goal( context ) );
++    giver.set_value( "npctalk_var_count_cleaning_lighthouse_man", "7" );
++    CHECK( goal( context ) );
++}
 +
 +TEST_CASE( "lighthouse_timer_belongs_to_the_npc", "[dda_npc]" ) {
 +    clear_all_state();

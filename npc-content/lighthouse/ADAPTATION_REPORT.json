@@ -1,11 +1,15 @@
 {
   "definitions": {
+    "mapgen": 16,
+    "item_group": 4,
+    "palette": 1,
     "npc": 4,
     "talk_topic": 26,
     "mission_definition": 7,
     "npc_class": 1,
-    "item_group": 1,
-    "mapgen": 1
+    "overmap_special": 2,
+    "overmap_terrain": 6,
+    "recipe": 2
   },
   "translated": {
     "npc_guard_patrol_enum": 3,

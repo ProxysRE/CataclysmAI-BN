@@ -1,0 +1,12 @@
+[
+  {
+    "type": "overmap_terrain",
+    "abstract": "lighthouse_abstract",
+    "name": "lighthouse",
+    "sym": "0",
+    "color": "yellow",
+    "vision_levels": "isolated_tower",
+    "travel_cost_type": "structure",
+    "see_cost": "high"
+  }
+]

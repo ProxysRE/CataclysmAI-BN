@@ -1,0 +1,54 @@
+[
+  {
+    "type": "overmap_terrain",
+    "id": "lighthouse_ground",
+    "copy-from": "lighthouse_abstract",
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "lighthouse_z1",
+      "lighthouse_z2",
+      "lighthouse_z4",
+      "lighthouse_z5",
+      "lighthouse_roof"
+    ],
+    "copy-from": "lighthouse_abstract"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "lighthouse_z3",
+    "sym": "&",
+    "copy-from": "lighthouse_abstract",
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "lighthouse_small_ground",
+    "name": "small lighthouse",
+    "copy-from": "lighthouse_abstract",
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "lighthouse_small_z1",
+      "lighthouse_small_z2",
+      "lighthouse_small_z3",
+      "lighthouse_small_z4",
+      "lighthouse_small_roof"
+    ],
+    "name": "small lighthouse",
+    "copy-from": "lighthouse_abstract"
+  }
+]

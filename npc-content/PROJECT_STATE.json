@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Native NPC variable/timer scope for all 23 lighthouse expressions; Windows validation pending",
+  "stage": "Lighthouse expanded maps, placement, camp recipes and mission-context regression",
   "package": "Isolated Road",
-  "native_compilation": "SUCCESS: Windows run 38270507639, 9 native cases and 671 assertions",
+  "native_compilation": "Latest NPC timer bridge Windows run 38311577499 passed; new mission-context test awaits next run",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -59,7 +59,12 @@
     "talk_topic_definitions": 26,
     "blocked_definitions": 0,
     "runtime_validated": false,
-    "native_timer_test": "pending_windows"
+    "native_timer_test": "pending_windows",
+    "terrain_ids": 13,
+    "mapgen_definitions": 16,
+    "island_specials": 2,
+    "camp_recipes": 2,
+    "native_goal_context_test": "pending"
   },
   "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification"
 }
