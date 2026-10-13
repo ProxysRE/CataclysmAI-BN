@@ -387,7 +387,14 @@
     "type": "talk_topic",
     "dynamic_line": {
       "u_has_var": "dialogue_first_meeting_first_meeting",
-      "value": "yes"
+      "value": "yes",
+      "yes": "Do I need to repeat myself?  Get outta here, <name_b>.",
+      "no": {
+        "gendered_line": "Hey, who the fuck are you?  I haven't seen you 'round.  Ah, fuck it, it doesn't matter.\nHere's the rules.  The first and most important one: ALWAYS CLOSE THE FUCKING ENTRY DOOR BEHIND YOUR ASS!  If you're okay with that, the following rules are: don't fuck with us, don't steal from us, don't start a fight without a reason with someone from us.  Got it, punk?  Now get lost.",
+        "relevant_genders": [
+          "u"
+        ]
+      }
     },
     "speaker_effect": {
       "effect": {
@@ -474,7 +481,9 @@
     "type": "talk_topic",
     "dynamic_line": {
       "u_has_var": "dialogue_annoyed_greeter_talked_to_greeter",
-      "value": "yes"
+      "value": "yes",
+      "yes": "Get out, loser.",
+      "no": "Do I have a <freaking> exclamation sign over my <freaking> head, like I'm a <freaking> quest-giver from some <freaking> video game?"
     },
     "speaker_effect": {
       "effect": {
@@ -505,7 +514,14 @@
     "type": "talk_topic",
     "dynamic_line": {
       "u_has_var": "dialogue_annoyed_greeter_talked_to_greeter",
-      "value": "yes"
+      "value": "yes",
+      "yes": {
+        "gendered_line": "Are you deaf or stupid?  I said I don't give a fuck for you and your <freaking> problems.  Bother me one more time, and you'll regret that.  Get outta my sight.",
+        "relevant_genders": [
+          "u"
+        ]
+      },
+      "no": "Disappear, <name_b>."
     },
     "speaker_effect": {
       "effect": {
@@ -573,7 +589,34 @@
     "type": "talk_topic",
     "dynamic_line": {
       "u_has_var": "mission_military_id_prisoner_leader_mission",
-      "value": "yes"
+      "value": "yes",
+      "yes": "I have nothing more to say to you.  Get the fuck out of here.",
+      "no": {
+        "u_has_var": "mission_accepted_prisoner_leader_mission",
+        "value": "yes",
+        "yes": "So, what are you waiting for?",
+        "no": {
+          "u_has_var": "mission_completed_prisoner_leader_mission",
+          "value": "yes",
+          "yes": {
+            "gendered_line": "I don't know if you know, but there are sewers underneath the prison.  I was planning an escape long before <the_cataclysm>, and while I was working on cleaning the sewers, I noticed a damaged wall section.  There was a flow of fresh air coming out of it, so I think it's leading to the surface.  It could be your way to freedom.  Feel free to use it.",
+            "relevant_genders": [
+              "npc"
+            ]
+          },
+          "no": {
+            "u_has_var": "dialogue_first_meeting_talked_to_leader",
+            "value": "yes",
+            "yes": {
+              "u_has_var": "dialogue_cannibal_talked_to_leader",
+              "value": "yes",
+              "yes": "You are what you eat, as they say.",
+              "no": "It's you again."
+            },
+            "no": "Hello there.  Haven't seen you around before.  You must be from the other wing.  Managed to survive, huh?"
+          }
+        }
+      }
     },
     "speaker_effect": {
       "effect": {
@@ -856,7 +899,9 @@
     "type": "talk_topic",
     "dynamic_line": {
       "u_has_var": "mission_accepted_prisoner_leader_mission",
-      "value": "yes"
+      "value": "yes",
+      "yes": "So, what are you waiting for?",
+      "no": "I need you to retrieve some stuff from a locked safe.  Interested?"
     },
     "responses": [
       {

@@ -77,6 +77,13 @@ def expand_eocs(value, definitions, counts, variables=None, stack=()):
 
 
 def adapt(value, counts):
+    if isinstance(value, dict) and ("yes" in value or "no" in value):
+        # Conditional dynamic lines contain the predicate and both text arms in
+        # one object. Translate the predicate without discarding either arm.
+        predicate = {key: entry for key, entry in value.items() if key not in {"yes", "no"}}
+        if predicate:
+            translated = adapt(predicate, counts)
+            return {**translated, **{key: adapt(value[key], counts) for key in ("yes", "no") if key in value}}
     if isinstance(value, list):
         return [adapt(entry, counts) for entry in value]
     if not isinstance(value, dict):

@@ -211,6 +211,20 @@
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
+@@ -3502,6 +3646,13 @@
+         conditional_t<dialogue> dcondition;
+         const dynamic_line_t yes = from_member( jo, "yes" );
+         const dynamic_line_t no = from_member( jo, "no" );
++        if( jo.has_object( "dda_expression" ) ) {
++            dcondition = conditional_t<dialogue>( jo );
++            function = [dcondition, yes, no]( const dialogue &d ) {
++                return ( dcondition( d ) ? yes : no )( d );
++            };
++            return;
++        }
+         for( const std::string &sub_member : dialogue_data::simple_string_conds ) {
+             if( jo.has_bool( sub_member ) ) {
+                 // This also marks the member as visited.
 --- a/src/faction.h
 +++ b/src/faction.h
 @@ -42,6 +42,7 @@
@@ -748,7 +762,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,201 @@
+@@ -0,0 +1,223 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -763,6 +777,28 @@
 +#include "state_helpers.h"
 +
 +#include <sstream>
++
++TEST_CASE( "ported_dynamic_lines_preserve_both_text_branches", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    auto speaker = npc{};
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &speaker;
++    auto input = std::istringstream( R"({"dda_expression":{"op":"equal","args":[{"op":"variable","name":"done","actor":"npc"},{"op":"literal","value":1}]},"yes":"finished","no":"working"})" );
++    auto parser = JsonIn( input );
++    const auto numeric = dynamic_line_t( parser.get_object() );
++    speaker.set_value( "npctalk_var_done", "0" );
++    CHECK( numeric( conversation ) == "working" );
++    speaker.set_value( "npctalk_var_done", "1" );
++    CHECK( numeric( conversation ) == "finished" );
++    auto string_input = std::istringstream( R"({"u_has_var":"done","value":"yes","yes":"accepted","no":"waiting"})" );
++    auto string_parser = JsonIn( string_input );
++    const auto textual = dynamic_line_t( string_parser.get_object() );
++    CHECK( textual( conversation ) == "waiting" );
++    actor.set_value( "npctalk_var_done", "yes" );
++    CHECK( textual( conversation ) == "accepted" );
++}
 +
 +TEST_CASE( "lighthouse_cleanup_goal_reads_mission_giver_counter", "[dda_npc]" ) {
 +    clear_all_state();

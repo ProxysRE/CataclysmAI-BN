@@ -14,7 +14,7 @@
   },
   "translated": {
     "npc_guard_patrol_enum": 3,
-    "string_equality": 46,
+    "string_equality": 50,
     "native_skill_threshold": 1,
     "dda_give_item": 1,
     "contained_reward": 1

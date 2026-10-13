@@ -13,6 +13,28 @@
 
 #include <sstream>
 
+TEST_CASE( "ported_dynamic_lines_preserve_both_text_branches", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto speaker = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto input = std::istringstream( R"({"dda_expression":{"op":"equal","args":[{"op":"variable","name":"done","actor":"npc"},{"op":"literal","value":1}]},"yes":"finished","no":"working"})" );
+    auto parser = JsonIn( input );
+    const auto numeric = dynamic_line_t( parser.get_object() );
+    speaker.set_value( "npctalk_var_done", "0" );
+    CHECK( numeric( conversation ) == "working" );
+    speaker.set_value( "npctalk_var_done", "1" );
+    CHECK( numeric( conversation ) == "finished" );
+    auto string_input = std::istringstream( R"({"u_has_var":"done","value":"yes","yes":"accepted","no":"waiting"})" );
+    auto string_parser = JsonIn( string_input );
+    const auto textual = dynamic_line_t( string_parser.get_object() );
+    CHECK( textual( conversation ) == "waiting" );
+    actor.set_value( "npctalk_var_done", "yes" );
+    CHECK( textual( conversation ) == "accepted" );
+}
+
 TEST_CASE( "lighthouse_cleanup_goal_reads_mission_giver_counter", "[dda_npc]" ) {
     clear_all_state();
     auto &actor = get_avatar();

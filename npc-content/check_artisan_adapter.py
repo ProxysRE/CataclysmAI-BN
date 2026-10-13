@@ -6,12 +6,22 @@ from pathlib import Path
 from adapt_dialogue import adapt, expand_eocs
 
 root = Path(__file__).resolve().parent
+for predicate in ({"math": ["u_done == 1"]}, {"compare_string": ["yes", {"u_val": "done"}]}):
+    translated = adapt({**predicate, "yes": "accepted", "no": "waiting"}, collections.Counter())
+    assert translated["yes"] == "accepted" and translated["no"] == "waiting"
 entries = [entry for path in (root / "staging/upstream/npcs/isolated_road").glob("*.json")
            for entry in json.loads(path.read_text())]
 eocs = {entry["id"]: entry for entry in entries if entry["type"] == "effect_on_condition"}
 counts = collections.Counter()
 source = [entry for entry in entries if entry["type"] != "effect_on_condition"]
 result = adapt(expand_eocs(source, eocs, counts), counts)
+def branch_count(value):
+    if isinstance(value, dict):
+        return sum(key in {"yes", "no"} for key in value) + sum(branch_count(child) for child in value.values())
+    if isinstance(value, list):
+        return sum(branch_count(child) for child in value)
+    return 0
+assert branch_count(expand_eocs(source, eocs, collections.Counter())) == branch_count(result)
 assert [entry.get("id") for entry in source] == [entry.get("id") for entry in result]
 assert sum(entry["type"] == "talk_topic" for entry in result) == 55
 assert counts["dda_give_item"] == 24
