@@ -269,6 +269,14 @@
          int wealth;  //Total trade currency
          bool lone_wolf_faction; // is this a faction for just one person?
          itype_id currency; // id of the faction currency
+@@ -107,6 +113,7 @@
+         LUA_TYPE_OPS( faction, id );
+ 
+         std::string food_supply_text();
++        auto food_supply_kcal() const -> std::int64_t;
+         nc_color food_supply_color();
+ 
+         auto relationship_flags_with( const faction_id &guy_id ) const
 --- a/src/faction.cpp
 +++ b/src/faction.cpp
 @@ -99,12 +99,13 @@
@@ -295,7 +303,43 @@
      load_relations( jsobj );
      mon_faction = mfaction_str_id( jsobj.get_string( "mon_faction", "human" ) );
      for( const JsonObject jao : jsobj.get_array( "epilogues" ) ) {
-@@ -430,6 +433,7 @@
+@@ -292,10 +295,25 @@
+     return pgettext( "Faction wealth", "Destitute" );
+ }
+ 
++auto faction::food_supply_kcal() const -> std::int64_t
++{
++    if( dda_food_supply.empty() ) {
++        return food_supply;
++    }
++    auto calories = std::int64_t{ 0 };
++    for( const auto &lot : dda_food_supply ) {
++        if( lot.calories > std::numeric_limits<std::int64_t>::max() - calories ) {
++            return std::numeric_limits<std::int64_t>::max() / 1000;
++        }
++        calories += lot.calories;
++    }
++    return calories / 1000;
++}
++
+ std::string faction::food_supply_text()
+ {
+     //Convert to how many days you can support the population
+-    int val = food_supply / ( size * 288 );
++    const auto val = food_supply_kcal() / ( ( size > 0 ? size : 1 ) * 288LL );
+     if( val >= 30 ) {
+         return pgettext( "Faction food", "Overflowing" );
+     }
+@@ -313,7 +331,7 @@
+ 
+ nc_color faction::food_supply_color()
+ {
+-    int val = food_supply / ( size * 288 );
++    const auto val = food_supply_kcal() / ( ( size > 0 ? size : 1 ) * 288LL );
+     if( val >= 30 ) {
+         return c_green;
+     } else if( val >= 14 ) {
+@@ -430,6 +448,7 @@
                      if( fac_temp.id == id ) {
                          elem.second.currency = fac_temp.currency;
                          elem.second.lone_wolf_faction = fac_temp.lone_wolf_faction;
@@ -1109,7 +1153,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_artisan_services_test.cpp
-@@ -0,0 +1,179 @@
+@@ -0,0 +1,183 @@
 +#include "activity_type.h"
 +#include "avatar.h"
 +#include "calendar.h"
@@ -1131,15 +1175,18 @@
 +
 +TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
 +    clear_all_state();
-+    const auto restore_templates = restore_on_out_of_scope<std::vector<faction_template>>( npc_factions::all_templates );
 +    auto input = std::istringstream( R"({"id":"dda_food_stock_test","name":"Fisherman stock","likes_u":0,"respects_u":0,"known_by_u":false,"description":"Source-format food ledger","size":3,"power":3,"wealth":20000,"relations":{},"fac_food_supply":[[0,{"calories":2700000000,"vitamins":{"iron":86400,"calcium":86400,"vitC":86400}}],[123,{"calories":1000,"vitamins":{"iron":1}}]]})" );
 +    auto parser = JsonIn( input );
 +    faction_template::load( parser.get_object() );
-+    auto stock = faction( npc_factions::all_templates.back() );
++    auto manager = faction_manager{};
++    const auto *loaded_template = manager.get( faction_id( "dda_food_stock_test" ) );
++    REQUIRE( loaded_template );
++    auto stock = *loaded_template;
 +    REQUIRE( stock.dda_food_supply.size() == 2 );
 +    CHECK( stock.dda_food_supply[0].calories == 2700000000LL );
 +    CHECK( stock.dda_food_supply[0].vitamins.at( "vitC" ) == 86400 );
 +    CHECK( stock.dda_food_supply[1].expires == 123 );
++    CHECK( stock.food_supply_kcal() == 2700001 );
 +    auto buffer = std::stringstream{};
 +    auto output = JsonOut( buffer );
 +    stock.serialize( output );
@@ -1155,6 +1202,7 @@
 +    saved.deserialize( legacy_parser );
 +    CHECK( saved.dda_food_supply.empty() );
 +    CHECK( saved.food_supply == 99 );
++    CHECK( saved.food_supply_kcal() == 99 );
 +}
 +
 +TEST_CASE( "artisan_measurements_take_calendar_time", "[dda_npc]" ) {

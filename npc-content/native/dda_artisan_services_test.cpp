@@ -19,15 +19,18 @@
 
 TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
     clear_all_state();
-    const auto restore_templates = restore_on_out_of_scope<std::vector<faction_template>>( npc_factions::all_templates );
     auto input = std::istringstream( R"({"id":"dda_food_stock_test","name":"Fisherman stock","likes_u":0,"respects_u":0,"known_by_u":false,"description":"Source-format food ledger","size":3,"power":3,"wealth":20000,"relations":{},"fac_food_supply":[[0,{"calories":2700000000,"vitamins":{"iron":86400,"calcium":86400,"vitC":86400}}],[123,{"calories":1000,"vitamins":{"iron":1}}]]})" );
     auto parser = JsonIn( input );
     faction_template::load( parser.get_object() );
-    auto stock = faction( npc_factions::all_templates.back() );
+    auto manager = faction_manager{};
+    const auto *loaded_template = manager.get( faction_id( "dda_food_stock_test" ) );
+    REQUIRE( loaded_template );
+    auto stock = *loaded_template;
     REQUIRE( stock.dda_food_supply.size() == 2 );
     CHECK( stock.dda_food_supply[0].calories == 2700000000LL );
     CHECK( stock.dda_food_supply[0].vitamins.at( "vitC" ) == 86400 );
     CHECK( stock.dda_food_supply[1].expires == 123 );
+    CHECK( stock.food_supply_kcal() == 2700001 );
     auto buffer = std::stringstream{};
     auto output = JsonOut( buffer );
     stock.serialize( output );
@@ -43,6 +46,7 @@ TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[d
     saved.deserialize( legacy_parser );
     CHECK( saved.dda_food_supply.empty() );
     CHECK( saved.food_supply == 99 );
+    CHECK( saved.food_supply_kcal() == 99 );
 }
 
 TEST_CASE( "artisan_measurements_take_calendar_time", "[dda_npc]" ) {
