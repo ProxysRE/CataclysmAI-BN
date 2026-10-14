@@ -1,0 +1,1954 @@
+[
+  {
+    "type": "npc",
+    "id": "NPC_lighthouse_girl",
+    "name_unique": "Angelina Frolova",
+    "gender": "female",
+    "class": "NC_NONE",
+    "attitude": 1,
+    "mission": 8,
+    "chat": "TALK_lighthouse_girl_start",
+    "faction": "fisherman_family"
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_girl_start",
+    "dynamic_line": "I'm scared.  Where is my papa?",
+    "speaker_effect": {
+      "sentinel": "met",
+      "effect": [
+        "follow_only",
+        {
+          "add_mission": "MISSION_lighthouse_girl_0"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "text": "I want you to use this item.",
+        "topic": "TALK_lighthouse_girl_start",
+        "condition": "npc_following",
+        "effect": "npc_gets_item_to_use"
+      },
+      {
+        "text": "We're here.",
+        "topic": "TALK_lighthouse_girl_safe",
+        "condition": {
+          "npc_at_om_location": "lighthouse_ground"
+        },
+        "effect": [
+          "mission_success",
+          "clear_mission",
+          "stop_following",
+          {
+            "npc_first_topic": "TALK_lighthouse_girl_safe"
+          },
+          {
+            "u_add_var": "flag_safe_lighthouse_girl",
+            "value": "yes"
+          }
+        ]
+      },
+      {
+        "text": "<lets_go>",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_girl_safe",
+    "dynamic_line": {
+      "u_has_mission": "MISSION_lighthouse_man_3",
+      "yes": {
+        "u_has_var": "flag_death_lighthouse_woman_dead",
+        "value": "yes",
+        "yes": "Thank you for saving me.  It's a shame my mother didn't make it… you did everything you could, and I don't blame you for it…",
+        "no": "Thank you!"
+      },
+      "no": {
+        "u_has_var": "flag_death_lighthouse_woman_dead",
+        "value": "yes",
+        "yes": "Poor, poor mama…",
+        "no": "Hello."
+      }
+    },
+    "responses": [
+      {
+        "text": "Hi.",
+        "condition": {
+          "u_has_var": "flag_help_lighthouse_family_safe",
+          "value": "yes"
+        },
+        "topic": "TALK_lighthouse_girl_1",
+        "effect": {
+          "npc_first_topic": "TALK_lighthouse_girl_1"
+        },
+        "switch": true
+      },
+      {
+        "truefalsetext": {
+          "true": "I'm sorry…",
+          "false": "…",
+          "condition": {
+            "u_has_var": "flag_death_lighthouse_woman_dead",
+            "value": "yes"
+          }
+        },
+        "topic": "TALK_DONE",
+        "switch": true
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": [
+      "TALK_lighthouse_girl_1",
+      "TALK_lighthouse_girl_Background"
+    ],
+    "dynamic_line": "How are you today?",
+    "responses": [
+      {
+        "text": "About that job…",
+        "condition": "has_assigned_mission",
+        "topic": "TALK_MISSION_INQUIRE"
+      },
+      {
+        "text": "<BGSS_intro_question>",
+        "topic": "TALK_lighthouse_girl_Background"
+      },
+      {
+        "text": "Do you need any help?",
+        "topic": "TALK_MISSION_LIST"
+      },
+      {
+        "text": "<end_talking_bye>",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_girl_Background",
+    "dynamic_line": "I don't have much to tell, sorry.  I'm busy with helping my mom, tiding this place to make it our new home.  You should talk to my dad, he doesn't look busy right now.  Or always…"
+  },
+  {
+    "id": "MISSION_lighthouse_girl_0",
+    "type": "mission_definition",
+    "has_generic_rewards": false,
+    "name": {
+      "str": "Protect fisherman's daughter"
+    },
+    "description": "She looks like a nice girl.  Maybe you should not let her die?",
+    "goal": "MGOAL_CONDITION",
+    "difficulty": 0,
+    "value": 0,
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "dialogue": {
+      "describe": "-",
+      "offer": "-",
+      "accepted": "-",
+      "rejected": "-",
+      "advice": "-",
+      "inquire": "-",
+      "success": "-",
+      "success_lie": "-",
+      "failure": "-"
+    },
+    "fail": {
+      "effect": [
+        {
+          "u_add_var": "flag_death_lighthouse_girl_dead",
+          "value": "yes"
+        }
+      ]
+    }
+  },
+  {
+    "type": "npc",
+    "id": "NPC_lighthouse_man",
+    "gender": "male",
+    "class": "NC_NONE",
+    "name_unique": "Mikhail Frolov",
+    "name_suffix": "Fisherman",
+    "attitude": 0,
+    "mission": 8,
+    "chat": "TALK_lighthouse_man_1",
+    "faction": "fisherman_family",
+    "mission_offered": "MISSION_lighthouse_man_1"
+  },
+  {
+    "type": "npc_class",
+    "id": "NC_lighthouse_man",
+    "common": false,
+    "name": {
+      "str": "Fisherman"
+    },
+    "job_description": "I'm just wandering.",
+    "shopkeeper_item_group": "NPC_lighthouse_man_shop",
+    "traits": [
+      {
+        "group": "NPC_starting_traits"
+      },
+      {
+        "group": "Appearance_Caucasian"
+      }
+    ],
+    "skills": [
+      {
+        "skill": "ALL",
+        "level": {
+          "mul": [
+            {
+              "one_in": 3
+            },
+            {
+              "sum": [
+                {
+                  "dice": [
+                    4,
+                    2
+                  ]
+                },
+                {
+                  "rng": [
+                    -4,
+                    -1
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NPC_lighthouse_man_shop",
+    "subtype": "collection",
+    "items": [
+      {
+        "item": "fish_bait",
+        "count": [
+          15,
+          35
+        ]
+      },
+      {
+        "item": "fish",
+        "count": [
+          5,
+          20
+        ]
+      },
+      {
+        "item": "fish_smoked",
+        "count": [
+          1,
+          4
+        ]
+      },
+      {
+        "item": "fish_cooked",
+        "count": [
+          4,
+          14
+        ]
+      },
+      {
+        "item": "salted_fish",
+        "count": [
+          2,
+          6
+        ]
+      },
+      {
+        "item": "fish_fried",
+        "count": [
+          2,
+          6
+        ]
+      },
+      {
+        "item": "soup_fish",
+        "count": [
+          35,
+          50
+        ],
+        "container-item": "bottle_plastic"
+      },
+      {
+        "item": "fishspear",
+        "prob": 20,
+        "count": [
+          4,
+          8
+        ]
+      },
+      [
+        "doublespeargun",
+        20
+      ],
+      [
+        "fish_trap",
+        55
+      ],
+      [
+        "fishing_hook_bone",
+        100
+      ],
+      [
+        "fishing_rod_basic",
+        100
+      ]
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": [
+      "TALK_lighthouse_man_1",
+      "TALK_lighthouse_man_Background",
+      "TALK_lighthouse_man_hay",
+      "TALK_lighthouse_man_survivors_yes",
+      "TALK_lighthouse_man_survivors_no"
+    ],
+    "dynamic_line": "<greet>",
+    "responses": [
+      {
+        "text": "About that job…",
+        "condition": "has_assigned_mission",
+        "topic": "TALK_MISSION_INQUIRE"
+      },
+      {
+        "text": "<BGSS_intro_question>",
+        "topic": "TALK_lighthouse_man_Background"
+      },
+      {
+        "text": "How are you doing?",
+        "topic": "TALK_lighthouse_man_hay",
+        "condition": {
+          "npc_has_var": "flag_help_helped_lighthouse_man",
+          "value": "yes"
+        }
+      },
+      {
+        "text": "Do you need any help?",
+        "topic": "TALK_MISSION_LIST"
+      },
+      {
+        "text": "Care to trade?",
+        "topic": "TALK_lighthouse_man_1",
+        "condition": {
+          "npc_has_var": "flag_help_helped_lighthouse_man",
+          "value": "yes"
+        },
+        "effect": "start_trade"
+      },
+      {
+        "text": "Has anyone come recently?",
+        "condition": {
+          "u_has_var": "global_safe_space_lighthouse_fixed",
+          "value": "yes"
+        },
+        "trial": {
+          "type": "CONDITION",
+          "condition": {
+            "dda_expression": {
+              "op": "greater_equal",
+              "args": [
+                {
+                  "op": "divide",
+                  "args": [
+                    {
+                      "op": "subtract",
+                      "args": [
+                        {
+                          "op": "now"
+                        },
+                        {
+                          "op": "variable",
+                          "name": "time_survivors_wait",
+                          "actor": "npc"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "literal",
+                      "value": 1
+                    }
+                  ]
+                },
+                {
+                  "op": "literal",
+                  "value": 1209600
+                }
+              ]
+            }
+          }
+        },
+        "success": {
+          "topic": "TALK_lighthouse_man_survivors_yes",
+          "effect": [
+            {
+              "dda_set_variable": {
+                "target": "time_survivors_wait",
+                "expression": {
+                  "op": "now"
+                },
+                "actor": "npc"
+              }
+            },
+            {
+              "mapgen_update": "lighthouse_man_survivor",
+              "om_terrain": "lighthouse_ground"
+            }
+          ]
+        },
+        "failure": {
+          "topic": "TALK_lighthouse_man_survivors_no"
+        }
+      },
+      {
+        "text": "<end_talking_bye>",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_Background",
+    "dynamic_line": "I'm just a simple man from a simple family.  Before <the_cataclysm> I had a fishing boat, and I went to sea on it, to catch fish and other marine life.  This is how my grandfather lived, my father lived, and I began to live like that.  I had a large family, 7 children, but not many survived, only my wife and daughter remained…"
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_hay",
+    "dynamic_line": "You know, pretty good.  It is cozy here, there is a lot of space, and most importantly, it's safe.  We even started considering this place as our new home.  By the way, while I was fishing, a bottle with a piece of paper came to the shore of our island.  Here, take a look.\", he gave you a piece of paper, something was written on it: '0030045-0030045-35321700', with something similar to lightning scribbled nearby.  \"I wonder what it could mean…"
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_survivors_yes",
+    "dynamic_line": "Good news, <name_g>.  One survivor sailed to us recently."
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_survivors_no",
+    "dynamic_line": "Nobody came, <name_g>.  I'm beginning to doubt that anyone else has survived besides us…"
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_lighthouse",
+    "dynamic_line": "Are we there yet, <name_g>?",
+    "responses": [
+      {
+        "text": "I want you to use this item.",
+        "topic": "TALK_lighthouse_man_lighthouse",
+        "effect": "npc_gets_item_to_use"
+      },
+      {
+        "text": "We're here.",
+        "topic": "TALK_MISSION_INQUIRE",
+        "condition": "mission_complete",
+        "effect": [
+          "stop_following",
+          {
+            "npc_first_topic": "TALK_lighthouse_man_1"
+          }
+        ]
+      },
+      {
+        "text": "Almost.",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_cleaning",
+    "dynamic_line": "Is it safe, my <name_g>?",
+    "responses": [
+      {
+        "text": "Yes.  Ground floor is clear.",
+        "topic": "TALK_lighthouse_man_cleaned",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 0
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_ground"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        }
+      },
+      {
+        "text": "Yes.  First floor is clear.",
+        "topic": "TALK_lighthouse_man_cleaned",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_z1"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        }
+      },
+      {
+        "text": "Yes.  Second floor is clear.",
+        "topic": "TALK_lighthouse_man_cleaned",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 2
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_z2"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        }
+      },
+      {
+        "text": "Yes.  Third floor is clear.",
+        "topic": "TALK_lighthouse_man_cleaned",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 3
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_z3"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        }
+      },
+      {
+        "text": "Yes.  Fourth floor is clear.",
+        "topic": "TALK_lighthouse_man_cleaned",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 4
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_z4"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        }
+      },
+      {
+        "text": "Yes.  Top floor is clear.",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 5
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_z5"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        },
+        "topic": "TALK_lighthouse_man_cleaned_done"
+      },
+      {
+        "text": "Looks like that's over.",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "equal",
+                "args": [
+                  {
+                    "op": "variable",
+                    "name": "count_cleaning_lighthouse_man",
+                    "actor": "npc"
+                  },
+                  {
+                    "op": "literal",
+                    "value": 6
+                  }
+                ]
+              }
+            },
+            "at_safe_space",
+            {
+              "npc_at_om_location": "lighthouse_ground"
+            }
+          ]
+        },
+        "effect": {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "add",
+              "args": [
+                {
+                  "op": "variable",
+                  "name": "count_cleaning_lighthouse_man",
+                  "actor": "npc"
+                },
+                {
+                  "op": "literal",
+                  "value": 1
+                }
+              ]
+            },
+            "actor": "npc"
+          }
+        },
+        "topic": "TALK_MISSION_INQUIRE"
+      },
+      {
+        "text": "Not yet.",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_cleaned",
+    "dynamic_line": "<its_safe>  Let's clean the next floor.",
+    "responses": [
+      {
+        "text": "…",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_cleaned_done",
+    "dynamic_line": "<its_safe>  Let's return to the first floor.",
+    "responses": [
+      {
+        "text": "…",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_family",
+    "dynamic_line": {
+      "gendered_line": "Did you find them, <name_g>?",
+      "relevant_genders": [
+        "u"
+      ]
+    },
+    "responses": [
+      {
+        "text": "We did it.  All safe.",
+        "topic": "TALK_MISSION_SUCCESS",
+        "condition": {
+          "and": [
+            {
+              "u_has_mission": "MISSION_lighthouse_man_3"
+            },
+            {
+              "not": "mission_complete"
+            },
+            {
+              "u_has_var": "flag_safe_lighthouse_woman",
+              "value": "yes"
+            },
+            {
+              "u_has_var": "flag_safe_lighthouse_girl",
+              "value": "yes"
+            }
+          ]
+        },
+        "effect": [
+          "mission_success",
+          {
+            "npc_first_topic": "TALK_lighthouse_man_1"
+          }
+        ]
+      },
+      {
+        "text": "I'm sorry, I failed you… I couldn't bring them alive…",
+        "topic": "TALK_lighthouse_man_fail",
+        "condition": {
+          "and": [
+            "mission_complete",
+            {
+              "not": {
+                "u_has_var": "flag_safe_lighthouse_woman",
+                "value": "yes"
+              }
+            },
+            {
+              "u_has_var": "flag_death_lighthouse_girl_dead",
+              "value": "yes"
+            }
+          ]
+        }
+      },
+      {
+        "text": "I'm sorry, I failed you… I couldn't bring your wife alive…",
+        "topic": "TALK_lighthouse_man_fail",
+        "condition": {
+          "and": [
+            "mission_complete",
+            {
+              "u_has_var": "flag_safe_lighthouse_girl",
+              "value": "yes"
+            }
+          ]
+        }
+      },
+      {
+        "text": "I'm sorry, I failed you… I couldn't bring your daughter alive…",
+        "topic": "TALK_lighthouse_man_fail",
+        "condition": {
+          "and": [
+            {
+              "not": "mission_complete"
+            },
+            {
+              "u_has_var": "flag_safe_lighthouse_woman",
+              "value": "yes"
+            },
+            {
+              "u_has_var": "flag_death_lighthouse_girl_dead",
+              "value": "yes"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Nothing, really.",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_man_fail",
+    "dynamic_line": "<name_g>… I entrusted you with the most valuable thing that I have left, and you…",
+    "responses": [
+      {
+        "text": "I'm sorry…",
+        "topic": "TALK_DONE",
+        "effect": [
+          "mission_failure",
+          "clear_mission",
+          "end_conversation"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MISSION_lighthouse_man_1",
+    "type": "mission_definition",
+    "has_generic_rewards": false,
+    "name": {
+      "str": "Lighthouse"
+    },
+    "description": "Lead Mikhail to lighthouse.",
+    "goal": "MGOAL_GO_TO",
+    "difficulty": 0,
+    "value": 5000,
+    "start": {
+      "assign_mission_target": {
+        "om_terrain": "lighthouse_ground",
+        "om_special": "Lighthouse Island",
+        "reveal_radius": 10,
+        "cant_see": true
+      },
+      "update_mapgen": [
+        {
+          "om_terrain": "lighthouse_ground",
+          "place_monsters": [
+            {
+              "monster": "GROUP_ZOMBIE",
+              "x": [
+                1,
+                22
+              ],
+              "y": [
+                1,
+                22
+              ],
+              "density": 0.3
+            }
+          ]
+        },
+        {
+          "om_terrain": "lighthouse_z1",
+          "place_monsters": [
+            {
+              "monster": "GROUP_ZOMBIE",
+              "x": [
+                11,
+                16
+              ],
+              "y": [
+                8,
+                16
+              ],
+              "density": 0.3
+            }
+          ]
+        },
+        {
+          "om_terrain": "lighthouse_z2",
+          "place_monsters": [
+            {
+              "monster": "GROUP_ZOMBIE",
+              "x": [
+                11,
+                16
+              ],
+              "y": [
+                8,
+                16
+              ],
+              "density": 0.3
+            }
+          ]
+        },
+        {
+          "om_terrain": "lighthouse_z3",
+          "place_monsters": [
+            {
+              "monster": "GROUP_ZOMBIE",
+              "x": [
+                11,
+                16
+              ],
+              "y": [
+                8,
+                16
+              ],
+              "density": 0.3
+            }
+          ]
+        },
+        {
+          "om_terrain": "lighthouse_z4",
+          "place_monsters": [
+            {
+              "monster": "GROUP_ZOMBIE",
+              "x": [
+                11,
+                16
+              ],
+              "y": [
+                8,
+                16
+              ],
+              "density": 0.3
+            }
+          ]
+        },
+        {
+          "om_terrain": "lighthouse_z5",
+          "place_monsters": [
+            {
+              "monster": "GROUP_ZOMBIE",
+              "x": [
+                11,
+                16
+              ],
+              "y": [
+                8,
+                16
+              ],
+              "density": 0.3
+            }
+          ]
+        }
+      ],
+      "effect": [
+        "follow_only",
+        {
+          "npc_first_topic": "TALK_lighthouse_man_lighthouse"
+        }
+      ]
+    },
+    "end": {
+      "opinion": {
+        "trust": 3,
+        "value": 3
+      }
+    },
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "followup": "MISSION_lighthouse_man_2",
+    "dialogue": {
+      "describe": "-",
+      "offer": "We've been wandering around the state with my family for a long time since <the_cataclysm>, and I realized that the safest hideout is the island.  I left my family in a shelter, and went to explore the area, looking for some island nearby, in a lake or in the ocean.  And you know, I found a sea map marked with navigational beacons near here.  If you want, you can help me get to one of these and take a good look at it.",
+      "accepted": "Good.  I'll be right behind you.",
+      "rejected": "Well, it's your choice.",
+      "advice": "First we need to find a transport to get there.",
+      "inquire": "We finally reached it.",
+      "success": "Looks nice, <name_g>.  Now I need to clean it from <zombies> somehow…",
+      "success_lie": "-",
+      "failure": "-"
+    }
+  },
+  {
+    "id": "MISSION_lighthouse_man_2",
+    "type": "mission_definition",
+    "has_generic_rewards": false,
+    "name": {
+      "str": "House cleaning"
+    },
+    "description": "Clean lighthouse from <zombies> with Mikhail.",
+    "goal": "MGOAL_CONDITION",
+    "goal_condition": {
+      "dda_expression": {
+        "op": "equal",
+        "args": [
+          {
+            "op": "variable",
+            "name": "count_cleaning_lighthouse_man",
+            "actor": "npc"
+          },
+          {
+            "op": "literal",
+            "value": 7
+          }
+        ]
+      }
+    },
+    "difficulty": 0,
+    "value": 5000,
+    "start": {
+      "effect": [
+        "follow_only",
+        {
+          "npc_first_topic": "TALK_lighthouse_man_cleaning"
+        },
+        {
+          "dda_set_variable": {
+            "target": "count_cleaning_lighthouse_man",
+            "expression": {
+              "op": "literal",
+              "value": 0
+            },
+            "actor": "npc"
+          }
+        }
+      ]
+    },
+    "end": {
+      "opinion": {
+        "trust": 3,
+        "value": 3
+      },
+      "update_mapgen": {
+        "om_terrain": "lighthouse_ground",
+        "faction_owner": [
+          {
+            "id": "fisherman_family",
+            "x": [
+              0,
+              23
+            ],
+            "y": [
+              0,
+              23
+            ]
+          }
+        ],
+        "place_zones": [
+          {
+            "type": "NPC_INVESTIGATE_ONLY",
+            "faction": "fisherman_family",
+            "x": [
+              0,
+              23
+            ],
+            "y": [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "effect": [
+        "stop_following",
+        {
+          "npc_first_topic": "TALK_lighthouse_man_1"
+        },
+        {
+          "npc_lose_var": "count_cleaning_lighthouse_man"
+        }
+      ]
+    },
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "followup": "MISSION_lighthouse_man_3",
+    "dialogue": {
+      "describe": "-",
+      "offer": "So, we found the lighthouse.  Now, I need to clean it.  Want to help me with it?",
+      "accepted": "Great.  Let's do it together.  I'll be right behind you.  We will clean floor by floor.  If you decide that the floor is clean, tell me about it, and we will move on to the next, and so on to the very top.",
+      "rejected": "Well, it's your choice.",
+      "advice": "Be careful.  These <name_b>s are most dangerous in tight spaces.",
+      "inquire": "<its_safe>",
+      "success": "Great, incredibly great.  All that remains is to wash all the floors…",
+      "success_lie": "-",
+      "failure": "-"
+    }
+  },
+  {
+    "id": "MISSION_lighthouse_man_3",
+    "type": "mission_definition",
+    "name": {
+      "str": "Fisherman's family"
+    },
+    "description": "Mikhail asked you to bring back his family.",
+    "goal": "MGOAL_ASSASSINATE",
+    "difficulty": 0,
+    "value": 25000,
+    "start": {
+      "effect": {
+        "npc_first_topic": "TALK_lighthouse_man_family"
+      },
+      "assign_mission_target": {
+        "om_terrain": "house_04_basement",
+        "reveal_radius": 2
+      },
+      "update_mapgen": {
+        "place_npcs": [
+          {
+            "class": "NPC_lighthouse_woman",
+            "x": 4,
+            "y": 8,
+            "target": true
+          },
+          {
+            "class": "NPC_lighthouse_girl",
+            "x": 3,
+            "y": 8
+          }
+        ]
+      }
+    },
+    "end": {
+      "opinion": {
+        "trust": 6,
+        "value": 6
+      },
+      "effect": {
+        "u_add_var": "flag_help_lighthouse_family_safe",
+        "value": "yes"
+      }
+    },
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "followup": "MISSION_lighthouse_man_4",
+    "dialogue": {
+      "describe": "-",
+      "offer": "We found the lighthouse and cleared it of <zombies>.  Now, I need to bring my family here.  May I ask you for a favor?  Since you bring me here, can you go back, find my family and bring them here?",
+      "accepted": "You are my savior!  I'll take a look around here for a while, prepare everything here for their arrival.",
+      "rejected": "Well, it's your choice.",
+      "advice": "Please be very careful.  I don't want to lose them…",
+      "inquire": "-",
+      "success": "I don't even know how to thank you, <name_g>.  I am in eternal debt to you.",
+      "success_lie": "-",
+      "failure": "-"
+    }
+  },
+  {
+    "id": "MISSION_lighthouse_man_4",
+    "type": "mission_definition",
+    "name": {
+      "str": "Fisherman's boat"
+    },
+    "description": "Help Mikhail make a boat.  Bring 250 nails.",
+    "goal": "MGOAL_FIND_ITEM",
+    "item": "nail",
+    "count": 250,
+    "difficulty": 0,
+    "value": 10000,
+    "end": {
+      "opinion": {
+        "trust": 3,
+        "value": 3
+      },
+      "update_mapgen": {
+        "om_terrain": "lighthouse_ground",
+        "place_vehicles": [
+          {
+            "vehicle": "canoe",
+            "x": 3,
+            "y": 3,
+            "rotation": 0,
+            "status": 0,
+            "chance": 100
+          }
+        ]
+      },
+      "effect": [
+        {
+          "npc_add_var": "flag_help_helped_lighthouse_man",
+          "value": "yes"
+        }
+      ]
+    },
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "followup": "MISSION_lighthouse_man_5",
+    "dialogue": {
+      "describe": "-",
+      "offer": "The building has been cleared of <zombies>, my family is here, everything is going very well.  It remains only to provide ourselves with food, transport and we can not worry about the future.  You helped me and my family so much, can you help us with something else?  I need a boat for fishing, or just to explore the area.  Can you help me make a boat?",
+      "accepted": "Thank you, <name_g>.  I need only 250 nails.  I'll find the planks, the rest of the tools too, but the main problem is the nails.  Too much for one boat, but I want to have resources in reserve, just in case.",
+      "rejected": "Well, it's your choice.",
+      "advice": "Please, if you can, don't disassemble furniture here.  It can still be useful.",
+      "inquire": "Did you find it?",
+      "success": "Very good, <name_g>, thank you!  Now we are not afraid of hunger, rain, or other bad weather, he-he.  By the way, I have a small supply of fish, tackle, baits and rods.  If you are interested, I can share some with you.",
+      "success_lie": "-",
+      "failure": "-"
+    }
+  },
+  {
+    "id": "MISSION_lighthouse_man_5",
+    "type": "mission_definition",
+    "name": {
+      "str": "Fixing lighthouse"
+    },
+    "description": "Mikhail asked you to find someone, who have enough expertise to fix the mechanism of lighthouse.",
+    "goal": "MGOAL_CONDITION",
+    "goal_condition": {
+      "u_has_var": "global_safe_space_lighthouse_fixed",
+      "value": "ready"
+    },
+    "difficulty": 0,
+    "value": 100000,
+    "end": {
+      "opinion": {
+        "trust": 3,
+        "value": 3
+      },
+      "update_mapgen": {
+        "om_terrain": "lighthouse_z5",
+        "place_terrain": [
+          {
+            "ter": "t_floor_olight",
+            "x": 11,
+            "y": 12
+          },
+          {
+            "ter": "t_floor_olight",
+            "x": 13,
+            "y": 13
+          }
+        ]
+      },
+      "effect": [
+        {
+          "dda_set_variable": {
+            "target": "time_survivors_wait",
+            "expression": {
+              "op": "now"
+            },
+            "actor": "npc"
+          }
+        },
+        {
+          "u_add_var": "global_safe_space_lighthouse_fixed",
+          "value": "yes"
+        }
+      ]
+    },
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "dialogue": {
+      "describe": "-",
+      "offer": "My family is here, we have food, water, boat and a roof over our heads, all thanks to you, <name_g>.  Now, I also want to help other survivors.  Here's what I thought: if I can get this old lighthouse up and running, other survivors will see its light from afar.  If they see it, they will think that there are living people here, and will try to get here.  Can you help me fix it?",
+      "accepted": "I knew you wouldn't refuse!  But there is one problem: I have no idea how to fix it.  Maybe if you met someone who have experience in electrical engineering, we can figure out how to start this old junk.",
+      "rejected": "Well, it's your choice.",
+      "advice": "I'm sure that not all burned in flames of <the_cataclysm> and you can find someone suitable.",
+      "inquire": "Well, have you fixed it?",
+      "success": "Splendid, <name_g>!  We can only wait now…",
+      "success_lie": "-",
+      "failure": "-"
+    }
+  },
+  {
+    "type": "mapgen",
+    "update_mapgen_id": "lighthouse_man_survivor",
+    "object": {
+      "place_npcs": [
+        {
+          "class": "NPC_survivor_lighthouse",
+          "x": [
+            7,
+            17
+          ],
+          "y": [
+            10,
+            15
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "npc",
+    "id": "NPC_lighthouse_woman",
+    "name_unique": "Heather Frolova",
+    "gender": "female",
+    "class": "NC_NONE",
+    "attitude": 1,
+    "mission": 8,
+    "chat": "TALK_lighthouse_woman_start",
+    "faction": "fisherman_family"
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_woman_start",
+    "dynamic_line": "I'm scared.  Where is my husband?",
+    "speaker_effect": {
+      "sentinel": "met",
+      "effect": [
+        "follow_only",
+        {
+          "add_mission": "MISSION_lighthouse_woman_0"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "text": "I want you to use this item.",
+        "topic": "TALK_lighthouse_woman_start",
+        "condition": "npc_following",
+        "effect": "npc_gets_item_to_use"
+      },
+      {
+        "text": "We're here.",
+        "topic": "TALK_lighthouse_woman_safe",
+        "condition": {
+          "npc_at_om_location": "lighthouse_ground"
+        },
+        "effect": [
+          "mission_success",
+          "clear_mission",
+          "stop_following",
+          {
+            "npc_first_topic": "TALK_lighthouse_woman_safe"
+          },
+          {
+            "u_add_var": "flag_safe_lighthouse_woman",
+            "value": "yes"
+          }
+        ]
+      },
+      {
+        "text": "<lets_go>",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_woman_safe",
+    "dynamic_line": {
+      "u_has_mission": "MISSION_lighthouse_man_3",
+      "yes": {
+        "u_has_var": "flag_death_lighthouse_girl_dead",
+        "value": "yes",
+        "yes": "Thank you for saving me.  It's a shame my Angelina didn't make it… you did everything you could, and I don't blame you for it…",
+        "no": "Thank you!"
+      },
+      "no": {
+        "u_has_var": "flag_death_lighthouse_girl_dead",
+        "value": "yes",
+        "yes": "Poor, poor Angelina…",
+        "no": "Hello."
+      }
+    },
+    "responses": [
+      {
+        "text": "Hi.",
+        "condition": {
+          "u_has_var": "flag_help_lighthouse_family_safe",
+          "value": "yes"
+        },
+        "topic": "TALK_lighthouse_woman_1",
+        "effect": {
+          "npc_first_topic": "TALK_lighthouse_woman_1"
+        },
+        "switch": true
+      },
+      {
+        "truefalsetext": {
+          "true": "I'm sorry…",
+          "false": "…",
+          "condition": {
+            "u_has_var": "flag_death_lighthouse_girl_dead",
+            "value": "yes"
+          }
+        },
+        "topic": "TALK_DONE",
+        "switch": true
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": [
+      "TALK_lighthouse_woman_1",
+      "TALK_lighthouse_woman_Background"
+    ],
+    "dynamic_line": "How are you today?",
+    "responses": [
+      {
+        "text": "About that job…",
+        "condition": "has_assigned_mission",
+        "topic": "TALK_MISSION_INQUIRE"
+      },
+      {
+        "text": "<BGSS_intro_question>",
+        "topic": "TALK_lighthouse_woman_Background"
+      },
+      {
+        "text": "Do you need any help?",
+        "topic": "TALK_MISSION_LIST"
+      },
+      {
+        "text": "<end_talking_bye>",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_lighthouse_woman_Background",
+    "dynamic_line": "I don't have much to tell, sorry.  I'm busy with tiding this place, making it our new home.  You should talk to my husband, he doesn't look busy right now.  Or always…"
+  },
+  {
+    "id": "MISSION_lighthouse_woman_0",
+    "type": "mission_definition",
+    "has_generic_rewards": false,
+    "name": {
+      "str": "Protect fisherman's wife"
+    },
+    "description": "She looks like a nice woman.  Maybe you should not let her die?",
+    "goal": "MGOAL_CONDITION",
+    "difficulty": 0,
+    "value": 0,
+    "origins": [
+      "ORIGIN_SECONDARY"
+    ],
+    "dialogue": {
+      "describe": "-",
+      "offer": "-",
+      "accepted": "-",
+      "rejected": "-",
+      "advice": "-",
+      "inquire": "-",
+      "success": "-",
+      "success_lie": "-",
+      "failure": "-"
+    },
+    "fail": {
+      "effect": [
+        {
+          "u_add_var": "flag_death_lighthouse_wife_dead",
+          "value": "yes"
+        }
+      ]
+    }
+  },
+  {
+    "type": "talk_topic",
+    "id": [
+      "TALK_FRIEND",
+      "TALK_GIVE_ITEM",
+      "TALK_USE_ITEM",
+      "TALK_RADIO"
+    ],
+    "responses": [
+      {
+        "text": "You said that you have experience in electrical engineering…",
+        "topic": "TALK_ENG_LIGHTHOUSE",
+        "condition": {
+          "and": [
+            {
+              "npc_has_any_trait": [
+                "Exp_Eng_Electrical2",
+                "Exp_Eng_Electrical1Fake2",
+                "Exp_Eng_Electrical0Fake2"
+              ]
+            },
+            {
+              "u_has_mission": "MISSION_lighthouse_man_5"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_ENG_LIGHTHOUSE",
+    "dynamic_line": "I did, actually.  Why are you asking?",
+    "responses": [
+      {
+        "text": "We're here.  Ready to start?",
+        "topic": "TALK_ENG_LIGHTHOUSE_2",
+        "condition": {
+          "npc_at_om_location": "lighthouse_z4"
+        },
+        "effect": [
+          "leave",
+          "assign_guard"
+        ]
+      },
+      {
+        "text": "Can you repair the mechanism of the lighthouse?",
+        "topic": "TALK_ENG_LIGHTHOUSE_1"
+      },
+      {
+        "text": "<done_conversation_section>",
+        "topic": "TALK_NONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_ENG_LIGHTHOUSE_1",
+    "dynamic_line": "Sure thing, boss.  Take me there and in a few days it will be like new.",
+    "responses": [
+      {
+        "text": "<done_conversation_section>",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_ENG_LIGHTHOUSE_2",
+    "dynamic_line": "Hmm, looks shitty.  I'll do my best.",
+    "responses": [
+      {
+        "text": "Start working.",
+        "topic": "TALK_DONE",
+        "effect": [
+          {
+            "npc_first_topic": "TALK_ENG_LIGHTHOUSE_WORKING"
+          },
+          {
+            "dda_set_variable": {
+              "target": "time_lighthouse_wait",
+              "expression": {
+                "op": "now"
+              },
+              "actor": "npc"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_ENG_LIGHTHOUSE_WORKING",
+    "dynamic_line": {
+      "dda_expression": {
+        "op": "greater",
+        "args": [
+          {
+            "op": "divide",
+            "args": [
+              {
+                "op": "subtract",
+                "args": [
+                  {
+                    "op": "now"
+                  },
+                  {
+                    "op": "variable",
+                    "name": "time_lighthouse_wait",
+                    "actor": "npc"
+                  }
+                ]
+              },
+              {
+                "op": "literal",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "op": "literal",
+            "value": 172800
+          }
+        ]
+      },
+      "yes": {
+        "npc_has_trait": "Exp_Eng_Electrical1Fake2",
+        "yes": {
+          "gendered_line": "Boss, here's the thing… just don't be mad, please.  I lied that I'm good at this… I thought I could figure it out, but it's far beyond my comprehension.  I'm sorry.",
+          "relevant_genders": [
+            "npc"
+          ]
+        },
+        "no": {
+          "npc_has_trait": "Exp_Eng_Electrical0Fake2",
+          "yes": {
+            "gendered_line": "Boss, here's the thing… just don't be mad, please.  I lied that I know something about this… I thought I could figure it out, but it's far beyond my comprehension.  I'm sorry.",
+            "relevant_genders": [
+              "npc"
+            ]
+          },
+          "no": "All done, boss.  Tell that fisherman to try it in action."
+        }
+      },
+      "no": "I'm still working, boss."
+    },
+    "speaker_effect": {
+      "sentinel": "done",
+      "condition": {
+        "and": [
+          {
+            "dda_expression": {
+              "op": "greater",
+              "args": [
+                {
+                  "op": "divide",
+                  "args": [
+                    {
+                      "op": "subtract",
+                      "args": [
+                        {
+                          "op": "now"
+                        },
+                        {
+                          "op": "variable",
+                          "name": "time_lighthouse_wait",
+                          "actor": "npc"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "literal",
+                      "value": 1
+                    }
+                  ]
+                },
+                {
+                  "op": "literal",
+                  "value": 172800
+                }
+              ]
+            }
+          },
+          {
+            "not": {
+              "npc_has_any_trait": [
+                "Exp_Eng_Electrical1Fake2",
+                "Exp_Eng_Electrical0Fake2"
+              ]
+            }
+          }
+        ]
+      },
+      "effect": {
+        "u_add_var": "global_safe_space_lighthouse_fixed",
+        "value": "ready"
+      }
+    },
+    "responses": [
+      {
+        "truefalsetext": {
+          "true": "Thanks for wasting my time, <name_b>.  <end_talking>",
+          "false": "We're done here.  <end_talking>",
+          "condition": {
+            "npc_has_any_trait": [
+              "Exp_Eng_Electrical1Fake2",
+              "Exp_Eng_Electrical0Fake2"
+            ]
+          }
+        },
+        "topic": "TALK_DONE",
+        "condition": {
+          "and": [
+            {
+              "dda_expression": {
+                "op": "greater",
+                "args": [
+                  {
+                    "op": "divide",
+                    "args": [
+                      {
+                        "op": "subtract",
+                        "args": [
+                          {
+                            "op": "now"
+                          },
+                          {
+                            "op": "variable",
+                            "name": "time_lighthouse_wait",
+                            "actor": "npc"
+                          }
+                        ]
+                      },
+                      {
+                        "op": "literal",
+                        "value": 1
+                      }
+                    ]
+                  },
+                  {
+                    "op": "literal",
+                    "value": 172800
+                  }
+                ]
+              }
+            },
+            {
+              "or": [
+                {
+                  "not": {
+                    "u_has_mission": "MISSION_lighthouse_man_5"
+                  }
+                },
+                {
+                  "npc_has_any_trait": [
+                    "Exp_Eng_Electrical1Fake2",
+                    "Exp_Eng_Electrical0Fake2"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "effect": "follow"
+      },
+      {
+        "text": "Good.",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "npc",
+    "id": "NPC_survivor_lighthouse",
+    "//": "Generic random survivor related to lighthouse family",
+    "class": "NC_NONE",
+    "attitude": 0,
+    "mission": 7,
+    "chat": "TALK_LIGHTHOUSE_SURVIVOR",
+    "faction": "fisherman_family"
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_LIGHTHOUSE_SURVIVOR",
+    "dynamic_line": "Hello!  Glad to meet another survivor.",
+    "responses": [
+      {
+        "text": "Me too.  How did you manage to get here?",
+        "topic": "TALK_LIGHTHOUSE_SURVIVOR1"
+      }
+    ]
+  },
+  {
+    "//": "Could use more variety.",
+    "type": "talk_topic",
+    "id": "TALK_LIGHTHOUSE_SURVIVOR1",
+    "dynamic_line": {
+      "concatenate": [
+        [
+          {
+            "gendered_line": "During one of my night searches of food and supplies, I noticed a bright glow that came from somewhere far away.  I thought that one of the survivors had lit it to indicate their location.  As you can see, I was right.  I managed to find a boat near the nearest shore, on which I set sail.",
+            "relevant_genders": [
+              "npc"
+            ]
+          },
+          {
+            "gendered_line": "I have been sailing on my little boat from coast to coast for a long time.  In truth, the boat was not entirely mine, but it doesn't matter.  That way of life provided me with sufficient safety from the <zombies>, and I managed to get around the sea creatures deftly.  When I saw a distant light, at first, I could not believe my eyes.  Then, I decided to find out what it is.",
+            "relevant_genders": [
+              "npc"
+            ]
+          }
+        ],
+        [
+          {
+            "gendered_line": "  Unfortunately, during my 'voyage' to this lighthouse, luck turned away from me.  I was attacked by some dreadful creature from the underwater depths.  I couldn't fight off him and he dragged my ship to the bottom.  The waves brought me straight to the shore of this little island.  I still don't understand by what miracle I managed to survive, <name_g>.",
+            "relevant_genders": [
+              "npc"
+            ]
+          },
+          {
+            "gendered_line": "  Unfortunately, when I arrived here, I forgot to tie my boat, and during yesterday's storm it was carried off somewhere.  Well, you don't always have to be lucky, right?",
+            "relevant_genders": [
+              "npc"
+            ]
+          },
+          {
+            "gendered_line": "  I sailed here a few days ago.  Mikhail and his family are very hospitable.  Unfortunately, during our joint fishing, we were attacked by a swarm of underwater abominations, and my boat was smashed to pieces.  It was so scary, we could barely sail away on Mikhail's ship.",
+            "relevant_genders": [
+              "npc"
+            ]
+          }
+        ]
+      ]
+    },
+    "responses": [
+      {
+        "text": "I'm glad you are OK.",
+        "topic": "TALK_STRANGER_FRIENDLY",
+        "effect": {
+          "npc_first_topic": "TALK_STRANGER_FRIENDLY"
+        }
+      }
+    ]
+  },
+  {
+    "type": "faction",
+    "id": "fisherman_family",
+    "name": "Fisherman Family",
+    "likes_u": 0,
+    "respects_u": 0,
+    "known_by_u": false,
+    "size": 3,
+    "power": 3,
+    "//": "FIXME: Currently no camps! Spawns via % chance in a bit of nested mapgen, then moves to an existing lighthouse (with no way to know which lighthouse during mapgen!). Will probably need some dynamic camp placement to support.",
+    "fac_food_supply": [
+      [
+        0,
+        {
+          "calories": 2700000000,
+          "vitamins": {
+            "iron": 86400,
+            "calcium": 86400,
+            "vitC": 86400
+          }
+        }
+      ]
+    ],
+    "wealth": 20000,
+    "relations": {
+      "free_merchants": {
+        "knows your voice": true
+      },
+      "old_guard": {
+        "knows your voice": true
+      },
+      "your_followers": {
+        "knows your voice": true
+      },
+      "no_faction": {
+        "knows your voice": true
+      }
+    },
+    "description": "A small family trying to survive in this new world."
+  }
+]

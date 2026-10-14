@@ -1,0 +1,13 @@
+{
+  "staging_sha256": {
+    "npcs/Lighthouse_Family/NPC_lighthouse_girl.json": "bccb61bc4bc0d88f9948ad46b58d5ece9ddc44162d0100bc2a3ff527410f162f",
+    "npcs/Lighthouse_Family/NPC_lighthouse_man.json": "ee345f92cb86c89b88df7651262ef743870ecc47d842625142d8854e9569bac6",
+    "npcs/Lighthouse_Family/NPC_lighthouse_woman.json": "aff160b2bbdf156c6bbae26888bb9866825257292855be8ca5b6c800b9ec2fe1",
+    "npcs/Lighthouse_Family/TALK_fix_lighthouse.json": "97c407a0dfcaccf4c6dfc32849fa672d1e1236379a6721d99f5dcad40235e73e",
+    "npcs/Lighthouse_Family/npc_survivor.json": "3bec9be5e8a29d376a28677ce5cdb463752274deb879f847a763f8450024a1c3",
+    "npcs/factions.json": "e6cb1eb9bd227f0724d5fd0120ca212379a15f3e6d850b63f6d32aa80f2cd866"
+  },
+  "definitions": 41,
+  "scope": "Actual NPC templates, topics, seven missions, class, shop group, faction and survivor update. World placement and full map package remain separate.",
+  "runtime_validated": false
+}

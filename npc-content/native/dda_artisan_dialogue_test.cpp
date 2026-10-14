@@ -13,6 +13,41 @@
 
 #include <sstream>
 
+TEST_CASE( "lighthouse_actual_missions_and_npc_templates_load", "[dda_npc]" ) {
+    clear_all_state();
+    for( const auto *name : { "NPC_lighthouse_man", "NPC_lighthouse_woman", "NPC_lighthouse_girl", "NPC_survivor_lighthouse" } ) {
+        REQUIRE( string_id<npc_template>( name ).is_valid() );
+    }
+    const auto *arrival = mission_type::get( mission_type_id( "MISSION_lighthouse_man_1" ) );
+    const auto *cleanup = mission_type::get( mission_type_id( "MISSION_lighthouse_man_2" ) );
+    const auto *family = mission_type::get( mission_type_id( "MISSION_lighthouse_man_3" ) );
+    const auto *boat = mission_type::get( mission_type_id( "MISSION_lighthouse_man_4" ) );
+    const auto *repair = mission_type::get( mission_type_id( "MISSION_lighthouse_man_5" ) );
+    REQUIRE( arrival );
+    REQUIRE( cleanup );
+    REQUIRE( family );
+    REQUIRE( boat );
+    REQUIRE( repair );
+    CHECK( arrival->follow_up == cleanup->id );
+    CHECK( cleanup->follow_up == family->id );
+    CHECK( family->follow_up == boat->id );
+    CHECK( boat->follow_up == repair->id );
+    REQUIRE( mission_type::get( mission_type_id( "MISSION_lighthouse_woman_0" ) ) );
+    REQUIRE( mission_type::get( mission_type_id( "MISSION_lighthouse_girl_0" ) ) );
+    auto &actor = get_avatar();
+    auto giver = npc{};
+    auto context = mission_goal_condition_context{};
+    context.alpha = &actor;
+    context.beta = &giver;
+    giver.set_value( "npctalk_var_count_cleaning_lighthouse_man", "6" );
+    CHECK_FALSE( cleanup->test_goal_condition( context ) );
+    giver.set_value( "npctalk_var_count_cleaning_lighthouse_man", "7" );
+    CHECK( cleanup->test_goal_condition( context ) );
+    CHECK_FALSE( repair->test_goal_condition( context ) );
+    actor.set_value( "npctalk_var_global_safe_space_lighthouse_fixed", "ready" );
+    CHECK( repair->test_goal_condition( context ) );
+}
+
 TEST_CASE( "lighthouse_engineering_claims_can_be_real_or_false", "[dda_npc]" ) {
     clear_all_state();
     auto &actor = get_avatar();

@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Food ledger compile-test fix and existing BN faction UI compatibility",
+  "stage": "Actual lighthouse community included in native loader checkpoint: 41 definitions",
   "package": "Isolated Road",
-  "native_compilation": "Run 38566753086 failed in test compilation due to private template-list access; regression now uses public faction_manager API",
+  "native_compilation": "Run 38584842374 successful; actual content-loader regression pending",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -78,6 +78,13 @@
         25,
         75
       ],
+      "runtime_validated": false
+    },
+    "native_loader": {
+      "definitions": 41,
+      "npc_templates": 4,
+      "missions": 7,
+      "talk_topic_definitions": 26,
       "runtime_validated": false
     }
   },
