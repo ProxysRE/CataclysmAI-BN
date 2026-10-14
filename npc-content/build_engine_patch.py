@@ -30,7 +30,7 @@ if args.bn_source:
     for directory in ("src", "tests"):
         target = root / "engine_staging" / directory
         target.mkdir(parents=True, exist_ok=True)
-    for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h"):
+    for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h"):
         (root / "engine_staging/src" / name).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
@@ -42,7 +42,7 @@ for name in base_files:
     old = (root / "pinned" / path).read_text().splitlines(keepends=True)
     new = (root / "engine_staging" / path).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
-for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h",
+for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h",
              "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)

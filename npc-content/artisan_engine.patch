@@ -227,7 +227,15 @@
                  // This also marks the member as visited.
 --- a/src/faction.h
 +++ b/src/faction.h
-@@ -42,6 +42,7 @@
+@@ -11,6 +11,7 @@
+ 
+ #include "catalua_type_operators.h"
+ #include "character_id.h"
++#include "faction_food_stock.h"
+ #include "color.h"
+ #include "cursesdef.h"
+ #include "string_id.h"
+@@ -42,6 +43,7 @@
      lets_you_in,
      defend_your_space,
      knows_your_voice,
@@ -235,7 +243,7 @@
      // final value is the count
      rel_types
  };
-@@ -53,7 +54,8 @@
+@@ -53,7 +55,8 @@
          { "guard your stuff", guard_your_stuff },
          { "lets you in", lets_you_in },
          { "defends your space", defend_your_space },
@@ -245,7 +253,7 @@
      }
  };
  } // namespace npc_factions
-@@ -77,7 +79,9 @@
+@@ -77,12 +80,15 @@
          std::string name;
          int likes_u;
          int respects_u;
@@ -255,9 +263,15 @@
          faction_id id;
          std::string desc;
          int size; // How big is our sphere of influence?
+         int power; // General measure of our power
+         int food_supply;  //Total nutritional value held
++        std::vector<dda_port::faction_food_lot> dda_food_supply;
+         int wealth;  //Total trade currency
+         bool lone_wolf_faction; // is this a faction for just one person?
+         itype_id currency; // id of the faction currency
 --- a/src/faction.cpp
 +++ b/src/faction.cpp
-@@ -99,6 +99,7 @@
+@@ -99,12 +99,13 @@
      : name( jsobj.get_string( "name" ) )
      , likes_u( jsobj.get_int( "likes_u" ) )
      , respects_u( jsobj.get_int( "respects_u" ) )
@@ -265,15 +279,23 @@
      , known_by_u( jsobj.get_bool( "known_by_u" ) )
      , id( faction_id( jsobj.get_string( "id" ) ) )
      , desc( jsobj.get_string( "description" ) )
-@@ -113,6 +114,7 @@
+     , size( jsobj.get_int( "size" ) )
+     , power( jsobj.get_int( "power" ) )
+-    , food_supply( jsobj.get_int( "food_supply" ) )
++    , food_supply( jsobj.has_array( "fac_food_supply" ) ? 0 : jsobj.get_int( "food_supply" ) )
+     , wealth( jsobj.get_int( "wealth" ) )
+ {
+     if( jsobj.has_string( "currency" ) ) {
+@@ -113,6 +114,8 @@
          currency = itype_id::NULL_ID();
      }
      lone_wolf_faction = jsobj.get_bool( "lone_wolf_faction", false );
 +    limited_area_claim = jsobj.get_bool( "limited_area_claim", false );
++    jsobj.read( "fac_food_supply", dda_food_supply );
      load_relations( jsobj );
      mon_faction = mfaction_str_id( jsobj.get_string( "mon_faction", "human" ) );
      for( const JsonObject jao : jsobj.get_array( "epilogues" ) ) {
-@@ -430,6 +432,7 @@
+@@ -430,6 +433,7 @@
                      if( fac_temp.id == id ) {
                          elem.second.currency = fac_temp.currency;
                          elem.second.lone_wolf_faction = fac_temp.lone_wolf_faction;
@@ -283,7 +305,7 @@
                          elem.second.mon_faction = fac_temp.mon_faction;
 --- a/src/savegame_json.cpp
 +++ b/src/savegame_json.cpp
-@@ -3666,7 +3666,10 @@
+@@ -3666,7 +3666,12 @@
      jo.read( "name", name );
      jo.read( "likes_u", likes_u );
      jo.read( "respects_u", respects_u );
@@ -291,10 +313,12 @@
 +    jo.read( "trusts_u", trusts_u );
      jo.read( "known_by_u", known_by_u );
 +    limited_area_claim = jo.get_bool( "limited_area_claim", false );
++    dda_food_supply.clear();
++    jo.read( "fac_food_supply", dda_food_supply );
      jo.read( "size", size );
      jo.read( "power", power );
      if( !jo.read( "food_supply", food_supply ) ) {
-@@ -3689,7 +3692,9 @@
+@@ -3689,10 +3694,15 @@
      json.member( "name", name );
      json.member( "likes_u", likes_u );
      json.member( "respects_u", respects_u );
@@ -304,6 +328,12 @@
      json.member( "size", size );
      json.member( "power", power );
      json.member( "food_supply", food_supply );
++    if( !dda_food_supply.empty() ) {
++        json.member( "fac_food_supply", dda_food_supply );
++    }
+     json.member( "wealth", wealth );
+     json.member( "opinion_of", opinion_of );
+     json.member( "relations" );
 --- a/src/activity_type.h
 +++ b/src/activity_type.h
 @@ -78,6 +78,7 @@
@@ -761,6 +791,51 @@
 +
 +} // namespace dda_port
 --- /dev/null
++++ b/src/faction_food_stock.h
+@@ -0,0 +1,42 @@
++#pragma once
++
++#include "json.h"
++#include <cstdint>
++#include <map>
++#include <string>
++
++namespace dda_port {
++
++// DDA stores nutrients in calories (one thousandth of a kcal), with a raw
++// expiration turn. Zero means nonperishable. Keep the complete source ledger.
++struct faction_food_lot {
++    std::int64_t expires = 0;
++    std::int64_t calories = 0;
++    std::map<std::string, int> vitamins;
++
++    auto deserialize( JsonIn &input ) -> void {
++        auto pair = input.get_array();
++        if( pair.size() != 2 ) {
++            pair.throw_error( "Faction food stock requires expiry and nutrients" );
++        }
++        pair.read( 0, expires );
++        const auto nutrients = pair.get_object( 1 );
++        nutrients.read( "calories", calories, true );
++        nutrients.read( "vitamins", vitamins );
++        if( calories < 0 ) {
++            nutrients.throw_error( "Faction food calories cannot be negative" );
++        }
++    }
++
++    auto serialize( JsonOut &output ) const -> void {
++        output.start_array();
++        output.write( expires );
++        output.start_object();
++        output.member( "calories", calories );
++        output.member( "vitamins", vitamins );
++        output.end_object();
++        output.end_array();
++    }
++};
++
++} // namespace dda_port
+--- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
 @@ -0,0 +1,269 @@
 +#include "artisan_bn_bridge.h"
@@ -1034,7 +1109,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_artisan_services_test.cpp
-@@ -0,0 +1,151 @@
+@@ -0,0 +1,179 @@
 +#include "activity_type.h"
 +#include "avatar.h"
 +#include "calendar.h"
@@ -1053,6 +1128,34 @@
 +
 +#include <ranges>
 +#include <sstream>
++
++TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
++    clear_all_state();
++    const auto restore_templates = restore_on_out_of_scope<std::vector<faction_template>>( npc_factions::all_templates );
++    auto input = std::istringstream( R"({"id":"dda_food_stock_test","name":"Fisherman stock","likes_u":0,"respects_u":0,"known_by_u":false,"description":"Source-format food ledger","size":3,"power":3,"wealth":20000,"relations":{},"fac_food_supply":[[0,{"calories":2700000000,"vitamins":{"iron":86400,"calcium":86400,"vitC":86400}}],[123,{"calories":1000,"vitamins":{"iron":1}}]]})" );
++    auto parser = JsonIn( input );
++    faction_template::load( parser.get_object() );
++    auto stock = faction( npc_factions::all_templates.back() );
++    REQUIRE( stock.dda_food_supply.size() == 2 );
++    CHECK( stock.dda_food_supply[0].calories == 2700000000LL );
++    CHECK( stock.dda_food_supply[0].vitamins.at( "vitC" ) == 86400 );
++    CHECK( stock.dda_food_supply[1].expires == 123 );
++    auto buffer = std::stringstream{};
++    auto output = JsonOut( buffer );
++    stock.serialize( output );
++    auto saved = faction{};
++    auto save_parser = JsonIn( buffer );
++    saved.deserialize( save_parser );
++    REQUIRE( saved.dda_food_supply.size() == 2 );
++    CHECK( saved.dda_food_supply[0].calories == 2700000000LL );
++    CHECK( saved.dda_food_supply[0].vitamins == stock.dda_food_supply[0].vitamins );
++    CHECK( saved.dda_food_supply[1].expires == 123 );
++    auto legacy_input = std::istringstream( R"({"id":"dda_food_stock_test","food_supply":99,"relations":{}})" );
++    auto legacy_parser = JsonIn( legacy_input );
++    saved.deserialize( legacy_parser );
++    CHECK( saved.dda_food_supply.empty() );
++    CHECK( saved.food_supply == 99 );
++}
 +
 +TEST_CASE( "artisan_measurements_take_calendar_time", "[dda_npc]" ) {
 +    clear_all_state();
