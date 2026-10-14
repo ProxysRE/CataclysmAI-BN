@@ -9,3 +9,5 @@ All thirteen terrain IDs have matching mapgen definitions, placement coordinates
 The native bridge handles all 23 arithmetic expressions, including NPC-scoped counters and timers. A dedicated mission-goal-context regression checks the cleanup count belongs to the NPC rather than the player. Earlier timer regression passed Windows validation; the new goal regression is pending.
 
 This is not an installable package. Full native mission start/end and map generation tests, BN terrain inheritance and safety flags, safe-space/NPC-location conditions, common-dialogue merging, item/trait closure and the camp engine remain unresolved release gates.
+
+Verified BN compatibility: common-topic response-only extensions append responses and keep original dynamic lines and built-in answers. Electrical expertise/fake-expertise traits and their groups already exist in pinned BN; upstream selections are kept for provenance but excluded from staging installation. BN_EXPERTISE_REFERENCE.json preserves the exact target definitions. Native regressions cover additive topic loading and real/fake engineer conditions; Windows results are pending.

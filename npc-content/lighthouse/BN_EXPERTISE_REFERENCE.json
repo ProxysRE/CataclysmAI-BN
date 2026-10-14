@@ -1,0 +1,142 @@
+{
+  "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "upstream_path": "data/json/npcs/expertise_traits.json",
+  "existing_definitions": [
+    {
+      "type": "mutation",
+      "id": "Exp_Eng_Electrical1",
+      "name": {
+        "str": "Electrical Engineering Training"
+      },
+      "points": 0,
+      "description": "This survivor has some formal training in electrical engineering, but not much experience.",
+      "valid": false,
+      "purifiable": false
+    },
+    {
+      "type": "mutation",
+      "id": "Exp_Eng_Electrical0Fake1",
+      "//": "A fake! This survivor will pretend to know about this subject but doesn't.",
+      "name": {
+        "str": "Electrical Engineering Training"
+      },
+      "points": 0,
+      "description": "This survivor has some formal training in electrical engineering, but not much experience.",
+      "valid": false,
+      "purifiable": false
+    },
+    {
+      "type": "mutation",
+      "id": "Exp_Eng_Electrical2",
+      "name": {
+        "str": "Electrical Engineering Expert"
+      },
+      "points": 0,
+      "description": "This survivor has extensive experience in electrical engineering: an EngD, extensive field experience, or equivalent.",
+      "valid": false,
+      "purifiable": false
+    },
+    {
+      "type": "mutation",
+      "id": "Exp_Eng_Electrical1Fake2",
+      "//": "A fake! This survivor will pretend to know more about this subject than they do.",
+      "name": {
+        "str": "Electrical Engineering Expert"
+      },
+      "points": 0,
+      "description": "This survivor has extensive experience in electrical engineering: an EngD, extensive field experience, or equivalent.",
+      "valid": false,
+      "purifiable": false
+    },
+    {
+      "type": "mutation",
+      "id": "Exp_Eng_Electrical0Fake2",
+      "//": "A fake! This survivor will pretend to know about this subject but doesn't.",
+      "name": {
+        "str": "Electrical Engineering Expert"
+      },
+      "points": 0,
+      "description": "This survivor has extensive experience in electrical engineering: an EngD, extensive field experience, or equivalent.",
+      "valid": false,
+      "purifiable": false
+    },
+    {
+      "//": "This trait group guarantees one of the associated traits - any trait, including fakes.",
+      "type": "trait_group",
+      "id": "Exp_Eng_Electrical_Any",
+      "subtype": "distribution",
+      "traits": [
+        {
+          "trait": "Exp_Eng_Electrical1"
+        },
+        {
+          "trait": "Exp_Eng_Electrical1"
+        },
+        {
+          "trait": "Exp_Eng_Electrical0Fake1"
+        },
+        {
+          "trait": "Exp_Eng_Electrical2"
+        },
+        {
+          "trait": "Exp_Eng_Electrical2"
+        },
+        {
+          "trait": "Exp_Eng_Electrical1Fake2"
+        },
+        {
+          "trait": "Exp_Eng_Electrical1Fake2"
+        },
+        {
+          "trait": "Exp_Eng_Electrical0Fake2"
+        }
+      ]
+    },
+    {
+      "//": "This trait group guarantees one of the associated traits - valid traits only, no fakes.",
+      "type": "trait_group",
+      "id": "Exp_Eng_Electrical_Nofake",
+      "subtype": "distribution",
+      "traits": [
+        {
+          "trait": "Exp_Eng_Electrical1"
+        },
+        {
+          "trait": "Exp_Eng_Electrical1"
+        },
+        {
+          "trait": "Exp_Eng_Electrical2"
+        }
+      ]
+    },
+    {
+      "//": "This trait group guarantees one of the associated traits, distributed in favor of real traits but with a chance of fakes.",
+      "type": "trait_group",
+      "id": "Exp_Eng_Electrical_Group",
+      "subtype": "distribution",
+      "traits": [
+        {
+          "group": "Exp_Eng_Electrical_Nofake"
+        },
+        {
+          "group": "Exp_Eng_Electrical_Any"
+        }
+      ]
+    },
+    {
+      "//": "This trait group guarantees one of the associated traits, distributed in favor of real traits but with a chance of fakes.",
+      "type": "trait_group",
+      "id": "Exp_Eng_Electrical_Group",
+      "subtype": "distribution",
+      "traits": [
+        {
+          "group": "Exp_Eng_Mechanical_Nofake"
+        },
+        {
+          "group": "Exp_Eng_Mechanical_Any"
+        }
+      ]
+    }
+  ],
+  "policy": "Use existing BN electrical expertise; do not reinstall source definitions"
+}

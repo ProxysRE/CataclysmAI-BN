@@ -11,6 +11,7 @@
     "data/json/npcs/Lighthouse_Family/NPC_lighthouse_woman.json": "27646b6cc9d8d2ae7c7a0e8ba24842d463d640edc95573dbab14ef3823dfdccb",
     "data/json/npcs/Lighthouse_Family/TALK_fix_lighthouse.json": "3354b1149bee378c5b00f39460ff88181033b2b280a3e50ae6db9034887e571b",
     "data/json/npcs/Lighthouse_Family/npc_survivor.json": "9ae40a2fb3bd1da47ed9b6f97d942c9f3fcf1f948cef098fe94e3c482ec3a95d",
+    "data/json/npcs/expertise_traits.json": "3c6b2bc49ade5fd22f7e8d4edec31c5e1ea757b2042bc3deab30532cf821897a",
     "data/json/overmap/overmap_special/specials.json": "f6f00172b737a2e483490d84178c0991fc9e5a10fb2d4f56e4a80fb14770093d",
     "data/json/overmap/overmap_terrain/lighthouse_parent.json": "1b90089c7401fb79bcff1ab4ec98fb2a702797ca785f0250bf434cf5ebf488ab",
     "data/json/overmap/overmap_terrain/overmap_terrain.json": "87c491c3e7b4f6dfa468b2e03bdccb5e892ec2bf771642344a5d04e63c6a680a",

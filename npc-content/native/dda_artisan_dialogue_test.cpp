@@ -13,6 +13,52 @@
 
 #include <sstream>
 
+TEST_CASE( "lighthouse_engineering_claims_can_be_real_or_false", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto engineer = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &engineer;
+    auto claim_input = std::istringstream( R"({"npc_has_any_trait":["Exp_Eng_Electrical2","Exp_Eng_Electrical1Fake2","Exp_Eng_Electrical0Fake2"]})" );
+    auto claim_parser = JsonIn( claim_input );
+    const auto claims_expertise = conditional_t<dialogue>( claim_parser.get_object() );
+    auto success_input = std::istringstream( R"({"not":{"npc_has_any_trait":["Exp_Eng_Electrical1Fake2","Exp_Eng_Electrical0Fake2"]}})" );
+    auto success_parser = JsonIn( success_input );
+    const auto honest = conditional_t<dialogue>( success_parser.get_object() );
+    CHECK_FALSE( claims_expertise( conversation ) );
+    const auto fake = trait_id( "Exp_Eng_Electrical0Fake2" );
+    const auto expert = trait_id( "Exp_Eng_Electrical2" );
+    REQUIRE( fake.is_valid() );
+    REQUIRE( expert.is_valid() );
+    engineer.set_mutation( fake );
+    CHECK( claims_expertise( conversation ) );
+    CHECK_FALSE( honest( conversation ) );
+    engineer.unset_mutation( fake );
+    engineer.set_mutation( expert );
+    CHECK( claims_expertise( conversation ) );
+    CHECK( honest( conversation ) );
+}
+
+TEST_CASE( "lighthouse_topic_extensions_keep_bn_responses", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto speaker = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto base_input = std::istringstream( R"({"dynamic_line":"Original BN greeting","responses":[{"text":"Original BN answer","topic":"TALK_DONE"}]})" );
+    auto base_parser = JsonIn( base_input );
+    auto topic = json_talk_topic{};
+    topic.load( base_parser.get_object() );
+    auto extension_input = std::istringstream( R"({"responses":[{"text":"Lighthouse repair","topic":"TALK_DONE"}]})" );
+    auto extension_parser = JsonIn( extension_input );
+    topic.load( extension_parser.get_object() );
+    CHECK( topic.get_dynamic_line( conversation ) == "Original BN greeting" );
+    CHECK_FALSE( topic.gen_responses( conversation ) );
+    CHECK( conversation.responses.size() == 2 );
+}
+
 TEST_CASE( "ported_dynamic_lines_preserve_both_text_branches", "[dda_npc]" ) {
     clear_all_state();
     auto &actor = get_avatar();

@@ -15,6 +15,10 @@ files = {}
 for source in sorted((root/'upstream').rglob('*.json')):
     relative = source.relative_to(root/'upstream')
     files[relative.as_posix()] = hashlib.sha256(source.read_bytes()).hexdigest()
+    if relative.as_posix() == 'data/json/npcs/expertise_traits.json':
+        # The electrical expertise IDs already exist in the pinned BN file.
+        # Keep upstream provenance, but do not duplicate BN mutation/group data.
+        continue
     result = []
     for original in json.loads(source.read_text()):
         types[original['type']] += 1
