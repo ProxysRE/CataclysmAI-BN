@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Lighthouse additive common-dialogue and existing BN engineer expertise compatibility",
+  "stage": "Lighthouse fisherman dock encounter linked; existing BN geometry/content preserved",
   "package": "Isolated Road",
   "native_compilation": "Latest dynamic-line branch preservation checkpoint succeeded: run 38383472576; new topic/expertise native regressions pending",
   "remaining": [
@@ -67,7 +67,17 @@
     "native_goal_context_test": "pending",
     "existing_bn_dependencies": [
       "electrical engineering expertise and fake-expertise traits/groups"
-    ]
+    ],
+    "encounter": {
+      "npc": "NPC_lighthouse_man",
+      "BN_dock_definitions_preserved": 5,
+      "layouts_augmented": 1,
+      "spawn_weights": [
+        25,
+        75
+      ],
+      "runtime_validated": false
+    }
   },
   "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification",
   "pending_native_tests": [

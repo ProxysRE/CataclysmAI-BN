@@ -1,0 +1,12 @@
+{
+  "bn_definitions_preserved": 5,
+  "augmented_layouts": 1,
+  "source_spawn_weight": 25,
+  "source_empty_weight": 75,
+  "spawn_cell": [
+    12,
+    21
+  ],
+  "npc": "NPC_lighthouse_man",
+  "runtime_validated": false
+}

@@ -6,7 +6,8 @@ root=Path(__file__).resolve().parent/'lighthouse'
 entries=[entry for p in (root/'staging').rglob('*.json') for entry in json.loads(p.read_text())]
 terrains={x['id'] for x in entries if x['type']=='overmap_terrain' and 'id' in x}
 maps={x['om_terrain'] for x in entries if x['type']=='mapgen' and isinstance(x.get('om_terrain'),str)}
-assert terrains == maps, {'missing_maps':sorted(terrains-maps),'missing_terrain':sorted(maps-terrains)}
+local_maps={identifier for identifier in maps if identifier.startswith('lighthouse')}
+assert terrains == local_maps, {'missing_maps':sorted(terrains-local_maps),'missing_terrain':sorted(local_maps-terrains)}
 updates={x['update_mapgen_id'] for x in entries if x['type']=='mapgen' and 'update_mapgen_id' in x}
 missions=[x for x in entries if x['type']=='mission_definition']
 assert len(missions)==7

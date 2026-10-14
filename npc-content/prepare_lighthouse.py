@@ -19,6 +19,26 @@ for source in sorted((root/'upstream').rglob('*.json')):
         # The electrical expertise IDs already exist in the pinned BN file.
         # Keep upstream provenance, but do not duplicate BN mutation/group data.
         continue
+    if relative.as_posix() == 'data/json/mapgen/dock.json':
+        # Preserve every BN variant and its content; augment only geometry that
+        # matches the source layout used by DDA for this encounter.
+        baseline = json.loads((root/'BN_DOCK_REFERENCE.json').read_text())
+        result = copy.deepcopy(baseline['definitions'])
+        changes = 0
+        for upstream in json.loads(source.read_text()):
+            spawn = upstream.get('object', {}).get('place_nested', [])
+            if not any('NPC_lighthouse_man_spawn' in str(entry) for entry in spawn):
+                continue
+            matches = [entry for entry in result if entry.get('om_terrain') == upstream.get('om_terrain') and entry.get('object', {}).get('rows') == upstream['object'].get('rows')]
+            if len(matches) != 1:
+                raise ValueError('Dock encounter layout is ambiguous or differs from BN')
+            matches[0]['object'].setdefault('place_nested', []).extend(copy.deepcopy(spawn))
+            changes += 1
+        target = root/'staging'/relative
+        target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+        counts['bn_dock_variants_augmented'] += changes
+        continue
     result = []
     for original in json.loads(source.read_text()):
         types[original['type']] += 1
