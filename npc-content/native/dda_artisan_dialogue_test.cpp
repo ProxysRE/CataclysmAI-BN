@@ -13,6 +13,24 @@
 
 #include <sstream>
 
+TEST_CASE( "lighthouse_survivor_story_joins_independent_random_fragments", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto survivor = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &survivor;
+    auto input = std::istringstream( R"({"and":[["A","B"],["1","2","3"]]})" );
+    auto parser = JsonIn( input );
+    const auto story = dynamic_line_t( parser.get_object() );
+    for( auto index = 0; index < 20; ++index ) {
+        const auto text = story( conversation );
+        REQUIRE( text.size() == 2 );
+        CHECK( ( text[0] == 'A' || text[0] == 'B' ) );
+        CHECK( ( text[1] == '1' || text[1] == '2' || text[1] == '3' ) );
+    }
+}
+
 TEST_CASE( "lighthouse_actual_missions_and_npc_templates_load", "[dda_npc]" ) {
     clear_all_state();
     for( const auto *name : { "NPC_lighthouse_man", "NPC_lighthouse_woman", "NPC_lighthouse_girl", "NPC_survivor_lighthouse" } ) {

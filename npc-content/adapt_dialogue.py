@@ -77,6 +77,9 @@ def expand_eocs(value, definitions, counts, variables=None, stack=()):
 
 
 def adapt(value, counts):
+    if isinstance(value, dict) and set(value) == {"concatenate"}:
+        counts["dynamic_line_concatenation"] += 1
+        return {"and": adapt(value["concatenate"], counts)}
     if isinstance(value, dict) and ("yes" in value or "no" in value):
         # Conditional dynamic lines contain the predicate and both text arms in
         # one object. Translate the predicate without discarding either arm.

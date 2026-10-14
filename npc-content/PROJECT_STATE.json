@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Actual lighthouse community included in native loader checkpoint: 41 definitions",
+  "stage": "Actual lighthouse load fix: DDA concatenate -> BN dynamic-line and",
   "package": "Isolated Road",
-  "native_compilation": "Run 38584842374 successful; actual content-loader regression pending",
+  "native_compilation": "Run 38608598195 compiled but actual community loading failed on concatenate; source-equivalent BN conversion applied",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",

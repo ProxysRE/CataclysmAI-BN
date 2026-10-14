@@ -74,3 +74,6 @@ except ValueError:
 else:
     raise AssertionError("Unsupported shop restrictions must not be silently dropped")
 print("PASS: both artisan shops preserve rigid sampling and six-day restock; legacy metadata retained")
+
+joined = adapt({"concatenate": [["A", "B"], ["1", "2", "3"]]}, collections.Counter())
+assert joined == {"and": [["A", "B"], ["1", "2", "3"]]}

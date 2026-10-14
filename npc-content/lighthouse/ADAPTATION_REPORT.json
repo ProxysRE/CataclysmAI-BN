@@ -17,7 +17,8 @@
     "npc_guard_patrol_enum": 3,
     "string_equality": 19,
     "native_expression": 23,
-    "npc_guard_enum": 1
+    "npc_guard_enum": 1,
+    "dynamic_line_concatenation": 1
   },
   "blocked_definitions": [],
   "required_reviews": [
