@@ -19,6 +19,10 @@ for source in sorted((root/'upstream').rglob('*.json')):
         # The electrical expertise IDs already exist in the pinned BN file.
         # Keep upstream provenance, but do not duplicate BN mutation/group data.
         continue
+    if relative.as_posix() == 'data/json/furniture_and_terrain/terrain-floors-indoor.json':
+        # t_floor_olight already exists in BN; preserve the BN light/roof/bash
+        # behavior rather than installing a competing DDA definition.
+        continue
     if relative.as_posix() == 'data/json/mapgen/dock.json':
         # Preserve every BN variant and its content; augment only geometry that
         # matches the source layout used by DDA for this encounter.

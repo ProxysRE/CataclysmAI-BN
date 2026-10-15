@@ -1,0 +1,302 @@
+{
+  "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "definitions_by_upstream_path": {
+    "data/json/overmap/overmap_terrain/overmap_terrain.json": [
+      {
+        "type": "overmap_terrain",
+        "id": "lighthouse_ground",
+        "name": "lighthouse",
+        "sym": "0",
+        "color": "yellow",
+        "see_cost": 5,
+        "flags": [
+          "SOURCE_SAFETY"
+        ]
+      },
+      {
+        "type": "overmap_terrain",
+        "id": [
+          "lighthouse_z1",
+          "lighthouse_z2",
+          "lighthouse_z4",
+          "lighthouse_z5",
+          "lighthouse_roof"
+        ],
+        "name": "lighthouse",
+        "sym": "0",
+        "color": "yellow",
+        "see_cost": 5
+      },
+      {
+        "type": "overmap_terrain",
+        "id": "lighthouse_z3",
+        "name": "lighthouse",
+        "sym": "&",
+        "color": "yellow",
+        "see_cost": 5
+      },
+      {
+        "type": "overmap_terrain",
+        "id": "lighthouse_basement",
+        "name": "lighthouse cellar",
+        "sym": "0",
+        "looks_like": "basement",
+        "color": "yellow",
+        "see_cost": 5
+      }
+    ],
+    "data/json/overmap/overmap_terrain/overmap_terrain_residential.json": [
+      {
+        "type": "overmap_terrain",
+        "id": [
+          "2Story02_basement",
+          "2storyModern01_basement",
+          "2storyModern02_basement",
+          "2StoryModern03_basement",
+          "2StoryModern04_basement_1",
+          "2StoryModern04_basement_2",
+          "2StoryModern05_basement",
+          "2StoryModern06_basement",
+          "3Story01_basement",
+          "basement_bionic",
+          "basement_bionic_decoy",
+          "basement_chem",
+          "basement_chem2",
+          "basement_messed",
+          "basement_meth",
+          "basement_survival",
+          "basement_weed",
+          "bungalow26_basement",
+          "bungalow27_basement",
+          "bungalow28_basement",
+          "bungalow29_basement",
+          "bungalow30_basement",
+          "garden_house_1_basement",
+          "house_04_basement",
+          "house_05_basement",
+          "house_05ab_basement",
+          "house_08_basement",
+          "house_10_basement",
+          "house_11_basement",
+          "house_12_basement",
+          "house_13_basement",
+          "house_14_basement",
+          "house_15_basement",
+          "house_16_basement",
+          "house_17_basement",
+          "house_19_basement",
+          "house_22_basement",
+          "house_33_basement",
+          "house_2story_basement",
+          "house_crack3_basement",
+          "house_coop01_basement",
+          "house_detatched1_basement",
+          "house_detatched2_basement",
+          "house_detatched3_basement",
+          "house_detatched4_basement",
+          "house_detatched5_basement",
+          "house_detatched6_basement",
+          "house_detatched7_basement",
+          "house_detatched8_basement",
+          "house_detatched9_basement",
+          "house_fence01_basement",
+          "house_fence03_basement",
+          "house_fence05_basement",
+          "house_fence06_basement",
+          "house_fence08_basement",
+          "house_fence09_basement",
+          "house_fence10_basement",
+          "house_fortified_basement",
+          "house_garage2_basement",
+          "house_garage3_basement",
+          "house_garage4_basement",
+          "house_garage5_basement",
+          "house_garage6_basement",
+          "house_garage7_basement",
+          "house_garage8_basement",
+          "house_garage_basement",
+          "house_gardener_basement",
+          "house_modern_1_basement",
+          "house_patio_basement",
+          "house_porch_basement",
+          "house_prepper2_basement",
+          "house_prepper_basement",
+          "house_rv_basement",
+          "house_toolshed_basement",
+          "house_w_1_basement",
+          "house_w_2_basement",
+          "house_w_3_basement",
+          "house_w_4_basement",
+          "house_w_5_basement",
+          "house_w_6_basement",
+          "rural_house2_basement",
+          "urban_13_1",
+          "urban_13_2",
+          "urban_1_1_basement",
+          "urban_1_2_basement",
+          "urban_2_1_basement",
+          "urban_2_2_basement",
+          "urban_3_1_basement",
+          "urban_3_2_basement",
+          "urban_4_1",
+          "urban_4_2",
+          "urban_5_1_basement",
+          "urban_5_2_basement",
+          "urban_6_1_basement",
+          "urban_6_2_basement"
+        ],
+        "copy-from": "generic_city_house_basement"
+      }
+    ],
+    "data/json/mapgen/basement/basements.json": [
+      {
+        "type": "mapgen",
+        "method": "json",
+        "om_terrain": "house_04_basement",
+        "//": "basic basement with a utility room, 2-3 bedrooms, possibly an office, and a large tv/rec room.",
+        "object": {
+          "fill_ter": "t_thconc_floor",
+          "rows": [
+            "^^^^^^^^^^^^^^^^^^^^^^^^",
+            "^######################^",
+            "^#||||||||||||||||||||#^",
+            "^#|9..|....CCCNNNUUUU|#^",
+            "^#|...+.............U|#^",
+            "^#|tCS|.............U|#^",
+            "^#||||||...CCCCCCUUUU|#^",
+            "^#|    ||+|####|||||||#^",
+            "^#|    |    <<  !!   |#^",
+            "^#| !  +             |#^",
+            "^#|    |  !          |#^",
+            "^#||||||             |#^",
+            "^#|    |             |#^",
+            "^#|    +             |#^",
+            "^#|  ! | !           |#^",
+            "^#|    |             |#^",
+            "^#||||||             |#^",
+            "^#|    |   !!        |#^",
+            "^#| !  +          !! |#^",
+            "^#|    |             |#^",
+            "^#|    |     !!      |#^",
+            "^#||||||||||||||||||||#^",
+            "^######################^",
+            "^^^^^^^^^^^^^^^^^^^^^^^^"
+          ],
+          "palettes": [
+            "standard_domestic_palette",
+            "standard_domestic_basement_palette"
+          ],
+          "place_nested": [
+            {
+              "chunks": [
+                [
+                  "utility_3x3_N",
+                  10
+                ],
+                [
+                  "utility_3x3_S",
+                  5
+                ]
+              ],
+              "x": 7,
+              "y": 3
+            },
+            {
+              "chunks": [
+                [
+                  "bedroom_4x4_adult_1_W",
+                  5
+                ],
+                [
+                  "bedroom_4x4_adult_3_S",
+                  5
+                ],
+                [
+                  "home_office_4x4_N",
+                  10
+                ],
+                [
+                  "home_office_4x4_S",
+                  10
+                ]
+              ],
+              "x": 3,
+              "y": 7
+            },
+            {
+              "chunks": [
+                [
+                  "bedroom_4x4_adult_1_N",
+                  5
+                ],
+                [
+                  "bedroom_4x4_adult_1_W",
+                  10
+                ],
+                [
+                  "bedroom_4x4_adult_1_S",
+                  5
+                ],
+                [
+                  "bedroom_4x4_adult_3_S",
+                  10
+                ],
+                [
+                  "bedroom_4x4_adult_3_N",
+                  10
+                ]
+              ],
+              "x": 3,
+              "y": 12
+            },
+            {
+              "chunks": [
+                [
+                  "bedroom_4x4_adult_1_N",
+                  5
+                ],
+                [
+                  "bedroom_4x4_adult_1_W",
+                  10
+                ],
+                [
+                  "bedroom_4x4_adult_1_S",
+                  5
+                ],
+                [
+                  "bedroom_4x4_adult_3_S",
+                  10
+                ],
+                [
+                  "bedroom_4x4_adult_3_N",
+                  10
+                ]
+              ],
+              "x": 3,
+              "y": 17
+            },
+            {
+              "chunks": [
+                [
+                  "recroom_12x12",
+                  5
+                ],
+                [
+                  "tvroom_12x12",
+                  15
+                ],
+                [
+                  "workoutroom_12x12",
+                  5
+                ]
+              ],
+              "x": 9,
+              "y": 9
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "policy": "Use existing BN lighthouse and house_04_basement; do not install duplicate geometry."
+}

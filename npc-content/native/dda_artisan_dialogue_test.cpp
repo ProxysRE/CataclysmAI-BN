@@ -7,11 +7,80 @@
 #include "condition.h"
 #include "dialogue.h"
 #include "json.h"
+#include "lighthouse_quest_updates.h"
+#include "map/map.h"
 #include "mission.h"
+#include "mapgen/mapgen_functions.h"
+#include "overmap/overmapbuffer.h"
+#include "overmap/overmapbuffer_registry.h"
 #include "npc.h"
 #include "state_helpers.h"
+#include "vehicle/vehicle.h"
 
 #include <sstream>
+
+TEST_CASE( "lighthouse_actual_quest_updates_create_boat_and_working_lights", "[dda_npc]" ) {
+    clear_all_state();
+    auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
+    const auto boat_location = tripoint_abs_omt( 352, 350, 0 );
+    buffer.ter_set( boat_location, oter_id( "field" ) );
+    auto boat_input = std::istringstream( dda_port::boat_update );
+    auto boat_parser = JsonIn( boat_input );
+    auto defer = false;
+    const auto boat_update = add_mapgen_update_func( boat_parser.get_object(), defer );
+    REQUIRE_FALSE( defer );
+    boat_update( boat_location, nullptr );
+    auto boat_map = map( 2 );
+    boat_map.load( project_to<coords::sm>( boat_location.xy() ), false );
+    auto canoes = 0;
+    for( const auto &entry : boat_map.get_vehicles() ) {
+        if( entry.v->type == vproto_id( "canoe" ) ) {
+            ++canoes;
+        }
+    }
+    CHECK( canoes == 1 );
+    const auto light_location = tripoint_abs_omt( 354, 350, 0 );
+    buffer.ter_set( light_location, oter_id( "field" ) );
+    auto light_input = std::istringstream( dda_port::repair_update );
+    auto light_parser = JsonIn( light_input );
+    const auto repair_update = add_mapgen_update_func( light_parser.get_object(), defer );
+    REQUIRE_FALSE( defer );
+    repair_update( light_location, nullptr );
+    auto light_map = map( 2 );
+    light_map.load( project_to<coords::sm>( light_location.xy() ), false );
+    CHECK( light_map.ter( tripoint_bub_ms( 11, 12, 0 ) ) == ter_id( "t_floor_olight" ) );
+    CHECK( light_map.ter( tripoint_bub_ms( 13, 13, 0 ) ) == ter_id( "t_floor_olight" ) );
+}
+
+TEST_CASE( "lighthouse_actual_family_dialogue_keeps_loss_and_survival_branches", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto mother = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &mother;
+    const auto topic = talk_topic( "TALK_lighthouse_woman_safe" );
+    actor.set_value( "npctalk_var_flag_death_lighthouse_girl_dead", "no" );
+    CHECK( conversation.dynamic_line( topic ) == "Hello." );
+    actor.set_value( "npctalk_var_flag_death_lighthouse_girl_dead", "yes" );
+    CHECK( conversation.dynamic_line( topic ) == "Poor, poor Angelina…" );
+}
+
+TEST_CASE( "lighthouse_survivor_update_places_real_npc", "[dda_npc]" ) {
+    clear_all_state();
+    auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
+    const auto location = tripoint_abs_omt( 350, 350, 0 );
+    buffer.ter_set( location, oter_id( "field" ) );
+    REQUIRE( buffer.get_npcs_near_omt( location, 0 ).empty() );
+    REQUIRE( run_mapgen_update_func( "lighthouse_man_survivor", location, nullptr, false ) );
+    const auto survivors = buffer.get_npcs_near_omt( location, 0 );
+    REQUIRE( survivors.size() == 1 );
+    CHECK( survivors.front()->get_fac_id() == faction_id( "fisherman_family" ) );
+    CHECK( survivors.front()->chatbin.first_topic == "TALK_LIGHTHOUSE_SURVIVOR" );
+    CHECK( survivors.front()->abs_omt_pos() == location );
+    CHECK( survivors.front()->mission == NPC_MISSION_GUARD );
+    buffer.remove_npc( survivors.front()->getID() );
+}
 
 TEST_CASE( "lighthouse_survivor_story_joins_independent_random_fragments", "[dda_npc]" ) {
     clear_all_state();

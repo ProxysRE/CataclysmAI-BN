@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Actual lighthouse load fix: DDA concatenate -> BN dynamic-line and",
+  "stage": "Integrated lighthouse pass: startup order, real dock spawn, survivor/boat/light map updates and family dialogue",
   "package": "Isolated Road",
-  "native_compilation": "Run 38608598195 compiled but actual community loading failed on concatenate; source-equivalent BN conversion applied",
+  "native_compilation": "Run 38624660734: all 17 cases and 784 assertions passed, but startup errors caused failure. NPC package now loads in standard npcs directory after dependencies.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -86,6 +86,13 @@
       "missions": 7,
       "talk_topic_definitions": 26,
       "runtime_validated": false
+    },
+    "native_world_integration": {
+      "BN_dock_patch": true,
+      "nested_fisherman_spawn": true,
+      "survivor_update_test": "pending_windows",
+      "boat_and_light_update_tests": "pending_windows",
+      "family_dialogue_branch_test": "pending_windows"
     }
   },
   "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification",

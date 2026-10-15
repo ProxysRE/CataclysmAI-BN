@@ -3,6 +3,7 @@
   "BN_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
   "license": "CC-BY-SA-3.0; upstream credits retained",
   "files": {
+    "data/json/furniture_and_terrain/terrain-floors-indoor.json": "acf812f27747991bb649c74cb82c109f8f7a64e2d6765f1706b02a23af538e9c",
     "data/json/mapgen/basecamps/base/fbmc_lighthouse/fbmc_lighthouse.json": "0c6a725b422f6cf9b53befb38896fa31f3e740fe4a5f4293d3d9161b879905da",
     "data/json/mapgen/dock.json": "a06370cfdaf0457d7550e1f01e41d34c90e3d2da9f8cada43002e136b9da0809",
     "data/json/mapgen/lake_buildings/lighthouse.json": "2e74719259ea8721161b4d5e5cf9b1ae4ba7431d5a119ad80b734b0b67ec93da",

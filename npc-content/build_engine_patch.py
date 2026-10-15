@@ -30,12 +30,20 @@ if args.bn_source:
     for directory in ("src", "tests"):
         target = root / "engine_staging" / directory
         target.mkdir(parents=True, exist_ok=True)
-    for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h"):
+    for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h"):
         (root / "engine_staging/src" / name).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
+    (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
+    (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
+    relative = Path("data/json/mapgen/dock.json")
+    content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
+    for directory in ("pinned", "engine_staging"):
+        target = root / directory / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(content)
     subprocess.run(["git", "apply", "--directory=engine_staging", str(root / "artisan_engine.patch")], cwd=root, check=True)
 parts = []
 for name in base_files:
@@ -43,7 +51,7 @@ for name in base_files:
     old = (root / "pinned" / path).read_text().splitlines(keepends=True)
     new = (root / "engine_staging" / path).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
-for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h",
+for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h",
              "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)
@@ -51,8 +59,15 @@ for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "
 path = "data/json/dda_artisan_activities.json"
 parts.extend(difflib.unified_diff([], (root / "native/dda_artisan_activities.json").read_text().splitlines(keepends=True),
                                 "/dev/null", "b/" + path))
-path = "data/json/dda_lighthouse_community.json"
+path = "data/json/npcs/dda_lighthouse_community.json"
 parts.extend(difflib.unified_diff([], (root / "native/dda_lighthouse_community.json").read_text().splitlines(keepends=True),
+                                "/dev/null", "b/" + path))
+path = "data/json/mapgen/dock.json"
+parts.extend(difflib.unified_diff((root / "pinned" / path).read_text().splitlines(keepends=True),
+                                (root / "lighthouse/staging" / path).read_text().splitlines(keepends=True),
+                                "a/" + path, "b/" + path))
+path = "data/json/mapgen/nested/dda_lighthouse_encounter.json"
+parts.extend(difflib.unified_diff([], (root / "native/mapgen/dda_lighthouse_encounter.json").read_text().splitlines(keepends=True),
                                 "/dev/null", "b/" + path))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
