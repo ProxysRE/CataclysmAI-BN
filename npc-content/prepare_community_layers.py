@@ -7,6 +7,7 @@ import copy
 import gzip
 import hashlib
 import json
+import re
 from pathlib import Path
 
 from adapt_dialogue import adapt, expand_eocs
@@ -17,20 +18,30 @@ GROUPS = ('robofac', 'godco', 'campus', 'militia', 'bunker_shop',
 REFERENCES = {
     'chat': 'talk_topic', 'topic': 'talk_topic', 'npc_first_topic': 'talk_topic',
     'followup': 'mission_definition', 'add_mission': 'mission_definition',
-    'u_has_mission': 'mission_definition', 'mission': 'mission_definition',
+    'u_has_mission': 'mission_definition',
     'class': 'npc_class', 'faction': 'faction', 'npc_set_fac': 'faction',
     'run_eocs': 'effect_on_condition', 'queue_eocs': 'effect_on_condition',
     'mapgen_update': 'mapgen', 'update_mapgen_id': 'mapgen',
     'om_terrain': 'overmap_terrain', 'om_special': 'overmap_special',
+    'overmap': 'overmap_terrain', 'npc_at_om_location': 'overmap_terrain',
+    'u_at_om_location': 'overmap_terrain',
+    'palettes': 'palette', 'chunks': 'mapgen',
 }
+
+
+def flat_strings(value):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, list):
+        for child in value:
+            yield from flat_strings(child)
 
 
 def identities(entry):
     value = entry.get('id', entry.get('abstract', entry.get('nested_mapgen_id', entry.get('update_mapgen_id'))))
     if value is None and entry.get('type') == 'mapgen':
         value = entry.get('om_terrain')
-        values = value if isinstance(value, list) else [value]
-        return [('mapgen_terrain', name) for name in values if isinstance(name, str)]
+        return [('mapgen_terrain', name) for name in flat_strings(value)]
     values = value if isinstance(value, list) else [value]
     return [(entry.get('type'), name) for name in values if isinstance(name, str)]
 
@@ -44,6 +55,43 @@ def walk(value, pointer=''):
     elif isinstance(value, list):
         for index, child in enumerate(value):
             yield from walk(child, pointer + '/' + str(index))
+
+
+def typed_references(entry):
+    for key, value, pointer in walk(entry):
+        if key == 'copy-from' and isinstance(value, str):
+            yield entry['type'], value, pointer
+        if key not in REFERENCES:
+            continue
+        kind = REFERENCES[key]
+        if key == 'class' and (entry['type'] == 'mapgen' or '/place_npcs/' in pointer):
+            kind = 'npc'
+        for identifier in flat_strings(value):
+            if key == 'chunks' and identifier == 'null':
+                continue
+            if kind == 'talk_topic' and identifier in ('TALK_DONE', 'TALK_NONE'):
+                continue
+            if kind == 'overmap_terrain' and identifier.startswith('FACTION_CAMP_'):
+                continue
+            yield kind, identifier, pointer
+    if entry['type'] == 'mapgen':
+        for index, owner in enumerate(entry.get('object', {}).get('faction_owner', [])):
+            if isinstance(owner, dict) and isinstance(owner.get('id'), str):
+                yield 'faction', owner['id'], f'/object/faction_owner/{index}/id'
+
+
+def selected_entries(name, entries, manifest):
+    indices = manifest['files'][name].get('selection')
+    return [(i, entry) for i, entry in enumerate(entries) if indices is None or i in indices]
+
+
+def reference_key(kind, identifier, index):
+    key = (kind, identifier)
+    if key not in index and kind in {'overmap_terrain', 'mapgen_terrain'}:
+        base = re.sub(r'_(north|east|south|west)$', '', identifier)
+        if (kind, base) in index:
+            return kind, base
+    return key
 
 
 def read_bundle(root):
@@ -67,12 +115,17 @@ def read_bundle(root):
 
 def prepare(root):
     files = read_bundle(root)
+    manifest = json.loads((root / 'SOURCE_MANIFEST.json').read_text())
     definitions = {}
     baseline = collections.defaultdict(list)
     sources = collections.defaultdict(list)
     parsed = {name: json.loads(content) for name, content in files.items()}
+    # Remove only generated outputs for now-unselected manifest sources.
     for name, entries in parsed.items():
-        for index, entry in enumerate(entries):
+        if name.startswith('dda/') and not selected_entries(name, entries, manifest):
+            (root/'staging'/name.removeprefix('dda/')).unlink(missing_ok=True)
+    for name, entries in parsed.items():
+        for index, entry in selected_entries(name, entries, manifest):
             destination = baseline if name.startswith('bn/') else sources
             for identity in identities(entry):
                 destination[identity].append({'file': name, 'index': index})
@@ -88,7 +141,10 @@ def prepare(root):
     for name, entries in parsed.items():
         if not name.startswith('dda/'):
             continue
-        group = next((group for group in GROUPS if group in name), None)
+        chosen = selected_entries(name, entries, manifest)
+        if not chosen:
+            continue
+        group = manifest['files'][name].get('group') or next((group for group in GROUPS if group in name), None)
         if group is None and 'robofaq' in name:
             group = 'robofac'
         if group is None and 'lumbermill' in name:
@@ -101,31 +157,20 @@ def prepare(root):
         types = collections.Counter(summary['definitions'])
         counts = collections.Counter(summary['translated'])
         output = []
-        for index, original in enumerate(entries):
+        for index, original in chosen:
             types[original['type']] += 1
             for kind, identifier in identities(original):
                 if (kind, identifier) in baseline:
                     report['overlaps'].append({'type': kind, 'id': identifier,
                         'source': name, 'baseline': baseline[(kind, identifier)],
                         'action': 'review_topic_merge' if kind == 'talk_topic' else 'compare_before_install'})
-            for key, value, pointer in walk(original):
-                if key not in REFERENCES:
-                    continue
-                # Numeric NPC mission enum is not a mission definition reference.
-                if key == 'mission' and original['type'] == 'npc':
-                    continue
-                for identifier in value if isinstance(value, list) else [value]:
-                    if not isinstance(identifier, str):
-                        continue
-                    kind = 'npc' if key == 'class' and '/place_npcs/' in pointer else REFERENCES[key]
-                    if kind == 'talk_topic' and identifier in ('TALK_DONE', 'TALK_NONE'):
-                        continue
-                    providers = sources.get((kind, identifier), [])
-                    bn = baseline.get((kind, identifier), [])
-                    report['references'].append({'file': name, 'index': index,
-                        'pointer': pointer, 'type': kind, 'id': identifier,
-                        'status': 'selected_source' if providers else 'selected_bn' if bn else 'external_review',
-                        'source_providers': providers, 'bn_providers': bn})
+            for kind, identifier, pointer in typed_references(original):
+                providers = sources.get(reference_key(kind, identifier, sources), [])
+                bn = baseline.get(reference_key(kind, identifier, baseline), [])
+                report['references'].append({'file': name, 'index': index,
+                    'pointer': pointer, 'type': kind, 'id': identifier,
+                    'status': 'selected_source' if providers else 'selected_bn' if bn else 'external_review',
+                    'source_providers': providers, 'bn_providers': bn})
             current_counts = collections.Counter()
             try:
                 candidate = copy.deepcopy(original)

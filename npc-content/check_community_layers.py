@@ -6,21 +6,24 @@ import hashlib
 import json
 from pathlib import Path
 
-from prepare_community_layers import ROOT, identities, prepare
+from prepare_community_layers import ROOT, identities, prepare, selected_entries
 
 
 def main():
     report = prepare(ROOT)
     files = json.loads(gzip.decompress(base64.b64decode((ROOT/'SOURCE_BUNDLE.json.gz.base64').read_text())))
     blockers = {(x['file'], x['index']) for x in report['blocked']}
+    manifest = json.loads((ROOT/'SOURCE_MANIFEST.json').read_text())
     total = 0
     for name, content in files.items():
         if not name.startswith('dda/'):
             continue
-        original = json.loads(content)
+        original = selected_entries(name, json.loads(content), manifest)
+        if not original:
+            continue
         staged = json.loads((ROOT/'staging'/name.removeprefix('dda/')).read_text())
         assert len(staged) == len(original), name
-        for index, (before, after) in enumerate(zip(original, staged)):
+        for (index, before), after in zip(original, staged):
             assert before['type'] == after['type'], (name, index)
             assert identities(before) == identities(after), (name, index)
             if (name, index) in blockers:
@@ -31,7 +34,7 @@ def main():
         total += len(original)
     assert total == report['totals']['definitions']
     assert set(report['groups']) == {'robofac','godco','campus','militia','bunker_shop',
-                                   'cabin_chemist','lumbermill_employees','scrap_trader'}
+                                   'cabin_chemist','lumbermill_employees','scrap_trader','shared_dependencies'}
     # The baseline Hub and Godco are real conflicts, not packages to overwrite.
     assert any(x['source'].startswith('dda/data/json/npcs/robofac/') for x in report['overlaps'])
     assert any(x['source'].startswith('dda/data/json/npcs/godco/') for x in report['overlaps'])

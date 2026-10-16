@@ -2,7 +2,7 @@
   "DDA_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
   "BN_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
   "license": "CC-BY-SA-3.0; source comments and credits preserved",
-  "bundle_sha256": "0c018f86b68df822b3ce96a876c14d36810e808bd1b6b0d5e65d4dba8a326255",
+  "bundle_sha256": "b045d93d3497eccf391018aeba2963cd3b8f30cfc42aad5cb5723079f7f3ddec",
   "files": {
     "dda/data/json/npcs/bunker_shop/NC_BUNKER_MERCHANT.json": {
       "git_blob_sha": "9288367a954e45cfb2d99a2942e42fdeae745586",
@@ -848,6 +848,319 @@
       "git_blob_sha": "ce3dcafe5d95463f55350722d38960fedfa82641",
       "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
       "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "dda/data/json/overmap/overmap_special/specials.json": {
+      "git_blob_sha": "5870b1fb6a56b031e3756a0fa6ac2b328ba9e895",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        20,
+        25,
+        47,
+        55,
+        59,
+        67,
+        79,
+        80,
+        131,
+        132,
+        139,
+        140,
+        149,
+        159,
+        195,
+        196,
+        197,
+        202,
+        205,
+        206,
+        210,
+        212,
+        213
+      ]
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain.json": {
+      "git_blob_sha": "3ee89a4ee75092307a68b278f51c2c0270de3422",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        3,
+        4,
+        5,
+        37,
+        59,
+        85,
+        86,
+        105,
+        106,
+        114,
+        115,
+        116,
+        117,
+        118
+      ]
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_commercial.json": {
+      "git_blob_sha": "f33b766458b4e4b26227b57b0c38ac8845c19689",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        6,
+        16,
+        18,
+        19,
+        20,
+        44
+      ]
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_public_institutional.json": {
+      "git_blob_sha": "bdc0851187db4e1591b6d2f3d4820710866f6406",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0,
+        9,
+        21,
+        22
+      ]
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_industrial.json": {
+      "git_blob_sha": "af258ac7ad56db6e774ceb31e1ffd93f3bd383e6",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        12,
+        18,
+        19,
+        20,
+        31,
+        39
+      ]
+    },
+    "dda/data/json/npcs/classes.json": {
+      "git_blob_sha": "035118bf22e5e6f98aa1c75e0b46212b6111dd54",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        9,
+        24,
+        27
+      ]
+    },
+    "dda/data/json/npcs/factions.json": {
+      "git_blob_sha": "877d78bd745fc25af46cc6ac5588a6306298aa96",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        12,
+        13,
+        18,
+        22,
+        23,
+        24
+      ]
+    },
+    "dda/data/json/effects_on_condition/mapgen_eocs/godco_mapgen_eocs.json": {
+      "git_blob_sha": "379718d41d948d11e15b87f9a1c7b9449ac7f943",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "dda/data/json/effects_on_condition/npc_eocs/godco_npc_eocs.json": {
+      "git_blob_sha": "b67a01c65f4e64e8dbbfcf9c2f050965ec661988",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        5
+      ]
+    },
+    "dda/data/json/effects_on_condition/npc_eocs/robofac_npc_eocs.json": {
+      "git_blob_sha": "81f13bfc666b542b51b15402dbd32c7b7cb4189c",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        3,
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    "dda/data/json/effects_on_condition/npc_eocs/exodii_npc_eocs.json": {
+      "git_blob_sha": "dbdb9fd817a85fa8aaa7d9d088f4eacb4df8e19c",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": []
+    },
+    "dda/data/json/mapgen/chemist_holdout/chemical_lab.json": {
+      "git_blob_sha": "5f3fc7e295453f660fedc8e0e29a870234f16be1",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "cabin_chemist"
+    },
+    "dda/data/json/mapgen/fortified_scrap_yard/fortified_scrap_yard.json": {
+      "git_blob_sha": "5478aa862a5e08ead0f784c3be970f3e1bda6b69",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "scrap_trader"
+    },
+    "dda/data/json/mapgen/ws_survivor_bunker.json": {
+      "git_blob_sha": "34c9806df4eaeafc860c0d9174bec032328c880e",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "bunker_shop"
+    },
+    "dda/data/json/mapgen/exodii/exo_warehouse.json": {
+      "git_blob_sha": "9c5b0ed52088a7d0fc8da2b197350590429c405b",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0,
+        2
+      ]
+    },
+    "dda/data/json/mapgen/exodii/exodii_nested.json": {
+      "git_blob_sha": "4050b16d3eb1d545ccec34dc9862cd54be785b23",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": []
+    },
+    "bn/data/json/mapgen/fortified_scrap_yard.json": {
+      "git_blob_sha": "647d3043e98ce42110fb8edb1ec3ab3fb19cee76",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "bn/data/json/mapgen/ws_survivor_bunker.json": {
+      "git_blob_sha": "e94d9fe29e08f9f71b61a1bed34fe147987d2fa0",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "bn/data/json/overmap/overmap_special/specials.json": {
+      "git_blob_sha": "133a3ba8eee8e212306a69063699d20d1f68f576",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain.json": {
+      "git_blob_sha": "01ff269fc5ae52f1356f625862a604cd13be5689",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_commercial.json": {
+      "git_blob_sha": "b3c89bdc932c59c4556b432a1eeffa673b5c0243",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_industrial.json": {
+      "git_blob_sha": "e88bb27508b54a887d935c5b7dc7e4ee4e786b4b",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_public_institutional.json": {
+      "git_blob_sha": "d44148f06a3506ae47b1bfe8846afda16b3b9cdb",
+      "repository": "cataclysmbn/Cataclysm-BN",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "dda/data/json/mapgen/occupied_lumber_mill/occupied_lumber_mill.json": {
+      "git_blob_sha": "e6a47e2ed7376ba14cf6ce3e31398ec018f7ebd7",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "lumbermill_employees"
+    },
+    "dda/data/json/mapgen/lab_subway_vent_shaft.json": {
+      "git_blob_sha": "329a006df9ac72ba08311dfe8ca4b17cff4af996",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ]
+    },
+    "dda/data/json/mapgen/microlab/microlab_connector.json": {
+      "git_blob_sha": "74b4c64be01d38d8d8f75be228c362c67ec0ad8d",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0,
+        1
+      ]
+    },
+    "dda/data/json/mapgen/radio_tower.json": {
+      "git_blob_sha": "f205898bda8b32dcf3e247b0a67baa13a4ac0101",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "dda/data/json/mapgen_palettes/radio_tower_palette.json": {
+      "git_blob_sha": "0b1dc3f2f134990139cbd1c50ee376ebafea9a75",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0
+      ]
+    },
+    "dda/data/json/mapgen_palettes/microlab.json": {
+      "git_blob_sha": "a7c6d55b733326ce2100e0bd6f9ae652ad88799a",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        0
+      ]
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json": {
+      "git_blob_sha": "f884b908262b1e95a88dbea35f3a9f8adba6e82b",
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "selection": [
+        4,
+        5,
+        25
+      ]
     }
   }
 }

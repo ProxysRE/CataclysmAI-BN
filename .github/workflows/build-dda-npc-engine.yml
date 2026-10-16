@@ -2,7 +2,11 @@ name: Validate DDA NPC engine for Windows
 on:
   push:
     branches: [port/dda-npc-locations]
-    paths: ['.github/workflows/build-dda-npc-engine.yml', 'npc-content/**']
+    paths:
+      - '.github/workflows/build-dda-npc-engine.yml'
+      - 'npc-content/artisan_engine.patch'
+      - 'npc-content/build_engine_patch.py'
+      - 'npc-content/native/**'
   workflow_dispatch:
 permissions:
   contents: read

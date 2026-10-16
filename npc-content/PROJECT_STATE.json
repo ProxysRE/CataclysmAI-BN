@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Actual cleanup/boat/repair mission lifecycle and NPC/mission save regressions pending Windows",
+  "stage": "Broad community/location dependency layer and rotated-location rescue fixes; Windows regression pending",
   "package": "Isolated Road",
   "native_compilation": "SUCCESS: Windows game/tests built; 20 cases, 798 assertions; no initialization failure",
   "remaining": [
@@ -127,12 +127,12 @@
       "scrap_trader"
     ],
     "totals": {
-      "source_files": 135,
-      "definitions": 1647,
-      "blocked_definitions": 63,
-      "overlap_records": 174,
-      "reference_records": 2551,
-      "external_reference_records": 286
+      "source_files": 156,
+      "definitions": 1762,
+      "blocked_definitions": 70,
+      "overlap_records": 376,
+      "reference_records": 4381,
+      "external_reference_records": 877
     },
     "status": "Prepared/adapted staging; not inserted into native patch",
     "runtime_validated": false,
@@ -141,10 +141,24 @@
       "real_npc_opinion_fields": "implemented; Windows regression pending",
       "full_duration_units": "local compiler checks passed",
       "blocked_before": 185,
-      "blocked_after": 63,
+      "blocked_after": 70,
       "world_scoped_variables": "implemented with master save/load and game setup reset; native Windows test pending",
       "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed"
-    }
+    },
+    "location_expansion": {
+      "selected_support_definitions": 104,
+      "audited_placements": 14,
+      "catalog_files": 199,
+      "staged_dda_files": 156,
+      "scope": "Typed selection and full static placement comparison; generic mapgen and item/monster dependencies remain open",
+      "hub_01": {
+        "dda_terrain_cells": 100,
+        "bn_terrain_cells": 69,
+        "dda_has_extra_z_minus_1": true
+      }
+    },
+    "validation": "Fast pipeline passed from a clean reconstruction using only tracked files and the pinned source bundle",
+    "ci": "Dedicated Python content workflow; Windows compilation limited to native patch/code/test inputs"
   },
   "latest_observed_failure": {
     "run_id": 38915686091,

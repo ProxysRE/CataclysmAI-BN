@@ -1,0 +1,34 @@
+name: Check DDA content layers
+on:
+  push:
+    branches: [port/dda-npc-locations]
+    paths: ['npc-content/**', '.github/workflows/check-dda-content-layers.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dda-content-layers-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconstruct preserved artisan sources
+        run: python npc-content/prepare_isolated_road.py --output npc-content/staging
+      - name: Verify selective location dependencies and layouts
+        run: python npc-content/check_location_layers.py
+      - name: Verify every staged definition and blocked original
+        run: python npc-content/check_community_layers.py
+      - name: Verify dialogue compiler and safe EOC expansion
+        run: python npc-content/check_artisan_adapter.py
+      - name: Verify lighthouse map and encounter links
+        run: |
+          python npc-content/check_lighthouse_links.py
+          python npc-content/check_lighthouse_encounter.py
+      - name: Verify island prison placement
+        run: python npc-content/check_prison_placement.py

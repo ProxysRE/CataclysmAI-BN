@@ -4,6 +4,24 @@
   "baseline_scope": "Selected BN NPC and location files, not a complete BN ID index",
   "dependency_scope": "Selected explicit NPC/dialogue/mission/map references; item, trait and implicit engine references require later closure",
   "groups": {
+    "shared_dependencies": {
+      "files": 17,
+      "definitions": {
+        "effect_on_condition": 8,
+        "mapgen": 21,
+        "palette": 3,
+        "npc_class": 3,
+        "faction": 13,
+        "overmap_special": 23,
+        "overmap_terrain": 33
+      },
+      "translated": {
+        "mapgen_method": 21,
+        "native_expression": 1
+      },
+      "blocked": 8,
+      "status": "staged_unvalidated"
+    },
     "campus": {
       "files": 33,
       "definitions": {
@@ -25,6 +43,48 @@
         "string_equality": 8
       },
       "blocked": 0,
+      "status": "staged_unvalidated"
+    },
+    "cabin_chemist": {
+      "files": 5,
+      "definitions": {
+        "mapgen": 2,
+        "effect_type": 7,
+        "mission_definition": 4,
+        "npc": 1,
+        "npc_class": 1,
+        "talk_topic": 8,
+        "effect_on_condition": 7,
+        "item_group": 1
+      },
+      "translated": {
+        "mapgen_method": 2,
+        "npc_shopkeep_enum": 1,
+        "shopkeeper_group": 1,
+        "string_equality": 15,
+        "native_expression": 1
+      },
+      "blocked": 7,
+      "status": "staged_unvalidated"
+    },
+    "scrap_trader": {
+      "files": 3,
+      "definitions": {
+        "mapgen": 2,
+        "npc": 1,
+        "npc_class": 1,
+        "item_group": 14,
+        "talk_topic": 10,
+        "mission_definition": 5
+      },
+      "translated": {
+        "mapgen_method": 2,
+        "npc_shopkeep_enum": 1,
+        "string_equality": 6,
+        "native_expression": 2,
+        "dda_set_faction_relation": 1
+      },
+      "blocked": 2,
       "status": "staged_unvalidated"
     },
     "godco": {
@@ -54,9 +114,9 @@
       "status": "staged_unvalidated"
     },
     "lumbermill_employees": {
-      "files": 6,
+      "files": 7,
       "definitions": {
-        "mapgen": 8,
+        "mapgen": 11,
         "effect_on_condition": 2,
         "talk_topic": 12,
         "npc": 2,
@@ -66,7 +126,7 @@
         "mission_definition": 5
       },
       "translated": {
-        "mapgen_method": 8,
+        "mapgen_method": 11,
         "string_equality": 4,
         "native_expression": 7,
         "npc_guard_enum": 1,
@@ -116,8 +176,8 @@
         "npc_guard_enum": 28,
         "string_equality": 350,
         "native_skill_threshold": 2,
-        "native_expression": 394,
-        "dda_give_item": 217,
+        "native_expression": 396,
+        "dda_give_item": 218,
         "npc_guard_patrol_enum": 3,
         "npc_shopkeep_enum": 8,
         "shopkeeper_group": 2,
@@ -126,80 +186,44 @@
         "global_string_equality": 25,
         "constant_numeric_assignment": 9,
         "global_string_assignment": 47,
-        "inlined_eoc_calls": 3
+        "inlined_eoc_calls": 4
       },
-      "blocked": 33,
+      "blocked": 32,
       "status": "staged_unvalidated"
     },
     "bunker_shop": {
-      "files": 4,
+      "files": 5,
       "definitions": {
-        "item_group": 13,
+        "item_group": 14,
+        "mapgen": 3,
         "talk_topic": 6,
         "npc_class": 1,
         "npc": 1
       },
       "translated": {
+        "mapgen_method": 3,
         "npc_shopkeep_enum": 1
       },
       "blocked": 0,
       "status": "staged_unvalidated"
-    },
-    "cabin_chemist": {
-      "files": 4,
-      "definitions": {
-        "effect_type": 7,
-        "mission_definition": 4,
-        "npc": 1,
-        "npc_class": 1,
-        "talk_topic": 8,
-        "effect_on_condition": 7,
-        "item_group": 1
-      },
-      "translated": {
-        "npc_shopkeep_enum": 1,
-        "shopkeeper_group": 1,
-        "string_equality": 15,
-        "native_expression": 1
-      },
-      "blocked": 7,
-      "status": "staged_unvalidated"
-    },
-    "scrap_trader": {
-      "files": 2,
-      "definitions": {
-        "npc": 1,
-        "npc_class": 1,
-        "item_group": 14,
-        "talk_topic": 10,
-        "mission_definition": 5
-      },
-      "translated": {
-        "npc_shopkeep_enum": 1,
-        "string_equality": 6,
-        "native_expression": 2,
-        "dda_set_faction_relation": 1
-      },
-      "blocked": 2,
-      "status": "staged_unvalidated"
     }
   },
   "totals": {
-    "source_files": 135,
-    "definitions": 1647,
-    "blocked_definitions": 63,
-    "overlap_records": 174,
-    "reference_records": 2551,
-    "external_reference_records": 286
+    "source_files": 156,
+    "definitions": 1762,
+    "blocked_definitions": 70,
+    "overlap_records": 376,
+    "reference_records": 4381,
+    "external_reference_records": 877
   },
   "blocker_reasons": {
-    "Native EOC definition requires separate lifecycle review": 26,
+    "Native EOC definition requires separate lifecycle review": 34,
     "Scheduled or extended EOC calls require native lifecycle support": 12,
     "Unported activity effect: {'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '30 minutes'}": 2,
     "Unsupported DDA arithmetic: Constant(value='cataclysm')": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_GAME', 'duration': '45 minutes'}": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '4 minutes'}": 1,
-    "Unknown or recursive EOC: GODCO_EDDIE_CANNING_MISSION_ADD": 1,
+    "Conditional EOC cannot be statically expanded: GODCO_EDDIE_CANNING_MISSION_ADD": 1,
     "Unsupported DDA arithmetic: Call(func=Name(id='clamp', ctx=Load()), args=[Call(func=Name(id='num_input', ctx=Load()), args=[Constant(value=''), Name(id='v_item', ctx=Load())], keywords=[]), Constant(value=0), Constant(value=200)], keywords=[])": 1,
     "Unsupported DDA arithmetic: Name(id='v_item', ctx=Load())": 1,
     "Unknown or recursive EOC: EOC_exodii_mission_wh_directions_chance": 2,
@@ -210,7 +234,6 @@
     "Unported activity effect: {'u_assign_activity': 'ACT_CBM_SURGERY', 'duration': '6 hours'}": 1,
     "Unsupported DDA arithmetic: Call(func=Name(id='rand', ctx=Load()), args=[Constant(value=13)], keywords=[])": 1,
     "Inline EOC definitions require native lifecycle support": 1,
-    "Unported activity effect: {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '10 minutes'}": 2,
-    "Unknown or recursive EOC: EOC_ROBOFAC_CHOP_SHOP_CLEAN_UP_MERCS": 1
+    "Unported activity effect: {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '10 minutes'}": 2
   }
 }
