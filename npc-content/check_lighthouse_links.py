@@ -11,6 +11,9 @@ assert terrains == local_maps, {'missing_maps':sorted(terrains-local_maps),'miss
 updates={x['update_mapgen_id'] for x in entries if x['type']=='mapgen' and 'update_mapgen_id' in x}
 missions=[x for x in entries if x['type']=='mission_definition']
 assert len(missions)==7
+family = next(x for x in missions if x['id']=='MISSION_lighthouse_man_3')
+assert family['start']['assign_mission_target']['z'] == -1
+assert family['goal'] == 'MGOAL_ASSASSINATE'  # Death detection; success is explicit dialogue.
 for special in [x for x in entries if x['type']=='overmap_special']:
     points=[tuple(x['point']) for x in special['overmaps']]
     assert len(points)==len(set(points)),special['id']

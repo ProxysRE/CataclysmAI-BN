@@ -1050,7 +1050,8 @@
       },
       "assign_mission_target": {
         "om_terrain": "house_04_basement",
-        "reveal_radius": 2
+        "reveal_radius": 2,
+        "z": -1
       },
       "update_mapgen": {
         "place_npcs": [

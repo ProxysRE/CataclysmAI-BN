@@ -51,6 +51,11 @@ for source in sorted((root/'upstream').rglob('*.json')):
         except (ValueError, SyntaxError) as error:
             entry = original
             blocked.append({'file':relative.as_posix(), 'id':original.get('id'), 'reason':str(error), 'source_preserved':True})
+        if entry.get('id') == 'MISSION_lighthouse_man_3':
+            # BN searches the origin layer unless z is explicit. The existing
+            # house_04_basement is underground; preserve DDA's intended target.
+            entry['start']['assign_mission_target']['z'] = -1
+            counts['bn_family_basement_search_layer'] += 1
         if entry['type'] == 'mapgen':
             entry = copy.deepcopy(entry)
             entry['method'] = 'json'

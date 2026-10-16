@@ -93,14 +93,16 @@
       "Natural dock generation and encounter probability",
       "Save/reload across quest stages",
       "Playable Windows packaging"
-    ]
+    ],
+    "basement_search_layer": -1
   },
   "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification",
   "pending_native_tests": [
     "Boat mission assignment, 249/250 nails, mission serialization, full wrap_up and routed canoe",
     "Cleanup real start/end callbacks and counter cleanup",
     "Repair real turn-in, routed z=5 lights and survivor timer",
-    "Real survivor NPC save/load retains identity, faction, dialogue and variables"
+    "Real survivor NPC save/load retains identity, faction, dialogue and variables",
+    "Family mission assigns a z=-1 basement, spawns both NPCs, escort dialogue completes protection missions once and unlocks father turn-in"
   ],
   "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation",
   "implemented_native_validated": [

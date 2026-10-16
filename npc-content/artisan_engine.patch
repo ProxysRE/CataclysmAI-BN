@@ -890,7 +890,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,557 @@
+@@ -0,0 +1,648 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -925,6 +925,97 @@
 +    REQUIRE( people.size() == 1 );
 +    REQUIRE( people.front()->chatbin.first_topic == "TALK_lighthouse_man_1" );
 +    return people.front();
++}
++
++TEST_CASE( "lighthouse_family_spawns_underground_and_returns_through_dialogue", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    const auto original_id = actor.getID();
++    const auto restore_id = on_out_of_scope( [&actor, original_id]() {
++        actor.setID( original_id, true );
++    } );
++    actor.setID( character_id( 424245 ), true );
++    auto &buffer = get_overmapbuffer( actor.get_dimension() );
++    const auto giver = spawn_lighthouse_fisherman( buffer, tripoint_abs_omt( 362, 350, 0 ) );
++    auto basement = actor.abs_omt_pos() + tripoint_rel_omt( 2, 0, 0 );
++    basement.z() = -1;
++    const auto basement_type = oter_id( "house_04_basement_north" );
++    REQUIRE( basement_type.is_valid() );
++    buffer.ter_set( basement, basement_type );
++    const auto home = actor.abs_omt_pos() + tripoint_rel_omt( 3, 0, 0 );
++    buffer.ter_set( home, oter_id( "lighthouse_ground_north" ) );
++    auto *job = mission::reserve_new( mission_type_id( "MISSION_lighthouse_man_3" ), giver->getID() );
++    REQUIRE( job );
++    giver->chatbin.missions_assigned.push_back( job );
++    giver->chatbin.mission_selected = job;
++    job->assign( actor );
++    REQUIRE( job->get_target() == basement );
++    CHECK( giver->chatbin.first_topic == "TALK_lighthouse_man_family" );
++    const auto family = buffer.get_npcs_near_omt( basement, 0 );
++    REQUIRE( family.size() == 2 );
++    auto father_dialogue = dialogue{};
++    father_dialogue.alpha = &actor;
++    father_dialogue.beta = giver.get();
++    father_dialogue.missions_assigned.push_back( job );
++    const auto has_success = [&]() {
++        father_dialogue.responses.clear();
++        father_dialogue.gen_responses( talk_topic( "TALK_lighthouse_man_family" ) );
++        for( const auto &response : father_dialogue.responses ) {
++            if( response.success.next_topic.id == "TALK_MISSION_SUCCESS" ) {
++                return true;
++            }
++        }
++        return false;
++    };
++    CHECK_FALSE( has_success() );
++    for( const auto &person : family ) {
++        CHECK( person->get_fac_id() == faction_id( "fisherman_family" ) );
++        const auto start = person->chatbin.first_topic;
++        REQUIRE( ( start == "TALK_lighthouse_woman_start" || start == "TALK_lighthouse_girl_start" ) );
++        auto conversation = dialogue{};
++        conversation.alpha = &actor;
++        conversation.beta = person.get();
++        conversation.apply_speaker_effects( talk_topic( start ) );
++        REQUIRE( person->chatbin.missions_assigned.size() == 1 );
++        auto *protection = person->chatbin.missions_assigned.front();
++        // The normal conversation setup selects the speaker's assigned mission.
++        person->chatbin.mission_selected = protection;
++        conversation.missions_assigned.push_back( protection );
++        conversation.apply_speaker_effects( talk_topic( start ) );
++        CHECK( person->chatbin.missions_assigned.size() == 1 );
++        person->setpos( project_to<coords::ms>( home ) );
++        conversation.gen_responses( talk_topic( start ) );
++        auto returned = false;
++        for( const auto &response : conversation.responses ) {
++            if( response.success.next_topic.id == "TALK_lighthouse_woman_safe" ||
++                response.success.next_topic.id == "TALK_lighthouse_girl_safe" ) {
++                response.success.apply( conversation );
++                returned = true;
++                break;
++            }
++        }
++        REQUIRE( returned );
++        CHECK_FALSE( protection->in_progress() );
++        CHECK( person->chatbin.missions_assigned.empty() );
++    }
++    CHECK( actor.get_value( "npctalk_var_flag_safe_lighthouse_woman" ) == "yes" );
++    CHECK( actor.get_value( "npctalk_var_flag_safe_lighthouse_girl" ) == "yes" );
++    CHECK_FALSE( job->is_complete( giver->getID() ) );
++    REQUIRE( has_success() );
++    for( const auto &response : father_dialogue.responses ) {
++        if( response.success.next_topic.id == "TALK_MISSION_SUCCESS" ) {
++            response.success.apply( father_dialogue );
++            break;
++        }
++    }
++    CHECK_FALSE( job->in_progress() );
++    CHECK( actor.get_value( "npctalk_var_flag_help_lighthouse_family_safe" ) == "yes" );
++    CHECK( giver->chatbin.first_topic == "TALK_lighthouse_man_1" );
++    CHECK( job->get_follow_up() == mission_type_id( "MISSION_lighthouse_man_4" ) );
++    for( const auto &person : family ) {
++        buffer.remove_npc( person->getID() );
++    }
++    buffer.remove_npc( giver->getID() );
 +}
 +
 +TEST_CASE( "lighthouse_cleanup_mission_runs_real_start_and_end", "[dda_npc]" ) {
@@ -1654,7 +1745,7 @@
 +]
 --- /dev/null
 +++ b/data/json/npcs/dda_lighthouse_community.json
-@@ -0,0 +1,1954 @@
+@@ -0,0 +1,1955 @@
 +[
 +  {
 +    "type": "npc",
@@ -2874,7 +2965,8 @@
 +      },
 +      "assign_mission_target": {
 +        "om_terrain": "house_04_basement",
-+        "reveal_radius": 2
++        "reveal_radius": 2,
++        "z": -1
 +      },
 +      "update_mapgen": {
 +        "place_npcs": [
