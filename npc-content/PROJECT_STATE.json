@@ -158,7 +158,19 @@
       }
     },
     "validation": "Fast pipeline passed from a clean reconstruction using only tracked files and the pinned source bundle",
-    "ci": "Dedicated Python content workflow; Windows compilation limited to native patch/code/test inputs"
+    "ci": "Dedicated Python content workflow; Windows compilation limited to native patch/code/test inputs",
+    "fast_ci_checkpoint": {
+      "head": "e9a7bd3c35042aa54830acbc68c46c8cee570376",
+      "fast_workflow_run": 38931401541,
+      "status": "success",
+      "source_bundle_file_sha256": "fabe133639fccd00ba0e8cb01321d471376ec9110b14bff6b0987428f3846830",
+      "source_payload_sha256": "b045d93d3497eccf391018aeba2963cd3b8f30cfc42aad5cb5723079f7f3ddec",
+      "definitions_checked": 1762,
+      "blocked_originals_preserved": 70,
+      "linked_placements_checked": 14,
+      "native_windows_validation": "pending",
+      "release_ready": false
+    }
   },
   "latest_observed_failure": {
     "run_id": 38915686091,
