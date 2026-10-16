@@ -48,7 +48,8 @@ TEST_CASE( "community_chance_conditions_read_current_world_values", "[dda_npc]" 
 TEST_CASE( "conditional_community_effects_choose_one_branch_at_execution", "[dda_npc]" ) {
     clear_all_state();
     get_avatar().reset_all_missions();
-    auto &actor = get_avatar();
+    // Character values survive clear_all_state(); keep dialogue variables local to this test.
+    auto actor = npc{};
     auto speaker = npc{};
     auto conversation = dialogue{};
     conversation.alpha = &actor;
@@ -844,7 +845,8 @@ TEST_CASE( "artisan_item_resolution_rejects_invalid_orders", "[dda_npc]" ) {
 TEST_CASE( "artisan_switch_uses_last_qualifying_threshold", "[dda_npc]" ) {
     clear_all_state();
     get_avatar().reset_all_missions();
-    auto &actor = get_avatar();
+    // Character values survive clear_all_state(); keep dialogue variables local to this test.
+    auto actor = npc{};
     auto input = std::istringstream( R"({"effect":{"dda_switch":{"expression":{"op":"variable","name":"thickness"},"cases":[{"threshold":{"op":"literal","value":1.2},"effect":{"u_add_var":"selected","value":"thin"}},{"threshold":{"op":"literal","value":6},"effect":{"u_add_var":"selected","value":"heavy"}},{"threshold":{"op":"literal","value":2},"effect":{"u_add_var":"selected","value":"last"}}]}}})" );
     auto parser = JsonIn( input );
     const auto effect = talk_effect_t( parser.get_object() );
