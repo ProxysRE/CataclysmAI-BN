@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Broad community/location dependency layer and rotated-location rescue fixes; Windows regression pending",
+  "stage": "Reviewed existing-location replacement and dialogue test isolation fix; Windows rerun pending",
   "package": "Isolated Road",
-  "native_compilation": "SUCCESS: Windows game/tests built; 20 cases, 798 assertions; no initialization failure",
+  "native_compilation": "Windows game and test executable compiled in 38961335494; one test failed due to shared-avatar variables. Rerun 38971654551 in progress; current revision not certified.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -43,11 +43,11 @@
     "epilogues": 2
   },
   "last_run": {
-    "head": "962aeb067147586280ed44514099bc18e391c242",
-    "run_id": 38803907775,
-    "status": "success",
-    "test_cases": 20,
-    "assertions": 798
+    "head": "a935c705d87834c252eaff99e072f3ad11146e61",
+    "run_id": 38961335494,
+    "status": "failure",
+    "compilation": "success",
+    "failed_assertions": 1
   },
   "lighthouse": {
     "npcs": 4,
@@ -191,13 +191,14 @@
     }
   },
   "latest_observed_failure": {
-    "run_id": 38915686091,
-    "stage": "native tests; compilation passed",
+    "run_id": 38961335494,
+    "stage": "native tests after successful compilation",
     "issues": [
-      "DDA location condition used unrotated ID through stock BN handler",
-      "Test isolation retained previous avatar missions"
+      "Conditional-effect and switch tests shared an avatar variable"
     ],
-    "fix": "DDA-specific terrain-type condition, rotated regression, mission reset and rescue NPC cleanup; Windows pending"
+    "fix": "Independent local NPC actors in both tests, commit 92567ac0a2e747ea39124e7f044c68ed3a1f5e6d",
+    "rerun": 38971654551,
+    "rerun_status": "in_progress"
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,
@@ -206,5 +207,18 @@
       "Test cleanup called private unload_npcs"
     ],
     "fix": "Cleanup now uses public erase_npc for active fixture NPCs only; pending Windows"
+  },
+  "existing_location_merges": {
+    "commit": "100da81b7adfd8358ae786965ba3ab143496624a",
+    "target": "data/json/mapgen/chemical_lab.json",
+    "mode": "Generated BN replacement, not installed",
+    "changes": [
+      "DDA chair at original chemist position",
+      "Explicit single NPC placement"
+    ],
+    "all_other_bn_data_preserved": true,
+    "trade_zones": "deferred",
+    "local_checks": "passed",
+    "release_ready": false
   }
 }
