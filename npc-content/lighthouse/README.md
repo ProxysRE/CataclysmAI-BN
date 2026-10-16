@@ -1,27 +1,29 @@
-# Lighthouse community checkpoint
+# Lighthouse community for BN
 
-Pinned official DDA sources and original IDs are preserved. Four NPCs, 26 dialogue definitions and seven missions include the lighthouse family, associated survivor, floor-cleaning sequence, family rescue and lighthouse repair. Duplicate topic IDs and shared BN topics require additive merging, not wholesale replacement.
+Status: Windows checkpoint 962aeb067147586280ed44514099bc18e391c242 passed run 38803907775: 20 native test cases, 798 assertions. The loader initializes successfully. This is a tested development checkpoint, not a certified playable release.
 
-Sources now also include both lighthouse maps, island special layouts, all 13 terrain IDs, their abstract parent, camp update maps and two camp recipes. The selected abstract is stored separately; SOURCE_MANIFEST identifies its original upstream file. Run prepare_lighthouse.py and check_lighthouse_links.py to reproduce staging and static link checks.
+## Included
 
-All thirteen terrain IDs have matching mapgen definitions, placement coordinates are unique, and referenced update mapgen IDs resolve within the checkpoint. External mission target house_04_basement remains an explicit dependency for native verification.
+The native patch loads 41 actual definitions: four NPC templates, seven missions, 26 topic definitions, a class, shop group, fisherman_family faction and survivor map update. It augments one matching BN shore-dock layout with the original DDA 25:75 encounter weights and the 1x1 fisherman spawn chunk, preserving all five BN dock definitions.
 
-The native bridge handles all 23 arithmetic expressions, including NPC-scoped counters and timers. A dedicated mission-goal-context regression checks the cleanup count belongs to the NPC rather than the player. Earlier timer regression passed Windows validation; the new goal regression is pending.
+Tests cover actual template/mission loading, follow-up links, cleanup and repair conditions, NPC timers/counters, dynamic line branches, additive BN topic loading, engineer expertise, faction ledger save compatibility, survivor placement, canoe/light update payloads and family dialogue outcomes.
 
-This is not an installable package. Full native mission start/end and map generation tests, BN terrain inheritance and safety flags, safe-space/NPC-location conditions, common-dialogue merging, item/trait closure and the camp engine remain unresolved release gates.
+## Remaining release gates
 
-Verified BN compatibility: common-topic response-only extensions append responses and keep original dynamic lines and built-in answers. Electrical expertise/fake-expertise traits and their groups already exist in pinned BN; upstream selections are kept for provenance but excluded from staging installation. BN_EXPERTISE_REFERENCE.json preserves the exact target definitions. Native regressions cover additive topic loading and real/fake engineer conditions; Windows results are pending.
+A complete quest walkthrough must still verify start/end callbacks, actual family rescue and turn-in, natural dock generation, and saving/reloading across the quest chain. The isolated boat/light payload tests verify modifications, not the complete mission routing. Full Windows packaging remains pending.
 
-World entry checkpoint: Mikhail Frolov appears via NPC_lighthouse_man_spawn at a small lake dock. The pinned DDA shore-dock layout exactly matches its BN counterpart. Preparation augments that one matching BN layout with the original 25:75 spawn/null weights at [12,21], retaining all five BN dock definitions unchanged otherwise. Do not install the standalone DDA dock file alongside the augmented BN file. The fisherman_family faction is preserved; its food schema remains part of the pending faction compatibility work. Existing BN lighthouse variants, including basement variants, also overlap DDA and require an explicit compatible migration/overlay plan.
+## BN compatibility
 
-Native faction checkpoint: DDA fac_food_supply entries now load with 64-bit calorie amounts, vitamin maps and expiration turns and survive faction save/load. Old saves clear missing ledgers and retain their scalar stock. The native regression uses the source family amount of 2,700,000,000 calories, above signed 32-bit range. The ledger is data compatibility at this checkpoint; camp food consumption, expiration processing and legacy UI consumers still need integration.
+Use the existing BN lighthouse maps, house_04_basement rescue destination, engineering traits/groups, canoe and t_floor_olight. Reference snapshots preserve their pinned definitions; do not install competing DDA copies. The larger source/staging collection includes small lighthouse and camp data for later review, outside the currently validated native package.
 
-BN relevance checkpoint: pinned BN faction stock consumers are its status text/color and save/load. Native UI now reads calories from a DDA ledger (calories/1000) using the existing BN thresholds; legacy scalar factions behave as before. Vitamins and expiry are preserved, but no consumption, periodic aging or nutrition simulation is activated. Those consumers are deferred until required by restored camp mechanics. Test compilation was corrected to use public faction_manager instead of the implementation-private template vector.
+Faction ledgers preserve 64-bit calories, vitamins and expiry. Existing BN stock text/color reads their calories; no new consumption or aging simulation is enabled. Camp consumers are deferred until needed by functioning restored camps.
 
-Actual content-loader checkpoint: build_lighthouse_native.py packs 41 reviewed definitions (four NPCs, seven missions, 26 topic definitions, class, shop group, faction and survivor update) into the native patch. The new regression validates real NPC template IDs, the five-part follow-up chain and actual cleanup/repair goal conditions. Unlike earlier compatibility tests, this checkpoint loads the real community JSON. Native startup/consistency and tests are pending. World placement and full map generation remain separate release gates.
+Place the community JSON under data/json/npcs. Loading it from the root JSON directory constructs NPCs before options, enchantments and terrain are ready, causing initialization errors even when later assertions pass.
 
-First actual loader run compiled successfully but rejected the survivor story dynamic line. Pinned DDA concatenate and pinned BN dynamic-line and both concatenate recursively evaluated fragments, with arrays selecting a random alternative. The adapter now translates this key and keeps both independent choice lists. A native regression checks that the joined line has one fragment from each list. Full startup validation is pending rerun.
+## Reproduction and evidence
 
-Integrated world checkpoint: the actual community loads under data/json/npcs rather than the root JSON directory. The previous run passed 17 cases/784 assertions but correctly failed for initialization errors: early root loading constructed NPCs before options/enchantment values and terrain were ready. t_floor_olight is present in pinned BN and must not be redefined.
+Run prepare_lighthouse.py, check_lighthouse_links.py, check_lighthouse_encounter.py and build_lighthouse_native.py from npc-content. Rebuild the native patch using build_engine_patch.py with the pinned BN source checkout. Source selections and aliases are recorded in SOURCE_MANIFEST.json.
 
-The native patch now augments the existing BN dock file and installs the 1x1 fisherman spawn chunk, preserving all original BN dock variants. New native tests execute the actual survivor update and inspect the resulting NPC's faction, dialogue, location and guard mission. Further tests execute boat/light map payloads extracted directly from the real mission definitions and check the resulting canoe and two light tiles. The caller supplies explicit destination coordinates in those tests, so mission routing metadata is omitted from the fixtures. A real loaded family topic also checks survival/loss dialogue branches. These additions await Windows validation; the complete campaign is not yet certified playable.
+VALIDATION.json records the exact successful commit, run and artifact hashes. Run check_validated_checkpoint.py to check that the current native patch and community data still match that evidence. After changes, passing static checks alone does not renew native validation.
+
+Official pins: DDA c19e95bc96d27d8bef8e2e246a63cd4cd6f89974; BN c621aaf42fa182473aad10feea2b55647704dcf1. Upstream credits and CC-BY-SA-3.0 apply to preserved DDA content.

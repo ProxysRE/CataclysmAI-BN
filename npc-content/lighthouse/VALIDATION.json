@@ -1,0 +1,28 @@
+{
+  "checkpoint": {
+    "head": "962aeb067147586280ed44514099bc18e391c242",
+    "run_id": 38803907775,
+    "status": "success",
+    "test_cases": 20,
+    "assertions": 798
+  },
+  "native_patch_sha256": "3ca676c94836d4fddbdd714dceb9f79b365f23e90cb8959e1d653ac5e1b71816",
+  "native_community_sha256": "16d52f52b0448af495def32e7caec3fb7a72cfb679f6c8958694b879a4b5754e",
+  "passed": [
+    "Actual community data load without startup failure",
+    "NPC templates and seven mission definitions",
+    "Mission follow-up links and cleanup/repair predicates",
+    "NPC-owned timers and dynamic dialogue branches",
+    "Survivor world update",
+    "Canoe and light map modification payloads",
+    "Family dialogue survival/loss variants",
+    "Faction stock and legacy save compatibility",
+    "BN dialogue extension preservation"
+  ],
+  "not_certified": [
+    "Complete quest walkthrough and turn-in sequence",
+    "Natural dock generation and random encounter integration",
+    "Save/load over the complete quest chain"
+  ],
+  "release_ready": false
+}

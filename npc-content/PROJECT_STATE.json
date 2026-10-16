@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Integrated lighthouse pass: startup order, real dock spawn, survivor/boat/light map updates and family dialogue",
+  "stage": "Lighthouse native loader and targeted world-update regressions passed; full campaign walkthrough pending",
   "package": "Isolated Road",
-  "native_compilation": "Run 38624660734: all 17 cases and 784 assertions passed, but startup errors caused failure. NPC package now loads in standard npcs directory after dependencies.",
+  "native_compilation": "SUCCESS: Windows game/tests built; 20 cases, 798 assertions; no initialization failure",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -12,26 +12,18 @@
     "Camp consumption/expiry only when required by restored camp functionality"
   ],
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
-  "implemented_unvalidated": [
-    "rigid shop item groups sampled exactly once",
-    "six-day artisan restock interval; stock BN defaults remain three days",
-    "Contained prison quest rewards following pinned DDA receive_item",
-    "Correct BN mission enums: SHOPKEEP=3, GUARD_PATROL=8",
-    "limited_area_claim faction template/save round-trip; ownership consumers pending",
-    "64-bit calorie stock with vitamins and expiration preserved in faction template/save; legacy stock format retained"
-  ],
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
-  "remote_head": "f0523ff46e1f00826e9e459e4c291e05afbd6107",
-  "remote_tree": "215f8059ec6ffa486fe3f1d14c67dbf910b99131",
   "latest_fix_checkpoint": {
-    "head": "f6b5d14a86cf6124cff1d0bc8f563c545e6009cb",
-    "run_id": 38270507639,
-    "status": "success"
+    "head": "962aeb067147586280ed44514099bc18e391c242",
+    "run_id": 38803907775,
+    "status": "success",
+    "test_cases": 20,
+    "assertions": 798
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
     "run_id": 38083564048,
-    "status": "awaiting_windows_validation"
+    "status": "validated_by_latest_checkpoint"
   },
   "quest_item_graph": {
     "definitions": 37,
@@ -51,9 +43,11 @@
     "epilogues": 2
   },
   "last_run": {
-    "id": 38258666159,
-    "compile": "success",
-    "status": "one_failed_stock_quantity_assertion"
+    "head": "962aeb067147586280ed44514099bc18e391c242",
+    "run_id": 38803907775,
+    "status": "success",
+    "test_cases": 20,
+    "assertions": 798
   },
   "lighthouse": {
     "npcs": 4,
@@ -61,12 +55,12 @@
     "talk_topic_definitions": 26,
     "blocked_definitions": 0,
     "runtime_validated": false,
-    "native_timer_test": "pending_windows",
+    "native_timer_test": "passed",
     "terrain_ids": 13,
     "mapgen_definitions": 16,
     "island_specials": 2,
     "camp_recipes": 2,
-    "native_goal_context_test": "pending",
+    "native_goal_context_test": "passed",
     "existing_bn_dependencies": [
       "electrical engineering expertise and fake-expertise traits/groups"
     ],
@@ -85,19 +79,31 @@
       "npc_templates": 4,
       "missions": 7,
       "talk_topic_definitions": 26,
-      "runtime_validated": false
+      "runtime_validated": true
     },
     "native_world_integration": {
       "BN_dock_patch": true,
       "nested_fisherman_spawn": true,
-      "survivor_update_test": "pending_windows",
-      "boat_and_light_update_tests": "pending_windows",
-      "family_dialogue_branch_test": "pending_windows"
-    }
+      "survivor_update_test": "passed",
+      "boat_and_light_update_tests": "passed",
+      "family_dialogue_branch_test": "passed"
+    },
+    "remaining_release_gates": [
+      "Full mission start/end and turn-in walkthrough",
+      "Natural dock generation and encounter probability",
+      "Save/reload across quest stages",
+      "Playable Windows packaging"
+    ]
   },
   "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification",
-  "pending_native_tests": [
-    "Dynamic numeric and string lines select both original text branches"
-  ],
-  "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation"
+  "pending_native_tests": [],
+  "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation",
+  "implemented_native_validated": [
+    "rigid shop item groups sampled exactly once",
+    "six-day artisan restock interval; stock BN defaults remain three days",
+    "Contained prison quest rewards following pinned DDA receive_item",
+    "Correct BN mission enums: SHOPKEEP=3, GUARD_PATROL=8",
+    "limited_area_claim faction template/save round-trip; ownership consumers pending",
+    "64-bit calorie stock with vitamins and expiration preserved in faction template/save; legacy stock format retained"
+  ]
 }
