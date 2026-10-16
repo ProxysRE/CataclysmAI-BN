@@ -34,7 +34,10 @@
         "text": "We're here.",
         "topic": "TALK_lighthouse_girl_safe",
         "condition": {
-          "npc_at_om_location": "lighthouse_ground"
+          "dda_at_om_location": {
+            "actor": "npc",
+            "terrain": "lighthouse_ground"
+          }
         },
         "effect": [
           "mission_success",
@@ -492,7 +495,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_ground"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_ground"
+              }
             }
           ]
         },
@@ -540,7 +546,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_z1"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_z1"
+              }
             }
           ]
         },
@@ -588,7 +597,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_z2"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_z2"
+              }
             }
           ]
         },
@@ -636,7 +648,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_z3"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_z3"
+              }
             }
           ]
         },
@@ -684,7 +699,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_z4"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_z4"
+              }
             }
           ]
         },
@@ -731,7 +749,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_z5"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_z5"
+              }
             }
           ]
         },
@@ -779,7 +800,10 @@
             },
             "at_safe_space",
             {
-              "npc_at_om_location": "lighthouse_ground"
+              "dda_at_om_location": {
+                "actor": "npc",
+                "terrain": "lighthouse_ground"
+              }
             }
           ]
         },
@@ -1435,7 +1459,10 @@
         "text": "We're here.",
         "topic": "TALK_lighthouse_woman_safe",
         "condition": {
-          "npc_at_om_location": "lighthouse_ground"
+          "dda_at_om_location": {
+            "actor": "npc",
+            "terrain": "lighthouse_ground"
+          }
         },
         "effect": [
           "mission_success",
@@ -1605,7 +1632,10 @@
         "text": "We're here.  Ready to start?",
         "topic": "TALK_ENG_LIGHTHOUSE_2",
         "condition": {
-          "npc_at_om_location": "lighthouse_z4"
+          "dda_at_om_location": {
+            "actor": "npc",
+            "terrain": "lighthouse_z4"
+          }
         },
         "effect": [
           "leave",

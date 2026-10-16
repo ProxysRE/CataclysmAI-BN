@@ -15,6 +15,7 @@
   "translated": {
     "bn_dock_variants_augmented": 1,
     "npc_guard_patrol_enum": 3,
+    "overmap_location_type_condition": 10,
     "string_equality": 19,
     "native_expression": 23,
     "bn_family_basement_search_layer": 1,

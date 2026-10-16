@@ -6,6 +6,15 @@ from pathlib import Path
 from adapt_dialogue import adapt, expand_eocs
 from compile_math import compile_expression
 
+assert adapt({'npc_at_om_location': 'lighthouse_ground'}, collections.Counter()) == {
+    'dda_at_om_location': {'actor': 'npc', 'terrain': 'lighthouse_ground'}}
+try:
+    adapt({'u_at_om_location': 'FACTION_CAMP_ANY'}, collections.Counter())
+except ValueError:
+    pass
+else:
+    raise AssertionError('Unimplemented camp condition accepted')
+
 global_read = {'op': 'variable', 'name': 'hub01_shared', 'actor': 'global'}
 assert compile_expression('hub01_shared') == {'expression': global_read}
 assert compile_expression('hub01_shared += 1')['expression']['args'][0] == global_read

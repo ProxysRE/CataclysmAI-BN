@@ -99,6 +99,12 @@ def adapt(value, counts):
         return [adapt(entry, counts) for entry in value]
     if not isinstance(value, dict):
         return value
+    for member, actor in [('npc_at_om_location', 'npc'), ('u_at_om_location', 'player')]:
+        if set(value) == {member} and isinstance(value[member], str):
+            if value[member] in {'FACTION_CAMP_ANY', 'FACTION_CAMP_START'}:
+                raise ValueError('Camp location conditions require the native camp system')
+            counts['overmap_location_type_condition'] += 1
+            return {'dda_at_om_location': {'actor': actor, 'terrain': value[member]}}
     if "math" in value and len(value["math"]) == 1:
         expression = value["math"][0]
         if isinstance(expression, str):

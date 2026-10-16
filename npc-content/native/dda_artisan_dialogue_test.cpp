@@ -20,8 +20,36 @@
 #include <sstream>
 #include <limits>
 
+TEST_CASE( "community_location_conditions_match_rotated_overmap_types", "[dda_npc]" ) {
+    clear_all_state();
+    get_avatar().reset_all_missions();
+    auto &actor = get_avatar();
+    auto speaker = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto input = std::istringstream( R"({"dda_at_om_location":{"actor":"npc","terrain":"lighthouse_ground"}})" );
+    auto parser = JsonIn( input );
+    const auto arrived = conditional_t<dialogue>( parser.get_object() );
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    const auto location = actor.abs_omt_pos() + tripoint_rel_omt( 3, 0, 0 );
+    speaker.set_fake( true );
+    speaker.setpos( project_to<coords::ms>( location ) );
+    for( const auto *name : { "lighthouse_ground_north", "lighthouse_ground_east", "lighthouse_ground_south", "lighthouse_ground_west" } ) {
+        const auto terrain = oter_id( name );
+        REQUIRE( terrain.is_valid() );
+        buffer.ter_set( location, terrain );
+        CHECK( arrived( conversation ) );
+    }
+    buffer.ter_set( location, oter_id( "field" ) );
+    CHECK_FALSE( arrived( conversation ) );
+    conversation.beta = nullptr;
+    CHECK_FALSE( arrived( conversation ) );
+}
+
 TEST_CASE( "community_global_variables_are_shared_and_saved_with_the_world", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     const auto previous = g->dda_global_variables;
     const auto restore_globals = on_out_of_scope( [previous]() {
         g->dda_global_variables = previous;
@@ -80,6 +108,7 @@ TEST_CASE( "community_global_variables_are_shared_and_saved_with_the_world", "[d
 
 TEST_CASE( "community_opinion_expressions_use_real_npc_relationships", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto speaker = npc{};
     speaker.op_of_u.anger = 4;
@@ -137,6 +166,7 @@ static auto spawn_lighthouse_fisherman( overmapbuffer &buffer, const tripoint_ab
 
 TEST_CASE( "lighthouse_family_spawns_underground_and_returns_through_dialogue", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     const auto original_id = actor.getID();
     const auto restore_id = on_out_of_scope( [&actor, original_id]() {
@@ -145,6 +175,9 @@ TEST_CASE( "lighthouse_family_spawns_underground_and_returns_through_dialogue", 
     actor.setID( character_id( 424245 ), true );
     auto &buffer = get_overmapbuffer( actor.get_dimension() );
     const auto giver = spawn_lighthouse_fisherman( buffer, tripoint_abs_omt( 362, 350, 0 ) );
+    const auto remove_giver = on_out_of_scope( [&buffer, giver]() {
+        buffer.remove_npc( giver->getID() );
+    } );
     auto basement = actor.abs_omt_pos() + tripoint_rel_omt( 2, 0, 0 );
     basement.z() = -1;
     const auto basement_type = oter_id( "house_04_basement_north" );
@@ -161,6 +194,12 @@ TEST_CASE( "lighthouse_family_spawns_underground_and_returns_through_dialogue", 
     CHECK( giver->chatbin.first_topic == "TALK_lighthouse_man_family" );
     const auto family = buffer.get_npcs_near_omt( basement, 0 );
     REQUIRE( family.size() == 2 );
+    const auto remove_family = on_out_of_scope( [&buffer, family]() {
+        g->unload_npcs();
+        for( const auto &person : family ) {
+            buffer.remove_npc( person->getID() );
+        }
+    } );
     auto father_dialogue = dialogue{};
     father_dialogue.alpha = &actor;
     father_dialogue.beta = giver.get();
@@ -220,14 +259,11 @@ TEST_CASE( "lighthouse_family_spawns_underground_and_returns_through_dialogue", 
     CHECK( actor.get_value( "npctalk_var_flag_help_lighthouse_family_safe" ) == "yes" );
     CHECK( giver->chatbin.first_topic == "TALK_lighthouse_man_1" );
     CHECK( job->get_follow_up() == mission_type_id( "MISSION_lighthouse_man_4" ) );
-    for( const auto &person : family ) {
-        buffer.remove_npc( person->getID() );
-    }
-    buffer.remove_npc( giver->getID() );
 }
 
 TEST_CASE( "lighthouse_cleanup_mission_runs_real_start_and_end", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     const auto original_id = actor.getID();
     const auto restore_id = on_out_of_scope( [&actor, original_id]() {
@@ -260,6 +296,7 @@ TEST_CASE( "lighthouse_cleanup_mission_runs_real_start_and_end", "[dda_npc]" ) {
 
 TEST_CASE( "lighthouse_repair_mission_turn_in_updates_flags_and_lights", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     const auto original_id = actor.getID();
     const auto restore_id = on_out_of_scope( [&actor, original_id]() {
@@ -294,6 +331,7 @@ TEST_CASE( "lighthouse_repair_mission_turn_in_updates_flags_and_lights", "[dda_n
 
 TEST_CASE( "lighthouse_boat_mission_assignment_save_and_turn_in", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     const auto original_id = actor.getID();
     const auto restore_id = on_out_of_scope( [&actor, original_id]() {
@@ -363,6 +401,7 @@ TEST_CASE( "lighthouse_boat_mission_assignment_save_and_turn_in", "[dda_npc]" ) 
 
 TEST_CASE( "lighthouse_actual_quest_updates_create_boat_and_working_lights", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
     const auto boat_location = tripoint_abs_omt( 352, 350, 0 );
     buffer.ter_set( boat_location, oter_id( "field" ) );
@@ -396,6 +435,7 @@ TEST_CASE( "lighthouse_actual_quest_updates_create_boat_and_working_lights", "[d
 
 TEST_CASE( "lighthouse_actual_family_dialogue_keeps_loss_and_survival_branches", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto mother = npc{};
     auto conversation = dialogue{};
@@ -410,6 +450,7 @@ TEST_CASE( "lighthouse_actual_family_dialogue_keeps_loss_and_survival_branches",
 
 TEST_CASE( "lighthouse_survivor_update_places_real_npc", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
     const auto location = tripoint_abs_omt( 350, 350, 0 );
     buffer.ter_set( location, oter_id( "field" ) );
@@ -440,6 +481,7 @@ TEST_CASE( "lighthouse_survivor_update_places_real_npc", "[dda_npc]" ) {
 
 TEST_CASE( "lighthouse_survivor_story_joins_independent_random_fragments", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto survivor = npc{};
     auto conversation = dialogue{};
@@ -458,6 +500,7 @@ TEST_CASE( "lighthouse_survivor_story_joins_independent_random_fragments", "[dda
 
 TEST_CASE( "lighthouse_actual_missions_and_npc_templates_load", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     for( const auto *name : { "NPC_lighthouse_man", "NPC_lighthouse_woman", "NPC_lighthouse_girl", "NPC_survivor_lighthouse" } ) {
         REQUIRE( string_id<npc_template>( name ).is_valid() );
     }
@@ -495,6 +538,7 @@ TEST_CASE( "lighthouse_actual_missions_and_npc_templates_load", "[dda_npc]" ) {
 
 TEST_CASE( "lighthouse_engineering_claims_can_be_real_or_false", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto engineer = npc{};
     auto conversation = dialogue{};
@@ -522,6 +566,7 @@ TEST_CASE( "lighthouse_engineering_claims_can_be_real_or_false", "[dda_npc]" ) {
 
 TEST_CASE( "lighthouse_topic_extensions_keep_bn_responses", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto speaker = npc{};
     auto conversation = dialogue{};
@@ -541,6 +586,7 @@ TEST_CASE( "lighthouse_topic_extensions_keep_bn_responses", "[dda_npc]" ) {
 
 TEST_CASE( "ported_dynamic_lines_preserve_both_text_branches", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto speaker = npc{};
     auto conversation = dialogue{};
@@ -563,6 +609,7 @@ TEST_CASE( "ported_dynamic_lines_preserve_both_text_branches", "[dda_npc]" ) {
 
 TEST_CASE( "lighthouse_cleanup_goal_reads_mission_giver_counter", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto giver = npc{};
     actor.set_value( "npctalk_var_count_cleaning_lighthouse_man", "7" );
@@ -580,6 +627,7 @@ TEST_CASE( "lighthouse_cleanup_goal_reads_mission_giver_counter", "[dda_npc]" ) 
 
 TEST_CASE( "lighthouse_timer_belongs_to_the_npc", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
     auto &actor = get_avatar();
     auto engineer = npc{};
@@ -606,6 +654,7 @@ TEST_CASE( "lighthouse_timer_belongs_to_the_npc", "[dda_npc]" ) {
 
 TEST_CASE( "prisoner_mission_reward_preserves_its_container", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     actor.wear_item( item::spawn( itype_id( "backpack" ), calendar::turn ), false );
     auto input = std::istringstream( R"({"effect":{"dda_give_item":{"item":{"id":"can_beans"},"count":{"op":"literal","value":1},"container":"can_medium"}}})" );
@@ -624,6 +673,7 @@ TEST_CASE( "prisoner_mission_reward_preserves_its_container", "[dda_npc]" ) {
 
 TEST_CASE( "artisan_native_timer_and_fractional_prices", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
     auto &actor = get_avatar();
     actor.set_value( "npctalk_var_timer_started", "100" );
@@ -650,6 +700,7 @@ TEST_CASE( "artisan_native_timer_and_fractional_prices", "[dda_npc]" ) {
 
 TEST_CASE( "artisan_native_variable_assignment", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     actor.set_value( "npctalk_var_credit", "39" );
     auto input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"credit","expression":{"op":"subtract","args":[{"op":"variable","name":"credit"},{"op":"divide","args":[{"op":"literal","value":77},{"op":"literal","value":2}]}]}}}})" );
@@ -670,6 +721,7 @@ TEST_CASE( "artisan_native_variable_assignment", "[dda_npc]" ) {
 
 TEST_CASE( "artisan_dynamic_reward_and_payment", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     actor.wear_item( item::spawn( itype_id( "backpack" ), calendar::turn ), false );
     actor.set_value( "npctalk_var_ordered_ammo", "9mm" );
@@ -708,6 +760,7 @@ TEST_CASE( "artisan_dynamic_reward_and_payment", "[dda_npc]" ) {
 
 TEST_CASE( "artisan_item_resolution_rejects_invalid_orders", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     const auto specification = dda_port::item_specification{
         .variable = "ordered_item",
@@ -726,6 +779,7 @@ TEST_CASE( "artisan_item_resolution_rejects_invalid_orders", "[dda_npc]" ) {
 
 TEST_CASE( "artisan_switch_uses_last_qualifying_threshold", "[dda_npc]" ) {
     clear_all_state();
+    get_avatar().reset_all_missions();
     auto &actor = get_avatar();
     auto input = std::istringstream( R"({"effect":{"dda_switch":{"expression":{"op":"variable","name":"thickness"},"cases":[{"threshold":{"op":"literal","value":1.2},"effect":{"u_add_var":"selected","value":"thin"}},{"threshold":{"op":"literal","value":6},"effect":{"u_add_var":"selected","value":"heavy"}},{"threshold":{"op":"literal","value":2},"effect":{"u_add_var":"selected","value":"last"}}]}}})" );
     auto parser = JsonIn( input );

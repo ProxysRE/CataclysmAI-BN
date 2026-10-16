@@ -145,5 +145,14 @@
       "world_scoped_variables": "implemented with master save/load and game setup reset; native Windows test pending",
       "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed"
     }
+  },
+  "latest_observed_failure": {
+    "run_id": 38915686091,
+    "stage": "native tests; compilation passed",
+    "issues": [
+      "DDA location condition used unrotated ID through stock BN handler",
+      "Test isolation retained previous avatar missions"
+    ],
+    "fix": "DDA-specific terrain-type condition, rotated regression, mission reset and rescue NPC cleanup; Windows pending"
   }
 }

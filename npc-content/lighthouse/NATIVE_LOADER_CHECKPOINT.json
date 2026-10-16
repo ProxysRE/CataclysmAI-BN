@@ -1,9 +1,9 @@
 {
   "staging_sha256": {
-    "npcs/Lighthouse_Family/NPC_lighthouse_girl.json": "bccb61bc4bc0d88f9948ad46b58d5ece9ddc44162d0100bc2a3ff527410f162f",
-    "npcs/Lighthouse_Family/NPC_lighthouse_man.json": "0618114a7d175c5cfe5308ff662ec3e266487984060574fc25eb99889c024152",
-    "npcs/Lighthouse_Family/NPC_lighthouse_woman.json": "aff160b2bbdf156c6bbae26888bb9866825257292855be8ca5b6c800b9ec2fe1",
-    "npcs/Lighthouse_Family/TALK_fix_lighthouse.json": "97c407a0dfcaccf4c6dfc32849fa672d1e1236379a6721d99f5dcad40235e73e",
+    "npcs/Lighthouse_Family/NPC_lighthouse_girl.json": "f1a3e452ac30b08200d07a9473ac13560f7cb8065c6be390c2a7e5a127f0af0e",
+    "npcs/Lighthouse_Family/NPC_lighthouse_man.json": "9a0b75fec830ba49297fbefc4ed3f593d8714c630b4ad1dc513768ae29878872",
+    "npcs/Lighthouse_Family/NPC_lighthouse_woman.json": "2483715927340eb65e271e0aa237d0adc0ed2bdf17abe9e1a8c3ab066966d4b3",
+    "npcs/Lighthouse_Family/TALK_fix_lighthouse.json": "6702dbb781387fefd2239e295981bd3b17ffd1877e496fc91fa6e4cec6008f65",
     "npcs/Lighthouse_Family/npc_survivor.json": "8f6f45de8377657e7460dfee28535059cae2fe57499bb5788b78868646574a51",
     "npcs/factions.json": "e6cb1eb9bd227f0724d5fd0120ca212379a15f3e6d850b63f6d32aa80f2cd866"
   },

@@ -34,7 +34,10 @@
         "text": "We're here.",
         "topic": "TALK_lighthouse_girl_safe",
         "condition": {
-          "npc_at_om_location": "lighthouse_ground"
+          "dda_at_om_location": {
+            "actor": "npc",
+            "terrain": "lighthouse_ground"
+          }
         },
         "effect": [
           "mission_success",
