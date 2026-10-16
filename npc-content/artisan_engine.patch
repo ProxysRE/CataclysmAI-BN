@@ -86,7 +86,7 @@
  #include <map>
  #include <memory>
  #include <ostream>
-@@ -3000,7 +3003,179 @@
+@@ -3000,7 +3003,198 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
@@ -211,6 +211,25 @@
 +                }
 +            }
 +        } );
++    } else if( jo.has_object( "dda_if" ) ) {
++        const auto specification = jo.get_object( "dda_if" );
++        auto condition = std::function<bool( const dialogue & )>{};
++        read_condition<dialogue>( specification, "condition", condition, false );
++        const auto read_branch = []( const JsonObject &branch ) {
++            if( branch.has_member( "opinion" ) || branch.has_member( "mission_opinion" ) || branch.has_member( "topic" ) ) {
++                branch.throw_error( "Conditional EOC branches accept effect actions only" );
++            }
++            return talk_effect_t( branch );
++        };
++        const auto yes = read_branch( specification.get_object( "then" ) );
++        const auto no = read_branch( specification.get_object( "else" ) );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [condition, yes, no]( const auto &d ) {
++                for( const auto &effect : ( condition( d ) ? yes : no ).effects ) {
++                    effect( d );
++                }
++            }
++        } );
 +    } else if( jo.has_object( "dda_set_npc_opinion" ) ) {
 +        const auto specification = jo.get_object( "dda_set_npc_opinion" );
 +        const auto name = specification.get_string( "target" );
@@ -267,7 +286,7 @@
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
-@@ -3502,6 +3677,13 @@
+@@ -3502,6 +3696,13 @@
          conditional_t<dialogue> dcondition;
          const dynamic_line_t yes = from_member( jo, "yes" );
          const dynamic_line_t no = from_member( jo, "no" );
@@ -566,16 +585,32 @@
  
 --- a/src/game.h
 +++ b/src/game.h
-@@ -185,6 +185,9 @@
-     public:
+@@ -186,6 +186,9 @@
          game();
          ~game();
-+
+ 
 +        // DDA community quest state shared by all characters in this world.
 +        std::map<std::string, std::string> dda_global_variables;
- 
++
          // submap_load_listener interface
          auto on_submap_loaded( const tripoint_abs_sm &pos, const dimension_id &dim_id ) -> void override;
+         auto on_submap_unloaded( const tripoint_abs_sm &pos,
+@@ -211,6 +214,7 @@
+         auto unserialize( std::istream &fin ) -> bool; // for load
+         void unserialize_dimension_data( std::istream &fin ); // for load
+         void unserialize_master( std::istream &fin ); // for load
++        void serialize_master( std::ostream &fout );
+ 
+         /** write statistics to stdout and @return true if successful */
+         bool dump_stats( const std::string &what, dump_mode mode, const std::vector<std::string> &opts );
+@@ -909,7 +913,6 @@
+         bool load_dimension_data();
+         void reset_npc_dispositions();
+         void serialize_dimension_data( std::ostream &fout );
+-        void serialize_master( std::ostream &fout );
+         // returns false if saving failed for whatever reason
+         bool save_artifacts();
+         // returns false if saving failed for whatever reason
 --- a/src/game.cpp
 +++ b/src/game.cpp
 @@ -684,6 +684,7 @@
@@ -619,10 +654,11 @@
  
 --- /dev/null
 +++ b/src/artisan_expression.h
-@@ -0,0 +1,115 @@
+@@ -0,0 +1,135 @@
 +#pragma once
 +
 +#include <cmath>
++#include <algorithm>
 +#include <expected>
 +#include <optional>
 +#include <string>
@@ -644,6 +680,7 @@
 +struct evaluation_context {
 +    const std::unordered_map<std::string, double> &variables;
 +    double now_seconds = 0;
++    double cataclysm_seconds = 0;
 +};
 +
 +/// Return an error for malformed or non-finite calculations rather than granting rewards.
@@ -660,6 +697,18 @@
 +    }
 +    if( node.op == "now" && node.args.empty() ) {
 +        return valid_number( context.now_seconds );
++    }
++    if( node.op == "cataclysm" && node.args.empty() ) {
++        return valid_number( context.cataclysm_seconds );
++    }
++    if( node.op == "clamp" && node.args.size() == 3 ) {
++        const auto value = evaluate( node.args[0], context );
++        const auto low = evaluate( node.args[1], context );
++        const auto high = evaluate( node.args[2], context );
++        if( !value || !low || !high || *low > *high ) {
++            return std::unexpected( "Invalid clamp arguments" );
++        }
++        return std::clamp( *value, *low, *high );
 +    }
 +    if( node.op == "variable" && node.args.empty() ) {
 +        const auto found = context.variables.find( node.global_actor ? "@global:" + node.name : node.npc_actor ? "@npc:" + node.name : node.name );
@@ -700,6 +749,12 @@
 +        if( node.op == "add" ) {
 +            return valid_number( *lhs + *rhs );
 +        }
++        if( node.op == "min" ) {
++            return std::min( *lhs, *rhs );
++        }
++        if( node.op == "max" ) {
++            return std::max( *lhs, *rhs );
++        }
 +        if( node.op == "subtract" ) {
 +            return valid_number( *lhs - *rhs );
 +        }
@@ -737,7 +792,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/src/artisan_bn_bridge.h
-@@ -0,0 +1,170 @@
+@@ -0,0 +1,172 @@
 +#pragma once
 +
 +#include "artisan_expression.h"
@@ -780,11 +835,12 @@
 +        }
 +    }
 +    const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var";
-+    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion";
++    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion" || result.op == "cataclysm";
++    const auto ternary = result.op == "clamp";
 +    const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
 +                        result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
-+                        result.op == "less" || result.op == "less_equal";
-+    if( ( !unary && !leaf && !binary ) || result.args.size() != ( unary ? 1U : binary ? 2U : 0U ) ) {
++                        result.op == "less" || result.op == "less_equal" || result.op == "min" || result.op == "max";
++    if( ( !unary && !leaf && !binary && !ternary ) || result.args.size() != ( unary ? 1U : binary ? 2U : ternary ? 3U : 0U ) ) {
 +        object.throw_error( "Invalid artisan expression operation or arity" );
 +    }
 +    if( result.op == "has_var" && result.args[0].op != "variable" ) {
@@ -875,7 +931,8 @@
 +    }
 +    return evaluate( node, {
 +        .variables = values,
-+        .now_seconds = to_seconds<double>( calendar::turn - calendar::turn_zero )
++        .now_seconds = to_seconds<double>( calendar::turn - calendar::turn_zero ),
++        .cataclysm_seconds = to_seconds<double>( calendar::start_of_cataclysm - calendar::turn_zero )
 +    } );
 +}
 +
@@ -1072,7 +1129,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,803 @@
+@@ -0,0 +1,840 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -1094,6 +1151,43 @@
 +
 +#include <sstream>
 +#include <limits>
++
++TEST_CASE( "conditional_community_effects_choose_one_branch_at_execution", "[dda_npc]" ) {
++    clear_all_state();
++    get_avatar().reset_all_missions();
++    auto &actor = get_avatar();
++    auto speaker = npc{};
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &speaker;
++    auto input = std::istringstream( R"({"effect":{"dda_if":{"condition":{"u_has_var":"ready","value":"yes"},"then":{"effect":[{"u_add_var":"selected","value":"true"},{"dda_set_npc_opinion":{"target":"trust","expression":{"op":"add","args":[{"op":"npc_opinion","name":"trust"},{"op":"literal","value":1}]}}}]},"else":{"effect":{"u_add_var":"selected","value":"false"}}}}})" );
++    auto parser = JsonIn( input );
++    const auto conditional = talk_effect_t( parser.get_object() );
++    REQUIRE( conditional.effects.size() == 1 );
++    speaker.op_of_u.trust = 0;
++    conditional.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_selected" ) == "false" );
++    CHECK( speaker.op_of_u.trust == 0 );
++    actor.set_value( "npctalk_var_ready", "yes" );
++    conditional.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_selected" ) == "true" );
++    CHECK( speaker.op_of_u.trust == 1 );
++    actor.set_value( "npctalk_var_ready", "no" );
++    conditional.effects.front()( conversation );
++    CHECK( actor.get_value( "npctalk_var_selected" ) == "false" );
++    CHECK( speaker.op_of_u.trust == 1 );
++}
++
++TEST_CASE( "community_cataclysm_age_uses_world_calendar_origin", "[dda_npc]" ) {
++    clear_all_state();
++    get_avatar().reset_all_missions();
++    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
++    calendar::turn = calendar::start_of_cataclysm + 60_days;
++    auto input = std::istringstream( R"({"op":"divide","args":[{"op":"subtract","args":[{"op":"now"},{"op":"cataclysm"}]},{"op":"literal","value":86400}]})" );
++    auto parser = JsonIn( input );
++    const auto age = dda_port::read_expression( parser.get_object() );
++    CHECK( dda_port::evaluate_for_player( age, get_avatar() ) == 60.0 );
++}
 +
 +TEST_CASE( "community_location_conditions_match_rotated_overmap_types", "[dda_npc]" ) {
 +    clear_all_state();

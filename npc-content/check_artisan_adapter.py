@@ -22,6 +22,9 @@ assert compile_expression('hub01_shared++')['actor'] == 'global'
 assert compile_expression('has_var(hub01_shared)')['expression']['args'] == [global_read]
 assert compile_expression('true')['expression'] == {'op': 'literal', 'value': 1}
 assert compile_expression('false')['expression'] == {'op': 'literal', 'value': 0}
+assert compile_expression("time_since('cataclysm', 'unit':'days')")['expression']['args'][0]['args'][1] == {'op':'cataclysm'}
+assert compile_expression('max(exodii_mission_wh_chance, 1)')['expression']['op'] == 'max'
+assert compile_expression('clamp(u_count, 0, 200)')['expression']['op'] == 'clamp'
 assert compile_expression('n_hub01_shared')['expression']['actor'] == 'npc'
 global_line = adapt({'compare_string': ['yes', {'global_val': 'hub01_trade'}],
                      'yes': 'unlocked', 'no': 'locked'}, collections.Counter())
@@ -30,15 +33,26 @@ assert global_line == {'dda_global_string': {'name': 'hub01_trade', 'value': 'ye
 single = {'single': {'id': 'single', 'effect': {'u_add_var': 'done', 'value': 'yes'}}}
 assert expand_eocs({'run_eocs': 'single'}, single, collections.Counter()) == [single['single']['effect']]
 for call, definitions in [({'run_eocs': 'single', 'time_in_future': '14 days'}, single),
-                          ({'run_eocs': [{'id': 'inline', 'effect': []}]}, {}),
                           ({'run_eocs': 'recurring'}, {'recurring': {'effect': [], 'eoc_type': 'RECURRING'}}),
-                          ({'run_eocs': 'conditional'}, {'conditional': {'effect': [], 'condition': {'expects_vars': ['x'], 'and': []}}})]:
+                          ({'run_eocs': 'extended'}, {'extended': {'effect': [], 'recurrence': '1 hour'}})]:
     try:
         expand_eocs(call, definitions, collections.Counter(), {'x': 1})
     except ValueError:
         pass
     else:
         raise AssertionError('Unsafe EOC expansion accepted')
+conditional = {'id': 'conditional', 'condition': {'math': ['hub01_shared == 1']},
+               'effect': {'u_add_var': 'branch', 'value': 'yes'},
+               'false_effect': {'u_add_var': 'branch', 'value': 'no'}}
+expanded = expand_eocs({'run_eocs': [conditional]}, {}, collections.Counter())
+assert expanded[0]['dda_if']['condition'] == conditional['condition']
+assert expanded[0]['dda_if']['then']['effect'] == [conditional['effect']]
+assert expanded[0]['dda_if']['else']['effect'] == [conditional['false_effect']]
+outer = {**conditional, 'effect': [{'run_eocs':'single'}, {'run_eocs':'single'}]}
+nested = expand_eocs({'run_eocs': [outer]}, single, collections.Counter())
+assert nested[0]['dda_if']['then']['effect'] == [single['single']['effect']]*2
+converted = adapt(expanded, collections.Counter())
+assert converted[0]['dda_if']['condition']['dda_expression']['op'] == 'equal'
 for expression in ('v_item', '_context', 'x_unknown', 'pi = 3'):
     try:
         compile_expression(expression)

@@ -42,4 +42,10 @@ auto main() -> int {
     const auto shared = expression{ .op = "variable", .name = "shared", .global_actor = true };
     assert( dda_port::evaluate( shared, context ) == 2.5 );
     assert( dda_port::evaluate( expression{ .op = "has_var", .args = { shared } }, context ) == 1 );
+    assert( dda_port::evaluate( binary( "max", literal( -3.0 ), literal( 1.0 ) ), context ) == 1 );
+    assert( dda_port::evaluate( binary( "min", literal( -3.0 ), literal( 1.0 ) ), context ) == -3 );
+    assert( dda_port::evaluate( expression{ .op = "clamp", .args = { literal( 300.0 ), literal( 0.0 ), literal( 200.0 ) } }, context ) == 200 );
+    assert( !dda_port::evaluate( expression{ .op = "clamp", .args = { literal( 3.0 ), literal( 10.0 ), literal( 0.0 ) } }, context ) );
+    const auto origin = expression{ .op = "cataclysm" };
+    assert( dda_port::evaluate( origin, { .variables = variables, .cataclysm_seconds = 100 } ) == 100 );
 }

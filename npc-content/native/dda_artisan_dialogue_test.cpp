@@ -20,6 +20,43 @@
 #include <sstream>
 #include <limits>
 
+TEST_CASE( "conditional_community_effects_choose_one_branch_at_execution", "[dda_npc]" ) {
+    clear_all_state();
+    get_avatar().reset_all_missions();
+    auto &actor = get_avatar();
+    auto speaker = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto input = std::istringstream( R"({"effect":{"dda_if":{"condition":{"u_has_var":"ready","value":"yes"},"then":{"effect":[{"u_add_var":"selected","value":"true"},{"dda_set_npc_opinion":{"target":"trust","expression":{"op":"add","args":[{"op":"npc_opinion","name":"trust"},{"op":"literal","value":1}]}}}]},"else":{"effect":{"u_add_var":"selected","value":"false"}}}}})" );
+    auto parser = JsonIn( input );
+    const auto conditional = talk_effect_t( parser.get_object() );
+    REQUIRE( conditional.effects.size() == 1 );
+    speaker.op_of_u.trust = 0;
+    conditional.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_selected" ) == "false" );
+    CHECK( speaker.op_of_u.trust == 0 );
+    actor.set_value( "npctalk_var_ready", "yes" );
+    conditional.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_selected" ) == "true" );
+    CHECK( speaker.op_of_u.trust == 1 );
+    actor.set_value( "npctalk_var_ready", "no" );
+    conditional.effects.front()( conversation );
+    CHECK( actor.get_value( "npctalk_var_selected" ) == "false" );
+    CHECK( speaker.op_of_u.trust == 1 );
+}
+
+TEST_CASE( "community_cataclysm_age_uses_world_calendar_origin", "[dda_npc]" ) {
+    clear_all_state();
+    get_avatar().reset_all_missions();
+    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
+    calendar::turn = calendar::start_of_cataclysm + 60_days;
+    auto input = std::istringstream( R"({"op":"divide","args":[{"op":"subtract","args":[{"op":"now"},{"op":"cataclysm"}]},{"op":"literal","value":86400}]})" );
+    auto parser = JsonIn( input );
+    const auto age = dda_port::read_expression( parser.get_object() );
+    CHECK( dda_port::evaluate_for_player( age, get_avatar() ) == 60.0 );
+}
+
 TEST_CASE( "community_location_conditions_match_rotated_overmap_types", "[dda_npc]" ) {
     clear_all_state();
     get_avatar().reset_all_missions();

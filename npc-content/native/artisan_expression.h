@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <algorithm>
 #include <expected>
 #include <optional>
 #include <string>
@@ -22,6 +23,7 @@ struct expression {
 struct evaluation_context {
     const std::unordered_map<std::string, double> &variables;
     double now_seconds = 0;
+    double cataclysm_seconds = 0;
 };
 
 /// Return an error for malformed or non-finite calculations rather than granting rewards.
@@ -38,6 +40,18 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
     }
     if( node.op == "now" && node.args.empty() ) {
         return valid_number( context.now_seconds );
+    }
+    if( node.op == "cataclysm" && node.args.empty() ) {
+        return valid_number( context.cataclysm_seconds );
+    }
+    if( node.op == "clamp" && node.args.size() == 3 ) {
+        const auto value = evaluate( node.args[0], context );
+        const auto low = evaluate( node.args[1], context );
+        const auto high = evaluate( node.args[2], context );
+        if( !value || !low || !high || *low > *high ) {
+            return std::unexpected( "Invalid clamp arguments" );
+        }
+        return std::clamp( *value, *low, *high );
     }
     if( node.op == "variable" && node.args.empty() ) {
         const auto found = context.variables.find( node.global_actor ? "@global:" + node.name : node.npc_actor ? "@npc:" + node.name : node.name );
@@ -77,6 +91,12 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
         }
         if( node.op == "add" ) {
             return valid_number( *lhs + *rhs );
+        }
+        if( node.op == "min" ) {
+            return std::min( *lhs, *rhs );
+        }
+        if( node.op == "max" ) {
+            return std::max( *lhs, *rhs );
         }
         if( node.op == "subtract" ) {
             return valid_number( *lhs - *rhs );

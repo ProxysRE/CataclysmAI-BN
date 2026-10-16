@@ -104,7 +104,9 @@
     "Real survivor NPC save/load retains identity, faction, dialogue and variables",
     "Family mission assigns a z=-1 basement, spawns both NPCs, escort dialogue completes protection missions once and unlocks father turn-in",
     "Real NPC opinion reads/assignments/increments, field isolation and numeric range rejection",
-    "World-scoped numeric/string state sharing, player/NPC scope isolation and master-save/legacy-load regression"
+    "World-scoped numeric/string state sharing, player/NPC scope isolation and master-save/legacy-load regression",
+    "Conditional EOC runtime branch switching and single-branch action execution",
+    "Calendar age from actual cataclysm origin"
   ],
   "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation",
   "implemented_native_validated": [
@@ -129,7 +131,7 @@
     "totals": {
       "source_files": 156,
       "definitions": 1762,
-      "blocked_definitions": 70,
+      "blocked_definitions": 67,
       "overlap_records": 376,
       "reference_records": 4381,
       "external_reference_records": 877
@@ -141,9 +143,11 @@
       "real_npc_opinion_fields": "implemented; Windows regression pending",
       "full_duration_units": "local compiler checks passed",
       "blocked_before": 185,
-      "blocked_after": 70,
+      "blocked_after": 67,
       "world_scoped_variables": "implemented with master save/load and game setup reset; native Windows test pending",
-      "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed"
+      "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed",
+      "conditional_activation_EOCs": "runtime branch support implemented; scheduler/lifecycle metadata remain blocked",
+      "math_helpers": "min/max/clamp and world cataclysm age; native tests pending"
     },
     "location_expansion": {
       "selected_support_definitions": 104,
@@ -180,5 +184,10 @@
       "Test isolation retained previous avatar missions"
     ],
     "fix": "DDA-specific terrain-type condition, rotated regression, mission reset and rescue NPC cleanup; Windows pending"
+  },
+  "latest_native_compile_failure": {
+    "run_id": 38923398535,
+    "error": "Save test attempted private game::serialize_master",
+    "fix": "Existing stream serializer declared beside public unserialize_master; Windows pending"
   }
 }

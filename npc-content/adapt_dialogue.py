@@ -30,6 +30,12 @@ def constant(expression):
     return visit(ast.parse(expression, mode="eval").body)
 
 
+def effect_actions(value):
+    if isinstance(value, list):
+        return [action for child in value for action in effect_actions(child)]
+    return [value]
+
+
 def expand_eocs(value, definitions, counts, variables=None, stack=()):
     variables = variables or {}
     if isinstance(value, list):
@@ -42,27 +48,39 @@ def expand_eocs(value, definitions, counts, variables=None, stack=()):
         if set(value) - {'run_eocs', 'variables'}:
             raise ValueError('Scheduled or extended EOC calls require native lifecycle support')
         names = value["run_eocs"]
-        names = [names] if isinstance(names, str) else names
+        names = [names] if isinstance(names, (str, dict)) else names
+        if not isinstance(names, list):
+            raise ValueError('Invalid EOC call list')
         context = {**variables, **value.get("variables", {})}
         effects = []
         for name in names:
-            if not isinstance(name, str):
-                raise ValueError('Inline EOC definitions require native lifecycle support')
-            if name not in definitions or name in stack:
+            if isinstance(name, dict):
+                definition = name
+                identifier = definition.get('id', '<inline>')
+            elif isinstance(name, str) and name in definitions and name not in stack:
+                definition = definitions[name]
+                identifier = name
+            else:
                 raise ValueError(f"Unknown or recursive EOC: {name}")
-            definition = definitions[name]
+            if set(definition) - {'id', 'type', 'eoc_type', 'condition', 'effect', 'false_effect', '//'}:
+                raise ValueError(f'Extended EOC definition requires native lifecycle support: {identifier}')
             if definition.get('eoc_type', 'ACTIVATION') != 'ACTIVATION' or 'recurrence' in definition:
-                raise ValueError(f'Non-activation EOC requires native lifecycle support: {name}')
-            if not isinstance(definition.get('condition', {}), dict):
-                raise ValueError(f'Conditional EOC cannot be statically expanded: {name}')
-            required = definition.get("condition", {}).get("expects_vars", [])
+                raise ValueError(f'Non-activation EOC requires native lifecycle support: {identifier}')
+            condition = definition.get('condition', {})
+            if not isinstance(condition, (dict, str)):
+                raise ValueError(f'Unsupported EOC condition: {identifier}')
+            required = condition.get('expects_vars', []) if isinstance(condition, dict) else []
             if set(required) - context.keys():
-                raise ValueError(f"Missing EOC context for {name}")
-            if definition.get("condition", {}) and (not required or set(definition['condition']) != {'expects_vars'}):
-                raise ValueError(f"Conditional EOC cannot be statically expanded: {name}")
-            expanded = expand_eocs(definition["effect"], definitions, counts, context, stack + (name,))
-            for entry in expanded if isinstance(expanded, list) else [expanded]:
-                effects.extend(entry if isinstance(entry, list) else [entry])
+                raise ValueError(f"Missing EOC context for {identifier}")
+            predicate = {k: v for k, v in condition.items() if k != 'expects_vars'} if isinstance(condition, dict) else condition
+            expanded = expand_eocs(definition["effect"], definitions, counts, context, stack + (identifier,))
+            if predicate:
+                alternate = expand_eocs(definition.get('false_effect', []), definitions, counts, context, stack + (identifier,))
+                effects.append({'dda_if': {'condition': expand_eocs(predicate, definitions, counts, context, stack),
+                    'then': {'effect': effect_actions(expanded)}, 'else': {'effect': effect_actions(alternate)}}})
+                counts['conditional_eoc_calls'] += 1
+                continue
+            effects.extend(effect_actions(expanded))
             counts["inlined_eoc_calls"] += 1
         return effects
     result = {}

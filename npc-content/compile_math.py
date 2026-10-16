@@ -33,6 +33,8 @@ def compile_node(node):
         return {"op": comparisons[type(node.ops[0])], "args": [compile_node(node.left), compile_node(node.comparators[0])]}
     if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
         name = node.func.id
+        if name in {'min', 'max', 'clamp'} and len(node.args) == (3 if name == 'clamp' else 2) and not node.keywords:
+            return {'op': name, 'args': [compile_node(x) for x in node.args]}
         if name in {'n_npc_anger', 'n_npc_fear', 'n_npc_trust', 'n_npc_value'} and not node.args and not node.keywords:
             return {'op': 'npc_opinion', 'name': name.removeprefix('n_npc_')}
         if name in {"ceil", "has_var"} and len(node.args) == 1 and not node.keywords:
@@ -53,8 +55,8 @@ def compile_node(node):
             if match and match[2] in units:
                 return {"op": "literal", "value": int(match[1]) * units[match[2]]}
         if name == "time_since" and len(node.args) == 1:
-            variable = compile_node(node.args[0])
-            if variable.get("op") != "variable":
+            variable = {'op': 'cataclysm'} if isinstance(node.args[0], ast.Constant) and node.args[0].value == 'cataclysm' else compile_node(node.args[0])
+            if variable.get("op") not in {"variable", "cataclysm"}:
                 raise ValueError("time_since requires a variable")
             units = {"seconds": 1, "hours": 3600, "days": 86400}
             unit = "seconds"
