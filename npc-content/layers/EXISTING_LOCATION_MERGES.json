@@ -1,0 +1,47 @@
+{
+  "release_ready": false,
+  "runtime_validated": false,
+  "installation": "Replace the original BN mapgen file; never load this beside it",
+  "target": "data/json/mapgen/chemical_lab.json",
+  "baseline": "bn/data/json/mapgen/chemical_lab.json",
+  "source": "dda/data/json/mapgen/chemist_holdout/chemical_lab.json",
+  "changes": [
+    "DDA chair at (16,8)",
+    "One explicit chemist spawn at the original BN position"
+  ],
+  "preserved": [
+    "Every BN map variant including the roof",
+    "BN heater symbol at (12,13)",
+    "Groundcover probabilities",
+    "Palettes, stock, faction ownership",
+    "Existing overmap special and occurrence frequency"
+  ],
+  "deferred_source_zones": [
+    {
+      "type": "LOOT_UNSORTED",
+      "faction": "wasteland_scavengers",
+      "x": [
+        15,
+        15
+      ],
+      "y": [
+        8,
+        8
+      ]
+    },
+    {
+      "type": "LOOT_CURRENCY",
+      "faction": "wasteland_scavengers",
+      "x": [
+        17,
+        17
+      ],
+      "y": [
+        8,
+        8
+      ]
+    }
+  ],
+  "deferred_reason": "Zone IDs and shop consumers require native compatibility review",
+  "output_sha256": "ae21c77eb06af44e1f1903c5bc59a4878da354154e2e1af033394e4608f1d48c"
+}

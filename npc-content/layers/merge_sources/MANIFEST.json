@@ -1,0 +1,14 @@
+{
+  "bn_cabin.json": {
+    "repository": "cataclysmbn/Cataclysm-BN",
+    "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "path": "data/json/mapgen_palettes/cabin.json",
+    "git_blob_sha": "6443a03263afbfeb9f8124a62c9058fe82a79768"
+  },
+  "dda_cabin.json": {
+    "repository": "CleverRaven/Cataclysm-DDA",
+    "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "path": "data/json/mapgen_palettes/cabin.json",
+    "git_blob_sha": "49d2121057521db1ab480d865b093d11ec902172"
+  }
+}

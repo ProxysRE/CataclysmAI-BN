@@ -102,3 +102,21 @@ and other sections differ, so NPC coordinates cannot be copied blindly.
 `LOCATION_MERGE_SUMMARY.json` preserves review targets and representative
 differences. The complete per-map variant plan is regenerated as
 `LOCATION_MERGE_PLAN.json`. Duplicate-prone additions are checked in fast CI.
+# Reviewed replacements for existing BN locations
+
+`python npc-content/merge_existing_locations.py` builds `layers/merged/chemical_lab.json`
+from the exact BN baseline. It is a **replacement file**, never an additional
+weighted mapgen variant. It is not installed by the engine patch yet.
+
+The chemist keeps the original coordinate and gains DDA's chair. All other BN
+map content, including the roof, regional groundcover and heater, is preserved.
+The source trade zones remain explicitly deferred in `EXISTING_LOCATION_MERGES.json`.
+This does not certify the staged chemist quests or shop behavior for runtime use.
+
+`merge_sources/` contains unmodified cabin palette files from the pinned official
+BN and DDA repositories, with Git blob checksums and attribution in `MANIFEST.json`.
+They are reference inputs only, not replacement palettes. Source content retains
+the upstream CC BY-SA 3.0 license. `check_existing_location_merges.py` verifies the
+entire unchanged remainder of the BN file and rejects duplicate NPC placement,
+changed source coordinates or changed chair semantics.
+
