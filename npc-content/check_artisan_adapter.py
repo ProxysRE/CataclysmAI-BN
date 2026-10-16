@@ -53,6 +53,11 @@ nested = expand_eocs({'run_eocs': [outer]}, single, collections.Counter())
 assert nested[0]['dda_if']['then']['effect'] == [single['single']['effect']]*2
 converted = adapt(expanded, collections.Counter())
 assert converted[0]['dda_if']['condition']['dda_expression']['op'] == 'equal'
+chance = adapt({'if': {'one_in_chance': {'global_val':'exodii_mission_wh_chance'}},
+                'then': {'npc_add_var':'directions','value':'yes'},
+                'else': {'npc_add_var':'directions','value':'no'}}, collections.Counter())
+assert chance['dda_if']['condition']['dda_one_in_chance']['actor'] == 'global'
+assert chance['dda_if']['else']['effect'][0]['value'] == 'no'
 for expression in ('v_item', '_context', 'x_unknown', 'pi = 3'):
     try:
         compile_expression(expression)

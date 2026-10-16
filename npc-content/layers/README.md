@@ -42,9 +42,9 @@ bundle rather than duplicated in version control.
 
 ## Linked-location expansion
 
-The expanded source bundle contains 199 exact pinned files (158 DDA, 41 BN).
-Current staging selects 1,762 definitions from 156 DDA files: the original
-eight communities, directly related maps, and 104 definitions selected from
+The expanded source bundle contains 201 exact pinned files (160 DDA, 41 BN).
+Current staging selects 1,767 definitions from 158 DDA files: the original
+eight communities, directly related maps, and 109 definitions selected from
 shared files. Selection follows typed references, inheritance, OMT-to-mapgen
 links and the reverse link from a community map to its overmap special.
 Cardinal direction suffixes resolve only when the corresponding base ID is
@@ -67,7 +67,7 @@ The Hub comparison is 100 explicit DDA terrain cells versus 69 in pinned BN.
 BN already has underground layers; the source DDA layout additionally contains
 z=-1. These are placement-data facts, not a certified generated world.
 
-Known blocked definitions now number 70 in this expanded batch. This includes
+Known blocked definitions now number 68 in this expanded batch. This includes
 new EOC declarations requiring native lifecycle support, so the number is not
 directly comparable with the earlier 63 blockers in the smaller batch. Item,
 monster, palette and native schema closure remains incomplete. No bulk data

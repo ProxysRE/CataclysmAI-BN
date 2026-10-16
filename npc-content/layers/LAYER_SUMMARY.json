@@ -5,21 +5,24 @@
   "dependency_scope": "Selected explicit NPC/dialogue/mission/map references; item, trait and implicit engine references require later closure",
   "groups": {
     "shared_dependencies": {
-      "files": 17,
+      "files": 19,
       "definitions": {
-        "effect_on_condition": 8,
+        "effect_on_condition": 10,
         "mapgen": 21,
         "palette": 3,
         "npc_class": 3,
+        "talk_topic": 3,
         "faction": 13,
         "overmap_special": 23,
         "overmap_terrain": 33
       },
       "translated": {
         "mapgen_method": 21,
-        "native_expression": 1
+        "string_equality": 2,
+        "native_expression": 3,
+        "dynamic_line_concatenation": 1
       },
-      "blocked": 8,
+      "blocked": 11,
       "status": "staged_unvalidated"
     },
     "campus": {
@@ -80,12 +83,14 @@
       "translated": {
         "mapgen_method": 2,
         "npc_shopkeep_enum": 1,
-        "string_equality": 8,
+        "string_equality": 9,
         "native_expression": 4,
+        "conditional_eoc_calls": 1,
+        "numeric_chance_condition": 2,
         "dda_set_faction_relation": 1,
         "dynamic_line_concatenation": 1
       },
-      "blocked": 1,
+      "blocked": 0,
       "status": "staged_unvalidated"
     },
     "godco": {
@@ -128,14 +133,16 @@
       },
       "translated": {
         "mapgen_method": 11,
-        "string_equality": 6,
+        "string_equality": 8,
+        "conditional_eoc_calls": 1,
+        "native_expression": 10,
+        "numeric_chance_condition": 2,
         "dynamic_line_concatenation": 1,
-        "native_expression": 9,
         "npc_guard_enum": 1,
         "npc_shopkeep_enum": 1,
         "shopkeeper_group": 1
       },
-      "blocked": 6,
+      "blocked": 5,
       "status": "staged_unvalidated"
     },
     "militia": {
@@ -212,15 +219,16 @@
     }
   },
   "totals": {
-    "source_files": 156,
-    "definitions": 1762,
-    "blocked_definitions": 67,
+    "source_files": 158,
+    "definitions": 1767,
+    "blocked_definitions": 68,
     "overlap_records": 376,
-    "reference_records": 4381,
-    "external_reference_records": 877
+    "reference_records": 4383,
+    "external_reference_records": 874
   },
   "blocker_reasons": {
-    "Native EOC definition requires separate lifecycle review": 34,
+    "Native EOC definition requires separate lifecycle review": 36,
+    "Unsupported DDA arithmetic: Call(func=Name(id='rng', ctx=Load()), args=[Constant(value=1), Constant(value=3)], keywords=[])": 1,
     "Scheduled or extended EOC calls require native lifecycle support": 12,
     "Unported activity effect: {'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '30 minutes'}": 2,
     "Unported activity effect: {'u_assign_activity': 'ACT_GAME', 'duration': '45 minutes'}": 1,
@@ -228,8 +236,7 @@
     "Extended EOC definition requires native lifecycle support: GODCO_EDDIE_CANNING_MISSION_ADD": 1,
     "Unsupported DDA arithmetic: Call(func=Name(id='num_input', ctx=Load()), args=[Constant(value=''), Name(id='v_item', ctx=Load())], keywords=[])": 1,
     "Unsupported DDA arithmetic: Name(id='v_item', ctx=Load())": 1,
-    "Unknown or recursive EOC: EOC_exodii_mission_wh_directions_chance": 2,
-    "Unknown or recursive EOC: EOC_MISSION_GET_DRIVEBELTS_done": 1,
+    "Extended EOC definition requires native lifecycle support: EOC_MISSION_GET_DRIVEBELTS_done": 1,
     "invalid syntax (<unknown>, line 1)": 2,
     "Unported activity effect: {'u_assign_activity': 'ACT_CBM_SURGERY', 'duration': '2 hours'}": 4,
     "Unported activity effect: {'u_assign_activity': 'ACT_CBM_SURGERY', 'duration': '6 hours'}": 1,

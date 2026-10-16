@@ -2,7 +2,7 @@
   "DDA_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
   "BN_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
   "license": "CC-BY-SA-3.0; source comments and credits preserved",
-  "bundle_sha256": "b045d93d3497eccf391018aeba2963cd3b8f30cfc42aad5cb5723079f7f3ddec",
+  "bundle_sha256": "56e6e7428a299af16924ed43c07604871145e2addf97d688738f841363309325",
   "files": {
     "dda/data/json/npcs/bunker_shop/NC_BUNKER_MERCHANT.json": {
       "git_blob_sha": "9288367a954e45cfb2d99a2942e42fdeae745586",
@@ -1160,6 +1160,27 @@
         4,
         5,
         25
+      ]
+    },
+    "dda/data/json/npcs/exodii/common_talk.json": {
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "git_blob_sha": "40196e4def2bc21a8889b9a1d4e2614561ae11e6",
+      "selection": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "dda/data/json/effects_on_condition/npc_eocs/generic_npc_eocs.json": {
+      "repository": "CleverRaven/Cataclysm-DDA",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "group": "shared_dependencies",
+      "git_blob_sha": "fe242cf43e5899418c84c3dcf9aaabb33360dada",
+      "selection": [
+        1
       ]
     }
   }

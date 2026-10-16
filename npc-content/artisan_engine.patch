@@ -7,7 +7,15 @@
  
  #include "auto_pickup.h"
  #include "avatar.h"
-@@ -915,7 +917,60 @@
+@@ -23,6 +25,7 @@
+ #include "player_activity.h"
+ #include "point.h"
+ #include "recipe_groups.h"
++#include "rng.h"
+ #include "string_id.h"
+ #include "type_id.h"
+ #include "vehicle/vehicle.h"
+@@ -915,7 +918,73 @@
          }
          return conditionals;
      };
@@ -25,6 +33,19 @@
 +                return false;
 +            }
 +            return dda_port::has_items( *d.alpha, *request );
++        };
++    } else if( jo.has_object( "dda_one_in_chance" ) ) {
++        const auto expression = dda_port::read_expression( jo.get_object( "dda_one_in_chance" ) );
++        found_sub_member = true;
++        condition = [expression]( const auto &d ) {
++            if( !d.alpha ) {
++                return false;
++            }
++            const auto result = dda_port::evaluate_for_player( expression, *d.alpha, d.beta );
++            if( !result || *result > INT_MAX ) {
++                return false;
++            }
++            return *result <= 1.0 || one_in( static_cast<int>( *result ) );
 +        };
 +    } else if( jo.has_object( "dda_at_om_location" ) ) {
 +        const auto specification = jo.get_object( "dda_at_om_location" );
@@ -290,7 +311,7 @@
          conditional_t<dialogue> dcondition;
          const dynamic_line_t yes = from_member( jo, "yes" );
          const dynamic_line_t no = from_member( jo, "no" );
-+        if( jo.has_object( "dda_expression" ) || jo.has_object( "dda_global_string" ) || jo.has_object( "dda_at_om_location" ) ) {
++        if( jo.has_object( "dda_expression" ) || jo.has_object( "dda_global_string" ) || jo.has_object( "dda_at_om_location" ) || jo.has_object( "dda_one_in_chance" ) ) {
 +            dcondition = conditional_t<dialogue>( jo );
 +            function = [dcondition, yes, no]( const dialogue &d ) {
 +                return ( dcondition( d ) ? yes : no )( d );
@@ -1129,7 +1150,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,840 @@
+@@ -0,0 +1,865 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -1151,6 +1172,31 @@
 +
 +#include <sstream>
 +#include <limits>
++
++TEST_CASE( "community_chance_conditions_read_current_world_values", "[dda_npc]" ) {
++    clear_all_state();
++    get_avatar().reset_all_missions();
++    const auto previous = g->dda_global_variables;
++    const auto restore_globals = on_out_of_scope( [previous]() { g->dda_global_variables = previous; } );
++    auto &actor = get_avatar();
++    auto speaker = npc{};
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &speaker;
++    auto input = std::istringstream( R"({"dda_one_in_chance":{"op":"variable","name":"exodii_mission_wh_chance","actor":"global"}})" );
++    auto parser = JsonIn( input );
++    const auto chance = conditional_t<dialogue>( parser.get_object() );
++    g->dda_global_variables["exodii_mission_wh_chance"] = "1";
++    CHECK( chance( conversation ) );
++    g->dda_global_variables["exodii_mission_wh_chance"] = "0";
++    CHECK( chance( conversation ) );
++    g->dda_global_variables["exodii_mission_wh_chance"] = "1.9";
++    CHECK( chance( conversation ) );
++    g->dda_global_variables["exodii_mission_wh_chance"] = "2147483648";
++    CHECK_FALSE( chance( conversation ) );
++    conversation.alpha = nullptr;
++    CHECK_FALSE( chance( conversation ) );
++}
 +
 +TEST_CASE( "conditional_community_effects_choose_one_branch_at_execution", "[dda_npc]" ) {
 +    clear_all_state();

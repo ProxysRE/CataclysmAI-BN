@@ -33,6 +33,8 @@ def constant(expression):
 def effect_actions(value):
     if isinstance(value, list):
         return [action for child in value for action in effect_actions(child)]
+    if not isinstance(value, (dict, str)):
+        raise ValueError('EOC actions must be objects or effect names')
     return [value]
 
 
@@ -123,6 +125,26 @@ def adapt(value, counts):
                 raise ValueError('Camp location conditions require the native camp system')
             counts['overmap_location_type_condition'] += 1
             return {'dda_at_om_location': {'actor': actor, 'terrain': value[member]}}
+    if 'if' in value and 'then' in value:
+        if set(value) - {'if', 'then', 'else'}:
+            raise ValueError('Extended conditional effect requires separate support')
+        return {'dda_if': {'condition': adapt(value['if'], counts),
+            'then': {'effect': adapt(effect_actions(value['then']), counts)},
+            'else': {'effect': adapt(effect_actions(value.get('else', [])), counts)}}}
+    if set(value) == {'one_in_chance'}:
+        chance = value['one_in_chance']
+        if type(chance) is int:
+            expression = {'op': 'literal', 'value': chance}
+        elif isinstance(chance, dict) and len(chance) == 1:
+            scope = next(iter(chance))
+            if scope not in {'u_val', 'npc_val', 'global_val'} or not isinstance(chance[scope], str):
+                raise ValueError('Unsupported chance variable')
+            expression = {'op': 'variable', 'name': chance[scope],
+                          'actor': {'u_val':'player', 'npc_val':'npc', 'global_val':'global'}[scope]}
+        else:
+            raise ValueError('Unsupported chance expression')
+        counts['numeric_chance_condition'] += 1
+        return {'dda_one_in_chance': expression}
     if "math" in value and len(value["math"]) == 1:
         expression = value["math"][0]
         if isinstance(expression, str):

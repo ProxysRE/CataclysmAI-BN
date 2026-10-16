@@ -20,6 +20,31 @@
 #include <sstream>
 #include <limits>
 
+TEST_CASE( "community_chance_conditions_read_current_world_values", "[dda_npc]" ) {
+    clear_all_state();
+    get_avatar().reset_all_missions();
+    const auto previous = g->dda_global_variables;
+    const auto restore_globals = on_out_of_scope( [previous]() { g->dda_global_variables = previous; } );
+    auto &actor = get_avatar();
+    auto speaker = npc{};
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto input = std::istringstream( R"({"dda_one_in_chance":{"op":"variable","name":"exodii_mission_wh_chance","actor":"global"}})" );
+    auto parser = JsonIn( input );
+    const auto chance = conditional_t<dialogue>( parser.get_object() );
+    g->dda_global_variables["exodii_mission_wh_chance"] = "1";
+    CHECK( chance( conversation ) );
+    g->dda_global_variables["exodii_mission_wh_chance"] = "0";
+    CHECK( chance( conversation ) );
+    g->dda_global_variables["exodii_mission_wh_chance"] = "1.9";
+    CHECK( chance( conversation ) );
+    g->dda_global_variables["exodii_mission_wh_chance"] = "2147483648";
+    CHECK_FALSE( chance( conversation ) );
+    conversation.alpha = nullptr;
+    CHECK_FALSE( chance( conversation ) );
+}
+
 TEST_CASE( "conditional_community_effects_choose_one_branch_at_execution", "[dda_npc]" ) {
     clear_all_state();
     get_avatar().reset_all_missions();

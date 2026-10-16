@@ -34,3 +34,16 @@ was private. The existing stream serializer is now declared beside the public
 unserialize_master method, allowing an in-memory round-trip without invoking
 filesystem saves. Its serialization implementation and file-save callers are
 unchanged.
+
+The subsequent dependency selection adds pinned Exodii common dialogue and
+generic NPC EOC sources, resolving the previously unknown warehouse-directions
+and drivebelt-completion references. The expanded batch is 1,767 definitions
+with 68 known blockers, including the newly selected lifecycle declarations.
+The drivebelt completion's global/lifecycle metadata remains blocked.
+
+Immediate `if`/`then`/`else` action objects now use the same runtime conditional.
+Literal and actor/global-variable one_in_chance predicates call BN's one_in
+with DDA-compatible integer conversion. Values <=1 are certain; out-of-range
+positive inputs fail without overflowing. Runtime tests cover global changes,
+fractional conversion and the upper bound. This does not implement arbitrary
+rand/rng math functions or a scheduler.
