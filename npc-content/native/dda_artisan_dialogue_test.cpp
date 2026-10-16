@@ -19,6 +19,156 @@
 
 #include <sstream>
 
+static auto spawn_lighthouse_fisherman( overmapbuffer &buffer, const tripoint_abs_omt &location )
+-> shared_ptr_fast<npc> {
+    buffer.ter_set( location, oter_id( "field" ) );
+    auto input = std::istringstream( R"({"place_nested":[{"chunks":[["NPC_lighthouse_man_spawn",1]],"x":12,"y":21}]})" );
+    auto parser = JsonIn( input );
+    auto defer = false;
+    const auto spawn = add_mapgen_update_func( parser.get_object(), defer );
+    REQUIRE_FALSE( defer );
+    spawn( location, nullptr );
+    const auto people = buffer.get_npcs_near_omt( location, 0 );
+    REQUIRE( people.size() == 1 );
+    REQUIRE( people.front()->chatbin.first_topic == "TALK_lighthouse_man_1" );
+    return people.front();
+}
+
+TEST_CASE( "lighthouse_cleanup_mission_runs_real_start_and_end", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    const auto original_id = actor.getID();
+    const auto restore_id = on_out_of_scope( [&actor, original_id]() {
+        actor.setID( original_id, true );
+    } );
+    actor.setID( character_id( 424243 ), true );
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    const auto giver = spawn_lighthouse_fisherman( buffer, tripoint_abs_omt( 358, 350, 0 ) );
+    const auto destination = actor.abs_omt_pos() + tripoint_rel_omt( 2, 0, 0 );
+    buffer.ter_set( destination, oter_id( "lighthouse_ground_north" ) );
+    auto *job = mission::reserve_new( mission_type_id( "MISSION_lighthouse_man_2" ), giver->getID() );
+    REQUIRE( job );
+    giver->chatbin.missions_assigned.push_back( job );
+    actor.set_value( "npctalk_var_count_cleaning_lighthouse_man", "123" );
+    job->assign( actor );
+    CHECK( giver->chatbin.first_topic == "TALK_lighthouse_man_cleaning" );
+    CHECK( giver->get_value( "npctalk_var_count_cleaning_lighthouse_man" ) == "0" );
+    CHECK( actor.get_value( "npctalk_var_count_cleaning_lighthouse_man" ) == "123" );
+    giver->set_value( "npctalk_var_count_cleaning_lighthouse_man", "6" );
+    CHECK_FALSE( job->is_complete( giver->getID() ) );
+    giver->set_value( "npctalk_var_count_cleaning_lighthouse_man", "7" );
+    REQUIRE( job->is_complete( giver->getID() ) );
+    job->wrap_up();
+    CHECK_FALSE( job->in_progress() );
+    CHECK( giver->chatbin.first_topic == "TALK_lighthouse_man_1" );
+    CHECK( giver->get_value( "npctalk_var_count_cleaning_lighthouse_man" ).empty() );
+    CHECK( job->get_follow_up() == mission_type_id( "MISSION_lighthouse_man_3" ) );
+    buffer.remove_npc( giver->getID() );
+}
+
+TEST_CASE( "lighthouse_repair_mission_turn_in_updates_flags_and_lights", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    const auto original_id = actor.getID();
+    const auto restore_id = on_out_of_scope( [&actor, original_id]() {
+        actor.setID( original_id, true );
+    } );
+    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
+    actor.setID( character_id( 424244 ), true );
+    calendar::turn = calendar::turn_zero + 10_days;
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    const auto giver = spawn_lighthouse_fisherman( buffer, tripoint_abs_omt( 360, 350, 0 ) );
+    auto destination = actor.abs_omt_pos() + tripoint_rel_omt( 2, 0, 0 );
+    destination.z() = 5;
+    buffer.ter_set( destination, oter_id( "lighthouse_z5_north" ) );
+    auto *job = mission::reserve_new( mission_type_id( "MISSION_lighthouse_man_5" ), giver->getID() );
+    REQUIRE( job );
+    giver->chatbin.missions_assigned.push_back( job );
+    job->assign( actor );
+    actor.set_value( "npctalk_var_global_safe_space_lighthouse_fixed", "yes" );
+    CHECK_FALSE( job->is_complete( giver->getID() ) );
+    actor.set_value( "npctalk_var_global_safe_space_lighthouse_fixed", "ready" );
+    REQUIRE( job->is_complete( giver->getID() ) );
+    job->wrap_up();
+    CHECK_FALSE( job->in_progress() );
+    CHECK( actor.get_value( "npctalk_var_global_safe_space_lighthouse_fixed" ) == "yes" );
+    CHECK( giver->get_value( "npctalk_var_time_survivors_wait" ) == "864000" );
+    auto target_map = map( 2 );
+    target_map.load( project_to<coords::sm>( destination.xy() ), false );
+    CHECK( target_map.ter( tripoint_bub_ms( 11, 12, 5 ) ) == ter_id( "t_floor_olight" ) );
+    CHECK( target_map.ter( tripoint_bub_ms( 13, 13, 5 ) ) == ter_id( "t_floor_olight" ) );
+    buffer.remove_npc( giver->getID() );
+}
+
+TEST_CASE( "lighthouse_boat_mission_assignment_save_and_turn_in", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    const auto original_id = actor.getID();
+    const auto restore_id = on_out_of_scope( [&actor, original_id]() {
+        actor.setID( original_id, true );
+    } );
+    actor.setID( character_id( 424242 ), true );
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    const auto spawn_location = tripoint_abs_omt( 356, 350, 0 );
+    buffer.ter_set( spawn_location, oter_id( "field" ) );
+    auto spawn_input = std::istringstream( R"({"place_nested":[{"chunks":[["NPC_lighthouse_man_spawn",1]],"x":12,"y":21}]})" );
+    auto spawn_parser = JsonIn( spawn_input );
+    auto defer = false;
+    const auto spawn = add_mapgen_update_func( spawn_parser.get_object(), defer );
+    REQUIRE_FALSE( defer );
+    spawn( spawn_location, nullptr );
+    const auto givers = buffer.get_npcs_near_omt( spawn_location, 0 );
+    REQUIRE( givers.size() == 1 );
+    auto &giver = *givers.front();
+    REQUIRE( giver.get_fac_id() == faction_id( "fisherman_family" ) );
+    REQUIRE( giver.chatbin.first_topic == "TALK_lighthouse_man_1" );
+    const auto destination = actor.abs_omt_pos() + tripoint_rel_omt( 2, 0, 0 );
+    buffer.ter_set( destination, oter_id( "lighthouse_ground_north" ) );
+    auto *job = mission::reserve_new( mission_type_id( "MISSION_lighthouse_man_4" ), giver.getID() );
+    REQUIRE( job );
+    giver.chatbin.missions_assigned.push_back( job );
+    job->assign( actor );
+    CHECK( job->get_assigned_player_id() == actor.getID() );
+    CHECK_FALSE( job->is_complete( giver.getID() ) );
+    auto nails = item::spawn( itype_id( "nail" ), calendar::turn );
+    nails->charges = 249;
+    actor.i_add( std::move( nails ) );
+    REQUIRE( actor.charges_of( itype_id( "nail" ) ) == 249 );
+    actor.invalidate_crafting_inventory();
+    CHECK_FALSE( job->is_complete( giver.getID() ) );
+    auto saved_data = std::stringstream{};
+    auto saved_output = JsonOut( saved_data );
+    job->serialize( saved_output );
+    auto restored = mission{};
+    auto saved_input = JsonIn( saved_data );
+    restored.deserialize( saved_input );
+    CHECK( restored.get_type().id == job->get_type().id );
+    CHECK( restored.get_npc_id() == giver.getID() );
+    CHECK( restored.get_assigned_player_id() == actor.getID() );
+    CHECK_FALSE( restored.is_complete( giver.getID() ) );
+    auto last_nail = item::spawn( itype_id( "nail" ), calendar::turn );
+    last_nail->charges = 1;
+    actor.i_add( std::move( last_nail ) );
+    actor.invalidate_crafting_inventory();
+    REQUIRE( job->is_complete( giver.getID() ) );
+    CHECK( restored.is_complete( giver.getID() ) );
+    job->wrap_up();
+    CHECK_FALSE( job->in_progress() );
+    CHECK( actor.charges_of( itype_id( "nail" ) ) == 0 );
+    CHECK( giver.get_value( "npctalk_var_flag_help_helped_lighthouse_man" ) == "yes" );
+    CHECK( job->get_follow_up() == mission_type_id( "MISSION_lighthouse_man_5" ) );
+    auto destination_map = map( 2 );
+    destination_map.load( project_to<coords::sm>( destination.xy() ), false );
+    auto canoes = 0;
+    for( const auto &entry : destination_map.get_vehicles() ) {
+        if( entry.v->type == vproto_id( "canoe" ) ) {
+            ++canoes;
+        }
+    }
+    CHECK( canoes == 1 );
+    buffer.remove_npc( giver.getID() );
+}
+
 TEST_CASE( "lighthouse_actual_quest_updates_create_boat_and_working_lights", "[dda_npc]" ) {
     clear_all_state();
     auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
@@ -79,6 +229,20 @@ TEST_CASE( "lighthouse_survivor_update_places_real_npc", "[dda_npc]" ) {
     CHECK( survivors.front()->chatbin.first_topic == "TALK_LIGHTHOUSE_SURVIVOR" );
     CHECK( survivors.front()->abs_omt_pos() == location );
     CHECK( survivors.front()->mission == NPC_MISSION_GUARD );
+    survivors.front()->set_value( "npctalk_var_time_lighthouse_wait", "123456" );
+    survivors.front()->set_value( "npctalk_var_count_cleaning_lighthouse_man", "6" );
+    auto saved_data = std::stringstream{};
+    auto saved_output = JsonOut( saved_data );
+    survivors.front()->serialize( saved_output );
+    auto restored = npc{};
+    auto saved_input = JsonIn( saved_data );
+    restored.deserialize( saved_input );
+    CHECK( restored.getID() == survivors.front()->getID() );
+    CHECK( restored.abs_omt_pos() == location );
+    CHECK( restored.get_fac_id() == faction_id( "fisherman_family" ) );
+    CHECK( restored.chatbin.first_topic == "TALK_LIGHTHOUSE_SURVIVOR" );
+    CHECK( restored.get_value( "npctalk_var_time_lighthouse_wait" ) == "123456" );
+    CHECK( restored.get_value( "npctalk_var_count_cleaning_lighthouse_man" ) == "6" );
     buffer.remove_npc( survivors.front()->getID() );
 }
 
@@ -115,6 +279,8 @@ TEST_CASE( "lighthouse_actual_missions_and_npc_templates_load", "[dda_npc]" ) {
     REQUIRE( family );
     REQUIRE( boat );
     REQUIRE( repair );
+    CHECK( boat->item_id == itype_id( "nail" ) );
+    CHECK( boat->item_count == 250 );
     CHECK( arrival->follow_up == cleanup->id );
     CHECK( cleanup->follow_up == family->id );
     CHECK( family->follow_up == boat->id );

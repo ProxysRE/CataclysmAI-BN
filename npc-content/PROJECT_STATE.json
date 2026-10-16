@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Lighthouse native loader and targeted world-update regressions passed; full campaign walkthrough pending",
+  "stage": "Actual cleanup/boat/repair mission lifecycle and NPC/mission save regressions pending Windows",
   "package": "Isolated Road",
   "native_compilation": "SUCCESS: Windows game/tests built; 20 cases, 798 assertions; no initialization failure",
   "remaining": [
@@ -96,7 +96,12 @@
     ]
   },
   "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification",
-  "pending_native_tests": [],
+  "pending_native_tests": [
+    "Boat mission assignment, 249/250 nails, mission serialization, full wrap_up and routed canoe",
+    "Cleanup real start/end callbacks and counter cleanup",
+    "Repair real turn-in, routed z=5 lights and survivor timer",
+    "Real survivor NPC save/load retains identity, faction, dialogue and variables"
+  ],
   "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation",
   "implemented_native_validated": [
     "rigid shop item groups sampled exactly once",
