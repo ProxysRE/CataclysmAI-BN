@@ -4,6 +4,28 @@ import collections
 import json
 from pathlib import Path
 from adapt_dialogue import adapt, expand_eocs
+from compile_math import compile_expression
+
+for expression, seconds in [("time('14 day')", 1209600), ("time('44 days')", 3801600),
+                            ("time('30 minutes')", 1800), ("time('2 weeks')", 1209600),
+                            ("time('14d')", 1209600)]:
+    assert compile_expression(expression) == {'expression': {'op': 'literal', 'value': seconds}}
+for field in ('anger', 'fear', 'trust', 'value'):
+    read = {'op': 'npc_opinion', 'name': field}
+    assert compile_expression(f'n_npc_{field}()') == {'expression': read}
+    write = compile_expression(f'n_npc_{field}()++')
+    assert write == {'target': field, 'target_kind': 'npc_opinion',
+                     'expression': {'op': 'add', 'args': [read, {'op': 'literal', 'value': 1}]}}
+    effect = adapt({'math': [f'n_npc_{field}() -= 2']}, collections.Counter())
+    assert effect['dda_set_npc_opinion']['target'] == field
+    assert effect['dda_set_npc_opinion']['expression']['op'] == 'subtract'
+for expression in ("n_npc_anger(1)", "n_npc_anger()++ 2", "time('14 nonsense')", "time('now', unit='days')"):
+    try:
+        compile_expression(expression)
+    except (ValueError, SyntaxError):
+        pass
+    else:
+        raise AssertionError('Unsupported expression accepted: ' + expression)
 
 root = Path(__file__).resolve().parent
 for predicate in ({"math": ["u_done == 1"]}, {"compare_string": ["yes", {"u_val": "done"}]}):

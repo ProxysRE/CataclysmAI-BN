@@ -61,7 +61,7 @@
  #include <map>
  #include <memory>
  #include <ostream>
-@@ -3000,7 +3003,148 @@
+@@ -3000,7 +3003,170 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
@@ -186,6 +186,28 @@
 +                }
 +            }
 +        } );
++    } else if( jo.has_object( "dda_set_npc_opinion" ) ) {
++        const auto specification = jo.get_object( "dda_set_npc_opinion" );
++        const auto name = specification.get_string( "target" );
++        if( name != "anger" && name != "fear" && name != "trust" && name != "value" ) {
++            specification.throw_error( "Unknown NPC opinion assignment field" );
++        }
++        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [name, expression]( const auto &d ) {
++                if( !d.alpha || !d.beta ) {
++                    return;
++                }
++                const auto result = dda_port::evaluate_for_player( expression, *d.alpha, d.beta );
++                if( !result ) {
++                    debugmsg( "%s", result.error() );
++                    return;
++                }
++                if( !dda_port::store_npc_opinion( *d.beta, name, *result ) ) {
++                    debugmsg( "NPC opinion assignment is outside the supported integer range" );
++                }
++            }
++        } );
 +    } else if( jo.has_object( "dda_set_variable" ) ) {
 +        const auto specification = jo.get_object( "dda_set_variable" );
 +        const auto name = specification.get_string( "target" );
@@ -211,7 +233,7 @@
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
-@@ -3502,6 +3646,13 @@
+@@ -3502,6 +3668,13 @@
          conditional_t<dialogue> dcondition;
          const dynamic_line_t yes = from_member( jo, "yes" );
          const dynamic_line_t no = from_member( jo, "no" );
@@ -510,7 +532,7 @@
  
 --- /dev/null
 +++ b/src/artisan_expression.h
-@@ -0,0 +1,106 @@
+@@ -0,0 +1,113 @@
 +#pragma once
 +
 +#include <cmath>
@@ -554,6 +576,13 @@
 +    if( node.op == "variable" && node.args.empty() ) {
 +        const auto found = context.variables.find( node.npc_actor ? "@npc:" + node.name : node.name );
 +        return valid_number( found == context.variables.end() ? 0.0 : found->second );
++    }
++    if( node.op == "npc_opinion" && node.args.empty() ) {
++        const auto found = context.variables.find( "@opinion:" + node.name );
++        if( found == context.variables.end() ) {
++            return std::unexpected( "NPC opinion requires an NPC actor" );
++        }
++        return valid_number( found->second );
 +    }
 +    if( node.op == "has_var" && node.args.size() == 1 && node.args[0].op == "variable" ) {
 +        return context.variables.contains( node.args[0].npc_actor ? "@npc:" + node.args[0].name : node.args[0].name ) ? 1.0 : 0.0;
@@ -619,17 +648,19 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/src/artisan_bn_bridge.h
-@@ -0,0 +1,106 @@
+@@ -0,0 +1,148 @@
 +#pragma once
 +
 +#include "artisan_expression.h"
 +#include "calendar.h"
 +#include "json.h"
 +#include "player.h"
++#include "npc.h"
 +
 +#include <charconv>
 +#include <array>
 +#include <ranges>
++#include <limits>
 +
 +namespace dda_port {
 +
@@ -637,6 +668,12 @@
 +    auto result = expression{ .op = object.get_string( "op" ) };
 +    if( result.op == "literal" ) {
 +        result.value = object.get_float( "value" );
++    }
++    if( result.op == "npc_opinion" ) {
++        result.name = object.get_string( "name" );
++        if( result.name != "anger" && result.name != "fear" && result.name != "trust" && result.name != "value" ) {
++            object.throw_error( "Unknown NPC opinion field" );
++        }
 +    }
 +    if( result.op == "variable" ) {
 +        result.name = object.get_string( "name" );
@@ -652,7 +689,7 @@
 +        }
 +    }
 +    const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var";
-+    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now";
++    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion";
 +    const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
 +                        result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
 +                        result.op == "less" || result.op == "less_equal";
@@ -672,6 +709,25 @@
 +
 +inline auto collect_values( const expression &node, const expression_actors &actors,
 +                            std::unordered_map<std::string, double> &values ) -> std::expected<void, std::string> {
++    if( node.op == "npc_opinion" ) {
++        const auto *speaker = dynamic_cast<const npc *>( actors.npc );
++        if( !speaker ) {
++            return std::unexpected( "NPC opinion requires an NPC actor" );
++        }
++        const auto &opinion = speaker->op_of_u;
++        if( node.name == "anger" ) {
++            values["@opinion:anger"] = opinion.anger;
++        } else if( node.name == "fear" ) {
++            values["@opinion:fear"] = opinion.fear;
++        } else if( node.name == "trust" ) {
++            values["@opinion:trust"] = opinion.trust;
++        } else if( node.name == "value" ) {
++            values["@opinion:value"] = opinion.value;
++        } else {
++            return std::unexpected( "Unknown NPC opinion field" );
++        }
++        return {};
++    }
 +    const auto &variable = node.op == "has_var" ? node.args[0] : node;
 +    const auto *actor = variable.npc_actor ? actors.npc : &actors.actor;
 +    if( ( node.op == "variable" || node.op == "has_var" ) && !actor ) {
@@ -723,6 +779,21 @@
 +    if( converted.ec == std::errc{} ) {
 +        actor.set_value( "npctalk_var_" + name, std::string( text.data(), converted.ptr ) );
 +    }
++}
++
++inline auto store_npc_opinion( npc &actor, const std::string &name, const double value ) -> bool {
++    if( !std::isfinite( value ) || value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() ) {
++        return false;
++    }
++    auto *field = name == "anger" ? &actor.op_of_u.anger :
++                  name == "fear" ? &actor.op_of_u.fear :
++                  name == "trust" ? &actor.op_of_u.trust :
++                  name == "value" ? &actor.op_of_u.value : nullptr;
++    if( !field ) {
++        return false;
++    }
++    *field = static_cast<int>( value );
++    return true;
 +}
 +
 +} // namespace dda_port
@@ -890,7 +961,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,648 @@
+@@ -0,0 +1,691 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -911,6 +982,49 @@
 +#include "vehicle/vehicle.h"
 +
 +#include <sstream>
++#include <limits>
++
++TEST_CASE( "community_opinion_expressions_use_real_npc_relationships", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    auto speaker = npc{};
++    speaker.op_of_u.anger = 4;
++    speaker.op_of_u.fear = -2;
++    speaker.op_of_u.trust = 6;
++    speaker.op_of_u.value = 3;
++    speaker.set_value( "npctalk_var_anger", "999" );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &speaker;
++    auto input = std::istringstream( R"({"dda_expression":{"op":"greater_equal","args":[{"op":"npc_opinion","name":"anger"},{"op":"literal","value":5}]}})" );
++    auto parser = JsonIn( input );
++    const auto angry = conditional_t<dialogue>( parser.get_object() );
++    CHECK_FALSE( angry( conversation ) );
++    auto increment_input = std::istringstream( R"({"effect":{"dda_set_npc_opinion":{"target":"anger","expression":{"op":"add","args":[{"op":"npc_opinion","name":"anger"},{"op":"literal","value":1}]}}}})" );
++    auto increment_parser = JsonIn( increment_input );
++    const auto increment = talk_effect_t( increment_parser.get_object() );
++    REQUIRE( increment.effects.size() == 1 );
++    increment.effects.front()( conversation );
++    CHECK( speaker.op_of_u.anger == 5 );
++    CHECK( angry( conversation ) );
++    CHECK( speaker.get_value( "npctalk_var_anger" ) == "999" );
++    CHECK( speaker.op_of_u.fear == -2 );
++    CHECK( speaker.op_of_u.trust == 6 );
++    CHECK( speaker.op_of_u.value == 3 );
++    for( const auto &field : { "fear", "trust", "value" } ) {
++        const auto expression = dda_port::expression{ .op = "npc_opinion", .name = field };
++        CHECK( dda_port::evaluate_for_player( expression, actor, &speaker ).has_value() );
++        CHECK_FALSE( dda_port::evaluate_for_player( expression, actor ).has_value() );
++    }
++    CHECK( dda_port::store_npc_opinion( speaker, "value", 7.9 ) );
++    CHECK( speaker.op_of_u.value == 7 );
++    CHECK( dda_port::store_npc_opinion( speaker, "fear", -3.9 ) );
++    CHECK( speaker.op_of_u.fear == -3 );
++    CHECK_FALSE( dda_port::store_npc_opinion( speaker, "anger", std::numeric_limits<double>::infinity() ) );
++    CHECK_FALSE( dda_port::store_npc_opinion( speaker, "anger", 2147483648.0 ) );
++    CHECK_FALSE( dda_port::store_npc_opinion( speaker, "unknown", 2 ) );
++    CHECK( speaker.op_of_u.anger == 5 );
++}
 +
 +static auto spawn_lighthouse_fisherman( overmapbuffer &buffer, const tripoint_abs_omt &location )
 +-> shared_ptr_fast<npc> {

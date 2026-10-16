@@ -41,16 +41,16 @@
       },
       "translated": {
         "mapgen_method": 43,
-        "native_expression": 36,
-        "string_equality": 76,
+        "native_expression": 203,
+        "string_equality": 288,
         "shopkeeper_group": 1,
-        "dda_give_item": 83,
+        "dda_give_item": 86,
         "dda_set_faction_relation": 1,
-        "contained_reward": 3,
+        "contained_reward": 6,
         "npc_guard_enum": 23,
         "npc_shopkeep_enum": 2
       },
-      "blocked": 74,
+      "blocked": 23,
       "status": "staged_unvalidated"
     },
     "lumbermill_employees": {
@@ -114,18 +114,19 @@
       "translated": {
         "mapgen_method": 54,
         "npc_guard_enum": 28,
-        "string_equality": 160,
-        "native_expression": 62,
-        "dda_give_item": 117,
+        "string_equality": 175,
+        "native_skill_threshold": 2,
+        "native_expression": 86,
+        "dda_give_item": 118,
         "npc_guard_patrol_enum": 3,
         "npc_shopkeep_enum": 8,
         "shopkeeper_group": 2,
         "inlined_eoc_calls": 5,
-        "dda_add_faction_trust": 22,
+        "dda_add_faction_trust": 27,
         "contained_reward": 1,
         "constant_numeric_assignment": 9
       },
-      "blocked": 92,
+      "blocked": 85,
       "status": "staged_unvalidated"
     },
     "bunker_shop": {
@@ -156,9 +157,10 @@
       "translated": {
         "npc_shopkeep_enum": 1,
         "shopkeeper_group": 1,
-        "string_equality": 4
+        "string_equality": 15,
+        "native_expression": 1
       },
-      "blocked": 8,
+      "blocked": 7,
       "status": "staged_unvalidated"
     },
     "scrap_trader": {
@@ -172,34 +174,33 @@
       },
       "translated": {
         "npc_shopkeep_enum": 1,
-        "string_equality": 5,
-        "native_expression": 1,
+        "string_equality": 6,
+        "native_expression": 2,
         "dda_set_faction_relation": 1
       },
-      "blocked": 3,
+      "blocked": 2,
       "status": "staged_unvalidated"
     }
   },
   "totals": {
     "source_files": 135,
     "definitions": 1647,
-    "blocked_definitions": 185,
+    "blocked_definitions": 125,
     "overlap_records": 174,
     "reference_records": 2551,
     "external_reference_records": 286
   },
   "blocker_reasons": {
     "Native EOC definition requires separate lifecycle review": 26,
-    "Unsupported DDA arithmetic: Call(func=Name(id='n_npc_trust', ctx=Load()), args=[], keywords=[])": 3,
     "Unknown or recursive EOC: godco_place_warehouse_new": 1,
     "Unknown or recursive EOC: godco_place_coop_new": 1,
-    "invalid syntax (<unknown>, line 1)": 43,
+    "invalid syntax (<unknown>, line 1)": 37,
     "Unknown or recursive EOC: godco_place_herb_garden_new": 1,
     "Unknown or recursive EOC: godco_place_wall_new": 1,
     "Unsupported DDA arithmetic: Name(id='freemerch_godco_trader_investigated', ctx=Load())": 1,
-    "Unsupported DDA arithmetic: Call(func=Name(id='n_npc_value', ctx=Load()), args=[], keywords=[])": 30,
-    "Unsupported DDA arithmetic: Call(func=Name(id='n_npc_anger', ctx=Load()), args=[], keywords=[])": 21,
-    "Unsupported DDA arithmetic: Name(id='godco_julian_wedding', ctx=Load())": 2,
+    "Unsupported DDA arithmetic: Constant(value='cataclysm')": 1,
+    "Unsupported DDA arithmetic: Name(id='darryl_building_coop', ctx=Load())": 1,
+    "Unsupported DDA arithmetic: Name(id='godco_julian_wedding', ctx=Load())": 4,
     "Unported activity effect: {'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '30 minutes'}": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_GAME', 'duration': '45 minutes'}": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '4 minutes'}": 1,
@@ -232,7 +233,6 @@
     "Unsupported DDA arithmetic: Name(id='hub01_told_u_about_warehouse_autodoc', ctx=Load())": 3,
     "Unsupported DDA arithmetic: Name(id='HEW_lixa_data_sold', ctx=Load())": 1,
     "Conditional EOC cannot be statically expanded: EOC_ROBOFAC_HQ_FORCE_PLACE_ANCILLA_AUTODOC": 1,
-    "Unsupported DDA arithmetic: Call(func=Name(id='time', ctx=Load()), args=[Constant(value='14 day')], keywords=[])": 4,
     "Unsupported DDA arithmetic: Name(id='portal_storm_medium_data_sold', ctx=Load())": 2,
     "Unsupported DDA arithmetic: Name(id='portal_storm_small_data_sold', ctx=Load())": 1,
     "Unsupported DDA arithmetic: Name(id='HEW_portal_data_sold', ctx=Load())": 1,

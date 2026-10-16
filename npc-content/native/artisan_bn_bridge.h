@@ -4,10 +4,12 @@
 #include "calendar.h"
 #include "json.h"
 #include "player.h"
+#include "npc.h"
 
 #include <charconv>
 #include <array>
 #include <ranges>
+#include <limits>
 
 namespace dda_port {
 
@@ -15,6 +17,12 @@ inline auto read_expression( const JsonObject &object ) -> expression {
     auto result = expression{ .op = object.get_string( "op" ) };
     if( result.op == "literal" ) {
         result.value = object.get_float( "value" );
+    }
+    if( result.op == "npc_opinion" ) {
+        result.name = object.get_string( "name" );
+        if( result.name != "anger" && result.name != "fear" && result.name != "trust" && result.name != "value" ) {
+            object.throw_error( "Unknown NPC opinion field" );
+        }
     }
     if( result.op == "variable" ) {
         result.name = object.get_string( "name" );
@@ -30,7 +38,7 @@ inline auto read_expression( const JsonObject &object ) -> expression {
         }
     }
     const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var";
-    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now";
+    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion";
     const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
                         result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
                         result.op == "less" || result.op == "less_equal";
@@ -50,6 +58,25 @@ struct expression_actors {
 
 inline auto collect_values( const expression &node, const expression_actors &actors,
                             std::unordered_map<std::string, double> &values ) -> std::expected<void, std::string> {
+    if( node.op == "npc_opinion" ) {
+        const auto *speaker = dynamic_cast<const npc *>( actors.npc );
+        if( !speaker ) {
+            return std::unexpected( "NPC opinion requires an NPC actor" );
+        }
+        const auto &opinion = speaker->op_of_u;
+        if( node.name == "anger" ) {
+            values["@opinion:anger"] = opinion.anger;
+        } else if( node.name == "fear" ) {
+            values["@opinion:fear"] = opinion.fear;
+        } else if( node.name == "trust" ) {
+            values["@opinion:trust"] = opinion.trust;
+        } else if( node.name == "value" ) {
+            values["@opinion:value"] = opinion.value;
+        } else {
+            return std::unexpected( "Unknown NPC opinion field" );
+        }
+        return {};
+    }
     const auto &variable = node.op == "has_var" ? node.args[0] : node;
     const auto *actor = variable.npc_actor ? actors.npc : &actors.actor;
     if( ( node.op == "variable" || node.op == "has_var" ) && !actor ) {
@@ -101,6 +128,21 @@ inline auto store_numeric_value( player &actor, const std::string &name, const d
     if( converted.ec == std::errc{} ) {
         actor.set_value( "npctalk_var_" + name, std::string( text.data(), converted.ptr ) );
     }
+}
+
+inline auto store_npc_opinion( npc &actor, const std::string &name, const double value ) -> bool {
+    if( !std::isfinite( value ) || value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() ) {
+        return false;
+    }
+    auto *field = name == "anger" ? &actor.op_of_u.anger :
+                  name == "fear" ? &actor.op_of_u.fear :
+                  name == "trust" ? &actor.op_of_u.trust :
+                  name == "value" ? &actor.op_of_u.value : nullptr;
+    if( !field ) {
+        return false;
+    }
+    *field = static_cast<int>( value );
+    return true;
 }
 
 } // namespace dda_port

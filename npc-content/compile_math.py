@@ -28,6 +28,8 @@ def compile_node(node):
         return {"op": comparisons[type(node.ops[0])], "args": [compile_node(node.left), compile_node(node.comparators[0])]}
     if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
         name = node.func.id
+        if name in {'n_npc_anger', 'n_npc_fear', 'n_npc_trust', 'n_npc_value'} and not node.args and not node.keywords:
+            return {'op': 'npc_opinion', 'name': name.removeprefix('n_npc_')}
         if name in {"ceil", "has_var"} and len(node.args) == 1 and not node.keywords:
             argument = compile_node(node.args[0])
             if name == "has_var" and argument.get("op") != "variable":
@@ -37,9 +39,14 @@ def compile_node(node):
             duration = node.args[0].value
             if duration == "now":
                 return {"op": "now"}
-            match = re.fullmatch(r"(\d+)\s*(s|m|h|d)", str(duration))
-            if match:
-                return {"op": "literal", "value": int(match[1]) * {"s": 1, "m": 60, "h": 3600, "d": 86400}[match[2]]}
+            units = {'s': 1, 'second': 1, 'seconds': 1,
+                     'm': 60, 'minute': 60, 'minutes': 60,
+                     'h': 3600, 'hour': 3600, 'hours': 3600,
+                     'd': 86400, 'day': 86400, 'days': 86400,
+                     'week': 604800, 'weeks': 604800}
+            match = re.fullmatch(r"(\d+)\s*([a-z]+)", str(duration))
+            if match and match[2] in units:
+                return {"op": "literal", "value": int(match[1]) * units[match[2]]}
         if name == "time_since" and len(node.args) == 1:
             variable = compile_node(node.args[0])
             if variable.get("op") != "variable":
@@ -58,6 +65,19 @@ def compile_expression(expression):
     expression = re.sub(r"'unit'\s*:", "unit=", expression.strip())
     if expression.startswith("!"):
         expression = "not " + expression[1:]
+    opinion = re.fullmatch(r"(n_npc_(anger|fear|trust|value)\(\))\s*(\+\+|--|\+=|-=|=(?!=))\s*(.*)", expression)
+    if opinion:
+        target, field, operation, rhs = opinion.groups()
+        if operation in ('++', '--'):
+            if rhs:
+                raise ValueError('Unexpected operand after opinion increment')
+            rhs = '1'
+            operation = '+=' if operation == '++' else '-='
+        compiled = compile_node(ast.parse(rhs, mode='eval').body)
+        if operation != '=':
+            compiled = {'op': 'add' if operation == '+=' else 'subtract',
+                        'args': [{'op': 'npc_opinion', 'name': field}, compiled]}
+        return {'target': field, 'target_kind': 'npc_opinion', 'expression': compiled}
     increment = re.fullmatch(r"([un]_\w+)\s*(\+\+|--)", expression)
     if increment:
         expression = increment[1] + (" += 1" if increment[2] == "++" else " -= 1")

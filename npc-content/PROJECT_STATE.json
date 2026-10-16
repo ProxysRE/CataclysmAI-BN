@@ -102,7 +102,8 @@
     "Cleanup real start/end callbacks and counter cleanup",
     "Repair real turn-in, routed z=5 lights and survivor timer",
     "Real survivor NPC save/load retains identity, faction, dialogue and variables",
-    "Family mission assigns a z=-1 basement, spawns both NPCs, escort dialogue completes protection missions once and unlocks father turn-in"
+    "Family mission assigns a z=-1 basement, spawns both NPCs, escort dialogue completes protection missions once and unlocks father turn-in",
+    "Real NPC opinion reads/assignments/increments, field isolation and numeric range rejection"
   ],
   "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation",
   "implemented_native_validated": [
@@ -127,13 +128,19 @@
     "totals": {
       "source_files": 135,
       "definitions": 1647,
-      "blocked_definitions": 185,
+      "blocked_definitions": 125,
       "overlap_records": 174,
       "reference_records": 2551,
       "external_reference_records": 286
     },
     "status": "Prepared/adapted staging; not inserted into native patch",
     "runtime_validated": false,
-    "next": "Shared compatibility blockers and BN overlap merging across packages"
+    "next": "Shared compatibility blockers and BN overlap merging across packages",
+    "shared_compatibility": {
+      "real_npc_opinion_fields": "implemented; Windows regression pending",
+      "full_duration_units": "local compiler checks passed",
+      "blocked_before": 185,
+      "blocked_after": 125
+    }
   }
 }

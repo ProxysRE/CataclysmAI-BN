@@ -18,6 +18,49 @@
 #include "vehicle/vehicle.h"
 
 #include <sstream>
+#include <limits>
+
+TEST_CASE( "community_opinion_expressions_use_real_npc_relationships", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    auto speaker = npc{};
+    speaker.op_of_u.anger = 4;
+    speaker.op_of_u.fear = -2;
+    speaker.op_of_u.trust = 6;
+    speaker.op_of_u.value = 3;
+    speaker.set_value( "npctalk_var_anger", "999" );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto input = std::istringstream( R"({"dda_expression":{"op":"greater_equal","args":[{"op":"npc_opinion","name":"anger"},{"op":"literal","value":5}]}})" );
+    auto parser = JsonIn( input );
+    const auto angry = conditional_t<dialogue>( parser.get_object() );
+    CHECK_FALSE( angry( conversation ) );
+    auto increment_input = std::istringstream( R"({"effect":{"dda_set_npc_opinion":{"target":"anger","expression":{"op":"add","args":[{"op":"npc_opinion","name":"anger"},{"op":"literal","value":1}]}}}})" );
+    auto increment_parser = JsonIn( increment_input );
+    const auto increment = talk_effect_t( increment_parser.get_object() );
+    REQUIRE( increment.effects.size() == 1 );
+    increment.effects.front()( conversation );
+    CHECK( speaker.op_of_u.anger == 5 );
+    CHECK( angry( conversation ) );
+    CHECK( speaker.get_value( "npctalk_var_anger" ) == "999" );
+    CHECK( speaker.op_of_u.fear == -2 );
+    CHECK( speaker.op_of_u.trust == 6 );
+    CHECK( speaker.op_of_u.value == 3 );
+    for( const auto &field : { "fear", "trust", "value" } ) {
+        const auto expression = dda_port::expression{ .op = "npc_opinion", .name = field };
+        CHECK( dda_port::evaluate_for_player( expression, actor, &speaker ).has_value() );
+        CHECK_FALSE( dda_port::evaluate_for_player( expression, actor ).has_value() );
+    }
+    CHECK( dda_port::store_npc_opinion( speaker, "value", 7.9 ) );
+    CHECK( speaker.op_of_u.value == 7 );
+    CHECK( dda_port::store_npc_opinion( speaker, "fear", -3.9 ) );
+    CHECK( speaker.op_of_u.fear == -3 );
+    CHECK_FALSE( dda_port::store_npc_opinion( speaker, "anger", std::numeric_limits<double>::infinity() ) );
+    CHECK_FALSE( dda_port::store_npc_opinion( speaker, "anger", 2147483648.0 ) );
+    CHECK_FALSE( dda_port::store_npc_opinion( speaker, "unknown", 2 ) );
+    CHECK( speaker.op_of_u.anger == 5 );
+}
 
 static auto spawn_lighthouse_fisherman( overmapbuffer &buffer, const tripoint_abs_omt &location )
 -> shared_ptr_fast<npc> {

@@ -33,4 +33,8 @@ auto main() -> int {
     assert( !dda_port::evaluate( literal( std::numeric_limits<double>::infinity() ), context ) );
     assert( !dda_port::evaluate( expression{ .op = "add", .args = { literal( 1.0 ) } }, context ) );
     assert( !dda_port::evaluate( expression{ .op = "unknown" }, context ) );
+    const auto opinion = expression{ .op = "npc_opinion", .name = "anger" };
+    assert( !dda_port::evaluate( opinion, context ) );
+    variables["@opinion:anger"] = 5;
+    assert( dda_port::evaluate( binary( "greater_equal", opinion, literal( 5.0 ) ), context ) == 1 );
 }

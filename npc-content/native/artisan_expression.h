@@ -42,6 +42,13 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
         const auto found = context.variables.find( node.npc_actor ? "@npc:" + node.name : node.name );
         return valid_number( found == context.variables.end() ? 0.0 : found->second );
     }
+    if( node.op == "npc_opinion" && node.args.empty() ) {
+        const auto found = context.variables.find( "@opinion:" + node.name );
+        if( found == context.variables.end() ) {
+            return std::unexpected( "NPC opinion requires an NPC actor" );
+        }
+        return valid_number( found->second );
+    }
     if( node.op == "has_var" && node.args.size() == 1 && node.args[0].op == "variable" ) {
         return context.variables.contains( node.args[0].npc_actor ? "@npc:" + node.args[0].name : node.args[0].name ) ? 1.0 : 0.0;
     }
