@@ -6,6 +6,38 @@ from pathlib import Path
 from adapt_dialogue import adapt, expand_eocs
 from compile_math import compile_expression
 
+global_read = {'op': 'variable', 'name': 'hub01_shared', 'actor': 'global'}
+assert compile_expression('hub01_shared') == {'expression': global_read}
+assert compile_expression('hub01_shared += 1')['expression']['args'][0] == global_read
+assert compile_expression('hub01_shared++')['actor'] == 'global'
+assert compile_expression('has_var(hub01_shared)')['expression']['args'] == [global_read]
+assert compile_expression('true')['expression'] == {'op': 'literal', 'value': 1}
+assert compile_expression('false')['expression'] == {'op': 'literal', 'value': 0}
+assert compile_expression('n_hub01_shared')['expression']['actor'] == 'npc'
+global_line = adapt({'compare_string': ['yes', {'global_val': 'hub01_trade'}],
+                     'yes': 'unlocked', 'no': 'locked'}, collections.Counter())
+assert global_line == {'dda_global_string': {'name': 'hub01_trade', 'value': 'yes'},
+                       'yes': 'unlocked', 'no': 'locked'}
+single = {'single': {'id': 'single', 'effect': {'u_add_var': 'done', 'value': 'yes'}}}
+assert expand_eocs({'run_eocs': 'single'}, single, collections.Counter()) == [single['single']['effect']]
+for call, definitions in [({'run_eocs': 'single', 'time_in_future': '14 days'}, single),
+                          ({'run_eocs': [{'id': 'inline', 'effect': []}]}, {}),
+                          ({'run_eocs': 'recurring'}, {'recurring': {'effect': [], 'eoc_type': 'RECURRING'}}),
+                          ({'run_eocs': 'conditional'}, {'conditional': {'effect': [], 'condition': {'expects_vars': ['x'], 'and': []}}})]:
+    try:
+        expand_eocs(call, definitions, collections.Counter(), {'x': 1})
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Unsafe EOC expansion accepted')
+for expression in ('v_item', '_context', 'x_unknown', 'pi = 3'):
+    try:
+        compile_expression(expression)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Unsupported scope accepted: ' + expression)
+
 for expression, seconds in [("time('14 day')", 1209600), ("time('44 days')", 3801600),
                             ("time('30 minutes')", 1800), ("time('2 weeks')", 1209600),
                             ("time('14d')", 1209600)]:

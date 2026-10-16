@@ -5,6 +5,7 @@
 #include "json.h"
 #include "player.h"
 #include "npc.h"
+#include "game.h"
 
 #include <charconv>
 #include <array>
@@ -27,10 +28,11 @@ inline auto read_expression( const JsonObject &object ) -> expression {
     if( result.op == "variable" ) {
         result.name = object.get_string( "name" );
         const auto actor = object.get_string( "actor", "player" );
-        if( actor != "player" && actor != "npc" ) {
+        if( actor != "player" && actor != "npc" && actor != "global" ) {
             object.throw_error( "Unknown dialogue variable actor" );
         }
         result.npc_actor = actor == "npc";
+        result.global_actor = actor == "global";
     }
     if( object.has_array( "args" ) ) {
         for( const auto entry : object.get_array( "args" ) ) {
@@ -84,20 +86,35 @@ inline auto collect_values( const expression &node, const expression_actors &act
     }
     if( node.op == "has_var" ) {
         const auto &name = node.args[0].name;
+        if( variable.global_actor ) {
+            const auto found = g->dda_global_variables.find( name );
+            if( found != g->dda_global_variables.end() && !found->second.empty() ) {
+                values.try_emplace( "@global:" + name, 0 );
+            }
+            return {};
+        }
         if( !actor->get_value( "npctalk_var_" + name ).empty() ) {
             values.try_emplace( variable.npc_actor ? "@npc:" + name : name, 0 );
         }
         return {};
     }
     if( node.op == "variable" ) {
-        const auto raw = actor->get_value( "npctalk_var_" + node.name );
+        auto raw = std::string{};
+        if( node.global_actor ) {
+            const auto found = g->dda_global_variables.find( node.name );
+            if( found != g->dda_global_variables.end() ) {
+                raw = found->second;
+            }
+        } else {
+            raw = actor->get_value( "npctalk_var_" + node.name );
+        }
         if( !raw.empty() ) {
             auto number = 0.0;
             const auto parsed = std::from_chars( raw.data(), raw.data() + raw.size(), number );
             if( parsed.ec != std::errc{} || parsed.ptr != raw.data() + raw.size() || !std::isfinite( number ) ) {
                 return std::unexpected( "Invalid numeric artisan variable: " + node.name );
             }
-            values[node.npc_actor ? "@npc:" + node.name : node.name] = number;
+            values[node.global_actor ? "@global:" + node.name : node.npc_actor ? "@npc:" + node.name : node.name] = number;
         }
     }
     for( const auto &child : node.args ) {
@@ -122,11 +139,16 @@ inline auto evaluate_for_player( const expression &node, const player &actor, co
     } );
 }
 
-inline auto store_numeric_value( player &actor, const std::string &name, const double value ) -> void {
+inline auto store_numeric_value( player &actor, const std::string &name, const double value, const bool global = false ) -> void {
     auto text = std::array<char, 64>{};
     const auto converted = std::to_chars( text.data(), text.data() + text.size(), value );
     if( converted.ec == std::errc{} ) {
-        actor.set_value( "npctalk_var_" + name, std::string( text.data(), converted.ptr ) );
+        const auto result = std::string( text.data(), converted.ptr );
+        if( global ) {
+            g->dda_global_variables[name] = result;
+        } else {
+            actor.set_value( "npctalk_var_" + name, result );
+        }
     }
 }
 

@@ -37,4 +37,9 @@ auto main() -> int {
     assert( !dda_port::evaluate( opinion, context ) );
     variables["@opinion:anger"] = 5;
     assert( dda_port::evaluate( binary( "greater_equal", opinion, literal( 5.0 ) ), context ) == 1 );
+    variables["shared"] = 999;
+    variables["@global:shared"] = 2.5;
+    const auto shared = expression{ .op = "variable", .name = "shared", .global_actor = true };
+    assert( dda_port::evaluate( shared, context ) == 2.5 );
+    assert( dda_port::evaluate( expression{ .op = "has_var", .args = { shared } }, context ) == 1 );
 }

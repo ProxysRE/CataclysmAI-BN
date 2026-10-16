@@ -39,21 +39,29 @@ def expand_eocs(value, definitions, counts, variables=None, stack=()):
     if set(value) == {"context_val"} and value["context_val"] in variables:
         return variables[value["context_val"]]
     if "run_eocs" in value:
+        if set(value) - {'run_eocs', 'variables'}:
+            raise ValueError('Scheduled or extended EOC calls require native lifecycle support')
         names = value["run_eocs"]
         names = [names] if isinstance(names, str) else names
         context = {**variables, **value.get("variables", {})}
         effects = []
         for name in names:
+            if not isinstance(name, str):
+                raise ValueError('Inline EOC definitions require native lifecycle support')
             if name not in definitions or name in stack:
                 raise ValueError(f"Unknown or recursive EOC: {name}")
             definition = definitions[name]
+            if definition.get('eoc_type', 'ACTIVATION') != 'ACTIVATION' or 'recurrence' in definition:
+                raise ValueError(f'Non-activation EOC requires native lifecycle support: {name}')
+            if not isinstance(definition.get('condition', {}), dict):
+                raise ValueError(f'Conditional EOC cannot be statically expanded: {name}')
             required = definition.get("condition", {}).get("expects_vars", [])
             if set(required) - context.keys():
                 raise ValueError(f"Missing EOC context for {name}")
-            if definition.get("condition", {}) and not required:
+            if definition.get("condition", {}) and (not required or set(definition['condition']) != {'expects_vars'}):
                 raise ValueError(f"Conditional EOC cannot be statically expanded: {name}")
             expanded = expand_eocs(definition["effect"], definitions, counts, context, stack + (name,))
-            for entry in expanded:
+            for entry in expanded if isinstance(expanded, list) else [expanded]:
                 effects.extend(entry if isinstance(entry, list) else [entry])
             counts["inlined_eoc_calls"] += 1
         return effects
@@ -122,6 +130,11 @@ def adapt(value, counts):
             return {"dda_expression": compiled["expression"]}
     for source in ("set_string_var", "copy_var"):
         target = value.get("target_var", {})
+        if source == 'set_string_var' and isinstance(value.get(source), str) and set(target) == {'global_val'}:
+            if set(value) != {'set_string_var', 'target_var'}:
+                raise ValueError('Extended global string assignment requires separate support')
+            counts['global_string_assignment'] += 1
+            return {'dda_set_global_string': {'target': target['global_val'], 'value': value[source]}}
         if source in value and isinstance(value[source], str) and set(target) == {"u_val"}:
             counts["constant_string_assignment"] += 1
             return {"u_add_var": target["u_val"], "value": value[source]}
@@ -131,6 +144,9 @@ def adapt(value, counts):
             literal = next((part for part in operands if isinstance(part, str)), None)
             variable = next((part for part in operands if isinstance(part, dict)), None)
             if literal is not None and variable is not None and len(variable) == 1:
+                if 'global_val' in variable and isinstance(variable['global_val'], str):
+                    counts['global_string_equality'] += 1
+                    return {'dda_global_string': {'name': variable['global_val'], 'value': literal}}
                 for source, target in [("u_val", "u_has_var"), ("npc_val", "npc_has_var")]:
                     if source in variable and isinstance(variable[source], str):
                         counts["string_equality"] += 1

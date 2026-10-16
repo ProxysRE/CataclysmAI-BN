@@ -103,7 +103,8 @@
     "Repair real turn-in, routed z=5 lights and survivor timer",
     "Real survivor NPC save/load retains identity, faction, dialogue and variables",
     "Family mission assigns a z=-1 basement, spawns both NPCs, escort dialogue completes protection missions once and unlocks father turn-in",
-    "Real NPC opinion reads/assignments/increments, field isolation and numeric range rejection"
+    "Real NPC opinion reads/assignments/increments, field isolation and numeric range rejection",
+    "World-scoped numeric/string state sharing, player/NPC scope isolation and master-save/legacy-load regression"
   ],
   "compatibility_policy": "Port mechanisms only where needed by BN runtime or agreed quests; preserve unused upstream metadata without enabling unrelated simulation",
   "implemented_native_validated": [
@@ -128,7 +129,7 @@
     "totals": {
       "source_files": 135,
       "definitions": 1647,
-      "blocked_definitions": 125,
+      "blocked_definitions": 63,
       "overlap_records": 174,
       "reference_records": 2551,
       "external_reference_records": 286
@@ -140,7 +141,9 @@
       "real_npc_opinion_fields": "implemented; Windows regression pending",
       "full_duration_units": "local compiler checks passed",
       "blocked_before": 185,
-      "blocked_after": 125
+      "blocked_after": 63,
+      "world_scoped_variables": "implemented with master save/load and game setup reset; native Windows test pending",
+      "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed"
     }
   }
 }

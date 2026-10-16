@@ -7,7 +7,7 @@
  
  #include "auto_pickup.h"
  #include "avatar.h"
-@@ -915,7 +917,35 @@
+@@ -915,7 +917,44 @@
          }
          return conditionals;
      };
@@ -25,6 +25,15 @@
 +                return false;
 +            }
 +            return dda_port::has_items( *d.alpha, *request );
++        };
++    } else if( jo.has_object( "dda_global_string" ) ) {
++        const auto specification = jo.get_object( "dda_global_string" );
++        const auto name = specification.get_string( "name" );
++        const auto expected = specification.get_string( "value" );
++        found_sub_member = true;
++        condition = [name, expected]( const auto & ) {
++            const auto found = g->dda_global_variables.find( name );
++            return ( found == g->dda_global_variables.end() ? std::string{} : found->second ) == expected;
 +        };
 +    } else if( jo.has_object( "dda_expression" ) ) {
 +        const auto expression = dda_port::read_expression( jo.get_object( "dda_expression" ) );
@@ -61,7 +70,7 @@
  #include <map>
  #include <memory>
  #include <ostream>
-@@ -3000,7 +3003,170 @@
+@@ -3000,7 +3003,179 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
@@ -208,11 +217,20 @@
 +                }
 +            }
 +        } );
++    } else if( jo.has_object( "dda_set_global_string" ) ) {
++        const auto specification = jo.get_object( "dda_set_global_string" );
++        const auto name = specification.get_string( "target" );
++        const auto value = specification.get_string( "value" );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [name, value]( const auto & ) {
++                g->dda_global_variables[name] = value;
++            }
++        } );
 +    } else if( jo.has_object( "dda_set_variable" ) ) {
 +        const auto specification = jo.get_object( "dda_set_variable" );
 +        const auto name = specification.get_string( "target" );
 +        const auto actor = specification.get_string( "actor", "player" );
-+        if( actor != "player" && actor != "npc" ) {
++        if( actor != "player" && actor != "npc" && actor != "global" ) {
 +            specification.throw_error( "Unknown dialogue assignment actor" );
 +        }
 +        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
@@ -226,18 +244,18 @@
 +                    debugmsg( "%s", result.error() );
 +                    return;
 +                }
-+                dda_port::store_numeric_value( actor == "npc" ? *d.beta : *d.alpha, name, *result );
++                dda_port::store_numeric_value( actor == "npc" ? *d.beta : *d.alpha, name, *result, actor == "global" );
 +            }
 +        } );
 +    } else if( jo.has_string( "u_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
-@@ -3502,6 +3668,13 @@
+@@ -3502,6 +3677,13 @@
          conditional_t<dialogue> dcondition;
          const dynamic_line_t yes = from_member( jo, "yes" );
          const dynamic_line_t no = from_member( jo, "no" );
-+        if( jo.has_object( "dda_expression" ) ) {
++        if( jo.has_object( "dda_expression" ) || jo.has_object( "dda_global_string" ) ) {
 +            dcondition = conditional_t<dialogue>( jo );
 +            function = [dcondition, yes, no]( const dialogue &d ) {
 +                return ( dcondition( d ) ? yes : no )( d );
@@ -530,9 +548,62 @@
  
          void load( const JsonObject &jo, const std::string &src );
  
+--- a/src/game.h
++++ b/src/game.h
+@@ -185,6 +185,9 @@
+     public:
+         game();
+         ~game();
++
++        // DDA community quest state shared by all characters in this world.
++        std::map<std::string, std::string> dda_global_variables;
+ 
+         // submap_load_listener interface
+         auto on_submap_loaded( const tripoint_abs_sm &pos, const dimension_id &dim_id ) -> void override;
+--- a/src/game.cpp
++++ b/src/game.cpp
+@@ -684,6 +684,7 @@
+  */
+ void game::setup( bool load_world_modfiles )
+ {
++    dda_global_variables.clear();
+     loading_ui ui( true );
+ 
+     // Clear all dimension overmapbuffers before reloading JSON data.
+--- a/src/savegame.cpp
++++ b/src/savegame.cpp
+@@ -1382,6 +1382,8 @@
+ 
+ void game::unserialize_master( std::istream &fin )
+ {
++    // Legacy worlds have no field; never retain another world's quest state.
++    dda_global_variables.clear();
+     savegame_loading_version = 0;
+     chkversion( fin );
+     if( savegame_loading_version < 11 ) {
+@@ -1398,7 +1400,9 @@
+         jsin.start_object();
+         while( !jsin.end_object() ) {
+             std::string name = jsin.get_member_name();
+-            if( name == "next_mission_id" ) {
++            if( name == "dda_global_variables" ) {
++                jsin.read( dda_global_variables );
++            } else if( name == "next_mission_id" ) {
+                 next_mission_id = jsin.get_int();
+             } else if( name == "next_npc_id" ) {
+                 next_npc_id.deserialize( jsin );
+@@ -1471,6 +1475,8 @@
+         JsonOut json( fout, true ); // pretty-print
+         json.start_object();
+ 
++        json.member( "dda_global_variables", dda_global_variables );
++
+         json.member( "next_mission_id", next_mission_id );
+         json.member( "next_npc_id", next_npc_id );
+ 
 --- /dev/null
 +++ b/src/artisan_expression.h
-@@ -0,0 +1,113 @@
+@@ -0,0 +1,115 @@
 +#pragma once
 +
 +#include <cmath>
@@ -551,6 +622,7 @@
 +    std::string name;
 +    std::vector<expression> args;
 +    bool npc_actor = false;
++    bool global_actor = false;
 +};
 +
 +struct evaluation_context {
@@ -574,7 +646,7 @@
 +        return valid_number( context.now_seconds );
 +    }
 +    if( node.op == "variable" && node.args.empty() ) {
-+        const auto found = context.variables.find( node.npc_actor ? "@npc:" + node.name : node.name );
++        const auto found = context.variables.find( node.global_actor ? "@global:" + node.name : node.npc_actor ? "@npc:" + node.name : node.name );
 +        return valid_number( found == context.variables.end() ? 0.0 : found->second );
 +    }
 +    if( node.op == "npc_opinion" && node.args.empty() ) {
@@ -585,7 +657,8 @@
 +        return valid_number( found->second );
 +    }
 +    if( node.op == "has_var" && node.args.size() == 1 && node.args[0].op == "variable" ) {
-+        return context.variables.contains( node.args[0].npc_actor ? "@npc:" + node.args[0].name : node.args[0].name ) ? 1.0 : 0.0;
++        const auto &variable = node.args[0];
++        return context.variables.contains( variable.global_actor ? "@global:" + variable.name : variable.npc_actor ? "@npc:" + variable.name : variable.name ) ? 1.0 : 0.0;
 +    }
 +    if( node.args.size() == 1 ) {
 +        const auto argument = evaluate( node.args[0], context );
@@ -648,7 +721,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/src/artisan_bn_bridge.h
-@@ -0,0 +1,148 @@
+@@ -0,0 +1,170 @@
 +#pragma once
 +
 +#include "artisan_expression.h"
@@ -656,6 +729,7 @@
 +#include "json.h"
 +#include "player.h"
 +#include "npc.h"
++#include "game.h"
 +
 +#include <charconv>
 +#include <array>
@@ -678,10 +752,11 @@
 +    if( result.op == "variable" ) {
 +        result.name = object.get_string( "name" );
 +        const auto actor = object.get_string( "actor", "player" );
-+        if( actor != "player" && actor != "npc" ) {
++        if( actor != "player" && actor != "npc" && actor != "global" ) {
 +            object.throw_error( "Unknown dialogue variable actor" );
 +        }
 +        result.npc_actor = actor == "npc";
++        result.global_actor = actor == "global";
 +    }
 +    if( object.has_array( "args" ) ) {
 +        for( const auto entry : object.get_array( "args" ) ) {
@@ -735,20 +810,35 @@
 +    }
 +    if( node.op == "has_var" ) {
 +        const auto &name = node.args[0].name;
++        if( variable.global_actor ) {
++            const auto found = g->dda_global_variables.find( name );
++            if( found != g->dda_global_variables.end() && !found->second.empty() ) {
++                values.try_emplace( "@global:" + name, 0 );
++            }
++            return {};
++        }
 +        if( !actor->get_value( "npctalk_var_" + name ).empty() ) {
 +            values.try_emplace( variable.npc_actor ? "@npc:" + name : name, 0 );
 +        }
 +        return {};
 +    }
 +    if( node.op == "variable" ) {
-+        const auto raw = actor->get_value( "npctalk_var_" + node.name );
++        auto raw = std::string{};
++        if( node.global_actor ) {
++            const auto found = g->dda_global_variables.find( node.name );
++            if( found != g->dda_global_variables.end() ) {
++                raw = found->second;
++            }
++        } else {
++            raw = actor->get_value( "npctalk_var_" + node.name );
++        }
 +        if( !raw.empty() ) {
 +            auto number = 0.0;
 +            const auto parsed = std::from_chars( raw.data(), raw.data() + raw.size(), number );
 +            if( parsed.ec != std::errc{} || parsed.ptr != raw.data() + raw.size() || !std::isfinite( number ) ) {
 +                return std::unexpected( "Invalid numeric artisan variable: " + node.name );
 +            }
-+            values[node.npc_actor ? "@npc:" + node.name : node.name] = number;
++            values[node.global_actor ? "@global:" + node.name : node.npc_actor ? "@npc:" + node.name : node.name] = number;
 +        }
 +    }
 +    for( const auto &child : node.args ) {
@@ -773,11 +863,16 @@
 +    } );
 +}
 +
-+inline auto store_numeric_value( player &actor, const std::string &name, const double value ) -> void {
++inline auto store_numeric_value( player &actor, const std::string &name, const double value, const bool global = false ) -> void {
 +    auto text = std::array<char, 64>{};
 +    const auto converted = std::to_chars( text.data(), text.data() + text.size(), value );
 +    if( converted.ec == std::errc{} ) {
-+        actor.set_value( "npctalk_var_" + name, std::string( text.data(), converted.ptr ) );
++        const auto result = std::string( text.data(), converted.ptr );
++        if( global ) {
++            g->dda_global_variables[name] = result;
++        } else {
++            actor.set_value( "npctalk_var_" + name, result );
++        }
 +    }
 +}
 +
@@ -961,7 +1056,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,691 @@
+@@ -0,0 +1,749 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -983,6 +1078,64 @@
 +
 +#include <sstream>
 +#include <limits>
++
++TEST_CASE( "community_global_variables_are_shared_and_saved_with_the_world", "[dda_npc]" ) {
++    clear_all_state();
++    const auto previous = g->dda_global_variables;
++    const auto restore_globals = on_out_of_scope( [previous]() {
++        g->dda_global_variables = previous;
++    } );
++    g->dda_global_variables.clear();
++    auto &actor = get_avatar();
++    auto first = npc{};
++    auto second = npc{};
++    actor.set_value( "npctalk_var_hub01_shared", "999" );
++    first.set_value( "npctalk_var_hub01_shared", "888" );
++    const auto shared = dda_port::expression{ .op = "variable", .name = "hub01_shared", .global_actor = true };
++    CHECK( dda_port::evaluate_for_player( shared, actor, &first ) == 0.0 );
++    CHECK( g->dda_global_variables.empty() );
++    auto input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"hub01_shared","actor":"global","expression":{"op":"literal","value":3.5}}}})" );
++    auto parser = JsonIn( input );
++    const auto assignment = talk_effect_t( parser.get_object() );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &first;
++    REQUIRE( assignment.effects.size() == 1 );
++    assignment.effects.front()( conversation );
++    CHECK( dda_port::evaluate_for_player( shared, actor, &first ) == 3.5 );
++    CHECK( dda_port::evaluate_for_player( shared, actor, &second ) == 3.5 );
++    CHECK( actor.get_value( "npctalk_var_hub01_shared" ) == "999" );
++    CHECK( first.get_value( "npctalk_var_hub01_shared" ) == "888" );
++    auto string_input = std::istringstream( R"({"effect":{"dda_set_global_string":{"target":"hub01_trade","value":"yes"}}})" );
++    auto string_parser = JsonIn( string_input );
++    const auto string_assignment = talk_effect_t( string_parser.get_object() );
++    REQUIRE( string_assignment.effects.size() == 1 );
++    string_assignment.effects.front()( conversation );
++    auto line_input = std::istringstream( R"({"dda_global_string":{"name":"hub01_trade","value":"yes"},"yes":"unlocked","no":"locked"})" );
++    auto line_parser = JsonIn( line_input );
++    const auto line = dynamic_line_t( line_parser.get_object() );
++    conversation.beta = &second;
++    CHECK( line( conversation ) == "unlocked" );
++    g->dda_global_variables["hub01_trade"] = "no";
++    CHECK( line( conversation ) == "locked" );
++    const auto exists = dda_port::expression{ .op = "has_var", .args = { shared } };
++    CHECK( dda_port::evaluate_for_player( exists, actor ) == 1.0 );
++    auto saved = std::stringstream{};
++    g->serialize_master( saved );
++    const auto saved_text = saved.str();
++    REQUIRE( saved_text.find( "dda_global_variables" ) != std::string::npos );
++    g->dda_global_variables["stale"] = "discard me";
++    g->unserialize_master( saved );
++    CHECK( g->dda_global_variables.size() == 2 );
++    CHECK( g->dda_global_variables.at( "hub01_shared" ) == "3.5" );
++    CHECK( g->dda_global_variables.at( "hub01_trade" ) == "no" );
++    auto legacy_text = saved_text;
++    legacy_text.replace( legacy_text.find( "dda_global_variables" ), std::string( "dda_global_variables" ).size(), "unknown_legacy_field" );
++    auto legacy = std::istringstream( legacy_text );
++    g->unserialize_master( legacy );
++    CHECK( g->dda_global_variables.empty() );
++    CHECK( dda_port::evaluate_for_player( exists, actor ) == 0.0 );
++}
 +
 +TEST_CASE( "community_opinion_expressions_use_real_npc_relationships", "[dda_npc]" ) {
 +    clear_all_state();

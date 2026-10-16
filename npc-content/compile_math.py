@@ -7,15 +7,20 @@ requires the native BN compatibility layer; it is not stock BN JSON.
 import ast
 import json
 import re
+import math
 
 
 def compile_node(node):
     if isinstance(node, ast.Constant) and type(node.value) in (int, float):
         return {"op": "literal", "value": node.value}
+    if isinstance(node, ast.Name) and node.id in {'pi', 'π', 'e', 'true', 'false'}:
+        return {'op': 'literal', 'value': {'pi': math.pi, 'π': math.pi, 'e': math.e, 'true': 1, 'false': 0}[node.id]}
     if isinstance(node, ast.Name) and node.id.startswith(("u_", "n_")):
         if node.id.startswith("n_"):
             return {"op": "variable", "name": node.id[2:], "actor": "npc"}
         return {"op": "variable", "name": node.id[2:]}
+    if isinstance(node, ast.Name) and not node.id.startswith('_') and not (len(node.id) > 2 and node.id[1] == '_'):
+        return {'op': 'variable', 'name': node.id, 'actor': 'global'}
     binary = {ast.Add: "add", ast.Sub: "subtract", ast.Mult: "multiply", ast.Div: "divide"}
     if isinstance(node, ast.BinOp) and type(node.op) in binary:
         return {"op": binary[type(node.op)], "args": [compile_node(node.left), compile_node(node.right)]}
@@ -78,18 +83,21 @@ def compile_expression(expression):
             compiled = {'op': 'add' if operation == '+=' else 'subtract',
                         'args': [{'op': 'npc_opinion', 'name': field}, compiled]}
         return {'target': field, 'target_kind': 'npc_opinion', 'expression': compiled}
-    increment = re.fullmatch(r"([un]_\w+)\s*(\+\+|--)", expression)
+    increment = re.fullmatch(r"([A-Za-z_]\w*)\s*(\+\+|--)", expression)
     if increment:
         expression = increment[1] + (" += 1" if increment[2] == "++" else " -= 1")
-    assignment = re.fullmatch(r"([un]_\w+)\s*(\+=|-=|=(?!=))\s*(.+)", expression)
+    assignment = re.fullmatch(r"([A-Za-z_]\w*)\s*(\+=|-=|=(?!=))\s*(.+)", expression)
     if assignment:
         target, operator, rhs = assignment.groups()
         compiled = compile_node(ast.parse(rhs, mode="eval").body)
         if operator != "=":
             compiled = {"op": "add" if operator == "+=" else "subtract", "args": [compile_node(ast.Name(id=target)), compiled]}
-        result = {"target": target[2:], "expression": compiled}
-        if target.startswith("n_"):
-            result["actor"] = "npc"
+        target_node = compile_node(ast.Name(id=target))
+        if target_node.get('op') != 'variable':
+            raise ValueError('Assignment target must be a variable')
+        result = {"target": target_node['name'], "expression": compiled}
+        if 'actor' in target_node:
+            result['actor'] = target_node['actor']
         return result
     return {"expression": compile_node(ast.parse(expression, mode="eval").body)}
 

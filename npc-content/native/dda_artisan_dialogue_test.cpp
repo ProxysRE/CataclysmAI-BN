@@ -20,6 +20,64 @@
 #include <sstream>
 #include <limits>
 
+TEST_CASE( "community_global_variables_are_shared_and_saved_with_the_world", "[dda_npc]" ) {
+    clear_all_state();
+    const auto previous = g->dda_global_variables;
+    const auto restore_globals = on_out_of_scope( [previous]() {
+        g->dda_global_variables = previous;
+    } );
+    g->dda_global_variables.clear();
+    auto &actor = get_avatar();
+    auto first = npc{};
+    auto second = npc{};
+    actor.set_value( "npctalk_var_hub01_shared", "999" );
+    first.set_value( "npctalk_var_hub01_shared", "888" );
+    const auto shared = dda_port::expression{ .op = "variable", .name = "hub01_shared", .global_actor = true };
+    CHECK( dda_port::evaluate_for_player( shared, actor, &first ) == 0.0 );
+    CHECK( g->dda_global_variables.empty() );
+    auto input = std::istringstream( R"({"effect":{"dda_set_variable":{"target":"hub01_shared","actor":"global","expression":{"op":"literal","value":3.5}}}})" );
+    auto parser = JsonIn( input );
+    const auto assignment = talk_effect_t( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &first;
+    REQUIRE( assignment.effects.size() == 1 );
+    assignment.effects.front()( conversation );
+    CHECK( dda_port::evaluate_for_player( shared, actor, &first ) == 3.5 );
+    CHECK( dda_port::evaluate_for_player( shared, actor, &second ) == 3.5 );
+    CHECK( actor.get_value( "npctalk_var_hub01_shared" ) == "999" );
+    CHECK( first.get_value( "npctalk_var_hub01_shared" ) == "888" );
+    auto string_input = std::istringstream( R"({"effect":{"dda_set_global_string":{"target":"hub01_trade","value":"yes"}}})" );
+    auto string_parser = JsonIn( string_input );
+    const auto string_assignment = talk_effect_t( string_parser.get_object() );
+    REQUIRE( string_assignment.effects.size() == 1 );
+    string_assignment.effects.front()( conversation );
+    auto line_input = std::istringstream( R"({"dda_global_string":{"name":"hub01_trade","value":"yes"},"yes":"unlocked","no":"locked"})" );
+    auto line_parser = JsonIn( line_input );
+    const auto line = dynamic_line_t( line_parser.get_object() );
+    conversation.beta = &second;
+    CHECK( line( conversation ) == "unlocked" );
+    g->dda_global_variables["hub01_trade"] = "no";
+    CHECK( line( conversation ) == "locked" );
+    const auto exists = dda_port::expression{ .op = "has_var", .args = { shared } };
+    CHECK( dda_port::evaluate_for_player( exists, actor ) == 1.0 );
+    auto saved = std::stringstream{};
+    g->serialize_master( saved );
+    const auto saved_text = saved.str();
+    REQUIRE( saved_text.find( "dda_global_variables" ) != std::string::npos );
+    g->dda_global_variables["stale"] = "discard me";
+    g->unserialize_master( saved );
+    CHECK( g->dda_global_variables.size() == 2 );
+    CHECK( g->dda_global_variables.at( "hub01_shared" ) == "3.5" );
+    CHECK( g->dda_global_variables.at( "hub01_trade" ) == "no" );
+    auto legacy_text = saved_text;
+    legacy_text.replace( legacy_text.find( "dda_global_variables" ), std::string( "dda_global_variables" ).size(), "unknown_legacy_field" );
+    auto legacy = std::istringstream( legacy_text );
+    g->unserialize_master( legacy );
+    CHECK( g->dda_global_variables.empty() );
+    CHECK( dda_port::evaluate_for_player( exists, actor ) == 0.0 );
+}
+
 TEST_CASE( "community_opinion_expressions_use_real_npc_relationships", "[dda_npc]" ) {
     clear_all_state();
     auto &actor = get_avatar();
