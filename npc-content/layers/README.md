@@ -42,7 +42,7 @@ bundle rather than duplicated in version control.
 
 ## Linked-location expansion
 
-The expanded source bundle contains 201 exact pinned files (160 DDA, 41 BN).
+The expanded source bundle contains 214 exact pinned files (160 DDA, 54 BN).
 Current staging selects 1,767 definitions from 158 DDA files: the original
 eight communities, directly related maps, and 109 definitions selected from
 shared files. Selection follows typed references, inheritance, OMT-to-mapgen
@@ -76,3 +76,29 @@ has been silently promoted into the native game package.
 Run `python check_location_layers.py` and `python check_community_layers.py`
 after source/selector changes. They check selective extraction, source
 preservation, placement coordinates, real BN comparisons and determinism.
+
+## Existing BN locations are merge targets
+
+Run `python check_location_merge_plan.py` to compare IDs and mapgen contents
+against BN, including files whose paths differ from DDA. The baseline now
+includes all 12 JSON files in BN's overmap_special directory, plus the occupied
+lumbermill and chemical laboratory maps. External definition locations and
+unselected mapgen files still require review; absence from this selected map
+baseline does not authorize adding a new definition.
+
+Six sites are explicit merge targets: Lumbermill, Occupied Lumbermill,
+Occupied Chem Lab, Occupied Scrap Yard, the bunker merchant site and Hub 01.
+Their original occurrence must survive. Eight other layouts remain new-site
+candidates pending native and full identity checks; none is installable by
+this planner. Alternate BN names sharing dedicated map IDs become review
+candidates instead of being treated as new sites automatically.
+
+Mapgen comparisons preserve complete BN variant sets, including when a DDA
+variant already matches one of them. Current output has seven matching source
+variants to retain and 77 comparisons requiring review of existing variants.
+The chemical-lab roof matches; the occupied lumbermill's rows, NPC placement
+and other sections differ, so NPC coordinates cannot be copied blindly.
+
+`LOCATION_MERGE_SUMMARY.json` preserves review targets and representative
+differences. The complete per-map variant plan is regenerated as
+`LOCATION_MERGE_PLAN.json`. Duplicate-prone additions are checked in fast CI.

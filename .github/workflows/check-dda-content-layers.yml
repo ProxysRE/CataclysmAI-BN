@@ -24,6 +24,8 @@ jobs:
         run: python npc-content/check_location_layers.py
       - name: Verify every staged definition and blocked original
         run: python npc-content/check_community_layers.py
+      - name: Prevent duplicate location and mapgen plans
+        run: python npc-content/check_location_merge_plan.py
       - name: Verify dialogue compiler and safe EOC expansion
         run: python npc-content/check_artisan_adapter.py
       - name: Verify lighthouse map and encounter links

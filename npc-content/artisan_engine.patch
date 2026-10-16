@@ -1150,7 +1150,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,865 @@
+@@ -0,0 +1,867 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -1410,8 +1410,10 @@
 +    const auto family = buffer.get_npcs_near_omt( basement, 0 );
 +    REQUIRE( family.size() == 2 );
 +    const auto remove_family = on_out_of_scope( [&buffer, family]() {
-+        g->unload_npcs();
 +        for( const auto &person : family ) {
++            if( person->is_active() ) {
++                g->erase_npc( person->getID() );
++            }
 +            buffer.remove_npc( person->getID() );
 +        }
 +    } );

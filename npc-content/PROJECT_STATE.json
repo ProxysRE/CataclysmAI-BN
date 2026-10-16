@@ -133,9 +133,9 @@
       "source_files": 158,
       "definitions": 1767,
       "blocked_definitions": 68,
-      "overlap_records": 376,
+      "overlap_records": 382,
       "reference_records": 4383,
-      "external_reference_records": 874
+      "external_reference_records": 867
     },
     "status": "Prepared/adapted staging; not inserted into native patch",
     "runtime_validated": false,
@@ -154,7 +154,7 @@
     "location_expansion": {
       "selected_support_definitions": 109,
       "audited_placements": 14,
-      "catalog_files": 201,
+      "catalog_files": 214,
       "staged_dda_files": 158,
       "scope": "Typed selection and full static placement comparison; generic mapgen and item/monster dependencies remain open",
       "hub_01": {
@@ -180,7 +180,15 @@
     "resolved_EOC_source_references": [
       "EOC_exodii_mission_wh_directions_chance",
       "EOC_MISSION_GET_DRIVEBELTS_done"
-    ]
+    ],
+    "duplicate_prevention": {
+      "BN_special_directory_files": 12,
+      "existing_sites_to_merge": 6,
+      "new_site_candidates_not_installable": 8,
+      "matching_mapgen_variants_to_retain": 7,
+      "existing_mapgen_comparisons_to_review": 77,
+      "baseline_mapgen_missing_means": "unresolved, never automatic addition"
+    }
   },
   "latest_observed_failure": {
     "run_id": 38915686091,
@@ -192,8 +200,11 @@
     "fix": "DDA-specific terrain-type condition, rotated regression, mission reset and rescue NPC cleanup; Windows pending"
   },
   "latest_native_compile_failure": {
-    "run_id": 38923398535,
-    "error": "Save test attempted private game::serialize_master",
-    "fix": "Existing stream serializer declared beside public unserialize_master; Windows pending"
+    "run_id": 38931402007,
+    "errors": [
+      "Save serializer private (fixed in prior commit)",
+      "Test cleanup called private unload_npcs"
+    ],
+    "fix": "Cleanup now uses public erase_npc for active fixture NPCs only; pending Windows"
   }
 }

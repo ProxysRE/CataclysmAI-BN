@@ -18,7 +18,7 @@ def audit(root):
         entries = json.loads(content)
         chosen = selected_entries(name, entries, manifest) if side == 'dda' else enumerate(entries)
         for position, entry in chosen:
-            if entry['type'] == 'overmap_special':
+            if entry['type'] == 'overmap_special' and isinstance(entry.get('id'), str):
                 specials[side][entry['id']] = entry
             for kind, identifier in identities(entry):
                 if kind == 'mapgen_terrain':

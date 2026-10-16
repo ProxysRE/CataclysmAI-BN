@@ -1,0 +1,304 @@
+{
+  "locations": [
+    {
+      "id": "Lumbermill",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 159,
+        "entry_sha256": "bfe1e8518c146013131b78ac79aac734e244bce2b2c7c13de9cd5ae9f65a92f8"
+      },
+      "baseline": {
+        "file": "bn/data/json/overmap/overmap_special/specials.json",
+        "index": 146,
+        "entry_sha256": "d258d1fa124de57489be682ccac0a4a11485fc3c22b0fec1bb01c671fbfd4374"
+      },
+      "renamed_candidates": [],
+      "operation": "merge_existing_special",
+      "preserve_existing_occurrence": true,
+      "installable": false
+    },
+    {
+      "id": "Militia Lodge",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 206,
+        "entry_sha256": "5a17d11229a7a2dde5e3f582ded8de85480f87e408717aa842a6f8174460ef7d"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "New England Church Retreat",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 80,
+        "entry_sha256": "8d1eb94e8b0a2a8ab2160a9c205606592c4b1a1fc4c696b64ff9130f5a5a5289"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "Occupied Chem Lab",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 195,
+        "entry_sha256": "85a56cc6ed55ca844914d20ec35b07b4b9784e32994cbdb770af6ccc8fecde8d"
+      },
+      "baseline": {
+        "file": "bn/data/json/overmap/overmap_special/specials.json",
+        "index": 182,
+        "entry_sha256": "72af4087ca514bdf7fb4732d98abd53ab33a77b104f55393d8f002e03af63cd3"
+      },
+      "renamed_candidates": [],
+      "operation": "merge_existing_special",
+      "preserve_existing_occurrence": true,
+      "installable": false
+    },
+    {
+      "id": "Occupied Lumbermill",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 197,
+        "entry_sha256": "206b22ecdba3fdb1c52bbb418c7aeb1dd29c2410d056eae5f91dbf919c433381"
+      },
+      "baseline": {
+        "file": "bn/data/json/overmap/overmap_special/specials.json",
+        "index": 184,
+        "entry_sha256": "5a36be0aafff19221eabb917fa9977e90405f380c93311284ffd049fd7e86a6b"
+      },
+      "renamed_candidates": [],
+      "operation": "merge_existing_special",
+      "preserve_existing_occurrence": true,
+      "installable": false
+    },
+    {
+      "id": "Occupied Scrap Yard",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 196,
+        "entry_sha256": "aa764235912c9ccd47c5c57372588243c5d1fcd9c60bc5aad468b5d4104ec4c5"
+      },
+      "baseline": {
+        "file": "bn/data/json/overmap/overmap_special/specials.json",
+        "index": 183,
+        "entry_sha256": "98349a010b94499970dee890fe201546e0e7ecdd7510f5ee89bbe42c959870ed"
+      },
+      "renamed_candidates": [],
+      "operation": "merge_existing_special",
+      "preserve_existing_occurrence": true,
+      "installable": false
+    },
+    {
+      "id": "campus",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/campus.json",
+        "index": 0,
+        "entry_sha256": "352acfe86a55a99d2fa3cf78c8d581a36fe48564f78c8d1b17e6133f883a15a2"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "campus_commons",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/campus.json",
+        "index": 2,
+        "entry_sha256": "05c6e0ffc719c30a0275758ed40c53497f01c2c10eb99d80a33b2c95c5e735bb"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "campus_health",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/campus.json",
+        "index": 4,
+        "entry_sha256": "aef6fdb32a61e3145b16c98f737c742834466f8e7490adfb344335cb530d5811"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "campus_lecture",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/campus.json",
+        "index": 1,
+        "entry_sha256": "452ae04f119a4bf596eaa4bc67f2ce71c58f0f90c2d9c32c32d615e2a7a45ae6"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "campus_media",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/campus.json",
+        "index": 3,
+        "entry_sha256": "d6f8158621930cad3741ce78d0053278cbb67744535683f1181e3bdd34c4e428"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "hub_01",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 139,
+        "entry_sha256": "5c00f0cf816f609a2c56148ce887c4879197248ef7df9d1363e82b25758e63ed"
+      },
+      "baseline": {
+        "file": "bn/data/json/overmap/overmap_special/specials.json",
+        "index": 131,
+        "entry_sha256": "63f573536837cc6212dbbe59a6604d2922b0b2a0de1d69f95e73cdc4c6c13f4a"
+      },
+      "renamed_candidates": [],
+      "operation": "merge_existing_special",
+      "preserve_existing_occurrence": true,
+      "installable": false
+    },
+    {
+      "id": "robofac_strip_mall",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 213,
+        "entry_sha256": "3ea077388acebc4eb6fd34f9f6f5a5b0984c0a05cb79bb9e745044d27d96aa43"
+      },
+      "baseline": null,
+      "renamed_candidates": [],
+      "operation": "validate_new_special_candidate",
+      "preserve_existing_occurrence": false,
+      "installable": false
+    },
+    {
+      "id": "ws_survivor_bunker_place",
+      "source": {
+        "file": "dda/data/json/overmap/overmap_special/specials.json",
+        "index": 149,
+        "entry_sha256": "ff4f1228750e73b6f42c5daa1cdf4fa253933595134681e3ea43aab84c919b0f"
+      },
+      "baseline": {
+        "file": "bn/data/json/overmap/overmap_special/specials.json",
+        "index": 138,
+        "entry_sha256": "1495b2d62f6bb0735e0e2854b7d72b80db7871fcd56f9d3b7c7d7db01a2c900d"
+      },
+      "renamed_candidates": [],
+      "operation": "merge_existing_special",
+      "preserve_existing_occurrence": true,
+      "installable": false
+    }
+  ],
+  "summary": {
+    "location_operations": {
+      "merge_existing_special": 6,
+      "validate_new_special_candidate": 8
+    },
+    "mapgen_operations": {
+      "resolve_baseline_before_addition": 236,
+      "review_existing_variant_set": 77,
+      "keep_existing_variant_set": 7
+    }
+  },
+  "rules": [
+    "Existing special IDs require merging at the original location, never a second occurrence",
+    "Matching mapgen terrain IDs require reviewing the complete BN variant set",
+    "An absent ID in the selected map baseline is unresolved, not permission to add",
+    "Rows alone do not prove semantic equivalence; terrain legends, NPCs, items and effects also matter"
+  ],
+  "baseline_scope": "All 12 pinned BN overmap_special directory files; selected mapgen files only; external definitions still require review",
+  "release_ready": false,
+  "unchanged_terrain_ids": [
+    "chemical_lab_roof_ocu",
+    "lumbermill_dforest"
+  ],
+  "examples": [
+    {
+      "terrain": "chemical_lab_ocu",
+      "source": {
+        "file": "dda/data/json/mapgen/chemist_holdout/chemical_lab.json",
+        "index": 0,
+        "entry_sha256": "31e6480769eb77d9b9e1a70160dcefe10d857e7d273ebe3515d15163d2359174"
+      },
+      "baseline_variants": [
+        {
+          "file": "bn/data/json/mapgen/chemical_lab.json",
+          "index": 0,
+          "entry_sha256": "b77332ae842c0469a10a36bcdf8d137c8d7d1b17e0d2332ecc64bd9a3c83368a"
+        }
+      ],
+      "operation": "review_existing_variant_set",
+      "comparisons": [
+        {
+          "baseline": {
+            "file": "bn/data/json/mapgen/chemical_lab.json",
+            "index": 0,
+            "entry_sha256": "b77332ae842c0469a10a36bcdf8d137c8d7d1b17e0d2332ecc64bd9a3c83368a"
+          },
+          "rows_equal": false,
+          "changed_object_sections": [
+            "npcs",
+            "place_npcs",
+            "place_zones",
+            "rows",
+            "terrain"
+          ]
+        }
+      ],
+      "installable": false
+    },
+    {
+      "terrain": "lumbermill_1_1_ocu",
+      "source": {
+        "file": "dda/data/json/mapgen/occupied_lumber_mill/occupied_lumber_mill.json",
+        "index": 0,
+        "entry_sha256": "e0e1c3225602a015d9100b2582061382a559af65ab1d52f8f1faf6c0719e578a"
+      },
+      "baseline_variants": [
+        {
+          "file": "bn/data/json/mapgen/occupied_lumber_mill.json",
+          "index": 0,
+          "entry_sha256": "08b156e49011c01145d1c0c459012f03d2aa06466e64da0179bad49735739864"
+        }
+      ],
+      "operation": "review_existing_variant_set",
+      "comparisons": [
+        {
+          "baseline": {
+            "file": "bn/data/json/mapgen/occupied_lumber_mill.json",
+            "index": 0,
+            "entry_sha256": "08b156e49011c01145d1c0c459012f03d2aa06466e64da0179bad49735739864"
+          },
+          "rows_equal": false,
+          "changed_object_sections": [
+            "faction_owner",
+            "gaspumps",
+            "place_npcs",
+            "place_zones",
+            "rows",
+            "terrain"
+          ]
+        }
+      ],
+      "installable": false
+    }
+  ]
+}

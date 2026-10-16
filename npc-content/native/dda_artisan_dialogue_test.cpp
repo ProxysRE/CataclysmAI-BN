@@ -257,8 +257,10 @@ TEST_CASE( "lighthouse_family_spawns_underground_and_returns_through_dialogue", 
     const auto family = buffer.get_npcs_near_omt( basement, 0 );
     REQUIRE( family.size() == 2 );
     const auto remove_family = on_out_of_scope( [&buffer, family]() {
-        g->unload_npcs();
         for( const auto &person : family ) {
+            if( person->is_active() ) {
+                g->erase_npc( person->getID() );
+            }
             buffer.remove_npc( person->getID() );
         }
     } );

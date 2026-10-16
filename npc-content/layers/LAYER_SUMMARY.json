@@ -222,9 +222,9 @@
     "source_files": 158,
     "definitions": 1767,
     "blocked_definitions": 68,
-    "overlap_records": 376,
+    "overlap_records": 382,
     "reference_records": 4383,
-    "external_reference_records": 874
+    "external_reference_records": 867
   },
   "blocker_reasons": {
     "Native EOC definition requires separate lifecycle review": 36,
