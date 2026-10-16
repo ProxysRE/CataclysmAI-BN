@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <expected>
 #include <optional>
+#include <limits>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -24,6 +25,8 @@ struct evaluation_context {
     const std::unordered_map<std::string, double> &variables;
     double now_seconds = 0;
     double cataclysm_seconds = 0;
+    double ( *random_real )( double, double ) = nullptr;
+    int ( *random_int )( int, int ) = nullptr;
 };
 
 /// Return an error for malformed or non-finite calculations rather than granting rewards.
@@ -76,6 +79,13 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
         if( node.op == "ceil" ) {
             return valid_number( std::ceil( *argument ) );
         }
+        if( node.op == "rand" ) {
+            const auto upper = std::round( *argument );
+            if( !context.random_int || upper < std::numeric_limits<int>::min() || upper > std::numeric_limits<int>::max() ) {
+                return std::unexpected( "Invalid rand bound or missing random source" );
+            }
+            return valid_number( context.random_int( 0, static_cast<int>( upper ) ) );
+        }
         if( node.op == "negate" ) {
             return valid_number( -*argument );
         }
@@ -91,6 +101,12 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
         }
         if( node.op == "add" ) {
             return valid_number( *lhs + *rhs );
+        }
+        if( node.op == "rng" ) {
+            if( !context.random_real || !std::isfinite( *rhs - *lhs ) ) {
+                return std::unexpected( "Invalid rng bounds or missing random source" );
+            }
+            return valid_number( context.random_real( *lhs, *rhs ) );
         }
         if( node.op == "min" ) {
             return std::min( *lhs, *rhs );

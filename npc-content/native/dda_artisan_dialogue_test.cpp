@@ -20,6 +20,56 @@
 #include <sstream>
 #include <limits>
 
+TEST_CASE( "community_random_math_preserves_DDA_float_and_integer_semantics", "[dda_npc]" ) {
+    const auto variables = std::unordered_map<std::string, double>{};
+    const auto context = dda_port::evaluation_context{
+        .variables = variables,
+        .random_real = []( double low, double high ) {
+            CHECK( low == 1 );
+            CHECK( high == 3 );
+            return 1.75;
+        },
+        .random_int = []( int low, int high ) {
+            CHECK( low == 0 );
+            return high;
+        }
+    };
+    const auto real = dda_port::expression{ .op = "rng", .args = {
+        { .op = "literal", .value = 1 }, { .op = "literal", .value = 3 }
+    } };
+    CHECK( dda_port::evaluate( real, context ).value() == 1.75 );
+    auto integer = dda_port::expression{ .op = "rand", .args = { { .op = "literal", .value = 2.5 } } };
+    CHECK( dda_port::evaluate( integer, context ).value() == 3 );
+    integer.args[0].value = -2.5;
+    CHECK( dda_port::evaluate( integer, context ).value() == -3 );
+    integer.args[0].value = 2147483648.0;
+    CHECK_FALSE( dda_port::evaluate( integer, context ).has_value() );
+    CHECK_FALSE( dda_port::evaluate( real, { .variables = variables } ).has_value() );
+
+    // The actual bridge uses BN's seeded RNG, with the same reversed-bound handling as DDA.
+    auto actor = npc{};
+    auto input = std::istringstream( R"({"op":"rng","args":[{"op":"literal","value":3},{"op":"literal","value":1}]})" );
+    auto parser = JsonIn( input );
+    const auto parsed = dda_port::read_expression( parser.get_object() );
+    auto integer_input = std::istringstream( R"({"op":"rand","args":[{"op":"variable","name":"upper"}]})" );
+    auto integer_parser = JsonIn( integer_input );
+    const auto parsed_integer = dda_port::read_expression( integer_parser.get_object() );
+    actor.set_value( "npctalk_var_upper", "13" );
+    for( auto i = 0; i < 16; ++i ) {
+        const auto value = dda_port::evaluate_for_player( parsed, actor );
+        REQUIRE( value.has_value() );
+        CHECK( *value >= 1 );
+        CHECK( *value <= 3 );
+        const auto whole = dda_port::evaluate_for_player( parsed_integer, actor );
+        REQUIRE( whole.has_value() );
+        CHECK( *whole >= 0 );
+        CHECK( *whole <= 13 );
+        CHECK( std::floor( *whole ) == *whole );
+    }
+    actor.set_value( "npctalk_var_upper", "0" );
+    CHECK( dda_port::evaluate_for_player( parsed_integer, actor ).value() == 0 );
+}
+
 TEST_CASE( "community_chance_conditions_read_current_world_values", "[dda_npc]" ) {
     clear_all_state();
     get_avatar().reset_all_missions();

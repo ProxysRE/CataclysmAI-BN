@@ -20,6 +20,8 @@ jobs:
           python-version: '3.12'
       - name: Reconstruct preserved artisan sources
         run: python npc-content/prepare_isolated_road.py --output npc-content/staging
+      - name: Reject stale native patch sources
+        run: python npc-content/check_native_patch_sources.py
       - name: Verify selective location dependencies and layouts
         run: python npc-content/check_location_layers.py
       - name: Verify every staged definition and blocked original

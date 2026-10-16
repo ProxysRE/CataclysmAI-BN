@@ -25,6 +25,15 @@ assert compile_expression('false')['expression'] == {'op': 'literal', 'value': 0
 assert compile_expression("time_since('cataclysm', 'unit':'days')")['expression']['args'][0]['args'][1] == {'op':'cataclysm'}
 assert compile_expression('max(exodii_mission_wh_chance, 1)')['expression']['op'] == 'max'
 assert compile_expression('clamp(u_count, 0, 200)')['expression']['op'] == 'clamp'
+assert compile_expression('rng(1, 3)')['expression'] == {'op': 'rng', 'args': [{'op': 'literal', 'value': 1}, {'op': 'literal', 'value': 3}]}
+assert compile_expression('rand(13)')['expression'] == {'op': 'rand', 'args': [{'op': 'literal', 'value': 13}]}
+for text in ('rng(1)', 'rng(1, 2, 3)', 'rand(1, 2)', 'rand(upper=13)'):
+    try:
+        compile_expression(text)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Invalid random function accepted: ' + text)
 assert compile_expression('n_hub01_shared')['expression']['actor'] == 'npc'
 global_line = adapt({'compare_string': ['yes', {'global_val': 'hub01_trade'}],
                      'yes': 'unlocked', 'no': 'locked'}, collections.Counter())

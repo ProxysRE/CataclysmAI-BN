@@ -6,6 +6,7 @@
 #include "player.h"
 #include "npc.h"
 #include "game.h"
+#include "rng.h"
 
 #include <charconv>
 #include <array>
@@ -39,12 +40,12 @@ inline auto read_expression( const JsonObject &object ) -> expression {
             result.args.push_back( read_expression( entry.get_object() ) );
         }
     }
-    const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var";
+    const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var" || result.op == "rand";
     const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion" || result.op == "cataclysm";
     const auto ternary = result.op == "clamp";
     const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
                         result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
-                        result.op == "less" || result.op == "less_equal" || result.op == "min" || result.op == "max";
+                        result.op == "less" || result.op == "less_equal" || result.op == "min" || result.op == "max" || result.op == "rng";
     if( ( !unary && !leaf && !binary && !ternary ) || result.args.size() != ( unary ? 1U : binary ? 2U : ternary ? 3U : 0U ) ) {
         object.throw_error( "Invalid artisan expression operation or arity" );
     }
@@ -137,7 +138,9 @@ inline auto evaluate_for_player( const expression &node, const player &actor, co
     return evaluate( node, {
         .variables = values,
         .now_seconds = to_seconds<double>( calendar::turn - calendar::turn_zero ),
-        .cataclysm_seconds = to_seconds<double>( calendar::start_of_cataclysm - calendar::turn_zero )
+        .cataclysm_seconds = to_seconds<double>( calendar::start_of_cataclysm - calendar::turn_zero ),
+        .random_real = []( double low, double high ) { return rng_float( low, high ); },
+        .random_int = []( int low, int high ) { return rng( low, high ); }
     } );
 }
 

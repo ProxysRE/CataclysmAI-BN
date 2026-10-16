@@ -33,6 +33,8 @@ def compile_node(node):
         return {"op": comparisons[type(node.ops[0])], "args": [compile_node(node.left), compile_node(node.comparators[0])]}
     if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
         name = node.func.id
+        if name in {'rng', 'rand'} and len(node.args) == (2 if name == 'rng' else 1) and not node.keywords:
+            return {'op': name, 'args': [compile_node(x) for x in node.args]}
         if name in {'min', 'max', 'clamp'} and len(node.args) == (3 if name == 'clamp' else 2) and not node.keywords:
             return {'op': name, 'args': [compile_node(x) for x in node.args]}
         if name in {'n_npc_anger', 'n_npc_fear', 'n_npc_trust', 'n_npc_value'} and not node.args and not node.keywords:
