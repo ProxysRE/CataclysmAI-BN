@@ -112,5 +112,28 @@
     "Correct BN mission enums: SHOPKEEP=3, GUARD_PATROL=8",
     "limited_area_claim faction template/save round-trip; ownership consumers pending",
     "64-bit calorie stock with vitamins and expiration preserved in faction template/save; legacy stock format retained"
-  ]
+  ],
+  "bulk_community_layers": {
+    "groups": [
+      "campus",
+      "godco",
+      "lumbermill_employees",
+      "militia",
+      "robofac",
+      "bunker_shop",
+      "cabin_chemist",
+      "scrap_trader"
+    ],
+    "totals": {
+      "source_files": 135,
+      "definitions": 1647,
+      "blocked_definitions": 185,
+      "overlap_records": 174,
+      "reference_records": 2551,
+      "external_reference_records": 286
+    },
+    "status": "Prepared/adapted staging; not inserted into native patch",
+    "runtime_validated": false,
+    "next": "Shared compatibility blockers and BN overlap merging across packages"
+  }
 }

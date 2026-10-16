@@ -1,0 +1,853 @@
+{
+  "DDA_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "BN_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "license": "CC-BY-SA-3.0; source comments and credits preserved",
+  "bundle_sha256": "0c018f86b68df822b3ce96a876c14d36810e808bd1b6b0d5e65d4dba8a326255",
+  "files": {
+    "dda/data/json/npcs/bunker_shop/NC_BUNKER_MERCHANT.json": {
+      "git_blob_sha": "9288367a954e45cfb2d99a2942e42fdeae745586",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/bunker_shop/TALK_BUNKER_MERCHANT.json": {
+      "git_blob_sha": "ec6b063d6f106f18b9ee8e7e431dadd0f0227f5b",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/bunker_shop/classes.json": {
+      "git_blob_sha": "c222e3ad901bcd0abb064d3d2e6b815b498546a5",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/bunker_shop/npc.json": {
+      "git_blob_sha": "296c164e937f1485096ffaa417ba1b5db159ed26",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/cabin_chemist/chemist_effects.json": {
+      "git_blob_sha": "9fb6acda9f517cbb4888abf3ab508ee91770be47",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/cabin_chemist/chemist_missions.json": {
+      "git_blob_sha": "050c393d6a163187762c6680aa7e32bfe67dfc00",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/cabin_chemist/chemist_npc.json": {
+      "git_blob_sha": "ffc95b211f8bde55a8438a3a4f377254dd3e4b68",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/cabin_chemist/item_groups.json": {
+      "git_blob_sha": "7afeee929f92f596a280b2b81ae99517efa72643",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/NPC_Elvira_Fish.json": {
+      "git_blob_sha": "0aa567cc4d9eceb33111fc33d3f63520cad34313",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/NPC_campus_guard_generic.json": {
+      "git_blob_sha": "c5c0b040a9dfdf2fdd1a68a3895cefaf075d3f23",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/generic_class_definitions.json": {
+      "git_blob_sha": "8adbd5205fe48173d4f16914dff8ee15fa577945",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/great_library_librarian_goods.json": {
+      "git_blob_sha": "abc29546556832be9d38c74d952eb5e93ed1d973",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/great_library_librarian_itemlist.json": {
+      "git_blob_sha": "6c3b436c979a0dee3a2ab1f5108194e6c78560e3",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/great_library_librarian_talk.json": {
+      "git_blob_sha": "25f5a7ba7bbda5d27b366359ad097b72c9333a14",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/campus/great_library_librarian_talk_fluff.json": {
+      "git_blob_sha": "83f11e4060088ec008bbc436b250ed5252f2acb6",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/classes.json": {
+      "git_blob_sha": "29e38a7e68b1f582a34255652de0b6ffc5af2761",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/godco_missions.json": {
+      "git_blob_sha": "d1bad84d50eea5afba7d76476d6882ff7a3565f3",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Arturo_Maldonado.json": {
+      "git_blob_sha": "c416acd8c3c9eece6997121c07d962d869609e43",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Aunt_Theresa.json": {
+      "git_blob_sha": "bf38744bdbd030aad2aca2ddabec9903fffee42c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Chloe_Taylor_King.json": {
+      "git_blob_sha": "4215db177b8540120db4d337a0df3745066b5c20",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Corrie_Kaja_Dosia.json": {
+      "git_blob_sha": "51b235eb853e56f7d520a407ce117f8241c3d029",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Darryl_Johnstone.json": {
+      "git_blob_sha": "3eaf6cd197235c4a9eda695759adec6ff4db4bcc",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Father_Greenwood.json": {
+      "git_blob_sha": "29711b917867ead68935e51d9e73c52b2ba446c9",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Felicity_Powell.json": {
+      "git_blob_sha": "0ab73aee56554097b6aa6af0dfa5c9581eab0449",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Gemma_Johnstone.json": {
+      "git_blob_sha": "0c0319ff451dc82fddcb80475e1b6f232ed77d55",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Helena_Misinter.json": {
+      "git_blob_sha": "c1db4cd5af0b43c471c83831490ce36eab06d577",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Jane_Schulz.json": {
+      "git_blob_sha": "5e2dc8c9a0c233f239e7c0b7d7c3d859e370bdfe",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Jeremiah_Weaver.json": {
+      "git_blob_sha": "adb89afba1056d80b73c9946234387d1f2681661",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Julian_Ray.json": {
+      "git_blob_sha": "c955ba66d48c646d0d54d16b6fc7087ae9ff0689",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Katherine_Weaver.json": {
+      "git_blob_sha": "7cb6a77bd5e9167902ca8d9accd24078a391e961",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Kostas_Walsman.json": {
+      "git_blob_sha": "897d4cacc01e94710ab25e5d299a9713bb97287e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Maria_Serrano.json": {
+      "git_blob_sha": "32b1d95d8f5bc73136f34e97d8e48c9c626dbecd",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Olwen_Powell.json": {
+      "git_blob_sha": "1496338259e1b1c70cf6859f86f376ccdcdce56b",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Russell_Connelly.json": {
+      "git_blob_sha": "f30494bbccd61388fd71c8cd1563d26a96019d4b",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Sonia_Greene.json": {
+      "git_blob_sha": "78c5605f9c7fbba96c10394cb45b606c2e03ad7c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Tom_Powell.json": {
+      "git_blob_sha": "5bd252e8992e97739d44766f3ebaa32216ff0107",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/NPC_Zachary_Montes.json": {
+      "git_blob_sha": "30084ff457b01354cb41822abbd633bca4c0f87f",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/cook.json": {
+      "git_blob_sha": "e8f74560964d1dcf3128ca1dfd18ebc92e374d72",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/members/foodguard.json": {
+      "git_blob_sha": "bdc264d4accfd7924fbcdbeb00fc5590a31f705e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/npcs.json": {
+      "git_blob_sha": "e65c082b00b284224cd2ebbe177997b689c0f7ea",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/shared_effects.json": {
+      "git_blob_sha": "4f63df8a8e1f3496664e64167de8716dca978e57",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/visitors/TALK_CARAVAN_GUARD_PREDATORY.json": {
+      "git_blob_sha": "d7c7610cfc35e148aebf241851784bccf7930207",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/godco/visitors/TALK_CARAVAN_MERCHANT_PREDATORY.json": {
+      "git_blob_sha": "63d07724c4d53fe3da0ab1c27938f0e4af9e4434",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/lumbermill_employees/TALK_lumbermill_fabricate.json": {
+      "git_blob_sha": "074932c14b87301fa6d951b7b2d262d3403a5da8",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/lumbermill_employees/TALK_lumbermill_logger.json": {
+      "git_blob_sha": "82ee7ba9ba7c49570dfe0ca2e4c96979ac580455",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/lumbermill_employees/TALK_lumbermill_merchant.json": {
+      "git_blob_sha": "ab9d56b0416953795dcd49e37101a6c1aa027043",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/lumbermill_employees/lumbermill_employees.json": {
+      "git_blob_sha": "f158ca9487cebe736aa4dab6df6a59d04ebccd66",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/lumbermill_employees/lumbermill_missions.json": {
+      "git_blob_sha": "f79fad3f46b7dfc3dd074323889acf177f6ab2fe",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/militia/GM_Militia_Guard.json": {
+      "git_blob_sha": "f37146fa1950a469d59f915080a266b6cba55ef4",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/militia/GM_Militia_Merchant.json": {
+      "git_blob_sha": "aa738853779934d85a5460a46c19d496ae9cdea2",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/NC_ROBOFAC_FIELD_RESEARCHER.json": {
+      "git_blob_sha": "fd01d8523f94d522e135bb3d6cc2456f977e5238",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/NC_ROBOFAC_SCIENTIST.json": {
+      "git_blob_sha": "c5914792879450b99f5d54dbf520f62d12a5ed64",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/NPC_Cranberry_Foster.json": {
+      "git_blob_sha": "d20f3ba3d9c443457f12d597d2e16c5a142a28e9",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/NPC_Steven_Gould.json": {
+      "git_blob_sha": "e1e40b2d4793c57ee1c0b88649c59e918563b590",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/NPC_Ulysses_Rourke.json": {
+      "git_blob_sha": "eeee2bef56654819e55d7eb81cbce4edd7db61ff",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/NPC_robofac_generic_security.json": {
+      "git_blob_sha": "5331dcb72ca318349056920c1dc8afaabc916a82",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/ROBOFAC_SURFACE_FREEMERCHANT.json": {
+      "git_blob_sha": "eba7ef66d6b5c5dd8789d3d7bf3162e48496bcc8",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_anchor_seller.json": {
+      "git_blob_sha": "9ac48927a7ea9ad28fc5322c62062a0f99a58246",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_chatting_veterans.json": {
+      "git_blob_sha": "d5ae4290fb4c8bb47903d8ac6ffb3b90990e5853",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_drugs.json": {
+      "git_blob_sha": "a5b4ebf5d420f1a0126542f98bcc652153e9950a",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_exodii_hunter.json": {
+      "git_blob_sha": "7697220ff54f74443b93b7b41b1122032b8850f5",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_gunrunner.json": {
+      "git_blob_sha": "eae1676fbe570f48dc93596ae62c1d983917c68d",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_hireable.json": {
+      "git_blob_sha": "6fb1651cfad076c4d52153addebbbdf196e2e666",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_human_sample.json": {
+      "git_blob_sha": "68cd6560f3d0db36950b3a64dd71512a48843990",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_jabberwock.json": {
+      "git_blob_sha": "c8eb6bcacbb46ea4e30f32f993d9ecdfea4adf29",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_keycard_seller.json": {
+      "git_blob_sha": "4dde671c6fa1c8c658b1fc540d8c6326df403d56",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/BEM_template_seller.json": {
+      "git_blob_sha": "5db94ceef6851b5df09ef2d481a43535aabd1d82",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/BAR_ENCOUNTER_MERCENARIES/NPC_BEMS.json": {
+      "git_blob_sha": "115443a500a9515923bc8ec370a2e0f8fe0a92b6",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/CHOP_SHOP/NC_ANCILLA_BOSS_CHOP_SHOP.json": {
+      "git_blob_sha": "4cbf7d6574dd379dbdd52aa7cc9f1d0e6f61ac25",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/CHOP_SHOP/NC_ANCILLA_GRUNT_CHOP_SHOP.json": {
+      "git_blob_sha": "eb1f4f35bd3b9db76368f3032f784a58265acec4",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/CHOP_SHOP/NC_ROBOFAC_SCIENTIST_CHOP_SHOP.json": {
+      "git_blob_sha": "18b2d3351a99248a9061dda7d4782b8fc357fa14",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/NC_ANCILLA_GRUNT.json": {
+      "git_blob_sha": "4043cf2bfe76ee8533cdd43400b5a87928210166",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/NC_ROBOFAC_SCIENTIST_GARAGE.json": {
+      "git_blob_sha": "efb84c69aa9544d5100ab2b8b8c9049729a943e8",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/NPC_ANCILLA_BARKEEP.json": {
+      "git_blob_sha": "c81c823bb1cc8d865ca3ec21ad2e504b14b098f0",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/NPC_ANCILLA_DOCTOR.json": {
+      "git_blob_sha": "84b76fc46af7f3790327e231fd186481bd099710",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/NPC_ANCILLA_HQ_GUARD.json": {
+      "git_blob_sha": "f986c230bb66e9fc5fbaf0ac0c2d38da4987a4ed",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat.json": {
+      "git_blob_sha": "60a3587133e7f3d3d2b37c635968a8d62da9782d",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat_HEW.json": {
+      "git_blob_sha": "423fbb2897e3514dddbbd199d95daf9ea270ed7e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat_POIs.json": {
+      "git_blob_sha": "beb1a8f822ce9365636a2292d9cab826e011ac7c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat_advice.json": {
+      "git_blob_sha": "e34b0e80f170c058ec784c81a1652fc75bad6d7a",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat_missions.json": {
+      "git_blob_sha": "4d82af6355e89849536a249a32e3b8b83c97ad83",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat_recon.json": {
+      "git_blob_sha": "7dda10b4cd1b7d664c3d11a69ac64e7f6a85eef2",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_basement_npcs/NPC_Andrea_Dzvonko.json": {
+      "git_blob_sha": "c4f1c91b364413c3b98594dc0ecd3e44bded9589",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_basement_npcs/NPC_Darla_Novak.json": {
+      "git_blob_sha": "119fc00ce3489a1d00177d459fdd6ec13bb2d5f6",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_basement_npcs/NPC_Jonathan_Farrier.json": {
+      "git_blob_sha": "2369cc35b3c919098097c02f542e64e6bb575863",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_basement_npcs/NPC_Sunil_Narayana.json": {
+      "git_blob_sha": "608d9cf914d9a30d0c369328bb82b17f25fed9ca",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_intercom/robofac_intercom.json": {
+      "git_blob_sha": "f5963193749313fac09be3327ecea0d8fad0395e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_intercom/robofac_intercom_missions.json": {
+      "git_blob_sha": "d33acfbf25a1d53f888c49001d18f8db04f3f1d1",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_intercom/robofac_intercom_prototypes.json": {
+      "git_blob_sha": "247d422d99cfb93f3e4ad12b17e054ddade8f0c2",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/robofac/robofac_intercom/robofac_intercom_trades.json": {
+      "git_blob_sha": "f72125a45545b13d37ee0b14826a33ce2a5d79fe",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/scrap_trader/scrap_trader.json": {
+      "git_blob_sha": "70b3f7afa161e89a76b293d2f519d8b1d09d6966",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/npcs/scrap_trader/scrap_trader_missions.json": {
+      "git_blob_sha": "3888efaddfeebcb27bf18f243d17bfe80f53689b",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "bn/data/json/npcs/TALK_COMMON_ALLY.json": {
+      "git_blob_sha": "e4230fdafe58df01e9a95c68034203a768a185fc",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/TALK_COMMON_GREET.json": {
+      "git_blob_sha": "1be7967e15d8ead460137f84e9ae0748f16d6aa2",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/TALK_COMMON_MISSION.json": {
+      "git_blob_sha": "236319151434a9929efead644d1ddf0aaa39e0e3",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/TALK_COMMON_OTHER.json": {
+      "git_blob_sha": "f7fbee3c5d9468c220ed05e50869552fa02262a5",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/TALK_FRIEND_CONVERSATION.json": {
+      "git_blob_sha": "d1561687f2bc6c202ee724baa4eccb85459f730d",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/cabin_chemist/cabin_chemist.json": {
+      "git_blob_sha": "565d5f9e9dd7335b13a7281adf314b5b03320ba6",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/cabin_chemist/chemist_effects.json": {
+      "git_blob_sha": "9fb6acda9f517cbb4888abf3ab508ee91770be47",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/cabin_chemist/chemist_missions.json": {
+      "git_blob_sha": "26447024704baebfbd6855e131015e3290451074",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/classes.json": {
+      "git_blob_sha": "43ef2e1b7dd87d66c6ff6475fbaaa4ec000203ba",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/factions.json": {
+      "git_blob_sha": "dbe9307c567c8079299e1ab9084cd4801e2ee5b6",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/godco/cook.json": {
+      "git_blob_sha": "bea3774cf9aa7b9340fe8b70b62443f8c9842809",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/godco/foodguard.json": {
+      "git_blob_sha": "3c19a099cc1160db0a14e0f823c2c25c6a29263c",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/lumberyard/TALK_lumbermill_logger.json": {
+      "git_blob_sha": "0ff66034bc95a5f078163831661cd6f7cd83b045",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/lumberyard/TALK_lumbermill_merchant.json": {
+      "git_blob_sha": "00d10f2ff732a14fab3c1ff58bf9a810578d8c06",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/lumberyard/lumbermill_effects.json": {
+      "git_blob_sha": "5fa86ad0755d6f81bd392cfa75a090ff5f5a1837",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/lumberyard/lumbermill_employees.json": {
+      "git_blob_sha": "6bab775424f45d0744a35f6c9938ebe8caeb86b9",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/lumberyard/lumbermill_missions.json": {
+      "git_blob_sha": "170bb36cfb0d294221c3c7d28250e335fb70a475",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/missiondef.json": {
+      "git_blob_sha": "41cbd2703f201cb9920a7c2aa2d907ac35cad95b",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/npc.json": {
+      "git_blob_sha": "67fbb645378e9dd7980e618bec5d8abd45da4589",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/NC_ROBOFAC_FIELD_RESEARCHER.json": {
+      "git_blob_sha": "a56a7ee4d40a3d6615806578c7bb402a04dc1deb",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/NC_ROBOFAC_SCIENTIST.json": {
+      "git_blob_sha": "45067d9802ec56fcea3fdbcdd9f71fe820bcb1f9",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/NPC_ROBOFAC_INTERCOM.json": {
+      "git_blob_sha": "86eb1d27ab573eb31d5dbcdbf0f56b9466f4c88f",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/NPC_ROBOFAC_MERC_1.json": {
+      "git_blob_sha": "5b7fa11cd8ec34f64767cad93f04a004dfa69676",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/NPC_Ulysses_Rourke.json": {
+      "git_blob_sha": "5aaf27b2fe16ddd2976011b580aab3b1f87b01a9",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/NPC_robofac_generic_security.json": {
+      "git_blob_sha": "0fca5695f5fdd56894305e148bfb3ee944ff0571",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/robofac/ROBOFAC_SURFACE_FREEMERCHANT.json": {
+      "git_blob_sha": "074a9ed84ce8af083c9bc4832caa1f529dc0d4a7",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/scrap_trader/scrap_trader.json": {
+      "git_blob_sha": "5beb8e20d19f218017545b81fb55f886d2b26063",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/npcs/scrap_trader/scrap_trader_missions.json": {
+      "git_blob_sha": "a040206f85546c4d85eb7da24f7a51fe7eda2279",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "dda/data/json/mapgen/campus/buildings/admin_f0.json": {
+      "git_blob_sha": "c6d39f408df98359d08a2e2587082d7be8b4b967",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/admin_f1.json": {
+      "git_blob_sha": "67cb5fe92432173a9d62fc3451a4c6617b06f768",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/admin_f2.json": {
+      "git_blob_sha": "e631e1a0de41cdaed142080f0859f8c450d81e91",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/admin_roof.json": {
+      "git_blob_sha": "8dc422fae65d17f93a2e79e9a21d9c516a3f9acc",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/commons_f0.json": {
+      "git_blob_sha": "6682dd8bf165fe5da1883e47ba768cf28e0eb3aa",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/commons_f1.json": {
+      "git_blob_sha": "cfa7968abff10199045fd6b006b7e8f9a304f307",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/commons_f2.json": {
+      "git_blob_sha": "fe95bc806878fc8f41ad40423e13bea494cecba6",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/commons_roof.json": {
+      "git_blob_sha": "9f5e628d62376ccc59127d354da79a09bc123b4e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/health_f0.json": {
+      "git_blob_sha": "0651865590fbd5ebe74e186419342c542c07db18",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/health_f1.json": {
+      "git_blob_sha": "766037ff2cba023e64d4c1bc439f3993993b1d1f",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/health_f2.json": {
+      "git_blob_sha": "7499d8a793a9ccd975d8e3466d30017d0eecd549",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/health_roof.json": {
+      "git_blob_sha": "cde5a66c714e87b70cadb0619163fa75c0b3a83c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/lecture_f0.json": {
+      "git_blob_sha": "c3606b6c3f24a458ce398fa7f53ad178c37c5b6f",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/lecture_f1.json": {
+      "git_blob_sha": "8f883a9e8a1efe2020c5594a9def124bb171f454",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/lecture_f2.json": {
+      "git_blob_sha": "82c13a93e79f5cb387a0327de8c959d46d2c1e11",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/lecture_roof.json": {
+      "git_blob_sha": "90006cad1b9c5c16ee4f97372d549225a2cdc249",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/media_f0.json": {
+      "git_blob_sha": "8b610c1f495ecab7b260873ac4390cd1d94f3594",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/media_f1.json": {
+      "git_blob_sha": "077ed24808c0e4daf8f3dbe5b8ea5fb7aa959bbc",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/media_f2.json": {
+      "git_blob_sha": "7ba63511ff471da695d07c49059d74bf5d84400f",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/media_f3.json": {
+      "git_blob_sha": "1786c65c73c5579f1f2198614621857972d6fd15",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/buildings/media_roof.json": {
+      "git_blob_sha": "895624ee178b99b8c9546f1ddf506c57383fb25b",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/open_areas/pedestrian_center.json": {
+      "git_blob_sha": "11473a13753e3629062149809bc2d844f4de319e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/campus/open_areas/pedestrian_westside.json": {
+      "git_blob_sha": "cc05b229327c9e783363d5cf31ec5906b3cc0dd4",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/godco/church_retreat.json": {
+      "git_blob_sha": "fbf7953367a7bf80abcb21b9fc350523ffd28d09",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/godco/mapgen_updates.json": {
+      "git_blob_sha": "88fe3672bb62c1937d94b3e072c581da5fa7991d",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/godco/nested.json": {
+      "git_blob_sha": "218145cdee692a0f54e23f14fa5a6c35fb8eac1a",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/lumbermill.json": {
+      "git_blob_sha": "d4877b78040f8d6bddcfcbf0f50114a100daaa0e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/militia/GM_LODGE.json": {
+      "git_blob_sha": "bd03f73db4cafff7f0e07ee0400e4b3b8948c5f1",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofac_quest_dls.json": {
+      "git_blob_sha": "5d16821ed815273b69ad42dd125e8823c244735f",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofachq_static.json": {
+      "git_blob_sha": "549b0dc4e5870821c6b37b051ee464bf21d1055c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofaq_locs/EOC_robofac_hq_updater.json": {
+      "git_blob_sha": "b93ab20b76aab689cabc32f944080042ca66e839",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofaq_locs/ancillia_bar_updater.json": {
+      "git_blob_sha": "249009675bac02890c9a717edde69b7736038118",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofaq_locs/robofac_hq_chunks.json": {
+      "git_blob_sha": "e901e6049bfa6fb1a1abd77e1355c23febdc22c6",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofaq_locs/robofac_mission_chunks.json": {
+      "git_blob_sha": "c752fb6bf56f8b7ff3832a2ca7e940599e05b909",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen/robofaq_locs/robofac_strip_mall_chop_shop.json": {
+      "git_blob_sha": "450daf71480ac2df7e7116803a66d3f34591740b",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen_palettes/campus/common.json": {
+      "git_blob_sha": "46bb63b2a237da24ed82e50d73c2f26914d14d4c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen_palettes/militia/GM_LODGE_PALETTE.json": {
+      "git_blob_sha": "6054979f13510150a0ba3defa6993b7b9b6ebf40",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/mapgen_palettes/robofachq.json": {
+      "git_blob_sha": "321d4f54baffa57754ac0f2441c01b338f2dfba3",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/overmap/overmap_special/campus.json": {
+      "git_blob_sha": "e8286c9f35ac3c93c6e77615c6a39302e0f8d19e",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_campus.json": {
+      "git_blob_sha": "2c39b828d0b0ad3efb8fe14e217ad459bd830535",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_militia.json": {
+      "git_blob_sha": "c2e79bbee5adc737658ec7ee919966fae4573fc2",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_robofac_locs.json": {
+      "git_blob_sha": "3b5e03c524d96ec2d58746af768731d7befab85c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json": {
+      "git_blob_sha": "8008553744ea7553f869a0a9cbbf01cb74a8471c",
+      "commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+      "repository": "CleverRaven/Cataclysm-DDA"
+    },
+    "bn/data/json/mapgen/lumbermill.json": {
+      "git_blob_sha": "bf3f93e8f5c40a3cbc00b019ffaade5234f73a7f",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/mapgen/robofachq_static.json": {
+      "git_blob_sha": "ca3c181bd73353fd28217584f5470c6e151128b2",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/mapgen/robofaq_locs/robofac_hq_chunks.json": {
+      "git_blob_sha": "16ffd2dcfca51f63248d15eb732ef1cf07ac2ad1",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/mapgen/robofaq_locs/robofac_mission_chunks.json": {
+      "git_blob_sha": "ca3ea104ba1549cbaecb2d723385909fd3f9716e",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/mapgen_palettes/robofachq.json": {
+      "git_blob_sha": "e8164b490528ac91704f8fafb823dc1b4a017cd6",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json": {
+      "git_blob_sha": "ce3dcafe5d95463f55350722d38960fedfa82641",
+      "commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+      "repository": "cataclysmbn/Cataclysm-BN"
+    }
+  }
+}

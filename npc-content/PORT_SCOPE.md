@@ -8,11 +8,11 @@ The project ports DDA NPC communities and their complete gameplay chains into BN
 | Isolated Road | Cody, Jay, both missions, all dialogue, weapons exhibition, crafting/banking services and associated items/locations | Native compatibility checkpoint passed; full content package not runtime validated |
 | Island prison | Prisoner community, leader mission, faction, maps/floors, Alcatraz variant, camp and epilogues | Staging preserved/adapted; native camp and nutrition work pending |
 | Lighthouse | Family and associated survivor, seven missions, lighthouse cleanup/repair and connected sites | New source/staging checkpoint; NPC variables and location dependencies pending |
-| Other small communities | Militia lodge, campus library, bunker trader | Planned comparison and complete missing additions |
-| Godco | Church community, people, quests and related locations | Planned |
-| Hub 01 | Staff, expanded complex, quests, mercenaries, equipment/services and linked locations | Planned additive comparison; BN already has underground data, differences require exact audit |
+| Other small communities | Militia lodge, campus library, bunker trader | Bulk source/adapted staging and selected BN overlap report prepared; native promotion pending |
+| Godco | Church community, people, quests and related locations | Bulk source/adapted staging with locations prepared; shared blockers/BN merges and native tests pending |
+| Hub 01 | Staff, expanded complex, quests, mercenaries, equipment/services and linked locations | Bulk source/adapted staging with locations prepared; additive BN merge and dependency/native checks pending |
 | Existing settlements | Refugee center, Tacoma ranch, Isherwoods | Port missing/changed content while preserving working BN versions |
-| Other services | Scrap yard, lumbermill, chemist, homeless camps | Compare and port missing characters, services, quests and locations |
+| Other services | Scrap yard, lumbermill, chemist, homeless camps | Scrap trader, lumbermill and chemist bulk staging prepared; homeless camps remain planned |
 | Exodii | Characters, quests, sites, equipment and dependent engine mechanics | Planned; broad native dependency scope |
 | Camps | Creation, development/building, NPC assignments and work; NPC community camp registration | Agreed separate engine work; not implemented as a functioning system yet |
 | Inventory pockets | DDA pocket/container behavior supporting loaded backpacks and dropping them before combat | Agreed later engine work; not implemented |
