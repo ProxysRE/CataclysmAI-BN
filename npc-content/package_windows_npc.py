@@ -56,6 +56,13 @@ def verify_install(folder):
     if json.loads((folder / required[4]).read_text(encoding='utf-8')) != merged:
         raise ValueError('Installed chemist map differs from the reviewed replacement')
 
+    from prepare_radio_stations import MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD, prepare_data
+    radio_maps, radio_payload, _ = prepare_data()
+    for relative in (RADIO_MAP, RADIO_CITY):
+        if json.loads((folder / relative).read_text(encoding='utf-8')) != json.loads(radio_maps[relative]):
+            raise ValueError('Installed radio station map differs: ' + relative)
+    if json.loads((folder / RADIO_PAYLOAD).read_text(encoding='utf-8')) != radio_payload:
+        raise ValueError('Installed radio tower payload differs')
     from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload, replacements
     if json.loads((folder / PAYLOAD).read_text(encoding='utf-8')) != payload():
         raise ValueError('Installed Hub access payload differs')
@@ -81,6 +88,7 @@ def package(folder, output, source_head):
         'The 5.45x39 casing dependency is included; the live ammo and Kord rifle are still pending.\n'
         'The demilled Kord is a quest prop, not a working firearm.\n'
         'Includes 24 DDA shoreline cells at the existing BN nuclear power plant.\n'
+        'Both BN radio stations retain their buildings and gain DDA tower floors through z=6.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'

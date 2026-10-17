@@ -1,0 +1,331 @@
+[
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "station_radio_tower_even",
+      "station_radio_tower_odd",
+      "station_radio_tower_top",
+      "station_radio_1_tower_even",
+      "station_radio_1_tower_odd",
+      "station_radio_1_tower_top"
+    ],
+    "name": "radio tower",
+    "sym": "X",
+    "color": "light_gray",
+    "see_cost": 2
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "station_radio_tower_even",
+    "object": {
+      "fill_ter": "t_metal_floor_no_roof",
+      "rows": [
+        "                        ",
+        "              ::        ",
+        "             aaaaaaaa   ",
+        "             aR,,,,Ra   ",
+        "            :a,,,,\u2277,aX  ",
+        "             a,,::,,a   ",
+        "             a,,::,,a   ",
+        "            :a,,,,,,aX  ",
+        "             aR,,,,Ra   ",
+        "             aaaaaaaa   ",
+        "                :       ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "terrain": {
+        "R": "t_radio_tower",
+        "a": "t_railing",
+        ",": "t_metal_floor_no_roof",
+        "\u2277": "t_ladder_up_down"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "station_radio_tower_odd",
+    "object": {
+      "fill_ter": "t_metal_floor_no_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                XXX     ",
+        "             :R,aaaR    ",
+        "              , a,\u2277a    ",
+        "              , aaaa    ",
+        "              ,    ,    ",
+        "              ,    ,:   ",
+        "              R,,,,R    ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "terrain": {
+        "R": "t_radio_tower",
+        "a": "t_railing",
+        ",": "t_metal_floor_no_roof",
+        "\u2277": "t_ladder_up_down"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "station_radio_tower_top",
+    "object": {
+      "fill_ter": "t_metal_floor_no_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "              aaaaaa    ",
+        "              a,,,va    ",
+        "              a,RR,a    ",
+        "              a,RR,a    ",
+        "              a,,,,a    ",
+        "              aaaaaa    ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "terrain": {
+        "R": "t_radio_tower",
+        "a": "t_railing",
+        ",": "t_metal_floor_no_roof",
+        "v": "t_ladder_down"
+      },
+      "place_nested": [
+        {
+          "chunks": [
+            [
+              "null",
+              40
+            ],
+            [
+              "radio_tower_2x2_map",
+              40
+            ],
+            [
+              "radio_tower_2x2_holdout",
+              10
+            ],
+            [
+              "radio_tower_2x2_sniper",
+              10
+            ],
+            [
+              "radio_tower_wasp",
+              5
+            ]
+          ],
+          "x": 14,
+          "y": 5
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "station_radio_1_tower_even",
+    "object": {
+      "fill_ter": "t_metal_floor_no_roof",
+      "rows": [
+        "           ::  XX       ",
+        "          aaaaaaaa      ",
+        "          aR,,,,Ra      ",
+        "         :a,,,,\u2277,a      ",
+        "          a,,::,,a      ",
+        "          a,,::,,a      ",
+        "         :a,,,,,,a      ",
+        "          aR,,,,Ra      ",
+        "          aaaaaaaa      ",
+        "             :          ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "terrain": {
+        "R": "t_radio_tower",
+        "a": "t_railing",
+        ",": "t_metal_floor_no_roof",
+        "\u2277": "t_ladder_up_down"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "station_radio_1_tower_odd",
+    "object": {
+      "fill_ter": "t_metal_floor_no_roof",
+      "rows": [
+        "                        ",
+        "             XXX        ",
+        "          :R,aaaR       ",
+        "           , a,\u2277a       ",
+        "           , aaaa       ",
+        "           ,    ,       ",
+        "           ,    ,:      ",
+        "           R,,,,R       ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "terrain": {
+        "R": "t_radio_tower",
+        "a": "t_railing",
+        ",": "t_metal_floor_no_roof",
+        "\u2277": "t_ladder_up_down"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "station_radio_1_tower_top",
+    "object": {
+      "fill_ter": "t_metal_floor_no_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "           aaaaaa       ",
+        "           a,,,va       ",
+        "           a,RR,a       ",
+        "           a,RR,a       ",
+        "           a,,,,a       ",
+        "           aaaaaa       ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "terrain": {
+        "R": "t_radio_tower",
+        "a": "t_railing",
+        ",": "t_metal_floor_no_roof",
+        "v": "t_ladder_down"
+      },
+      "place_nested": [
+        {
+          "chunks": [
+            [
+              "null",
+              40
+            ],
+            [
+              "radio_tower_2x2_map",
+              40
+            ],
+            [
+              "radio_tower_2x2_holdout",
+              10
+            ],
+            [
+              "radio_tower_2x2_sniper",
+              10
+            ],
+            [
+              "radio_tower_wasp",
+              5
+            ]
+          ],
+          "x": 11,
+          "y": 4
+        }
+      ]
+    },
+    "method": "json"
+  }
+]

@@ -1,0 +1,209 @@
+{
+  "runtime_validated": false,
+  "installed_in_native_patch": true,
+  "new_terrain_ids": [
+    "station_radio_tower_even",
+    "station_radio_tower_odd",
+    "station_radio_tower_top",
+    "station_radio_1_tower_even",
+    "station_radio_1_tower_odd",
+    "station_radio_1_tower_top"
+  ],
+  "changes": {
+    "station_radio": {
+      "offset_from_DDA": [
+        10,
+        -12
+      ],
+      "ladder_xy": [
+        18,
+        4
+      ],
+      "old_footing_cells": [
+        [
+          15,
+          3
+        ],
+        [
+          16,
+          3
+        ],
+        [
+          17,
+          3
+        ],
+        [
+          18,
+          3
+        ],
+        [
+          15,
+          4
+        ],
+        [
+          16,
+          4
+        ],
+        [
+          17,
+          4
+        ],
+        [
+          18,
+          4
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          16,
+          5
+        ],
+        [
+          17,
+          5
+        ],
+        [
+          18,
+          5
+        ],
+        [
+          15,
+          6
+        ],
+        [
+          16,
+          6
+        ],
+        [
+          17,
+          6
+        ],
+        [
+          18,
+          6
+        ]
+      ],
+      "new_footing_cells": [
+        [
+          14,
+          3
+        ],
+        [
+          19,
+          3
+        ],
+        [
+          14,
+          8
+        ],
+        [
+          19,
+          8
+        ]
+      ],
+      "ground_preserved_except": "old tower footing, four relocated poles and the tower ladder",
+      "BN_computers_preserved": true
+    },
+    "station_radio_1": {
+      "offset_from_DDA": [
+        -6,
+        -8
+      ],
+      "ladder_xy": [
+        15,
+        3
+      ],
+      "old_footing_cells": [
+        [
+          12,
+          4
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          16,
+          7
+        ],
+        [
+          17,
+          7
+        ],
+        [
+          18,
+          7
+        ],
+        [
+          16,
+          8
+        ],
+        [
+          17,
+          8
+        ],
+        [
+          18,
+          8
+        ],
+        [
+          16,
+          9
+        ],
+        [
+          17,
+          9
+        ],
+        [
+          18,
+          9
+        ]
+      ],
+      "new_footing_cells": [
+        [
+          11,
+          2
+        ],
+        [
+          16,
+          2
+        ],
+        [
+          11,
+          7
+        ],
+        [
+          16,
+          7
+        ]
+      ],
+      "ground_preserved_except": "old tower footing, four relocated poles and the tower ladder",
+      "BN_computers_preserved": true
+    }
+  },
+  "BN_preserved": [
+    "both buildings and computer objects",
+    "loot, toilets, furniture and groundcover",
+    "existing roof access and random roof utilities",
+    "city frequency and all other city buildings"
+  ],
+  "adaptations": [
+    "DDA tower geometry relocated into BN courtyards",
+    "BN roof palette and existing nested encounters reused",
+    "BN tower visibility 2 retained instead of DDA vision-level schema"
+  ],
+  "pending": [
+    "native loader and map generation",
+    "all four rotations, save/reload and natural city placement"
+  ]
+}

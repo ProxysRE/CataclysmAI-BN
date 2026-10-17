@@ -43,3 +43,7 @@ Hub 01 now has a generated 102-cell replacement candidate (69 BN cells, 33 addit
 Code now includes the exact hidden ancillary credential, reciprocal marshal-trait exclusion, inherited BN control terrain, and native directional handlers around existing BN elevator transport. Native authorization, revocation, bounds and handler-registration tests are included. Windows compilation, actual loaded-map travel and expanded Hub generation remain pending. The existing public elevator menu is unchanged.
 
 The latest failed run was a Windows cp1252 encoding error before compilation, not an engine compile failure. Generated Hub maps now explicitly use UTF-8/LF; a regression emulates the Windows default. The previous casing build completed 35 cases/2897 assertions in both source and installed directories and produced artifact 12101510392.
+
+## Radio stations, 2026-10-17
+
+Two existing BN radio station variants now have a reviewed native replacement adding DDA tower floors z=2..6, relocated into their existing courtyards. The buildings, computers and contents remain BN definitions. Static geometry/preservation checks pass; the new native real-mapgen regression covers both variants and four orientations with seven-level ladder continuity. Windows compilation/generation, natural placement and full world-save validation remain pending.

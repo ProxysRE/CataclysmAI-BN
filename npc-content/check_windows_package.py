@@ -6,6 +6,7 @@ import tempfile
 import zipfile
 
 from merge_existing_locations import prepare
+from prepare_radio_stations import MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD, prepare_data
 from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload as hub_payload, replacements
 from package_windows_npc import ROOT, digest, package, verify_install
@@ -16,7 +17,11 @@ def check():
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
         installed = root / 'CBN_DDA_NPC_DEV'
+        radio_maps, radio_payload, _ = prepare_data()
         payload = {
+            RADIO_MAP: radio_maps[RADIO_MAP].encode(),
+            RADIO_CITY: radio_maps[RADIO_CITY].encode(),
+            RADIO_PAYLOAD: json.dumps(radio_payload).encode(),
             NUCLEAR: nuclear_patch()[1].encode(),
             MUTATIONS: replacements()[MUTATIONS].encode(),
             PAYLOAD: json.dumps(hub_payload()).encode(),

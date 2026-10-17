@@ -1,0 +1,33 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "bundle_sha256": "e5a660fd8f1fa3b3ff10d5281f629b046843f72837525155a88c3ab0e3b1708d",
+  "files": {
+    "bn/data/json/mapgen/radio_tower.json": {
+      "sha256": "030577ee618c0a785db1f769a3eace9958806cdd9affcd50939a3875c82f006a",
+      "git_blob_sha": "53616157588138ebd4cad38d06ed8ccaff0d06f5"
+    },
+    "bn/data/json/mapgen_palettes/roof_palette.json": {
+      "sha256": "bbee05c8161aff01c25bf63a3f9468498a0c2b1a3a4d7184cf137e1129284a59",
+      "git_blob_sha": "2cfe8ac5d13adf4e80c03df70a5e764548506a8f"
+    },
+    "bn/station_radio.json": {
+      "sha256": "c8e36ed563b1f4229a3bad0f608c83ebd617b856da6acf2a4c1c8ff44e644092",
+      "git_blob_sha": "7f5b7710c57b0c91fdc515fdc903a309f7eb1cc5"
+    },
+    "dda/data/json/mapgen/radio_tower.json": {
+      "sha256": "d9d0de66438047846424424dcdd97f1eaeaffe7b31d9b89ff407ce983473cf80",
+      "git_blob_sha": "f205898bda8b32dcf3e247b0a67baa13a4ac0101"
+    },
+    "dda/data/json/mapgen_palettes/roof_palette.json": {
+      "sha256": "19cb1749472218f8c5b6e6f4edf5131327a02ceeb7b9f2f3ee8c8349440343fa",
+      "git_blob_sha": "f912dd7dfa7ad82c6eb568e51a59846a6290483f"
+    },
+    "dda/station_radio.json": {
+      "sha256": "dbf5d1f9fe5e6eaa689a9968568be9c7b38f373102174029fd0ae04f1a53b9b8",
+      "git_blob_sha": "9e53372391a12e7fd1fd074a643a6d3847977716"
+    }
+  }
+}
