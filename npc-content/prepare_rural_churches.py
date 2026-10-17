@@ -63,6 +63,21 @@ def prepare_data():
             elif isinstance(value, dict) and value.get('param') == 'linoleum_color':
                 assert value['fallback'] == 't_linoleum_gray'
                 obj['terrain'][symbol] = value['fallback']
+    # Palettes resolve terrain IDs eagerly in BN. Inline this location-only
+    # palette into its deferred mapgen, so a root-level payload cannot resolve
+    # stock terrain/furniture IDs before those factories have loaded.
+    ground = maps[0]['object']
+    ground['palettes'] = []
+    for field in ('terrain', 'furniture', 'items', 'toilets', 'computers'):
+        inherited = copy.deepcopy(palette.get(field, {}))
+        inherited.update(ground.get(field, {}))
+        if inherited:
+            ground[field] = inherited
+    for e in maps:
+        obj = e['object']
+        if isinstance(obj.get('fill_ter'), dict):
+            assert obj['fill_ter'] == {'param': 'linoleum_color', 'fallback': 't_linoleum_gray'}
+            obj['fill_ter'] = 't_linoleum_gray'
     templates = json.loads(catalog['dda/' + PUBLIC])
     names = {n for e in maps for n in flat(e['om_terrain'])}
     terrain = []
@@ -77,7 +92,10 @@ def prepare_data():
         terrain.append(target)
     assert {n for e in terrain for n in flat(e['id'])} == names
     special = copy.deepcopy(next(e for e in json.loads(catalog['dda/' + SPECIALS]) if e.get('id') == 'church_rural'))
-    return [palette] + terrain + maps + [special]
+    for connection in special.get('connections', []):
+        assert connection['connection'] == 'local_road'
+        connection.pop('terrain', None)
+    return terrain + maps + [special]
 
 
 def dependencies(payload):

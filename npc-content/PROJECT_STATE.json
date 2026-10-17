@@ -381,5 +381,11 @@
   "xedra_gear": {
     "status": "native_suit_states_prepared_PAPR_staged",
     "progress": "xedra_gear/PORT_REPORT.json"
+  },
+  "rural_church_windows_data_fix": {
+    "run_id": 39052531145,
+    "compilation": "success",
+    "data_loading": "failed; three schema/load-order fixes prepared",
+    "record": "rural_churches/WINDOWS_DATA_FIX.json"
   }
 }

@@ -14,7 +14,10 @@ assert len(maps) == 4
 for old, new in zip(original, maps):
     assert old['om_terrain'] == new['om_terrain']
     assert old['object']['rows'] == new['object']['rows']
-    for field in set(old['object']) - {'palettes', 'terrain'}:
+    exclusions = {'palettes', 'terrain', 'fill_ter'}
+    if old is original[0]:
+        exclusions.update({'items', 'furniture', 'toilets', 'computers'})
+    for field in set(old['object']) - exclusions:
         assert old['object'][field] == new['object'][field]
     before, after = old['object'].get('terrain', {}), new['object'].get('terrain', {})
     expected = copy.deepcopy(before)
@@ -24,9 +27,22 @@ for old, new in zip(original, maps):
         elif isinstance(value, dict):
             assert value == {'param': 'linoleum_color', 'fallback': 't_linoleum_gray'}
             expected[key] = 't_linoleum_gray'
-    assert after == expected
+    if old is original[0]:
+        assert all(after[k] == v for k,v in expected.items())
+        assert new['object']['items']['o'] == old['object']['items']['o']
+        assert new['object']['items']['#']['item'] == 'church'
+        assert new['object']['furniture']['p'] == 'f_piano'
+    else:
+        assert after == expected
+    assert isinstance(new['object']['fill_ter'], str)
+    if isinstance(old['object']['fill_ter'], str):
+        assert new['object']['fill_ter'] == old['object']['fill_ter']
 special = next(e for e in payload if e['type'] == 'overmap_special')
-assert special == next(e for e in json.loads(catalog['dda/' + SPECIALS]) if e.get('id') == 'church_rural')
+expected_special = copy.deepcopy(next(e for e in json.loads(catalog['dda/' + SPECIALS]) if e.get('id') == 'church_rural'))
+for connection in expected_special['connections']:
+    connection.pop('terrain', None)
+assert special == expected_special
+assert all('terrain' not in c and c['connection'] == 'local_road' for c in special['connections'])
 assert sorted({p['point'][2] for p in special['overmaps']}) == [-1, 0, 1, 2]
 assert maps[1]['object']['computers']['0']['options'][0]['action'] == 'toll'
 assert maps[1]['object']['rows'][6][4] == '0'
@@ -35,7 +51,9 @@ assert maps[1]['object']['rows'][7][1] == '>'
 assert maps[0]['object']['rows'][21][31] == '>'
 assert maps[3]['object']['rows'][21][7] == '<'
 # Existing global palettes must never be replaced by this addition.
-assert [e['id'] for e in payload if e['type'] == 'palette'] == ['dda_rural_church_palette']
+assert not any(e['type'] == 'palette' for e in payload)
+assert maps[0]['object']['palettes'] == []
+assert maps[3]['object']['fill_ter'] == 't_linoleum_gray'
 prepare(check=True)
 xedra = stage()
 assert xedra['source_mapgen_blocks'] == 4

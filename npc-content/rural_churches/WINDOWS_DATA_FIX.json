@@ -1,0 +1,17 @@
+{
+  "run_id": 39052531145,
+  "head": "4e90b8f75c851f4032c6bb388be00286c701ebdf",
+  "Windows_compilation": "success",
+  "native_tests": "failed_during_data_initialization",
+  "errors": [
+    "root palette eagerly resolved stock terrain/furniture before their factories loaded",
+    "basement fill_ter still contained scoped linoleum parameter",
+    "connection included deprecated terrain member alongside explicit connection"
+  ],
+  "prepared_fixes": [
+    "inline used palette bindings into deferred mapgen",
+    "normalize fill_ter to source gray fallback",
+    "retain explicit local_road connection and remove terrain member"
+  ],
+  "revalidation": "pending"
+}

@@ -31902,57 +31902,8 @@
 +]
 --- /dev/null
 +++ b/data/json/dda_rural_church.json
-@@ -0,0 +1,408 @@
+@@ -0,0 +1,391 @@
 +[
-+  {
-+    "type": "palette",
-+    "id": "dda_rural_church_palette",
-+    "terrain": {
-+      " ": "t_region_groundcover_urban",
-+      "+": "t_door_c",
-+      ".": "t_floor",
-+      "-": "t_door_locked",
-+      "^": "t_region_shrub_decorative",
-+      "s": "t_sidewalk",
-+      "w": "t_window",
-+      "|": "t_wall_w",
-+      "<": "t_stairs_up"
-+    },
-+    "furniture": {
-+      "b": "f_brazier",
-+      "#": "f_bench",
-+      "d": "f_desk",
-+      "h": "f_chair",
-+      "l": "f_rack_coat",
-+      "o": "f_bookcase",
-+      "t": "f_table",
-+      "y": [
-+        "f_indoor_plant_y",
-+        "f_indoor_plant"
-+      ],
-+      "p": "f_piano"
-+    },
-+    "toilets": {},
-+    "computers": {},
-+    "items": {
-+      "#": {
-+        "item": "church",
-+        "chance": 40
-+      },
-+      ".": {
-+        "item": "church",
-+        "chance": 5
-+      },
-+      ",": {
-+        "item": "church",
-+        "chance": 5
-+      },
-+      "l": {
-+        "item": "jackets",
-+        "chance": 60
-+      }
-+    }
-+  },
 +  {
 +    "type": "overmap_terrain",
 +    "id": [
@@ -32047,10 +31998,17 @@
 +        "          gggggggggggggs^^^^^^Ww-WWwWWwW^       ",
 +        "            gg____g g  ssssssssss               "
 +      ],
-+      "palettes": [
-+        "dda_rural_church_palette"
-+      ],
++      "palettes": [],
 +      "terrain": {
++        " ": "t_region_groundcover_urban",
++        "+": "t_door_c",
++        ".": "t_floor",
++        "-": "t_door_locked",
++        "^": "t_region_shrub_decorative",
++        "s": "t_sidewalk",
++        "w": "t_window",
++        "|": "t_wall_w",
++        "<": "t_stairs_up",
 +        "\u00c1": "t_railroad_rubble",
 +        "W": "t_wall_w",
 +        "B": "t_window_stained_blue",
@@ -32060,10 +32018,25 @@
 +        "`": "t_concrete",
 +        "_": "t_region_soil",
 +        "g": "t_railroad_rubble",
-+        "<": "t_stairs_up",
 +        ">": "t_stairs_down"
 +      },
 +      "items": {
++        "#": {
++          "item": "church",
++          "chance": 40
++        },
++        ".": {
++          "item": "church",
++          "chance": 5
++        },
++        ",": {
++          "item": "church",
++          "chance": 5
++        },
++        "l": {
++          "item": "jackets",
++          "chance": 60
++        },
 +        "o": {
 +          "item": "religious_books",
 +          "chance": 60
@@ -32075,6 +32048,20 @@
 +          "chance": 50,
 +          "rotation": 0
 +        }
++      },
++      "furniture": {
++        "b": "f_brazier",
++        "#": "f_bench",
++        "d": "f_desk",
++        "h": "f_chair",
++        "l": "f_rack_coat",
++        "o": "f_bookcase",
++        "t": "f_table",
++        "y": [
++          "f_indoor_plant_y",
++          "f_indoor_plant"
++        ],
++        "p": "f_piano"
 +      }
 +    },
 +    "method": "json"
@@ -32191,10 +32178,7 @@
 +      ]
 +    ],
 +    "object": {
-+      "fill_ter": {
-+        "param": "linoleum_color",
-+        "fallback": "t_linoleum_gray"
-+      },
++      "fill_ter": "t_linoleum_gray",
 +      "rows": [
 +        "########################",
 +        "########################",
@@ -32283,7 +32267,6 @@
 +          0,
 +          0
 +        ],
-+        "terrain": "road",
 +        "connection": "local_road",
 +        "from": [
 +          1,
