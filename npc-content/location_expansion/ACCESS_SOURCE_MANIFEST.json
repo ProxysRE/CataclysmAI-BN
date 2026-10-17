@@ -1,0 +1,41 @@
+{
+  "bundle_sha256": "7f5b26bbeaf503038762778078421fd9495f0c9a77ebb0e2b599b72d0901337d",
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "bn/data/json/furniture_and_terrain/terrain-mechanisms.json": {
+      "sha256": "0730b558a877b87f534d281c9ab7ab8350722cb0e8d46bf561e3689e56b37aa7",
+      "git_blob_sha": "ebc3cfe180ae25f1ffc97fc44f7a60b284a14eef"
+    },
+    "bn/data/json/furniture_and_terrain/terrain-zlevel-transitions.json": {
+      "sha256": "36ddc73f3fef4cd285c678d02318eba5d1d774dc5b0e90932d03744d8885eba4",
+      "git_blob_sha": "4b9831d1e8e2192739292ac8a5523fb21def8d96"
+    },
+    "bn/src/game.cpp": {
+      "sha256": "ee71671f4c73e11dc7e07b79a9d411f195e8fa4ee2f15159657b9b7e9edb11d2",
+      "git_blob_sha": "9cfa859bbd3c1cbf0a4e6488653ad9a68fb56367"
+    },
+    "bn/src/iexamine_elevator.cpp": {
+      "sha256": "52368e638e902352312e6c5d4286660d60962b6d37303c7c18ed38e5bbea7120",
+      "git_blob_sha": "a439be8c39b72f075a2164ecb815ace4a49e8c64"
+    },
+    "dda/data/json/furniture_and_terrain/terrain-mechanisms.json": {
+      "sha256": "fdecf757032145ccb8ee240b0b25e4adb5cbbd1b36dacc11da3397ed562332bd",
+      "git_blob_sha": "26da1451e0d60b4d2cbbfe707740ab69e3ffe5bc"
+    },
+    "dda/data/json/furniture_and_terrain/terrain-zlevel-transitions.json": {
+      "sha256": "793262257985d93fd48c0a5fe027dfa01bcd5c1fcb0e9e2382c0e35695b1f5d4",
+      "git_blob_sha": "a670043a29bf8865e923216ca265da1ba17c14e5"
+    },
+    "dda/data/json/mutations/professions.json": {
+      "sha256": "3e471a1f787a4cd1bc97c63a0512629f024c8464b3fed05e9154d1c39808146b",
+      "git_blob_sha": "219bb2d52f8a02b6b93d2918b0c91780ea9b2097"
+    }
+  },
+  "parts": [
+    "ACCESS_SOURCES.part00",
+    "ACCESS_SOURCES.part01",
+    "ACCESS_SOURCES.part02",
+    "ACCESS_SOURCES.part03"
+  ]
+}

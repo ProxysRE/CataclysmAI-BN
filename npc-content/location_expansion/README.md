@@ -15,3 +15,9 @@ The candidate merges DDA geometry at matching coordinates, retains the existing 
 The new -1 level is a security foyer/control area; the source already has deeper residential, research and technical levels. NPC definitions, missing loot and furniture, elevators, stairs, schema compatibility and mapgen tests must be reconciled as one coherent package. The candidate is deliberately outside the native patch and portable installer. Its `installable` and `native_patch` markers stay false.
 
 A source or geometry change fails the guard and requires review. The package verifier checks the installed nuclear replacement, so CMake cannot quietly ship the old special.
+
+## Hub access projection
+
+`audit_hub_access.py` projects all static multi-OMT maps into one coordinate system, including negative origins and maps reused on multiple floors. It resolves the robofachq palette and explicit terrain overrides. `HUB_ACCESS_REPORT.json` lists all projected controls, stairs, ramps and omitted map slots. This is a static map audit, not native generation validation.
+
+Seven additional pinned source files are preserved in ACCESS_SOURCES with manifest hashes and verified upstream Git blob identities. BN elevator transport should be retained. Its existing Lua hook can deny access but cannot choose a directional destination. Mapping the DDA restricted panels to an ordinary BN elevator is explicitly blocked. All six directional controls have a nearby shaft at their required destination. Four stair endpoints still have no opposite stair within the projected destination OMT; external maps and generation need review. The other 24 of 28 endpoints have a candidate under stock BN lookup rules.

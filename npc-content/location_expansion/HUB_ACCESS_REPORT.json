@@ -1,0 +1,2362 @@
+{
+  "installable": false,
+  "runtime_validated": false,
+  "sides": {
+    "bn": {
+      "maps": [
+        {
+          "origin_omt": [
+            0,
+            0,
+            1
+          ],
+          "matched_slots": 4,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            0
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -2
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -3
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -4
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            -1,
+            -4
+          ],
+          "matched_slots": 4,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            -1,
+            -2
+          ],
+          "matched_slots": 4,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -6
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -7
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        }
+      ],
+      "projected_terrain_tiles": 24714,
+      "shaft_columns": 167,
+      "shaft_tiles": 277,
+      "controls": [
+        {
+          "point": [
+            38,
+            19,
+            -4
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -3,
+            -2,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            19,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -2,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            19,
+            -2
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            19,
+            0
+          ],
+          "terrain": "t_elevator_control_off",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            -2
+          ]
+        },
+        {
+          "point": [
+            38,
+            21,
+            -7
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 15,
+          "candidate_floors": [
+            -6,
+            -4,
+            -3,
+            -2,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            21,
+            -6
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 15,
+          "candidate_floors": [
+            -7,
+            -4,
+            -3,
+            -2,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            -4
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -3,
+            -2,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -2,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            -2
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            0
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            0
+          ],
+          "terrain": "t_elevator_control_off",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            -2
+          ]
+        }
+      ],
+      "ramps": [],
+      "stairs": [
+        {
+          "point": [
+            41,
+            24,
+            -7
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              41,
+              24,
+              -6
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            41,
+            24,
+            -6
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              41,
+              24,
+              -7
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            16,
+            -4
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              16,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            16,
+            -3
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              16,
+              -4
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            17,
+            -3
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              17,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            17,
+            -2
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              17,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            24,
+            -3
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              24,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            24,
+            -2
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              24,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            25,
+            -4
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              25,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            25,
+            -3
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              25,
+              -4
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            61,
+            21,
+            -3
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              61,
+              21,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            61,
+            21,
+            -2
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              61,
+              21,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            14,
+            -7
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              14,
+              -6
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            14,
+            -6
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              14,
+              -7
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            27,
+            -7
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              27,
+              -6
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            27,
+            -6
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              27,
+              -7
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        }
+      ]
+    },
+    "dda": {
+      "maps": [
+        {
+          "origin_omt": [
+            0,
+            -2,
+            1
+          ],
+          "matched_slots": 8,
+          "omitted_slots": [
+            {
+              "slot": [
+                0,
+                1
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                1,
+                1
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                2,
+                1
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                3,
+                1
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                0,
+                3
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                1,
+                3
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                2,
+                3
+              ],
+              "terrain": "robofachq_roof_e"
+            },
+            {
+              "slot": [
+                3,
+                3
+              ],
+              "terrain": "robofachq_roof_e"
+            }
+          ]
+        },
+        {
+          "origin_omt": [
+            0,
+            -2,
+            0
+          ],
+          "matched_slots": 16,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            -2,
+            -1
+          ],
+          "matched_slots": 7,
+          "omitted_slots": [
+            {
+              "slot": [
+                0,
+                1
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                1,
+                1
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                2,
+                1
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                3,
+                1
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                0,
+                2
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                3,
+                2
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                0,
+                3
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                1,
+                3
+              ],
+              "terrain": "robofachq_rock"
+            },
+            {
+              "slot": [
+                3,
+                3
+              ],
+              "terrain": "robofachq_rock"
+            }
+          ]
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -2
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -3
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -4
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            -2,
+            -4
+          ],
+          "matched_slots": 4,
+          "omitted_slots": [
+            {
+              "slot": [
+                0,
+                0
+              ],
+              "terrain": "robofachq_subline_a0"
+            },
+            {
+              "slot": [
+                1,
+                0
+              ],
+              "terrain": "robofachq_subline_a1"
+            },
+            {
+              "slot": [
+                2,
+                0
+              ],
+              "terrain": "robofachq_subline_a2"
+            },
+            {
+              "slot": [
+                3,
+                0
+              ],
+              "terrain": "robofachq_subline_a3"
+            }
+          ]
+        },
+        {
+          "origin_omt": [
+            0,
+            -2,
+            -2
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -6
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        },
+        {
+          "origin_omt": [
+            0,
+            0,
+            -7
+          ],
+          "matched_slots": 8,
+          "omitted_slots": []
+        }
+      ],
+      "projected_terrain_tiles": 37820,
+      "shaft_columns": 31,
+      "shaft_tiles": 148,
+      "controls": [
+        {
+          "point": [
+            38,
+            19,
+            -4
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -3,
+            -2,
+            -1
+          ]
+        },
+        {
+          "point": [
+            38,
+            19,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -2,
+            -1
+          ]
+        },
+        {
+          "point": [
+            38,
+            19,
+            -2
+          ],
+          "terrain": "t_elevator_control_robofac_up",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            -1
+          ],
+          "required_destination": -1,
+          "destination_shaft_present": true
+        },
+        {
+          "point": [
+            38,
+            19,
+            -1
+          ],
+          "terrain": "t_elevator_control_robofac_down",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            -2
+          ],
+          "required_destination": -2,
+          "destination_shaft_present": true
+        },
+        {
+          "point": [
+            38,
+            21,
+            -7
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 15,
+          "candidate_floors": [
+            -6,
+            -4,
+            -3,
+            -2,
+            -1
+          ]
+        },
+        {
+          "point": [
+            38,
+            21,
+            -6
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 15,
+          "candidate_floors": [
+            -7,
+            -4,
+            -3,
+            -2,
+            -1
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            -4
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -3,
+            -2,
+            -1
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -2,
+            -1
+          ]
+        },
+        {
+          "point": [
+            38,
+            22,
+            -2
+          ],
+          "terrain": "t_elevator_control_robofac_up",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            -1
+          ],
+          "required_destination": -1,
+          "destination_shaft_present": true
+        },
+        {
+          "point": [
+            38,
+            22,
+            -1
+          ],
+          "terrain": "t_elevator_control_robofac_down",
+          "nearby_shaft_tiles": 14,
+          "candidate_floors": [
+            -7,
+            -6,
+            -4,
+            -3,
+            -2
+          ],
+          "required_destination": -2,
+          "destination_shaft_present": true
+        },
+        {
+          "point": [
+            39,
+            9,
+            -1
+          ],
+          "terrain": "t_elevator_control_robofac_up",
+          "nearby_shaft_tiles": 7,
+          "candidate_floors": [
+            0
+          ],
+          "required_destination": 0,
+          "destination_shaft_present": true
+        },
+        {
+          "point": [
+            39,
+            9,
+            0
+          ],
+          "terrain": "t_elevator_control_robofac_down",
+          "nearby_shaft_tiles": 7,
+          "candidate_floors": [
+            -1
+          ],
+          "required_destination": -1,
+          "destination_shaft_present": true
+        },
+        {
+          "point": [
+            73,
+            10,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 0,
+          "candidate_floors": []
+        },
+        {
+          "point": [
+            73,
+            12,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 0,
+          "candidate_floors": []
+        },
+        {
+          "point": [
+            73,
+            14,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 0,
+          "candidate_floors": []
+        },
+        {
+          "point": [
+            74,
+            10,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 0,
+          "candidate_floors": []
+        },
+        {
+          "point": [
+            74,
+            12,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 0,
+          "candidate_floors": []
+        },
+        {
+          "point": [
+            74,
+            14,
+            -3
+          ],
+          "terrain": "t_elevator_control",
+          "nearby_shaft_tiles": 0,
+          "candidate_floors": []
+        }
+      ],
+      "ramps": [
+        {
+          "point": [
+            59,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            59,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            59,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            59,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            60,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            60,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            60,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            60,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            61,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            61,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            61,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            61,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            62,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            62,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            62,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            62,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            63,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            63,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            63,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            63,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            64,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            64,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            64,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            64,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            65,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            65,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            65,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            65,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            66,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            66,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            66,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            66,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            67,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            67,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            67,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            67,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            68,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            68,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            68,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            68,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            69,
+            11,
+            0
+          ],
+          "terrain": "t_ramp_down_high",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            69,
+            12,
+            -1
+          ],
+          "terrain": "t_ramp_up_high",
+          "paired_terrain": "t_ramp_down_low",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            69,
+            12,
+            0
+          ],
+          "terrain": "t_ramp_down_low",
+          "paired_terrain": "t_ramp_up_high",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        },
+        {
+          "point": [
+            69,
+            13,
+            -1
+          ],
+          "terrain": "t_ramp_up_low",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_opposite_floor_present": true,
+          "note": "Exact same-XY terrain only; high/low ramp movement needs native generation tests"
+        }
+      ],
+      "stairs": [
+        {
+          "point": [
+            41,
+            24,
+            -7
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": null,
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            41,
+            24,
+            -6
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              42,
+              24,
+              -7
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            42,
+            24,
+            -7
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              41,
+              24,
+              -6
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            42,
+            24,
+            -6
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": null,
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            16,
+            -4
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": null,
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            16,
+            -3
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              17,
+              -4
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            17,
+            -4
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              16,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            17,
+            -3
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              17,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            17,
+            -2
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              17,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            24,
+            -4
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              25,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            24,
+            -3
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              24,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            24,
+            -2
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              24,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            25,
+            -4
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": null,
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            45,
+            25,
+            -3
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              45,
+              24,
+              -4
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            61,
+            21,
+            -3
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              61,
+              21,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            61,
+            21,
+            -2
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              61,
+              21,
+              -3
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            63,
+            -33,
+            0
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              63,
+              -32,
+              -1
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            63,
+            -32,
+            -1
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_secretdoor_concrete_c",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              63,
+              -33,
+              0
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            70,
+            -27,
+            -1
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              70,
+              -26,
+              -2
+            ],
+            [
+              71,
+              -37,
+              -2
+            ],
+            [
+              71,
+              -36,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            70,
+            -26,
+            -2
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              70,
+              -27,
+              -1
+            ],
+            [
+              71,
+              -38,
+              -1
+            ],
+            [
+              71,
+              -37,
+              -1
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            71,
+            -38,
+            -1
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              70,
+              -26,
+              -2
+            ],
+            [
+              71,
+              -37,
+              -2
+            ],
+            [
+              71,
+              -36,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            71,
+            -37,
+            -2
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              70,
+              -27,
+              -1
+            ],
+            [
+              71,
+              -38,
+              -1
+            ],
+            [
+              71,
+              -37,
+              -1
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            71,
+            -37,
+            -1
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              70,
+              -26,
+              -2
+            ],
+            [
+              71,
+              -37,
+              -2
+            ],
+            [
+              71,
+              -36,
+              -2
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            71,
+            -36,
+            -2
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_concrete_wall",
+          "same_xy_pair": false,
+          "bn_same_omt_candidates": [
+            [
+              70,
+              -27,
+              -1
+            ],
+            [
+              71,
+              -38,
+              -1
+            ],
+            [
+              71,
+              -37,
+              -1
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            14,
+            -7
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              14,
+              -6
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            14,
+            -6
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              14,
+              -7
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            27,
+            -7
+          ],
+          "terrain": "t_stairs_up",
+          "paired_terrain": "t_stairs_down",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              27,
+              -6
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        },
+        {
+          "point": [
+            84,
+            27,
+            -6
+          ],
+          "terrain": "t_stairs_down",
+          "paired_terrain": "t_stairs_up",
+          "same_xy_pair": true,
+          "bn_same_omt_candidates": [
+            [
+              84,
+              27,
+              -7
+            ]
+          ],
+          "scope": "Stock BN searches the destination OMT after an exact-XY miss; external/unprojected maps remain unknown"
+        }
+      ]
+    }
+  },
+  "projection_scope": "Static robofachq_static.json plus its named robofachq palette; external/nested maps are not projected",
+  "access_policy": {
+    "source_trait": "PROF_HUB01_ANCILLIARY",
+    "source_behavior": "Trait check, unauthorized popup, directional one-floor teleport through immediate EOC",
+    "bn_behavior": "Native elevator menu, nearby shaft lookup, creature/item/vehicle transport and on_elevator_try_use hook",
+    "automatic_mapping_allowed": false,
+    "reason": "Public BN elevator changes both authorization and destination policy; replacing it silently is forbidden",
+    "exact_source_controls": [
+      {
+        "type": "terrain",
+        "id": "t_elevator_control_robofac_up",
+        "name": "elevator controls",
+        "description": "The control face for an elevator.  You could press the appropriate button to travel to your choice of floor.",
+        "symbol": "6",
+        "color": "light_blue",
+        "move_cost": 0,
+        "coverage": 50,
+        "roof": "t_flat_roof",
+        "connect_groups": "INDOORFLOOR",
+        "flags": [
+          "NOITEM",
+          "INDOORS"
+        ],
+        "examine_action": {
+          "type": "effect_on_condition",
+          "effect_on_conditions": [
+            {
+              "id": "EOC_ROBOFAC_ELEVATOR_UP",
+              "condition": {
+                "u_has_trait": "PROF_HUB01_ANCILLIARY"
+              },
+              "effect": [
+                {
+                  "u_location_variable": {
+                    "u_val": "robofac_elevator_up"
+                  },
+                  "z_adjust": 1
+                },
+                {
+                  "u_message": "The elevator starts moving before you can touch the panel.",
+                  "popup": true
+                },
+                {
+                  "u_teleport": {
+                    "u_val": "robofac_elevator_up"
+                  }
+                }
+              ],
+              "false_effect": {
+                "u_message": "The control panels' screen flashes before displaying \"UNAUTHORIZED\" in bold red letters.",
+                "popup": true
+              }
+            }
+          ]
+        },
+        "bash": {
+          "str_min": 40,
+          "str_max": 150,
+          "sound": "crunch!",
+          "sound_fail": "whack!",
+          "ter_set": "t_metal_floor",
+          "items": [
+            {
+              "item": "processor",
+              "prob": 25
+            },
+            {
+              "item": "RAM",
+              "count": [
+                0,
+                2
+              ],
+              "prob": 50
+            },
+            {
+              "item": "cable",
+              "count": [
+                1,
+                2
+              ],
+              "prob": 50
+            },
+            {
+              "item": "small_lcd_screen",
+              "prob": 25
+            },
+            {
+              "item": "e_scrap",
+              "count": [
+                1,
+                4
+              ],
+              "prob": 50
+            },
+            {
+              "item": "circuit",
+              "count": [
+                0,
+                2
+              ],
+              "prob": 50
+            },
+            {
+              "item": "power_supply",
+              "prob": 25
+            },
+            {
+              "item": "amplifier",
+              "prob": 25
+            },
+            {
+              "item": "plastic_chunk",
+              "count": [
+                4,
+                10
+              ],
+              "prob": 50
+            },
+            {
+              "item": "scrap",
+              "count": [
+                2,
+                6
+              ],
+              "prob": 50
+            }
+          ]
+        }
+      },
+      {
+        "type": "terrain",
+        "id": "t_elevator_control_robofac_down",
+        "name": "elevator controls",
+        "description": "The control face for an elevator.  You could press the appropriate button to travel to your choice of floor.",
+        "symbol": "6",
+        "color": "light_blue",
+        "move_cost": 0,
+        "coverage": 50,
+        "roof": "t_flat_roof",
+        "connect_groups": "INDOORFLOOR",
+        "flags": [
+          "NOITEM",
+          "INDOORS"
+        ],
+        "examine_action": {
+          "type": "effect_on_condition",
+          "effect_on_conditions": [
+            {
+              "id": "EOC_ROBOFAC_ELEVATOR_DOWN",
+              "condition": {
+                "u_has_trait": "PROF_HUB01_ANCILLIARY"
+              },
+              "effect": [
+                {
+                  "u_location_variable": {
+                    "u_val": "robofac_elevator_down"
+                  },
+                  "z_adjust": -1
+                },
+                {
+                  "u_message": "The elevator starts moving before you can touch the panel.",
+                  "popup": true
+                },
+                {
+                  "u_teleport": {
+                    "u_val": "robofac_elevator_down"
+                  }
+                }
+              ],
+              "false_effect": {
+                "u_message": "The control panels' screen flashes before displaying \"UNAUTHORIZED\" in bold red letters.",
+                "popup": true
+              }
+            }
+          ]
+        },
+        "bash": {
+          "str_min": 40,
+          "str_max": 150,
+          "sound": "crunch!",
+          "sound_fail": "whack!",
+          "ter_set": "t_metal_floor",
+          "items": [
+            {
+              "item": "processor",
+              "prob": 25
+            },
+            {
+              "item": "RAM",
+              "count": [
+                0,
+                2
+              ],
+              "prob": 50
+            },
+            {
+              "item": "cable",
+              "count": [
+                1,
+                2
+              ],
+              "prob": 50
+            },
+            {
+              "item": "small_lcd_screen",
+              "prob": 25
+            },
+            {
+              "item": "e_scrap",
+              "count": [
+                1,
+                4
+              ],
+              "prob": 50
+            },
+            {
+              "item": "circuit",
+              "count": [
+                0,
+                2
+              ],
+              "prob": 50
+            },
+            {
+              "item": "power_supply",
+              "prob": 25
+            },
+            {
+              "item": "amplifier",
+              "prob": 25
+            },
+            {
+              "item": "plastic_chunk",
+              "count": [
+                4,
+                10
+              ],
+              "prob": 50
+            },
+            {
+              "item": "scrap",
+              "count": [
+                2,
+                6
+              ],
+              "prob": 50
+            }
+          ]
+        }
+      }
+    ],
+    "exact_source_trait": {
+      "type": "mutation",
+      "id": "PROF_HUB01_ANCILLIARY",
+      "name": {
+        "str": "Hub 01 Ancillary"
+      },
+      "description": "You are known to be a capable and resourceful mercenary at the employ of Hub 01.",
+      "cancels": [
+        "PROF_FED"
+      ],
+      "points": 0,
+      "profession": true,
+      "purifiable": false,
+      "valid": false
+    },
+    "bn_elevator_reuse": {
+      "keep": [
+        "TFLAG_ELEVATOR shaft discovery",
+        "blocking-vehicle checks",
+        "item/creature/vehicle transport",
+        "player placement and movement hook",
+        "overmap rotation handling"
+      ],
+      "required_extension": [
+        "authorization before travel",
+        "restrict destination to the DDA up/down floor"
+      ],
+      "existing_hook_limits": "on_elevator_try_use can deny use; the current hook cannot select or filter destination floors",
+      "native_implementation_complete": false
+    }
+  }
+}

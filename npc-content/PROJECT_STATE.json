@@ -147,7 +147,18 @@
       "replaced_cells": 2,
       "new_z_minus_1_cells": 8,
       "native_patch": false,
-      "installable": false
+      "installable": false,
+      "access_review": {
+        "report": "location_expansion/HUB_ACCESS_REPORT.json",
+        "restricted_panels": 6,
+        "restricted_panels_with_destination_shaft": 6,
+        "stairs": 28,
+        "stairs_with_same_omt_counterpart": 24,
+        "remaining_projected_stair_endpoints": 4,
+        "ramp_tiles": 44,
+        "native_access_implementation": false,
+        "public_elevator_substitution_allowed": false
+      }
     },
     "nuclear_power_plant": {
       "already_in_bn": true,

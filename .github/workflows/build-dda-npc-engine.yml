@@ -12,7 +12,8 @@ on:
       - 'npc-content/prepare_quest_props.py'
       - 'npc-content/prepare_location_expansion.py'
       - 'npc-content/check_location_expansion.py'
-      - 'npc-content/location_expansion/**'
+      - 'npc-content/location_expansion/SOURCE_BUNDLE.json.gz.base64'
+      - 'npc-content/location_expansion/SOURCE_MANIFEST.json'
       - 'npc-content/check_reused_bn_definitions.py'
       - 'npc-content/native/**'
   workflow_dispatch:

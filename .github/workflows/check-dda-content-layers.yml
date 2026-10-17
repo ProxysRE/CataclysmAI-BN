@@ -35,7 +35,9 @@ jobs:
           python npc-content/check_quest_props.py
           python npc-content/check_reused_bn_definitions.py
       - name: Check existing nuclear station and Hub expansion
-        run: python npc-content/check_location_expansion.py
+        run: |
+          python npc-content/check_location_expansion.py
+          python npc-content/check_hub_access.py
       - name: Verify selective location dependencies and layouts
         run: python npc-content/check_location_layers.py
       - name: Verify every staged definition and blocked original
