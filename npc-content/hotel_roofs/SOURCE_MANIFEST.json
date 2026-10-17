@@ -1,0 +1,11 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "bundle_sha256": "8b6644d441d970f98de218ef47bf062faa1b878b964c5d755f1a4627e982d644",
+  "files": {
+    "bn": "73ee6f8b0f782b086dc04073a4991968d19e29769002dec5794ab7918ba39e96",
+    "dda": "28308fe8dcec13ae7fca0dcfce1e0ca5f90a92421a6e7ddf36e66eeb0572db67"
+  }
+}

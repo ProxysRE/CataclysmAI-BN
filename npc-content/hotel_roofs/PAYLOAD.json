@@ -1,0 +1,56 @@
+[
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "hotel_tower_6_1_9",
+      "hotel_tower_6_1_8",
+      "hotel_tower_6_1_7"
+    ],
+    "copy-from": "generic_city_building",
+    "name": "hotel",
+    "sym": "h",
+    "color": "light_blue"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "hotel_tower_6_1_9",
+        "hotel_tower_6_1_8",
+        "hotel_tower_6_1_7"
+      ]
+    ],
+    "object": {
+      "rows": [
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "   --------                                                    -------  ",
+        "   -......-                                                    -.....-  ",
+        "   -......-                                                    -.....-  ",
+        "   --------                                                    -------  ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        ",
+        "                                                                        "
+      ],
+      "palettes": [
+        "roof_palette"
+      ]
+    },
+    "method": "json"
+  }
+]
