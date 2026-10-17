@@ -84,6 +84,9 @@ def verify_install(folder):
     from prepare_karting import prepare_data as karting_data, PAYLOAD as KARTING_PAYLOAD
     if json.loads((folder / KARTING_PAYLOAD).read_text(encoding='utf-8')) != karting_data():
         raise ValueError('Installed complete karting circuit differs')
+    from prepare_farm_supply import prepare_data as farm_data, PAYLOAD as FARM_PAYLOAD
+    if json.loads((folder / FARM_PAYLOAD).read_text(encoding='utf-8')) != farm_data():
+        raise ValueError('Installed farm supply payload differs')
     from prepare_eldercare import native_data as eldercare_data, PAYLOAD as ELDERCARE_PAYLOAD
     if json.loads((folder / ELDERCARE_PAYLOAD).read_text(encoding='utf-8')) != eldercare_data():
         raise ValueError('Installed eldercare support payload differs')
@@ -117,6 +120,9 @@ def package(folder, output, source_head):
         'The existing abandoned shopping plaza gains seven DDA roof sections at z=1.\n'
         'Includes the rural church with parking, basement, steeple and bell terminal.\n'
         'XEDRA creature, particles and glowing string are included; activity suit states are included; the XEDRA church, powered respirator and S02a suit remain staged.\n'
+        'Includes normal/looted farm supply stores with roofs, ladders and BN-packaged materials and food.\n'
+        'Karting cash registers use stock BN money; no DDA denominations are installed.\n'
+        'Eldercare pond/web support is included; nursing-home and retirement-community maps remain staged.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'

@@ -65,5 +65,8 @@
     "price": "400 USD",
     "price_postapoc": "25 cent",
     "preserved": true
-  }
+  },
+  "bn_adaptations": [
+    "Cash-register group containers use BN contents-group wrapper items and three internal content groups; root-level DDA container-item is not supported by BN"
+  ]
 }

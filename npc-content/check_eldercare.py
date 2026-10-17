@@ -35,3 +35,18 @@ assert spider['object'] == next(e['object'] for e in json.loads(files['dda/data/
 assert set(spider) == {'type', 'nested_mapgen_id', 'method', 'object'}
 prepare(check=True)
 print('PASS: complete retirement story; 42 source dependencies kept separate; exact pond weights and source web field; whole sites remain uninstalled')
+
+from bn_counterparts import check as check_counterparts, adapt_entry
+check_counterparts()
+adapted = build_layer(adapted=True)
+assert adapted['report']['selected_definitions'] == 30
+assert len(adapted['report']['unresolved_transitive_references']) == 27
+assert ('MONSTER', 'mon_zombie_medical') not in {k for v in adapted['source_candidates'] for k in declarations({v['source']: json.dumps([v['entry']])})}
+for name in ('nursing_home', 'retirement_community'):
+    for entry in maps[name + '.json']:
+        converted = adapt_entry(entry)
+        if entry['type'] == 'mapgen':
+            assert entry['object'].get('rows') == converted['object'].get('rows')
+        elif entry['type'] in ('talk_topic', 'effect_on_condition'):
+            assert entry == converted
+print('PASS: counterpart reuse reduces 42 source dependencies to 30; stories and map geometry unchanged')

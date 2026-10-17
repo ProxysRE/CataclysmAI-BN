@@ -1159,9 +1159,19 @@
   },
   {
     "type": "item_group",
-    "subtype": "collection",
     "id": "cash_register_full",
-    "container-item": "cash_register",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "cash_register",
+        "contents-group": "cash_register_full_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "subtype": "collection",
+    "id": "cash_register_full_contents",
     "items": [
       {
         "item": "money_bundle",
@@ -1175,9 +1185,19 @@
   },
   {
     "type": "item_group",
-    "subtype": "collection",
     "id": "cash_register_looted",
-    "container-item": "cash_register",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "cash_register",
+        "contents-group": "cash_register_looted_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "subtype": "collection",
+    "id": "cash_register_looted_contents",
     "items": [
       {
         "item": "money_bundle",
@@ -1192,9 +1212,19 @@
   },
   {
     "type": "item_group",
-    "subtype": "collection",
     "id": "cash_register_empty",
-    "container-item": "cash_register",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "cash_register",
+        "contents-group": "cash_register_empty_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "subtype": "collection",
+    "id": "cash_register_empty_contents",
     "items": [
       [
         "survnote",

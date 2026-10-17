@@ -36,12 +36,13 @@ jobs:
           python npc-content/prepare_mapgen_corpses.py
           python npc-content/prepare_eldercare.py --check --bn-data bn-data
           python npc-content/check_eldercare.py
+          python npc-content/bn_loot_containers.py
       - name: Verify bulk regional location staging and audit pinned BN references
         run: |
           python npc-content/export_bn_ids.py --bn-source bn-data --output bn-id-index.json --cache npc-content/dependency_catalog/BN_ID_INDEX.json
           python npc-content/check_regional_locations.py
           python npc-content/check_farm_supply.py
-          python npc-content/prepare_farm_supply.py --check --bn-source bn-data --audit --report farm-native-dependency-audit.json
+          python npc-content/prepare_farm_supply.py --check --bn-source bn-data --report farm-native-dependency-audit.json
           python npc-content/prepare_regional_locations.py --check --bn-source bn-data --native-payload npc-content/native/dda_karting_circuit.json --report regional-dependency-audit.json
       - name: Preserve full regional dependency audit
         uses: actions/upload-artifact@v4

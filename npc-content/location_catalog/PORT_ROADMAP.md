@@ -27,3 +27,7 @@ Both source layouts and roofs remain non-installed candidates. Merchandise uses 
 ## Connected eldercare layer
 
 Shady Hills now preserves its complete 13-topic/two-EOC computer story. The nursing-home/retirement dependency graph preserves 42 additional source definitions and explicitly tracks 43 unresolved references (within the documented scan scope), including an upstream dangling legal-page topic. Medical evolution and civilian groups are not replaced with superficially similar BN content. Two closed support records, stocked-pond fish and nested spider webs, are embedded with stock BN mechanisms and portable-data guards; Windows runtime validation is pending. Whole sites remain uninstalled until terminal interactions, dependencies and generation are verified.
+
+## Reuse-policy implementation
+
+The 2026-10-18 counterpart policy now has 15 explicit mappings for eldercare sites. Adapted dependencies decrease from 42 definitions/43 unresolved references to 30/27 while retaining all source geometry and terminal stories. Ordinary medical zombies use BN nurses and BN evolution. Farm helmet/stone/carpet variants reuse stock BN content; its full normal and looted layouts, roofs and closed dependencies are now embedded pending Windows runtime validation. Group-level DDA loot containers were corrected to BN contents-group wrappers in both farm merchandise and karting cash registers. Native tests cover actual packaging and farm generation; no successful new Windows runtime result is claimed yet.

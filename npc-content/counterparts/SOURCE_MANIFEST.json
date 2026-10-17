@@ -1,0 +1,21 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "bundle_sha256": "59737383a4c657d9f91b5da4b162d5117d8a214b67bdcb22cb1f340e6cf256ae",
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01"
+  ],
+  "files": {
+    "bn/data/json/furniture_and_terrain/furniture-recreation.json": "3f7ddbf166a1cd5aab7b94a5c6354d8bc9ebf1f7e14123397488406cff87a2d6",
+    "bn/data/json/itemgroups/supplies.json": "b1d2cde21af87930cdec9ec6bb681e30790aa2f1b4798e052481ad6d743f44ef",
+    "bn/data/json/itemgroups/tools.json": "0fd0e9258ed4b03a59f537b59618a90b84029ecf2422f0719a8646f7f02ce836",
+    "bn/data/json/itemgroups/misc.json": "0623021785a6ad263993f8c7208c6ab67e1f918dadc9baffa46aef9c9e9267bc",
+    "bn/data/json/items/comestibles/other.json": "b444b1cce9f70e2362cc3222c5e0b5835750f3cf6ae7cc2ee88dc7c82f399e0b",
+    "bn/data/json/items/armor/torso_clothes.json": "b922f06e6ab2846b6b83c708fa7b341c70550064f0f6d516241212f920dfa844",
+    "bn/data/json/furniture_and_terrain/furniture-storage.json": "cc5d50a06444b22a6ec1a1c75db7a53d21892d34151181823be2c1ec9954cf98",
+    "bn/data/json/itemgroups/SUS/domestic.json": "2213f48878533280cfcc629d22df2408c04ea56d82b15a22f5c1f459518ce55f",
+    "bn/data/json/itemgroups/trash_and_debris.json": "dfd78aef76ec99524032538a19025191f536d6da3ae75870d638f74986507377",
+    "bn/data/json/items/armor/helmets.json": "17b54ece7e8ac3c5151e67b6917dbb473de55ece3c90cdf2141a71eff4858bde",
+    "bn/data/json/monsters/zed_medical.json": "cce11d70a4c7ea46977f5961d09d74ba38d9ec4b09c73475a7ca20742ee064e9"
+  }
+}

@@ -2350,6 +2350,7 @@
       }
     }
   ],
+  "counterpart_mappings_applied": [],
   "report": {
     "root_missing_identifiers": [
       [
@@ -2951,7 +2952,7 @@
     "scope": "Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.",
     "blockers": [
       "Computer eocs/open_dialogue and terminal talkers require a real BN interaction bridge.",
-      "DDA recursive monster groups, civilian AI and medical evolution remain source candidates, not playable imports.",
+      "Unmatched recursive groups, living-civilian AI and mutation branches need adaptation; source medical variants may be superseded by stock BN counterparts.",
       "Preserve source timed entries and group probabilities; naive flattening can change density and civilian disappearance.",
       "Resolve remaining dependencies, compare BN counterparts, adapt schemas and run full location generation before installing either site."
     ]

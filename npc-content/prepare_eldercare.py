@@ -116,7 +116,7 @@ def support_refs(payload):
     return found
 
 
-def build_layer():
+def build_layer(adapted=False):
     files = sources()
     catalog = declarations(files)
     cache = read_cache(ROOT / 'dependency_catalog/BN_ID_INDEX.json')
@@ -124,10 +124,14 @@ def build_layer():
     bn = set(map(tuple, cache['identifiers']))
     sites = build()
     maps = [e for name in ('nursing_home', 'retirement_community') for e in sites[name + '.json']]
+    from bn_counterparts import adapt_entry, MAPPINGS
+    used = set()
+    if adapted:
+        maps = [adapt_entry(e, used) for e in maps]
     provided = index_entries(maps)
     roots = {ref for entry in maps for ref in refs(entry)} - bn - provided
-    # Keep the complete source medical evolution branch, never alias it to
-    # BN's very different nurse -> surgeon -> vivisector progression.
+    # The provenance layer keeps original medical evolution; the adapted
+    # layer uses the stock BN medical zombie under the user's reuse policy.
     pending = list(sorted(roots))
     selected, reused, missing, seen = {}, set(), set(), set()
     while pending:
@@ -146,6 +150,8 @@ def build_layer():
             missing.add(key)
             continue
         path, entry = provider
+        if adapted:
+            entry = adapt_entry(entry, used)
         selected[key] = {'source': path, 'entry': entry}
         pending.extend(refs(entry))
     # Aliases for one multi-ID declaration must not create duplicate entries.
@@ -154,6 +160,7 @@ def build_layer():
         unique[json.dumps(value['entry'], sort_keys=True)] = value
     candidates = sorted(unique.values(), key=lambda v: (namespace(v['entry']), str(ids(v['entry']))))
     return {'pins': PINS, 'installed': False, 'source_candidates': candidates,
+            'counterpart_mappings_applied': [{'type': kind, 'source': source, 'bn_target': target, 'reason': reason} for (kind, source), (target, reason) in sorted(MAPPINGS.items()) if source in used],
             'report': {'root_missing_identifiers': sorted(roots),
                        'selected_definitions': len(candidates),
                        'selected_by_type': dict(Counter(v['entry']['type'] for v in candidates)),
@@ -161,7 +168,7 @@ def build_layer():
                        'unresolved_transitive_references': sorted(missing),
                        'scope': 'Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.',
                        'blockers': ['Computer eocs/open_dialogue and terminal talkers require a real BN interaction bridge.',
-                                    'DDA recursive monster groups, civilian AI and medical evolution remain source candidates, not playable imports.',
+                                    'Unmatched recursive groups, living-civilian AI and mutation branches need adaptation; source medical variants may be superseded by stock BN counterparts.',
                                     'Preserve source timed entries and group probabilities; naive flattening can change density and civilian disappearance.',
                                     'Resolve remaining dependencies, compare BN counterparts, adapt schemas and run full location generation before installing either site.']}}
 
@@ -184,7 +191,12 @@ def prepare(check=False, bn_source=None, bn_data=None):
     assert not new & bn, new & bn
     assert not support_refs(payload) - bn - new, support_refs(payload) - bn - new
     layer = build_layer()
-    outputs = {ROOT / 'native/dda_eldercare_support.json': payload,
+    from bn_counterparts import adapt_entry, check as check_counterparts
+    check_counterparts(bn_source)
+    regional = build()
+    adapted = {'locations': {name: [adapt_entry(e) for e in regional[name + '.json']] for name in ('nursing_home', 'retirement_community')},
+               'dependencies': build_layer(adapted=True)}
+    outputs = {FOLDER / 'ADAPTED_LOCATIONS.json': adapted, ROOT / 'native/dda_eldercare_support.json': payload,
                FOLDER / 'SOURCE_CANDIDATES.json': layer}
     for path, data in outputs.items():
         text = json.dumps(data, ensure_ascii=True, indent=2) + '\n'
@@ -193,7 +205,8 @@ def prepare(check=False, bn_source=None, bn_data=None):
         else:
             path.write_text(text)
     print('Eldercare:', layer['report']['selected_definitions'], 'source dependencies staged;',
-          len(layer['report']['unresolved_transitive_references']), 'unresolved; two closed native support definitions')
+          len(layer['report']['unresolved_transitive_references']), 'unresolved before counterpart reuse; adapted:',
+          adapted['dependencies']['report']['selected_definitions'], 'definitions,', len(adapted['dependencies']['report']['unresolved_transitive_references']), 'unresolved; two native support definitions')
 
 
 if __name__ == '__main__':

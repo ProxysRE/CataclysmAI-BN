@@ -43,7 +43,7 @@
         ],
         "=": "t_wall_glass",
         ".": "t_thconc_floor",
-        "r": "t_carpet_concrete_red",
+        "r": "t_carpet_concrete",
         "W": "t_window",
         "X": "t_window_bars",
         "|": "t_concrete_wall",
@@ -1248,7 +1248,7 @@
         ],
         "=": "t_wall_glass",
         ".": "t_thconc_floor",
-        "r": "t_carpet_concrete_red",
+        "r": "t_carpet_concrete",
         "W": "t_window",
         "X": "t_window_bars",
         "|": "t_concrete_wall",
@@ -3013,7 +3013,8 @@
           "y": 0
         }
       ]
-    }
+    },
+    "method": "json"
   },
   {
     "id": "farm_supply_soil_and_sand",
@@ -3052,7 +3053,7 @@
         ]
       },
       {
-        "item": "rock_flaking",
+        "item": "rock",
         "prob": 20,
         "count": [
           1,
@@ -3060,7 +3061,7 @@
         ]
       },
       {
-        "item": "flint",
+        "item": "rock",
         "prob": 5,
         "count": [
           1,
@@ -3252,7 +3253,17 @@
     "type": "item_group",
     "id": "cattlefodder_bag_canvas_50",
     "subtype": "collection",
-    "container-item": "bag_canvas",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "cattlefodder_bag_canvas_50_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "cattlefodder_bag_canvas_50_contents",
+    "subtype": "collection",
     "entries": [
       {
         "item": "cattlefodder",
@@ -3264,7 +3275,17 @@
     "type": "item_group",
     "id": "birdfood_bag_canvas_60",
     "subtype": "collection",
-    "container-item": "bag_canvas",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "birdfood_bag_canvas_60_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "birdfood_bag_canvas_60_contents",
+    "subtype": "collection",
     "entries": [
       {
         "item": "birdfood",
@@ -3273,9 +3294,19 @@
     ]
   },
   {
-    "id": "saltpeter_canvas_bag_part",
     "type": "item_group",
-    "container-item": "bag_canvas",
+    "id": "saltpeter_canvas_bag_part",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "saltpeter_canvas_bag_part_contents"
+      }
+    ]
+  },
+  {
+    "id": "saltpeter_canvas_bag_part_contents",
+    "type": "item_group",
     "//": "15 liter bag, opened with a variable amount",
     "items": [
       {
@@ -3288,9 +3319,19 @@
     ]
   },
   {
-    "id": "sandbag",
     "type": "item_group",
-    "container-item": "bag_canvas",
+    "id": "sandbag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "sandbag_contents"
+      }
+    ]
+  },
+  {
+    "id": "sandbag_contents",
+    "type": "item_group",
     "items": [
       {
         "item": "material_sand",
@@ -3299,9 +3340,19 @@
     ]
   },
   {
-    "id": "earthbag",
     "type": "item_group",
-    "container-item": "bag_canvas",
+    "id": "earthbag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "earthbag_contents"
+      }
+    ]
+  },
+  {
+    "id": "earthbag_contents",
+    "type": "item_group",
     "items": [
       {
         "item": "material_soil",
@@ -3310,9 +3361,19 @@
     ]
   },
   {
-    "id": "cement_bag",
     "type": "item_group",
-    "container-item": "bag_canvas",
+    "id": "cement_bag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "cement_bag_contents"
+      }
+    ]
+  },
+  {
+    "id": "cement_bag_contents",
+    "type": "item_group",
     "items": [
       {
         "item": "material_cement",
@@ -3321,9 +3382,19 @@
     ]
   },
   {
-    "id": "quicklime_bag",
     "type": "item_group",
-    "container-item": "bag_canvas",
+    "id": "quicklime_bag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "quicklime_bag_contents"
+      }
+    ]
+  },
+  {
+    "id": "quicklime_bag_contents",
+    "type": "item_group",
     "items": [
       {
         "item": "material_quicklime",
@@ -3332,9 +3403,19 @@
     ]
   },
   {
-    "id": "quicklime_barrel",
     "type": "item_group",
-    "container-item": "30gal_barrel",
+    "id": "quicklime_barrel",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "30gal_barrel",
+        "contents-group": "quicklime_barrel_contents"
+      }
+    ]
+  },
+  {
+    "id": "quicklime_barrel_contents",
+    "type": "item_group",
     "items": [
       {
         "item": "material_quicklime",
@@ -3363,10 +3444,20 @@
     ]
   },
   {
+    "type": "item_group",
     "id": "box_of_batteries_unopened",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_medium",
+        "contents-group": "box_of_batteries_unopened_contents"
+      }
+    ]
+  },
+  {
+    "id": "box_of_batteries_unopened_contents",
     "type": "item_group",
     "subtype": "distribution",
-    "container-item": "box_medium",
     "items": [
       {
         "item": "light_minus_battery_cell",
@@ -3438,12 +3529,12 @@
         "prob": 70
       },
       {
-        "item": "helmet_riding",
+        "item": "helmet_bike",
         "prob": 5
       },
       {
-        "group": "helmet_bike_modified",
-        "prob": 10
+        "prob": 10,
+        "item": "helmet_bike"
       }
     ]
   },
@@ -3729,36 +3820,6 @@
     "color": "brown"
   },
   {
-    "type": "AMMO",
-    "id": "rock_flaking",
-    "copy-from": "rock",
-    "name": {
-      "str": "flaking rock"
-    },
-    "description": "A rock the size of a baseball which chips in a semi-predictable way if struck, leaving a sharp edge.  Makes a decent melee weapon, and is also good for throwing at enemies.",
-    "weight": "657 g",
-    "volume": "250 ml",
-    "bashing": 7,
-    "damage": {
-      "damage_type": "stab",
-      "amount": 7
-    },
-    "range": 10,
-    "dispersion": 14,
-    "loudness": 0,
-    "count": 1,
-    "stack_size": 1
-  },
-  {
-    "type": "AMMO",
-    "id": "flint",
-    "copy-from": "rock_flaking",
-    "name": {
-      "str": "flint"
-    },
-    "description": "A chunk of flint, the kind of rock that can make sparks if stuck against high-carbon steel.  It also chips in a semi-predictable way if struck, leaving a sharp edge."
-  },
-  {
     "type": "GENERIC",
     "id": "rock_large",
     "symbol": ";",
@@ -3780,30 +3841,6 @@
       ]
     ],
     "bashing": 28
-  },
-  {
-    "type": "ARMOR",
-    "id": "helmet_riding",
-    "copy-from": "helmet_bike",
-    "looks_like": "helmet_bike",
-    "bashing": 2,
-    "extend": {
-      "flags": [
-        "WATERPROOF",
-        "STURDY",
-        "SUN_GLASSES"
-      ]
-    },
-    "name": {
-      "str": "riding helmet"
-    },
-    "description": "A helmet designed to protect from falls and kicks involving horses, has a small peak to protect from glare.",
-    "weight": "660 g",
-    "volume": "1800 ml",
-    "price": "70 USD",
-    "price_postapoc": "3 USD",
-    "color": "dark_gray",
-    "warmth": 20
   },
   {
     "type": "TOOL",
@@ -3849,59 +3886,5 @@
     "price_postapoc": "2 USD 50 cent",
     "symbol": "/",
     "color": "yellow"
-  },
-  {
-    "type": "terrain",
-    "id": "t_carpet_concrete_red",
-    "name": "industrial carpet",
-    "description": "Firm, low-pile, high-durability carpet in a neutral gray color, for laying down on bare concrete.",
-    "symbol": ".",
-    "color": "red",
-    "move_cost": 2,
-    "roof": "t_flat_roof",
-    "flags": [
-      "TRANSPARENT",
-      "SUPPORTS_ROOF",
-      "COLLAPSES",
-      "FLAT",
-      "EASY_DECONSTRUCT"
-    ],
-    "deconstruct": {
-      "ter_set": "t_thconc_floor",
-      "items": [
-        {
-          "item": "r_carpet",
-          "charges": 1
-        },
-        {
-          "item": "plastic_chunk",
-          "count": 2
-        }
-      ]
-    },
-    "bash": {
-      "sound": "rrrrip!",
-      "ter_set": "t_thconc_floor",
-      "str_min": 5,
-      "str_max": 15,
-      "str_min_supported": 150,
-      "items": [
-        {
-          "item": "rag",
-          "count": [
-            0,
-            1
-          ]
-        },
-        {
-          "item": "plastic_chunk",
-          "count": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    "looks_like": "t_carpet_concrete"
   }
 ]

@@ -20,6 +20,11 @@ on:
       - 'npc-content/prepare_karting.py'
       - 'npc-content/prepare_mapgen_corpses.py'
       - 'npc-content/prepare_eldercare.py'
+      - 'npc-content/prepare_farm_supply.py'
+      - 'npc-content/farm_supply/SOURCE*'
+      - 'npc-content/bn_loot_containers.py'
+      - 'npc-content/bn_counterparts.py'
+      - 'npc-content/counterparts/**'
       - 'npc-content/eldercare/SOURCE*'
       - 'npc-content/quest_dependency_graph.py'
       - 'npc-content/karting/SOURCE*'
@@ -126,6 +131,8 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_karting.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_mapgen_corpses.py" --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_eldercare.py" --check --bn-source .
+          python "${{ github.workspace }}/package/npc-content/prepare_farm_supply.py" --check --bn-source .
+          python "${{ github.workspace }}/package/npc-content/bn_loot_containers.py" --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Radio station baseline or ID conflict" }
           python "${{ github.workspace }}/package/npc-content/prepare_hub_elevator.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Hub elevator source preflight failed" }
@@ -140,7 +147,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "d9d8b3d7a172878e189f1da96fe806daf23d6af8a166e88eaf71b05a2bbf2553") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "029c4f333a04a44c0e4da45f563c3f698ff8e87e73735d16c28ecd121f594fd4") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

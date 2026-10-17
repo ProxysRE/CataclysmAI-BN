@@ -1,5 +1,5 @@
 {
-  "status": "source_dependency_preserved_not_native_enabled",
+  "status": "resolved_by_stock_BN_counterpart",
   "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
   "source_files": [
     "data/json/items/armor/helmets.json",
@@ -26,5 +26,7 @@
   ],
   "archived_attachments": "DDA_HEAD_ATTACHMENTS.json",
   "native_enabled": false,
-  "archived_sha256": "ab675208682bfb3fe4d74bc3117e62f6e345ef0de28f2960ad7e419926c468e2"
+  "archived_sha256": "ab675208682bfb3fe4d74bc3117e62f6e345ef0de28f2960ad7e419926c468e2",
+  "resolution": "Use stock helmet_bike for helmet_bike_modified and helmet_riding shop loot under the user policy of 2026-10-18. Source attachments remain archived only; they are not required dependencies of the farm port.",
+  "note": "native_enabled refers to DDA modular attachments, not the stock helmet or farm payload."
 }

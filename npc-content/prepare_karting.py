@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 from prepare_regional_locations import build, references, index_entries
 from quest_dependency_graph import namespace, ids
+from bn_loot_containers import package_groups
 
 ROOT = Path(__file__).resolve().parent
 FOLDER = ROOT / 'karting'
@@ -66,7 +67,7 @@ def prepare_data():
     cash.pop('longest_side')
     cash.pop('flags')
     result.append(cash)
-    return result
+    return package_groups(result)
 
 
 def required_refs(payload):
@@ -79,15 +80,7 @@ def required_refs(payload):
                     if isinstance(part, dict) and part.get('fuel'):
                         refs.add(('item', part['fuel']))
         if e['type'] == 'item_group':
-            if 'container-item' in e:
-                refs.add(('item', e['container-item']))
-            for value in e.get('items', []):
-                if isinstance(value, list):
-                    refs.add(('item', value[0]))
-                else:
-                    for key, kind in [('group', 'item_group'), ('item', 'item')]:
-                        if key in value:
-                            refs.add((kind, value[key]))
+            refs.update(references({'items': {'_': {'item': e}}}))
         if e['type'] in ('GENERIC', 'CONTAINER'):
             if 'copy-from' in e:
                 refs.add(('item', e['copy-from']))

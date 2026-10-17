@@ -1,0 +1,3890 @@
+[
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "farm_supply_1",
+        "farm_supply_2"
+      ],
+      [
+        "farm_supply_3",
+        "farm_supply_4"
+      ]
+    ],
+    "//": "Fully stocked, unlooted variant.",
+    "object": {
+      "terrain": {
+        "_": "t_pavement",
+        "\u00d9": "t_pavement",
+        "\u00da": "t_pavement",
+        "\u00db": "t_pavement",
+        "\u00dc": "t_pavement_y",
+        ",": "t_pavement_y",
+        "S": "t_sidewalk",
+        " ": "t_region_groundcover",
+        "b": "t_region_groundcover",
+        "/": "t_region_tree_shade",
+        "&": "t_shrub_hydrangea",
+        "#": "t_shrub_rose",
+        "f": "t_chainfence",
+        "F": "t_chaingate_l",
+        "!": [
+          "t_door_glass_c",
+          "t_door_glass_o"
+        ],
+        "+": [
+          "t_door_c",
+          "t_door_o"
+        ],
+        "%": "t_door_locked_interior",
+        "x": [
+          "t_door_metal_pickable",
+          "t_door_metal_c"
+        ],
+        "=": "t_wall_glass",
+        ".": "t_thconc_floor",
+        "r": "t_carpet_concrete",
+        "W": "t_window",
+        "X": "t_window_bars",
+        "|": "t_concrete_wall",
+        "O": "t_flat_roof",
+        "<": "t_ladder_up",
+        "m": "t_atm"
+      },
+      "furniture": {
+        "b": "f_bench",
+        "B": "f_bench",
+        "C": "f_chair",
+        "^": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "c": "f_counter",
+        "$": "f_counter",
+        "n": "f_displaycase_o",
+        "\u00e0": "f_displaycase",
+        "\u00e1": "f_displaycase",
+        "1": "f_rack",
+        "2": "f_rack",
+        "3": "f_rack",
+        "4": "f_rack",
+        "5": "f_table",
+        "6": "f_rack_wood",
+        "7": "f_rack_wood",
+        "8": "f_rack_wood",
+        "9": "f_clothing_rail",
+        "0": "f_rack",
+        "\u00e7": "f_rack",
+        "\u00c9": "f_rack",
+        "\u00e9": "f_rack",
+        "\u00ea": "f_rack",
+        "\u00eb": "f_rack",
+        "\u00c8": "f_rack",
+        "\u00f7": "f_rack",
+        "\u00ce": "f_rack",
+        "\u00d8": "f_rack",
+        "\u00f5": "f_rack",
+        "\u00e6": "f_warehouse_shelf",
+        "\u00cb": "f_warehouse_shelf",
+        "\u00f9": "f_crate_o",
+        "\u00fa": "f_crate_o",
+        "\u00cf": "f_warehouse_shelf",
+        "\u00cd": "f_warehouse_shelf",
+        "I": "f_filing_cabinet",
+        "s": "f_sink",
+        "D": "f_dumpster",
+        "\u00c1": "f_pallet_brick",
+        "\u00cc": "f_stack_plank",
+        "\u00d3": "f_pallet_cement",
+        "\u00fc": "f_earthbag_wall",
+        "\u00fd": "f_sandbag_wall",
+        "w": "f_washer",
+        "o": "f_dryer",
+        "d": [
+          "f_fridge",
+          "f_minifridge",
+          "f_minifreezer",
+          "f_minifreezer",
+          "f_freezer"
+        ],
+        "\u00fe": "f_fridge",
+        "e": "f_oven",
+        "H": "f_sofa",
+        "p": "f_desk",
+        "j": "f_rack_coat",
+        "h": "f_chair",
+        "q": "f_filing_cabinet",
+        "g": "f_trashcan",
+        "z": "f_safe_l"
+      },
+      "vendingmachines": {
+        "V": {}
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "\u00e0": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "guns_rifle_common_display",
+                "prob": 40
+              },
+              {
+                "group": "guns_shotgun_common_display",
+                "prob": 60
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "\u00e1": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "ammo_hunting",
+                "prob": 55
+              },
+              {
+                "group": "mags_common",
+                "prob": 35
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00e7": {
+          "item": "fishing_items",
+          "chance": 100,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "n": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "fishing_hook_basic",
+                "prob": 70
+              },
+              {
+                "item": "fish_bait",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "1": {
+          "item": "petstore_shelves",
+          "chance": 80,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "2": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "dishes_utility",
+                "prob": 40
+              },
+              {
+                "group": "dishes_dining",
+                "prob": 15
+              },
+              {
+                "group": "kitchen_appliances",
+                "prob": 15
+              },
+              {
+                "group": "silverware",
+                "prob": 15
+              },
+              {
+                "group": "dinnerware",
+                "prob": 15
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "3": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "camping",
+                "prob": 40
+              },
+              {
+                "group": "camping",
+                "prob": 40
+              },
+              {
+                "group": "tools_survival",
+                "prob": 5
+              },
+              {
+                "group": "tools_tailor",
+                "prob": 5
+              },
+              {
+                "group": "tools_hunting",
+                "prob": 5
+              },
+              {
+                "group": "book_survival",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "4": {
+          "item": "sports",
+          "chance": 50,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "5": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "toy_store",
+                "prob": 95
+              },
+              {
+                "group": "child_hats",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "6": {
+          "item": "clothing_outdoor_shoes",
+          "chance": 70,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "7": {
+          "item": "clothing_watch",
+          "chance": 60,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "8": {
+          "item": "clothing_glasses",
+          "chance": 60,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "9": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "clothing_outdoor_torso",
+                "prob": 45
+              },
+              {
+                "group": "clothing_outdoor_pants",
+                "prob": 45
+              },
+              {
+                "group": "underwear",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "0": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "salty_snacks",
+                "prob": 75
+              },
+              {
+                "group": "candy_chocolate",
+                "prob": 20
+              },
+              {
+                "group": "liquor_and_spirits",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "\u00c9": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_common",
+                "prob": 40
+              },
+              {
+                "group": "tools_entry",
+                "prob": 5
+              },
+              {
+                "group": "consumer_electronics",
+                "prob": 25
+              },
+              {
+                "group": "box_of_batteries_unopened",
+                "prob": 25
+              },
+              {
+                "group": "ammo_heavy_batteries_full",
+                "prob": 25
+              },
+              {
+                "group": "tools_lighting",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "\u00e9": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_tailor",
+                "prob": 50
+              },
+              {
+                "item": "thread",
+                "count": [
+                  5,
+                  20
+                ],
+                "prob": 10
+              },
+              {
+                "item": "rag",
+                "count": [
+                  20,
+                  50
+                ],
+                "prob": 10
+              },
+              {
+                "item": "felt_patch",
+                "count": [
+                  5,
+                  25
+                ],
+                "prob": 10
+              },
+              {
+                "item": "leather",
+                "count": [
+                  3,
+                  15
+                ],
+                "prob": 10
+              },
+              {
+                "group": "sewing_group",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            6
+          ]
+        },
+        "\u00ea": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_plumbing",
+                "prob": 70
+              },
+              {
+                "group": "plumbing_bulk",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00eb": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_carpentry",
+                "prob": 70
+              },
+              {
+                "group": "supplies_woodcrafts",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00c8": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_mechanic",
+                "prob": 70
+              },
+              {
+                "group": "supplies_electronics",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00cb": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_earthworking",
+                "prob": 90
+              },
+              {
+                "group": "tools_entry",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "\u00e6": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "farming_tools",
+                "prob": 50
+              },
+              {
+                "group": "farm_supply_wire",
+                "prob": 50
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            7
+          ]
+        },
+        "\u00f7": {
+          "item": "farming_seeds",
+          "chance": 100,
+          "repeat": [
+            3,
+            12
+          ]
+        },
+        "\u00ce": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "fertilizers",
+                "prob": 80
+              },
+              {
+                "item": "fungicide",
+                "prob": 20
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            6
+          ]
+        },
+        "\u00f9": {
+          "item": "farm_supply_soil_and_sand",
+          "chance": 100,
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "\u00fa": {
+          "item": "farm_supply_rocks",
+          "chance": 100,
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "\u00cf": {
+          "item": "farm_supply_quicklime_and_saltpetre",
+          "chance": 40,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u00cd": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "farm_supply_animal_feed",
+                "prob": 93
+              },
+              {
+                "group": "farm_supply_riding_gear",
+                "prob": 7
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u00d8": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "hardware_books",
+                "prob": 80
+              },
+              {
+                "group": "novels",
+                "prob": 20
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "\u00f5": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "log",
+                "prob": 50,
+                "count": [
+                  5,
+                  10
+                ]
+              },
+              {
+                "item": "stick_long",
+                "prob": 30,
+                "count": [
+                  10,
+                  20
+                ]
+              },
+              {
+                "item": "stick",
+                "prob": 20,
+                "count": [
+                  5,
+                  10
+                ]
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "p": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "SUS_office_supplies",
+                "prob": 70
+              },
+              {
+                "group": "office_breakroom",
+                "prob": 20
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "s": {
+          "item": "coffee_bathroom",
+          "chance": 40
+        },
+        "\u00fe": {
+          "item": "SUS_fridge",
+          "chance": 80
+        },
+        "q": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 100,
+          "repeat": [
+            1,
+            5
+          ]
+        },
+        ".": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 600
+              },
+              {
+                "group": "trash_cart",
+                "prob": 2
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "r": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 600
+              },
+              {
+                "group": "trash_cart",
+                "prob": 2
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "_": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 300
+              },
+              {
+                "group": "trash_cart",
+                "prob": 1
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        ",": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 300
+              },
+              {
+                "group": "trash_cart",
+                "prob": 1
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "g": {
+          "item": "trash_cart",
+          "chance": 70
+        },
+        "D": {
+          "item": "trash_dumpster",
+          "chance": 70
+        },
+        "$": {
+          "item": "cash_register_random",
+          "chance": 100
+        },
+        "V": {
+          "item": "vending_drink_items",
+          "chance": 70,
+          "repeat": [
+            3,
+            10
+          ]
+        },
+        "c": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "SUS_office_supplies",
+                "prob": 80
+              },
+              {
+                "group": "book_survival",
+                "prob": 10
+              },
+              {
+                "group": "supplies_hardware",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 10
+        },
+        "z": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "stash_drugs",
+                "prob": 70
+              },
+              {
+                "group": "jewelry_safe",
+                "prob": 25
+              },
+              {
+                "group": "my_precious",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "O": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 400
+              },
+              {
+                "group": "trash_cart",
+                "prob": 2
+              },
+              {
+                "item": "football",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "fill_ter": "t_thconc_floor",
+      "rows": [
+        "________________________________________________",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,\u00dc,,",
+        "_____\u00d9____________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,\u00dc,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,__\u00da_,__\u00da_,__\u00db_,____,__\u00da_,__\u00db_,__\u00da_,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,\u00dc,,",
+        "_,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+        "_,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+        " f...f   # SS #&&&&&&&&&# SS #&&&&&&# SS #&&&&# ",
+        " f..Df   b SS b /   /   b SS b  /   & SS &  / & ",
+        " f..Df / b SS b        /b SS b    / & SS &    & ",
+        " f...f   # SS #&&&&&&&&&# SS #&&&&&&# SS #&&&&# ",
+        " |x|||===||!!|||||||||||||!!||====|||fFFfffffff ",
+        " |........^rr^mV\u00d8\u00d8..\u00f5\u00f5\u00f5\u00f5g^rr^.......|....\u00fa\u00fa\u00fa\u00fa\u00f9f ",
+        " W.1.1.2.2.rr.............rr..ww.dd.|........\u00f9f ",
+        " |.1.1.2.2.rr..$..$..$..$.rr..oo.ee.|^...^^..\u00f9f ",
+        " |.1.1.2.2.rr..c..c..c..c.rr........|^...\u00fd\u00fd..\u00f9f ",
+        " |.........rr.............rr........|^...\u00fc\u00fc..\u00f9f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrr.00..00.|^...\u00cc\u00cc..\u00f9f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrr........|^........f ",
+        " |.........rr.............rr.\u00c9\u00c9\u00c9\u00c9\u00c9\u00c9.|.........f ",
+        " W.3333333.rr.6.6..77..88.rr........|..\u00c1\u00c1\u00c1\u00c1\u00c1\u00c1.f ",
+        " |.........rr.6.6..77..88.rr.\u00e9\u00e9\u00e9\u00e9\u00e9\u00e9.|..\u00d3\u00d3\u00d3\u00d3\u00d3\u00d3.f ",
+        " |.3333333.rr.6.6.........rr........|.........f ",
+        " |.........rr.......BBB...rr.\u00ea\u00ea\u00ea\u00ea\u00ea\u00ea.|..\u00ce\u00ce\u00ce\u00ce\u00ce\u00ce.f ",
+        " |..g......rr.............rr........|..\u00f7\u00f7\u00f7\u00f7\u00f7\u00f7.f ",
+        " |..c.n.\u00e7\u00e7.rr.9.9.9.9.9.9.rr.\u00eb\u00eb\u00eb\u00eb\u00eb\u00eb.|.........f ",
+        " |..c.n....rr.9.9.9.9.9.9.rr........|..\u00e6\u00e6\u00e6\u00e6\u00e6\u00e6.f ",
+        " W..c.n.\u00e7\u00e7.rr.9.9.9.9.9.9.rr.\u00c8\u00c8\u00c8\u00c8\u00c8\u00c8.|.........f ",
+        " |.........rr.............rr........|..^^^^^^.f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!..^^^^^^.f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!.........f ",
+        " |.............rr........||+||||||x||..\u00cb\u00cb\u00cb\u00cb\u00cb\u00cb.f ",
+        " |.......4.4.4.rr.55..55.|..^|\u00feHH..g|.........f ",
+        " |.cc$c..4.4.4.rr........|...|.....q|..\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd.f ",
+        " |.......4.4.4.rr.55..55.|g..|.pp..j|..\u00cf\u00cf\u00cf\u00cf\u00cf\u00cf.f ",
+        "<|.\u00e0\u00e0\u00e1\u00e1^.................|s.T|z.h...|.........f ",
+        " ||||||||||||W|||||||W|||||||||X||x||ffffffffff ",
+        "                                                "
+      ],
+      "place_monster": [
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 50,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        {
+          "group": "GROUP_POLICE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 100,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 50,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            4,
+            23
+          ],
+          "y": [
+            26,
+            44
+          ],
+          "chance": 80,
+          "repeat": [
+            0,
+            7
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            46
+          ],
+          "y": [
+            26,
+            44
+          ],
+          "chance": 80,
+          "repeat": [
+            0,
+            7
+          ]
+        },
+        {
+          "group": "FERAL_HUMANS",
+          "x": [
+            32,
+            34
+          ],
+          "y": [
+            43,
+            44
+          ],
+          "chance": 80
+        }
+      ],
+      "vehicles": {
+        "\u00dc": {
+          "vehicle": "farm_vehicles",
+          "chance": 50,
+          "rotation": 180
+        },
+        "\u00da": {
+          "vehicle": "parkinglotbasic",
+          "chance": 15,
+          "rotation": 90
+        },
+        "\u00db": {
+          "vehicle": "parkinglotbasic",
+          "chance": 20,
+          "rotation": 90,
+          "status": 1
+        },
+        "\u00d9": {
+          "vehicle": "industrial_transport",
+          "chance": 10,
+          "rotation": 180
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "farm_supply_roof_1",
+        "farm_supply_roof_2"
+      ],
+      [
+        "farm_supply_roof_3",
+        "farm_supply_roof_4"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_flat_roof",
+      "rows": [
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        " ---------------------------------------------- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -.............~~~~~~~~~......................- ",
+        " -.............~~~~~~~~~......................- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -.............................~~.............- ",
+        " -.............................~~.............- ",
+        " -.............................~~.............- ",
+        " -.............................~~.............- ",
+        " -.............~~~~~~~~~.......~~.............- ",
+        " -.............~~~~~~~~~.......~~.............- ",
+        " -.............................~~.............- ",
+        " -.............................~~.............- ",
+        " -.............................~~.............- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -............................................- ",
+        " -............................................- ",
+        ">-............................................- ",
+        " ---------------------------------------------- ",
+        "                                                "
+      ],
+      "terrain": {
+        ".": "t_flat_roof",
+        " ": "t_open_air",
+        "~": "t_glass_roof",
+        "-": "t_metal_railing",
+        ">": "t_ladder_down"
+      },
+      "place_nested": [
+        {
+          "chunks": [
+            [
+              "roof_2x2_utilities_b",
+              20
+            ],
+            [
+              "roof_2x2_utilities_c",
+              10
+            ],
+            [
+              "roof_2x2_utilities_d",
+              35
+            ],
+            [
+              "roof_2x2_utilities",
+              35
+            ]
+          ],
+          "x": [
+            26,
+            30
+          ],
+          "y": [
+            40,
+            44
+          ]
+        },
+        {
+          "chunks": [
+            [
+              "roof_2x2_infrastructure",
+              50
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              50
+            ]
+          ],
+          "x": [
+            26,
+            30
+          ],
+          "y": [
+            25,
+            35
+          ]
+        },
+        {
+          "chunks": [
+            [
+              "null",
+              70
+            ],
+            [
+              "roof_3x3_wine",
+              15
+            ],
+            [
+              "roof_6x6_survivor",
+              15
+            ]
+          ],
+          "x": [
+            4,
+            9
+          ],
+          "y": [
+            26,
+            40
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "farm_supply_looted_1",
+        "farm_supply_looted_2"
+      ],
+      [
+        "farm_supply_looted_3",
+        "farm_supply_looted_4"
+      ]
+    ],
+    "//": "Looted variant. Guns, some camping supplies, and some other equipment is missing.",
+    "object": {
+      "terrain": {
+        "_": "t_pavement",
+        "\u00d9": "t_pavement",
+        "\u00da": "t_pavement",
+        "\u00db": "t_pavement",
+        "\u00dc": "t_pavement_y",
+        ",": "t_pavement_y",
+        "S": "t_sidewalk",
+        " ": "t_region_groundcover",
+        "b": "t_region_groundcover",
+        "/": "t_region_tree_shade",
+        "&": "t_shrub_hydrangea",
+        "#": "t_shrub_rose",
+        "f": "t_chainfence",
+        "F": "t_chaingate_l",
+        "!": [
+          "t_door_glass_c",
+          "t_door_glass_o"
+        ],
+        "+": [
+          "t_door_c",
+          "t_door_o"
+        ],
+        "%": "t_door_locked_interior",
+        "x": [
+          "t_door_metal_pickable",
+          "t_door_metal_c"
+        ],
+        "=": "t_wall_glass",
+        ".": "t_thconc_floor",
+        "r": "t_carpet_concrete",
+        "W": "t_window",
+        "X": "t_window_bars",
+        "|": "t_concrete_wall",
+        "O": "t_flat_roof",
+        "<": "t_ladder_up",
+        "m": "t_atm"
+      },
+      "furniture": {
+        "b": "f_bench",
+        "B": "f_bench",
+        "C": "f_chair",
+        "^": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "c": "f_counter",
+        "$": "f_counter",
+        "n": "f_displaycase_o",
+        "\u00e0": "f_displaycase",
+        "\u00e1": "f_displaycase",
+        "1": "f_rack",
+        "2": "f_rack",
+        "3": "f_rack",
+        "4": "f_rack",
+        "5": "f_table",
+        "6": "f_rack_wood",
+        "7": "f_rack_wood",
+        "8": "f_rack_wood",
+        "9": "f_clothing_rail",
+        "0": "f_rack",
+        "\u00e7": "f_rack",
+        "\u00c9": "f_rack",
+        "\u00e9": "f_rack",
+        "\u00ea": "f_rack",
+        "\u00eb": "f_rack",
+        "\u00c8": "f_rack",
+        "\u00f7": "f_rack",
+        "\u00ce": "f_rack",
+        "\u00d8": "f_rack",
+        "\u00f5": "f_rack",
+        "\u00e6": "f_warehouse_shelf",
+        "\u00cb": "f_warehouse_shelf",
+        "\u00f9": "f_crate_o",
+        "\u00fa": "f_crate_o",
+        "\u00cf": "f_warehouse_shelf",
+        "\u00cd": "f_warehouse_shelf",
+        "I": "f_filing_cabinet",
+        "s": "f_sink",
+        "D": "f_dumpster",
+        "\u00c1": "f_pallet_brick",
+        "\u00cc": "f_stack_plank",
+        "\u00d3": "f_pallet_cement",
+        "\u00fc": "f_earthbag_wall",
+        "\u00fd": "f_sandbag_wall",
+        "w": "f_washer",
+        "o": "f_dryer",
+        "d": [
+          "f_fridge",
+          "f_minifridge",
+          "f_minifreezer",
+          "f_minifreezer",
+          "f_freezer"
+        ],
+        "\u00fe": "f_fridge",
+        "e": "f_oven",
+        "H": "f_sofa",
+        "p": "f_desk",
+        "j": "f_rack_coat",
+        "h": "f_chair",
+        "q": "f_filing_cabinet",
+        "g": "f_trashcan",
+        "z": "f_safe_l"
+      },
+      "vendingmachines": {
+        "V": {}
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "\u00e0": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "guns_rifle_common_display",
+                "prob": 60
+              },
+              {
+                "group": "guns_shotgun_common_display",
+                "prob": 40
+              }
+            ]
+          },
+          "chance": 7,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "\u00e1": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "ammo_hunting",
+                "prob": 55
+              },
+              {
+                "group": "mags_common",
+                "prob": 35
+              }
+            ]
+          },
+          "chance": 7,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "\u00e7": {
+          "item": "fishing_items",
+          "chance": 100,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "n": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "fishing_hook_basic",
+                "prob": 70
+              },
+              {
+                "item": "fish_bait",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "1": {
+          "item": "petstore_shelves",
+          "chance": 70,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "2": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "dishes_utility",
+                "prob": 40
+              },
+              {
+                "group": "dishes_dining",
+                "prob": 15
+              },
+              {
+                "group": "kitchen_appliances",
+                "prob": 15
+              },
+              {
+                "group": "silverware",
+                "prob": 15
+              },
+              {
+                "group": "dinnerware",
+                "prob": 15
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "3": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "camping",
+                "prob": 40
+              },
+              {
+                "group": "camping",
+                "prob": 40
+              },
+              {
+                "group": "tools_survival",
+                "prob": 5
+              },
+              {
+                "group": "tools_tailor",
+                "prob": 5
+              },
+              {
+                "group": "tools_hunting",
+                "prob": 5
+              },
+              {
+                "group": "book_survival",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 20,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "4": {
+          "item": "sports",
+          "chance": 50,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "5": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "toy_store",
+                "prob": 95
+              },
+              {
+                "group": "child_hats",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "6": {
+          "item": "clothing_outdoor_shoes",
+          "chance": 40,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "7": {
+          "item": "clothing_watch",
+          "chance": 60,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "8": {
+          "item": "clothing_glasses",
+          "chance": 60,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "9": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "clothing_outdoor_torso",
+                "prob": 45
+              },
+              {
+                "group": "clothing_outdoor_pants",
+                "prob": 45
+              },
+              {
+                "group": "underwear",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 60,
+          "repeat": [
+            0,
+            2
+          ]
+        },
+        "0": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "salty_snacks",
+                "prob": 75
+              },
+              {
+                "group": "candy_chocolate",
+                "prob": 20
+              },
+              {
+                "group": "liquor_and_spirits",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 70,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "\u00c9": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_common",
+                "prob": 40
+              },
+              {
+                "group": "tools_entry",
+                "prob": 5
+              },
+              {
+                "group": "consumer_electronics",
+                "prob": 25
+              },
+              {
+                "group": "box_of_batteries_unopened",
+                "prob": 25
+              },
+              {
+                "group": "ammo_heavy_batteries_full",
+                "prob": 25
+              },
+              {
+                "group": "tools_lighting",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 50,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "\u00e9": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_tailor",
+                "prob": 50
+              },
+              {
+                "item": "thread",
+                "count": [
+                  5,
+                  20
+                ],
+                "prob": 10
+              },
+              {
+                "item": "rag",
+                "count": [
+                  20,
+                  50
+                ],
+                "prob": 10
+              },
+              {
+                "item": "felt_patch",
+                "count": [
+                  5,
+                  25
+                ],
+                "prob": 10
+              },
+              {
+                "item": "leather",
+                "count": [
+                  3,
+                  15
+                ],
+                "prob": 10
+              },
+              {
+                "group": "sewing_group",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            6
+          ]
+        },
+        "\u00ea": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_plumbing",
+                "prob": 70
+              },
+              {
+                "group": "plumbing_bulk",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00eb": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_carpentry",
+                "prob": 70
+              },
+              {
+                "group": "supplies_woodcrafts",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 60,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00c8": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_mechanic",
+                "prob": 70
+              },
+              {
+                "group": "supplies_electronics",
+                "prob": 30
+              }
+            ]
+          },
+          "chance": 60,
+          "repeat": [
+            0,
+            5
+          ]
+        },
+        "\u00cb": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "tools_earthworking",
+                "prob": 90
+              },
+              {
+                "group": "tools_entry",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            0,
+            3
+          ]
+        },
+        "\u00e6": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "farming_tools",
+                "prob": 50
+              },
+              {
+                "group": "farm_supply_wire",
+                "prob": 50
+              }
+            ]
+          },
+          "chance": 90,
+          "repeat": [
+            0,
+            7
+          ]
+        },
+        "\u00f7": {
+          "item": "farming_seeds",
+          "chance": 100,
+          "repeat": [
+            3,
+            12
+          ]
+        },
+        "\u00ce": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "fertilizers",
+                "prob": 80
+              },
+              {
+                "item": "fungicide",
+                "prob": 20
+              }
+            ]
+          },
+          "chance": 90,
+          "repeat": [
+            0,
+            6
+          ]
+        },
+        "\u00f9": {
+          "item": "farm_supply_soil_and_sand",
+          "chance": 100,
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "\u00fa": {
+          "item": "farm_supply_rocks",
+          "chance": 100,
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "\u00cf": {
+          "item": "farm_supply_quicklime_and_saltpetre",
+          "chance": 35,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u00cd": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "farm_supply_animal_feed",
+                "prob": 93
+              },
+              {
+                "group": "farm_supply_riding_gear",
+                "prob": 7
+              }
+            ]
+          },
+          "chance": 80,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u00d8": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "hardware_books",
+                "prob": 80
+              },
+              {
+                "group": "novels",
+                "prob": 20
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "\u00f5": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "log",
+                "prob": 50,
+                "count": [
+                  5,
+                  10
+                ]
+              },
+              {
+                "item": "stick_long",
+                "prob": 30,
+                "count": [
+                  10,
+                  20
+                ]
+              },
+              {
+                "item": "stick",
+                "prob": 20,
+                "count": [
+                  5,
+                  10
+                ]
+              }
+            ]
+          },
+          "chance": 60,
+          "repeat": [
+            0,
+            4
+          ]
+        },
+        "p": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "SUS_office_supplies",
+                "prob": 70
+              },
+              {
+                "group": "office_breakroom",
+                "prob": 20
+              }
+            ]
+          },
+          "chance": 100,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "s": {
+          "item": "coffee_bathroom",
+          "chance": 40
+        },
+        "\u00fe": {
+          "item": "SUS_fridge",
+          "chance": 50
+        },
+        "q": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 100,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        ".": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 500
+              },
+              {
+                "group": "trash_cart",
+                "prob": 2
+              },
+              {
+                "group": "ammo_casings",
+                "prob": 1
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "r": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 500
+              },
+              {
+                "group": "trash_cart",
+                "prob": 2
+              },
+              {
+                "group": "ammo_casings",
+                "prob": 1
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "_": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 200
+              },
+              {
+                "group": "trash_cart",
+                "prob": 1
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        ",": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 200
+              },
+              {
+                "group": "trash_cart",
+                "prob": 1
+              },
+              {
+                "group": "farm_supply_floor_surprises",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        },
+        "g": {
+          "item": "trash_cart",
+          "chance": 70
+        },
+        "D": {
+          "item": "trash_dumpster",
+          "chance": 70
+        },
+        "$": {
+          "item": "cash_register_looted",
+          "chance": 50
+        },
+        "V": {
+          "item": "vending_drink_items",
+          "chance": 20,
+          "repeat": [
+            0,
+            8
+          ]
+        },
+        "c": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "SUS_office_supplies",
+                "prob": 80
+              },
+              {
+                "group": "book_survival",
+                "prob": 10
+              },
+              {
+                "group": "supplies_hardware",
+                "prob": 10
+              }
+            ]
+          },
+          "chance": 10
+        },
+        "z": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "group": "stash_drugs",
+                "prob": 70
+              },
+              {
+                "group": "jewelry_safe",
+                "prob": 25
+              },
+              {
+                "group": "my_precious",
+                "prob": 5
+              }
+            ]
+          },
+          "chance": 30
+        },
+        "O": {
+          "item": {
+            "subtype": "collection",
+            "entries": [
+              {
+                "item": "null",
+                "prob": 400
+              },
+              {
+                "group": "trash_cart",
+                "prob": 5
+              },
+              {
+                "item": "football",
+                "prob": 1
+              }
+            ]
+          },
+          "chance": 100
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "nested": {
+        "|": {
+          "chunks": [
+            [
+              "shelter_graffiti",
+              1
+            ],
+            [
+              "general_graffiti",
+              5
+            ],
+            [
+              "null",
+              94
+            ]
+          ]
+        },
+        "\u00e0": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00e1": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00e7": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "n": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "1": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "4": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "0": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00c9": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00e9": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00ea": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00eb": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00c8": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00cb": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00e6": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00f7": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00ce": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00d8": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "\u00f5": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "$": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        },
+        "W": {
+          "chunks": [
+            [
+              "1x1_bash",
+              10
+            ],
+            [
+              "null",
+              90
+            ]
+          ]
+        }
+      },
+      "fill_ter": "t_thconc_floor",
+      "rows": [
+        "________________________________________________",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,\u00dc,,",
+        "_____\u00d9____________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "__________________________________________,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,\u00dc,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,__\u00da_,__\u00da_,__\u00db_,____,__\u00da_,__\u00db_,__\u00da_,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,,,,",
+        "_,,,,,_,____,____,____,____,____,____,____,,,\u00dc,,",
+        "_,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+        "_,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+        " f...f   # SS #&&&&&&&&&# SS #&&&&&&# SS #&&&&# ",
+        " f..Df   b SS b /   /   b SS b  /   & SS &  / & ",
+        " f..Df / b SS b        /b SS b    / & SS &    & ",
+        " f...f   # SS #&&&&&&&&&# SS #&&&&&&# SS #&&&&# ",
+        " |x|||===||!!|||||||||||||!!||====|||fFFfffffff ",
+        " |........^rr^mV\u00d8\u00d8..\u00f5\u00f5\u00f5\u00f5g^rr^.......|....\u00fa\u00fa\u00fa\u00fa\u00f9f ",
+        " W.1.1.2.2.rr.............rr..ww.dd.|........\u00f9f ",
+        " |.1.1.2.2.rr..$..$..$..$.rr..oo.ee.|^...^^..\u00f9f ",
+        " |.1.1.2.2.rr..c..c..c..c.rr........|^...\u00fd\u00fd..\u00f9f ",
+        " |.........rr.............rr........|^...\u00fc\u00fc..\u00f9f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrr.00..00.|^...\u00cc\u00cc..\u00f9f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrr........|^........f ",
+        " |.........rr.............rr.\u00c9\u00c9\u00c9\u00c9\u00c9\u00c9.|.........f ",
+        " W.3333333.rr.6.6..77..88.rr........|..\u00c1\u00c1\u00c1\u00c1\u00c1\u00c1.f ",
+        " |.........rr.6.6..77..88.rr.\u00e9\u00e9\u00e9\u00e9\u00e9\u00e9.|..\u00d3\u00d3\u00d3\u00d3\u00d3\u00d3.f ",
+        " |.3333333.rr.6.6.........rr........|.........f ",
+        " |.........rr.......BBB...rr.\u00ea\u00ea\u00ea\u00ea\u00ea\u00ea.|..\u00ce\u00ce\u00ce\u00ce\u00ce\u00ce.f ",
+        " |..g......rr.............rr........|..\u00f7\u00f7\u00f7\u00f7\u00f7\u00f7.f ",
+        " |..c.n.\u00e7\u00e7.rr.9.9.9.9.9.9.rr.\u00eb\u00eb\u00eb\u00eb\u00eb\u00eb.|.........f ",
+        " |..c.n....rr.9.9.9.9.9.9.rr........|..\u00e6\u00e6\u00e6\u00e6\u00e6\u00e6.f ",
+        " W..c.n.\u00e7\u00e7.rr.9.9.9.9.9.9.rr.\u00c8\u00c8\u00c8\u00c8\u00c8\u00c8.|.........f ",
+        " |.........rr.............rr........|..^^^^^^.f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!..^^^^^^.f ",
+        " |.rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!.........f ",
+        " |.............rr........||+||||||x||..\u00cb\u00cb\u00cb\u00cb\u00cb\u00cb.f ",
+        " |.......4.4.4.rr.55..55.|..^|\u00feHH..g|.........f ",
+        " |.cc$c..4.4.4.rr........|...|.....q|..\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd.f ",
+        " |.......4.4.4.rr.55..55.|g..|.pp..j|..\u00cf\u00cf\u00cf\u00cf\u00cf\u00cf.f ",
+        "<|.\u00e0\u00e0\u00e1\u00e1^.................|s.T|z.h...|.........f ",
+        " ||||||||||||W|||||||W|||||||||X||x||ffffffffff ",
+        "                                                "
+      ],
+      "place_monster": [
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 50,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        {
+          "group": "GROUP_POLICE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 100,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 60,
+          "repeat": [
+            2,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            4,
+            23
+          ],
+          "y": [
+            26,
+            44
+          ],
+          "chance": 60,
+          "repeat": [
+            3,
+            8
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            46
+          ],
+          "y": [
+            26,
+            44
+          ],
+          "chance": 80,
+          "repeat": [
+            3,
+            8
+          ]
+        },
+        {
+          "group": "FERAL_HUMANS",
+          "x": [
+            32,
+            34
+          ],
+          "y": [
+            43,
+            44
+          ],
+          "chance": 100
+        }
+      ],
+      "place_corpses": [
+        {
+          "group": "FERAL_HUMANS",
+          "x": 7,
+          "y": 42
+        }
+      ],
+      "vehicles": {
+        "\u00dc": {
+          "vehicle": "farm_vehicles",
+          "chance": 50,
+          "rotation": 180
+        },
+        "\u00da": {
+          "vehicle": "parkinglotbasic",
+          "chance": 15,
+          "rotation": 90
+        },
+        "\u00db": {
+          "vehicle": "parkinglotbasic",
+          "chance": 20,
+          "rotation": 90,
+          "status": 1
+        },
+        "\u00d9": {
+          "vehicle": "industrial_transport",
+          "chance": 10,
+          "rotation": 180
+        }
+      },
+      "place_liquids": [
+        {
+          "liquid": "gasoline",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            17
+          ],
+          "amount": [
+            1,
+            50
+          ],
+          "chance": 1
+        },
+        {
+          "liquid": "gasoline",
+          "x": [
+            24,
+            40
+          ],
+          "y": [
+            0,
+            17
+          ],
+          "amount": [
+            1,
+            50
+          ],
+          "chance": 1
+        }
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            "farm_supply_fence_destruction"
+          ],
+          "x": 24,
+          "y": 24
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "farm_supply_fence_destruction",
+    "object": {
+      "mapgensize": [
+        24,
+        24
+      ],
+      "set": [
+        {
+          "point": "bash",
+          "x": 22,
+          "y": [
+            0,
+            20
+          ]
+        },
+        {
+          "point": "bash",
+          "x": 22,
+          "y": [
+            0,
+            20
+          ],
+          "repeat": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "farm_supply_1",
+      "farm_supply_2",
+      "farm_supply_3",
+      "farm_supply_4",
+      "farm_supply_looted_1",
+      "farm_supply_looted_2",
+      "farm_supply_looted_3",
+      "farm_supply_looted_4"
+    ],
+    "copy-from": "generic_rural_building",
+    "name": "farm supply store",
+    "sym": "s",
+    "color": "yellow"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "farm_supply_roof_1",
+      "farm_supply_roof_2",
+      "farm_supply_roof_3",
+      "farm_supply_roof_4"
+    ],
+    "copy-from": "generic_rural_building",
+    "name": "farm supply store roof",
+    "travel_cost_type": "roof",
+    "sym": "s",
+    "color": "yellow"
+  },
+  {
+    "type": "overmap_special",
+    "id": "Farm Supply Store",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "farm_supply_1_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "farm_supply_roof_1_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "farm_supply_2_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          1
+        ],
+        "overmap": "farm_supply_roof_2_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "farm_supply_3_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          1
+        ],
+        "overmap": "farm_supply_roof_3_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "farm_supply_4_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "farm_supply_roof_4_north"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      }
+    ],
+    "occurrences": [
+      25,
+      100
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "from": [
+          0,
+          0,
+          0
+        ],
+        "connection": "local_road"
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "from": [
+          1,
+          0,
+          0
+        ],
+        "connection": "local_road"
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      5,
+      40
+    ],
+    "flags": [
+      "CLASSIC",
+      "MAN_MADE",
+      "UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "Farm Supply Store Looted",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "farm_supply_looted_1_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "farm_supply_roof_1_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "farm_supply_looted_2_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          1
+        ],
+        "overmap": "farm_supply_roof_2_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "farm_supply_looted_3_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          1
+        ],
+        "overmap": "farm_supply_roof_3_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "farm_supply_looted_4_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "farm_supply_roof_4_north"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      }
+    ],
+    "occurrences": [
+      10,
+      100
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "from": [
+          0,
+          0,
+          0
+        ],
+        "connection": "local_road"
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "from": [
+          1,
+          0,
+          0
+        ],
+        "connection": "local_road"
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      5,
+      40
+    ],
+    "flags": [
+      "CLASSIC",
+      "MAN_MADE",
+      "UNIQUE"
+    ]
+  },
+  {
+    "type": "mapgen",
+    "//": "A nested map bash damage.",
+    "nested_mapgen_id": "1x1_bash",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "set": [
+        {
+          "point": "bash",
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "id": "farm_supply_soil_and_sand",
+    "type": "item_group",
+    "subtype": "collection",
+    "items": [
+      {
+        "group": "sandbag",
+        "prob": 50
+      },
+      {
+        "group": "earthbag",
+        "prob": 50
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_rocks",
+    "type": "item_group",
+    "subtype": "collection",
+    "items": [
+      {
+        "item": "rock",
+        "prob": 40,
+        "count": [
+          1,
+          10
+        ]
+      },
+      {
+        "item": "rock_large",
+        "prob": 10,
+        "count": [
+          1,
+          10
+        ]
+      },
+      {
+        "item": "rock",
+        "prob": 20,
+        "count": [
+          1,
+          10
+        ]
+      },
+      {
+        "item": "rock",
+        "prob": 5,
+        "count": [
+          1,
+          10
+        ]
+      },
+      {
+        "item": "material_shrd_limestone",
+        "prob": 40,
+        "count": [
+          1,
+          10
+        ]
+      },
+      {
+        "item": "material_limestone",
+        "prob": 40,
+        "charges": [
+          1,
+          10
+        ]
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_wire",
+    "type": "item_group",
+    "subtype": "collection",
+    "items": [
+      {
+        "item": "wire",
+        "prob": 50,
+        "count": [
+          20,
+          50
+        ]
+      },
+      {
+        "item": "wire",
+        "prob": 5,
+        "count": [
+          0,
+          20
+        ]
+      },
+      {
+        "item": "wire",
+        "prob": 5,
+        "count": [
+          0,
+          20
+        ]
+      },
+      {
+        "item": "wire",
+        "prob": 5,
+        "count": [
+          0,
+          20
+        ]
+      },
+      {
+        "item": "wire_barbed",
+        "prob": 40,
+        "count": [
+          20,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_quicklime_and_saltpetre",
+    "type": "item_group",
+    "items": [
+      {
+        "group": "quicklime_bag",
+        "prob": 85
+      },
+      {
+        "group": "quicklime_barrel",
+        "prob": 20
+      },
+      {
+        "group": "saltpeter_canvas_bag_part",
+        "prob": 15
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_animal_feed",
+    "type": "item_group",
+    "items": [
+      {
+        "prob": 50,
+        "group": "cattlefodder_bag_canvas_50"
+      },
+      {
+        "prob": 50,
+        "group": "birdfood_bag_canvas_60"
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_riding_gear",
+    "type": "item_group",
+    "subtype": "collection",
+    "items": [
+      {
+        "item": "horse_tack"
+      },
+      {
+        "item": "saddlebag"
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_floor_surprises",
+    "type": "item_group",
+    "items": [
+      {
+        "group": "camping",
+        "prob": 50
+      },
+      {
+        "group": "ammo_common",
+        "prob": 2
+      },
+      {
+        "group": "tools_survival",
+        "prob": 5
+      },
+      {
+        "group": "clothing_outdoor_shoes",
+        "prob": 7
+      },
+      {
+        "group": "clothing_outdoor_torso",
+        "prob": 7
+      },
+      {
+        "group": "clothing_outdoor_pants",
+        "prob": 7
+      },
+      {
+        "group": "farming_tools",
+        "prob": 5
+      },
+      {
+        "group": "farming_seeds",
+        "prob": 20
+      },
+      {
+        "item": "rock",
+        "prob": 5
+      },
+      {
+        "prob": 2,
+        "item": "cash_card"
+      },
+      {
+        "prob": 4,
+        "item": "money_bundle",
+        "count": 1
+      },
+      {
+        "group": "discount_cards",
+        "prob": 1
+      },
+      {
+        "item": "spray_can",
+        "prob": 10,
+        "charges": [
+          0,
+          10
+        ]
+      },
+      {
+        "item": "survnote",
+        "prob": 1
+      },
+      {
+        "item": "touristmap",
+        "prob": 1
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "cattlefodder_bag_canvas_50",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "cattlefodder_bag_canvas_50_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "cattlefodder_bag_canvas_50_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "cattlefodder",
+        "count": 50
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "birdfood_bag_canvas_60",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "birdfood_bag_canvas_60_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "birdfood_bag_canvas_60_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "birdfood",
+        "count": 60
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "saltpeter_canvas_bag_part",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "saltpeter_canvas_bag_part_contents"
+      }
+    ]
+  },
+  {
+    "id": "saltpeter_canvas_bag_part_contents",
+    "type": "item_group",
+    "//": "15 liter bag, opened with a variable amount",
+    "items": [
+      {
+        "item": "chem_saltpetre",
+        "charges": [
+          2,
+          300
+        ]
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "sandbag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "sandbag_contents"
+      }
+    ]
+  },
+  {
+    "id": "sandbag_contents",
+    "type": "item_group",
+    "items": [
+      {
+        "item": "material_sand",
+        "charges": 2500
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "earthbag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "earthbag_contents"
+      }
+    ]
+  },
+  {
+    "id": "earthbag_contents",
+    "type": "item_group",
+    "items": [
+      {
+        "item": "material_soil",
+        "charges": 3
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "cement_bag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "cement_bag_contents"
+      }
+    ]
+  },
+  {
+    "id": "cement_bag_contents",
+    "type": "item_group",
+    "items": [
+      {
+        "item": "material_cement",
+        "charges": 2800
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "quicklime_bag",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "quicklime_bag_contents"
+      }
+    ]
+  },
+  {
+    "id": "quicklime_bag_contents",
+    "type": "item_group",
+    "items": [
+      {
+        "item": "material_quicklime",
+        "charges": 1200
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "quicklime_barrel",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "30gal_barrel",
+        "contents-group": "quicklime_barrel_contents"
+      }
+    ]
+  },
+  {
+    "id": "quicklime_barrel_contents",
+    "type": "item_group",
+    "items": [
+      {
+        "item": "material_quicklime",
+        "charges": 6000
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "ammo_hunting",
+    "//": "Ammo for hunting purposes.",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "ammo_rifle_common_full",
+        "prob": 4979
+      },
+      {
+        "group": "ammo_shotgun_common_full",
+        "prob": 5743
+      },
+      {
+        "group": "ammo_pistol_common_full",
+        "prob": 3015
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "box_of_batteries_unopened",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_medium",
+        "contents-group": "box_of_batteries_unopened_contents"
+      }
+    ]
+  },
+  {
+    "id": "box_of_batteries_unopened_contents",
+    "type": "item_group",
+    "subtype": "distribution",
+    "items": [
+      {
+        "item": "light_minus_battery_cell",
+        "charges": 50,
+        "prob": 3,
+        "count": 8
+      },
+      {
+        "item": "light_minus_battery_cell",
+        "charges": 50,
+        "prob": 30,
+        "count": 8
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 160,
+        "count": 8
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 16,
+        "count": 16
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 16,
+        "count": 8
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 1,
+        "count": 12
+      },
+      {
+        "item": "medium_battery_cell",
+        "charges": 500,
+        "prob": 15,
+        "count": 4
+      }
+    ]
+  },
+  {
+    "id": "child_hats",
+    "type": "item_group",
+    "//": "Hats for zombie children.",
+    "items": [
+      {
+        "item": "helmet_football",
+        "prob": 30
+      },
+      {
+        "item": "helmet_ball",
+        "prob": 30
+      },
+      {
+        "item": "hat_ball",
+        "prob": 10
+      },
+      {
+        "item": "hat_golf",
+        "prob": 5
+      },
+      {
+        "item": "helmet_bike",
+        "prob": 70
+      },
+      {
+        "item": "helmet_bike",
+        "prob": 5
+      },
+      {
+        "prob": 10,
+        "item": "helmet_bike"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "supplies_woodcrafts",
+    "items": [
+      {
+        "prob": 30,
+        "item": "bone_glue"
+      },
+      {
+        "prob": 10,
+        "item": "superglue"
+      },
+      [
+        "sandpaper",
+        40
+      ],
+      [
+        "screwdriver",
+        5
+      ],
+      [
+        "dremel",
+        20
+      ],
+      [
+        "chisel",
+        10
+      ],
+      [
+        "hammer",
+        5
+      ]
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "discount_cards",
+    "items": [
+      [
+        "fp_loyalty_card",
+        40
+      ],
+      [
+        "gasdiscount_silver",
+        20
+      ],
+      [
+        "gasdiscount_gold",
+        10
+      ],
+      [
+        "gasdiscount_platinum",
+        5
+      ]
+    ]
+  },
+  {
+    "type": "furniture",
+    "id": "f_pallet_brick",
+    "name": "pallet of bricks",
+    "looks_like": "f_crate_o",
+    "description": "A massive, packed-together block of bricks wrapped with plastic packaging.  It makes for easy storage of building materials for masonry constructions.",
+    "symbol": "#",
+    "color": "brown",
+    "move_cost_mod": 5,
+    "required_str": -1,
+    "coverage": 60,
+    "flags": [
+      "TRANSPARENT",
+      "NOITEM",
+      "MOUNTABLE",
+      "REDUCE_SCENT",
+      "EASY_DECONSTRUCT",
+      "SHORT"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "brick",
+          "count": 400
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 1
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 30,
+      "str_max": 100,
+      "sound": "crash!",
+      "sound_fail": "bash!",
+      "items": [
+        {
+          "item": "pallet",
+          "count": 1
+        },
+        {
+          "item": "brick",
+          "count": [
+            300,
+            350
+          ]
+        },
+        {
+          "item": "brick",
+          "count": [
+            30,
+            50
+          ],
+          "damage-min": 1,
+          "damage-max": 4
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 1,
+          "damage-min": 2,
+          "damage-max": 4
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_pallet_cement",
+    "name": "pallet of cement bags",
+    "looks_like": "f_crate_o",
+    "description": "A massive, packed-together block of cement bags wrapped with plastic packaging.  It makes for easy storage of building materials for masonry constructions.",
+    "symbol": "#",
+    "color": "light_gray",
+    "move_cost_mod": 5,
+    "required_str": -1,
+    "coverage": 60,
+    "flags": [
+      "TRANSPARENT",
+      "NOITEM",
+      "MOUNTABLE",
+      "REDUCE_SCENT",
+      "EASY_DECONSTRUCT",
+      "SHORT"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "group": "cement_bag",
+          "count": 64
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 1
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 30,
+      "str_max": 100,
+      "sound": "thump!",
+      "sound_fail": "thud!",
+      "items": [
+        {
+          "group": "cement_bag",
+          "count": 60
+        },
+        {
+          "item": "material_cement",
+          "charges": [
+            500,
+            1500
+          ]
+        },
+        {
+          "item": "bag_canvas",
+          "count": [
+            2,
+            10
+          ],
+          "damage-min": 1,
+          "damage-max": 4
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_stack_plank",
+    "name": "stack of wooden planks",
+    "looks_like": "f_crate_o",
+    "description": "Dozens of construction planks tied together for easier transport.  Deconstruct to untie them.",
+    "symbol": "#",
+    "color": "light_gray",
+    "move_cost_mod": 5,
+    "required_str": -1,
+    "coverage": 40,
+    "flags": [
+      "TRANSPARENT",
+      "NOITEM",
+      "MOUNTABLE",
+      "REDUCE_SCENT",
+      "EASY_DECONSTRUCT",
+      "FLAMMABLE_ASH",
+      "SHORT"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "2x4",
+          "count": 120
+        },
+        {
+          "item": "rope_6",
+          "count": 2
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 8,
+      "str_max": 150,
+      "sound": "crunch!",
+      "sound_fail": "whump!",
+      "items": [
+        {
+          "item": "2x4",
+          "count": [
+            90,
+            100
+          ]
+        },
+        {
+          "item": "2x4",
+          "count": [
+            2,
+            20
+          ]
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        },
+        {
+          "item": "rope_6",
+          "count": [
+            1,
+            2
+          ],
+          "damage-min": 1,
+          "damage-max": 4
+        }
+      ]
+    }
+  },
+  {
+    "id": "pallet",
+    "type": "GENERIC",
+    "name": {
+      "str": "wooden pallet"
+    },
+    "description": "This is a heavy and bulky 40x48 inch pallet.",
+    "weight": "28 kg",
+    "volume": "194400 ml",
+    "material": [
+      "wood"
+    ],
+    "symbol": "#",
+    "color": "brown"
+  },
+  {
+    "type": "GENERIC",
+    "id": "rock_large",
+    "symbol": ";",
+    "color": "brown",
+    "name": {
+      "str": "large rock"
+    },
+    "description": "A large, heavy rock, big enough to be used as a primitive anvil or shaped into larger stone items.",
+    "category": "rocks",
+    "material": [
+      "stone"
+    ],
+    "weight": "15768 g",
+    "volume": "6 L",
+    "qualities": [
+      [
+        "ANVIL",
+        1
+      ]
+    ],
+    "bashing": 28
+  },
+  {
+    "type": "TOOL",
+    "id": "dremel",
+    "copy-from": "angle_grinder",
+    "looks_like": "angle_grinder",
+    "bashing": 2,
+    "cutting": 0,
+    "qualities": [
+      [
+        "GRIND",
+        2
+      ],
+      [
+        "SAW_M",
+        1
+      ],
+      [
+        "SAW_M_FINE",
+        2
+      ],
+      [
+        "SAW_W",
+        1
+      ],
+      [
+        "FILE",
+        2
+      ],
+      [
+        "CUT",
+        1
+      ]
+    ],
+    "power_draw": 175000,
+    "name": {
+      "str": "dremel"
+    },
+    "description": "A rotating tool that can be used with various bits for a large amount of applications.",
+    "weight": "544 g",
+    "volume": "800 ml",
+    "price": "200 USD",
+    "price_postapoc": "2 USD 50 cent",
+    "symbol": "/",
+    "color": "yellow"
+  }
+]

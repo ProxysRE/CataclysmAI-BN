@@ -6,7 +6,7 @@ The nursing home and Shady Hills retirement community are still **non-installed 
 
 The pinned nursing-home source contains a response to `COMP_NURSING_HOME_LEGAL` without defining that topic. This remains an explicit source defect. No invented legal page has been added. Computer `eocs`/`open_dialogue` still need an actual BN terminal interaction bridge before either site's story can work in game.
 
-The medical chain is deliberately kept separate from BN's nurse/surgeon/vivisector chain: its enemies and progression differ substantially. Recursive civilian groups, timed civilian disappearance, mutation branches and monster-specific mechanics require real adaptation. Do not flatten nested groups by multiplying weights without accounting for default spawns, pack sizes and time conditions.
+The original medical chain remains archived for provenance. Under the user policy of 2026-10-18, the adapted locations use the stock BN medical zombie (`mon_zombie_nurse`) with its own attacks, loot and nurse/surgeon evolution, rather than importing DDA's separate medical progression. Recursive living-civilian groups, timed disappearance and unmatched mutation branches still require adaptation. Do not flatten nested groups by multiplying weights without accounting for default spawns, pack sizes and time conditions.
 
 ## Native support included in the patch
 
@@ -18,3 +18,7 @@ Only two independently closed definitions are installed in `data/json/dda_elderc
 These support records do not enable the locations. Their Windows compilation and runtime results must be checked separately from the passing Python guards. Portable packaging rejects missing or altered support data.
 
 Run `prepare_eldercare.py --check` and `check_eldercare.py`. Full-checkout verification uses `--bn-source`; fast CI verifies new support IDs and references against the complete pinned BN JSON with `--bn-data`. Sources are bundled with pins and SHA256 checksums; no new currency is introduced.
+
+## Counterpart review
+
+`ADAPTED_LOCATIONS.json` contains both complete locations and their revised dependency layer. Fifteen explicit mappings in `bn_counterparts.py` reuse BN medical zombies, exercise equipment, lockers, clothing, soil and household loot. This reduces the selected source dependency definitions from 42 to 30 and unresolved references from 43 to 27 in the documented graph. All map rows and computer story definitions remain unchanged. The raw source layer is preserved separately and is not a requirement to implement superseded variants. Neither whole site is installed yet.

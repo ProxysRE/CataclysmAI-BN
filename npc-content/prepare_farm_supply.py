@@ -10,6 +10,7 @@ from pathlib import Path
 from prepare_regional_locations import build, references, index_entries, BUILTIN_IDS
 from prepare_karting import prepare_data as karting_data, sources as karting_sources
 from quest_dependency_graph import namespace, ids
+from bn_loot_containers import package_groups
 
 ROOT = Path(__file__).resolve().parent
 FOLDER = ROOT / 'farm_supply'
@@ -18,6 +19,7 @@ MAP_GROUPS = ['farm_supply_soil_and_sand', 'farm_supply_rocks', 'farm_supply_qui
               'farm_supply_wire', 'farm_supply_animal_feed', 'farm_supply_riding_gear', 'farm_supply_floor_surprises',
               'cattlefodder_bag_canvas_50', 'birdfood_bag_canvas_60']
 SUPPLY_GROUPS = ['sandbag', 'earthbag', 'cement_bag', 'quicklime_bag', 'quicklime_barrel', 'saltpeter_canvas_bag_part']
+ITEM_ALIASES = {'helmet_riding': 'helmet_bike', 'rock_flaking': 'rock', 'flint': 'rock'}
 FURNITURE = ['f_pallet_brick', 'f_pallet_cement', 'f_stack_plank']
 GROUP_ALIASES = {'SUS_fridge_breakroom': 'SUS_fridge', 'SUS_trash_dumpster': 'trash_dumpster',
                  'SUS_trash_trashcan_public': 'trash_cart', 'SUS_trash_floor': 'trash_cart', 'hiking': 'camping', 'ammo_common_loose': 'ammo_common'}
@@ -44,10 +46,14 @@ def adapt_drop(value):
     if out.get('item') in ('material_sand', 'material_soil', 'material_cement', 'material_quicklime', 'chem_saltpetre', 'material_limestone') and 'count' in out:
         out['charges'] = out.pop('count')
     if isinstance(out.get('item'), str):
+        out['item'] = ITEM_ALIASES.get(out['item'], out['item'])
         out['item'] = {'cotton_patchwork': 'rag', 'lc_wire': 'wire', 'mc_wire': 'wire', 'hc_wire': 'wire', 'qt_wire': 'wire'}.get(out['item'], out['item'])
     if isinstance(out.get('group'), str):
         out['group'] = GROUP_ALIASES.get(out['group'], out['group'])
-        if out['group'] == 'wallets':
+        if out['group'] == 'helmet_bike_modified':
+            out.pop('group')
+            out['item'] = 'helmet_bike'
+        elif out['group'] == 'wallets':
             out.pop('group')
             out['item'] = 'cash_card'
         elif out['group'] == 'banknotes':
@@ -94,6 +100,9 @@ def prepare_data():
         if e['type'] == 'mapgen':
             e['method'] = 'json'
             obj = e['object']
+            for glyph, value in obj.get('terrain', {}).items():
+                if value == 't_carpet_concrete_red':
+                    obj['terrain'][glyph] = 't_carpet_concrete'
             if 'm' in obj.get('furniture', {}):
                 assert obj['furniture'].pop('m') == 'f_atm_off'
                 obj['terrain']['m'] = 't_atm'
@@ -166,27 +175,12 @@ def prepare_data():
     pallet['type'] = 'GENERIC'
     result.append(pallet)
     stone = {e['id']: e for e in json.loads(files['dda/data/json/items/resources/stone.json']) if isinstance(e.get('id'), str)}
-    for name in ('rock_flaking', 'flint'):
-        original = stone[name]
-        rock = {'type': 'AMMO', 'id': name, 'copy-from': 'rock' if name == 'rock_flaking' else 'rock_flaking',
-                'name': original['name'], 'description': original['description']}
-        if name == 'rock_flaking':
-            rock.update(weight=original['weight'], volume=original['volume'], bashing=original['melee_damage']['bash'],
-                        damage=original['damage'], range=original['range'], dispersion=original['dispersion'],
-                        loudness=original['loudness'], count=1, stack_size=1)
-        result.append(rock)
     large = copy.deepcopy(stone['rock_large'])
     large['type'] = 'GENERIC'
     large['category'] = 'rocks'
     large['bashing'] = large.pop('melee_damage')['bash']
     large.pop('longest_side')
     result.append(large)
-    riding = next(e for e in json.loads(files['dda/data/json/items/armor/helmets.json']) if e.get('id') == 'helmet_riding')
-    helmet = {'type': 'ARMOR', 'id': 'helmet_riding', 'copy-from': 'helmet_bike', 'looks_like': 'helmet_bike',
-              'bashing': riding['melee_damage']['bash'], 'extend': {'flags': ['WATERPROOF', 'STURDY', 'SUN_GLASSES']}}
-    for field in ('name', 'description', 'weight', 'volume', 'price', 'price_postapoc', 'color', 'warmth'):
-        helmet[field] = riding[field]
-    result.append(helmet)
     dremel = next(e for e in json.loads(files['dda/data/json/items/tool/workshop.json']) if e.get('id') == 'dremel')
     tool = {'type': 'TOOL', 'id': 'dremel', 'copy-from': 'angle_grinder', 'looks_like': 'angle_grinder',
             'bashing': dremel['melee_damage']['bash'], 'cutting': 0,
@@ -195,10 +189,10 @@ def prepare_data():
     for field in ('name', 'description', 'weight', 'volume', 'price', 'price_postapoc', 'symbol', 'color'):
         tool[field] = dremel[field]
     result.append(tool)
-    carpet = materialize_terrain('t_carpet_concrete', json.loads(files['bn/data/json/furniture_and_terrain/terrain-floors-indoor.json']))
-    carpet.update(id='t_carpet_concrete_red', color='red', looks_like='t_carpet_concrete')
-    result.append(carpet)
-    return result
+    for entry in result:
+        if entry['type'] == 'mapgen':
+            entry.setdefault('method', 'json')
+    return package_groups(result)
 
 
 def dependency_refs(payload):
@@ -248,7 +242,7 @@ def validate_bn(root, report=False):
     if not report:
         assert not collisions
         assert not missing
-    return {'collisions': sorted(collisions), 'unresolved': missing, 'scope': 'Direct candidate mapgen, inline loot, supplied groups and furniture drops; runtime/schema validation pending', 'native_enabled': False}
+    return {'collisions': sorted(collisions), 'unresolved': missing, 'scope': 'Direct mapgen, inline loot, supplied groups and furniture drops; native runtime validation pending', 'native_payload_enabled': True, 'runtime_validated': False}
 
 
 def prepare(check=False, bn_source=None, audit=False, report_path=None):
@@ -257,11 +251,11 @@ def prepare(check=False, bn_source=None, audit=False, report_path=None):
         if report_path:
             report_path.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     text = json.dumps(prepare_data(), ensure_ascii=True, indent=2) + '\n'
-    path = FOLDER / 'CANDIDATE.json'
-    if check:
-        assert path.read_text() == text
-    else:
-        path.write_text(text)
+    for path in (FOLDER / 'CANDIDATE.json', ROOT / 'native/dda_farm_supply.json'):
+        if check:
+            assert path.read_text() == text
+        else:
+            path.write_text(text)
 
 
 if __name__ == '__main__':

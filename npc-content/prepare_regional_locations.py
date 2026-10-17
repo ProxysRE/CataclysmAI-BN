@@ -99,7 +99,7 @@ def references(obj):
                     if isinstance(entry, list):
                         value('item', entry[0])
                     elif isinstance(entry, dict):
-                        for field, target in [('item', 'item'), ('group', 'item_group'), ('container-item', 'item')]:
+                        for field, target in [('item', 'item'), ('group', 'item_group'), ('container-item', 'item'), ('contents-item', 'item'), ('contents-group', 'item_group')]:
                             if field in entry:
                                 value(target, entry[field])
                         for field in ('collection', 'distribution'):

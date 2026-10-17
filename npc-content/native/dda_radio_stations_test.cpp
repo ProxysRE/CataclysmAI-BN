@@ -18,6 +18,7 @@
 #include "mtype.h"
 #include "item.h"
 #include "item_group.h"
+#include "itype.h"
 #include "vehicle/veh_type.h"
 #include "vehicle/vehicle.h"
 #include "units.h"
@@ -29,6 +30,96 @@
 #include <algorithm>
 #include <array>
 #include <string>
+
+TEST_CASE( "farm_material_and_feed_packages_fit_stock_BN_containers", "[dda_npc][dda_locations]" )
+{
+    for( const auto *group : { "sandbag", "earthbag", "cement_bag", "quicklime_bag",
+                              "quicklime_barrel", "saltpeter_canvas_bag_part", "cattlefodder_bag_canvas_50",
+                              "birdfood_bag_canvas_60", "box_of_batteries_unopened" } ) {
+        INFO( group );
+        auto packages = item_group::items_from( item_group_id( group ), calendar::turn );
+        REQUIRE( packages.size() == 1 );
+        const auto &package = packages.front();
+        REQUIRE( package->is_container() );
+        REQUIRE( package->type->container != nullptr );
+        REQUIRE_FALSE( package->contents.empty() );
+        auto volume = 0_ml;
+        for( const item &content : package->contents ) {
+            volume += content.volume();
+        }
+        CHECK( volume <= package->type->container->contains );
+        if( std::string( group ) == "cement_bag" ) {
+            REQUIRE( package->contents.size() == 1 );
+            CHECK( package->contents.front().typeId() == itype_id( "material_cement" ) );
+            CHECK( package->contents.front().charges == 2800 );
+        }
+    }
+    auto tool = item::spawn( "dremel", calendar::turn );
+    REQUIRE( tool->is_tool() );
+    REQUIRE( tool->type->tool != nullptr );
+    CHECK( tool->type->tool->power_draw == 175000 );
+    auto battery = item::spawn( "medium_battery_cell", calendar::turn );
+    battery->ammo_set( battery->ammo_default(), 500 );
+    tool->put_in( std::move( battery ) );
+    CHECK( tool->get_quality( quality_id( "GRIND" ) ) == 2 );
+    CHECK( tool->get_quality( quality_id( "SAW_W" ) ) == 1 );
+    CHECK( item_group::group_contains_item( item_group_id( "child_hats" ), itype_id( "helmet_bike" ) ) );
+    CHECK( furn_id( "f_pallet_brick" ).is_valid() );
+    CHECK( furn_id( "f_pallet_cement" ).is_valid() );
+    CHECK( furn_id( "f_stack_plank" ).is_valid() );
+}
+
+TEST_CASE( "farm_shops_generate_all_quadrants_roofs_ladders_and_source_corpse", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>( disable_mapgen );
+    disable_mapgen = false;
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    for( int variant = 0; variant < 2; ++variant ) {
+        const int origin_x = 1020 + variant * 6;
+        for( int row = 0; row < 2; ++row ) {
+            for( int column = 0; column < 2; ++column ) {
+                const auto slot = std::to_string( 1 + row * 2 + column );
+                const auto name = std::string( variant ? "farm_supply_looted_" : "farm_supply_" ) + slot;
+                const auto ground = oter_id( name + "_north" );
+                const auto roof = oter_id( "farm_supply_roof_" + slot + "_north" );
+                REQUIRE( ground.is_valid() );
+                REQUIRE( roof.is_valid() );
+                buffer.ter_set( tripoint_abs_omt( origin_x + column, 1020 + row, 0 ), ground );
+                buffer.ter_set( tripoint_abs_omt( origin_x + column, 1020 + row, 1 ), roof );
+            }
+        }
+        for( int row = 0; row < 2; ++row ) {
+            for( int column = 0; column < 2; ++column ) {
+                INFO( "farm variant=" << variant << " row=" << row << " column=" << column );
+                auto generated = map( 2 );
+                generated.load( project_to<coords::sm>( point_abs_omt( origin_x + column, 1020 + row ) ), false );
+                CHECK( generated.ter( tripoint_bub_ms( 0, 0, 0 ) ) != ter_id( "t_null" ) );
+                CHECK( generated.ter( tripoint_bub_ms( 0, 0, 1 ) ) != ter_id( "t_null" ) );
+                if( row == 0 ) {
+                    CHECK( generated.ter( tripoint_bub_ms( 0, 0, 0 ) ) == ter_id( "t_pavement" ) );
+                }
+                if( row == 1 && column == 1 ) {
+                    CHECK( generated.ter( tripoint_bub_ms( 0, 0, 0 ) ) == ter_id( "t_thconc_floor" ) );
+                    CHECK( generated.ter( tripoint_bub_ms( 0, 0, 1 ) ) == ter_id( "t_flat_roof" ) );
+                }
+                if( row == 1 && column == 0 ) {
+                    CHECK( generated.ter( tripoint_bub_ms( 0, 21, 0 ) ) == ter_id( "t_ladder_up" ) );
+                    CHECK( generated.ter( tripoint_bub_ms( 0, 21, 1 ) ) == ter_id( "t_ladder_down" ) );
+                    if( variant == 1 ) {
+                        int bodies = 0;
+                        for( const item &entry : generated.i_at( tripoint_bub_ms( 7, 18, 0 ) ) ) {
+                            bodies += entry.is_corpse();
+                        }
+                        CHECK( bodies == 1 );
+                    }
+                }
+            }
+        }
+    }
+}
 
 TEST_CASE( "stocked_pond_group_uses_stock_BN_species_and_valid_pack_sizes", "[dda_npc][dda_locations]" )
 {
@@ -417,4 +508,16 @@ TEST_CASE( "karting_vehicle_and_cash_dependencies_are_native_bn_definitions", "[
     CHECK( itype_id( "money_bundle" ).is_valid() );
     auto cash = item::spawn( "cash_register", calendar::start_of_cataclysm );
     CHECK( cash->is_container() );
+    for( const auto *name : { "cash_register_full", "cash_register_looted", "cash_register_empty", "cash_register_random" } ) {
+        for( int attempt = 0; attempt < 20; ++attempt ) {
+            auto registers = item_group::items_from( item_group_id( name ), calendar::turn );
+            REQUIRE( registers.size() == 1 );
+            CHECK( registers.front()->typeId() == itype_id( "cash_register" ) );
+            auto volume = 0_ml;
+            for( const item &entry : registers.front()->contents ) {
+                volume += entry.volume();
+            }
+            CHECK( volume <= registers.front()->type->container->contains );
+        }
+    }
 }
