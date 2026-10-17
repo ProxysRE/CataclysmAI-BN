@@ -3,6 +3,7 @@
 import json
 import subprocess
 import sys
+from quest_dependency_graph import namespace, ids
 from prepare_regional_locations import ROOT, OUT, SITES, build, read_bundle, references
 
 files, _ = read_bundle()
@@ -13,6 +14,8 @@ assert [e['id'] for e in outputs['karting.json'] if e.get('type') == 'vehicle'] 
 assert {d['id'] for d in outputs['TRANSFER_REPORT.json']['sites'][3]['dependencies'] if d['type'] == 'effect_on_condition'} == {'EOC_NURSING_HOME_RECEPTIONIST', 'EOC_NURSING_HOME_RECEP_MANAGER', 'EOC_NURSING_HOME_COO', 'EOC_NURSING_HOME_SCI'}
 slots = 0
 for site, names in SITES.items():
+    identities = [(namespace(e), identifier) for e in outputs[site + '.json'] for identifier in ids(e)]
+    assert len(identities) == len(set(identities)), ('duplicate typed declaration', site)
     originals = [e for name in names for e in json.loads(files[name]) if e.get('type') == 'mapgen']
     candidates = [e for e in outputs[site + '.json'] if e.get('type') == 'mapgen']
     assert len(originals) == len(candidates)

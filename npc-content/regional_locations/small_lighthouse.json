@@ -1123,54 +1123,6 @@
     "copy-from": "lighthouse_abstract"
   },
   {
-    "type": "overmap_terrain",
-    "id": [
-      "lighthouse_small_z1",
-      "lighthouse_small_z2",
-      "lighthouse_small_z3",
-      "lighthouse_small_z4",
-      "lighthouse_small_roof"
-    ],
-    "name": "small lighthouse",
-    "copy-from": "lighthouse_abstract"
-  },
-  {
-    "type": "overmap_terrain",
-    "id": [
-      "lighthouse_small_z1",
-      "lighthouse_small_z2",
-      "lighthouse_small_z3",
-      "lighthouse_small_z4",
-      "lighthouse_small_roof"
-    ],
-    "name": "small lighthouse",
-    "copy-from": "lighthouse_abstract"
-  },
-  {
-    "type": "overmap_terrain",
-    "id": [
-      "lighthouse_small_z1",
-      "lighthouse_small_z2",
-      "lighthouse_small_z3",
-      "lighthouse_small_z4",
-      "lighthouse_small_roof"
-    ],
-    "name": "small lighthouse",
-    "copy-from": "lighthouse_abstract"
-  },
-  {
-    "type": "overmap_terrain",
-    "id": [
-      "lighthouse_small_z1",
-      "lighthouse_small_z2",
-      "lighthouse_small_z3",
-      "lighthouse_small_z4",
-      "lighthouse_small_roof"
-    ],
-    "name": "small lighthouse",
-    "copy-from": "lighthouse_abstract"
-  },
-  {
     "type": "overmap_special",
     "id": "lighthouse_island_small",
     "overmaps": [

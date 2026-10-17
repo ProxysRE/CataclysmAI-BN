@@ -157,7 +157,8 @@ def build(bn_source=None):
         palettes = {e['id']: e for e in entries if e.get('type') == 'palette'}
         maps = [e for e in entries if e.get('type') == 'mapgen']
         omt = set(i for e in maps for i in flatten(e.get('om_terrain', [])))
-        selected_terrain = [terrain[i] for i in sorted(omt) if i in terrain]
+        selected_terrain = list({json.dumps(terrain[i], sort_keys=True): terrain[i]
+                                 for i in sorted(omt) if i in terrain}.values())
         specials = [e for e in sides['dda'] if e.get('type') in ('overmap_special', 'city_building')
                     and any(normalized(i, terrain) in omt for i in physical_refs(e))]
         staged = []
@@ -170,7 +171,16 @@ def build(bn_source=None):
             staged.append(new)
         staged.extend(copy.deepcopy(selected_terrain + specials))
         local_index = index_entries(staged)
-        refs = sorted({ref for e in staged if e.get('type') == 'mapgen' for ref in references(e.get('object', {}))})
+        refs = {ref for e in staged if e.get('type') == 'mapgen' for ref in references(e.get('object', {}))}
+        for e in staged:
+            if e.get('type') == 'vehicle':
+                for location in e.get('parts', []):
+                    for part in location.get('parts', []):
+                        identifier = part if isinstance(part, str) else part['part']
+                        refs.add(('vehicle_part', identifier.split('#')[0]))
+                        if isinstance(part, dict) and 'fuel' in part:
+                            refs.add(('item', part['fuel']))
+        refs = sorted(refs)
         obligations = [{'type': kind, 'id': identifier,
                         'status': 'provided_in_site' if (kind, identifier) in local_index else
                                   'bn_id_present_review_semantics' if (kind, identifier) in bn_index else
@@ -212,6 +222,7 @@ def main():
             for site in value['sites']:
                 from collections import Counter
                 print(site['site'], dict(Counter(d['status'] for d in site['dependencies'])))
+                print('UNRESOLVED', site['site'], [(d['type'], d['id']) for d in site['dependencies'] if d['status'] == 'unresolved_under_scanned_type'])
             continue
         path = OUT / name
         if args.check:

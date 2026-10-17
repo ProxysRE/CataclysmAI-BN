@@ -19,7 +19,7 @@
       "state": "staged_not_installed",
       "mapgen_definitions": 6,
       "mapgen_terrain_slots": 6,
-      "overmap_terrain_definitions": 6,
+      "overmap_terrain_definitions": 2,
       "placements": [
         "lighthouse_island_small"
       ],
@@ -309,7 +309,7 @@
       "state": "staged_not_installed",
       "mapgen_definitions": 3,
       "mapgen_terrain_slots": 27,
-      "overmap_terrain_definitions": 27,
+      "overmap_terrain_definitions": 1,
       "placements": [
         "o_karting_l"
       ],
@@ -390,6 +390,11 @@
         {
           "type": "furniture",
           "id": "f_workbench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "gasoline",
           "status": "requires_full_bn_scan"
         },
         {
@@ -631,6 +636,76 @@
           "type": "vehicle",
           "id": "go_kart",
           "status": "provided_in_site"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "alternator_motorbike",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "battery_motorbike",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "controls",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "controls_electronic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "engine_1cyl",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "frame_handle",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "muffler",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "seat",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "seatbelt",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "tank_small",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "wheel_mount_medium",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "wheel_mount_medium_steerable",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "wheel_slick",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle_part",
+          "id": "xlframe",
+          "status": "requires_full_bn_scan"
         }
       ],
       "additional_definitions": {
@@ -652,7 +727,7 @@
       "state": "staged_not_installed",
       "mapgen_definitions": 4,
       "mapgen_terrain_slots": 12,
-      "overmap_terrain_definitions": 12,
+      "overmap_terrain_definitions": 2,
       "placements": [
         "Farm Supply Store",
         "Farm Supply Store Looted"
@@ -1172,7 +1247,7 @@
       "state": "staged_not_installed",
       "mapgen_definitions": 10,
       "mapgen_terrain_slots": 66,
-      "overmap_terrain_definitions": 66,
+      "overmap_terrain_definitions": 13,
       "placements": [
         "nursing_home_sh",
         "nursing_home"
@@ -2015,7 +2090,7 @@
       "state": "staged_not_installed",
       "mapgen_definitions": 22,
       "mapgen_terrain_slots": 124,
-      "overmap_terrain_definitions": 124,
+      "overmap_terrain_definitions": 23,
       "placements": [
         "retirement_community"
       ],
