@@ -1,0 +1,36 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "bundle_sha256": "bc3c61898a94d586f0e71e25542511a90efbeccc8e509b22b974401d5648cade",
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01",
+    "SOURCE.part02"
+  ],
+  "files": {
+    "bn/src/mongroup.cpp": "dd4e50b9ccc832562f46dd84eaa63af541bfdbcec40947a150e85ecebdf60c73",
+    "bn/data/json/monsters/zed_medical.json": "cce11d70a4c7ea46977f5961d09d74ba38d9ec4b09c73475a7ca20742ee064e9",
+    "bn/data/json/monstergroups/zombie_upgrades.json": "9b86b8f8013639d02e06513a05347ae55e0615f2e9939cd079df051f3cdc0fb5",
+    "dda/src/mongroup.cpp": "44730c1e943ad1e6e8024233d93cd2d4eb9580eb120707fc754074cf9f336395",
+    "dda/data/json/monsterdrops/zombie_medical.json": "0b164a1ffd8f4be37bfa4610cebb06790f70c184297a2d7dbb9b83b2c64ce068",
+    "dda/data/json/monsters/feral_humans.json": "5f6b11b2f8fd28a234fd8561e900bda6610c5e00e32f14b226b0782b76afe81e",
+    "dda/data/json/monsters/bird.json": "a3806ae508425a39edbccd6e4a73caef72554ca2db1598ab10843e475b270213",
+    "dda/data/json/monsters/civilians.json": "b619fae9ca001b2c7f05335c34f7ae7facc8a3380b69046906cd4614843da2d4",
+    "dda/data/json/monsters/zed_misc.json": "f8693330c17b0c05b1438e8c01a2fbe22fdf749e812ec59e4acd209f4c516928",
+    "dda/data/json/monsters/zed-medical.json": "a24af370fa3499febcf5b5cd957a06764da2179a2d4069080891820bcfd63d21",
+    "dda/data/json/monsters/mutant.json": "15896df1c2217ebed9ef9ad2f677c550fdf719939b8f2f4b8a9361f59c6a5387",
+    "dda/data/json/monsters/insect_spider.json": "924f77ef68de669f08c6962179b8d42cc2a4834d01dbfe65dde0d96740094491",
+    "dda/data/json/monstergroups/fish.json": "ab79407c334a5ac5126fc0cfde86e1448f143bc0b1808ecbdeb10b460af14ef0",
+    "dda/data/json/monstergroups/bugs.json": "b06a77b39529134b515253ae3c632d11b9f2edbc8b0955842754737d98e15c49",
+    "dda/data/json/monstergroups/mutant_upgrades.json": "93c910e4967b04d04e60dc2015f33cc67097e6e81e5cc882520e3ad9450163e1",
+    "dda/data/json/monstergroups/zombies.json": "19e5539fe9435b54cad80966a20c6c58b0645cce04322acbc269a03ac47ad48c",
+    "dda/data/json/monstergroups/misc.json": "d3b76aa1172aa42a4e36e562c5648c3e1af627f60feb31981cebd0be523803f3",
+    "dda/data/json/monstergroups/zombie_upgrades.json": "2a61e057e351960b9cb082bf2a480c430fd55f3446a9d07ac83dbed6c199d602",
+    "dda/data/json/itemgroups/science_and_tech.json": "d705ef7f97a37c5b8a5a5967985d4e59abb4668d1dcec1b708eb2c1924a9d15d",
+    "dda/data/json/npcs/computers/TALK_RET_COMM.json": "c5a16cf5569613ac9d8c4e8b837f4f6285999a92abb99102da25c3688fa8e2d0",
+    "dda/data/json/itemgroups/Locations_MapExtras/locations.json": "903bb5c8f2cd7b8d93083309ba40bda37fb21f7296cfbfa0b5dc7ddf46c04b29",
+    "dda/data/json/mapgen/map_extras/spider.json": "5aeab64c6fb3d2254a46fc57161a7cccaab980e884e0550f795c7c1fd60c5202"
+  }
+}

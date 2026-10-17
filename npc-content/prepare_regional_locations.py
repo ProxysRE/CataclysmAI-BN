@@ -22,9 +22,10 @@ SITES = {
     'karting': ['karting_l.json', 'karting_palette.json', 'cars.json'],
     'farm_supply': ['farm_supply.json', 'farm_supply_palette.json'],
     'nursing_home': ['nursing_home.json', 'nursing_home_palette.json', 'nursing_home_nested.json', 'TALK_NURSING_HOME.json'],
-    'retirement_community': ['retirement_community.json', 'retirement_community_palette.json'],
+    'retirement_community': ['retirement_community.json', 'retirement_community_palette.json', 'TALK_RET_COMM.json'],
 }
 SOURCE_PATHS = {
+    'TALK_RET_COMM.json': 'data/json/npcs/computers/TALK_RET_COMM.json',
     'cars.json': 'data/json/vehicles/cars.json',
     'TALK_NURSING_HOME.json': 'data/json/npcs/computers/TALK_NURSING_HOME.json',
     'lighthouse_small.json': 'data/json/mapgen/lake_buildings/lighthouse_small.json',

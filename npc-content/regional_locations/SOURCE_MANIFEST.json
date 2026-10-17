@@ -3,7 +3,7 @@
     "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
     "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
   },
-  "bundle_sha256": "3827bb607e991f24aa4dcfa5e54b619fe176a6c005886f14c419b561f3563c94",
+  "bundle_sha256": "bcf2053e42a305ce93d254b810435e7495be0c714ad7c3b442ba886e85c0a752",
   "parts": [
     "SOURCE.part00"
   ],
@@ -55,6 +55,10 @@
     "retirement_community_palette.json": {
       "path": "data/json/mapgen_palettes/retirement_community_palette.json",
       "sha256": "bd270753eb2eac14e0086d8fd5e0c6a38df789ec3d4c8ff4bcee40a9c1e811ba"
+    },
+    "TALK_RET_COMM.json": {
+      "path": "data/json/npcs/computers/TALK_RET_COMM.json",
+      "sha256": "c5a16cf5569613ac9d8c4e8b837f4f6285999a92abb99102da25c3688fa8e2d0"
     }
   }
 }

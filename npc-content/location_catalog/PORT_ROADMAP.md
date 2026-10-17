@@ -23,3 +23,7 @@ A completed package must pass native data loading, generation/navigation checks,
 ## Current farm-store integration checkpoint
 
 Both source layouts and roofs remain non-installed candidates. Merchandise uses BN resources, battery capacities, glues and stock money. A reusable native corpse mapgen action now supports explicit placements and palette bindings; species/age/null-group tests are included in the Windows suite, with results pending. The remaining modular-helmet dependency is preserved in farm_supply/MODULAR_HELMET_REVIEW.json; attaching protective armor through DDA ablative pockets cannot be achieved by declaring an ordinary BN helmet as a container. Farm item/furniture behavior and complete site generation still require native validation.
+
+## Connected eldercare layer
+
+Shady Hills now preserves its complete 13-topic/two-EOC computer story. The nursing-home/retirement dependency graph preserves 42 additional source definitions and explicitly tracks 43 unresolved references (within the documented scan scope), including an upstream dangling legal-page topic. Medical evolution and civilian groups are not replaced with superficially similar BN content. Two closed support records, stocked-pond fish and nested spider webs, are embedded with stock BN mechanisms and portable-data guards; Windows runtime validation is pending. Whole sites remain uninstalled until terminal interactions, dependencies and generation are verified.

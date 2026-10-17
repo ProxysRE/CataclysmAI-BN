@@ -15,6 +15,7 @@ from prepare_karting import prepare as prepare_karting, PAYLOAD as KARTING_PAYLO
 from prepare_xedra_gear import prepare as prepare_gear, PAYLOAD as GEAR_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD
 
+from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
 from prepare_mapgen_corpses import patch_sections as corpse_patch
 
 ROOT = Path(__file__).resolve().parent
@@ -40,6 +41,7 @@ def check():
     prepare_creature(check=True)
     prepare_gear(check=True)
     prepare_karting(check=True)
+    prepare_eldercare(check=True)
     assert corpse_patch() in patch, "Stale corpse mapgen replacement"
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
@@ -63,6 +65,7 @@ def check():
         CREATURE_PAYLOAD: ROOT / 'native/dda_xedra_creature.json',
         GEAR_PAYLOAD: ROOT / 'native/dda_xedra_activity_suits.json',
         KARTING_PAYLOAD: ROOT / 'native/dda_karting_circuit.json',
+        ELDERCARE_PAYLOAD: ROOT / 'native/dda_eldercare_support.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',

@@ -1,0 +1,121 @@
+[
+  {
+    "type": "monstergroup",
+    "name": "GROUP_STOCKED_POND",
+    "is_animal": true,
+    "default": "mon_fish_rainbow_trout",
+    "freq_total": 345,
+    "monsters": [
+      {
+        "monster": "mon_fish_rainbow_trout",
+        "cost_multiplier": 3,
+        "pack_size": [
+          1,
+          3
+        ],
+        "freq": 50
+      },
+      {
+        "monster": "mon_fish_rainbow_trout",
+        "cost_multiplier": 3,
+        "conditions": [
+          "DAWN",
+          "DUSK"
+        ],
+        "pack_size": [
+          1,
+          3
+        ],
+        "freq": 100
+      },
+      {
+        "monster": "mon_fish_sbass",
+        "cost_multiplier": 3,
+        "pack_size": [
+          1,
+          3
+        ],
+        "freq": 25
+      },
+      {
+        "monster": "mon_fish_sbass",
+        "cost_multiplier": 3,
+        "conditions": [
+          "DAWN",
+          "DUSK"
+        ],
+        "pack_size": [
+          1,
+          3
+        ],
+        "freq": 50
+      },
+      {
+        "monster": "mon_fish_perch",
+        "cost_multiplier": 3,
+        "pack_size": [
+          1,
+          3
+        ],
+        "freq": 30
+      },
+      {
+        "monster": "mon_fish_perch",
+        "cost_multiplier": 3,
+        "conditions": [
+          "DAWN",
+          "DUSK"
+        ],
+        "pack_size": [
+          1,
+          3
+        ],
+        "freq": 55
+      },
+      {
+        "monster": "mon_fish_salmon",
+        "cost_multiplier": 8,
+        "pack_size": [
+          4,
+          6
+        ],
+        "freq": 15
+      },
+      {
+        "monster": "mon_fish_salmon",
+        "cost_multiplier": 8,
+        "conditions": [
+          "DAWN",
+          "DUSK"
+        ],
+        "pack_size": [
+          4,
+          6
+        ],
+        "freq": 20
+      }
+    ]
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "spider_webs",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "place_fields": [
+        {
+          "field": "fd_web",
+          "x": 0,
+          "y": 0,
+          "intensity": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  }
+]

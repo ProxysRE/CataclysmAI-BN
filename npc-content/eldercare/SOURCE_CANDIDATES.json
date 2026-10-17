@@ -1,0 +1,2959 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "installed": false,
+  "source_candidates": [
+    {
+      "source": "dda/data/json/monsters/bird.json",
+      "entry": {
+        "abstract": "mon_bird_flying_base",
+        "type": "MONSTER",
+        "name": {
+          "str": "flying bird abstract",
+          "//~": "NO_I18N"
+        },
+        "description": {
+          "str": "This is an abstract monster for other flying birds to copy from, so that we have some common foundation to work with.  If it appears in the game that's a bug.  Use this when your bird can fly, but cannot swim.",
+          "//~": "NO_I18N"
+        },
+        "bodytype": "bird",
+        "default_faction": "bird_small_flying",
+        "categories": [
+          "WILDLIFE"
+        ],
+        "species": [
+          "BIRD"
+        ],
+        "volume": "467 ml",
+        "weight": "350 g",
+        "//": "~0.75g/ml density for most wild birds",
+        "hp": 1,
+        "speed": 200,
+        "material": [
+          "flesh"
+        ],
+        "symbol": "v",
+        "color": "dark_gray",
+        "aggression": -99,
+        "morale": 5,
+        "melee_dice": 1,
+        "melee_dice_sides": 1,
+        "melee_damage": [
+          {
+            "damage_type": "cut",
+            "amount": 0
+          }
+        ],
+        "dodge": 4,
+        "families": [
+          "prof_gross_anatomy",
+          "prof_intro_biology",
+          "prof_physiology",
+          "prof_wp_flying",
+          "prof_wp_basic_bird"
+        ],
+        "weakpoint_sets": [
+          "wps_bird_body"
+        ],
+        "harvest": "bird_tiny",
+        "dissect": "dissect_bird_sample_single",
+        "baby_flags": [
+          "SPRING",
+          "SUMMER"
+        ],
+        "fear_triggers": [
+          "SOUND",
+          "PLAYER_CLOSE",
+          "FRIEND_ATTACKED",
+          "FRIEND_DIED",
+          "FIRE",
+          "HURT"
+        ],
+        "biosignature": {
+          "biosig_item": "feces_bird",
+          "biosig_timer": 4
+        },
+        "flags": [
+          "SEES",
+          "HEARS",
+          "ANIMAL",
+          "PATH_AVOID_DANGER",
+          "WARM",
+          "FLIES",
+          "SWARMS",
+          "CANPLAY",
+          "CAN_BE_CULLED",
+          "PET_WONT_FOLLOW",
+          "SMALL_HIDER"
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_panic",
+        "type": "MONSTER",
+        "name": {
+          "str": "panicked person"
+        },
+        "description": "This hysterical individual has a faint, yet fading, glint of intelligence in their bloodshot eyes.  They sometimes scream in fear and behave clearly irrationally.  This will quite likely cause their demise at the hands of the undead horde rather quickly.",
+        "looks_like": "mon_dementia",
+        "default_faction": "human",
+        "bodytype": "human",
+        "species": [
+          "HUMAN"
+        ],
+        "material": [
+          "hflesh"
+        ],
+        "weakpoint_sets": [
+          "wps_humanoid_body",
+          "wps_vital_organs",
+          "wps_eyes"
+        ],
+        "chat_topics": [
+          "TALK_CIVILIAN_PANIC"
+        ],
+        "volume": "62500 ml",
+        "weight": "81500 g",
+        "hp": 75,
+        "speed": 90,
+        "symbol": "@",
+        "color": "white",
+        "diff": 2,
+        "aggression": -50,
+        "morale": -50,
+        "vision_day": 10,
+        "melee_dice": 1,
+        "melee_dice_sides": 2,
+        "melee_damage": [
+          {
+            "damage_type": "cut",
+            "amount": 3
+          }
+        ],
+        "families": [
+          "prof_gross_anatomy",
+          "prof_intro_biology",
+          "prof_physiology"
+        ],
+        "special_attacks": [
+          [
+            "PARROT_AT_DANGER",
+            0
+          ]
+        ],
+        "//": "They are human after all",
+        "harvest": "human",
+        "dissect": "dissect_human_sample_single",
+        "//COMMENT": "There is intentionally no death function here, GUILT_HUMAN is special-cased to apply the same penalties as murdering a NPC.",
+        "death_function": {},
+        "path_settings": {
+          "max_dist": 30,
+          "allow_open_doors": true,
+          "avoid_traps": true,
+          "avoid_sharp": true
+        },
+        "upgrades": {
+          "half_life": 4,
+          "age_grow": 1,
+          "into_group": "GROUP_CIVILIANS_UPGRADE"
+        },
+        "dodge": 1,
+        "death_drops": "default_zombie_death_drops",
+        "zombify_into": "mon_zombie",
+        "flags": [
+          "SEES",
+          "HEARS",
+          "WARM",
+          "HUMAN",
+          "CAN_OPEN_DOORS",
+          "PATH_AVOID_DANGER",
+          "CONVERSATION",
+          "GUILT_HUMAN"
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_parent",
+        "type": "MONSTER",
+        "name": {
+          "str": "terrified parent"
+        },
+        "special_attacks": [
+          [
+            "PARROT",
+            0
+          ]
+        ],
+        "description": "Obsessed with finding their offspring, they scour the environment for certain death.",
+        "chat_topics": [
+          "TALK_CIVILIAN_PARENT"
+        ],
+        "copy-from": "mon_civilian_panic"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_police",
+        "type": "MONSTER",
+        "name": {
+          "str": "overconfident officer"
+        },
+        "description": "Gun in hand, this police officer is determined to make a last stand against the horde.",
+        "copy-from": "mon_civilian_panic",
+        "diff": 5,
+        "aggro_character": false,
+        "aggression": 100,
+        "morale": 100,
+        "vision_day": 50,
+        "vision_night": 3,
+        "weakpoint_sets": [
+          "wps_humanoid_body",
+          "wps_vital_organs",
+          "wps_eyes",
+          "wps_humanoid_body_armor"
+        ],
+        "families": [
+          "prof_gross_anatomy",
+          "prof_intro_biology",
+          "prof_physiology",
+          "prof_wp_syn_armored"
+        ],
+        "chat_topics": [
+          "TALK_CIVILIAN_OFFICER"
+        ],
+        "//": "Copied from zombie cop",
+        "melee_skill": 6,
+        "melee_dice": 2,
+        "melee_dice_sides": 4,
+        "//2": "Uses a baton for melee attacks",
+        "melee_damage": [
+          {
+            "damage_type": "bash",
+            "amount": 5
+          }
+        ],
+        "death_drops": {
+          "subtype": "collection",
+          "items": [
+            {
+              "group": "mon_zombie_cop_death_drops",
+              "prob": 100
+            },
+            {
+              "item": "glock_22",
+              "prob": 100,
+              "charges": [
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        "zombify_into": "mon_zombie_cop",
+        "extend": {
+          "flags": [
+            "DROPS_AMMO",
+            "WIELDED_WEAPON"
+          ]
+        },
+        "starting_ammo": {
+          "40fmj": 10
+        },
+        "special_attacks": [
+          {
+            "type": "gun",
+            "cooldown": 10,
+            "move_cost": 150,
+            "gun_type": "civilian_cop_glock22",
+            "ammo_type": "40fmj",
+            "fake_skills": [
+              [
+                "gun",
+                2
+              ],
+              [
+                "pistol",
+                3
+              ]
+            ],
+            "fake_dex": 8,
+            "fake_per": 10,
+            "ranges": [
+              [
+                2,
+                14,
+                "DEFAULT"
+              ]
+            ],
+            "condition": {
+              "test_eoc": "is_disarmed"
+            },
+            "require_targeting_player": false,
+            "description": "The officer fires their Glock 22!"
+          }
+        ],
+        "armor": {
+          "bash": 6,
+          "cut": 6,
+          "stab": 6,
+          "bullet": 6,
+          "electric": 2
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_police_rifle",
+        "type": "MONSTER",
+        "name": {
+          "str": "overconfident officer"
+        },
+        "description": "Rifle in hand, this police officer is determined to make a last stand against the horde.",
+        "copy-from": "mon_civilian_panic",
+        "diff": 5,
+        "aggro_character": false,
+        "aggression": 100,
+        "morale": 100,
+        "vision_day": 50,
+        "vision_night": 3,
+        "weakpoint_sets": [
+          "wps_humanoid_body",
+          "wps_vital_organs",
+          "wps_eyes",
+          "wps_humanoid_body_armor"
+        ],
+        "families": [
+          "prof_intro_biology",
+          "prof_physiology",
+          "prof_wp_syn_armored"
+        ],
+        "chat_topics": [
+          "TALK_CIVILIAN_OFFICER"
+        ],
+        "//": "Copied from zombie cop",
+        "melee_skill": 4,
+        "melee_dice": 2,
+        "melee_dice_sides": 4,
+        "//2": "Unwieldy rifle butt for melee",
+        "melee_damage": [
+          {
+            "damage_type": "bash",
+            "amount": 3
+          }
+        ],
+        "death_drops": {
+          "subtype": "collection",
+          "items": [
+            {
+              "group": "mon_zombie_cop_death_drops",
+              "prob": 100
+            },
+            {
+              "group": "modular_ar15",
+              "prob": 100,
+              "charges": [
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        "zombify_into": "mon_zombie_cop",
+        "extend": {
+          "flags": [
+            "DROPS_AMMO",
+            "WIELDED_WEAPON"
+          ]
+        },
+        "starting_ammo": {
+          "223": 20
+        },
+        "//3": "Range starts from 0 to get some shots out",
+        "special_attacks": [
+          {
+            "type": "gun",
+            "cooldown": 10,
+            "move_cost": 100,
+            "gun_type": "civilian_AR-15",
+            "ammo_type": "223",
+            "fake_skills": [
+              [
+                "gun",
+                2
+              ],
+              [
+                "rifle",
+                3
+              ]
+            ],
+            "fake_dex": 8,
+            "fake_per": 10,
+            "ranges": [
+              [
+                0,
+                14,
+                "DEFAULT"
+              ]
+            ],
+            "condition": {
+              "test_eoc": "is_disarmed"
+            },
+            "require_targeting_player": false,
+            "description": "The officer fires their AR-15!"
+          }
+        ],
+        "armor": {
+          "bash": 6,
+          "cut": 6,
+          "stab": 6,
+          "bullet": 6,
+          "electric": 2
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_stationary",
+        "type": "MONSTER",
+        "name": {
+          "str": "petrified person"
+        },
+        "description": "They just stand there, staring into the void, with a vacant expression on their face.  Barely moving, they will probably fall to the undead horde soon.",
+        "//": "Will not be able to do this in their current mental state:",
+        "path_settings": {
+          "max_dist": 30,
+          "allow_open_doors": false,
+          "avoid_traps": false,
+          "avoid_sharp": false
+        },
+        "speed": 20,
+        "diff": 0,
+        "copy-from": "mon_civilian_panic"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_zombiefighter",
+        "type": "MONSTER",
+        "name": {
+          "str": "futile fighter"
+        },
+        "description": "Obviously, this aggravated yet rallied person has lost their wits and tries to fight the undead with just a knife in their hands.",
+        "copy-from": "mon_civilian_panic",
+        "chat_topics": [
+          "TALK_CIVILIAN_FIGHTER"
+        ],
+        "diff": 3,
+        "aggro_character": false,
+        "aggression": 100,
+        "morale": 100,
+        "melee_skill": 2,
+        "special_attacks": [
+          {
+            "id": "feral_weapon_knife_combat_low_skill"
+          }
+        ],
+        "melee_dice": 2,
+        "melee_dice_sides": 3,
+        "death_drops": {
+          "subtype": "collection",
+          "items": [
+            {
+              "group": "default_zombie_death_drops",
+              "prob": 100
+            },
+            {
+              "group": "survivor_knife",
+              "prob": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "mon_civilian_zombiegunner",
+        "type": "MONSTER",
+        "name": {
+          "str": "armed fighter"
+        },
+        "description": "Handgun in hand, this person is determined to make a last stand against the horde.",
+        "copy-from": "mon_civilian_panic",
+        "chat_topics": [
+          "TALK_CIVILIAN_GUNNER"
+        ],
+        "diff": 3,
+        "aggro_character": false,
+        "aggression": 100,
+        "morale": 100,
+        "melee_skill": 2,
+        "melee_dice": 2,
+        "melee_dice_sides": 3,
+        "death_drops": {
+          "subtype": "collection",
+          "items": [
+            {
+              "group": "default_zombie_death_drops",
+              "prob": 100
+            },
+            {
+              "item": "glock_19",
+              "prob": 100,
+              "charges": [
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        "starting_ammo": {
+          "9mm": 10
+        },
+        "//3": "Range starts from 0 to get some shots out",
+        "special_attacks": [
+          {
+            "type": "gun",
+            "cooldown": 10,
+            "move_cost": 150,
+            "gun_type": "civilian_glock19",
+            "ammo_type": "9mm",
+            "fake_skills": [
+              [
+                "gun",
+                2
+              ],
+              [
+                "pistol",
+                3
+              ]
+            ],
+            "fake_dex": 8,
+            "fake_per": 10,
+            "ranges": [
+              [
+                0,
+                14,
+                "DEFAULT"
+              ]
+            ],
+            "condition": {
+              "test_eoc": "is_disarmed"
+            },
+            "require_targeting_player": false,
+            "description": "The gunman fires their sidearm!"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/feral_humans.json",
+      "entry": {
+        "id": "mon_feral_cop",
+        "type": "MONSTER",
+        "name": {
+          "str": "feral cop"
+        },
+        "description": "Another of the crazed humans among the dead.  This police officer angrily mutters to themselves, wandering about with a truncheon in hand in search of someone to brutalize.",
+        "copy-from": "mon_feral_human_pipe",
+        "default_faction": "feral_police",
+        "speed": 95,
+        "color": "blue",
+        "aggression": 100,
+        "melee_skill": 6,
+        "dodge": 3,
+        "special_attacks": [
+          [
+            "PARROT",
+            200
+          ],
+          [
+            "BLOW_WHISTLE",
+            25
+          ],
+          {
+            "id": "feral_weapon_PR24"
+          },
+          [
+            "PARROT_AT_DANGER",
+            0
+          ]
+        ],
+        "death_drops": "mon_feral_cop_death_drops",
+        "fungalize_into": "mon_feral_cop_fungal_infected",
+        "zombify_into": "mon_zombie_cop",
+        "extend": {
+          "flags": [
+            "PRIORITIZE_TARGETS"
+          ],
+          "weakpoint_sets": [
+            "wps_humanoid_body_armor",
+            "wps_humanoid_open_helmet"
+          ],
+          "families": [
+            "prof_wp_syn_armored"
+          ]
+        },
+        "armor": {
+          "bash": 8,
+          "cut": 12,
+          "stab": 9,
+          "bullet": 14,
+          "electric": 2
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/feral_humans.json",
+      "entry": {
+        "id": "mon_feral_sapien_spear",
+        "type": "MONSTER",
+        "name": {
+          "str": "cunning feral"
+        },
+        "description": "This feral human's eyes look more focused, and its movements steadier, than others of their kind.  They're carrying a crude spear, and have assembled some basic armor from scavenged clothing and bits of riot armor, though you can see several gaps.  Despite these signs of greater intelligence, this creature is still only a few steps away from being a zombie themselves.",
+        "copy-from": "mon_feral_human_pipe",
+        "dodge": 3,
+        "special_attacks": [
+          [
+            "PARROT_AT_DANGER",
+            0
+          ],
+          {
+            "id": "feral_weapon_spear_knife"
+          }
+        ],
+        "vision_day": 50,
+        "death_drops": "feral_sapien_death_drops_spear",
+        "zombify_into": "mon_zombie_survivor",
+        "extend": {
+          "flags": [
+            "PRIORITIZE_TARGETS"
+          ],
+          "weakpoint_sets": [
+            "wps_humanoid_body_armor"
+          ],
+          "families": [
+            "prof_wp_syn_armored"
+          ]
+        },
+        "armor": {
+          "bash": 9,
+          "cut": 14,
+          "acid": 4,
+          "bullet": 18
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/insect_spider.json",
+      "entry": {
+        "id": "mon_large_cockroach",
+        "type": "MONSTER",
+        "name": {
+          "str": "oversized cockroach",
+          "str_pl": "oversized cockroaches"
+        },
+        "description": "An aggressive mutant cockroach the size of a small dog.",
+        "copy-from": "mon_giant_cockroach",
+        "proportional": {
+          "hp": 0.5,
+          "speed": 1.1,
+          "morale": 0.67,
+          "melee_dice_sides": 0.67
+        },
+        "volume": "15 L",
+        "weight": "20 kg",
+        "zombify_into": "mon_meat_cocoon_tiny",
+        "upgrades": {
+          "age_grow": 42,
+          "into": "mon_giant_cockroach"
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/mutant.json",
+      "entry": {
+        "id": "mon_mutant_antler",
+        "type": "MONSTER",
+        "name": {
+          "str": "ungulate mutant"
+        },
+        "description": "A gigantic mutated test subject, still wearing the tattered remains of an orange jumpsuit.  They walk on four warped legs ending in hooves, and their head is dominated by a glistening, tangled crown of antlers that scratch the ceiling.",
+        "symbol": "M",
+        "color": "brown",
+        "bodytype": "horse",
+        "species": [
+          "MUTANT",
+          "HUMAN"
+        ],
+        "default_faction": "lab_mutant",
+        "volume": "275 L",
+        "weight": "250 kg",
+        "hp": 210,
+        "aggression": 8,
+        "morale": 13,
+        "aggro_character": false,
+        "regen_morale": true,
+        "speed": 150,
+        "melee_skill": 6,
+        "melee_dice": 4,
+        "melee_dice_sides": 3,
+        "special_attacks": [
+          {
+            "id": "mutant_antler"
+          },
+          {
+            "id": "mutant_hoof"
+          },
+          [
+            "GRAZE",
+            120
+          ],
+          [
+            "BROWSE",
+            120
+          ]
+        ],
+        "dodge": 6,
+        "bleed_rate": 70,
+        "vision_day": 25,
+        "vision_night": 8,
+        "path_settings": {
+          "max_dist": 50,
+          "avoid_traps": true,
+          "avoid_sharp": true
+        },
+        "families": [
+          "prof_gross_anatomy",
+          "prof_intro_biology",
+          "prof_physiology"
+        ],
+        "harvest": "mutant_human",
+        "dissect": "dissect_cattle_sample_large",
+        "death_drops": "mon_mutant_experimental_death_drops",
+        "anger_triggers": [
+          "HOSTILE_SEEN",
+          "PLAYER_CLOSE",
+          "FRIEND_ATTACKED"
+        ],
+        "fear_triggers": [
+          "HURT",
+          "FIRE"
+        ],
+        "zombify_into": "mon_meat_cocoon_med",
+        "flags": [
+          "SEES",
+          "HEARS",
+          "WARM",
+          "HAS_MIND",
+          "SWARMS",
+          "GROUP_MORALE",
+          "BASHES",
+          "GROUP_BASH",
+          "HIT_AND_RUN",
+          "PATH_AVOID_DANGER",
+          "EATS"
+        ],
+        "armor": {
+          "bash": 10,
+          "cut": 11,
+          "stab": 8,
+          "bullet": 5,
+          "electric": 2
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/mutant.json",
+      "entry": {
+        "id": "mon_mutant_arthropod",
+        "type": "MONSTER",
+        "name": {
+          "str": "arthropod mutant"
+        },
+        "description": "A horribly mutated experimental subject.  Their original body - still wearing an orange jumpsuit - flops around lifelessly, carried by twelve segmented legs covered in hairy chitin erupting from their back.  At the base of the front pair of legs, an almost-human scalp gives way to a dozen irregularly-sized eyes and a set of mandibles, and from their hind end a stinger not unlike a scorpion's emerges.",
+        "copy-from": "mon_mutant_antler",
+        "bodytype": "spider",
+        "color": "i_black",
+        "volume": "180 L",
+        "weight": "200 kg",
+        "hp": 180,
+        "aggression": 45,
+        "morale": 40,
+        "speed": 105,
+        "melee_skill": 10,
+        "melee_dice": 3,
+        "grab_strength": 50,
+        "special_attacks": [
+          {
+            "id": "mutant_stinger"
+          },
+          {
+            "id": "mutant_spinneret"
+          },
+          {
+            "id": "grab"
+          },
+          {
+            "type": "bite",
+            "cooldown": 10,
+            "move_cost": 105,
+            "damage_max_instance": [
+              {
+                "damage_type": "stab",
+                "amount": 13,
+                "armor_penetration": 15
+              }
+            ],
+            "min_mul": 0.8,
+            "max_mul": 1.1,
+            "infection_chance": 2
+          },
+          [
+            "EAT_CARRION",
+            120
+          ]
+        ],
+        "dodge": 7,
+        "bleed_rate": 50,
+        "vision_night": 20,
+        "weakpoint_sets": [
+          "wps_arthropod"
+        ],
+        "families": [
+          "prof_gross_anatomy",
+          "prof_intro_biology",
+          "prof_physiology",
+          "prof_wp_basic_bug"
+        ],
+        "harvest": "mutant_human",
+        "dissect": "dissect_spider_sample_large",
+        "emit_fields": [
+          {
+            "emit_id": "emit_web_small",
+            "delay": "5 s"
+          }
+        ],
+        "death_drops": "mon_mutant_evolved_death_drops",
+        "extend": {
+          "flags": [
+            "SMELLS",
+            "KEENNOSE",
+            "WEBWALK"
+          ],
+          "anger_triggers": [
+            "PLAYER_WEAK",
+            "HURT"
+          ],
+          "move_skills": {
+            "climb": 6
+          }
+        },
+        "delete": {
+          "flags": [
+            "HIT_AND_RUN",
+            "WARM"
+          ]
+        },
+        "armor": {
+          "electric": 2,
+          "bash": 11,
+          "cut": 18,
+          "stab": 12,
+          "bullet": 12
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/mutant.json",
+      "entry": {
+        "id": "mon_mutant_camouflaged",
+        "type": "MONSTER",
+        "name": {
+          "str": "camouflaged mutant"
+        },
+        "description": "A mutated test subject, running on all fours at alarming speed.  Their short fur changes color to match the background in an instant, making you struggle to keep the thing in focus.  Their thin limbs end in long talons, and their mouth is held perpetually open by a set of knife-sized fangs.",
+        "copy-from": "mon_mutant_antler",
+        "color": "blue",
+        "bodytype": "dog",
+        "volume": "200 L",
+        "weight": "180 kg",
+        "hp": 160,
+        "speed": 115,
+        "attack_cost": 115,
+        "aggression": 35,
+        "morale": 40,
+        "special_attacks": [
+          {
+            "id": "scratch",
+            "move_cost": 115,
+            "cooldown": 4,
+            "min_mul": 1.5,
+            "max_mul": 2.5
+          },
+          {
+            "type": "leap",
+            "move_cost": 0,
+            "cooldown": 5,
+            "min_range": 2,
+            "max_range": 8
+          },
+          {
+            "type": "bite",
+            "cooldown": 7,
+            "move_cost": 115,
+            "damage_max_instance": [
+              {
+                "damage_type": "stab",
+                "amount": 15,
+                "armor_penetration": 25
+              }
+            ],
+            "min_mul": 0.8,
+            "max_mul": 1.1,
+            "infection_chance": 10
+          },
+          [
+            "EAT_FOOD",
+            120
+          ]
+        ],
+        "dodge": 9,
+        "vision_night": 15,
+        "harvest": "mutant_human",
+        "dissect": "dissect_chimera_sample_large",
+        "extend": {
+          "flags": [
+            "CAMOUFLAGE",
+            "SMELLS",
+            "KEENNOSE",
+            "HARDTOSHOOT"
+          ],
+          "move_skills": {
+            "climb": 6
+          }
+        },
+        "delete": {
+          "flags": [
+            "HAS_MIND"
+          ]
+        },
+        "armor": {
+          "bash": 10,
+          "cut": 11,
+          "stab": 8,
+          "bullet": 5,
+          "electric": 1
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/mutant.json",
+      "entry": {
+        "id": "mon_mutant_mollusk",
+        "type": "MONSTER",
+        "name": {
+          "str": "shelled mutant"
+        },
+        "description": "An enormous mutant hidden beneath a gray segmented shell, crawling on a carpet of innumerable tentacles covered with suckers.  They hold three thicker, branching limbs high on their front end, each dotted with dozens of unblinking eyeballs.",
+        "copy-from": "mon_mutant_antler",
+        "color": "dark_gray",
+        "bodytype": "snake",
+        "volume": "375 L",
+        "weight": "400 kg",
+        "hp": 320,
+        "speed": 60,
+        "attack_cost": 60,
+        "aggression": 30,
+        "morale": 80,
+        "melee_dice_sides": 4,
+        "melee_damage": [
+          {
+            "damage_type": "bash",
+            "amount": 4
+          }
+        ],
+        "grab_strength": 75,
+        "special_attacks": [
+          {
+            "id": "grab",
+            "cooldown": 15
+          },
+          {
+            "id": "grab_2",
+            "cooldown": 15
+          },
+          {
+            "id": "ranged_pull",
+            "range": 4,
+            "cooldown": 10
+          },
+          {
+            "id": "tentacle",
+            "move_cost": 60,
+            "range": 4,
+            "no_adjacent": true
+          },
+          {
+            "id": "grab_drag",
+            "cooldown": 15,
+            "grab_data": {
+              "drag_deviation": 1,
+              "drag_movecost_mod": 0.2
+            }
+          },
+          {
+            "id": "drag_followup",
+            "grab_data": {
+              "drag_deviation": 1,
+              "drag_movecost_mod": 0.2
+            }
+          },
+          [
+            "EAT_FOOD",
+            120
+          ]
+        ],
+        "dodge": 1,
+        "weakpoint_sets": [
+          "wps_arthropod"
+        ],
+        "families": [
+          "prof_gross_anatomy",
+          "prof_intro_biology",
+          "prof_physiology",
+          "prof_wp_basic_bug"
+        ],
+        "harvest": "mutant_human",
+        "dissect": "dissect_gastropod_sample_large",
+        "zombify_into": "mon_meat_cocoon_large",
+        "delete": {
+          "flags": [
+            "HIT_AND_RUN"
+          ],
+          "fear_triggers": [
+            "FIRE"
+          ]
+        },
+        "extend": {
+          "flags": [
+            "SMALLSLUDGETRAIL",
+            "SLUDGEPROOF",
+            "NOHEAD",
+            "STUN_IMMUNE",
+            "FIREPROOF",
+            "PULP_PRYING"
+          ]
+        },
+        "armor": {
+          "bash": 22,
+          "cut": 45,
+          "stab": 30,
+          "heat": 50,
+          "bullet": 70,
+          "electric": 6
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/bird.json",
+      "entry": {
+        "id": "mon_pigeon",
+        "type": "MONSTER",
+        "name": {
+          "str": "feral pigeon"
+        },
+        "description": "A gentle, plump, small-billed bird with a skin saddle, or cere, between its bill and forehead.  On the ground, it struts about with a characteristic bobbing of the head.  It is a strong, swift flier thanks to its long wings and powerful flight muscles.",
+        "copy-from": "mon_bird_flying_base",
+        "reproduction": {
+          "baby_type": {
+            "baby_egg": "egg_pigeon"
+          },
+          "baby_count": 3,
+          "baby_timer": 32
+        },
+        "petfood": {
+          "food": [
+            "BIRDFOOD"
+          ],
+          "feed": "The %s seems to like you!  It runs around your legs and seems friendly.",
+          "pet": "The %s runs around your leg."
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_skeleton_medical",
+        "type": "MONSTER",
+        "name": {
+          "str_sp": "sawbones"
+        },
+        "description": "A malformed armor of misshapen bone has grown over this zombie, having pushed what remains of the skin out of the way.  The clothes of a medical worker are still draped over it.",
+        "copy-from": "mon_skeleton",
+        "looks_like": "mon_skeleton",
+        "death_drops": "zombie_medical_clothes",
+        "color": "white"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/insect_spider.json",
+      "entry": {
+        "id": "mon_spider_cellar_mega",
+        "type": "MONSTER",
+        "name": {
+          "str": "warehouse spider"
+        },
+        "description": "A tangle of branching chitinous legs operating seemingly independently, somehow still managing to carry a cow-sized central body.  A number of malformed, twitching legs hang from the cephalothorax, but the head -and especially the mandibles- still seem to be in working order.",
+        "copy-from": "mon_spider_cellar_giant",
+        "proportional": {
+          "hp": 7,
+          "weight": 5,
+          "volume": 5,
+          "speed": 1.2,
+          "attack_cost": 1.2
+        },
+        "morale": 50,
+        "melee_dice": 3,
+        "melee_skill": 7,
+        "grab_strength": 75,
+        "special_attacks": [
+          {
+            "id": "grab",
+            "cooldown": 5,
+            "condition": {
+              "not": {
+                "u_has_effect": "maimed_leg"
+              }
+            }
+          },
+          {
+            "id": "grab_drag",
+            "condition": {
+              "and": [
+                {
+                  "not": {
+                    "u_has_effect": "maimed_leg"
+                  }
+                },
+                {
+                  "not": {
+                    "u_has_flag": "GRAB_FILTER"
+                  }
+                }
+              ]
+            },
+            "grab_data": {
+              "drag_movecost_mod": 0.5,
+              "drag_deviation": 1
+            }
+          },
+          {
+            "id": "drag_followup",
+            "condition": {
+              "and": [
+                {
+                  "not": {
+                    "u_has_effect": "maimed_leg"
+                  }
+                },
+                {
+                  "u_has_flag": "GRAB_FILTER"
+                },
+                {
+                  "npc_has_flag": "GRAB"
+                }
+              ]
+            },
+            "grab_data": {
+              "drag_movecost_mod": 0.5,
+              "drag_deviation": 1
+            }
+          },
+          {
+            "type": "bite",
+            "move_cost": 120,
+            "damage_max_instance": [
+              {
+                "damage_type": "cut",
+                "amount": 10
+              },
+              {
+                "damage_type": "stab",
+                "amount": 8
+              }
+            ],
+            "condition": {
+              "not": {
+                "u_has_effect": "maimed_mandible"
+              }
+            },
+            "cooldown": 3,
+            "effects": [
+              {
+                "id": "venom_pain",
+                "chance": 50,
+                "duration": 350,
+                "affect_hit_bp": true
+              }
+            ]
+          },
+          {
+            "type": "spell",
+            "spell_data": {
+              "id": "cellar_spider_leg_detach",
+              "min_level": 1
+            },
+            "monster_message": "The maimed legs start twitching erratically!",
+            "cooldown": 15,
+            "condition": {
+              "u_has_effect": "maimed_leg"
+            }
+          }
+        ],
+        "dodge": 6,
+        "weakpoints": [
+          {
+            "id": "leg",
+            "name": "a leg",
+            "damage_mult": {
+              "all": 0.4
+            },
+            "crit_mult": {
+              "all": 0.4
+            },
+            "coverage_mult": {
+              "point": 0.75
+            },
+            "effects": [
+              {
+                "effect": "staggered",
+                "chance": 5,
+                "message": "The %s is knocked off-balance!",
+                "damage_required": [
+                  10,
+                  30
+                ]
+              },
+              {
+                "effect": "staggered",
+                "chance": 15,
+                "message": "The %s is knocked off-balance!",
+                "damage_required": [
+                  30,
+                  100
+                ]
+              }
+            ],
+            "coverage": 25
+          },
+          {
+            "id": "leg_joint",
+            "name": "a joint",
+            "damage_mult": {
+              "all": 0.4
+            },
+            "crit_mult": {
+              "all": 0.4
+            },
+            "armor_mult": {
+              "all": 0.5
+            },
+            "coverage_mult": {
+              "point": 0.75
+            },
+            "effects": [
+              {
+                "effect": "maimed_leg",
+                "chance": 25,
+                "duration": [
+                  "15 seconds",
+                  "50 seconds"
+                ],
+                "message": "One of the %s's legs falls limp!",
+                "damage_required": [
+                  1,
+                  10
+                ]
+              },
+              {
+                "effect": "maimed_leg",
+                "chance": 50,
+                "duration": [
+                  "25 seconds",
+                  "100 seconds"
+                ],
+                "message": "One of the %s's legs falls limp!",
+                "damage_required": [
+                  11,
+                  24
+                ]
+              },
+              {
+                "effect": "maimed_leg",
+                "chance": 100,
+                "duration": 86400,
+                "message": "One of the %s's legs is disabled!",
+                "damage_required": [
+                  24,
+                  100
+                ]
+              }
+            ],
+            "coverage": 5
+          }
+        ],
+        "bleed_rate": 60,
+        "upgrades": false,
+        "extend": {
+          "anger_triggers": [
+            "HOSTILE_SEEN"
+          ],
+          "flags": [
+            "BASHES"
+          ]
+        },
+        "zombify_into": "mon_meat_cocoon_med",
+        "dissect": "dissect_spider_sample_large",
+        "armor": {
+          "bullet": 2,
+          "bash": 5,
+          "cut": 7,
+          "stab": 7,
+          "acid": 5,
+          "electric": 3
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/insect_spider.json",
+      "entry": {
+        "id": "mon_spider_cellar_mom",
+        "type": "MONSTER",
+        "name": {
+          "str": "mommy long-legs",
+          "str_pl": "mommy long legs"
+        },
+        "description": "This surprisingly shy giant cellar spider holds a head-sized ball of crawling spiderlings of different ages in its mandibles, carefully balancing on her long legs not to drop the precious cargo.  She seems uninterested in you.",
+        "copy-from": "mon_spider_cellar_giant",
+        "speed": 85,
+        "aggression": -15,
+        "morale": 10,
+        "special_attacks": [
+          {
+            "id": "grab",
+            "cooldown": 25,
+            "condition": {
+              "not": {
+                "u_has_effect": "maimed_leg"
+              }
+            }
+          }
+        ],
+        "death_function": {
+          "message": "The spiderlings fall to the ground!",
+          "effect": {
+            "id": "death_spider_cellar_mom",
+            "hit_self": true
+          }
+        },
+        "delete": {
+          "flags": [
+            "HARDTOSHOOT"
+          ],
+          "anger_triggers": [
+            "PLAYER_WEAK"
+          ]
+        },
+        "extend": {
+          "flags": [
+            "STUMBLES"
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/insect_spider.json",
+      "entry": {
+        "id": "mon_spider_cellar_small",
+        "type": "MONSTER",
+        "name": {
+          "str": "oversized cellar spider"
+        },
+        "description": "A cellar spider - also known as \"daddy long-legs\" - grown to distressing size.  Its body is about the size of your head, with the long, spindly legs raising it up to your knee.  It tries getting away from you with an unnervingly fluid run.",
+        "copy-from": "mon_spider_cellar_giant",
+        "proportional": {
+          "hp": 0.5,
+          "melee_dice_sides": 0.67
+        },
+        "aggression": -50,
+        "morale": 0,
+        "volume": "20 L",
+        "weight": "15 kg",
+        "extend": {
+          "fear_triggers": [
+            "PLAYER_CLOSE"
+          ],
+          "flags": [
+            "NO_BREED"
+          ]
+        },
+        "vision_day": 8,
+        "vision_night": 8,
+        "dissect": "dissect_spider_sample_single",
+        "zombify_into": "mon_meat_cocoon_tiny",
+        "upgrades": {
+          "age_grow": 14,
+          "into": "mon_spider_cellar_giant"
+        },
+        "delete": {
+          "anger_triggers": [
+            "PLAYER_CLOSE",
+            "PLAYER_WEAK",
+            "HOSTILE_SEEN"
+          ],
+          "flags": [
+            "GRABS"
+          ],
+          "special_attacks": [
+            "grab"
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_zombie_medical",
+        "type": "MONSTER",
+        "name": {
+          "str": "zombie medic"
+        },
+        "description": "This shambling corpse is dressed like a medical professional.  It was either a doctor, or only played one on TV.",
+        "copy-from": "mon_zombie",
+        "looks_like": "mon_zombie",
+        "death_drops": "mon_zombie_medical_death_drops",
+        "color": "blue",
+        "upgrades": {
+          "half_life": 120,
+          "into_group": "GROUP_MEDICAL_UPGRADE"
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_zombie_medical_acidic",
+        "type": "MONSTER",
+        "name": {
+          "str_sp": "doctor burns"
+        },
+        "description": "This is the body of a doctor or nurse of some kind.  It's hard to tell now that most of its clothing has corroded away from whatever vile acid its secreting.",
+        "copy-from": "mon_zombie_acidic",
+        "looks_like": "mon_zombie_acidic",
+        "death_drops": "mon_zombie_medical_death_drops"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_zombie_medical_brute",
+        "type": "MONSTER",
+        "name": {
+          "str": "medical horror"
+        },
+        "description": "A former doctor of some sort, though its uniform has been torn apart.  You assume the oversized muscles that cover it to be the culprit.",
+        "copy-from": "mon_zombie_brute",
+        "looks_like": "mon_zombie_brute",
+        "death_drops": "mon_zombie_medical_death_drops",
+        "color": "red"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_zombie_medical_pupa",
+        "type": "MONSTER",
+        "copy-from": "mon_zombie_pupa",
+        "looks_like": "mon_zombie_pupa",
+        "death_drops": "mon_zombie_medical_death_drops"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_zombie_medical_regenerating",
+        "type": "MONSTER",
+        "name": {
+          "str": "regenerating zombie medic"
+        },
+        "description": "The zombified remains of a practitioner of medicine, you aren't certain what field - your focus is instead drawn to the way that its pink flesh snakes all over it, weaving its way over wounds and injuries.",
+        "copy-from": "mon_zombie_regenerating",
+        "looks_like": "mon_zombie_regenerating",
+        "death_drops": "mon_zombie_medical_death_drops",
+        "upgrades": {
+          "half_life": 120,
+          "into": "mon_zombie_regenerating_hunter"
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed-medical.json",
+      "entry": {
+        "id": "mon_zombie_pupa_medical_decoy",
+        "type": "MONSTER",
+        "copy-from": "mon_zombie_pupa_decoy",
+        "looks_like": "mon_zombie_pupa_decoy",
+        "death_drops": "mon_zombie_medical_death_drops"
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed_misc.json",
+      "entry": {
+        "id": "mon_zombie_regenerating",
+        "type": "MONSTER",
+        "name": {
+          "str": "regenerating zombie"
+        },
+        "description": "A hairless zombie.  Its pale, pinkish flesh appears to be squirming and moving across its body, quickly covering and fixing any wounds that it receives.  Its clothing is riddled with holes, suggesting someone else tried, and failed, to take it down.",
+        "copy-from": "mon_zombie_base",
+        "hp": 60,
+        "speed": 90,
+        "color": "red_cyan",
+        "scents_tracked": [
+          "sc_human",
+          "sc_fetid"
+        ],
+        "melee_dice": 3,
+        "melee_damage": [
+          {
+            "damage_type": "cut",
+            "amount": 1
+          }
+        ],
+        "dodge": 1,
+        "regenerates": 12,
+        "upgrades": {
+          "half_life": 140,
+          "into": "mon_zombie_regenerating_hunter"
+        },
+        "extend": {
+          "flags": [
+            "SMELLS",
+            "REVIVES_HEALTHY",
+            "NO_NECRO"
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed_misc.json",
+      "entry": {
+        "id": "mon_zombie_regenerating_final",
+        "type": "MONSTER",
+        "name": {
+          "str": "regenerating abomination"
+        },
+        "description": "This zombie hardly resembles a human anymore - Its skeleton has been repeatedly dismantled and reassembled into a horrid quadrupedal shape, like some sort of mismatched action figure.  Slick, bloodied flesh writhes on its frame with an almost viscous quality, digesting and reconstituting itself in an endless ouroboros of undead flesh.",
+        "copy-from": "mon_zombie_predator",
+        "hp": 100,
+        "regenerates": 12,
+        "color": "red_cyan",
+        "special_attacks": [
+          {
+            "type": "bite",
+            "cooldown": 10,
+            "damage_max_instance": [
+              {
+                "damage_type": "stab",
+                "amount": 6,
+                "armor_multiplier": 0.2
+              }
+            ]
+          },
+          {
+            "id": "stretch_attack",
+            "cooldown": 10,
+            "move_cost": 50,
+            "range": 2,
+            "damage_max_instance": [
+              {
+                "damage_type": "bash",
+                "amount": 7
+              }
+            ]
+          },
+          {
+            "id": "ranged_pull",
+            "cooldown": 30,
+            "grab_data": {
+              "pull_weight_ratio": 1
+            }
+          },
+          {
+            "id": "grab_drag",
+            "cooldown": 5
+          },
+          {
+            "id": "drag_followup"
+          },
+          {
+            "id": "longswipe",
+            "cooldown": 15
+          }
+        ],
+        "armor": {
+          "electric": 1
+        },
+        "bleed_rate": 0,
+        "extend": {
+          "flags": [
+            "SMELLS",
+            "REVIVES_HEALTHY",
+            "NO_NECRO"
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/zed_misc.json",
+      "entry": {
+        "id": "mon_zombie_regenerating_hunter",
+        "type": "MONSTER",
+        "name": {
+          "str": "fleshy hunter"
+        },
+        "description": "A zombie prowling around on all fours; its exposed muscles churn and snake, unraveling before restitching themselves elsewhere along its red-raw figure.",
+        "copy-from": "mon_zombie_hunter",
+        "species": [
+          "ZOMBIE"
+        ],
+        "regenerates": 12,
+        "color": "red_cyan",
+        "upgrades": {
+          "half_life": 140,
+          "into": "mon_zombie_regenerating_final"
+        },
+        "extend": {
+          "move_skills": {
+            "climb": 4
+          },
+          "flags": [
+            "SMELLS",
+            "REVIVES_HEALTHY",
+            "NO_NECRO"
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/itemgroups/Locations_MapExtras/locations.json",
+      "entry": {
+        "type": "item_group",
+        "subtype": "collection",
+        "id": "nursing_home_clothes",
+        "entries": [
+          {
+            "distribution": [
+              {
+                "item": "jersey",
+                "prob": 5
+              },
+              {
+                "item": "longshirt",
+                "prob": 20
+              },
+              {
+                "item": "buttonshirt",
+                "variant": "striped",
+                "prob": 10
+              },
+              {
+                "item": "denim_shirt",
+                "prob": 5
+              },
+              {
+                "item": "sweater",
+                "prob": 20
+              },
+              {
+                "item": "sweatshirt",
+                "prob": 20
+              },
+              {
+                "item": "tshirt",
+                "prob": 10
+              },
+              {
+                "item": "polo_shirt",
+                "prob": 10
+              }
+            ]
+          },
+          {
+            "distribution": [
+              {
+                "item": "pants_checkered",
+                "prob": 10
+              },
+              {
+                "item": "pants",
+                "prob": 40
+              },
+              {
+                "item": "jeans",
+                "prob": 20
+              },
+              {
+                "item": "jeans_skinny",
+                "prob": 5
+              },
+              {
+                "item": "pants",
+                "variant": "pants_flag",
+                "prob": 5
+              },
+              {
+                "item": "breeches",
+                "prob": 25
+              }
+            ]
+          },
+          {
+            "item": "slippers",
+            "prob": 50
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monsterdrops/zombie_medical.json",
+      "entry": {
+        "id": "zombie_medical_clothes",
+        "type": "item_group",
+        "subtype": "collection",
+        "entries": [
+          {
+            "group": "lab_torso",
+            "damage": [
+              1,
+              4
+            ]
+          },
+          {
+            "group": "lab_pants",
+            "damage": [
+              1,
+              4
+            ]
+          },
+          {
+            "group": "lab_shoes",
+            "damage": [
+              1,
+              4
+            ]
+          },
+          {
+            "group": "underwear",
+            "damage": [
+              1,
+              4
+            ]
+          },
+          {
+            "group": "hazmat_gloves",
+            "damage": [
+              1,
+              4
+            ]
+          },
+          {
+            "group": "hazmat_masks",
+            "damage": [
+              1,
+              4
+            ]
+          },
+          {
+            "item": "mask_plague",
+            "damage": [
+              1,
+              4
+            ],
+            "prob": 25,
+            "event": "halloween"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/mapgen/map_extras/spider.json",
+      "entry": {
+        "type": "mapgen",
+        "nested_mapgen_id": "spider_webs",
+        "object": {
+          "mapgensize": [
+            1,
+            1
+          ],
+          "place_fields": [
+            {
+              "field": "fd_web",
+              "x": 0,
+              "y": 0,
+              "intensity": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "GROUP_CIVILIANS_STANDARD",
+        "//": "Used for deduplication only, so one does not have to repeat the same standard ratio over and over again",
+        "type": "monstergroup",
+        "monsters": [
+          {
+            "monster": "mon_civilian_stationary",
+            "weight": 30,
+            "cost_multiplier": 0,
+            "ends": "12 days"
+          },
+          {
+            "monster": "mon_civilian_zombiefighter",
+            "weight": 16,
+            "cost_multiplier": 0,
+            "ends": "12 days"
+          },
+          {
+            "monster": "mon_civilian_zombiegunner",
+            "weight": 12,
+            "cost_multiplier": 0,
+            "ends": "12 days"
+          },
+          {
+            "monster": "mon_civilian_police_rifle",
+            "weight": 4,
+            "cost_multiplier": 3,
+            "ends": "12 days"
+          },
+          {
+            "monster": "mon_civilian_police",
+            "weight": 4,
+            "cost_multiplier": 3,
+            "ends": "12 days"
+          },
+          {
+            "monster": "mon_civilian_parent",
+            "weight": 20,
+            "cost_multiplier": 0,
+            "ends": "8 days",
+            "pack_size": [
+              1,
+              2
+            ]
+          },
+          {
+            "monster": "mon_civilian_parent",
+            "weight": 20,
+            "cost_multiplier": 0,
+            "starts": "8 days",
+            "ends": "16 days"
+          },
+          {
+            "monster": "mon_civilian_panic",
+            "weight": 40,
+            "cost_multiplier": 0,
+            "ends": "8 days",
+            "pack_size": [
+              1,
+              5
+            ]
+          },
+          {
+            "monster": "mon_civilian_panic",
+            "weight": 60,
+            "cost_multiplier": 0,
+            "starts": "8 days",
+            "ends": "16 days",
+            "pack_size": [
+              1,
+              2
+            ]
+          },
+          {
+            "monster": "mon_civilian_panic",
+            "weight": 60,
+            "cost_multiplier": 0,
+            "starts": "16 days",
+            "ends": "24 days"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monsters/civilians.json",
+      "entry": {
+        "id": "GROUP_CIVILIANS_UPGRADE",
+        "type": "monstergroup",
+        "monsters": [
+          {
+            "monster": "mon_zombie",
+            "weight": 264,
+            "cost_multiplier": 0
+          },
+          {
+            "monster": "mon_zombie_fat",
+            "weight": 266,
+            "cost_multiplier": 0
+          },
+          {
+            "monster": "mon_zombie_tough",
+            "weight": 100,
+            "cost_multiplier": 0
+          },
+          {
+            "monster": "mon_zombie_crawler",
+            "weight": 66,
+            "cost_multiplier": 0
+          },
+          {
+            "monster": "mon_zombie_brainless",
+            "weight": 30,
+            "cost_multiplier": 0
+          },
+          {
+            "group": "GROUP_FERAL",
+            "weight": 180,
+            "cost_multiplier": 0
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/zombies.json",
+      "entry": {
+        "type": "monstergroup",
+        "id": "GROUP_FERAL",
+        "//": "default ferals",
+        "default": "mon_feral_human_crowbar",
+        "monsters": [
+          {
+            "monster": "mon_feral_cop",
+            "weight": 10,
+            "cost_multiplier": 3
+          },
+          {
+            "monster": "mon_feral_human_pipe",
+            "weight": 40,
+            "pack_size": [
+              2,
+              3
+            ]
+          },
+          {
+            "monster": "mon_feral_human_crowbar",
+            "weight": 30,
+            "pack_size": [
+              2,
+              3
+            ]
+          },
+          {
+            "monster": "mon_feral_human_axe",
+            "weight": 10,
+            "cost_multiplier": 2,
+            "pack_size": [
+              1,
+              2
+            ]
+          },
+          {
+            "monster": "mon_feral_human_tool",
+            "weight": 5,
+            "cost_multiplier": 5
+          },
+          {
+            "monster": "mon_feral_sapien_spear",
+            "weight": 5,
+            "cost_multiplier": 2
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/zombie_upgrades.json",
+      "entry": {
+        "type": "monstergroup",
+        "id": "GROUP_MEDICAL_UPGRADE",
+        "//": "Masters pick from here when upgrading.  Note that 'freq' units are tenth of a percent, with default filling in the gap.",
+        "monsters": [
+          {
+            "monster": "mon_zombie_medical_brute",
+            "weight": 200
+          },
+          {
+            "monster": "mon_zombie_medical_regenerating",
+            "weight": 300
+          },
+          {
+            "monster": "mon_boomer",
+            "weight": 50
+          },
+          {
+            "monster": "mon_zombie_hollow",
+            "weight": 50
+          },
+          {
+            "monster": "mon_skeleton_medical",
+            "weight": 200
+          },
+          {
+            "monster": "mon_zombie_medical_acidic",
+            "weight": 100
+          },
+          {
+            "monster": "mon_zombie_medical_pupa",
+            "weight": 50
+          },
+          {
+            "monster": "mon_zombie_pupa_medical_decoy",
+            "weight": 50
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/mutant_upgrades.json",
+      "entry": {
+        "id": "GROUP_MUTANT_EVOLVED",
+        "type": "monstergroup",
+        "default": "mon_mutant_evolved",
+        "monsters": [
+          {
+            "monster": "mon_mutant_evolved"
+          },
+          {
+            "monster": "mon_mutant_antler",
+            "weight": 450
+          },
+          {
+            "monster": "mon_mutant_mollusk",
+            "weight": 220
+          },
+          {
+            "monster": "mon_mutant_arthropod",
+            "weight": 180
+          },
+          {
+            "monster": "mon_mutant_evolved",
+            "weight": 80
+          },
+          {
+            "monster": "mon_mutant_camouflaged",
+            "weight": 60
+          },
+          {
+            "monster": "mon_mutant_alpha",
+            "weight": 10
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/zombies.json",
+      "entry": {
+        "id": "GROUP_NURSING_HOME",
+        "type": "monstergroup",
+        "monsters": [
+          {
+            "group": "GROUP_CIVILIANS_STANDARD",
+            "weight": 10,
+            "cost_multiplier": 0
+          },
+          {
+            "monster": "mon_zombie",
+            "weight": 12
+          },
+          {
+            "monster": "mon_zombie_fat",
+            "weight": 5
+          },
+          {
+            "monster": "mon_zombie_rot",
+            "weight": 40,
+            "pack_size": [
+              3,
+              4
+            ]
+          },
+          {
+            "monster": "mon_zombie_crawler",
+            "weight": 5
+          },
+          {
+            "monster": "mon_zombie_brainless",
+            "weight": 5
+          },
+          {
+            "monster": "mon_zombie_medical",
+            "weight": 20
+          },
+          {
+            "monster": "mon_boomer",
+            "weight": 3
+          },
+          {
+            "monster": "mon_feral_human_pipe",
+            "weight": 3
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/zombies.json",
+      "entry": {
+        "id": "GROUP_NURSING_HOME_LAB",
+        "type": "monstergroup",
+        "monsters": [
+          {
+            "monster": "mon_zombie_labsecurity",
+            "weight": 15
+          },
+          {
+            "monster": "mon_zombie_technician",
+            "weight": 10
+          },
+          {
+            "monster": "mon_zombie_scientist",
+            "weight": 40
+          },
+          {
+            "monster": "mon_zombie_medical",
+            "weight": 35
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/zombies.json",
+      "entry": {
+        "id": "GROUP_RETIREMENT_COMMUNITY",
+        "type": "monstergroup",
+        "monsters": [
+          {
+            "group": "GROUP_CIVILIANS_STANDARD",
+            "weight": 10,
+            "cost_multiplier": 0
+          },
+          {
+            "monster": "mon_zombie",
+            "weight": 34
+          },
+          {
+            "monster": "mon_zombie_fat",
+            "weight": 14
+          },
+          {
+            "monster": "mon_zombie_runner",
+            "weight": 6
+          },
+          {
+            "monster": "mon_zombie_rot",
+            "weight": 10,
+            "pack_size": [
+              2,
+              2
+            ]
+          },
+          {
+            "monster": "mon_zombie_crawler",
+            "weight": 5
+          },
+          {
+            "monster": "mon_zombie_brainless",
+            "weight": 5
+          },
+          {
+            "monster": "mon_zombie_child",
+            "weight": 3
+          },
+          {
+            "monster": "mon_boomer",
+            "weight": 5
+          },
+          {
+            "monster": "mon_zombie_dog",
+            "weight": 5
+          },
+          {
+            "monster": "mon_feral_human_pipe",
+            "weight": 5
+          },
+          {
+            "monster": "mon_feral_human_crowbar",
+            "weight": 3
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/bugs.json",
+      "entry": {
+        "type": "monstergroup",
+        "id": "GROUP_SPIDER_BASEMENT",
+        "default": "mon_spider_cellar_small",
+        "//": "`monster` ignores group-level pack size, so numbers are set in mapgen",
+        "monsters": [
+          {
+            "monster": "mon_spider_cellar_small",
+            "weight": 30,
+            "starts": "45 days",
+            "ends": "180 days"
+          },
+          {
+            "monster": "mon_spider_cellar_giant",
+            "weight": 22,
+            "starts": "120 days",
+            "ends": "288 days"
+          },
+          {
+            "monster": "mon_spider_cellar_mom",
+            "weight": 8,
+            "starts": "120 days"
+          },
+          {
+            "monster": "mon_spider_cellar_giant",
+            "weight": 20,
+            "starts": "288 days"
+          },
+          {
+            "monster": "mon_spider_cellar_mega",
+            "weight": 10,
+            "starts": "288 days"
+          }
+        ]
+      }
+    },
+    {
+      "source": "dda/data/json/monstergroups/fish.json",
+      "entry": {
+        "type": "monstergroup",
+        "id": "GROUP_STOCKED_POND",
+        "is_animal": true,
+        "monsters": [
+          {
+            "monster": "mon_fish_rainbow_trout",
+            "weight": 50,
+            "cost_multiplier": 3,
+            "pack_size": [
+              1,
+              3
+            ]
+          },
+          {
+            "monster": "mon_fish_rainbow_trout",
+            "weight": 100,
+            "cost_multiplier": 3,
+            "conditions": [
+              "DAWN",
+              "DUSK"
+            ],
+            "pack_size": [
+              1,
+              3
+            ]
+          },
+          {
+            "monster": "mon_fish_sbass",
+            "weight": 25,
+            "cost_multiplier": 3,
+            "pack_size": [
+              1,
+              3
+            ]
+          },
+          {
+            "monster": "mon_fish_sbass",
+            "weight": 50,
+            "cost_multiplier": 3,
+            "conditions": [
+              "DAWN",
+              "DUSK"
+            ],
+            "pack_size": [
+              1,
+              3
+            ]
+          },
+          {
+            "monster": "mon_fish_perch",
+            "weight": 30,
+            "cost_multiplier": 3,
+            "pack_size": [
+              1,
+              3
+            ]
+          },
+          {
+            "monster": "mon_fish_perch",
+            "weight": 55,
+            "cost_multiplier": 3,
+            "conditions": [
+              "DAWN",
+              "DUSK"
+            ],
+            "pack_size": [
+              1,
+              3
+            ]
+          },
+          {
+            "monster": "mon_fish_salmon",
+            "weight": 15,
+            "cost_multiplier": 8,
+            "pack_size": [
+              4,
+              6
+            ]
+          },
+          {
+            "monster": "mon_fish_salmon",
+            "weight": 20,
+            "cost_multiplier": 8,
+            "conditions": [
+              "DAWN",
+              "DUSK"
+            ],
+            "pack_size": [
+              4,
+              6
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "report": {
+    "root_missing_identifiers": [
+      [
+        "MONSTER",
+        "mon_large_cockroach"
+      ],
+      [
+        "MONSTER",
+        "mon_pigeon"
+      ],
+      [
+        "furniture",
+        "f_12000_gasoline_generator"
+      ],
+      [
+        "furniture",
+        "f_console"
+      ],
+      [
+        "furniture",
+        "f_console_broken"
+      ],
+      [
+        "furniture",
+        "f_diesel_generator"
+      ],
+      [
+        "furniture",
+        "f_ergometer_mechanical"
+      ],
+      [
+        "furniture",
+        "f_foot_locker_aluminum"
+      ],
+      [
+        "furniture",
+        "f_generator_broken"
+      ],
+      [
+        "furniture",
+        "f_hedge_short"
+      ],
+      [
+        "furniture",
+        "f_military_generator"
+      ],
+      [
+        "furniture",
+        "f_treadmill_mechanical"
+      ],
+      [
+        "furniture",
+        "f_water_heater_family"
+      ],
+      [
+        "item_group",
+        "SUS_fridge_bachelor"
+      ],
+      [
+        "item_group",
+        "SUS_office_mess"
+      ],
+      [
+        "item_group",
+        "SUS_science_personal_effects"
+      ],
+      [
+        "item_group",
+        "SUS_trash_floor"
+      ],
+      [
+        "item_group",
+        "SUS_trash_hardware"
+      ],
+      [
+        "item_group",
+        "SUS_trash_trashcan"
+      ],
+      [
+        "item_group",
+        "cigar_box_opened"
+      ],
+      [
+        "item_group",
+        "common_mutation_books"
+      ],
+      [
+        "item_group",
+        "hoarder"
+      ],
+      [
+        "item_group",
+        "lab_files_generic"
+      ],
+      [
+        "item_group",
+        "lab_mutagen_ingredients_fridge"
+      ],
+      [
+        "item_group",
+        "misc_smoking_legal"
+      ],
+      [
+        "item_group",
+        "nursing_home_clothes"
+      ],
+      [
+        "item_group",
+        "rare_mutation_books"
+      ],
+      [
+        "item_group",
+        "saline_bottle_random"
+      ],
+      [
+        "item_group",
+        "tools_common_small"
+      ],
+      [
+        "item_group",
+        "tools_workshop"
+      ],
+      [
+        "monstergroup",
+        "GROUP_MUTANT_EVOLVED"
+      ],
+      [
+        "monstergroup",
+        "GROUP_NURSING_HOME"
+      ],
+      [
+        "monstergroup",
+        "GROUP_NURSING_HOME_LAB"
+      ],
+      [
+        "monstergroup",
+        "GROUP_RETIREMENT_COMMUNITY"
+      ],
+      [
+        "monstergroup",
+        "GROUP_SPIDER_BASEMENT"
+      ],
+      [
+        "monstergroup",
+        "GROUP_STOCKED_POND"
+      ],
+      [
+        "nested_mapgen",
+        "spider_webs"
+      ],
+      [
+        "palette",
+        "parametrized_walls_palette"
+      ],
+      [
+        "talk_topic",
+        "COMP_NURSING_HOME_LEGAL"
+      ],
+      [
+        "terrain",
+        "t_soil"
+      ],
+      [
+        "terrain",
+        "t_window_bars_noglass"
+      ],
+      [
+        "terrain",
+        "t_zebra"
+      ],
+      [
+        "vehicle",
+        "hospital_bed_small"
+      ],
+      [
+        "vehicle",
+        "medical_cart"
+      ],
+      [
+        "vehicle",
+        "van_cargo"
+      ]
+    ],
+    "selected_definitions": 42,
+    "selected_by_type": {
+      "MONSTER": 29,
+      "item_group": 2,
+      "mapgen": 1,
+      "monstergroup": 10
+    },
+    "bn_declared_references_needing_semantic_review": [
+      [
+        "MONSTER",
+        "mon_boomer"
+      ],
+      [
+        "MONSTER",
+        "mon_dementia"
+      ],
+      [
+        "MONSTER",
+        "mon_feral_human_axe"
+      ],
+      [
+        "MONSTER",
+        "mon_feral_human_crowbar"
+      ],
+      [
+        "MONSTER",
+        "mon_feral_human_pipe"
+      ],
+      [
+        "MONSTER",
+        "mon_feral_human_tool"
+      ],
+      [
+        "MONSTER",
+        "mon_fish_perch"
+      ],
+      [
+        "MONSTER",
+        "mon_fish_rainbow_trout"
+      ],
+      [
+        "MONSTER",
+        "mon_fish_salmon"
+      ],
+      [
+        "MONSTER",
+        "mon_fish_sbass"
+      ],
+      [
+        "MONSTER",
+        "mon_giant_cockroach"
+      ],
+      [
+        "MONSTER",
+        "mon_mutant_alpha"
+      ],
+      [
+        "MONSTER",
+        "mon_mutant_evolved"
+      ],
+      [
+        "MONSTER",
+        "mon_skeleton"
+      ],
+      [
+        "MONSTER",
+        "mon_spider_cellar_giant"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_acidic"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_brainless"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_brute"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_child"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_crawler"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_dog"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_fat"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_hollow"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_hunter"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_labsecurity"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_predator"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_pupa"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_pupa_decoy"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_rot"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_runner"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_scientist"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_technician"
+      ],
+      [
+        "MONSTER",
+        "mon_zombie_tough"
+      ],
+      [
+        "harvest",
+        "bird_tiny"
+      ],
+      [
+        "harvest",
+        "human"
+      ],
+      [
+        "harvest",
+        "mutant_human"
+      ],
+      [
+        "item",
+        "breeches"
+      ],
+      [
+        "item",
+        "jeans"
+      ],
+      [
+        "item",
+        "jersey"
+      ],
+      [
+        "item",
+        "longshirt"
+      ],
+      [
+        "item",
+        "pants"
+      ],
+      [
+        "item",
+        "pants_checkered"
+      ],
+      [
+        "item",
+        "polo_shirt"
+      ],
+      [
+        "item",
+        "slippers"
+      ],
+      [
+        "item",
+        "sweater"
+      ],
+      [
+        "item",
+        "sweatshirt"
+      ],
+      [
+        "item",
+        "tshirt"
+      ],
+      [
+        "item_group",
+        "default_zombie_death_drops"
+      ],
+      [
+        "item_group",
+        "hazmat_gloves"
+      ],
+      [
+        "item_group",
+        "hazmat_masks"
+      ],
+      [
+        "item_group",
+        "lab_pants"
+      ],
+      [
+        "item_group",
+        "lab_shoes"
+      ],
+      [
+        "item_group",
+        "lab_torso"
+      ],
+      [
+        "item_group",
+        "mon_mutant_evolved_death_drops"
+      ],
+      [
+        "item_group",
+        "mon_mutant_experimental_death_drops"
+      ],
+      [
+        "item_group",
+        "mon_zombie_medical_death_drops"
+      ],
+      [
+        "item_group",
+        "underwear"
+      ]
+    ],
+    "unresolved_transitive_references": [
+      [
+        "MONSTER",
+        "mon_zombie_base"
+      ],
+      [
+        "furniture",
+        "f_12000_gasoline_generator"
+      ],
+      [
+        "furniture",
+        "f_console"
+      ],
+      [
+        "furniture",
+        "f_console_broken"
+      ],
+      [
+        "furniture",
+        "f_diesel_generator"
+      ],
+      [
+        "furniture",
+        "f_ergometer_mechanical"
+      ],
+      [
+        "furniture",
+        "f_foot_locker_aluminum"
+      ],
+      [
+        "furniture",
+        "f_generator_broken"
+      ],
+      [
+        "furniture",
+        "f_hedge_short"
+      ],
+      [
+        "furniture",
+        "f_military_generator"
+      ],
+      [
+        "furniture",
+        "f_treadmill_mechanical"
+      ],
+      [
+        "furniture",
+        "f_water_heater_family"
+      ],
+      [
+        "item",
+        "buttonshirt"
+      ],
+      [
+        "item",
+        "denim_shirt"
+      ],
+      [
+        "item",
+        "egg_pigeon"
+      ],
+      [
+        "item",
+        "jeans_skinny"
+      ],
+      [
+        "item",
+        "mask_plague"
+      ],
+      [
+        "item_group",
+        "SUS_fridge_bachelor"
+      ],
+      [
+        "item_group",
+        "SUS_office_mess"
+      ],
+      [
+        "item_group",
+        "SUS_science_personal_effects"
+      ],
+      [
+        "item_group",
+        "SUS_trash_floor"
+      ],
+      [
+        "item_group",
+        "SUS_trash_hardware"
+      ],
+      [
+        "item_group",
+        "SUS_trash_trashcan"
+      ],
+      [
+        "item_group",
+        "cigar_box_opened"
+      ],
+      [
+        "item_group",
+        "common_mutation_books"
+      ],
+      [
+        "item_group",
+        "feral_sapien_death_drops_spear"
+      ],
+      [
+        "item_group",
+        "hoarder"
+      ],
+      [
+        "item_group",
+        "lab_files_generic"
+      ],
+      [
+        "item_group",
+        "lab_mutagen_ingredients_fridge"
+      ],
+      [
+        "item_group",
+        "misc_smoking_legal"
+      ],
+      [
+        "item_group",
+        "mon_feral_cop_death_drops"
+      ],
+      [
+        "item_group",
+        "rare_mutation_books"
+      ],
+      [
+        "item_group",
+        "saline_bottle_random"
+      ],
+      [
+        "item_group",
+        "tools_common_small"
+      ],
+      [
+        "item_group",
+        "tools_workshop"
+      ],
+      [
+        "palette",
+        "parametrized_walls_palette"
+      ],
+      [
+        "talk_topic",
+        "COMP_NURSING_HOME_LEGAL"
+      ],
+      [
+        "terrain",
+        "t_soil"
+      ],
+      [
+        "terrain",
+        "t_window_bars_noglass"
+      ],
+      [
+        "terrain",
+        "t_zebra"
+      ],
+      [
+        "vehicle",
+        "hospital_bed_small"
+      ],
+      [
+        "vehicle",
+        "medical_cart"
+      ],
+      [
+        "vehicle",
+        "van_cargo"
+      ]
+    ],
+    "scope": "Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.",
+    "blockers": [
+      "Computer eocs/open_dialogue and terminal talkers require a real BN interaction bridge.",
+      "DDA recursive monster groups, civilian AI and medical evolution remain source candidates, not playable imports.",
+      "Preserve source timed entries and group probabilities; naive flattening can change density and civilian disappearance.",
+      "Resolve remaining dependencies, compare BN counterparts, adapt schemas and run full location generation before installing either site."
+    ]
+  }
+}

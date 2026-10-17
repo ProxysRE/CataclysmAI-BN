@@ -26,8 +26,31 @@
 
 #include <sstream>
 
+#include <algorithm>
 #include <array>
 #include <string>
+
+TEST_CASE( "stocked_pond_group_uses_stock_BN_species_and_valid_pack_sizes", "[dda_npc][dda_locations]" )
+{
+    const auto id = mongroup_id( "GROUP_STOCKED_POND" );
+    REQUIRE( id.is_valid() );
+    CHECK( id->is_animal );
+    const auto species = std::array<mtype_id, 4>{ mtype_id( "mon_fish_rainbow_trout" ),
+                         mtype_id( "mon_fish_sbass" ), mtype_id( "mon_fish_perch" ), mtype_id( "mon_fish_salmon" ) };
+    for( const auto &fish : species ) {
+        REQUIRE( fish.is_valid() );
+    }
+    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
+    for( const int hour : { 0, 6, 12, 18 } ) {
+        calendar::turn = calendar::start_of_cataclysm + 1_days + time_duration::from_hours( hour );
+        for( int attempt = 0; attempt < 100; ++attempt ) {
+            const auto spawn = MonsterGroupManager::GetResultFromGroup( id );
+            CHECK( std::find( species.begin(), species.end(), spawn.name ) != species.end() );
+            CHECK( spawn.pack_size >= 1 );
+            CHECK( spawn.pack_size <= ( spawn.name == mtype_id( "mon_fish_salmon" ) ? 6 : 3 ) );
+        }
+    }
+}
 
 TEST_CASE( "source_corpse_mapgen_keeps_species_age_and_empty_groups", "[dda_npc][dda_locations]" )
 {

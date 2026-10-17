@@ -56,3 +56,8 @@ print('PASS: inline loot collections expose typed group/item/container dependenc
 
 assert references({'place_corpses': [{'group': 'FERAL_HUMANS', 'x': 7, 'y': 42}]}) == [('monstergroup', 'FERAL_HUMANS')]
 assert references({'corpses': {'c': {'group': 'FERAL_HUMANS', 'age': 3}}}) == [('monstergroup', 'FERAL_HUMANS')]
+
+retirement = outputs['retirement_community.json']
+assert sum(e.get('type') == 'talk_topic' for e in retirement) == 13
+assert sum(e.get('type') == 'effect_on_condition' for e in retirement) == 2
+assert {e['id'] for e in retirement if e.get('type') == 'effect_on_condition'} == {'EOC_RET_COMM_HOME', 'EOC_RET_COMM_OFFICE'}

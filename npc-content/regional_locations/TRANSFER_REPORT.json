@@ -2525,12 +2525,12 @@
         {
           "type": "effect_on_condition",
           "id": "EOC_RET_COMM_HOME",
-          "status": "requires_full_bn_scan"
+          "status": "provided_in_site"
         },
         {
           "type": "effect_on_condition",
           "id": "EOC_RET_COMM_OFFICE",
-          "status": "requires_full_bn_scan"
+          "status": "provided_in_site"
         },
         {
           "type": "furniture",
@@ -3650,12 +3650,12 @@
         {
           "type": "talk_topic",
           "id": "COMP_RET_COMM_HOME",
-          "status": "requires_full_bn_scan"
+          "status": "provided_in_site"
         },
         {
           "type": "talk_topic",
           "id": "COMP_RET_COMM_OFFICE",
-          "status": "requires_full_bn_scan"
+          "status": "provided_in_site"
         },
         {
           "type": "terrain",
@@ -4068,7 +4068,10 @@
           "status": "requires_full_bn_scan"
         }
       ],
-      "additional_definitions": {},
+      "additional_definitions": {
+        "effect_on_condition": 2,
+        "talk_topic": 13
+      },
       "source_mapgen_fields": [
         "fill_ter",
         "items",

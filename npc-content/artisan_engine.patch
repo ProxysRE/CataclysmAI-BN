@@ -2590,7 +2590,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_radio_stations_test.cpp
-@@ -0,0 +1,397 @@
+@@ -0,0 +1,420 @@
 +#include "avatar.h"
 +#include "calendar.h"
 +#include "bodypart.h"
@@ -2619,8 +2619,31 @@
 +
 +#include <sstream>
 +
++#include <algorithm>
 +#include <array>
 +#include <string>
++
++TEST_CASE( "stocked_pond_group_uses_stock_BN_species_and_valid_pack_sizes", "[dda_npc][dda_locations]" )
++{
++    const auto id = mongroup_id( "GROUP_STOCKED_POND" );
++    REQUIRE( id.is_valid() );
++    CHECK( id->is_animal );
++    const auto species = std::array<mtype_id, 4>{ mtype_id( "mon_fish_rainbow_trout" ),
++                         mtype_id( "mon_fish_sbass" ), mtype_id( "mon_fish_perch" ), mtype_id( "mon_fish_salmon" ) };
++    for( const auto &fish : species ) {
++        REQUIRE( fish.is_valid() );
++    }
++    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
++    for( const int hour : { 0, 6, 12, 18 } ) {
++        calendar::turn = calendar::start_of_cataclysm + 1_days + time_duration::from_hours( hour );
++        for( int attempt = 0; attempt < 100; ++attempt ) {
++            const auto spawn = MonsterGroupManager::GetResultFromGroup( id );
++            CHECK( std::find( species.begin(), species.end(), spawn.name ) != species.end() );
++            CHECK( spawn.pack_size >= 1 );
++            CHECK( spawn.pack_size <= ( spawn.name == mtype_id( "mon_fish_salmon" ) ? 6 : 3 ) );
++        }
++    }
++}
 +
 +TEST_CASE( "source_corpse_mapgen_keeps_species_age_and_empty_groups", "[dda_npc][dda_locations]" )
 +{
@@ -34034,5 +34057,129 @@
 +    "contains": "1 L",
 +    "rigid": true,
 +    "bashing": 5
++  }
++]
+--- /dev/null
++++ b/data/json/dda_eldercare_support.json
+@@ -0,0 +1,121 @@
++[
++  {
++    "type": "monstergroup",
++    "name": "GROUP_STOCKED_POND",
++    "is_animal": true,
++    "default": "mon_fish_rainbow_trout",
++    "freq_total": 345,
++    "monsters": [
++      {
++        "monster": "mon_fish_rainbow_trout",
++        "cost_multiplier": 3,
++        "pack_size": [
++          1,
++          3
++        ],
++        "freq": 50
++      },
++      {
++        "monster": "mon_fish_rainbow_trout",
++        "cost_multiplier": 3,
++        "conditions": [
++          "DAWN",
++          "DUSK"
++        ],
++        "pack_size": [
++          1,
++          3
++        ],
++        "freq": 100
++      },
++      {
++        "monster": "mon_fish_sbass",
++        "cost_multiplier": 3,
++        "pack_size": [
++          1,
++          3
++        ],
++        "freq": 25
++      },
++      {
++        "monster": "mon_fish_sbass",
++        "cost_multiplier": 3,
++        "conditions": [
++          "DAWN",
++          "DUSK"
++        ],
++        "pack_size": [
++          1,
++          3
++        ],
++        "freq": 50
++      },
++      {
++        "monster": "mon_fish_perch",
++        "cost_multiplier": 3,
++        "pack_size": [
++          1,
++          3
++        ],
++        "freq": 30
++      },
++      {
++        "monster": "mon_fish_perch",
++        "cost_multiplier": 3,
++        "conditions": [
++          "DAWN",
++          "DUSK"
++        ],
++        "pack_size": [
++          1,
++          3
++        ],
++        "freq": 55
++      },
++      {
++        "monster": "mon_fish_salmon",
++        "cost_multiplier": 8,
++        "pack_size": [
++          4,
++          6
++        ],
++        "freq": 15
++      },
++      {
++        "monster": "mon_fish_salmon",
++        "cost_multiplier": 8,
++        "conditions": [
++          "DAWN",
++          "DUSK"
++        ],
++        "pack_size": [
++          4,
++          6
++        ],
++        "freq": 20
++      }
++    ]
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "spider_webs",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_fields": [
++        {
++          "field": "fd_web",
++          "x": 0,
++          "y": 0,
++          "intensity": [
++            1,
++            3
++          ]
++        }
++      ]
++    },
++    "method": "json"
 +  }
 +]
