@@ -24,9 +24,10 @@ def check():
             assert b == dict(a, cancels=[TRAIT])
         else:
             assert a == b
+    parent = next(e for e in json.loads(files['bn/data/json/furniture_and_terrain/terrain-mechanisms.json']) if e.get('id') == 't_elevator_control')
     for terrain, direction in zip(adapted[1:], ('up', 'down')):
-        assert terrain['copy-from'] == 't_elevator_control'
-        assert terrain['examine_action'] == 'robofac_elevator_' + direction
+        assert terrain == dict(parent, id='t_elevator_control_robofac_' + direction, looks_like='t_elevator_control', examine_action='robofac_elevator_' + direction)
+        assert 'copy-from' not in terrain  # Must load before the parent file too.
     native = generated['src/iexamine_elevator.cpp']
     for operation in ('move_creatures_away', 'move_items', 'move_creatures', 'move_vehicles', 'move_player'):
         assert native.count('elevator::' + operation + '(') == 1

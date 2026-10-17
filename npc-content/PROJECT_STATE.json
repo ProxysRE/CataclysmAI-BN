@@ -280,11 +280,11 @@
     }
   },
   "latest_observed_failure": {
-    "run_id": 39032442331,
-    "stage": "Windows preflight map staging",
-    "error": "cp1252 cannot encode Hub map glyph U+03DF",
-    "fix": "Explicit UTF-8 and LF for generated location files; cp1252-default regression added",
-    "rerun_status": "Windows preflight passed at 39037393640; full compilation and native tests pending"
+    "run_id": 39037393640,
+    "stage": "native panel registration test after successful Windows compilation",
+    "error": "Root-file terrain copy-from remained unresolved; invalid Hub panel terrain ID",
+    "fix": "Materialize exact pinned BN control fields; preserve source baseline guard",
+    "rerun_status": "pending"
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,

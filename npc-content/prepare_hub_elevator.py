@@ -97,9 +97,17 @@ def payload():
     trait = next(e for e in source if e.get('id') == TRAIT)
     assert trait['cancels'] == ['PROF_FED'] and trait['valid'] is False
     result = [copy.deepcopy(trait)]
+    baseline = next(e for e in json.loads(files['bn/data/json/furniture_and_terrain/terrain-mechanisms.json'])
+                    if e.get('id') == 't_elevator_control')
     for direction in ('up', 'down'):
-        result.append({'type': 'terrain', 'id': 't_elevator_control_robofac_' + direction,
-                       'copy-from': 't_elevator_control', 'examine_action': 'robofac_elevator_' + direction})
+        # BN does not finalize deferred terrain inheritance after loading this root
+        # file before terrain-mechanisms. Materialize the exact pinned parent,
+        # rather than relying on directory order or changing the global loader.
+        terrain = copy.deepcopy(baseline)
+        terrain.update({'id': 't_elevator_control_robofac_' + direction,
+                        'looks_like': 't_elevator_control',
+                        'examine_action': 'robofac_elevator_' + direction})
+        result.append(terrain)
     return result
 
 

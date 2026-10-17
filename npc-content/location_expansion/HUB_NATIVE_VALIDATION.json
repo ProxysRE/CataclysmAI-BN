@@ -4,11 +4,15 @@
   "fast_status": "success",
   "windows_run": 39037393640,
   "windows_preflight": "success: full pinned baseline, ID collision checks, UTF-8 map staging and native patch application",
-  "windows_compilation": "in progress",
-  "native_test_execution": "pending",
-  "installed_directory_regression": "pending",
+  "windows_compilation": "passed at 39037393640",
+  "native_test_execution": "one failed panel ID assertion: terrain forward inheritance was not resolved",
+  "installed_directory_regression": "not reached",
   "actual_elevator_travel_with_cargo_and_companions": "pending",
   "expanded_hub_generation": "not installed",
   "native_patch_sha256": "0174778ecf21bff283cd0551f87c1043951a24560cecc166142d170cabf368e4",
-  "runtime_validated": false
+  "runtime_validated": false,
+  "followup_fix": "Materialize exact pinned BN control fields instead of forward copy-from",
+  "followup_native_patch_sha256": "b63395cbbb99fcfb520864a4971fc8887cdc06962bc7b5d00592a794bd231886",
+  "followup_local_checks": "source field fidelity, package payload, patch synchronization and pristine apply passed",
+  "followup_windows_run": "pending"
 }

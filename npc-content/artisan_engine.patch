@@ -4968,7 +4968,7 @@
      "description": "You are a duly sworn Federal marshal, with nationwide jurisdiction and the authority of the United States of America.",
 --- /dev/null
 +++ b/data/json/dda_hub_elevator_access.json
-@@ -0,0 +1,29 @@
+@@ -0,0 +1,213 @@
 +[
 +  {
 +    "type": "mutation",
@@ -4988,13 +4988,197 @@
 +  {
 +    "type": "terrain",
 +    "id": "t_elevator_control_robofac_up",
-+    "copy-from": "t_elevator_control",
-+    "examine_action": "robofac_elevator_up"
++    "name": "elevator controls",
++    "description": "This is the control face for an elevator.  You could press the appropriate button to take you to your choice of floor.",
++    "symbol": "6",
++    "color": "light_blue",
++    "move_cost": 0,
++    "coverage": 50,
++    "roof": "t_flat_roof",
++    "flags": [
++      "NOITEM"
++    ],
++    "examine_action": "robofac_elevator_up",
++    "bash": {
++      "str_min": 40,
++      "str_max": 150,
++      "sound": "crunch!",
++      "sound_fail": "whack!",
++      "ter_set": "t_console_broken",
++      "items": [
++        {
++          "item": "processor",
++          "prob": 25
++        },
++        {
++          "item": "RAM",
++          "count": [
++            0,
++            2
++          ],
++          "prob": 50
++        },
++        {
++          "item": "cable",
++          "charges": [
++            1,
++            2
++          ],
++          "prob": 50
++        },
++        {
++          "item": "small_lcd_screen",
++          "prob": 25
++        },
++        {
++          "item": "e_scrap",
++          "count": [
++            1,
++            4
++          ],
++          "prob": 50
++        },
++        {
++          "item": "circuit",
++          "count": [
++            0,
++            2
++          ],
++          "prob": 50
++        },
++        {
++          "item": "power_supply",
++          "prob": 25
++        },
++        {
++          "item": "amplifier",
++          "prob": 25
++        },
++        {
++          "item": "plastic_chunk",
++          "count": [
++            4,
++            10
++          ],
++          "prob": 50
++        },
++        {
++          "item": "scrap",
++          "count": [
++            2,
++            6
++          ],
++          "prob": 50
++        }
++      ],
++      "//": "Variable reduction, destroy_threshold matches str_min since fragile",
++      "ranged": {
++        "reduction": [
++          20,
++          40
++        ],
++        "destroy_threshold": 40,
++        "block_unaimed_chance": "50%"
++      }
++    },
++    "looks_like": "t_elevator_control"
 +  },
 +  {
 +    "type": "terrain",
 +    "id": "t_elevator_control_robofac_down",
-+    "copy-from": "t_elevator_control",
-+    "examine_action": "robofac_elevator_down"
++    "name": "elevator controls",
++    "description": "This is the control face for an elevator.  You could press the appropriate button to take you to your choice of floor.",
++    "symbol": "6",
++    "color": "light_blue",
++    "move_cost": 0,
++    "coverage": 50,
++    "roof": "t_flat_roof",
++    "flags": [
++      "NOITEM"
++    ],
++    "examine_action": "robofac_elevator_down",
++    "bash": {
++      "str_min": 40,
++      "str_max": 150,
++      "sound": "crunch!",
++      "sound_fail": "whack!",
++      "ter_set": "t_console_broken",
++      "items": [
++        {
++          "item": "processor",
++          "prob": 25
++        },
++        {
++          "item": "RAM",
++          "count": [
++            0,
++            2
++          ],
++          "prob": 50
++        },
++        {
++          "item": "cable",
++          "charges": [
++            1,
++            2
++          ],
++          "prob": 50
++        },
++        {
++          "item": "small_lcd_screen",
++          "prob": 25
++        },
++        {
++          "item": "e_scrap",
++          "count": [
++            1,
++            4
++          ],
++          "prob": 50
++        },
++        {
++          "item": "circuit",
++          "count": [
++            0,
++            2
++          ],
++          "prob": 50
++        },
++        {
++          "item": "power_supply",
++          "prob": 25
++        },
++        {
++          "item": "amplifier",
++          "prob": 25
++        },
++        {
++          "item": "plastic_chunk",
++          "count": [
++            4,
++            10
++          ],
++          "prob": 50
++        },
++        {
++          "item": "scrap",
++          "count": [
++            2,
++            6
++          ],
++          "prob": 50
++        }
++      ],
++      "//": "Variable reduction, destroy_threshold matches str_min since fragile",
++      "ranged": {
++        "reduction": [
++          20,
++          40
++        ],
++        "destroy_threshold": 40,
++        "block_unaimed_chance": "50%"
++      }
++    },
++    "looks_like": "t_elevator_control"
 +  }
 +]
