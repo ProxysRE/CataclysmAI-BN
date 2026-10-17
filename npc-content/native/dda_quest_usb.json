@@ -1,0 +1,22 @@
+[
+  {
+    "copy-from": "usb_drive",
+    "description": "A USB thumb drive.  Useful for holding software.  This one seems like it could get run over by a truck and be fine.",
+    "id": "usb_drive_nano",
+    "name": {
+      "str": "secured USB drive"
+    },
+    "type": "GENERIC"
+  },
+  {
+    "copy-from": "usb_drive_nano",
+    "description": "Some type of advanced data storage device, filled with credentials and licenses to operate the nano-fabricator.",
+    "id": "nano_fabricator_encryption_code",
+    "name": {
+      "str_sp": "nano-fabricator licensing USB"
+    },
+    "price": "100 USD",
+    "price_postapoc": "0 cent",
+    "type": "GENERIC"
+  }
+]

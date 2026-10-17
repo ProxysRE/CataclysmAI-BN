@@ -30,6 +30,7 @@ def check():
     })
     files.update({
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
+        'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/npcs/dda_lighthouse_community.json': ROOT / 'native/dda_lighthouse_community.json',
         'data/json/mapgen/nested/dda_lighthouse_encounter.json': ROOT / 'native/mapgen/dda_lighthouse_encounter.json',
     })
@@ -52,7 +53,7 @@ def check():
     workflow = workflow_path.read_text()
     expected, = re.findall(r'Get-FileHash \$patch -Algorithm SHA256\)\.Hash\.ToLower\(\) -ne "([a-f0-9]{64})"', workflow)
     assert digest == expected, 'Windows workflow patch checksum is stale'
-    print('PASS: all ten embedded native files and Windows patch checksum match')
+    print(f'PASS: all {len(files)} embedded native files and Windows patch checksum match')
 
 
 if __name__ == '__main__':

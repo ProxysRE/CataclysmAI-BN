@@ -23,6 +23,7 @@ def check():
             'data/json/npcs/dda_lighthouse_community.json': (ROOT / 'native/dda_lighthouse_community.json').read_bytes(),
             'data/json/mapgen/nested/dda_lighthouse_encounter.json': (ROOT / 'native/mapgen/dda_lighthouse_encounter.json').read_bytes(),
             'data/json/mapgen/chemical_lab.json': json.dumps(merged).encode(),
+            'data/json/items/dda_quest_usb.json': (ROOT / 'native/dda_quest_usb.json').read_bytes(),
         }
         for relative, data in payload.items():
             path = installed / relative

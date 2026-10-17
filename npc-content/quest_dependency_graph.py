@@ -99,20 +99,33 @@ def build(files, roots=ROOTS, bn_candidates=()):
             'release_ready': False}
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, required=True)
-    args = parser.parse_args()
-    root = Path(__file__).resolve().parent
-    raw = gzip.decompress(base64.b64decode((root / 'dependencies/dependencies.json.gz.base64').read_text()))
-    manifest = json.loads((root / 'dependencies/DEPENDENCIES.json').read_text())
+def read_source_files(root):
+    folder = root / 'dependencies'
+    parts = sorted(folder.glob('source.part*'))
+    if parts:
+        if [p.name for p in parts] != [f'source.part{i:02}' for i in range(len(parts))]:
+            raise ValueError('Dependency source parts have a gap or invalid name')
+        encoded = ''.join(p.read_text(encoding='utf-8') for p in parts)
+    else:
+        encoded = (folder / 'dependencies.json.gz.base64').read_text(encoding='utf-8')
+    raw = gzip.decompress(base64.b64decode(''.join(encoded.split()), validate=True))
+    manifest = json.loads((root / 'dependencies/DEPENDENCIES.json').read_text(encoding='utf-8'))
     if hashlib.sha256(raw).hexdigest() != manifest['payload_sha256']:
         raise ValueError('Preserved dependency payload checksum mismatch')
     files = json.loads(raw)
     baseline_path = root / 'quest_dependencies/BN_REFERENCE_SNAPSHOT.json'
     if baseline_path.exists():
-        for snapshot in json.loads(baseline_path.read_text()):
+        for snapshot in json.loads(baseline_path.read_text(encoding='utf-8')):
             files['BN/' + snapshot['source']] = snapshot['definitions']
+    return files, manifest
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parent
+    files, manifest = read_source_files(root)
     report = build(files, bn_candidates=manifest['existing_BN_candidates_for_semantic_review'])
     report['source_sha256'] = manifest['payload_sha256']
     args.output.mkdir(parents=True, exist_ok=True)

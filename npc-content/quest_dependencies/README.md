@@ -6,4 +6,8 @@ QUEST_ITEM_GRAPH.json contains 37 typed source definitions and 62 reference edge
 
 Item, ASCII-art, material, flag, ammo type and item-category namespaces remain separate. Display text and pocket enum values are not guessed as references. NULL ammo is an enum sentinel. Parent items and magazine restrictions are traversed explicitly. Duplicate definitions in a namespace fail rather than choosing silently.
 
-Run python quest_dependency_graph.py --output quest_dependencies and python check_quest_dependency_graph.py. ITEM_SCHEMA_REVIEW.json describes class inheritance and the remaining schema checks for each item. Source variants and pocket fields remain preserved. No definitions from this directory are loaded into the game yet. Native variant/pocket/schema support and real item/mission loading must pass before release.
+The two USB definitions are now included in the native patch with ordinary BN
+item inheritance; see `USB_NATIVE_PORT.md`. Their native runtime check is pending.
+The remainder of the graph is still prepared source data.
+
+Run python quest_dependency_graph.py --output quest_dependencies and python check_quest_dependency_graph.py. ITEM_SCHEMA_REVIEW.json describes class inheritance and the remaining schema checks for each item. Source variants and pocket fields remain preserved. Only the separately generated USB slice is included in the native patch; its Windows validation is pending. Native variant/pocket/schema support and real item/mission loading must pass before release.

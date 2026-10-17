@@ -7,7 +7,7 @@ using a separate temporary user directory.
 
 `package_windows_npc.py` verifies the installed Windows executable, Russian
 translations, graphics/shader directories, the exact lighthouse payload and the
-reviewed chemist map. It does not assemble the game's data with a separate copy
+reviewed chemist map and exact two-item USB payload. It does not assemble the game's data with a separate copy
 list. The archive receives an explicit scope/readme and a build manifest containing
 the source commit, patch checksum and file checksums.
 

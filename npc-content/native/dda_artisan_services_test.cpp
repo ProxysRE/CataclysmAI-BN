@@ -1,6 +1,7 @@
 #include "activity_type.h"
 #include "avatar.h"
 #include "calendar.h"
+#include "condition.h"
 #include "cata_utility.h"
 #include "catch/catch.hpp"
 #include "dialogue.h"
@@ -10,12 +11,37 @@
 #include "npc.h"
 #include "npc_class.h"
 #include "item_group.h"
+#include "item.h"
 #include "options_helpers.h"
 #include "player_activity.h"
 #include "state_helpers.h"
 
 #include <ranges>
 #include <sstream>
+
+TEST_CASE( "quest_USB_items_inherit_stock_BN_USB_and_use_normal_inventory_conditions", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    const auto ordinary = item( itype_id( "usb_drive" ), calendar::turn );
+    const auto secured = item( itype_id( "usb_drive_nano" ), calendar::turn );
+    const auto license = item( itype_id( "nano_fabricator_encryption_code" ), calendar::turn );
+    CHECK( secured.weight() == ordinary.weight() );
+    CHECK( license.weight() == ordinary.weight() );
+    CHECK( secured.volume() == ordinary.volume() );
+    CHECK( license.volume() == ordinary.volume() );
+    CHECK( license.typeId() == itype_id( "nano_fabricator_encryption_code" ) );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    auto input = std::istringstream( R"({"u_has_item":"nano_fabricator_encryption_code"})" );
+    auto parser = JsonIn( input );
+    const auto has_license = conditional_t<dialogue>( parser.get_object() );
+    CHECK_FALSE( has_license( conversation ) );
+    actor.i_add( item( itype_id( "usb_drive" ), calendar::turn ) );
+    CHECK_FALSE( has_license( conversation ) );
+    actor.i_add( item( itype_id( "nano_fabricator_encryption_code" ), calendar::turn ) );
+    CHECK( has_license( conversation ) );
+}
 
 TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
     clear_all_state();

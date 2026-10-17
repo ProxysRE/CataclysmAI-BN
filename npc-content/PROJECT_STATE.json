@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Existing BN NPC waiting activity integrated for Godco; previous and new native regressions pending",
+  "stage": "Two USB quest dependencies added through stock BN item inheritance; full-catalog preflight and native checks pending",
   "package": "Isolated Road",
   "native_compilation": "Verified Windows game and tests at 23827155: 32 cases, 1073 assertions. Later Godco wait and portable packaging remain pending.",
   "remaining": [
@@ -29,7 +29,17 @@
     "definitions": 37,
     "edges": 62,
     "unresolved_in_supported_reference_fields": 0,
-    "runtime_validated": false
+    "runtime_validated": false,
+    "native_slice": {
+      "ids": [
+        "usb_drive_nano",
+        "nano_fabricator_encryption_code"
+      ],
+      "BN_parent": "usb_drive",
+      "new_native_item_engine_code": false,
+      "status": "Included in patch; runtime validation pending",
+      "local_checks": "Source-field preservation, baseline guard fixtures, archive payload checks passed"
+    }
   },
   "island_prison": {
     "npc": 3,
