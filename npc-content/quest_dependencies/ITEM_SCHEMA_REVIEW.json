@@ -21,6 +21,22 @@
       "runtime_validated": false
     },
     {
+      "id": "545_casing",
+      "source": "items/generic/casing.json",
+      "target_type": "GENERIC",
+      "checks": [],
+      "source_definition_sha256": "c9d91c553796fb4e84a2a2b6ba3f78c4bc62fb9fe2fd4cbfee70a16f1c950cec",
+      "runtime_validated": false
+    },
+    {
+      "id": "9mm_casing",
+      "source": "BN/data/json/items/generic/casing.json",
+      "target_type": "GENERIC",
+      "checks": [],
+      "source_definition_sha256": "82334f00c63b77de05d2dfed3315fbe63ad23b700964e8922a1184ee4975a72b",
+      "runtime_validated": false
+    },
+    {
       "id": "ak74mag",
       "source": "items/magazine/545x39.json",
       "target_type": "MAGAZINE",
@@ -49,6 +65,14 @@
         "dimension support in pinned BN item loader"
       ],
       "source_definition_sha256": "99e10234810af700d8efd741d3c8099eefa2ccd79357b8ec682a63d2f15bfc9e",
+      "runtime_validated": false
+    },
+    {
+      "id": "casing",
+      "source": "BN/data/json/items/generic/casing.json",
+      "target_type": "GENERIC",
+      "checks": [],
+      "source_definition_sha256": "68440bea746c8c966bd87998bcc30a46f200c6287da25d6b18debc0e58ebf996",
       "runtime_validated": false
     },
     {

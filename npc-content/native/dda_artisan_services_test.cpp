@@ -43,6 +43,16 @@ TEST_CASE( "quest_USB_items_inherit_stock_BN_USB_and_use_normal_inventory_condit
     CHECK( has_license( conversation ) );
 }
 
+TEST_CASE( "exhibition_545_casing_uses_BN_generic_item_properties", "[dda_npc]" ) {
+    clear_all_state();
+    const auto casing = item( itype_id( "545_casing" ), calendar::turn );
+    const auto nine_mm = item( itype_id( "9mm_casing" ), calendar::turn );
+    CHECK( casing.typeId() == itype_id( "545_casing" ) );
+    CHECK( casing.weight() > nine_mm.weight() );
+    CHECK( casing.volume() > nine_mm.volume() );
+    CHECK_FALSE( casing.is_ammo() );
+}
+
 TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
     clear_all_state();
     auto input = std::istringstream( R"({"id":"dda_food_stock_test","name":"Fisherman stock","likes_u":0,"respects_u":0,"known_by_u":false,"description":"Source-format food ledger","size":3,"power":3,"wealth":20000,"relations":{},"fac_food_supply":[[0,{"calories":2700000000,"vitamins":{"iron":86400,"calcium":86400,"vitC":86400}}],[123,{"calories":1000,"vitamins":{"iron":1}}]]})" );

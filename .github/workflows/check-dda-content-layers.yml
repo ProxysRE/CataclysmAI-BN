@@ -26,6 +26,10 @@ jobs:
         run: python npc-content/check_windows_package.py
       - name: Verify quest USB item adaptation
         run: python npc-content/check_quest_usb.py
+      - name: Verify typed weapon dependencies and casing adaptation
+        run: |
+          python npc-content/check_quest_dependency_graph.py
+          python npc-content/check_quest_ammo.py
       - name: Verify selective location dependencies and layouts
         run: python npc-content/check_location_layers.py
       - name: Verify every staged definition and blocked original

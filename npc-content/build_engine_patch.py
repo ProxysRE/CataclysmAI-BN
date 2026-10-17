@@ -38,6 +38,7 @@ if args.bn_source:
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/items/dda_quest_usb.json").unlink(missing_ok=True)
+    (root / "engine_staging/data/json/items/dda_545_casing.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
@@ -64,6 +65,9 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_artisan_activities.jso
                                 "/dev/null", "b/" + path))
 path = "data/json/items/dda_quest_usb.json"
 parts.extend(difflib.unified_diff([], (root / "native/dda_quest_usb.json").read_text().splitlines(keepends=True),
+                                "/dev/null", "b/" + path))
+path = "data/json/items/dda_545_casing.json"
+parts.extend(difflib.unified_diff([], (root / "native/dda_545_casing.json").read_text().splitlines(keepends=True),
                                 "/dev/null", "b/" + path))
 path = "data/json/npcs/dda_lighthouse_community.json"
 parts.extend(difflib.unified_diff([], (root / "native/dda_lighthouse_community.json").read_text().splitlines(keepends=True),

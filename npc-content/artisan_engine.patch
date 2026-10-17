@@ -2182,7 +2182,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_artisan_services_test.cpp
-@@ -0,0 +1,260 @@
+@@ -0,0 +1,270 @@
 +#include "activity_type.h"
 +#include "avatar.h"
 +#include "calendar.h"
@@ -2226,6 +2226,16 @@
 +    CHECK_FALSE( has_license( conversation ) );
 +    actor.i_add( item::spawn( itype_id( "nano_fabricator_encryption_code" ), calendar::turn ) );
 +    CHECK( has_license( conversation ) );
++}
++
++TEST_CASE( "exhibition_545_casing_uses_BN_generic_item_properties", "[dda_npc]" ) {
++    clear_all_state();
++    const auto casing = item( itype_id( "545_casing" ), calendar::turn );
++    const auto nine_mm = item( itype_id( "9mm_casing" ), calendar::turn );
++    CHECK( casing.typeId() == itype_id( "545_casing" ) );
++    CHECK( casing.weight() > nine_mm.weight() );
++    CHECK( casing.volume() > nine_mm.volume() );
++    CHECK_FALSE( casing.is_ammo() );
 +}
 +
 +TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
@@ -2484,6 +2494,23 @@
 +    "price": "100 USD",
 +    "price_postapoc": "0 cent",
 +    "type": "GENERIC"
++  }
++]
+--- /dev/null
++++ b/data/json/items/dda_545_casing.json
+@@ -0,0 +1,14 @@
++[
++  {
++    "copy-from": "casing",
++    "description": "An empty casing from a 5.45x39mm round.",
++    "id": "545_casing",
++    "looks_like": "9mm_casing",
++    "name": {
++      "str": "5.45x39mm casing"
++    },
++    "type": "GENERIC",
++    "volume": "7ml",
++    "weight": "4 g"
 +  }
 +]
 --- /dev/null

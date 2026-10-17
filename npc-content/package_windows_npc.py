@@ -26,6 +26,7 @@ def verify_install(folder):
         'data/json/mapgen/chemical_lab.json',
         'lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo',
         'data/json/items/dda_quest_usb.json',
+        'data/json/items/dda_545_casing.json',
     )
     for relative in required:
         path = folder / relative
@@ -44,6 +45,7 @@ def verify_install(folder):
         ('native/dda_lighthouse_community.json', required[2]),
         ('native/mapgen/dda_lighthouse_encounter.json', required[3]),
         ('native/dda_quest_usb.json', required[6]),
+        ('native/dda_545_casing.json', required[7]),
     ):
         if json.loads((ROOT / source).read_text(encoding='utf-8')) != json.loads((folder / target).read_text(encoding='utf-8')):
             raise ValueError('Installed port payload differs: ' + target)
@@ -65,6 +67,7 @@ def package(folder, output, source_head):
         'Extract the entire directory and run cataclysm-bn-tiles.exe.\n'
         'Includes the lighthouse community and reviewed chemist map adjustment.\n'
         'Also includes the two quest USB dependencies for the Isolated Road port.\n'
+        'The 5.45x39 casing dependency is included; the live ammo and Kord rifle are still pending.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'
         'Build source: https://github.com/ProxysRE/CataclysmAI-BN/commit/' + source_head + '\n',

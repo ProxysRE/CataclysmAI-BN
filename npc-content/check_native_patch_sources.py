@@ -31,6 +31,7 @@ def check():
     files.update({
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
+        'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',
         'data/json/npcs/dda_lighthouse_community.json': ROOT / 'native/dda_lighthouse_community.json',
         'data/json/mapgen/nested/dda_lighthouse_encounter.json': ROOT / 'native/mapgen/dda_lighthouse_encounter.json',
     })

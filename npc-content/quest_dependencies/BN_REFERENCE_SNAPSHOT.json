@@ -303,6 +303,15 @@
         },
         "zone": "LOOT_VALUABLES",
         "sort_rank": 64
+      },
+      {
+        "id": "spare_parts",
+        "type": "ITEM_CATEGORY",
+        "name": {
+          "str": "SPARE PARTS"
+        },
+        "zone": "LOOT_SPARE_PARTS",
+        "sort_rank": 40
       }
     ]
   },
@@ -429,6 +438,40 @@
         "id": "300blk",
         "name": ".300 AAC Blackout",
         "default": "300blk"
+      }
+    ]
+  },
+  {
+    "source": "data/json/items/generic/casing.json",
+    "pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "definitions": [
+      {
+        "abstract": "casing",
+        "type": "GENERIC",
+        "category": "spare_parts",
+        "name": {
+          "str": "Casing from ammunition cartridge"
+        },
+        "stackable": true,
+        "material": "brass",
+        "symbol": "=",
+        "color": "yellow",
+        "damage_states": [
+          0,
+          0
+        ],
+        "price": "50 cent"
+      },
+      {
+        "id": "9mm_casing",
+        "copy-from": "casing",
+        "type": "GENERIC",
+        "name": {
+          "str": "9x19mm casing"
+        },
+        "description": "An empty casing from a 9x19mm round.",
+        "weight": "3 g",
+        "volume": "5ml"
       }
     ]
   }

@@ -10,13 +10,18 @@ ROOT = Path(__file__).resolve().parent
 IDS = ('usb_drive_nano', 'nano_fabricator_encryption_code')
 
 
-def definitions():
+def verified_graph():
     graph = json.loads((ROOT / 'quest_dependencies/QUEST_ITEM_GRAPH.json').read_text(encoding='utf-8'))
     files, manifest = read_source_files(ROOT)
     regenerated = build(files, bn_candidates=manifest['existing_BN_candidates_for_semantic_review'])
     regenerated['source_sha256'] = manifest['payload_sha256']
     if graph != regenerated:
         raise ValueError('Quest graph differs from its checksum-verified source archive')
+    return graph
+
+
+def definitions():
+    graph = verified_graph()
     source = {n['id']: n['definition'] for n in graph['nodes'] if n['namespace'] == 'item'}
     result = []
     for identifier in IDS:
@@ -30,7 +35,7 @@ def definitions():
     return result
 
 
-def check_baseline(bn_source):
+def scan_bn_items(bn_source, relevant):
     found = {}
     for path in (bn_source / 'data/json/items').rglob('*.json'):
         entries = json.loads(path.read_text(encoding='utf-8'))
@@ -40,10 +45,15 @@ def check_baseline(bn_source):
             identifier = entry.get('id', entry.get('abstract'))
             identifiers = identifier if isinstance(identifier, list) else [identifier]
             for value in identifiers:
-                if value in (*IDS, 'usb_drive'):
+                if value in relevant:
                     if value in found:
-                        raise ValueError('Duplicate baseline USB identity: ' + value)
+                        raise ValueError('Duplicate baseline item identity: ' + value)
                     found[value] = entry
+    return found
+
+
+def check_baseline(bn_source):
+    found = scan_bn_items(bn_source, (*IDS, 'usb_drive'))
     if any(identifier in found for identifier in IDS):
         raise ValueError('Quest USB ID already exists in BN; merge instead of adding')
     if 'usb_drive' not in found:

@@ -23,3 +23,28 @@ except ValueError:
 else:
     raise AssertionError('Ambiguous definitions must fail rather than selecting silently')
 print('PASS: typed collisions, inheritance, magazine/ammo references, display-text exclusion, deterministic output and explicit missing definitions')
+
+weapon = {'weapon.json': [
+    {'type': 'GUN', 'id': 'weapon', 'casing': 'case', 'linkage': 'NULL',
+     'weapon_category': ['RIFLES'], 'faults': [{'fault': 'jam'}], 'default_mods': ['mod'],
+     'magazine_adaptor': [['test_caliber', ['mag']]]},
+    {'type': 'GENERIC', 'id': 'case'},
+    {'type': 'GUNMOD', 'id': 'mod', 'mod_targets': ['weapon']},
+    {'type': 'MAGAZINE', 'id': 'mag', 'ammo_type': 'test_caliber'},
+    {'type': 'ammunition_type', 'id': 'test_caliber'},
+    {'type': 'fault', 'id': 'jam'},
+    {'type': 'weapon_category', 'id': 'RIFLES'},
+]}
+graph = build(weapon, roots=['weapon'])
+assert not graph['obligations']
+edges = {(tuple(e['from']), tuple(e['to']), e['field']) for e in graph['edges']}
+assert (('item', 'weapon'), ('item', 'case'), 'casing') in edges
+assert (('item', 'weapon'), ('fault', 'jam'), 'faults[0].fault') in edges
+assert (('item', 'weapon'), ('weapon_category', 'RIFLES'), 'weapon_category') in edges
+assert (('item', 'mod'), ('item', 'weapon'), 'mod_targets') in edges
+assert (('item', 'weapon'), ('item', 'mag'), 'magazine_adaptor.items') in edges
+assert not any(n['id'] == 'NULL' for n in graph['nodes'])
+missing_fault = {'weapon.json': [e for e in weapon['weapon.json'] if e['type'] != 'fault']}
+assert build(missing_fault, roots=['weapon'])['obligations'] == [
+    {'namespace': 'fault', 'id': 'jam', 'status': 'source_definition_not_in_candidate_archive'}]
+print('PASS: casing, fault, weapon category, module target and magazine adaptor edges; missing faults stay explicit')

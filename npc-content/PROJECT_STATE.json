@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Two USB quest dependencies added through stock BN item inheritance; full-catalog preflight and native checks pending",
+  "stage": "USB test ownership fixed; native casing dependency added; typed weapon graph expanded and missing faults exposed",
   "package": "Isolated Road",
   "native_compilation": "Godco checkpoint passed 33 tests and 2885 assertions. Later USB test compile error fixed locally; rerun pending.",
   "remaining": [
@@ -26,9 +26,9 @@
     "status": "validated_by_latest_checkpoint"
   },
   "quest_item_graph": {
-    "definitions": 37,
-    "edges": 62,
-    "unresolved_in_supported_reference_fields": 0,
+    "definitions": 45,
+    "edges": 76,
+    "unresolved_in_supported_reference_fields": 3,
     "runtime_validated": false,
     "native_slice": {
       "ids": [
@@ -40,6 +40,32 @@
       "status": "Included in patch; runtime validation pending",
       "local_checks": "Source-field preservation, baseline guard fixtures, archive payload checks passed",
       "baseline_catalog_preflight": "Passed full pinned BN item-catalog scan before compilation in run 38991245584"
+    },
+    "obligations": [
+      {
+        "namespace": "fault",
+        "id": "fault_gun_blackpowder",
+        "status": "resolve_against_pinned_BN"
+      },
+      {
+        "namespace": "fault",
+        "id": "fault_gun_chamber_spent",
+        "status": "resolve_against_pinned_BN"
+      },
+      {
+        "namespace": "fault",
+        "id": "fault_gun_dirt",
+        "status": "resolve_against_pinned_BN"
+      }
+    ],
+    "ammo_native_slice": {
+      "ids": [
+        "545_casing"
+      ],
+      "BN_parent": "casing",
+      "visual_fallback": "9mm_casing",
+      "status": "Native patch included; full baseline scan and Windows item loading pending",
+      "new_item_engine_code": false
     }
   },
   "island_prison": {

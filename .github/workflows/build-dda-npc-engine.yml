@@ -8,6 +8,7 @@ on:
       - 'npc-content/build_engine_patch.py'
       - 'npc-content/package_windows_npc.py'
       - 'npc-content/prepare_quest_usb.py'
+      - 'npc-content/prepare_quest_ammo.py'
       - 'npc-content/native/**'
   workflow_dispatch:
 permissions:
@@ -90,8 +91,10 @@ jobs:
         run: |
           python "${{ github.workspace }}/package/npc-content/prepare_quest_usb.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest USB baseline conflict or stale adaptation" }
+          python "${{ github.workspace }}/package/npc-content/prepare_quest_ammo.py" --check --bn-source .
+          if ($LASTEXITCODE -ne 0) { throw "5.45 casing baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "af9c9a595591cc47a00baefbe200fe1494c7f8e7093836b937c109598d2a268b") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "44abbf5b90bb7954eaaf7e59c393efca237eb294fce0758667aced74c58df51f") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

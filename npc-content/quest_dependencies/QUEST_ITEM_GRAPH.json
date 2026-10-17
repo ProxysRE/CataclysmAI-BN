@@ -24,6 +24,21 @@
     },
     {
       "namespace": "ITEM_CATEGORY",
+      "id": "spare_parts",
+      "source": "BN/data/json/item_category.json",
+      "position": 2,
+      "definition": {
+        "id": "spare_parts",
+        "type": "ITEM_CATEGORY",
+        "name": {
+          "str": "SPARE PARTS"
+        },
+        "zone": "LOOT_SPARE_PARTS",
+        "sort_rank": 40
+      }
+    },
+    {
+      "namespace": "ITEM_CATEGORY",
       "id": "valuables",
       "source": "BN/data/json/item_category.json",
       "position": 1,
@@ -100,6 +115,60 @@
           "<color_green>‼"
         ],
         "type": "ascii_art"
+      }
+    },
+    {
+      "namespace": "fault",
+      "id": "fault_double_feed",
+      "source": "faults/faults_guns.json",
+      "position": 2,
+      "definition": {
+        "//": "only magazine-fed firearms",
+        "description": "The magazine of the gun tried to put two rounds in the chamber at once.",
+        "fault_type": "gun_mechanical_simple",
+        "id": "fault_double_feed",
+        "item_prefix": "jammed",
+        "name": {
+          "str": "Double feed"
+        },
+        "severity": "minor",
+        "type": "fault"
+      }
+    },
+    {
+      "namespace": "fault",
+      "id": "fault_fail_to_feed",
+      "source": "faults/faults_guns.json",
+      "position": 0,
+      "definition": {
+        "//": "gun_mechanical_simple can be fixed on the fly",
+        "description": "This gun did not load the round in the chamber properly.",
+        "fault_type": "gun_mechanical_simple",
+        "id": "fault_fail_to_feed",
+        "item_prefix": "jammed",
+        "name": {
+          "str": "Fail to feed"
+        },
+        "severity": "minor",
+        "type": "fault"
+      }
+    },
+    {
+      "namespace": "fault",
+      "id": "fault_stovepipe",
+      "source": "faults/faults_guns.json",
+      "position": 1,
+      "definition": {
+        "//": "only closed bolt",
+        "description": "The casing of the cartridge is stuck in the ejection port without being properly ejected, forming an exhaust pipe shape.",
+        "fault_type": "gun_mechanical_simple",
+        "id": "fault_stovepipe",
+        "item_prefix": "jammed",
+        "name": {
+          "str": "Stovepipe"
+        },
+        "severity": "minor",
+        "type": "fault"
       }
     },
     {
@@ -328,6 +397,41 @@
     },
     {
       "namespace": "item",
+      "id": "545_casing",
+      "source": "items/generic/casing.json",
+      "position": 11,
+      "definition": {
+        "copy-from": "casing",
+        "description": "An empty casing from a 5.45x39mm round.",
+        "id": "545_casing",
+        "looks_like": "9mm_casing",
+        "name": {
+          "str": "5.45x39mm casing"
+        },
+        "type": "ITEM",
+        "volume": "7ml",
+        "weight": "4 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "9mm_casing",
+      "source": "BN/data/json/items/generic/casing.json",
+      "position": 1,
+      "definition": {
+        "id": "9mm_casing",
+        "copy-from": "casing",
+        "type": "GENERIC",
+        "name": {
+          "str": "9x19mm casing"
+        },
+        "description": "An empty casing from a 9x19mm round.",
+        "weight": "3 g",
+        "volume": "5ml"
+      }
+    },
+    {
+      "namespace": "item",
       "id": "ak74mag",
       "source": "items/magazine/545x39.json",
       "position": 0,
@@ -468,6 +572,29 @@
         ],
         "volume": "2418 ml",
         "weight": "3250 g"
+      }
+    },
+    {
+      "namespace": "item",
+      "id": "casing",
+      "source": "BN/data/json/items/generic/casing.json",
+      "position": 0,
+      "definition": {
+        "abstract": "casing",
+        "type": "GENERIC",
+        "category": "spare_parts",
+        "name": {
+          "str": "Casing from ammunition cartridge"
+        },
+        "stackable": true,
+        "material": "brass",
+        "symbol": "=",
+        "color": "yellow",
+        "damage_states": [
+          0,
+          0
+        ],
+        "price": "50 cent"
       }
     },
     {
@@ -1330,6 +1457,22 @@
           "scrap"
         ]
       }
+    },
+    {
+      "namespace": "weapon_category",
+      "id": "AUTOMATIC_RIFLES",
+      "source": "weapon_categories.json",
+      "position": 0,
+      "definition": {
+        "id": "AUTOMATIC_RIFLES",
+        "name": "AUTOMATIC RIFLES",
+        "proficiencies": [
+          "prof_auto_rifles_familiar",
+          "prof_auto_rifles_pro",
+          "prof_auto_rifles_master"
+        ],
+        "type": "weapon_category"
+      }
     }
   ],
   "edges": [
@@ -1354,6 +1497,17 @@
         "545"
       ],
       "field": "ascii_picture"
+    },
+    {
+      "from": [
+        "item",
+        "545"
+      ],
+      "to": [
+        "item",
+        "545_casing"
+      ],
+      "field": "casing"
     },
     {
       "from": [
@@ -1431,6 +1585,39 @@
         "IRREPLACEABLE_CONSUMABLE"
       ],
       "field": "flags"
+    },
+    {
+      "from": [
+        "item",
+        "545_casing"
+      ],
+      "to": [
+        "item",
+        "casing"
+      ],
+      "field": "copy-from"
+    },
+    {
+      "from": [
+        "item",
+        "545_casing"
+      ],
+      "to": [
+        "item",
+        "9mm_casing"
+      ],
+      "field": "looks_like"
+    },
+    {
+      "from": [
+        "item",
+        "9mm_casing"
+      ],
+      "to": [
+        "item",
+        "casing"
+      ],
+      "field": "copy-from"
     },
     {
       "from": [
@@ -1523,6 +1710,17 @@
     {
       "from": [
         "item",
+        "bars"
+      ],
+      "to": [
+        "item",
+        "kord"
+      ],
+      "field": "mod_targets"
+    },
+    {
+      "from": [
+        "item",
         "broken_kord"
       ],
       "to": [
@@ -1600,6 +1798,28 @@
     {
       "from": [
         "item",
+        "casing"
+      ],
+      "to": [
+        "ITEM_CATEGORY",
+        "spare_parts"
+      ],
+      "field": "category"
+    },
+    {
+      "from": [
+        "item",
+        "casing"
+      ],
+      "to": [
+        "material",
+        "brass"
+      ],
+      "field": "material"
+    },
+    {
+      "from": [
+        "item",
         "casket74mag"
       ],
       "to": [
@@ -1662,6 +1882,83 @@
         "545x39"
       ],
       "field": "pocket_data.ammo_restriction"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "fault",
+        "fault_gun_blackpowder"
+      ],
+      "field": "faults[0].fault"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "fault",
+        "fault_gun_dirt"
+      ],
+      "field": "faults[1].fault"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "fault",
+        "fault_gun_chamber_spent"
+      ],
+      "field": "faults[2].fault"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "fault",
+        "fault_fail_to_feed"
+      ],
+      "field": "faults[3].fault"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "fault",
+        "fault_stovepipe"
+      ],
+      "field": "faults[4].fault"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "fault",
+        "fault_double_feed"
+      ],
+      "field": "faults[5].fault"
+    },
+    {
+      "from": [
+        "item",
+        "gun_base_rifle_semi"
+      ],
+      "to": [
+        "weapon_category",
+        "AUTOMATIC_RIFLES"
+      ],
+      "field": "weapon_category"
     },
     {
       "from": [
@@ -2016,13 +2313,31 @@
       "field": "material"
     }
   ],
-  "obligations": [],
+  "obligations": [
+    {
+      "namespace": "fault",
+      "id": "fault_gun_blackpowder",
+      "status": "resolve_against_pinned_BN"
+    },
+    {
+      "namespace": "fault",
+      "id": "fault_gun_chamber_spent",
+      "status": "resolve_against_pinned_BN"
+    },
+    {
+      "namespace": "fault",
+      "id": "fault_gun_dirt",
+      "status": "resolve_against_pinned_BN"
+    }
+  ],
   "support_definition_schema_review_required": [
     "ITEM_CATEGORY",
     "ammunition_type",
     "ascii_art",
+    "fault",
     "json_flag",
-    "material"
+    "material",
+    "weapon_category"
   ],
   "release_ready": false,
   "source_sha256": "a0d3c496d67a0c45fe66297d42e3acf3a9d8f0dbb645741b9bf7e4303e091c09"

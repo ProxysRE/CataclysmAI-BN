@@ -1,0 +1,14 @@
+[
+  {
+    "copy-from": "casing",
+    "description": "An empty casing from a 5.45x39mm round.",
+    "id": "545_casing",
+    "looks_like": "9mm_casing",
+    "name": {
+      "str": "5.45x39mm casing"
+    },
+    "type": "GENERIC",
+    "volume": "7ml",
+    "weight": "4 g"
+  }
+]

@@ -42,6 +42,8 @@ def references(entry):
     """Only schema-defined reference positions; never display text or enum values."""
     fields = {'copy-from': 'item', 'looks_like': 'item', 'default_container': 'item',
               'revert_to': 'item', 'default_mods': 'item', 'built_in_mods': 'item',
+              'casing': 'item', 'linkage': 'item', 'mod_targets': 'item',
+              'weapon_category': 'weapon_category',
               'ammo': 'ammunition_type', 'ammo_type': 'ammunition_type',
               'category': 'ITEM_CATEGORY', 'material': 'material', 'flags': 'json_flag',
               'ammo_effects': 'ammo_effect', 'ascii_picture': 'ascii_art'}
@@ -49,7 +51,21 @@ def references(entry):
         for identifier in names(entry.get(field, [])):
             if target == 'ammunition_type' and identifier == 'NULL':
                 continue  # DDA/BN enum sentinel, not a data definition.
+            if field in {'casing', 'linkage'} and identifier in {'NULL', 'null'}:
+                continue
             yield target, identifier, field
+    for index, fault in enumerate(entry.get('faults', [])):
+        if isinstance(fault, str):
+            yield 'fault', fault, f'faults[{index}]'
+        elif isinstance(fault, dict):
+            for key in ('fault', 'fault_group'):
+                for identifier in names(fault.get(key, [])):
+                    yield key, identifier, f'faults[{index}].{key}'
+    for ammo, magazines in entry.get('magazine_adaptor', []):
+        if ammo != 'NULL':
+            yield 'ammunition_type', ammo, 'magazine_adaptor.ammo'
+        for identifier in magazines:
+            yield 'item', identifier, 'magazine_adaptor.items'
     for pocket in entry.get('pocket_data', []):
         for identifier in names(pocket.get('item_restriction', [])):
             yield 'item', identifier, 'pocket_data.item_restriction'
