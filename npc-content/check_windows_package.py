@@ -6,6 +6,7 @@ import tempfile
 import zipfile
 
 from merge_existing_locations import prepare
+from prepare_location_expansion import nuclear_patch, NUCLEAR
 from package_windows_npc import ROOT, digest, package, verify_install
 
 
@@ -15,6 +16,7 @@ def check():
         root = Path(directory)
         installed = root / 'CBN_DDA_NPC_DEV'
         payload = {
+            NUCLEAR: nuclear_patch()[1].encode(),
             'cataclysm-bn-tiles.exe': b'MZ-test-executable',
             'LICENSE.txt': b'fixture',
             'gfx/fixture.txt': b'fixture',
@@ -41,12 +43,15 @@ def check():
                 assert archive.read('CBN_DDA_NPC_DEV/' + relative) == payload[relative]
                 assert build['files'][relative] == digest(installed / relative)
         assert output.with_suffix('.zip.sha256').read_text().split()[0] == digest(output)
-        for mutation in ('missing_translation', 'stale_map', 'user_data'):
+        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'user_data'):
             if mutation == 'missing_translation':
                 path = installed / 'lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo'
                 path.unlink()
             elif mutation == 'stale_map':
                 path = installed / 'data/json/mapgen/chemical_lab.json'
+                path.write_text('[]')
+            elif mutation == 'stale_nuclear':
+                path = installed / NUCLEAR
                 path.write_text('[]')
             else:
                 path = installed / 'save'

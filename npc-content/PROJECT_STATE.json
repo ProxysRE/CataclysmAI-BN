@@ -137,7 +137,29 @@
     ],
     "basement_search_layer": -1
   },
-  "location_expansion": "Agreed standalone DDA location catalog expansion after NPC blocks; user examples require exact identification",
+  "location_expansion": {
+    "scope": "NPC-linked and standalone sites; merge existing BN locations instead of duplicating",
+    "hub_01": {
+      "bn_terrain_cells": 69,
+      "dda_terrain_cells": 102,
+      "candidate_terrain_cells": 102,
+      "added_cells": 33,
+      "replaced_cells": 2,
+      "new_z_minus_1_cells": 8,
+      "native_patch": false,
+      "installable": false
+    },
+    "nuclear_power_plant": {
+      "already_in_bn": true,
+      "baseline_cells": 684,
+      "merged_cells": 708,
+      "source_cells": 715,
+      "native_change": "24 DDA shoreline cells; BN mechanics and buildings retained",
+      "native_patch": true,
+      "runtime_validated": false
+    },
+    "report": "location_expansion/LOCATION_EXPANSION_REPORT.json"
+  },
   "pending_native_tests": [
     "Boat mission assignment, 249/250 nails, mission serialization, full wrap_up and routed canoe",
     "Cleanup real start/end callbacks and counter cleanup",
@@ -202,7 +224,7 @@
       "staged_dda_files": 158,
       "scope": "Typed selection and full static placement comparison; generic mapgen and item/monster dependencies remain open",
       "hub_01": {
-        "dda_terrain_cells": 100,
+        "dda_terrain_cells": 102,
         "bn_terrain_cells": 69,
         "dda_has_extra_z_minus_1": true
       }
@@ -267,7 +289,7 @@
   "windows_packaging": {
     "mode": "Official BN cmake --install, installed-data regression, verified ZIP and SHA256",
     "artifact": "CBN-DDA-NPC-Windows-x64",
-    "status": "Verified archive produced at 1031b295; later item changes pending",
+    "status": "Verified archive at 1031b295; later items and nuclear shoreline pending",
     "local_checks": "Archive payload, provenance, checksum and incomplete/stale installation rejection passed",
     "includes_staged_bulk_communities": false,
     "includes_highway_branch": false,

@@ -56,6 +56,10 @@ def verify_install(folder):
     if json.loads((folder / required[4]).read_text(encoding='utf-8')) != merged:
         raise ValueError('Installed chemist map differs from the reviewed replacement')
 
+    from prepare_location_expansion import nuclear_patch, NUCLEAR
+    if json.loads((folder / NUCLEAR).read_text(encoding='utf-8')) != json.loads(nuclear_patch()[1]):
+        raise ValueError('Installed nuclear special differs from the reviewed shoreline merge')
+
 
 def package(folder, output, source_head):
     folder, output = folder.resolve(), output.resolve()
@@ -71,6 +75,8 @@ def package(folder, output, source_head):
         'Also includes the two quest USB dependencies for the Isolated Road port.\n'
         'The 5.45x39 casing dependency is included; the live ammo and Kord rifle are still pending.\n'
         'The demilled Kord is a quest prop, not a working firearm.\n'
+        'Includes 24 DDA shoreline cells at the existing BN nuclear power plant.\n'
+        'The expanded Hub 01 candidate is not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'
         'Build source: https://github.com/ProxysRE/CataclysmAI-BN/commit/' + source_head + '\n',

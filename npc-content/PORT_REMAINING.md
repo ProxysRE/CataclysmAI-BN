@@ -31,3 +31,9 @@ this NPC snapshot does not certify highway visual fixes or combine the two build
 
 Next priorities: native regression, shared event/activity compatibility, coherent
 existing-location/NPC merges, then broader placement and playable packaging.
+
+## Location expansion, 2026-10-17
+
+Nuclear power plants already exist in the pinned BN source, including levels -1 through +7 and attached hazardous-waste basements at -2. All nine main mapgen floor layouts are geometrically the same as DDA; BN has intentional reactor/grid and train substitutions. A minimal replacement adds 24 DDA shoreline cells (684 to 708 placements), retaining every BN placement and generation rule. Native Windows loading and natural generation remain pending.
+
+Hub 01 now has a generated 102-cell replacement candidate (69 BN cells, 33 additions, two replacements). The complete DDA special has 102 cells, correcting the previous partial count of 100. Eight cells on z=-1 include foyer/security/control spaces and a shaft; the residential level is elsewhere. The candidate retains BN frequency, road connections and unique-generation policy. Five matching DDA mapgen/palette/terrain source files are staged alongside it; the candidate is not installed until dependency, schema and vertical-access review passes.

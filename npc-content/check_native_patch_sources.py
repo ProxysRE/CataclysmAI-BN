@@ -5,6 +5,7 @@ import re
 import difflib
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_location_expansion import nuclear_patch, NUCLEAR
 
 ROOT = Path(__file__).resolve().parent
 
@@ -19,6 +20,9 @@ def check():
         'a/' + target, 'b/' + target))
     assert patch.count('+++ b/' + target + '\n') == 1, 'Expected one chemist replacement'
     assert expected_map_patch in patch, 'Stale reviewed chemist map patch'
+    expected_nuclear, _, _ = nuclear_patch()
+    assert patch.count('+++ b/' + NUCLEAR + '\n') == 1, 'Expected one nuclear replacement'
+    assert expected_nuclear in patch, 'Stale nuclear shoreline patch'
     files = {
         'src/' + name: ROOT / 'native' / name
         for name in ('artisan_expression.h', 'artisan_bn_bridge.h', 'artisan_items.h',

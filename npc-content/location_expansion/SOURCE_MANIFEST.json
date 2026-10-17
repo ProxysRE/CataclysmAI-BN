@@ -1,0 +1,107 @@
+{
+  "bundle_sha256": "9ee7f252ea1d424d4aac92b5ae289afa380ba39a2ee72d9b72500c9e71abc6b2",
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z-1.json": {
+      "sha256": "1edea1516650d7c9b6cc036e271601cfc18a39309b4782aeaa8e5eeb1caf34d0",
+      "git_blob_sha": "4bc359d296c6bcfb1c7c18f75feefc75487db716"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z0.json": {
+      "sha256": "3bc6f79229f97417880f00b9237d9e0102828c092bf1711577634c52c5ce19de",
+      "git_blob_sha": "b5cfc0f131b69ea19a8d3208d1ab441e400b1c9b"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z1.json": {
+      "sha256": "b5dcb24cbe3d79cb19eeb753c8a67772275c2d219d91700a77d07868db1d290d",
+      "git_blob_sha": "2bf31fa1a480d41acb317234b83c100ccf994739"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z2.json": {
+      "sha256": "57b951eb2425e7001767c2696b6b00f7c55a6f7558be7da5ca784adf2a074ecb",
+      "git_blob_sha": "3571f6d4fea5826c14cc0db7ec8345be6bd7b13b"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z3.json": {
+      "sha256": "6679583129486164ed51b74894da179c7a2e2ef89f603b129688ee9a23991ca7",
+      "git_blob_sha": "673ee4b6bc30126975a89910e219b858a4dfcccd"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z4.json": {
+      "sha256": "ce2cef3bb530e060faf428a8d41a0f21b40aed65ae37e2a4fb912e363742fec3",
+      "git_blob_sha": "5dbac9e5e59761747b2d0e2b4c075fe0a2f079e9"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z5.json": {
+      "sha256": "f0032341056b1e7e1034e659d97e64ab3309f01938bb92c87fc1229f41457b52",
+      "git_blob_sha": "097ee9b7ec69aeee636db8fa5275e82c66bdff5f"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z6.json": {
+      "sha256": "6a6d348839b121f2484130a185d4fb41aa8338918f59757e780eb915c5d4c017",
+      "git_blob_sha": "45c42c16142ec2958212a68a16c59ee3952a6d36"
+    },
+    "bn/data/json/mapgen/nuclear_plant/nuclear_plant_z7.json": {
+      "sha256": "756aa9f34b72d4f7e04987e7b244a9d6b2871db52da1a0cb26e2ae4ac619699b",
+      "git_blob_sha": "2a0409b1d79c882e0a983d194fc6e5ccbd069367"
+    },
+    "bn/data/json/mapgen_palettes/nuclear_plant_palette.json": {
+      "sha256": "4feab5eadda10806348c9dcdb0528066bf0c678d22ade373e57d839437f4320f",
+      "git_blob_sha": "eeb8a5639773f3726128dab81276779e3f605742"
+    },
+    "bn/data/json/overmap/overmap_special/nuclear_plant.json": {
+      "sha256": "26ba7fc84870741f26a9aa6bd596397c84c47df7b161523c42b4c514cb29dd85",
+      "git_blob_sha": "61356387488a439b85d33a9b5728628cd5adc580"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_nuclear_plant.json": {
+      "sha256": "2bfb7447dc088b23fdb5cf410fc69e5129dbafdfdf89b5805ca80ebeba1b426e",
+      "git_blob_sha": "3391507e7962aae2567c84b41ea110c67f5102a9"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_river.json": {
+      "sha256": "2fd11f8b89ea99c4a91de6ed72fc00ad57a1ffe7d598b7887057e2febcab3526",
+      "git_blob_sha": "4bc75833d57f58aed89b9fe89e7785a582183b24"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z-1.json": {
+      "sha256": "cf74a031e63b3063ef3a7819b74b6b279e6bae9df12596f0ddf6681669a72a65",
+      "git_blob_sha": "63b9f7bde0bce1dc7bbbf30853d51ae0f1db0e31"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z0.json": {
+      "sha256": "5c0d422e3c8b686a5be8b90bc015ef8d84e7b8ad9301e1b13fd44a85e0ace7df",
+      "git_blob_sha": "d5cbcde045344105570072950f6b034925d70ef3"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z1.json": {
+      "sha256": "022670f78f435891e93716efd0f543dbe87aa6c012dd84b0481322cd7daf2707",
+      "git_blob_sha": "803c5663753c478df2e5cc099872fa46e8781a25"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z2.json": {
+      "sha256": "2b9f68eb151886b7f01fe864b15a873f9087adfc45e249006825903fc6121697",
+      "git_blob_sha": "a9100167810cd515a1325b4ca37a945081285cd9"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z3.json": {
+      "sha256": "0c549477ec8072f1e5612de3c292587fac5ee71cfa0393cb243a89cd839eb018",
+      "git_blob_sha": "2e89028cfb92948a1252fa566c4e2a086cbd2f68"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z4.json": {
+      "sha256": "45265dac7f0820970f653b238a1d50512b60f6fdb35c516a94ad6a06e7591c5c",
+      "git_blob_sha": "ae436deb577e7e7c712c44a91cb6b13bf3497dca"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z5.json": {
+      "sha256": "20a5b92f3e77272764bd8c3349b8d4f4021d667a2da49bffa107158df8638f41",
+      "git_blob_sha": "86b9df3615aab93f8d83b89d15ab37c98ae59196"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z6.json": {
+      "sha256": "1638d664b5bb98c3fb6cf6ae249ce8d510b6f0b4e755cf24a6b6db2994f50213",
+      "git_blob_sha": "be0d230fd8ef4725a6c99f50416130f9a7eab272"
+    },
+    "dda/data/json/mapgen/nuclear_plant/nuclear_plant_z7.json": {
+      "sha256": "7a841d9b11e4f27ffa3e44d00806de233789865a97ea7c9233766cf00fcd9fa1",
+      "git_blob_sha": "7f52f416c569ed8275e43ef185b5a1f48446c240"
+    },
+    "dda/data/json/mapgen_palettes/nuclear_plant_palette.json": {
+      "sha256": "3b1a697596b9857e7cae1b1a30c9783602a0d2064310065e8e4100423b4caffa",
+      "git_blob_sha": "8057346a988755feba0ff8603a74ab39653211e3"
+    },
+    "dda/data/json/overmap/overmap_special/nuclear_plant.json": {
+      "sha256": "06bc2b0357ae760092d7489ed119179917e77ddfe2a4a535575391f68217343a",
+      "git_blob_sha": "6940fd45fc7d5cbd175145272d56b3ef3e04f266"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_nuclear_plant.json": {
+      "sha256": "8cda191135ba46fe0f6d41d943475959303cc0be17e25256c0a16822fbcd2032",
+      "git_blob_sha": "358e82b65f2079f879a4486e402131d390c90a4f"
+    }
+  }
+}

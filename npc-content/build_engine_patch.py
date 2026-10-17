@@ -7,6 +7,7 @@ import re
 import subprocess
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_location_expansion import nuclear_patch, NUCLEAR
 
 root = Path(__file__).resolve().parent
 base_files = ("condition.cpp", "npctalk.cpp", "faction.h", "faction.cpp",
@@ -43,7 +44,7 @@ if args.bn_source:
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
-    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json")):
+    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR)):
         content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -87,6 +88,7 @@ path = "data/json/mapgen/chemical_lab.json"
 parts.extend(difflib.unified_diff((root / "layers/bn" / path).read_text().splitlines(keepends=True),
                                 (root / "layers/merged/chemical_lab.json").read_text().splitlines(keepends=True),
                                 "a/" + path, "b/" + path))
+parts.append(nuclear_patch()[0])
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()
