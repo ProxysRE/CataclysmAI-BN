@@ -242,7 +242,7 @@
                 "prob": 40
               },
               {
-                "group": "hiking",
+                "group": "camping",
                 "prob": 40
               },
               {
@@ -422,7 +422,7 @@
                 "prob": 10
               },
               {
-                "item": "cotton_patchwork",
+                "item": "rag",
                 "count": [
                   20,
                   50
@@ -730,7 +730,7 @@
                 "prob": 600
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 2
               },
               {
@@ -750,7 +750,7 @@
                 "prob": 600
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 2
               },
               {
@@ -770,7 +770,7 @@
                 "prob": 300
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 1
               },
               {
@@ -790,7 +790,7 @@
                 "prob": 300
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 1
               },
               {
@@ -870,7 +870,7 @@
                 "prob": 400
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 2
               },
               {
@@ -1447,7 +1447,7 @@
                 "prob": 40
               },
               {
-                "group": "hiking",
+                "group": "camping",
                 "prob": 40
               },
               {
@@ -1627,7 +1627,7 @@
                 "prob": 10
               },
               {
-                "item": "cotton_patchwork",
+                "item": "rag",
                 "count": [
                   20,
                   50
@@ -1935,7 +1935,7 @@
                 "prob": 500
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 2
               },
               {
@@ -1959,7 +1959,7 @@
                 "prob": 500
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 2
               },
               {
@@ -1983,7 +1983,7 @@
                 "prob": 200
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 1
               },
               {
@@ -2003,7 +2003,7 @@
                 "prob": 200
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 1
               },
               {
@@ -2083,7 +2083,7 @@
                 "prob": 400
               },
               {
-                "group": "SUS_trash_floor",
+                "group": "trash_cart",
                 "prob": 5
               },
               {
@@ -3086,6 +3086,53 @@
     ]
   },
   {
+    "id": "farm_supply_wire",
+    "type": "item_group",
+    "subtype": "collection",
+    "items": [
+      {
+        "item": "wire",
+        "prob": 50,
+        "count": [
+          20,
+          50
+        ]
+      },
+      {
+        "item": "wire",
+        "prob": 5,
+        "count": [
+          0,
+          20
+        ]
+      },
+      {
+        "item": "wire",
+        "prob": 5,
+        "count": [
+          0,
+          20
+        ]
+      },
+      {
+        "item": "wire",
+        "prob": 5,
+        "count": [
+          0,
+          20
+        ]
+      },
+      {
+        "item": "wire_barbed",
+        "prob": 40,
+        "count": [
+          20,
+          50
+        ]
+      }
+    ]
+  },
+  {
     "id": "farm_supply_quicklime_and_saltpetre",
     "type": "item_group",
     "items": [
@@ -3100,6 +3147,128 @@
       {
         "group": "saltpeter_canvas_bag_part",
         "prob": 15
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_animal_feed",
+    "type": "item_group",
+    "items": [
+      {
+        "prob": 50,
+        "group": "cattlefodder_bag_canvas_50"
+      },
+      {
+        "prob": 50,
+        "group": "birdfood_bag_canvas_60"
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_riding_gear",
+    "type": "item_group",
+    "subtype": "collection",
+    "items": [
+      {
+        "item": "horse_tack"
+      },
+      {
+        "item": "saddlebag"
+      }
+    ]
+  },
+  {
+    "id": "farm_supply_floor_surprises",
+    "type": "item_group",
+    "items": [
+      {
+        "group": "camping",
+        "prob": 50
+      },
+      {
+        "group": "ammo_common",
+        "prob": 2
+      },
+      {
+        "group": "tools_survival",
+        "prob": 5
+      },
+      {
+        "group": "clothing_outdoor_shoes",
+        "prob": 7
+      },
+      {
+        "group": "clothing_outdoor_torso",
+        "prob": 7
+      },
+      {
+        "group": "clothing_outdoor_pants",
+        "prob": 7
+      },
+      {
+        "group": "farming_tools",
+        "prob": 5
+      },
+      {
+        "group": "farming_seeds",
+        "prob": 20
+      },
+      {
+        "item": "rock",
+        "prob": 5
+      },
+      {
+        "prob": 2,
+        "item": "cash_card"
+      },
+      {
+        "prob": 4,
+        "item": "money_bundle",
+        "count": 1
+      },
+      {
+        "group": "discount_cards",
+        "prob": 1
+      },
+      {
+        "item": "spray_can",
+        "prob": 10,
+        "charges": [
+          0,
+          10
+        ]
+      },
+      {
+        "item": "survnote",
+        "prob": 1
+      },
+      {
+        "item": "touristmap",
+        "prob": 1
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "cattlefodder_bag_canvas_50",
+    "subtype": "collection",
+    "container-item": "bag_canvas",
+    "entries": [
+      {
+        "item": "cattlefodder",
+        "count": 50
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "birdfood_bag_canvas_60",
+    "subtype": "collection",
+    "container-item": "bag_canvas",
+    "entries": [
+      {
+        "item": "birdfood",
+        "count": 60
       }
     ]
   },
@@ -3171,6 +3340,167 @@
         "item": "material_quicklime",
         "charges": 6000
       }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "ammo_hunting",
+    "//": "Ammo for hunting purposes.",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "ammo_rifle_common_full",
+        "prob": 4979
+      },
+      {
+        "group": "ammo_shotgun_common_full",
+        "prob": 5743
+      },
+      {
+        "group": "ammo_pistol_common_full",
+        "prob": 3015
+      }
+    ]
+  },
+  {
+    "id": "box_of_batteries_unopened",
+    "type": "item_group",
+    "subtype": "distribution",
+    "container-item": "box_medium",
+    "items": [
+      {
+        "item": "light_minus_battery_cell",
+        "charges": 50,
+        "prob": 3,
+        "count": 8
+      },
+      {
+        "item": "light_minus_battery_cell",
+        "charges": 50,
+        "prob": 30,
+        "count": 8
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 160,
+        "count": 8
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 16,
+        "count": 16
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 16,
+        "count": 8
+      },
+      {
+        "item": "light_battery_cell",
+        "charges": 100,
+        "prob": 1,
+        "count": 12
+      },
+      {
+        "item": "medium_battery_cell",
+        "charges": 500,
+        "prob": 15,
+        "count": 4
+      }
+    ]
+  },
+  {
+    "id": "child_hats",
+    "type": "item_group",
+    "//": "Hats for zombie children.",
+    "items": [
+      {
+        "item": "helmet_football",
+        "prob": 30
+      },
+      {
+        "item": "helmet_ball",
+        "prob": 30
+      },
+      {
+        "item": "hat_ball",
+        "prob": 10
+      },
+      {
+        "item": "hat_golf",
+        "prob": 5
+      },
+      {
+        "item": "helmet_bike",
+        "prob": 70
+      },
+      {
+        "item": "helmet_riding",
+        "prob": 5
+      },
+      {
+        "group": "helmet_bike_modified",
+        "prob": 10
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "supplies_woodcrafts",
+    "items": [
+      {
+        "prob": 30,
+        "item": "bone_glue"
+      },
+      {
+        "prob": 10,
+        "item": "superglue"
+      },
+      [
+        "sandpaper",
+        40
+      ],
+      [
+        "screwdriver",
+        5
+      ],
+      [
+        "dremel",
+        20
+      ],
+      [
+        "chisel",
+        10
+      ],
+      [
+        "hammer",
+        5
+      ]
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "discount_cards",
+    "items": [
+      [
+        "fp_loyalty_card",
+        40
+      ],
+      [
+        "gasdiscount_silver",
+        20
+      ],
+      [
+        "gasdiscount_gold",
+        10
+      ],
+      [
+        "gasdiscount_platinum",
+        5
+      ]
     ]
   },
   {
@@ -3397,6 +3727,128 @@
     ],
     "symbol": "#",
     "color": "brown"
+  },
+  {
+    "type": "AMMO",
+    "id": "rock_flaking",
+    "copy-from": "rock",
+    "name": {
+      "str": "flaking rock"
+    },
+    "description": "A rock the size of a baseball which chips in a semi-predictable way if struck, leaving a sharp edge.  Makes a decent melee weapon, and is also good for throwing at enemies.",
+    "weight": "657 g",
+    "volume": "250 ml",
+    "bashing": 7,
+    "damage": {
+      "damage_type": "stab",
+      "amount": 7
+    },
+    "range": 10,
+    "dispersion": 14,
+    "loudness": 0,
+    "count": 1,
+    "stack_size": 1
+  },
+  {
+    "type": "AMMO",
+    "id": "flint",
+    "copy-from": "rock_flaking",
+    "name": {
+      "str": "flint"
+    },
+    "description": "A chunk of flint, the kind of rock that can make sparks if stuck against high-carbon steel.  It also chips in a semi-predictable way if struck, leaving a sharp edge."
+  },
+  {
+    "type": "GENERIC",
+    "id": "rock_large",
+    "symbol": ";",
+    "color": "brown",
+    "name": {
+      "str": "large rock"
+    },
+    "description": "A large, heavy rock, big enough to be used as a primitive anvil or shaped into larger stone items.",
+    "category": "rocks",
+    "material": [
+      "stone"
+    ],
+    "weight": "15768 g",
+    "volume": "6 L",
+    "qualities": [
+      [
+        "ANVIL",
+        1
+      ]
+    ],
+    "bashing": 28
+  },
+  {
+    "type": "ARMOR",
+    "id": "helmet_riding",
+    "copy-from": "helmet_bike",
+    "looks_like": "helmet_bike",
+    "bashing": 2,
+    "extend": {
+      "flags": [
+        "WATERPROOF",
+        "STURDY",
+        "SUN_GLASSES"
+      ]
+    },
+    "name": {
+      "str": "riding helmet"
+    },
+    "description": "A helmet designed to protect from falls and kicks involving horses, has a small peak to protect from glare.",
+    "weight": "660 g",
+    "volume": "1800 ml",
+    "price": "70 USD",
+    "price_postapoc": "3 USD",
+    "color": "dark_gray",
+    "warmth": 20
+  },
+  {
+    "type": "TOOL",
+    "id": "dremel",
+    "copy-from": "angle_grinder",
+    "looks_like": "angle_grinder",
+    "bashing": 2,
+    "cutting": 0,
+    "qualities": [
+      [
+        "GRIND",
+        2
+      ],
+      [
+        "SAW_M",
+        1
+      ],
+      [
+        "SAW_M_FINE",
+        2
+      ],
+      [
+        "SAW_W",
+        1
+      ],
+      [
+        "FILE",
+        2
+      ],
+      [
+        "CUT",
+        1
+      ]
+    ],
+    "power_draw": 175000,
+    "name": {
+      "str": "dremel"
+    },
+    "description": "A rotating tool that can be used with various bits for a large amount of applications.",
+    "weight": "544 g",
+    "volume": "800 ml",
+    "price": "200 USD",
+    "price_postapoc": "2 USD 50 cent",
+    "symbol": "/",
+    "color": "yellow"
   },
   {
     "type": "terrain",

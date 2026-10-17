@@ -1,0 +1,14 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "scope": "Core JSON declarations and generated vehicle-part shapes; ID presence is not semantic/runtime parity",
+  "json_files": 1933,
+  "input_fingerprint": "3b605102af86e45a1bd2f27bf39973ba2b5eb5581081df192eae7445e021866b",
+  "identifiers_count": 33085,
+  "cache_sha256": "80ad8e43001e36e806dfe3609b9a8d9195afd9268bd425dc8874578484d86571",
+  "parts": [
+    "BN_IDS.part00",
+    "BN_IDS.part01",
+    "BN_IDS.part02",
+    "BN_IDS.part03"
+  ]
+}

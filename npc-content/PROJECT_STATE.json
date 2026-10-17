@@ -412,7 +412,13 @@
     "status": "adapted_candidate_not_native_enabled",
     "progress": "farm_supply/PORT_REPORT.json",
     "geometry": "normal/looted full shops, shared roof, fence damage",
-    "dependencies": "source construction groups and pallet furniture prepared; direct inline-loot/monster/provider audit added to CI",
-    "blocking": "place_corpses unsupported by pinned BN loader; remaining loot dependencies and runtime validation"
+    "dependencies": "20 groups; construction stacks; 6 item adapters; direct typed closure has one remaining modular-helmet group; stock BN money preserved",
+    "blocking": "place_corpses bridge; modular helmet group; native behavior and generation validation"
+  },
+  "bn_dependency_catalog": {
+    "path": "dependency_catalog/BN_ID_INDEX.json",
+    "identifiers": 33085,
+    "json_files": 1933,
+    "scope": "Pinned BN core JSON declared/generated identities; checked against full source in CI; not runtime parity"
   }
 }

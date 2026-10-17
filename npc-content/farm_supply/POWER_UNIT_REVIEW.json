@@ -1,0 +1,9 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "source": "src/item.cpp",
+  "verified_source_comment": "power_draw in mW / 1000000 to give kJ (battery unit) per second",
+  "source_dda_draw_watts": 175,
+  "candidate_bn_draw_milliwatts": 175000,
+  "native_behavior_validated": false,
+  "limits": "BN angle-grinder battery/recipe model is reused. DDA cable linking, electronic faults and quality speed multipliers are not implemented."
+}

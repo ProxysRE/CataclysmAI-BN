@@ -3,11 +3,13 @@
     "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
     "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
   },
-  "bundle_sha256": "e38685667995349fb461119df3afaee98e524556e9eab506af9e3658ea395c05",
+  "bundle_sha256": "6311a1068d3c41bc0eef4fd37425065039329fdfff6d4d55b94156ad219208f1",
   "parts": [
     "SOURCE.part00",
     "SOURCE.part01",
-    "SOURCE.part02"
+    "SOURCE.part02",
+    "SOURCE.part03",
+    "SOURCE.part04"
   ],
   "files": {
     "bn/src/item_group.cpp": {
@@ -34,11 +36,26 @@
     "bn/data/json/items/generic.json": {
       "sha256": "65119930ff18e3c99bcfaa549273a3a229c3aff598e1b82ab9c1dbe842d80fb8"
     },
+    "bn/data/json/items/battery.json": {
+      "sha256": "9c03491f51f8bead4753388a7b54cb5e30843ddd5583c12e5ea5dca3fe462ebf"
+    },
     "bn/data/json/itemgroups/trash_and_debris.json": {
       "sha256": "dfd78aef76ec99524032538a19025191f536d6da3ae75870d638f74986507377"
     },
+    "bn/data/json/itemgroups/activities_hobbies.json": {
+      "sha256": "ada99b1da8e9eebd7352cee5282190c7ef563efcdf57941c1365e0602649840c"
+    },
     "bn/data/json/itemgroups/collections_domestic.json": {
       "sha256": "b7b82df326c480e99955e470813fbfbc2ba75d2842dbcd5c979c9fff7492567c"
+    },
+    "bn/data/json/items/armor/helmets.json": {
+      "sha256": "17b54ece7e8ac3c5151e67b6917dbb473de55ece3c90cdf2141a71eff4858bde"
+    },
+    "bn/data/json/items/tool/workshop.json": {
+      "sha256": "761a31b90c04965c9a22586e1d6b3ca5c996a528706e2398d20abca47c72653a"
+    },
+    "bn/data/json/itemgroups/Weapons_Mods_Ammo/ammo.json": {
+      "sha256": "0fbb8f9ae5dee64813439e92d3ddddcb0702fc761d753704257a8e3789af693c"
     },
     "bn/data/json/itemgroups/SUS/domestic.json": {
       "sha256": "2213f48878533280cfcc629d22df2408c04ea56d82b15a22f5c1f459518ce55f"
@@ -46,8 +63,38 @@
     "dda/data/json/furniture_and_terrain/furniture-pallet.json": {
       "sha256": "a498eae587d2c700049e5d74cf7361feee6961b6f232a7622ed14840400e5c56"
     },
+    "dda/data/json/itemgroups/collections_trades.json": {
+      "sha256": "ee8bcd816fd2b63973a3cda006b8a30e0be04d83ddd6117d8da2cd03ee97c759"
+    },
+    "dda/data/json/itemgroups/activities_hobbies.json": {
+      "sha256": "4ed6be69f29a7d9e63bc547ee3009c26958ffbf9f0ad672d4b64791a53141ed3"
+    },
     "dda/data/json/itemgroups/supplies.json": {
       "sha256": "ddc76dd83c1b92cb87597ccb2d52327e776ceff9919fdeccd582d193638f9fca"
+    },
+    "dda/data/json/itemgroups/collections_domestic.json": {
+      "sha256": "914e6110de0c2668dbc84bff65bb02a89486493e9bf1b2f304df2fe600105421"
+    },
+    "dda/data/json/itemgroups/electronics.json": {
+      "sha256": "cbdf26998a7b2323c97a8c4a680f4bf347e639c26b06a9ece9bf3d9e2e70f11a"
+    },
+    "dda/data/json/items/armor/helmets.json": {
+      "sha256": "cc72d114644601e390e7625c73794b7cd948fd910b0b48750d16ad5ea19c3a35"
+    },
+    "dda/data/json/items/resources/stone.json": {
+      "sha256": "3af078089547102eaa08d9856a05eb818f399664a5f2cbf122b827ebe9f598ea"
+    },
+    "dda/data/json/items/tool/workshop.json": {
+      "sha256": "f31e5ffb6464250b611c3532d11ec62a11af20e7420a001344102018056af96c"
+    },
+    "dda/data/json/itemgroups/Clothing_Gear/clothing.json": {
+      "sha256": "89adf459e7261066190e84c9c08a257db7d3debc0045b5363a0a6c0a21cf3169"
+    },
+    "dda/data/json/itemgroups/Clothing_Gear/wallets.json": {
+      "sha256": "68bccc0bb16a1c45cd263fae967a5ee628fbf7912ba9c93471318836ac2ff20c"
+    },
+    "dda/data/json/itemgroups/Clothing_Gear/gear_civilian.json": {
+      "sha256": "2f28172714d53773b5a5dd6cb70315af6a7c98de0b7cca7590d39c6fa20e7787"
     },
     "dda/data/json/itemgroups/Locations_MapExtras/locations_commercial.json": {
       "sha256": "9aae0dcca6a3df7bb1d9212365e11dd6a5d6c7c9335a9abea6f4185c32bdefb7"
@@ -57,6 +104,9 @@
     },
     "dda/data/json/itemgroups/SUS/fridges.json": {
       "sha256": "33f20aee3996e5109dbf799434b8bd7e33df32a1c138156c221973436a49be1a"
+    },
+    "dda/data/json/itemgroups/Weapons_Mods_Ammo/ammo/ammo.json": {
+      "sha256": "7a2acba788d8d8baf9c3258103b174cdd410859db92a11159f70a21aa55191e6"
     },
     "dda/data/json/mapgen/nested/aux_nested.json": {
       "sha256": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6"

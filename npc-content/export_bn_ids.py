@@ -12,6 +12,18 @@ from prepare_regional_locations import index_entries
 PIN = 'c621aaf42fa182473aad10feea2b55647704dcf1'
 
 
+def read_cache(path):
+    manifest = json.loads(path.read_text())
+    encoded = ''.join((path.parent / name).read_text() for name in manifest['parts'])
+    raw = gzip.decompress(base64.b64decode(encoded, validate=True))
+    assert hashlib.sha256(raw).hexdigest() == manifest['cache_sha256'], 'BN ID cache checksum mismatch'
+    value = json.loads(raw)
+    assert value['bn_pin'] == manifest['bn_pin'] == PIN
+    assert value['input_fingerprint'] == manifest['input_fingerprint']
+    assert len(value['identifiers']) == manifest['identifiers_count']
+    return value
+
+
 def build(root):
     assert subprocess.check_output(['git', '-C', str(root), 'rev-parse', 'HEAD'], text=True).strip() == PIN, 'Wrong BN revision'
     paths = sorted((root / 'data/json').rglob('*.json'))
@@ -38,7 +50,7 @@ if __name__ == '__main__':
     raw = json.dumps(value, ensure_ascii=True, sort_keys=True, separators=(',', ':')).encode()
     a.output.write_bytes(raw)
     if a.cache.exists():
-        assert json.loads(a.cache.read_text()) == value, 'Pinned BN identifier cache drift'
+        assert read_cache(a.cache) == value, 'Pinned BN identifier cache drift'
     else:
         # One-time bootstrap of public source metadata through text-only API;
         # once committed, subsequent jobs validate it and emit no encoded data.

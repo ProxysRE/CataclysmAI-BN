@@ -3,9 +3,9 @@
   "geometry": "Both complete 2x2 source shops, common 2x2 roof and nested fence destruction; 12 terrain slots including alternate variants",
   "source_layout_preserved": true,
   "prepared_dependencies": {
-    "material_groups": 9,
+    "item_groups": 20,
     "construction_furniture": 3,
-    "pallet_item": 1,
+    "new_item_adapters": 6,
     "red_industrial_carpet": 1,
     "nested_damage_template": "1x1_bash"
   },
@@ -16,15 +16,32 @@
     "Durasack supply packaging uses stock 15 L canvas bags; known BN AMMO resources use charges instead of repeated full stacks",
     "Material pallets retain source dismantling and bash drops, with BN damage ranges capped at 4 and SMALL_HIDE mapped to SHORT",
     "Native cash-register groups reuse stock BN money_bundle; no imported denominations",
-    "Red industrial carpet materializes the stock BN parent to avoid forward terrain inheritance at root-level load time"
+    "Red industrial carpet materializes the stock BN parent to avoid forward terrain inheritance at root-level load time",
+    "Hiking uses the existing BN camping group; graded DDA wire uses BN wire, cotton patchwork uses BN rag",
+    "Hunting ammunition retains source rifle/shotgun/pistol relative weights but draws from existing BN common ammunition groups, not new boxed-calibre groups",
+    "Battery packets use BN battery types and exact 50/100/500 charge capacities in a stock 3 L cardboard box; new DDA disposable chemistry is not introduced",
+    "Woodworking uses stock BN bone glue and superglue",
+    "Source flaking rock/flint use BN rock ammunition behavior; large rock keeps source weight, volume and anvil quality",
+    "Riding helmet uses the BN bike helmet armor model with source identity and physical dimensions; DDA subpart armor and peakless damage cycle are not imported",
+    "Dremel uses the BN angle-grinder battery model with source six quality levels and 175 W draw (175000 mW); DDA cable linking, faults and quality speed multipliers are not imported",
+    "Floor wallets are represented by stock BN cash cards; banknotes use money_bundle and the coin branch is omitted"
   ],
   "blocking_work": [
-    "Resolve inline merchandise collections against the complete BN catalog, including missing groups, tools, clothing and hunting gear",
-    "Stock flint is absent at the pinned BN revision; source flaking/large rock definitions require a proper BN adaptation, not an assumed existing ID",
-    "Review corpse placement: the source looted variant has place_corpses, which the pinned BN JSON loader does not register. Original record remains intact, not silently removed",
-    "Resolve monster group dependencies and confirm all furniture flags and item-drop semantics in the native loader",
-    "Check container amounts and dismantling yields with actual BN items",
-    "Only then embed payload, add native generation tests and validate Windows installation"
+    "Implement or adapt source place_corpses: one source corpse-placement record remains intact",
+    "Resolve helmet_bike_modified: DDA places chin guard/visor inside a modular helmet; an ordinary BN helmet is not a container",
+    "Validate new furniture flags, dismantling/bash drops, material and battery container generation in native BN",
+    "Validate tool power/quality behavior and helmet properties; then add native generation/roof tests before embedding payload"
   ],
-  "audit_note": "The audit intentionally reports unresolved references and allows staging CI to succeed; that is not a playable-port validation."
+  "audit_note": "The audit intentionally reports unresolved references and allows staging CI to succeed; that is not a playable-port validation.",
+  "direct_reference_audit": {
+    "bn_cache": "dependency_catalog/BN_ID_INDEX.json",
+    "unresolved": [
+      [
+        "item_group",
+        "helmet_bike_modified"
+      ]
+    ],
+    "collisions": [],
+    "runtime_validated": false
+  }
 }
