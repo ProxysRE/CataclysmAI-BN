@@ -1,12 +1,12 @@
 {
   "checkpoint": {
-    "head": "c644c36547e6349663987d98b912ffe6b01cde66",
-    "run_id": 38976175204,
+    "head": "238271558bd0b117f8b00bd63f9e06a41b3ac9f0",
+    "run_id": 38987162632,
     "status": "success",
-    "test_cases": 31,
-    "assertions": 1065
+    "test_cases": 32,
+    "assertions": 1073
   },
-  "native_patch_sha256": "6edba1068a99a33042d762618f445a198b7d1c294772936d04577c56290c9ab5",
+  "native_patch_sha256": "3a265745e52d013ae683f7585de87f6b5f7179fc5791077cc2aabc4724310428",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -21,7 +21,8 @@
     "Real basement family spawn and return dialogue routing",
     "Boat payment boundaries and mission start/end callbacks",
     "Global master save round-trip, real NPC opinion and conditional effects",
-    "DDA random math and rotated location conditions"
+    "DDA random math and rotated location conditions",
+    "Named Hub trust penalty with a speaker from another faction, and trust save/load"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
@@ -29,5 +30,5 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Checkpoint certifies the exact recorded patch; later map/trust changes need another Windows run."
+  "note": "Certifies the exact recorded patch; later Godco waiting changes and portable packaging need their own run."
 }

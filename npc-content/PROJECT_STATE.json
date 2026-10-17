@@ -2,7 +2,7 @@
   "remote_branch": "port/dda-npc-locations",
   "stage": "Existing BN NPC waiting activity integrated for Godco; previous and new native regressions pending",
   "package": "Isolated Road",
-  "native_compilation": "Verified Windows baseline: 31 cases, 1065 assertions at c644c365. Subsequent named-faction trust and chemist replacement require a new run.",
+  "native_compilation": "Verified Windows game and tests at 23827155: 32 cases, 1073 assertions. Later Godco wait and portable packaging remain pending.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -14,11 +14,11 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "c644c36547e6349663987d98b912ffe6b01cde66",
-    "run_id": 38976175204,
+    "head": "238271558bd0b117f8b00bd63f9e06a41b3ac9f0",
+    "run_id": 38987162632,
     "status": "success",
-    "test_cases": 31,
-    "assertions": 1065
+    "test_cases": 32,
+    "assertions": 1073
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -43,11 +43,11 @@
     "epilogues": 2
   },
   "last_run": {
-    "head": "c644c36547e6349663987d98b912ffe6b01cde66",
-    "run_id": 38976175204,
+    "head": "238271558bd0b117f8b00bd63f9e06a41b3ac9f0",
+    "run_id": 38987162632,
     "status": "success",
-    "test_cases": 31,
-    "assertions": 1065
+    "test_cases": 32,
+    "assertions": 1073
   },
   "lighthouse": {
     "npcs": 4,
@@ -151,7 +151,7 @@
       "math_helpers": "min/max/clamp and world cataclysm age; native tests pending",
       "chance_conditions": "Literal and actor/global-variable one_in_chance plus direct if/then/else effects; Windows pending",
       "random_math": "DDA real rng and inclusive integer rand with round(n), runtime BN RNG callbacks; native Windows pending",
-      "named_faction_trust": "Real trusts_u read/set, arithmetic and named Hub mission penalty; native regression pending",
+      "named_faction_trust": "Passed Windows regression at 23827155: real trusts_u read/set, named Hub penalty, wrong-speaker-faction isolation and save/load",
       "NPC_interaction_activity": "Existing BN ACT_WAIT_NPC with required speaker name and bounded static elapsed duration; save/finish native regression pending"
     },
     "location_expansion": {
@@ -215,7 +215,7 @@
   "existing_location_merges": {
     "commit": "100da81b7adfd8358ae786965ba3ab143496624a",
     "target": "data/json/mapgen/chemical_lab.json",
-    "mode": "Included in generated native patch as replacement; new Windows validation pending",
+    "mode": "Native replacement passed Windows initialization and regression at 23827155; direct natural-generation field test remains pending",
     "changes": [
       "DDA chair at original chemist position",
       "Explicit single NPC placement"
