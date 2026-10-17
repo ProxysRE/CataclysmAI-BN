@@ -1,0 +1,30 @@
+{
+  "status": "adapted_candidate_not_native_enabled",
+  "geometry": "Both complete 2x2 source shops, common 2x2 roof and nested fence destruction; 12 terrain slots including alternate variants",
+  "source_layout_preserved": true,
+  "prepared_dependencies": {
+    "material_groups": 9,
+    "construction_furniture": 3,
+    "pallet_item": 1,
+    "red_industrial_carpet": 1,
+    "nested_damage_template": "1x1_bash"
+  },
+  "bn_adaptations": [
+    "ATM glyph becomes stock t_atm terrain, preserving BN banking behavior",
+    "Chest minifreezer candidate uses BN minifreezer with its electrical-grid behavior; no decorative appliance substitutes",
+    "Food and trash use existing BN SUS_fridge, trash_dumpster and trash_cart groups; loot distribution differs from DDA",
+    "Durasack supply packaging uses stock 15 L canvas bags; known BN AMMO resources use charges instead of repeated full stacks",
+    "Flaking-stone candidate maps to stock BN flint; stock limestone remains unchanged",
+    "Material pallets retain source dismantling and bash drops, with BN damage ranges capped at 4 and SMALL_HIDE mapped to SHORT",
+    "Native cash-register groups reuse stock BN money_bundle; no imported denominations",
+    "Red industrial carpet materializes the stock BN parent to avoid forward terrain inheritance at root-level load time"
+  ],
+  "blocking_work": [
+    "Resolve inline merchandise collections against the complete BN catalog, including missing groups, tools, clothing and hunting gear",
+    "Review corpse placement: the source looted variant has place_corpses, which the pinned BN JSON loader does not register. Original record remains intact, not silently removed",
+    "Resolve monster group dependencies and confirm all furniture flags and item-drop semantics in the native loader",
+    "Check container amounts and dismantling yields with actual BN items",
+    "Only then embed payload, add native generation tests and validate Windows installation"
+  ],
+  "audit_note": "The audit intentionally reports unresolved references and allows staging CI to succeed; that is not a playable-port validation."
+}

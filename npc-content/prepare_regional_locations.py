@@ -14,7 +14,7 @@ from pathlib import Path
 from compare_location_catalog import read_sources, normalized, physical_refs
 from quest_dependency_graph import namespace, ids
 
-BUILTIN_IDS = {('terrain', 't_null'), ('furniture', 'f_null')}
+BUILTIN_IDS = {('terrain', 't_null'), ('furniture', 'f_null'), ('item', 'null')}
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'regional_locations'
 SITES = {
@@ -91,6 +91,22 @@ def references(obj):
             for child in data:
                 value(kind, child[0] if isinstance(child, list) and len(child) == 2 and isinstance(child[1], (int, float)) else child)
         elif isinstance(data, dict):
+            if kind == 'item_group' and ('entries' in data or 'items' in data):
+                # An inline loot group is not an ID. Its leaves are typed:
+                # item -> item, group -> item_group, containers -> item.
+                for entry in data.get('entries', data.get('items', [])):
+                    if isinstance(entry, list):
+                        value('item', entry[0])
+                    elif isinstance(entry, dict):
+                        for field, target in [('item', 'item'), ('group', 'item_group'), ('container-item', 'item')]:
+                            if field in entry:
+                                value(target, entry[field])
+                        for field in ('collection', 'distribution'):
+                            if field in entry:
+                                value('item_group', {'entries': entry[field]})
+                if 'container-item' in data:
+                    value('item', data['container-item'])
+                return
             for key in ('fallback', kind, 'id') + ({'item_group': ('item', 'group'), 'monstergroup': ('monster', 'group')}.get(kind, ())):
                 if key in data:
                     value(kind, data[key])
@@ -115,6 +131,11 @@ def references(obj):
     for data in obj.get('nested', {}).values():
         if isinstance(data, dict):
             value('nested_mapgen', data.get('chunks', []))
+    for spawn in obj.get('place_monster', []):
+        if 'group' in spawn:
+            value('monstergroup', spawn['group'])
+    for liquid in obj.get('place_liquids', []):
+        value('item', liquid.get('liquid', []))
     for machine in list(obj.get('vendingmachines', {}).values()) + obj.get('place_vendingmachines', []):
         value('item_group', machine.get('item_group', 'default_vending_machine'))
     for computer in obj.get('place_computers', []):
@@ -132,6 +153,9 @@ def index_entries(entries):
             for shape in e.get('shapes', []):
                 for base in ids(e):
                     result.add(('vehicle_part', base + '_' + shape['direction']))
+        if e.get('type') == 'vehicle_group':
+            for identifier in ids(e):
+                result.add(('vehicle', identifier))  # mapgen accepts a group or a prototype
         if e.get('type') in ('monstergroup', 'vehicle_group') and isinstance(e.get('name'), str):
             result.add((e['type'], e['name']))
         for identifier in flatten(e.get('om_terrain', [])):
@@ -208,7 +232,7 @@ def build(bn_source=None, native_payloads=()):
                         'unregistered_mapgen_terrain_ids': sorted(omt - set(terrain))})
         outputs[site + '.json'] = staged
     report = {'pins': manifest['pins'], 'bn_scan': 'full_core_json' if bn_source else 'catalog_only',
-              'installed': False, 'native_dependency_payloads': [p.name for p in native_payloads], 'reference_scan_scope': 'Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions only; not a complete transitive loader validation.',
+              'installed': False, 'native_dependency_payloads': [p.name for p in native_payloads], 'reference_scan_scope': 'Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions, including inline loot collections; not a complete transitive loader validation.',
               'remaining': ['Resolve all shared nested/palette and item dependencies',
                             'Review BN counterparts semantically; matching ID is not parity',
                             'Adapt DDA schema, parameters, ramps and functional furniture without substitutions',

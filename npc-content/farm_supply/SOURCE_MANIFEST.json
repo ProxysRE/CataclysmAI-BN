@@ -1,0 +1,65 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "bundle_sha256": "e38685667995349fb461119df3afaee98e524556e9eab506af9e3658ea395c05",
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01",
+    "SOURCE.part02"
+  ],
+  "files": {
+    "bn/src/item_group.cpp": {
+      "sha256": "11bc6af3093d5bf3c84acb4136ef5868f9c71d28f3d8f9d7fa30162a10875366"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-storage.json": {
+      "sha256": "cc5d50a06444b22a6ec1a1c75db7a53d21892d34151181823be2c1ec9954cf98"
+    },
+    "bn/data/json/furniture_and_terrain/terrain-floors-indoor.json": {
+      "sha256": "22d7f9bd0c44ddb5b349d5e7747f942b68de019457ed780682ca65f1cf7179a9"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-appliances.json": {
+      "sha256": "91d7d824a50551b5ffebfe8bd6a414afea376697a2277d45afd660276f29d518"
+    },
+    "bn/data/json/furniture_and_terrain/terrain-manufactured.json": {
+      "sha256": "94354a471c01867df2b22db7e0f03434a1151bc579342d02b1484f79f46f3e31"
+    },
+    "bn/data/json/items/chemicals_and_resources.json": {
+      "sha256": "c2b8b4b735f4fd2e49b4b87ac58e7b31842bc2ee1e250d71ed39f3ea611af133"
+    },
+    "bn/data/json/items/containers.json": {
+      "sha256": "183a010a4e71e13939f5f2c7a4053c0f225188a81d13cc509a956e4f873003e8"
+    },
+    "bn/data/json/items/generic.json": {
+      "sha256": "65119930ff18e3c99bcfaa549273a3a229c3aff598e1b82ab9c1dbe842d80fb8"
+    },
+    "bn/data/json/itemgroups/trash_and_debris.json": {
+      "sha256": "dfd78aef76ec99524032538a19025191f536d6da3ae75870d638f74986507377"
+    },
+    "bn/data/json/itemgroups/collections_domestic.json": {
+      "sha256": "b7b82df326c480e99955e470813fbfbc2ba75d2842dbcd5c979c9fff7492567c"
+    },
+    "bn/data/json/itemgroups/SUS/domestic.json": {
+      "sha256": "2213f48878533280cfcc629d22df2408c04ea56d82b15a22f5c1f459518ce55f"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-pallet.json": {
+      "sha256": "a498eae587d2c700049e5d74cf7361feee6961b6f232a7622ed14840400e5c56"
+    },
+    "dda/data/json/itemgroups/supplies.json": {
+      "sha256": "ddc76dd83c1b92cb87597ccb2d52327e776ceff9919fdeccd582d193638f9fca"
+    },
+    "dda/data/json/itemgroups/Locations_MapExtras/locations_commercial.json": {
+      "sha256": "9aae0dcca6a3df7bb1d9212365e11dd6a5d6c7c9335a9abea6f4185c32bdefb7"
+    },
+    "dda/data/json/itemgroups/SUS/trash.json": {
+      "sha256": "8a78ad3b1236ef1ec7db75ee3597fe7f27f12b54019a679f2ff353a7dd8cacff"
+    },
+    "dda/data/json/itemgroups/SUS/fridges.json": {
+      "sha256": "33f20aee3996e5109dbf799434b8bd7e33df32a1c138156c221973436a49be1a"
+    },
+    "dda/data/json/mapgen/nested/aux_nested.json": {
+      "sha256": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6"
+    }
+  }
+}

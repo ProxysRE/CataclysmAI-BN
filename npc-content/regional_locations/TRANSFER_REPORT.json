@@ -6,7 +6,7 @@
   "bn_scan": "catalog_only",
   "installed": false,
   "native_dependency_payloads": [],
-  "reference_scan_scope": "Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions only; not a complete transitive loader validation.",
+  "reference_scan_scope": "Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions, including inline loot collections; not a complete transitive loader validation.",
   "remaining": [
     "Resolve all shared nested/palette and item dependencies",
     "Review BN counterparts semantically; matching ID is not parity",
@@ -924,6 +924,71 @@
           "status": "requires_full_bn_scan"
         },
         {
+          "type": "item",
+          "id": "cotton_patchwork",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "felt_patch",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "fish_bait",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "fishing_hook_basic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "football",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "fungicide",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "gasoline",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "leather",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "log",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "null",
+          "status": "bn_id_present_review_semantics"
+        },
+        {
+          "type": "item",
+          "id": "stick",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "stick_long",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "thread",
+          "status": "requires_full_bn_scan"
+        },
+        {
           "type": "item_group",
           "id": "SUS_fridge_breakroom",
           "status": "requires_full_bn_scan"
@@ -931,6 +996,11 @@
         {
           "type": "item_group",
           "id": "SUS_office_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_supplies",
           "status": "requires_full_bn_scan"
         },
         {
@@ -945,7 +1015,47 @@
         },
         {
           "type": "item_group",
+          "id": "SUS_trash_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "SUS_trash_trashcan_public",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "ammo_casings",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "ammo_heavy_batteries_full",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "ammo_hunting",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "book_survival",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "box_of_batteries_unopened",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "camping",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "candy_chocolate",
           "status": "requires_full_bn_scan"
         },
         {
@@ -960,12 +1070,27 @@
         },
         {
           "type": "item_group",
+          "id": "child_hats",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "clothing_glasses",
           "status": "requires_full_bn_scan"
         },
         {
           "type": "item_group",
+          "id": "clothing_outdoor_pants",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "clothing_outdoor_shoes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "clothing_outdoor_torso",
           "status": "requires_full_bn_scan"
         },
         {
@@ -980,12 +1105,47 @@
         },
         {
           "type": "item_group",
+          "id": "consumer_electronics",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "default_vending_machine",
           "status": "requires_full_bn_scan"
         },
         {
           "type": "item_group",
+          "id": "dinnerware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "dishes_dining",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "dishes_utility",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farm_supply_animal_feed",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farm_supply_floor_surprises",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "farm_supply_quicklime_and_saltpetre",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farm_supply_riding_gear",
           "status": "requires_full_bn_scan"
         },
         {
@@ -1000,7 +1160,22 @@
         },
         {
           "type": "item_group",
+          "id": "farm_supply_wire",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "farming_seeds",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farming_tools",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "fertilizers",
           "status": "requires_full_bn_scan"
         },
         {
@@ -1010,7 +1185,82 @@
         },
         {
           "type": "item_group",
+          "id": "guns_rifle_common_display",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "guns_shotgun_common_display",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "hardware_books",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "hiking",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "jewelry_safe",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "kitchen_appliances",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "liquor_and_spirits",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "mags_common",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "my_precious",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "novels",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "office_breakroom",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "petstore_shelves",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "plumbing_bulk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "salty_snacks",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "sewing_group",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "silverware",
           "status": "requires_full_bn_scan"
         },
         {
@@ -1020,7 +1270,107 @@
         },
         {
           "type": "item_group",
+          "id": "stash_drugs",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "supplies_electronics",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "supplies_hardware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "supplies_woodcrafts",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_carpentry",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_common",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_earthworking",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_entry",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_hunting",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_lighting",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_mechanic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_plumbing",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_survival",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_tailor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "toy_store",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "underwear",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
           "id": "vending_drink_items",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "FERAL_HUMANS",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_POLICE",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_VANILLA",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_ZOMBIE",
           "status": "requires_full_bn_scan"
         },
         {
@@ -1837,6 +2187,21 @@
         {
           "type": "item_group",
           "id": "vending_food",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_MUTANT_EVOLVED",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_NURSING_HOME",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_NURSING_HOME_LAB",
           "status": "requires_full_bn_scan"
         },
         {
@@ -2835,6 +3200,26 @@
         {
           "type": "item_group",
           "id": "wines_worthy",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_RETIREMENT_COMMUNITY",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_SPIDER_BASEMENT",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_STOCKED_POND",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_ZOMBIE",
           "status": "requires_full_bn_scan"
         },
         {

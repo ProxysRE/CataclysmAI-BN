@@ -407,5 +407,12 @@
     "geometry": "3x3, two track levels plus roof, source rows preserved",
     "dependencies": "16-part kart; cash register and four cash groups; unmodified stock BN money_bundle; no new currency items"
   },
-  "currency_policy": "Reuse BN money_bundle; do not introduce DDA denominations or global currency expansion (user instruction 2026-10-17)"
+  "currency_policy": "Reuse BN money_bundle; do not introduce DDA denominations or global currency expansion (user instruction 2026-10-17)",
+  "farm_supply": {
+    "status": "adapted_candidate_not_native_enabled",
+    "progress": "farm_supply/PORT_REPORT.json",
+    "geometry": "normal/looted full shops, shared roof, fence damage",
+    "dependencies": "source construction groups and pallet furniture prepared; direct inline-loot/monster/provider audit added to CI",
+    "blocking": "place_corpses unsupported by pinned BN loader; remaining loot dependencies and runtime validation"
+  }
 }

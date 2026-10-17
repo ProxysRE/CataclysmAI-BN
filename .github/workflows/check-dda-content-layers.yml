@@ -36,12 +36,16 @@ jobs:
       - name: Verify bulk regional location staging and audit pinned BN references
         run: |
           python npc-content/check_regional_locations.py
+          python npc-content/check_farm_supply.py
+          python npc-content/prepare_farm_supply.py --check --bn-source bn-data --audit --report farm-native-dependency-audit.json
           python npc-content/prepare_regional_locations.py --check --bn-source bn-data --native-payload npc-content/native/dda_karting_circuit.json --report regional-dependency-audit.json
       - name: Preserve full regional dependency audit
         uses: actions/upload-artifact@v4
         with:
           name: regional-location-dependency-audit
-          path: regional-dependency-audit.json
+          path: |
+            regional-dependency-audit.json
+            farm-native-dependency-audit.json
           retention-days: 30
       - name: Compare pinned DDA and BN location catalogs
         run: python npc-content/check_location_catalog.py
