@@ -9,6 +9,8 @@ on:
       - 'npc-content/package_windows_npc.py'
       - 'npc-content/prepare_quest_usb.py'
       - 'npc-content/prepare_quest_ammo.py'
+      - 'npc-content/prepare_quest_props.py'
+      - 'npc-content/check_reused_bn_definitions.py'
       - 'npc-content/native/**'
   workflow_dispatch:
 permissions:
@@ -89,12 +91,16 @@ jobs:
           path: bn
       - name: Apply native NPC expression bridge
         run: |
+          python "${{ github.workspace }}/package/npc-content/check_reused_bn_definitions.py" --bn-source .
+          if ($LASTEXITCODE -ne 0) { throw "Reused BN definitions differ from the reviewed baseline" }
           python "${{ github.workspace }}/package/npc-content/prepare_quest_usb.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest USB baseline conflict or stale adaptation" }
           python "${{ github.workspace }}/package/npc-content/prepare_quest_ammo.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "5.45 casing baseline conflict or stale adaptation" }
+          python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
+          if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "44abbf5b90bb7954eaaf7e59c393efca237eb294fce0758667aced74c58df51f") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "8ef016a86f68e3367ee8c77c8da71aaab538eef22fdf262ee2e88e096a9bc49e") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

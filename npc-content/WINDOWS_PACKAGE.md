@@ -18,5 +18,6 @@ of the entire quest campaign. Most staged DDA communities and the separate highw
 branch are not part of its installed payload.
 
 The packaging path itself has local archive/provenance and rejection tests. Its
-first real Windows install/test/archive run is pending; no download artifact is
-claimed until that run succeeds.
+first real Windows install/test/archive run passed at 1031b295 in run 39025566841,
+with 34 cases and 2,893 assertions both before and after installation. Later item
+additions require their own runs.

@@ -1,0 +1,27 @@
+[
+  {
+    "category": "other",
+    "color": "light_gray",
+    "description": "A special forces Russian rifle chambered in 5.45 that someone has taken a plasma cutter to, cutting it in three places to comply with import restrictions.  This thing would have been hard to source, and thankfully its unique complex recoil balance system remains intact, unlike the receiver and barrel.  The telltale rainbow patterns of torch cuts mar the otherwise beautiful receiver.  A well-equipped gunsmith with time and materials could probably build a new one out of this…",
+    "flags": [
+      "TRADER_AVOID",
+      "NO_REPAIR",
+      "MISSION_ITEM"
+    ],
+    "id": "broken_kord",
+    "looks_like": "ak47",
+    "material": [
+      "steel",
+      "plastic"
+    ],
+    "name": {
+      "str": "Kord 6P67 rifle (Demilled)",
+      "str_pl": "Kord 6P67 rifles (Demilled)"
+    },
+    "price": "2500 USD",
+    "symbol": "(",
+    "type": "GENERIC",
+    "volume": "2418 ml",
+    "weight": "3250 g"
+  }
+]

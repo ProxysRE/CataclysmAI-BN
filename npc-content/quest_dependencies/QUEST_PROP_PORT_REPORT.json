@@ -1,0 +1,33 @@
+{
+  "id": "broken_kord",
+  "native_kind": "BN generic quest prop, not a usable gun",
+  "name_policy": "Use the sole source model name; BN has no SHOW_GUN_VARIANTS option",
+  "legacy_source_name": {
+    "str": "Kord AK rifle (Demilled)",
+    "str_pl": "Kord AK rifles (Demilled)"
+  },
+  "source_variants": [
+    {
+      "description": "A special forces Russian rifle chambered in 5.45 that someone has taken a plasma cutter to, cutting it in three places to comply with import restrictions.  This thing would have been hard to source, and thankfully its unique complex recoil balance system remains intact, unlike the receiver and barrel.  The telltale rainbow patterns of torch cuts mar the otherwise beautiful receiver.  A well-equipped gunsmith with time and materials could probably build a new one out of this…",
+      "id": "broken_kord",
+      "name": {
+        "str": "Kord 6P67 rifle (Demilled)",
+        "str_pl": "Kord 6P67 rifles (Demilled)"
+      }
+    }
+  ],
+  "source_variant_type": "gun",
+  "unrepresented_dimensions": {
+    "longest_side": "48 cm"
+  },
+  "dimension_policy": "BN uses its existing volume model; source length retained for future pocket work",
+  "visual_fallback": {
+    "source": "kord",
+    "BN": "ak47"
+  },
+  "price_conversion": {
+    "source": "2 kUSD 500 USD",
+    "BN": "2500 USD"
+  },
+  "runtime_validated": false
+}

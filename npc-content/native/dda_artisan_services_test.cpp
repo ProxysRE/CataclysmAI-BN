@@ -53,6 +53,23 @@ TEST_CASE( "exhibition_545_casing_uses_BN_generic_item_properties", "[dda_npc]" 
     CHECK_FALSE( casing.is_ammo() );
 }
 
+TEST_CASE( "demilled_Kord_is_a_generic_quest_prop_and_matches_stock_item_conditions", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    const auto prop = item( itype_id( "broken_kord" ), calendar::turn );
+    CHECK( prop.typeId() == itype_id( "broken_kord" ) );
+    CHECK_FALSE( prop.is_gun() );
+    auto input = std::istringstream( R"({"u_has_item":"broken_kord"})" );
+    auto parser = JsonIn( input );
+    const auto has_prop = conditional_t<dialogue>( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    CHECK_FALSE( has_prop( conversation ) );
+    actor.i_add( item::spawn( itype_id( "broken_kord" ), calendar::turn ) );
+    CHECK( has_prop( conversation ) );
+}
+
 TEST_CASE( "dda_faction_food_ledger_preserves_calories_vitamins_and_expiry", "[dda_npc]" ) {
     clear_all_state();
     auto input = std::istringstream( R"({"id":"dda_food_stock_test","name":"Fisherman stock","likes_u":0,"respects_u":0,"known_by_u":false,"description":"Source-format food ledger","size":3,"power":3,"wealth":20000,"relations":{},"fac_food_supply":[[0,{"calories":2700000000,"vitamins":{"iron":86400,"calcium":86400,"vitC":86400}}],[123,{"calories":1000,"vitamins":{"iron":1}}]]})" );

@@ -11,16 +11,15 @@ spare-parts category. Windows preflight scans all BN item files for a conflictin
 
 The typed resolver now follows ammunition casings/linkage, gun faults, weapon
 categories, gunmod targets and magazine adaptors. Its source graph grows from
-37 definitions / 62 edges to 45 / 76. Three source fault definitions remain absent
-from the captured dependency archive:
+37 definitions / 62 edges to 48 / 76. These three legacy faults are reused from existing BN data
+at `items/gun/faults_gun.json`, without adding new native definitions:
 
 - `fault_gun_blackpowder`
 - `fault_gun_chamber_spent`
 - `fault_gun_dirt`
 
-These are explicit source-resolution obligations. Finding their JSON definitions
-alone will not certify BN repair/fault behavior. Other captured fault definitions
-also require schema/consumer review. The graph is not a complete item-system audit.
+The typed references now resolve against the pinned BN baseline. The other DDA
+fault definitions still require schema/consumer review. The graph is not a complete item-system audit.
 
 The live 5.45 ammo, magazines and Kord remain uninstalled. DDA-specific barrel
 damage, item variants and weapon base fields are preserved for review. This slice

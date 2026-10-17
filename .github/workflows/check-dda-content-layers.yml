@@ -30,6 +30,10 @@ jobs:
         run: |
           python npc-content/check_quest_dependency_graph.py
           python npc-content/check_quest_ammo.py
+      - name: Verify quest props and typed BN reuse
+        run: |
+          python npc-content/check_quest_props.py
+          python npc-content/check_reused_bn_definitions.py
       - name: Verify selective location dependencies and layouts
         run: python npc-content/check_location_layers.py
       - name: Verify every staged definition and blocked original

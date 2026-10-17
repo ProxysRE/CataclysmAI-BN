@@ -1,12 +1,12 @@
 {
   "checkpoint": {
-    "head": "dcebfdda4731eb42502624d673684baab681cadf",
-    "run_id": 38988535389,
+    "head": "1031b2950d973ca18dee72b5f66249c1676f5ee3",
+    "run_id": 39025566841,
     "status": "success",
-    "test_cases": 33,
-    "assertions": 2885
+    "test_cases": 34,
+    "assertions": 2893
   },
-  "native_patch_sha256": "081600a61b8890294bc4e7244e1baeef81a4c8698f4c20b415a37766d885cb3b",
+  "native_patch_sha256": "af9c9a595591cc47a00baefbe200fe1494c7f8e7093836b937c109598d2a268b",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -23,7 +23,8 @@
     "Global master save round-trip, real NPC opinion and conditional effects",
     "DDA random math and rotated location conditions",
     "Named Hub trust penalty with a speaker from another faction, and trust save/load",
-    "Godco ACT_WAIT_NPC: actual 30-minute completion, speaker context, halfway save/reload and speed independence"
+    "Godco ACT_WAIT_NPC: actual 30-minute completion, speaker context, halfway save/reload and speed independence",
+    "Two USB quest items: existing BN item inheritance and ordinary inventory condition"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
@@ -31,5 +32,13 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Exact Godco-wait checkpoint. Later USB items and portable archive still require validation."
+  "note": "Exact USB checkpoint and portable package. Later casing and demilled prop require subsequent validation.",
+  "portable_package": {
+    "run_id": 39025566841,
+    "installed_tests": {
+      "cases": 34,
+      "assertions": 2893
+    },
+    "artifact_id": 12098864679
+  }
 }
