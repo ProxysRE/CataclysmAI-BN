@@ -1,5 +1,14 @@
 {
-  "bundle_sha256": "7f5b26bbeaf503038762778078421fd9495f0c9a77ebb0e2b599b72d0901337d",
+  "parts": [
+    "ACCESS_SOURCES.part00",
+    "ACCESS_SOURCES.part01",
+    "ACCESS_SOURCES.part02",
+    "ACCESS_SOURCES.part03",
+    "ACCESS_SOURCES.part04",
+    "ACCESS_SOURCES.part05",
+    "ACCESS_SOURCES.part06"
+  ],
+  "bundle_sha256": "90cd6a08a15dd86967d06d13961932b638125f4330a161b07f93332d499a68a2",
   "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
   "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
   "files": {
@@ -11,9 +20,21 @@
       "sha256": "36ddc73f3fef4cd285c678d02318eba5d1d774dc5b0e90932d03744d8885eba4",
       "git_blob_sha": "4b9831d1e8e2192739292ac8a5523fb21def8d96"
     },
+    "bn/data/json/mutations/mutations.json": {
+      "sha256": "5625b5948d0c922a24fd0f285adead4a5fe81e771be6e68051e1b2022bbc7433",
+      "git_blob_sha": "1882ac8c36f27b0f5218a6924244eea619cfac42"
+    },
     "bn/src/game.cpp": {
       "sha256": "ee71671f4c73e11dc7e07b79a9d411f195e8fa4ee2f15159657b9b7e9edb11d2",
       "git_blob_sha": "9cfa859bbd3c1cbf0a4e6488653ad9a68fb56367"
+    },
+    "bn/src/iexamine.cpp": {
+      "sha256": "f64f7380363d4432b962cea5e29b4eb143b67e909a7ce35640df5b03f5d0dbff",
+      "git_blob_sha": "2eda78c3a97d4c164177a7f4f15385220e11cc87"
+    },
+    "bn/src/iexamine.h": {
+      "sha256": "f13bb5682ef368cb41eb17390eab42a87262b1665978c9c8d6fc892bb29dbba2",
+      "git_blob_sha": "7f6d31dcd15923b0eb0d79e29b7d6d715fedb32a"
     },
     "bn/src/iexamine_elevator.cpp": {
       "sha256": "52368e638e902352312e6c5d4286660d60962b6d37303c7c18ed38e5bbea7120",
@@ -31,11 +52,5 @@
       "sha256": "3e471a1f787a4cd1bc97c63a0512629f024c8464b3fed05e9154d1c39808146b",
       "git_blob_sha": "219bb2d52f8a02b6b93d2918b0c91780ea9b2097"
     }
-  },
-  "parts": [
-    "ACCESS_SOURCES.part00",
-    "ACCESS_SOURCES.part01",
-    "ACCESS_SOURCES.part02",
-    "ACCESS_SOURCES.part03"
-  ]
+  }
 }

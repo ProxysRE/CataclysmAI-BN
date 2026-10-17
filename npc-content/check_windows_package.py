@@ -7,6 +7,7 @@ import zipfile
 
 from merge_existing_locations import prepare
 from prepare_location_expansion import nuclear_patch, NUCLEAR
+from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload as hub_payload, replacements
 from package_windows_npc import ROOT, digest, package, verify_install
 
 
@@ -17,6 +18,8 @@ def check():
         installed = root / 'CBN_DDA_NPC_DEV'
         payload = {
             NUCLEAR: nuclear_patch()[1].encode(),
+            MUTATIONS: replacements()[MUTATIONS].encode(),
+            PAYLOAD: json.dumps(hub_payload()).encode(),
             'cataclysm-bn-tiles.exe': b'MZ-test-executable',
             'LICENSE.txt': b'fixture',
             'gfx/fixture.txt': b'fixture',

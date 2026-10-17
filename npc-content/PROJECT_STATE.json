@@ -156,7 +156,7 @@
         "stairs_with_same_omt_counterpart": 24,
         "remaining_projected_stair_endpoints": 4,
         "ramp_tiles": 44,
-        "native_access_implementation": false,
+        "native_access_implementation": "Code prepared: credential, two directional handlers, fixed-floor BN transport; Windows pending",
         "public_elevator_substitution_allowed": false
       }
     },
@@ -268,11 +268,11 @@
     }
   },
   "latest_observed_failure": {
-    "run_id": 38991245584,
-    "stage": "test compilation",
-    "fix": "USB test now uses BN item::spawn ownership API",
-    "rerun_status": "success",
-    "resolved_by": 39025566841
+    "run_id": 39032442331,
+    "stage": "Windows preflight map staging",
+    "error": "cp1252 cannot encode Hub map glyph U+03DF",
+    "fix": "Explicit UTF-8 and LF for generated location files; cp1252-default regression added",
+    "rerun_status": "pending"
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,
@@ -300,13 +300,21 @@
   "windows_packaging": {
     "mode": "Official BN cmake --install, installed-data regression, verified ZIP and SHA256",
     "artifact": "CBN-DDA-NPC-Windows-x64",
-    "status": "Verified archive at 1031b295; later items and nuclear shoreline pending",
+    "status": "Verified casing build at d5d66e0d; demilled prop, nuclear shoreline and Hub access bridge pending",
     "local_checks": "Archive payload, provenance, checksum and incomplete/stale installation rejection passed",
     "includes_staged_bulk_communities": false,
     "includes_highway_branch": false,
-    "artifact_id": 12098864679,
-    "run_id": 39025566841,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39025566841/artifacts/12098864679",
-    "artifact_size_bytes": 205479294
+    "artifact_id": 12101510392,
+    "run_id": 39025912934,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39025912934/artifacts/12101510392",
+    "artifact_size_bytes": 205479259
+  },
+  "latest_validated_native_checkpoint": {
+    "head": "d5d66e0dbe1b5dc3ed8d6e0ba09fddb13e2a9dec",
+    "run_id": 39025912934,
+    "test_cases": 35,
+    "assertions": 2897,
+    "installed_test_cases": 35,
+    "installed_assertions": 2897
   }
 }

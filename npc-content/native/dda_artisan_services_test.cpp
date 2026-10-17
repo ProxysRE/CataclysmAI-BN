@@ -15,9 +15,44 @@
 #include "options_helpers.h"
 #include "player_activity.h"
 #include "state_helpers.h"
+#include "hub_elevator_access.h"
+#include "iexamine.h"
+#include "map/mapdata.h"
 
 #include <ranges>
 #include <sstream>
+
+TEST_CASE( "Hub_elevator_authorization_is_revocable_and_keeps_directional_floors", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    const auto credential = trait_id( "PROF_HUB01_ANCILLIARY" );
+    REQUIRE( credential.is_valid() );
+    actor.unset_mutation( credential );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 0, -1, -10, 10 ) );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -1, 1, -10, 10 ) );
+    actor.set_mutation( credential );
+    REQUIRE( actor.has_trait( credential ) );
+    CHECK( dda_port::hub_elevator_destination( actor, 0, -1, -10, 10 ) == -1 );
+    CHECK( dda_port::hub_elevator_destination( actor, -1, -1, -10, 10 ) == -2 );
+    CHECK( dda_port::hub_elevator_destination( actor, -2, 1, -10, 10 ) == -1 );
+    CHECK( dda_port::hub_elevator_destination( actor, -1, 1, -10, 10 ) == 0 );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 10, 1, -10, 10 ) );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -10, -1, -10, 10 ) );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 11, -1, -10, 10 ) );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -11, 1, -10, 10 ) );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 0, 0, -10, 10 ) );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 0, 2, -10, 10 ) );
+    actor.unset_mutation( credential );
+    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -1, -1, -10, 10 ) );
+}
+
+TEST_CASE( "Hub_elevator_panels_bind_distinct_native_handlers_and_keep_stock_elevator", "[dda_npc]" ) {
+    REQUIRE( ter_id( "t_elevator_control_robofac_up" ).is_valid() );
+    REQUIRE( ter_id( "t_elevator_control_robofac_down" ).is_valid() );
+    CHECK( iexamine_function_from_string( "elevator" ) == &iexamine::elevator );
+    CHECK( iexamine_function_from_string( "robofac_elevator_up" ) == &iexamine::robofac_elevator_up );
+    CHECK( iexamine_function_from_string( "robofac_elevator_down" ) == &iexamine::robofac_elevator_down );
+}
 
 TEST_CASE( "quest_USB_items_inherit_stock_BN_USB_and_use_normal_inventory_conditions", "[dda_npc]" ) {
     clear_all_state();

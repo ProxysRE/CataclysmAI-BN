@@ -37,3 +37,9 @@ existing-location/NPC merges, then broader placement and playable packaging.
 Nuclear power plants already exist in the pinned BN source, including levels -1 through +7 and attached hazardous-waste basements at -2. All nine main mapgen floor layouts are geometrically the same as DDA; BN has intentional reactor/grid and train substitutions. A minimal replacement adds 24 DDA shoreline cells (684 to 708 placements), retaining every BN placement and generation rule. Native Windows loading and natural generation remain pending.
 
 Hub 01 now has a generated 102-cell replacement candidate (69 BN cells, 33 additions, two replacements). The complete DDA special has 102 cells, correcting the previous partial count of 100. Eight cells on z=-1 include foyer/security/control spaces and a shaft; the residential level is elsewhere. The candidate retains BN frequency, road connections and unique-generation policy. Five matching DDA mapgen/palette/terrain source files are staged alongside it; the candidate is not installed until dependency, schema and vertical-access review passes.
+
+## Hub native access bridge, 2026-10-17
+
+Code now includes the exact hidden ancillary credential, reciprocal marshal-trait exclusion, inherited BN control terrain, and native directional handlers around existing BN elevator transport. Native authorization, revocation, bounds and handler-registration tests are included. Windows compilation, actual loaded-map travel and expanded Hub generation remain pending. The existing public elevator menu is unchanged.
+
+The latest failed run was a Windows cp1252 encoding error before compilation, not an engine compile failure. Generated Hub maps now explicitly use UTF-8/LF; a regression emulates the Windows default. The previous casing build completed 35 cases/2897 assertions in both source and installed directories and produced artifact 12101510392.

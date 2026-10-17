@@ -165,7 +165,8 @@ def audit():
                  'player placement and movement hook', 'overmap rotation handling'],
         'required_extension': ['authorization before travel', 'restrict destination to the DDA up/down floor'],
         'existing_hook_limits': 'on_elevator_try_use can deny use; the current hook cannot select or filter destination floors',
-        'native_implementation_complete': False}
+        'native_code_prepared': True, 'runtime_validated': False,
+        'bridge': 'Two registered directional handlers call BN elevator transport with a fixed authorized floor; exact destination shaft required'}
     (ROOT / 'HUB_ACCESS_REPORT.json').write_text(json.dumps(report, indent=2) + '\n')
     print('Hub static access projection:', {s: {'shafts': x['shaft_tiles'], 'controls': len(x['controls']), 'ramps': len(x['ramps']), 'stairs': len(x['stairs'])} for s, x in report['sides'].items()})
     return report

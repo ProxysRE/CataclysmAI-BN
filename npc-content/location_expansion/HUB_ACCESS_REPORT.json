@@ -2356,7 +2356,9 @@
         "restrict destination to the DDA up/down floor"
       ],
       "existing_hook_limits": "on_elevator_try_use can deny use; the current hook cannot select or filter destination floors",
-      "native_implementation_complete": false
+      "native_code_prepared": true,
+      "runtime_validated": false,
+      "bridge": "Two registered directional handlers call BN elevator transport with a fixed authorized floor; exact destination shaft required"
     }
   }
 }

@@ -6,6 +6,7 @@ import difflib
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
 from prepare_location_expansion import nuclear_patch, NUCLEAR
+from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD
 
 ROOT = Path(__file__).resolve().parent
 
@@ -23,16 +24,20 @@ def check():
     expected_nuclear, _, _ = nuclear_patch()
     assert patch.count('+++ b/' + NUCLEAR + '\n') == 1, 'Expected one nuclear replacement'
     assert expected_nuclear in patch, 'Stale nuclear shoreline patch'
+    prepare_hub_access(check=True)
+    expected_hub = hub_access_patch()
+    assert expected_hub in patch, "Stale Hub elevator native replacement"
     files = {
         'src/' + name: ROOT / 'native' / name
         for name in ('artisan_expression.h', 'artisan_bn_bridge.h', 'artisan_items.h',
-                     'faction_food_stock.h', 'lighthouse_quest_updates.h')
+                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h')
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
         for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp')
     })
     files.update({
+        HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',

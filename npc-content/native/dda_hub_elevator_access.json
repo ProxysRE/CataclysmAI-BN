@@ -1,0 +1,29 @@
+[
+  {
+    "type": "mutation",
+    "id": "PROF_HUB01_ANCILLIARY",
+    "name": {
+      "str": "Hub 01 Ancillary"
+    },
+    "description": "You are known to be a capable and resourceful mercenary at the employ of Hub 01.",
+    "cancels": [
+      "PROF_FED"
+    ],
+    "points": 0,
+    "profession": true,
+    "purifiable": false,
+    "valid": false
+  },
+  {
+    "type": "terrain",
+    "id": "t_elevator_control_robofac_up",
+    "copy-from": "t_elevator_control",
+    "examine_action": "robofac_elevator_up"
+  },
+  {
+    "type": "terrain",
+    "id": "t_elevator_control_robofac_down",
+    "copy-from": "t_elevator_control",
+    "examine_action": "robofac_elevator_down"
+  }
+]

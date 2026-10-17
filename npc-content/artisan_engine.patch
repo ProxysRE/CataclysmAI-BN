@@ -1221,6 +1221,38 @@
 +inline constexpr char repair_update[] = R"QUEST({"place_terrain": [{"ter": "t_floor_olight", "x": 11, "y": 12}, {"ter": "t_floor_olight", "x": 13, "y": 13}]})QUEST";
 +} // namespace dda_port
 --- /dev/null
++++ b/src/hub_elevator_access.h
+@@ -0,0 +1,29 @@
++#pragma once
++
++#include "character.h"
++#include "type_id.h"
++
++#include <optional>
++
++namespace dda_port
++{
++
++// Authorization and destination selection are shared by the real examine
++// handlers and their native regression tests. Transportation remains BN's.
++inline auto hub_elevator_destination( const Character &actor, int current, int direction,
++                                     int bottom, int top ) -> std::optional<int>
++{
++    if( !actor.has_trait( trait_id( "PROF_HUB01_ANCILLIARY" ) ) ||
++        current < bottom || current > top ) {
++        return std::nullopt;
++    }
++    if( direction == 1 && current < top ) {
++        return current + 1;
++    }
++    if( direction == -1 && current > bottom ) {
++        return current - 1;
++    }
++    return std::nullopt;
++}
++
++} // namespace dda_port
+--- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
 @@ -0,0 +1,957 @@
 +#include "artisan_bn_bridge.h"
@@ -2182,7 +2214,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_artisan_services_test.cpp
-@@ -0,0 +1,287 @@
+@@ -0,0 +1,322 @@
 +#include "activity_type.h"
 +#include "avatar.h"
 +#include "calendar.h"
@@ -2200,9 +2232,44 @@
 +#include "options_helpers.h"
 +#include "player_activity.h"
 +#include "state_helpers.h"
++#include "hub_elevator_access.h"
++#include "iexamine.h"
++#include "map/mapdata.h"
 +
 +#include <ranges>
 +#include <sstream>
++
++TEST_CASE( "Hub_elevator_authorization_is_revocable_and_keeps_directional_floors", "[dda_npc]" ) {
++    clear_all_state();
++    auto &actor = get_avatar();
++    const auto credential = trait_id( "PROF_HUB01_ANCILLIARY" );
++    REQUIRE( credential.is_valid() );
++    actor.unset_mutation( credential );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 0, -1, -10, 10 ) );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -1, 1, -10, 10 ) );
++    actor.set_mutation( credential );
++    REQUIRE( actor.has_trait( credential ) );
++    CHECK( dda_port::hub_elevator_destination( actor, 0, -1, -10, 10 ) == -1 );
++    CHECK( dda_port::hub_elevator_destination( actor, -1, -1, -10, 10 ) == -2 );
++    CHECK( dda_port::hub_elevator_destination( actor, -2, 1, -10, 10 ) == -1 );
++    CHECK( dda_port::hub_elevator_destination( actor, -1, 1, -10, 10 ) == 0 );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 10, 1, -10, 10 ) );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -10, -1, -10, 10 ) );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 11, -1, -10, 10 ) );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -11, 1, -10, 10 ) );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 0, 0, -10, 10 ) );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, 0, 2, -10, 10 ) );
++    actor.unset_mutation( credential );
++    CHECK_FALSE( dda_port::hub_elevator_destination( actor, -1, -1, -10, 10 ) );
++}
++
++TEST_CASE( "Hub_elevator_panels_bind_distinct_native_handlers_and_keep_stock_elevator", "[dda_npc]" ) {
++    REQUIRE( ter_id( "t_elevator_control_robofac_up" ).is_valid() );
++    REQUIRE( ter_id( "t_elevator_control_robofac_down" ).is_valid() );
++    CHECK( iexamine_function_from_string( "elevator" ) == &iexamine::elevator );
++    CHECK( iexamine_function_from_string( "robofac_elevator_up" ) == &iexamine::robofac_elevator_up );
++    CHECK( iexamine_function_from_string( "robofac_elevator_down" ) == &iexamine::robofac_elevator_down );
++}
 +
 +TEST_CASE( "quest_USB_items_inherit_stock_BN_USB_and_use_normal_inventory_conditions", "[dda_npc]" ) {
 +    clear_all_state();
@@ -4789,3 +4856,145 @@
      ],
      "connections": [
        { "point": [ 1, -3, 0 ], "connection": "local_road", "from": [ 1, -2, 0 ] },
+--- a/src/iexamine_elevator.cpp
++++ b/src/iexamine_elevator.cpp
+@@ -4,6 +4,7 @@
+ #include "flood_fill.h"
+ #include "game.h"
+ #include "iexamine.h"
++#include "hub_elevator_access.h"
+ #include "map/map.h"
+ #include "map/mapdata.h"
+ #include "output.h"
+@@ -231,7 +232,8 @@
+ 
+ } // namespace
+ 
+-void iexamine::elevator( player &p, const tripoint_bub_ms &examp )
++static void elevator_travel( player &p, const tripoint_bub_ms &examp,
++                             const std::optional<int> fixed_destination )
+ {
+     map &here = get_map();
+     const auto this_omt = project_to<coords::omt>( bub_to_abs( examp ) );
+@@ -254,7 +256,8 @@
+         return warn_blocking( vehs, _( "here" ) );
+     }
+ 
+-    const int movez = elevator::choose_floor( examp, this_omt, sm_orig );
++    const int movez = fixed_destination ? *fixed_destination :
++                      elevator::choose_floor( examp, this_omt, sm_orig );
+     if( movez < -OVERMAP_DEPTH ) {
+         return;
+     }
+@@ -264,6 +267,13 @@
+     const int turns = get_rot_turns( this_omt, that_omt, omb );
+ 
+     const auto elevator_dest = elevator::dest( elevator_here, sm_orig, turns, movez );
++    if( fixed_destination && ( elevator_here.empty() ||
++        !std::all_of( elevator_dest.begin(), elevator_dest.end(), [&here]( const auto &pos ) {
++            return here.has_flag( TFLAG_ELEVATOR, pos );
++        } ) ) ) {
++        popup( _( "The elevator cannot reach that floor." ) );
++        return;
++    }
+     const auto vehicles_dest = elevator::vehicles_on( elevator_dest );
+     if( !vehicles_dest.v.empty() ) {
+         return warn_blocking( vehicles_dest, _( "at the destination floor" ) );
+@@ -275,3 +285,33 @@
+     elevator::move_vehicles( vehs, sm_orig, movez, turns );
+     elevator::move_player( p, movez );
+ }
++
++void iexamine::elevator( player &p, const tripoint_bub_ms &examp )
++{
++    elevator_travel( p, examp, std::nullopt );
++}
++
++static void hub_elevator( player &p, const tripoint_bub_ms &examp, int direction )
++{
++    if( !p.has_trait( trait_id( "PROF_HUB01_ANCILLIARY" ) ) ) {
++        popup( _( "The control panels' screen flashes before displaying \"UNAUTHORIZED\" in bold red letters." ) );
++        return;
++    }
++    const auto destination = dda_port::hub_elevator_destination( p, examp.z(), direction,
++                             -OVERMAP_DEPTH, OVERMAP_HEIGHT );
++    if( !destination ) {
++        popup( _( "The elevator cannot reach that floor." ) );
++        return;
++    }
++    elevator_travel( p, examp, destination );
++}
++
++void iexamine::robofac_elevator_up( player &p, const tripoint_bub_ms &examp )
++{
++    hub_elevator( p, examp, 1 );
++}
++
++void iexamine::robofac_elevator_down( player &p, const tripoint_bub_ms &examp )
++{
++    hub_elevator( p, examp, -1 );
++}
+--- a/src/iexamine.h
++++ b/src/iexamine.h
+@@ -30,6 +30,8 @@
+ void toilet( player &p, const tripoint_bub_ms &examp );
+ auto fluid_grid_fixture( player &p, const tripoint_bub_ms &examp ) -> void;
+ void elevator( player &p, const tripoint_bub_ms &examp );
++void robofac_elevator_up( player &p, const tripoint_bub_ms &examp );
++void robofac_elevator_down( player &p, const tripoint_bub_ms &examp );
+ void nanofab( player &p, const tripoint_bub_ms &examp );
+ void nanoforge( player &p, const tripoint_bub_ms &examp );
+ void toggle_lights( player &p, const tripoint_bub_ms &examp );
+--- a/src/iexamine.cpp
++++ b/src/iexamine.cpp
+@@ -8541,6 +8541,8 @@
+             { "vending", &iexamine::vending },
+             { "toilet", &iexamine::toilet },
+             { "elevator", &iexamine::elevator },
++            { "robofac_elevator_up", &iexamine::robofac_elevator_up },
++            { "robofac_elevator_down", &iexamine::robofac_elevator_down },
+             { "toggle_lights", &iexamine::toggle_lights},
+             { "controls_gate", &iexamine::controls_gate },
+             { "cardreader", &iexamine::cardreader },
+--- a/data/json/mutations/mutations.json
++++ b/data/json/mutations/mutations.json
+@@ -6637,6 +6637,7 @@
+   {
+     "type": "mutation",
+     "id": "PROF_FED",
++    "cancels": [ "PROF_HUB01_ANCILLIARY" ],
+     "name": { "str": "US Marshal" },
+     "points": 0,
+     "description": "You are a duly sworn Federal marshal, with nationwide jurisdiction and the authority of the United States of America.",
+--- /dev/null
++++ b/data/json/dda_hub_elevator_access.json
+@@ -0,0 +1,29 @@
++[
++  {
++    "type": "mutation",
++    "id": "PROF_HUB01_ANCILLIARY",
++    "name": {
++      "str": "Hub 01 Ancillary"
++    },
++    "description": "You are known to be a capable and resourceful mercenary at the employ of Hub 01.",
++    "cancels": [
++      "PROF_FED"
++    ],
++    "points": 0,
++    "profession": true,
++    "purifiable": false,
++    "valid": false
++  },
++  {
++    "type": "terrain",
++    "id": "t_elevator_control_robofac_up",
++    "copy-from": "t_elevator_control",
++    "examine_action": "robofac_elevator_up"
++  },
++  {
++    "type": "terrain",
++    "id": "t_elevator_control_robofac_down",
++    "copy-from": "t_elevator_control",
++    "examine_action": "robofac_elevator_down"
++  }
++]

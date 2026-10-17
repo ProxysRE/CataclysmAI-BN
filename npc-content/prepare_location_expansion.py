@@ -18,7 +18,7 @@ DDA_PIN = 'c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'
 
 def sources():
     raw = gzip.decompress(base64.b64decode((ROOT / 'SOURCE_BUNDLE.json.gz.base64').read_bytes(), validate=True))
-    manifest = json.loads((ROOT / 'SOURCE_MANIFEST.json').read_text())
+    manifest = json.loads((ROOT / 'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))
     if hashlib.sha256(raw).hexdigest() != manifest['bundle_sha256']:
         raise ValueError('Location source bundle checksum mismatch')
     files = json.loads(raw)
@@ -97,7 +97,7 @@ def prepare():
     files = sources()
     patch, output, changes = nuclear_patch()
     (ROOT / 'merged').mkdir(exist_ok=True)
-    (ROOT / 'merged/nuclear_plant.json').write_text(output)
+    (ROOT / 'merged/nuclear_plant.json').write_text(output, encoding='utf-8', newline='\n')
     nuclear_report = {
         'operation': 'replace_existing_special', 'id': 'nuclear power plant',
         'native_patch': True, 'runtime_validated': False,
@@ -125,14 +125,14 @@ def prepare():
     candidate['overmaps'] = list(combined.values())
     candidate_dir = ROOT / 'hub_candidate'
     candidate_dir.mkdir(exist_ok=True)
-    (candidate_dir / 'hub_01_special.json').write_text(json.dumps([candidate], indent=2) + '\n')
+    (candidate_dir / 'hub_01_special.json').write_text(json.dumps([candidate], indent=2) + '\n', encoding='utf-8', newline='\n')
     paths = ['data/json/mapgen/robofachq_static.json',
              'data/json/mapgen/robofaq_locs/robofac_hq_chunks.json',
              'data/json/mapgen/robofaq_locs/robofac_mission_chunks.json',
              'data/json/mapgen_palettes/robofachq.json',
              'data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json']
     for path in paths:
-        (candidate_dir / Path(path).name).write_text(bundle['dda/' + path])
+        (candidate_dir / Path(path).name).write_text(bundle['dda/' + path], encoding='utf-8', newline='\n')
     basement = [c for c in new['overmaps'] if c['point'][2] == -1]
     report = {'bn_pin': BN_PIN, 'dda_pin': DDA_PIN, 'nuclear': nuclear_report,
               'hub': {'operation': 'replace_existing_special_and_mapgen', 'native_patch': False,
@@ -147,7 +147,7 @@ def prepare():
                           'review elevators and stairs across every affected floor',
                           'native data loading, generation and save/reload tests'],
                       'note': 'z=-1 contains the foyer/security/control rooms, not the residential floor'}}
-    (ROOT / 'LOCATION_EXPANSION_REPORT.json').write_text(json.dumps(report, indent=2) + '\n')
+    (ROOT / 'LOCATION_EXPANSION_REPORT.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
     return report
 
 
