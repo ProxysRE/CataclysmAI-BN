@@ -1,0 +1,14 @@
+{
+  "code_head": "dd75f24d085facac4c62bab691347ecfff6ef483",
+  "fast_run": 39037393628,
+  "fast_status": "success",
+  "windows_run": 39037393640,
+  "windows_preflight": "success: full pinned baseline, ID collision checks, UTF-8 map staging and native patch application",
+  "windows_compilation": "in progress",
+  "native_test_execution": "pending",
+  "installed_directory_regression": "pending",
+  "actual_elevator_travel_with_cargo_and_companions": "pending",
+  "expanded_hub_generation": "not installed",
+  "native_patch_sha256": "0174778ecf21bff283cd0551f87c1043951a24560cecc166142d170cabf368e4",
+  "runtime_validated": false
+}

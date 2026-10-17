@@ -157,7 +157,8 @@
         "remaining_projected_stair_endpoints": 4,
         "ramp_tiles": 44,
         "native_access_implementation": "Code prepared: credential, two directional handlers, fixed-floor BN transport; Windows pending",
-        "public_elevator_substitution_allowed": false
+        "public_elevator_substitution_allowed": false,
+        "validation": "location_expansion/HUB_NATIVE_VALIDATION.json"
       }
     },
     "nuclear_power_plant": {
@@ -272,7 +273,7 @@
     "stage": "Windows preflight map staging",
     "error": "cp1252 cannot encode Hub map glyph U+03DF",
     "fix": "Explicit UTF-8 and LF for generated location files; cp1252-default regression added",
-    "rerun_status": "pending"
+    "rerun_status": "Windows preflight passed at 39037393640; full compilation and native tests pending"
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,
