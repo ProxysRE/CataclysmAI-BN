@@ -108,16 +108,17 @@
       },
       "translated": {
         "mapgen_method": 43,
-        "native_expression": 237,
-        "string_equality": 311,
+        "native_expression": 238,
+        "string_equality": 312,
         "shopkeeper_group": 1,
-        "dda_give_item": 90,
+        "dda_give_item": 92,
         "contained_reward": 7,
+        "dda_assign_activity": 2,
         "dda_set_faction_relation": 1,
         "npc_guard_enum": 23,
         "npc_shopkeep_enum": 2
       },
-      "blocked": 13,
+      "blocked": 11,
       "status": "staged_unvalidated"
     },
     "lumbermill_employees": {
@@ -222,7 +223,7 @@
   "totals": {
     "source_files": 158,
     "definitions": 1767,
-    "blocked_definitions": 65,
+    "blocked_definitions": 63,
     "overlap_records": 382,
     "reference_records": 4383,
     "external_reference_records": 867
@@ -230,7 +231,6 @@
   "blocker_reasons": {
     "Native EOC definition requires separate lifecycle review": 36,
     "Scheduled or extended EOC calls require native lifecycle support": 12,
-    "Unported activity effect: {'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '30 minutes'}": 2,
     "Unported activity effect: {'u_assign_activity': 'ACT_GAME', 'duration': '45 minutes'}": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '4 minutes'}": 1,
     "Extended EOC definition requires native lifecycle support: GODCO_EDDIE_CANNING_MISSION_ADD": 1,

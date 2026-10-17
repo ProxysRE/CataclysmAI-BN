@@ -88,6 +88,57 @@ TEST_CASE( "artisan_measurements_take_calendar_time", "[dda_npc]" ) {
     CHECK( ( !actor.activity || actor.activity->id().is_null() ) );
 }
 
+TEST_CASE( "godco_NPC_interaction_preserves_speaker_elapsed_time_and_saved_progress", "[dda_npc]" ) {
+    clear_all_state();
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    const auto restore_time = restore_on_out_of_scope<time_point>( calendar::turn );
+    const auto time_scale = override_option( "TIME_ACTION_SCALE", "100" );
+    const auto progress_scale = override_option( "ACTIVITY_PROGRESS_SCALE", "300" );
+    auto speaker = npc{};
+    speaker.name = "Helena";
+    auto input = std::istringstream( R"({"effect":{"dda_assign_activity":{"activity":"ACT_WAIT_NPC","duration_seconds":1800}}})" );
+    auto parser = JsonIn( input );
+    const auto effect = talk_effect_t( parser.get_object() );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    REQUIRE( effect.effects.size() == 1 );
+    effect.effects.front()( conversation );
+    REQUIRE( actor.activity );
+    CHECK( actor.activity->id() == activity_id( "ACT_WAIT_NPC" ) );
+    CHECK( actor.activity->moves_total == to_moves<int>( 30_minutes ) );
+    REQUIRE( actor.activity->str_values.size() == 1 );
+    CHECK( actor.activity->str_values.front() == "Helena" );
+    const auto started = calendar::turn;
+    for( const auto tick : std::views::iota( 1, 1800 ) ) {
+        calendar::turn = started + time_duration::from_seconds( tick );
+        actor.moves = tick % 2 ? 50 : 350;
+        REQUIRE( actor.activity );
+        actor.activity->do_turn( actor );
+        if( tick == 900 ) {
+            REQUIRE( actor.activity );
+            const auto remaining = actor.activity->moves_left;
+            auto data = std::stringstream{};
+            auto output = JsonOut( data );
+            actor.activity->serialize( output );
+            actor.activity->moves_left = 1;
+            actor.activity->str_values.clear();
+            auto saved = JsonIn( data );
+            actor.activity->deserialize( saved );
+            CHECK( actor.activity->moves_left == remaining );
+            REQUIRE( actor.activity->str_values.size() == 1 );
+            CHECK( actor.activity->str_values.front() == "Helena" );
+        }
+    }
+    REQUIRE( actor.activity );
+    CHECK( actor.activity->moves_left == to_moves<int>( 1_seconds ) );
+    calendar::turn = started + 30_minutes;
+    actor.moves = 350;
+    actor.activity->do_turn( actor );
+    CHECK( ( !actor.activity || actor.activity->id().is_null() ) );
+}
+
 TEST_CASE( "artisan_faction_trust_and_public_access_survive_save_load", "[dda_npc]" ) {
     clear_all_state();
     auto &actor = get_avatar();

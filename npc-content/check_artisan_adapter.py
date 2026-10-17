@@ -6,6 +6,19 @@ from pathlib import Path
 from adapt_dialogue import adapt, expand_eocs
 from compile_math import compile_expression
 
+assert adapt({'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '30 minutes'}, collections.Counter()) == {
+    'dda_assign_activity': {'activity': 'ACT_WAIT_NPC', 'duration_seconds': 1800}}
+for activity in ({'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '0 seconds'},
+                 {'u_assign_activity': 'ACT_WAIT_NPC', 'duration': '999999999 days'},
+                 {'u_assign_activity': 'ACT_GAME', 'duration': '45 minutes'},
+                 {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '4 minutes'}):
+    try:
+        adapt(activity, collections.Counter())
+    except (ValueError, SyntaxError):
+        pass
+    else:
+        raise AssertionError('Unsafe activity accepted: ' + str(activity))
+
 assert adapt({'npc_at_om_location': 'lighthouse_ground'}, collections.Counter()) == {
     'dda_at_om_location': {'actor': 'npc', 'terrain': 'lighthouse_ground'}}
 try:

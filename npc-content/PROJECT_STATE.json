@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Confirmed Windows baseline; named faction trust and existing chemist map replacement added, new regression pending",
+  "stage": "Existing BN NPC waiting activity integrated for Godco; previous and new native regressions pending",
   "package": "Isolated Road",
   "native_compilation": "Verified Windows baseline: 31 cases, 1065 assertions at c644c365. Subsequent named-faction trust and chemist replacement require a new run.",
   "remaining": [
@@ -132,7 +132,7 @@
     "totals": {
       "source_files": 158,
       "definitions": 1767,
-      "blocked_definitions": 65,
+      "blocked_definitions": 63,
       "overlap_records": 382,
       "reference_records": 4383,
       "external_reference_records": 867
@@ -144,14 +144,15 @@
       "real_npc_opinion_fields": "implemented; Windows regression pending",
       "full_duration_units": "local compiler checks passed",
       "blocked_before": 185,
-      "blocked_after": 65,
+      "blocked_after": 63,
       "world_scoped_variables": "implemented with master save/load and game setup reset; native Windows test pending",
       "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed",
       "conditional_activation_EOCs": "runtime branch support implemented; scheduler/lifecycle metadata remain blocked",
       "math_helpers": "min/max/clamp and world cataclysm age; native tests pending",
       "chance_conditions": "Literal and actor/global-variable one_in_chance plus direct if/then/else effects; Windows pending",
       "random_math": "DDA real rng and inclusive integer rand with round(n), runtime BN RNG callbacks; native Windows pending",
-      "named_faction_trust": "Real trusts_u read/set, arithmetic and named Hub mission penalty; native regression pending"
+      "named_faction_trust": "Real trusts_u read/set, arithmetic and named Hub mission penalty; native regression pending",
+      "NPC_interaction_activity": "Existing BN ACT_WAIT_NPC with required speaker name and bounded static elapsed duration; save/finish native regression pending"
     },
     "location_expansion": {
       "selected_support_definitions": 109,

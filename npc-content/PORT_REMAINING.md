@@ -9,13 +9,13 @@ percentage is assigned to work that has not passed runtime validation.
 | Lighthouse | Four NPC templates, seven linked missions, encounter in existing BN dock variants, map updates, native quest lifecycle tests | Current native regression, manual whole-chain walkthrough, natural encounter generation, cross-stage save/reload, playable packaging |
 | Isolated Road: Cody and Jay | Adapted topics and artisan service foundations, native payment/reward/time handling, quest dependency graph for exhibition items | Full BN dependency and schema closure, actual exhibition placement, whole mission/service testing and package installation |
 | Island prison | Three NPCs, dialogue and mission data, two placement layouts, prisoner epilogues | Camp/ownership/food behavior required by this package, native loader and mission tests, generation and save checks |
-| Hub/robofac, Godco, campus, militia, bunker merchant, chemist, lumbermill employees, scrap trader | Eight staged groups: 73 NPC definitions and 102 mission definitions within 1,767 selected definitions | 65 currently blocked definitions; unsupported fields may remain beyond those blockers; item/monster/palette dependencies; merge overlapping BN definitions; load and test each coherent package |
+| Hub/robofac, Godco, campus, militia, bunker merchant, chemist, lumbermill employees, scrap trader | Eight staged groups: 73 NPC definitions and 102 mission definitions within 1,767 selected definitions | 63 currently blocked definitions; unsupported fields may remain beyond those blockers; item/monster/palette dependencies; merge overlapping BN definitions; load and test each coherent package |
 | Existing BN sites | Six special IDs identified as merge targets; complete BN special catalog checked; chemist replacement generated preserving all other BN map data | Other five sites and remaining map variants; reconcile layouts and NPC positions; trade-zone consumers; native install and map generation validation |
 | New site candidates | Eight linked layouts identified for further comparison | Complete BN map index and dependency checks before adding; supported mapgen schemas; placement and world-generation tests |
 | Windows delivery | Dedicated native build and fast content CI | Passing current native tests and assembling a playable archive; staged bulk data is not installed automatically |
 
-The 65 blocked definitions include 36 EOC declarations requiring lifecycle review.
-They are not 65 independent engine features or 65 broken NPCs. Some immediate EOC
+The 63 blocked definitions include 36 EOC declarations requiring lifecycle review.
+They are not 63 independent engine features or 63 broken NPCs. Some immediate EOC
 effects are already inlined safely; delayed/recurring execution remains separate.
 Zero adaptation blockers in a group does not establish runtime compatibility.
 

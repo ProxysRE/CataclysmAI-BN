@@ -202,10 +202,14 @@ def adapt(value, counts):
                         return {target: variable[source], "value": literal}
     result = {key: adapt(entry, counts) for key, entry in value.items()}
     if "u_assign_activity" in result:
-        if set(result) != {"u_assign_activity", "duration"} or result["u_assign_activity"] != "ACT_MEASURE" or result["duration"] != "10 minutes":
+        if set(result) != {"u_assign_activity", "duration"} or result["u_assign_activity"] not in {"ACT_MEASURE", "ACT_WAIT_NPC"} or not isinstance(result["duration"], str):
             raise ValueError(f"Unported activity effect: {result}")
+        duration = compile_expression('time(' + repr(result['duration']) + ')')['expression']
+        seconds = duration.get('value') if duration.get('op') == 'literal' else None
+        if type(seconds) is not int or not 0 < seconds <= 2147483647 // 100:
+            raise ValueError(f"Invalid static activity duration: {result}")
         counts["dda_assign_activity"] += 1
-        return {"dda_assign_activity": {"activity": "ACT_MEASURE", "duration_seconds": 600}}
+        return {"dda_assign_activity": {"activity": result['u_assign_activity'], "duration_seconds": seconds}}
     if "u_add_faction_trust" in result:
         if set(result) != {"u_add_faction_trust"} or type(result["u_add_faction_trust"]) is not int:
             raise ValueError(f"Unported faction trust effect: {result}")
