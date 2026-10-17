@@ -225,5 +225,14 @@
     "local_checks": "passed",
     "release_ready": false
   },
-  "remaining_work_document": "npc-content/PORT_REMAINING.md"
+  "remaining_work_document": "npc-content/PORT_REMAINING.md",
+  "bn_reuse_audit": "npc-content/BN_REUSE_AUDIT.md",
+  "windows_packaging": {
+    "mode": "Official BN cmake --install, installed-data regression, verified ZIP and SHA256",
+    "artifact": "CBN-DDA-NPC-Windows-x64",
+    "status": "Implemented; first real Windows packaging run pending",
+    "local_checks": "Archive payload, provenance, checksum and incomplete/stale installation rejection passed",
+    "includes_staged_bulk_communities": false,
+    "includes_highway_branch": false
+  }
 }
