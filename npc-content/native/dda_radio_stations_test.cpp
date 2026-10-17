@@ -87,3 +87,37 @@ TEST_CASE( "hotel_technical_enclosures_receive_source_roof_caps", "[dda_npc][dda
         }
     }
 }
+
+TEST_CASE( "shopping_plaza_roofs_generate_over_existing_bn_stores", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>( disable_mapgen );
+    disable_mapgen = false;
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    for( int y = 0; y < 2; ++y ) {
+        for( int x = 0; x < 6; ++x ) {
+            const auto suffix = std::to_string( x + 1 ) + "_north";
+            const auto lower = oter_id( std::string( "s_shoppingplaza_" ) + ( y == 0 ? "a" : "b" ) + suffix );
+            REQUIRE( lower.is_valid() );
+            buffer.ter_set( tripoint_abs_omt( 760 + x, 760 + y, 0 ), lower );
+            if( y == 1 || x == 5 ) {
+                const auto upper = oter_id( std::string( "s_shoppingplaza_" ) + ( y == 0 ? "A" : "B" ) + suffix );
+                REQUIRE( upper.is_valid() );
+                buffer.ter_set( tripoint_abs_omt( 760 + x, 760 + y, 1 ), upper );
+            }
+        }
+    }
+    for( int y = 0; y < 2; ++y ) {
+        for( int x = 0; x < 6; ++x ) {
+            if( y == 0 && x != 5 ) {
+                continue;
+            }
+            INFO( "plaza roof=" << x << "," << y );
+            auto generated = map( 2 );
+            generated.load( project_to<coords::sm>( point_abs_omt( 760 + x, 760 + y ) ), false );
+            CHECK( generated.ter( tripoint_bub_ms( 12, 12, 1 ) ) == ter_id( "t_flat_roof" ) );
+        }
+    }
+}

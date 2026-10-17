@@ -1,0 +1,17 @@
+{
+  "status": "native_code_prepared_not_runtime_validated",
+  "ground_BN_maps": "unchanged",
+  "source_roof_mapgen_blocks": 2,
+  "added_roof_terrain_ids": 7,
+  "existing_ground_placements": 12,
+  "added_roof_placements": 7,
+  "dependencies_reused": [
+    "generic_city_building",
+    "roof_palette"
+  ],
+  "footprint_check": "all nonempty DDA roof cells supported by BN building footprint; no parking or vegetation covered",
+  "pending": [
+    "Windows native generation tests",
+    "natural city placement and player traversal"
+  ]
+}

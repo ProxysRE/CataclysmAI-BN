@@ -20,7 +20,11 @@ def check():
         _, radio_payload, _ = prepare_data()
         from prepare_tower_expansions import prepare_data as tower_data, PAYLOAD as HOTEL_PAYLOAD
         radio_maps, hotel_payload = tower_data()
+        from prepare_shopping_plaza import prepare_data as plaza_data, PAYLOAD as PLAZA_PAYLOAD
+        from compare_location_catalog import read_sources
+        plaza_payload, _ = plaza_data(json.loads(read_sources()[0]['bn/' + RADIO_CITY]))
         payload = {
+            PLAZA_PAYLOAD: json.dumps(plaza_payload).encode(),
             HOTEL_PAYLOAD: json.dumps(hotel_payload).encode(),
             RADIO_MAP: radio_maps[RADIO_MAP].encode(),
             RADIO_CITY: radio_maps[RADIO_CITY].encode(),

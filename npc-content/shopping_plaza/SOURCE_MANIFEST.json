@@ -1,0 +1,15 @@
+{
+  "bundle_sha256": "a5b47f3d7bc90c18aaccd716b4b62e2c501f215571acada7d906ec0870813be8",
+  "files": {
+    "bn": {
+      "sha256": "38c1513d8bc3ad5a05f660979bf6fd434e5530569fec0a5bb78ed66a4e9adaf1",
+      "git_blob_sha": "c62cb4d0c932f805ea19d133c003bc1366e45b15",
+      "pin": "c621aaf42fa182473aad10feea2b55647704dcf1"
+    },
+    "dda": {
+      "sha256": "042f8ccf72621b3d63c1f6d1414c8d19eedf757e1afa16fac560df7f0a1b8aa0",
+      "git_blob_sha": "bae62d36c65427861918e2771ca5268f8bd492d7",
+      "pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+    }
+  }
+}

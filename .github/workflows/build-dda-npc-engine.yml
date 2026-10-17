@@ -15,6 +15,8 @@ on:
       - 'npc-content/prepare_radio_stations.py'
       - 'npc-content/prepare_tower_expansions.py'
       - 'npc-content/prepare_hotel_roofs.py'
+      - 'npc-content/prepare_shopping_plaza.py'
+      - 'npc-content/shopping_plaza/SOURCE*'
       - 'npc-content/hotel_roofs/SOURCE*'
       - 'npc-content/radio_stations/SOURCE_BUNDLE.base64'
       - 'npc-content/radio_stations/SOURCE_MANIFEST.json'
@@ -118,7 +120,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "fc511fdbaacee19d9f391bd498fec28a0cc6aa9ed06125a35bd3e044c99f690c") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "bb25c2f5c42eccee5291f1e6fe1a81abc63fd92e19988959edf6e72aa6e8150f") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

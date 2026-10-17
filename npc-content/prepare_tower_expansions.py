@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Compose radio and hotel additions into one patch of the shared city file."""
+"""Compose radio, hotel and shopping plaza additions into one patch of the shared city file."""
 import argparse
 import difflib
 import json
 from pathlib import Path
 from compare_location_catalog import read_sources
 from prepare_radio_stations import prepare_data as radio_data, sources as radio_sources, MAP, CITY
+from prepare_shopping_plaza import prepare_data as plaza_data, prepare as prepare_plaza
 from prepare_hotel_roofs import prepare_data as hotel_data, sources as hotel_sources, COMMERCIAL
 
 ROOT = Path(__file__).resolve().parent
@@ -15,6 +16,7 @@ PAYLOAD = 'data/json/dda_hotel_roof_caps.json'
 def prepare_data():
     outputs, _, _ = radio_data()
     payload, city, _ = hotel_data(outputs[CITY])
+    _, city = plaza_data(city)
     outputs[CITY] = json.dumps(city, ensure_ascii=True, indent=2) + '\n'
     return outputs, payload
 
@@ -28,6 +30,7 @@ def patch_sections():
 
 
 def prepare(check=False, bn_source=None):
+    prepare_plaza(check=check, bn_source=bn_source)
     _, payload = prepare_data()
     if bn_source:
         catalog, _ = read_sources()

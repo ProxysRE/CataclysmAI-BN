@@ -961,14 +961,15 @@
       "target_operation": "merge_existing_BN_location",
       "wave": "3_existing_BN_location_expansions",
       "scope_status": "accepted_goal",
-      "delivery_status": "not_validated_as_complete",
+      "delivery_status": "native_code_prepared_not_runtime_validated",
       "include": [
         "maps and all required floors",
         "normal world generation",
         "associated NPCs, factions, dialogue and quests where present",
         "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
         "native compatibility required by the source behavior"
-      ]
+      ],
+      "progress_record": "shopping_plaza/PORT_REPORT.json"
     },
     {
       "name": "Авианосец",

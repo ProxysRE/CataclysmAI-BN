@@ -67,6 +67,11 @@ def verify_install(folder):
         raise ValueError('Installed radio tower payload differs')
     if json.loads((folder / HOTEL_PAYLOAD).read_text(encoding='utf-8')) != hotel_payload:
         raise ValueError('Installed hotel roof payload differs')
+    from prepare_shopping_plaza import prepare_data as plaza_data, PAYLOAD as PLAZA_PAYLOAD
+    from compare_location_catalog import read_sources
+    plaza_payload, _ = plaza_data(json.loads(read_sources()[0]['bn/' + RADIO_CITY]))
+    if json.loads((folder / PLAZA_PAYLOAD).read_text(encoding='utf-8')) != plaza_payload:
+        raise ValueError('Installed shopping plaza roofs differ')
     from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload, replacements
     if json.loads((folder / PAYLOAD).read_text(encoding='utf-8')) != payload():
         raise ValueError('Installed Hub access payload differs')
@@ -93,6 +98,8 @@ def package(folder, output, source_head):
         'The demilled Kord is a quest prop, not a working firearm.\n'
         'Includes 24 DDA shoreline cells at the existing BN nuclear power plant.\n'
         'Both BN radio stations retain their buildings and gain DDA tower floors through z=6.\n'
+        'All three existing hotel variants gain technical-enclosure roof caps at z=5.\n'
+        'The existing abandoned shopping plaza gains seven DDA roof sections at z=1.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'
