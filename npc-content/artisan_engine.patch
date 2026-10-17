@@ -2539,9 +2539,11 @@
 +}
 --- /dev/null
 +++ b/tests/dda_radio_stations_test.cpp
-@@ -0,0 +1,205 @@
+@@ -0,0 +1,238 @@
 +#include "avatar.h"
 +#include "calendar.h"
++#include "bodypart.h"
++#include "flag.h"
 +#include "catch/catch.hpp"
 +#include "cata_utility.h"
 +#include "coordinates.h"
@@ -2744,6 +2746,37 @@
 +    CHECK_FALSE( mattack::ranged_pull( &critter ) );
 +    CHECK( actor.bub_pos() == before );
 +    CHECK( critter.moves == moves );
++}
++
++TEST_CASE( "XEDRA_activity_suit_casual_state_reduces_coverage_and_loses_full_body_seals", "[dda_npc][dda_locations]" )
++{
++    auto suit = item( itype_id( "xedra_enviro_suit" ), calendar::turn );
++    const auto torso = bodypart_str_id( "torso" ).id();
++    const auto leg = bodypart_str_id( "leg_l" ).id();
++    const auto foot = bodypart_str_id( "foot_r" ).id();
++    REQUIRE( suit.is_armor() );
++    REQUIRE( suit.covers( torso ) );
++    REQUIRE( suit.covers( leg ) );
++    suit.set_var( "port_state_marker", std::string( "preserve" ) );
++    const auto seals = std::array<std::string, 4>{ "RAINPROOF", "GAS_PROOF", "RAD_PROOF", "ELECTRIC_IMMUNE" };
++    for( const auto &seal : seals ) {
++        REQUIRE( suit.has_flag( flag_id( seal ) ) );
++    }
++    suit.convert( itype_id( "xedra_enviro_suit_casual" ) );
++    CHECK( suit.typeId() == itype_id( "xedra_enviro_suit_casual" ) );
++    CHECK_FALSE( suit.covers( torso ) );
++    CHECK( suit.covers( leg ) );
++    CHECK( suit.covers( foot ) );
++    for( const auto &seal : seals ) {
++        CHECK_FALSE( suit.has_flag( flag_id( seal ) ) );
++    }
++    CHECK( suit.get_var( "port_state_marker" ) == "preserve" );
++    suit.convert( itype_id( "xedra_enviro_suit" ) );
++    CHECK( suit.covers( torso ) );
++    for( const auto &seal : seals ) {
++        CHECK( suit.has_flag( flag_id( seal ) ) );
++    }
++    CHECK( suit.get_var( "port_state_marker" ) == "preserve" );
 +}
 --- /dev/null
 +++ b/data/json/dda_artisan_activities.json
@@ -32485,5 +32518,53 @@
 +    ],
 +    "weight": "10 g",
 +    "volume": "20 ml"
++  }
++]
+--- /dev/null
++++ b/data/json/items/dda_xedra_activity_suits.json
+@@ -0,0 +1,45 @@
++[
++  {
++    "id": "xedra_enviro_suit",
++    "copy-from": "robofac_enviro_suit",
++    "type": "ARMOR",
++    "name": {
++      "str": "activity suit"
++    },
++    "description": "A single-piece brown and orange environmental suit, tailored in a way that slightly recalls a military flight suit.  The letters \"X.E.D.R.A\" are inscribed on its back, and a white shoulder patch on the right arm shows an arrow reaching within rings of concentric circles.  It requires a separate gas mask for full protection.",
++    "use_action": {
++      "type": "transform",
++      "menu_text": "Wear casually",
++      "msg": "You slip out of the top of the suit and tie the sleeves around your waist.",
++      "target": "xedra_enviro_suit_casual"
++    }
++  },
++  {
++    "id": "xedra_enviro_suit_casual",
++    "copy-from": "xedra_enviro_suit",
++    "type": "ARMOR",
++    "name": {
++      "str": "activity suit (casual)",
++      "str_pl": "activity suits (casual)"
++    },
++    "description": "A single-piece brown and orange environmental suit, tailored in a way that slightly recalls a military flight suit.  The upper portion has been tied around the waist casually.",
++    "use_action": {
++      "type": "transform",
++      "menu_text": "Wear normally",
++      "msg": "You untie the sleeves and put back on the top of the suit.",
++      "target": "xedra_enviro_suit"
++    },
++    "covers": [
++      "legs",
++      "feet"
++    ],
++    "delete": {
++      "flags": [
++        "RAINPROOF",
++        "GAS_PROOF",
++        "RAD_PROOF",
++        "ELECTRIC_IMMUNE"
++      ]
++    }
 +  }
 +]

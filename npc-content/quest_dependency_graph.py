@@ -38,6 +38,19 @@ def names(value):
         yield from value.keys()
 
 
+def material_names(value):
+    """DDA material portions name their material in type, not object keys."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, list):
+        for child in value:
+            yield from material_names(child)
+    elif isinstance(value, dict):
+        if not isinstance(value.get('type'), str):
+            raise ValueError('Unsupported material portion schema')
+        yield value['type']
+
+
 def references(entry):
     """Only schema-defined reference positions; never display text or enum values."""
     fields = {'copy-from': 'item', 'looks_like': 'item', 'default_container': 'item',
@@ -48,7 +61,8 @@ def references(entry):
               'category': 'ITEM_CATEGORY', 'material': 'material', 'flags': 'json_flag',
               'ammo_effects': 'ammo_effect', 'ascii_picture': 'ascii_art'}
     for field, target in fields.items():
-        for identifier in names(entry.get(field, [])):
+        reader = material_names if field == 'material' else names
+        for identifier in reader(entry.get(field, [])):
             if target == 'ammunition_type' and identifier == 'NULL':
                 continue  # DDA/BN enum sentinel, not a data definition.
             if field in {'casing', 'linkage'} and identifier in {'NULL', 'null'}:

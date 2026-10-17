@@ -23,11 +23,11 @@
   "xedra": {
     "mapgen_blocks": 4,
     "placement_cells": 5,
-    "equipment_nodes": 9,
-    "reference_edges": 70,
+    "equipment_nodes": 18,
+    "reference_edges": 162,
     "native_installed": false,
     "review": "XEDRA_DEPENDENCY_REVIEW.json",
-    "native_dependencies": "creature, particles, inert string prepared; not runtime validated"
+    "native_dependencies": "creature, particles, inert string and activity suit states prepared; runtime pending"
   },
   "pending": [
     "Windows native generation tests",

@@ -1,7 +1,7 @@
 {
   "status": "staged_not_installed",
   "source_mapgen_blocks": 4,
-  "native_dependency_progress": "Creature, particles and inert string prepared in xedra_creature; runtime pending; protective equipment still staged",
+  "native_dependency_progress": "Creature, particles and inert string prepared in xedra_creature; runtime pending; activity suit states prepared in xedra_gear; powered respirator and S02a suit still staged",
   "source_placement_cells": 5,
   "z_levels": [
     -1,
@@ -10,9 +10,186 @@
     2
   ],
   "npc_or_quest_definitions_in_these_location_sources": 0,
-  "equipment_nodes_preserved": 9,
-  "equipment_edges": 70,
+  "equipment_nodes_preserved": 18,
+  "equipment_edges": 162,
   "equipment_definitions": [
+    {
+      "id": "basic_papr_belt_off",
+      "source": "dda/tool_armor.json",
+      "definition": {
+        "id": "basic_papr_belt_off",
+        "//": "Based on 3M TR-300",
+        "type": "ITEM",
+        "subtypes": [
+          "TOOL",
+          "ARMOR"
+        ],
+        "name": {
+          "str": "PAPR blower (off)",
+          "str_pl": "PAPR blowers (off)"
+        },
+        "description": "A blower unit for a powered air purifying respirator system.  It has been attached to a basic rubber and plastic belt.  When active and loaded with a charged battery and a filter canister, it can be paired with a prepared PAPR mask to provide excellent protection against chemical, biological, radiological, and nuclear threats.",
+        "weight": "918 g",
+        "volume": "1000 ml",
+        "price": "300 USD",
+        "price_postapoc": "5 USD",
+        "material": [
+          {
+            "type": "plastic",
+            "portion": 2
+          },
+          {
+            "type": "rubber",
+            "portion": 1
+          }
+        ],
+        "symbol": "[",
+        "looks_like": "leather_belt",
+        "color": "black",
+        "material_thickness": 1,
+        "pocket_data": [
+          {
+            "id": "papr_blower_filter",
+            "pocket_type": "MAGAZINE_WELL",
+            "flag_restriction": [
+              "GASFILTER_MED"
+            ],
+            "default_magazine": "gasfilter_med",
+            "rigid": true
+          },
+          {
+            "id": "papr_blower_battery",
+            "pocket_type": "MAGAZINE_WELL",
+            "rigid": true,
+            "flag_restriction": [
+              "BATTERY_MEDIUM"
+            ],
+            "default_magazine": "medium_battery_cell"
+          }
+        ],
+        "consumption_per_use": [
+          {
+            "pocket": "papr_blower_battery",
+            "qty": 1
+          }
+        ],
+        "use_action": {
+          "type": "transform",
+          "msg": "You activate your %s and the fan starts to audibly whoosh.",
+          "target": "basic_papr_belt_on",
+          "need_charges": 1,
+          "need_charges_msg": "The batteries are dead."
+        },
+        "tool_ammo": [
+          "battery",
+          "gasfilter_m"
+        ],
+        "flags": [
+          "BELTED",
+          "OVERSIZE",
+          "ELECTRONIC",
+          "WATER_BREAK_ACTIVE"
+        ],
+        "armor": [
+          {
+            "encumbrance": 4,
+            "coverage": 50,
+            "covers": [
+              "torso"
+            ],
+            "specifically_covers": [
+              "torso_waist"
+            ],
+            "volume_encumber_modifier": 0.35
+          }
+        ]
+      }
+    },
+    {
+      "id": "gasfilter_med",
+      "source": "dda/filter.json",
+      "definition": {
+        "id": "gasfilter_med",
+        "type": "ITEM",
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "category": "tool_magazine",
+        "name": {
+          "str": "CBRN filter canister"
+        },
+        "description": "A cylindrical, black-finished filter canister packed with charcoal retained between dual particulate membranes, rated to protect against chemical weapons, nerve agents, biological contaminants, radioactive dust, and all manner of other unpleasant vapors or particles.  That is, though, only if you screw it into an appropriate respirator before hand and the charcoal isn't expired.",
+        "weight": "365 g",
+        "volume": "910 ml",
+        "longest_side": "111 mm",
+        "//": "Statistics modelled after https://www.avon-protection.com/media/cttpaix4/avon-protection_cbrncf50-ce-filter_data-sheet_en.pdf",
+        "//2": "Intended to simulate a standard, CBRN-rated filter cartridge with a 40mm NATO thread.",
+        "price": "82 USD",
+        "price_postapoc": "1 USD 50 cent",
+        "//3": "As it turns out, protecting your lungs from sucking down toxins is expensive.",
+        "material": [
+          "plastic",
+          "rubber",
+          "charcoal"
+        ],
+        "symbol": "=",
+        "color": "dark_gray",
+        "ammo_type": [
+          "gasfilter_m"
+        ],
+        "count": 100,
+        "capacity": 100,
+        "flags": [
+          "NO_SALVAGE",
+          "NO_UNLOAD",
+          "NO_RELOAD",
+          "GASFILTER_MED"
+        ],
+        "pocket_data": [
+          {
+            "pocket_type": "MAGAZINE",
+            "rigid": true,
+            "ammo_restriction": {
+              "gasfilter_m": 100
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "heavy_battery_cell",
+      "source": "dda/battery.json",
+      "definition": {
+        "id": "heavy_battery_cell",
+        "copy-from": "heavy_plus_battery_cell",
+        "type": "ITEM",
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "name": {
+          "str": "small tool battery",
+          "str_pl": "small tool batteries"
+        },
+        "description": "A light battery cell, universally compatible with all kinds of industrial-grade equipment and portable tools - drills, angle grinders, chainsaws.",
+        "//": "Li-ion 18V LXT BL1815N",
+        "ascii_picture": "heavy_battery_cell",
+        "weight": "350 g",
+        "volume": "382 ml",
+        "longest_side": "113 mm",
+        "price": "22 USD",
+        "price_postapoc": "35 cent",
+        "capacity": 259,
+        "pocket_data": [
+          {
+            "pocket_type": "MAGAZINE",
+            "rigid": true,
+            "ammo_restriction": {
+              "battery": 259
+            }
+          }
+        ]
+      }
+    },
     {
       "id": "inert_glowing_string",
       "source": "dda/extradimensional_artifacts.json",
@@ -33,6 +210,115 @@
         ],
         "weight": "10 g",
         "volume": "20 ml"
+      }
+    },
+    {
+      "id": "medium_battery_cell",
+      "source": "dda/battery.json",
+      "definition": {
+        "id": "medium_battery_cell",
+        "type": "ITEM",
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "category": "tool_magazine",
+        "name": {
+          "str": "medium battery",
+          "str_pl": "medium batteries"
+        },
+        "description": "A medium battery cell, wildly used in modern tools: heavy flashlights, two-way radios, security cameras, multiple of them make a tool battery, and some older generation of EV use thousands of this as the power storage.",
+        "//": "18650, Li-ion, https://cdn-shop.adafruit.com/datasheets/18650%204400mAh.pdf",
+        "ascii_picture": "medium_battery_cell",
+        "weight": "85 g",
+        "volume": "17 ml",
+        "longest_side": "65 mm",
+        "price": "101 cent",
+        "price_postapoc": "6 cent",
+        "material": [
+          {
+            "type": "budget_steel",
+            "portion": 99
+          },
+          {
+            "type": "plastic",
+            "portion": 1
+          }
+        ],
+        "symbol": "=",
+        "color": "yellow",
+        "ammo_type": [
+          "battery"
+        ],
+        "looks_like": "battery",
+        "flags": [
+          "NO_SALVAGE",
+          "NO_UNLOAD",
+          "NO_RELOAD",
+          "RECHARGE",
+          "BATTERY_MEDIUM"
+        ],
+        "capacity": 56,
+        "pocket_data": [
+          {
+            "pocket_type": "MAGAZINE",
+            "rigid": true,
+            "ammo_restriction": {
+              "battery": 56
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "papr_half_mask",
+      "source": "dda/tool_armor.json",
+      "definition": {
+        "id": "papr_half_mask",
+        "type": "ITEM",
+        "subtypes": [
+          "TOOL",
+          "ARMOR"
+        ],
+        "//": "Based on Optrel Swiss Air",
+        "name": {
+          "str": "half-face PAPR mask"
+        },
+        "category": "clothing",
+        "description": "A lightweight, form-fitting mask that straps over your mouth and nose.  The mask has pre-installed tubing which attaches to a powered air purifying respirator system.  Once activated it will comfortably protect against chemical, biological, radiological, and nuclear threats.  Like a standard gas mask it must be prepared before use; unlike a standard gas mask, it will only function when paired with an active PAPR blower unit.  Safety goggles are advised!",
+        "flags": [
+          "SLEEP_IGNORE",
+          "PAPR_MASK"
+        ],
+        "weight": "400 g",
+        "volume": "500 ml",
+        "price": "300 USD",
+        "price_postapoc": "15 USD 50 cent",
+        "material": [
+          "plastic"
+        ],
+        "symbol": "[",
+        "looks_like": "mask_dust",
+        "color": "light_gray",
+        "warmth": 12,
+        "material_thickness": 2,
+        "environmental_protection": 3,
+        "environmental_protection_with_filter": 16,
+        "use_action": [
+          "PAPR_MASK_ACTIVATE"
+        ],
+        "tick_action": [
+          "PAPR_MASK"
+        ],
+        "armor": [
+          {
+            "encumbrance": 10,
+            "rigid_layer_only": true,
+            "coverage": 100,
+            "covers": [
+              "mouth"
+            ]
+          }
+        ]
       }
     },
     {
@@ -244,6 +530,238 @@
           "msg": "You slip out of the top of the suit and tie the sleeves around your waist.",
           "target": "xedra_enviro_suit_casual"
         }
+      }
+    },
+    {
+      "id": "battery",
+      "source": "dda/ammo.json",
+      "definition": {
+        "type": "ITEM",
+        "subtypes": [
+          "AMMO"
+        ],
+        "id": "battery",
+        "category": "spare_parts",
+        "price": "120 USD",
+        "price_postapoc": "2 cent",
+        "name": {
+          "str_sp": "battery"
+        },
+        "symbol": "=",
+        "color": "yellow",
+        "description": "Some free-floating battery charge.  It can be reloaded into rechargeable battery cells, but can never be unloaded.",
+        "flags": [
+          "TRADER_AVOID",
+          "ZERO_WEIGHT",
+          "NO_DROP"
+        ],
+        "material": [
+          "battery"
+        ],
+        "effects": [
+          "COOKOFF"
+        ],
+        "volume": "100 ml",
+        "//": "Setting battery volume to 0 causes weirdness in vehicle tests.  Please don't do that.",
+        "ammo_type": "battery",
+        "count": 100,
+        "//2": "1 battery is 1 kJ of energy. 40 batteries is an alkaline C-cell."
+      }
+    },
+    {
+      "id": "gasfilter_m",
+      "source": "dda/ammo.json",
+      "definition": {
+        "type": "ITEM",
+        "subtypes": [
+          "AMMO"
+        ],
+        "id": "gasfilter_m",
+        "category": "tool_magazine",
+        "name": {
+          "str_sp": "activated carbon"
+        },
+        "description": "A small amount of coal-derived carbon material with many small pores, used for the adsorption of harmful chemicals.  Most commonly employed within respirator filters, it traps and retains chemical gases and vapor contaminants while allowing filtered air to pass unhindered.  Once all the carbon has been bonded to intruding chemicals, the filter is expired and must be replaced.",
+        "volume": "1 ml",
+        "price": "1 cent",
+        "price_postapoc": "1 cent",
+        "symbol": "=",
+        "material": [
+          "charcoal"
+        ],
+        "color": "light_gray",
+        "ammo_type": "gasfilter_m",
+        "count": 1,
+        "//": "Obviously, activated carbon isn't magically weightless, but it's used as ammunition within gas mask filters, and the filters shouldn't equally magically grow lighter as the coal binds with chemicals. Considering that this is never found beyond gas mask canisters, having zero weight should make no difference to the player.",
+        "flags": [
+          "TRADER_AVOID",
+          "ZERO_WEIGHT"
+        ]
+      }
+    },
+    {
+      "id": "basic_papr_belt_on",
+      "source": "dda/tool_armor.json",
+      "definition": {
+        "id": "basic_papr_belt_on",
+        "copy-from": "basic_papr_belt_off",
+        "//": "Based on 3M TR-300",
+        "type": "ITEM",
+        "subtypes": [
+          "TOOL",
+          "ARMOR"
+        ],
+        "name": {
+          "str": "PAPR blower (on)",
+          "str_pl": "PAPR blowers (on)"
+        },
+        "description": "An active blower unit for a powered air purifying respirator system.  It has been attached to a basic rubber and plastic belt.  If paired with a prepared PAPR mask, this will provide excellent protection against chemical, biological, radiological, and nuclear threats.  The fan is audibly blowing.",
+        "weight": "918 g",
+        "volume": "1000 ml",
+        "material": [
+          {
+            "type": "plastic",
+            "portion": 2
+          },
+          {
+            "type": "rubber",
+            "portion": 1
+          }
+        ],
+        "symbol": "[",
+        "looks_like": "leather_belt",
+        "color": "black",
+        "material_thickness": 1,
+        "pocket_data": [
+          {
+            "id": "papr_blower_filter",
+            "pocket_type": "MAGAZINE_WELL",
+            "flag_restriction": [
+              "GASFILTER_MED"
+            ],
+            "default_magazine": "gasfilter_med",
+            "rigid": true
+          },
+          {
+            "id": "papr_blower_battery",
+            "pocket_type": "MAGAZINE_WELL",
+            "rigid": true,
+            "flag_restriction": [
+              "BATTERY_MEDIUM"
+            ],
+            "default_magazine": "medium_battery_cell"
+          }
+        ],
+        "consumption_per_use": [
+          {
+            "pocket": "papr_blower_battery",
+            "qty": 1
+          }
+        ],
+        "turns_per_charge": 240,
+        "revert_to": "basic_papr_belt_off",
+        "use_action": {
+          "menu_text": "Turn off",
+          "type": "transform",
+          "msg": "You turn off the %s.",
+          "target": "basic_papr_belt_off",
+          "ammo_scale": 0
+        },
+        "tick_action": [
+          "PAPR_BLOWER",
+          {
+            "type": "sound",
+            "sound_type": "movement",
+            "sound_message": "whooooo\u2026",
+            "sound_id": "humming",
+            "sound_variant": "machinery",
+            "sound_volume": 12
+          }
+        ],
+        "tool_ammo": [
+          "battery",
+          "gasfilter_m"
+        ],
+        "flags": [
+          "BELTED",
+          "OVERSIZE",
+          "ELECTRONIC",
+          "TRADER_AVOID",
+          "WATER_BREAK",
+          "SPAWN_ACTIVE",
+          "PAPR_BLOWER"
+        ],
+        "armor": [
+          {
+            "encumbrance": 4,
+            "coverage": 50,
+            "covers": [
+              "torso"
+            ],
+            "specifically_covers": [
+              "torso_waist"
+            ],
+            "volume_encumber_modifier": 0.35
+          }
+        ]
+      }
+    },
+    {
+      "id": "heavy_plus_battery_cell",
+      "source": "dda/battery.json",
+      "definition": {
+        "id": "heavy_plus_battery_cell",
+        "type": "ITEM",
+        "subtypes": [
+          "MAGAZINE"
+        ],
+        "category": "tool_magazine",
+        "name": {
+          "str": "big tool battery",
+          "str_pl": "big tool batteries"
+        },
+        "description": "A heavy battery cell, universally compatible with all kinds of industrial-grade equipment and portable tools - drills, angle grinders, chainsaws.",
+        "//": "Li-ion 18V LXT BL1850B by Makita, because, you guess it, there is no single standard for this type of batteries irl",
+        "ascii_picture": "heavy_plus_battery_cell",
+        "weight": "680 g",
+        "volume": "525 ml",
+        "longest_side": "113 mm",
+        "//2": "113 * 75 * 62 mm",
+        "price": "192 USD",
+        "price_postapoc": "35 cent",
+        "material": [
+          {
+            "type": "budget_steel",
+            "portion": 99
+          },
+          {
+            "type": "plastic",
+            "portion": 1
+          }
+        ],
+        "symbol": "=",
+        "color": "yellow",
+        "ammo_type": [
+          "battery"
+        ],
+        "capacity": 503,
+        "looks_like": "battery",
+        "flags": [
+          "NO_SALVAGE",
+          "NO_UNLOAD",
+          "NO_RELOAD",
+          "RECHARGE",
+          "BATTERY_HEAVY"
+        ],
+        "pocket_data": [
+          {
+            "pocket_type": "MAGAZINE",
+            "rigid": true,
+            "ammo_restriction": {
+              "battery": 503
+            }
+          }
+        ]
       }
     },
     {
@@ -1016,6 +1534,156 @@
   ],
   "equipment_reference_edges": [
     {
+      "from": "basic_papr_belt_off",
+      "kind": "item",
+      "to": "leather_belt",
+      "field": "looks_like"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "material",
+      "to": "rubber",
+      "field": "material"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "json_flag",
+      "to": "BELTED",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "json_flag",
+      "to": "OVERSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "json_flag",
+      "to": "ELECTRONIC",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "json_flag",
+      "to": "WATER_BREAK_ACTIVE",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "ammunition_type",
+      "to": "gasfilter_m",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "item",
+      "to": "gasfilter_med",
+      "field": "pocket_data.default_magazine"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "item",
+      "to": "medium_battery_cell",
+      "field": "pocket_data.default_magazine"
+    },
+    {
+      "from": "basic_papr_belt_off",
+      "kind": "item",
+      "to": "basic_papr_belt_on",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "ammunition_type",
+      "to": "gasfilter_m",
+      "field": "ammo_type"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "ITEM_CATEGORY",
+      "to": "tool_magazine",
+      "field": "category"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "material",
+      "to": "rubber",
+      "field": "material"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "material",
+      "to": "charcoal",
+      "field": "material"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "json_flag",
+      "to": "NO_SALVAGE",
+      "field": "flags"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "json_flag",
+      "to": "NO_UNLOAD",
+      "field": "flags"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "json_flag",
+      "to": "NO_RELOAD",
+      "field": "flags"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "json_flag",
+      "to": "GASFILTER_MED",
+      "field": "flags"
+    },
+    {
+      "from": "gasfilter_med",
+      "kind": "ammunition_type",
+      "to": "gasfilter_m",
+      "field": "pocket_data.ammo_restriction"
+    },
+    {
+      "from": "heavy_battery_cell",
+      "kind": "item",
+      "to": "heavy_plus_battery_cell",
+      "field": "copy-from"
+    },
+    {
+      "from": "heavy_battery_cell",
+      "kind": "ascii_art",
+      "to": "heavy_battery_cell",
+      "field": "ascii_picture"
+    },
+    {
+      "from": "heavy_battery_cell",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "pocket_data.ammo_restriction"
+    },
+    {
       "from": "inert_glowing_string",
       "kind": "ITEM_CATEGORY",
       "to": "artifacts",
@@ -1026,6 +1694,120 @@
       "kind": "material",
       "to": "plastic",
       "field": "material"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "item",
+      "to": "battery",
+      "field": "looks_like"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "ammo_type"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "ITEM_CATEGORY",
+      "to": "tool_magazine",
+      "field": "category"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "material",
+      "to": "budget_steel",
+      "field": "material"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "json_flag",
+      "to": "NO_SALVAGE",
+      "field": "flags"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "json_flag",
+      "to": "NO_UNLOAD",
+      "field": "flags"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "json_flag",
+      "to": "NO_RELOAD",
+      "field": "flags"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "json_flag",
+      "to": "RECHARGE",
+      "field": "flags"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "json_flag",
+      "to": "BATTERY_MEDIUM",
+      "field": "flags"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "ascii_art",
+      "to": "medium_battery_cell",
+      "field": "ascii_picture"
+    },
+    {
+      "from": "medium_battery_cell",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "pocket_data.ammo_restriction"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "item",
+      "to": "mask_dust",
+      "field": "looks_like"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "ITEM_CATEGORY",
+      "to": "clothing",
+      "field": "category"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "json_flag",
+      "to": "SLEEP_IGNORE",
+      "field": "flags"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "json_flag",
+      "to": "PAPR_MASK",
+      "field": "flags"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "native_use_action",
+      "to": "PAPR_MASK_ACTIVATE",
+      "field": "use_action"
+    },
+    {
+      "from": "papr_half_mask",
+      "kind": "native_use_action",
+      "to": "PAPR_MASK",
+      "field": "tick_action"
     },
     {
       "from": "xedra_artifact_cleansuit",
@@ -1101,6 +1883,48 @@
     },
     {
       "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "b",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "a",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "t",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "t",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "e",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "r",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "ammunition_type",
+      "to": "y",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
       "kind": "item",
       "to": "heavy_battery_cell",
       "field": "pocket_data.default_magazine"
@@ -1122,6 +1946,252 @@
       "kind": "item",
       "to": "xedra_enviro_suit_casual",
       "field": "use_action.transform.target"
+    },
+    {
+      "from": "battery",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "ammo_type"
+    },
+    {
+      "from": "battery",
+      "kind": "ITEM_CATEGORY",
+      "to": "spare_parts",
+      "field": "category"
+    },
+    {
+      "from": "battery",
+      "kind": "material",
+      "to": "battery",
+      "field": "material"
+    },
+    {
+      "from": "battery",
+      "kind": "json_flag",
+      "to": "TRADER_AVOID",
+      "field": "flags"
+    },
+    {
+      "from": "battery",
+      "kind": "json_flag",
+      "to": "ZERO_WEIGHT",
+      "field": "flags"
+    },
+    {
+      "from": "battery",
+      "kind": "json_flag",
+      "to": "NO_DROP",
+      "field": "flags"
+    },
+    {
+      "from": "gasfilter_m",
+      "kind": "ammunition_type",
+      "to": "gasfilter_m",
+      "field": "ammo_type"
+    },
+    {
+      "from": "gasfilter_m",
+      "kind": "ITEM_CATEGORY",
+      "to": "tool_magazine",
+      "field": "category"
+    },
+    {
+      "from": "gasfilter_m",
+      "kind": "material",
+      "to": "charcoal",
+      "field": "material"
+    },
+    {
+      "from": "gasfilter_m",
+      "kind": "json_flag",
+      "to": "TRADER_AVOID",
+      "field": "flags"
+    },
+    {
+      "from": "gasfilter_m",
+      "kind": "json_flag",
+      "to": "ZERO_WEIGHT",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "item",
+      "to": "basic_papr_belt_off",
+      "field": "copy-from"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "item",
+      "to": "leather_belt",
+      "field": "looks_like"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "item",
+      "to": "basic_papr_belt_off",
+      "field": "revert_to"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "material",
+      "to": "rubber",
+      "field": "material"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "BELTED",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "OVERSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "ELECTRONIC",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "TRADER_AVOID",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "WATER_BREAK",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "SPAWN_ACTIVE",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "json_flag",
+      "to": "PAPR_BLOWER",
+      "field": "flags"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "ammunition_type",
+      "to": "gasfilter_m",
+      "field": "tool_ammo"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "native_use_action",
+      "to": "PAPR_BLOWER",
+      "field": "tick_action"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "item",
+      "to": "gasfilter_med",
+      "field": "pocket_data.default_magazine"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "item",
+      "to": "medium_battery_cell",
+      "field": "pocket_data.default_magazine"
+    },
+    {
+      "from": "basic_papr_belt_on",
+      "kind": "item",
+      "to": "basic_papr_belt_off",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "item",
+      "to": "battery",
+      "field": "looks_like"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "ammo_type"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "ITEM_CATEGORY",
+      "to": "tool_magazine",
+      "field": "category"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "material",
+      "to": "budget_steel",
+      "field": "material"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "json_flag",
+      "to": "NO_SALVAGE",
+      "field": "flags"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "json_flag",
+      "to": "NO_UNLOAD",
+      "field": "flags"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "json_flag",
+      "to": "NO_RELOAD",
+      "field": "flags"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "json_flag",
+      "to": "RECHARGE",
+      "field": "flags"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "json_flag",
+      "to": "BATTERY_HEAVY",
+      "field": "flags"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "ascii_art",
+      "to": "heavy_plus_battery_cell",
+      "field": "ascii_picture"
+    },
+    {
+      "from": "heavy_plus_battery_cell",
+      "kind": "ammunition_type",
+      "to": "battery",
+      "field": "pocket_data.ammo_restriction"
     },
     {
       "from": "hazmat_suit",
@@ -1436,6 +2506,28 @@
       "field": "use_action.transform.target"
     }
   ],
+  "ammunition_type_definitions": [
+    {
+      "id": "battery",
+      "source": "dda/ammo_types.json",
+      "definition": {
+        "type": "ammunition_type",
+        "id": "battery",
+        "name": "kJ",
+        "default": "battery"
+      }
+    },
+    {
+      "id": "gasfilter_m",
+      "source": "dda/ammo_types.json",
+      "definition": {
+        "type": "ammunition_type",
+        "id": "gasfilter_m",
+        "name": "gas mask cartridge",
+        "default": "gasfilter_m"
+      }
+    }
+  ],
   "unresolved_typed_references": [
     {
       "kind": "ITEM_CATEGORY",
@@ -1446,24 +2538,72 @@
       "id": "artifacts"
     },
     {
-      "kind": "item",
-      "id": "basic_papr_belt_off"
+      "kind": "ITEM_CATEGORY",
+      "id": "clothing"
     },
     {
-      "kind": "item",
-      "id": "gasfilter_med"
+      "kind": "ITEM_CATEGORY",
+      "id": "spare_parts"
     },
     {
-      "kind": "item",
+      "kind": "ITEM_CATEGORY",
+      "id": "tool_magazine"
+    },
+    {
+      "kind": "ammunition_type",
+      "id": "a"
+    },
+    {
+      "kind": "ammunition_type",
+      "id": "b"
+    },
+    {
+      "kind": "ammunition_type",
+      "id": "e"
+    },
+    {
+      "kind": "ammunition_type",
+      "id": "r"
+    },
+    {
+      "kind": "ammunition_type",
+      "id": "t"
+    },
+    {
+      "kind": "ammunition_type",
+      "id": "y"
+    },
+    {
+      "kind": "ascii_art",
       "id": "heavy_battery_cell"
     },
     {
-      "kind": "item",
+      "kind": "ascii_art",
+      "id": "heavy_plus_battery_cell"
+    },
+    {
+      "kind": "ascii_art",
       "id": "medium_battery_cell"
     },
     {
       "kind": "item",
-      "id": "papr_half_mask"
+      "id": "leather_belt"
+    },
+    {
+      "kind": "item",
+      "id": "mask_dust"
+    },
+    {
+      "kind": "json_flag",
+      "id": "BATTERY_HEAVY"
+    },
+    {
+      "kind": "json_flag",
+      "id": "BATTERY_MEDIUM"
+    },
+    {
+      "kind": "json_flag",
+      "id": "BELTED"
     },
     {
       "kind": "json_flag",
@@ -1475,6 +2615,10 @@
     },
     {
       "kind": "json_flag",
+      "id": "GASFILTER_MED"
+    },
+    {
+      "kind": "json_flag",
       "id": "GAS_PROOF"
     },
     {
@@ -1483,11 +2627,35 @@
     },
     {
       "kind": "json_flag",
+      "id": "NO_DROP"
+    },
+    {
+      "kind": "json_flag",
+      "id": "NO_RELOAD"
+    },
+    {
+      "kind": "json_flag",
+      "id": "NO_SALVAGE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "NO_UNLOAD"
+    },
+    {
+      "kind": "json_flag",
       "id": "OUTER"
     },
     {
       "kind": "json_flag",
       "id": "OVERSIZE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "PAPR_BLOWER"
+    },
+    {
+      "kind": "json_flag",
+      "id": "PAPR_MASK"
     },
     {
       "kind": "json_flag",
@@ -1504,6 +2672,14 @@
     {
       "kind": "json_flag",
       "id": "RAINPROOF"
+    },
+    {
+      "kind": "json_flag",
+      "id": "RECHARGE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "SLEEP_IGNORE"
     },
     {
       "kind": "json_flag",
@@ -1530,8 +2706,32 @@
       "id": "WATERPROOF"
     },
     {
+      "kind": "json_flag",
+      "id": "WATER_BREAK"
+    },
+    {
+      "kind": "json_flag",
+      "id": "WATER_BREAK_ACTIVE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "ZERO_WEIGHT"
+    },
+    {
+      "kind": "material",
+      "id": "battery"
+    },
+    {
+      "kind": "material",
+      "id": "budget_steel"
+    },
+    {
       "kind": "material",
       "id": "butyl_rubber"
+    },
+    {
+      "kind": "material",
+      "id": "charcoal"
     },
     {
       "kind": "material",
@@ -1563,14 +2763,30 @@
     },
     {
       "kind": "material",
+      "id": "rubber"
+    },
+    {
+      "kind": "material",
       "id": "thermo_resin"
     },
     {
       "kind": "material",
       "id": "vinyl"
+    },
+    {
+      "kind": "native_use_action",
+      "id": "PAPR_BLOWER"
+    },
+    {
+      "kind": "native_use_action",
+      "id": "PAPR_MASK"
+    },
+    {
+      "kind": "native_use_action",
+      "id": "PAPR_MASK_ACTIVATE"
     }
   ],
-  "scope_limit": "Available-source item inheritance, transform targets, magazine defaults and typed quest-item references; not complete field, armor, enchantment or EOC closure",
+  "scope_limit": "Available-source item inheritance, transform targets, magazine defaults, tool ammunition, tick actions and typed quest-item references; not complete field, armor, enchantment or EOC closure",
   "blocking_mechanics": [
     "runtime validation and review of BN grab lifecycle/AI adaptation",
     "runtime validation of source dust field/emitter",

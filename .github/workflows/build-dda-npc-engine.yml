@@ -18,6 +18,8 @@ on:
       - 'npc-content/prepare_shopping_plaza.py'
       - 'npc-content/prepare_rural_churches.py'
       - 'npc-content/prepare_xedra_creature.py'
+      - 'npc-content/prepare_xedra_gear.py'
+      - 'npc-content/xedra_gear/SOURCE*'
       - 'npc-content/xedra_creature/SOURCE*'
       - 'npc-content/rural_churches/SOURCE*'
       - 'npc-content/shopping_plaza/SOURCE*'
@@ -112,6 +114,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_tower_expansions.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_rural_churches.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_xedra_creature.py" --check --bn-source .
+          python "${{ github.workspace }}/package/npc-content/prepare_xedra_gear.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Radio station baseline or ID conflict" }
           python "${{ github.workspace }}/package/npc-content/prepare_hub_elevator.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Hub elevator source preflight failed" }
@@ -126,7 +129,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "9bf02f4fcc3e99bfde22cd37ce20e63ff5e2a222bf9babf2a4ae0fa8c0797be1") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "9958eac9f942066a5fca721be6907943a3ff5cf100102447467c7ed301db1db9") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

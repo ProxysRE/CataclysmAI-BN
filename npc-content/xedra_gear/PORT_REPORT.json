@@ -1,0 +1,40 @@
+{
+  "status": "activity_suit_states_native_prepared_not_runtime_validated",
+  "native_item_ids": [
+    "xedra_enviro_suit",
+    "xedra_enviro_suit_casual"
+  ],
+  "native_base": "existing pinned BN robofac_enviro_suit, with BN protection, materials, storage and encumbrance",
+  "state_change": {
+    "normal_covers": "BN Hub suit full coverage",
+    "casual_covers": [
+      "legs",
+      "feet"
+    ],
+    "casual_removed_flags": [
+      "RAINPROOF",
+      "GAS_PROOF",
+      "RAD_PROOF",
+      "ELECTRIC_IMMUNE"
+    ]
+  },
+  "source_names_descriptions_transforms": "preserved",
+  "DDA_detailed_material_bodypart_model_ported": false,
+  "DDA_pockets_ported": false,
+  "source_dependency_items": 18,
+  "source_reference_edges": 162,
+  "source_ammunition_types": [
+    "battery",
+    "gasfilter_m"
+  ],
+  "PAPR_native_installed": false,
+  "PAPR_blockers": [
+    "two simultaneous magazine wells: battery and filter",
+    "per-resource consumption and reload rules",
+    "PAPR_MASK_ACTIVATE, PAPR_MASK and PAPR_BLOWER native consumers",
+    "paired active belt and prepared worn mask environmental protection"
+  ],
+  "S02a_native_installed": false,
+  "XEDRA_church_enabled": false,
+  "native_tests_pending": "source item loading, real coverage/seal conversion and instance metadata preservation; not UI invocation or worn cache testing"
+}

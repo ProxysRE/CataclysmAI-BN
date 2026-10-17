@@ -1,5 +1,7 @@
 #include "avatar.h"
 #include "calendar.h"
+#include "bodypart.h"
+#include "flag.h"
 #include "catch/catch.hpp"
 #include "cata_utility.h"
 #include "coordinates.h"
@@ -202,4 +204,35 @@ TEST_CASE( "XEDRA_ranged_pull_rejects_overweight_target_before_movement", "[dda_
     CHECK_FALSE( mattack::ranged_pull( &critter ) );
     CHECK( actor.bub_pos() == before );
     CHECK( critter.moves == moves );
+}
+
+TEST_CASE( "XEDRA_activity_suit_casual_state_reduces_coverage_and_loses_full_body_seals", "[dda_npc][dda_locations]" )
+{
+    auto suit = item( itype_id( "xedra_enviro_suit" ), calendar::turn );
+    const auto torso = bodypart_str_id( "torso" ).id();
+    const auto leg = bodypart_str_id( "leg_l" ).id();
+    const auto foot = bodypart_str_id( "foot_r" ).id();
+    REQUIRE( suit.is_armor() );
+    REQUIRE( suit.covers( torso ) );
+    REQUIRE( suit.covers( leg ) );
+    suit.set_var( "port_state_marker", std::string( "preserve" ) );
+    const auto seals = std::array<std::string, 4>{ "RAINPROOF", "GAS_PROOF", "RAD_PROOF", "ELECTRIC_IMMUNE" };
+    for( const auto &seal : seals ) {
+        REQUIRE( suit.has_flag( flag_id( seal ) ) );
+    }
+    suit.convert( itype_id( "xedra_enviro_suit_casual" ) );
+    CHECK( suit.typeId() == itype_id( "xedra_enviro_suit_casual" ) );
+    CHECK_FALSE( suit.covers( torso ) );
+    CHECK( suit.covers( leg ) );
+    CHECK( suit.covers( foot ) );
+    for( const auto &seal : seals ) {
+        CHECK_FALSE( suit.has_flag( flag_id( seal ) ) );
+    }
+    CHECK( suit.get_var( "port_state_marker" ) == "preserve" );
+    suit.convert( itype_id( "xedra_enviro_suit" ) );
+    CHECK( suit.covers( torso ) );
+    for( const auto &seal : seals ) {
+        CHECK( suit.has_flag( flag_id( seal ) ) );
+    }
+    CHECK( suit.get_var( "port_state_marker" ) == "preserve" );
 }

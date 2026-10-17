@@ -11,6 +11,7 @@ from prepare_tower_expansions import patch_sections as tower_patch, prepare as p
 from prepare_shopping_plaza import PAYLOAD as PLAZA_PAYLOAD
 from prepare_rural_churches import prepare as prepare_churches, PAYLOAD as CHURCH_PAYLOAD
 from prepare_xedra_creature import prepare as prepare_creature, patch_sections as creature_patch, PAYLOAD as CREATURE_PAYLOAD
+from prepare_xedra_gear import prepare as prepare_gear, PAYLOAD as GEAR_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD
 
 ROOT = Path(__file__).resolve().parent
@@ -34,6 +35,7 @@ def check():
     prepare_towers(check=True)
     prepare_churches(check=True)
     prepare_creature(check=True)
+    prepare_gear(check=True)
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
     expected_hub = hub_access_patch()
@@ -54,6 +56,7 @@ def check():
         PLAZA_PAYLOAD: ROOT / 'native/dda_shopping_plaza_roofs.json',
         CHURCH_PAYLOAD: ROOT / 'native/dda_rural_church.json',
         CREATURE_PAYLOAD: ROOT / 'native/dda_xedra_creature.json',
+        GEAR_PAYLOAD: ROOT / 'native/dda_xedra_activity_suits.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',

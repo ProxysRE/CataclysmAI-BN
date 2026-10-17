@@ -25,7 +25,9 @@ def check():
         plaza_payload, _ = plaza_data(json.loads(read_sources()[0]['bn/' + RADIO_CITY]))
         from prepare_rural_churches import prepare_data as church_data, PAYLOAD as CHURCH_PAYLOAD
         from prepare_xedra_creature import payload as creature_data, PAYLOAD as CREATURE_PAYLOAD
+        from prepare_xedra_gear import definitions as gear_data, PAYLOAD as GEAR_PAYLOAD
         payload = {
+            GEAR_PAYLOAD: json.dumps(gear_data()).encode(),
             CREATURE_PAYLOAD: json.dumps(creature_data()).encode(),
             CHURCH_PAYLOAD: json.dumps(church_data()).encode(),
             PLAZA_PAYLOAD: json.dumps(plaza_payload).encode(),

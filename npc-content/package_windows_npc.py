@@ -78,6 +78,9 @@ def verify_install(folder):
     from prepare_xedra_creature import payload as creature_data, PAYLOAD as CREATURE_PAYLOAD
     if json.loads((folder / CREATURE_PAYLOAD).read_text(encoding='utf-8')) != creature_data():
         raise ValueError('Installed XEDRA creature dependencies differ')
+    from prepare_xedra_gear import definitions as gear_data, PAYLOAD as GEAR_PAYLOAD
+    if json.loads((folder / GEAR_PAYLOAD).read_text(encoding='utf-8')) != gear_data():
+        raise ValueError('Installed XEDRA suit states differ')
     from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload, replacements
     if json.loads((folder / PAYLOAD).read_text(encoding='utf-8')) != payload():
         raise ValueError('Installed Hub access payload differs')
@@ -107,7 +110,7 @@ def package(folder, output, source_head):
         'All three existing hotel variants gain technical-enclosure roof caps at z=5.\n'
         'The existing abandoned shopping plaza gains seven DDA roof sections at z=1.\n'
         'Includes the rural church with parking, basement, steeple and bell terminal.\n'
-        'XEDRA creature, particles and glowing string are included; the XEDRA church and protective equipment remain staged.\n'
+        'XEDRA creature, particles and glowing string are included; activity suit states are included; the XEDRA church, powered respirator and S02a suit remain staged.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'

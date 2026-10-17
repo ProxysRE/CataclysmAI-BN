@@ -1,0 +1,22 @@
+{
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01"
+  ],
+  "bundle_sha256": "c146794c4fb907c10e2401b659e895e1554899ea10b02fcc7aa10936a8200544",
+  "files": {
+    "bn/battery.json": "9c03491f51f8bead4753388a7b54cb5e30843ddd5583c12e5ea5dca3fe462ebf",
+    "bn/tool_armor.json": "45c7685e2f586901522f72a1cf328499e22e5348383b58dfc6b06b0fd75b1738",
+    "bn/suits_protection.json": "2a37588b5a236f670ab0fcd6a2af0572a208c7f118db1bd2570f8ac3fadda649",
+    "bn/ammo.json": "cd47ad17eddc749730a7ea2d9243dec52f120a025cbaa409f3ffa8acd2944a03",
+    "dda/ammo_types.json": "165a17ff69a28e1d462cd1b9bbecb5f52accc9c371a55b1daa0a264531ace310",
+    "dda/battery.json": "37062de9edce34223a855185eac412465fba2616900c640b055a97c858993255",
+    "dda/tool_armor.json": "043756c46432881d7e1e5126552c663d640fd25111689ba4c6a6b6effc1fa166",
+    "dda/ammo.json": "4b70ad968a59a2e1a298bc87fa56a252af5962f98121936ef4163c93ffe793da",
+    "dda/filter.json": "b2cc17ca3761a9e80c4f9f45877658e45679826cc01143305f9b3c3c26952353"
+  },
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  }
+}
