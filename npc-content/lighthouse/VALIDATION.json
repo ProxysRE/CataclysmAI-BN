@@ -1,12 +1,12 @@
 {
   "checkpoint": {
-    "head": "238271558bd0b117f8b00bd63f9e06a41b3ac9f0",
-    "run_id": 38987162632,
+    "head": "dcebfdda4731eb42502624d673684baab681cadf",
+    "run_id": 38988535389,
     "status": "success",
-    "test_cases": 32,
-    "assertions": 1073
+    "test_cases": 33,
+    "assertions": 2885
   },
-  "native_patch_sha256": "3a265745e52d013ae683f7585de87f6b5f7179fc5791077cc2aabc4724310428",
+  "native_patch_sha256": "081600a61b8890294bc4e7244e1baeef81a4c8698f4c20b415a37766d885cb3b",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -22,7 +22,8 @@
     "Boat payment boundaries and mission start/end callbacks",
     "Global master save round-trip, real NPC opinion and conditional effects",
     "DDA random math and rotated location conditions",
-    "Named Hub trust penalty with a speaker from another faction, and trust save/load"
+    "Named Hub trust penalty with a speaker from another faction, and trust save/load",
+    "Godco ACT_WAIT_NPC: actual 30-minute completion, speaker context, halfway save/reload and speed independence"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
@@ -30,5 +31,5 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Certifies the exact recorded patch; later Godco waiting changes and portable packaging need their own run."
+  "note": "Exact Godco-wait checkpoint. Later USB items and portable archive still require validation."
 }

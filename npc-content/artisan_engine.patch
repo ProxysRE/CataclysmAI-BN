@@ -2222,9 +2222,9 @@
 +    auto parser = JsonIn( input );
 +    const auto has_license = conditional_t<dialogue>( parser.get_object() );
 +    CHECK_FALSE( has_license( conversation ) );
-+    actor.i_add( item( itype_id( "usb_drive" ), calendar::turn ) );
++    actor.i_add( item::spawn( itype_id( "usb_drive" ), calendar::turn ) );
 +    CHECK_FALSE( has_license( conversation ) );
-+    actor.i_add( item( itype_id( "nano_fabricator_encryption_code" ), calendar::turn ) );
++    actor.i_add( item::spawn( itype_id( "nano_fabricator_encryption_code" ), calendar::turn ) );
 +    CHECK( has_license( conversation ) );
 +}
 +

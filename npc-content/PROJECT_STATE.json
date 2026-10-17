@@ -2,7 +2,7 @@
   "remote_branch": "port/dda-npc-locations",
   "stage": "Two USB quest dependencies added through stock BN item inheritance; full-catalog preflight and native checks pending",
   "package": "Isolated Road",
-  "native_compilation": "Verified Windows game and tests at 23827155: 32 cases, 1073 assertions. Later Godco wait and portable packaging remain pending.",
+  "native_compilation": "Godco checkpoint passed 33 tests and 2885 assertions. Later USB test compile error fixed locally; rerun pending.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -14,11 +14,11 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "238271558bd0b117f8b00bd63f9e06a41b3ac9f0",
-    "run_id": 38987162632,
+    "head": "dcebfdda4731eb42502624d673684baab681cadf",
+    "run_id": 38988535389,
     "status": "success",
-    "test_cases": 32,
-    "assertions": 1073
+    "test_cases": 33,
+    "assertions": 2885
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -38,7 +38,8 @@
       "BN_parent": "usb_drive",
       "new_native_item_engine_code": false,
       "status": "Included in patch; runtime validation pending",
-      "local_checks": "Source-field preservation, baseline guard fixtures, archive payload checks passed"
+      "local_checks": "Source-field preservation, baseline guard fixtures, archive payload checks passed",
+      "baseline_catalog_preflight": "Passed full pinned BN item-catalog scan before compilation in run 38991245584"
     }
   },
   "island_prison": {
@@ -53,11 +54,11 @@
     "epilogues": 2
   },
   "last_run": {
-    "head": "238271558bd0b117f8b00bd63f9e06a41b3ac9f0",
-    "run_id": 38987162632,
-    "status": "success",
-    "test_cases": 32,
-    "assertions": 1073
+    "head": "062c776c6ee868da6ca326e27824d4539d6602cb",
+    "run_id": 38991245584,
+    "status": "failure",
+    "stage": "test compilation",
+    "error": "USB test passed item values to Character::i_add, which requires detached_ptr<item>"
   },
   "lighthouse": {
     "npcs": 4,
@@ -162,7 +163,7 @@
       "chance_conditions": "Literal and actor/global-variable one_in_chance plus direct if/then/else effects; Windows pending",
       "random_math": "DDA real rng and inclusive integer rand with round(n), runtime BN RNG callbacks; native Windows pending",
       "named_faction_trust": "Passed Windows regression at 23827155: real trusts_u read/set, named Hub penalty, wrong-speaker-faction isolation and save/load",
-      "NPC_interaction_activity": "Existing BN ACT_WAIT_NPC with required speaker name and bounded static elapsed duration; save/finish native regression pending"
+      "NPC_interaction_activity": "Passed Windows run 38988535389: 30 elapsed minutes, speaker name, activity save/reload and completion"
     },
     "location_expansion": {
       "selected_support_definitions": 109,
@@ -204,15 +205,10 @@
     }
   },
   "latest_observed_failure": {
-    "run_id": 38961335494,
-    "stage": "native tests after successful compilation",
-    "issues": [
-      "Conditional-effect and switch tests shared an avatar variable"
-    ],
-    "fix": "Independent local actors now embedded in regenerated native patch; automated source/patch synchronization check added",
-    "rerun": 38971654551,
-    "rerun_status": "success at regenerated patch checkpoint c644c365",
-    "resolved_by": 38976175204
+    "run_id": 38991245584,
+    "stage": "test compilation",
+    "fix": "USB test now uses BN item::spawn ownership API",
+    "rerun_status": "pending push"
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,

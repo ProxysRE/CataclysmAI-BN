@@ -91,7 +91,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_usb.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest USB baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "d16f66b361ed38a0afe90e0301565683d837ba2c737e8ee702c5e97db5dedfe4") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "af9c9a595591cc47a00baefbe200fe1494c7f8e7093836b937c109598d2a268b") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch
