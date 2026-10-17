@@ -1,0 +1,527 @@
+[
+  {
+    "name": "База Экзодиев и её объекты",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:exodii_base",
+      "overmap_special:Out-of-place Stone Barn",
+      "overmap_special:Strange warehouse"
+    ],
+    "difference": "База, каменное убежище и странный склад Экзодиев отсутствуют как отдельные комплексы."
+  },
+  {
+    "name": "Университетский кампус",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:campus",
+      "overmap_special:campus_lecture",
+      "overmap_special:campus_commons",
+      "overmap_special:campus_media",
+      "overmap_special:campus_health"
+    ],
+    "difference": "Учебные, административные, общественные, медицинские и библиотечные корпуса кампуса."
+  },
+  {
+    "name": "Церковный ретрит Godco",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:New England Church Retreat"
+    ],
+    "difference": "Отдельный церковный комплекс с сообществом Godco."
+  },
+  {
+    "name": "База ополчения",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Militia Lodge"
+    ],
+    "difference": "Комплекс Militia Lodge с его обитателями."
+  },
+  {
+    "name": "Isolated Road — поселение Коди и Джея",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:isolated_road"
+    ],
+    "difference": "Жилые дома и мастерские кузнеца/оружейника, связанные с их заданиями."
+  },
+  {
+    "name": "Оружейная выставка",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:gun_show"
+    ],
+    "difference": "Отдельная локация выставки, а не обычный оружейный магазин."
+  },
+  {
+    "name": "Бункер Бальтазара",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:balthazar_bunker"
+    ],
+    "difference": "Отдельный комплекс с интеркомом и специальной охраной."
+  },
+  {
+    "name": "Лимнологическая станция",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:limnological_station"
+    ],
+    "difference": "Подземный исследовательский объект из ветки Hub; в DDA предусмотрены уровни до z=-5."
+  },
+  {
+    "name": "Поселение дезертиров",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:deserter_city"
+    ],
+    "difference": "Отдельные ворота, офисы и жилые/общественные участки поселения."
+  },
+  {
+    "name": "Островная тюрьма",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Island prison"
+    ],
+    "difference": "Отдельная Island prison; не смешивать с уже имеющимся Алькатрасом."
+  },
+  {
+    "name": "Сельские церкви: обычная и XEDRA",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:church_rural",
+      "overmap_special:xedra_church_rural"
+    ],
+    "difference": "Новые отдельные сельские комплексы. В варианте XEDRA подтверждено аномальное содержимое, включая mon_twisting_mass."
+  },
+  {
+    "name": "Моргáнтаун XEDRA",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:xedra_morgantown"
+    ],
+    "difference": "Отдельный многоклеточный комплекс Morgantown."
+  },
+  {
+    "name": "Рыбацкая хижина XEDRA",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:xedra_fishing_shack"
+    ],
+    "difference": "Особый вариант прибрежной хижины с собственными подземными участками."
+  },
+  {
+    "name": "Физическая лаборатория LIXA",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:physics_lab_LIXA"
+    ],
+    "difference": "Самостоятельный многоклеточный исследовательский комплекс LIXA."
+  },
+  {
+    "name": "Нефтяная платформа",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:oil_platform"
+    ],
+    "difference": "Многоуровневая морская платформа с подводной частью."
+  },
+  {
+    "name": "Дом престарелых и его особый вариант",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:nursing_home",
+      "overmap_special:nursing_home_sh"
+    ],
+    "difference": "Отдельные комплексы nursing_home; старые больницы и дома BN не являются этими локациями."
+  },
+  {
+    "name": "Посёлок для пожилых",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:retirement_community"
+    ],
+    "difference": "Крупный отдельный жилой комплекс retirement community."
+  },
+  {
+    "name": "Нарколаборатории и трудовой лагерь бандитов",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:drug_lab",
+      "overmap_special:bandit_drug_lab",
+      "overmap_special:bandit_work_camp"
+    ],
+    "difference": "Обычная и бандитская лаборатории, а также отдельный рабочий лагерь; не весь контент бандитов объявляется отсутствующим."
+  },
+  {
+    "name": "Контейнерная площадка и её бандитская версия",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:o_container_yard_inland",
+      "overmap_special:o_container_yard_inland_bandit"
+    ],
+    "difference": "Отдельные большие сухопутные контейнерные комплексы."
+  },
+  {
+    "name": "Музей текстильной фабрики",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:textile_mill_museum"
+    ],
+    "difference": "Именно музейный комплекс; заброшенная текстильная фабрика BN уже существует."
+  },
+  {
+    "name": "Большой полицейский департамент",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:police_dept"
+    ],
+    "difference": "Новый многоклеточный департамент с несколькими уровнями; обычные участки BN существуют."
+  },
+  {
+    "name": "Большой футбольный стадион",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:stadium_football"
+    ],
+    "difference": "Отдельный большой футбольный комплекс, а не существующий обычный stadium."
+  },
+  {
+    "name": "Офисный небоскрёб",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:office_skyscraper"
+    ],
+    "difference": "Самостоятельная версия небоскрёба; обычные офисные башни в BN есть."
+  },
+  {
+    "name": "Модульные многоквартирные комплексы",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:apartment_complex_3x3",
+      "city_building:apartment_complex_3x3_alt",
+      "city_building:apartment_complex_line",
+      "city_building:apartment_complex_U",
+      "city_building:apartment_complex_U_alt"
+    ],
+    "difference": "Кварталы 3×3, линейные и П-образные варианты; не все многоквартирные дома вообще."
+  },
+  {
+    "name": "Большой супермаркет",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:supermarket"
+    ],
+    "difference": "Отдельный многоклеточный supermarket; megastore BN не считается отсутствующим."
+  },
+  {
+    "name": "Магазины сельхозснабжения",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Farm Supply Store",
+      "overmap_special:Farm Supply Store Looted"
+    ],
+    "difference": "Целый и разграбленный варианты farm supply store."
+  },
+  {
+    "name": "Коттедж гончара",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Pottery Cottage"
+    ],
+    "difference": "Отдельный многосоставной жилой участок и мастерская."
+  },
+  {
+    "name": "Жильё выживальщиков и лесной лагерь",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Cabin_prepper",
+      "overmap_special:cabin_liam",
+      "overmap_special:survivor_forest_camp",
+      "overmap_special:Locked LMOE Shelter"
+    ],
+    "difference": "Особые участки и квестовые варианты; обычные LMOE и лесные хижины в BN уже есть."
+  },
+  {
+    "name": "Малый островной маяк",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:lighthouse_island_small"
+    ],
+    "difference": "Отдельный небольшой маяк, а не уже существующий большой Lighthouse Island."
+  },
+  {
+    "name": "Затонувший вертолёт",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:sunken_helicopter"
+    ],
+    "difference": "Отдельная подводная локация с собственными частями."
+  },
+  {
+    "name": "Горячие источники",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Hot Springs"
+    ],
+    "difference": "Отдельная локация горячих источников."
+  },
+  {
+    "name": "Кладбище Лакруа",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:cemetery_lacroix"
+    ],
+    "difference": "Особый вариант кладбища; обычные кладбища BN не отсутствуют."
+  },
+  {
+    "name": "Большой картодром",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:o_karting_l"
+    ],
+    "difference": "Отдельный многоклеточный картодром."
+  },
+  {
+    "name": "Микролаборатория Ratkin",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:4x4_microlab_rodent"
+    ],
+    "difference": "Специальная версия микролаборатории; обычные микролаборатории BN уже существуют."
+  },
+  {
+    "name": "Особые объекты ми-го",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Barry's Mi-Go Scout Tower",
+      "overmap_special:Mi-Go Portal"
+    ],
+    "difference": "Квестовая башня Барри и портал; обычные башни/лагеря ми-го BN существуют."
+  },
+  {
+    "name": "Городские дополнения",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "city_building:synagogue",
+      "city_building:urban_library",
+      "city_building:s_library_3",
+      "city_building:small_kindergarten",
+      "city_building:office_dentist",
+      "city_building:s_airsoft",
+      "city_building:office_warehouse_anduril"
+    ],
+    "difference": "Синагога, новые библиотеки, малый детсад, стоматология, страйкбольный магазин и офис-склад Anduril — конкретные новые варианты."
+  },
+  {
+    "name": "Новые торговые и бытовые варианты",
+    "status": "needs_mapgen_rename_review",
+    "source_identities": [
+      "city_building:s_weldingstore",
+      "city_building:s_electronicstore",
+      "city_building:s_fabricstore",
+      "city_building:s_cosmetic",
+      "city_building:s_camping",
+      "city_building:s_gun_a",
+      "city_building:s_gun_b",
+      "city_building:s_cardealer",
+      "city_building:s_diner",
+      "city_building:strip_mall",
+      "city_building:barber_shop",
+      "city_building:salon"
+    ],
+    "difference": "Конкретные новые магазины и планировки: сварочный/электронный/тканей/косметики/туризма, оружейные, автодилер, закусочная, торговый ряд и салоны. Аналоги некоторых категорий в BN есть. Отсутствие ID подтверждено, но полная проверка переименованных планировок ещё не завершена; в пользовательский список не включать."
+  },
+  {
+    "name": "Новые жилые варианты",
+    "status": "needs_mapgen_rename_review",
+    "source_identities": [
+      "city_building:house_34",
+      "city_building:house_35",
+      "city_building:house_36",
+      "city_building:house_37",
+      "city_building:house_38",
+      "city_building:house_39",
+      "city_building:house_40",
+      "city_building:house_41",
+      "city_building:house_42",
+      "city_building:house_43",
+      "city_building:house_44",
+      "city_building:house_45",
+      "city_building:house_46",
+      "city_building:multi_unit_two_story_basement",
+      "city_building:multi_unit_three_story_basement",
+      "city_building:s_apt",
+      "city_building:s_apt_2",
+      "city_building:house_fungus_01"
+    ],
+    "difference": "Дополнительные дома и малые многоквартирные планировки; не весь тип жилой застройки. Отсутствие ID подтверждено, но полная проверка переименованных планировок ещё не завершена; в пользовательский список не включать."
+  },
+  {
+    "name": "Новые прибрежные жилые варианты",
+    "status": "needs_mapgen_rename_review",
+    "source_identities": [
+      "overmap_special:Boat Rental 1",
+      "overmap_special:Boat Rental 2",
+      "overmap_special:Riverside Dwelling 1",
+      "overmap_special:Riverside Dwelling 2",
+      "overmap_special:Riverside Dwelling 3",
+      "overmap_special:Lakeside Cabin",
+      "overmap_special:Lakeside Cabin 1",
+      "overmap_special:Lakeside Cabin 2",
+      "overmap_special:Lakeside Cabin 3",
+      "overmap_special:Lakeside Cabin 4",
+      "overmap_special:Lakeside Cabin 5"
+    ],
+    "difference": "Новые варианты проката лодок и жилья; старые Boat Rental, Riverside Dwelling и Lake Cabin BN существуют. Отсутствие ID подтверждено, но полная проверка переименованных планировок ещё не завершена; в пользовательский список не включать."
+  },
+  {
+    "name": "Загадочные руины высокогорья",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:Standing stones Highlands",
+      "overmap_special:Crypt Highlands",
+      "overmap_special:Imperial Crypt Highlands",
+      "overmap_special:Ruined Tower Highlands",
+      "overmap_special:roman_road",
+      "overmap_special:imperial_road"
+    ],
+    "difference": "Особые стоячие камни, крипты, башня и древние дороги; региональные зависимости потребуют отдельного переноса."
+  },
+  {
+    "name": "Лиминальные и иные измерения",
+    "status": "absent_specific_location_or_variant",
+    "source_identities": [
+      "overmap_special:inner_cabins_depths_entrance",
+      "overmap_special:inner_cabins_depths_cathedral",
+      "overmap_special:inner_cabins_depths_mall",
+      "overmap_special:inner_cabins_depths_hotel_tower_b",
+      "overmap_special:inner_cabins_depths_office_skyscraper",
+      "overmap_special:inner_cabins_depths_zoo",
+      "overmap_special:labyrinthine_structure",
+      "overmap_special:labyrinthine_structure_flooded",
+      "overmap_special:labyrinthine_structure_overgrown",
+      "overmap_special:scarlet_sea_xedra_hew",
+      "overmap_special:string_dimension_small_ziggurat",
+      "overmap_special:string_dimension_dome",
+      "overmap_special:string_dimension_ka_facility",
+      "overmap_special:portal_storm_dungeon_teleporter"
+    ],
+    "difference": "Inner Cabins, Лабиринт, объекты Алого моря и струнного измерения, подземелье портальных штормов. Это большие системы с зависимостями движка, не простой набор карт."
+  },
+  {
+    "name": "Hub 01",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "overmap_special:hub_01"
+    ],
+    "difference": "Нет фойе/охраны/управления z=-1, метеостанции и части связанных участков DDA; существующие глубокие уровни BN сохраняются."
+  },
+  {
+    "name": "Алькатрас",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "overmap_special:Alcatraz Prison"
+    ],
+    "difference": "В схеме BN только z=0..1; в DDA размещены также подземные уровни вплоть до z=-5 и верхний z=2."
+  },
+  {
+    "name": "Центр беженцев",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "overmap_special:evac_center"
+    ],
+    "difference": "Схема DDA включает уровни z=-4..-1, которых нет в схеме BN, и дополнительные части комплекса."
+  },
+  {
+    "name": "Высотная городская больница",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:urban_35_hospital"
+    ],
+    "difference": "В DDA размещение до z=7, в BN до z=4; есть дополнительные верхние части."
+  },
+  {
+    "name": "Офисная башня",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:office_tower"
+    ],
+    "difference": "У BN схема заканчивается на z=0, у DDA есть также z=1..2 и больше участков."
+  },
+  {
+    "name": "Радиостанции с вышками",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:station_radio",
+      "city_building:station_radio_1"
+    ],
+    "difference": "У BN размещены z=0..1, у DDA башни продолжаются до z=6."
+  },
+  {
+    "name": "Высотные гостиницы",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:hotel_1",
+      "city_building:hotel_2",
+      "city_building:hotel_3"
+    ],
+    "difference": "В DDA добавлены верхние части до z=5; в BN эти схемы доходят до z=4."
+  },
+  {
+    "name": "Зоопарк",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:zoo"
+    ],
+    "difference": "В DDA есть подземный уровень и дополнительные участки; схема BN существенно меньше."
+  },
+  {
+    "name": "Существующий стадион",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:stadium"
+    ],
+    "difference": "В DDA дополнительные трибуны и уровни: 55 размещений против 21 в схемах BN; это не отдельный stadium_football."
+  },
+  {
+    "name": "Торговая площадь",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "city_building:shopping_plaza"
+    ],
+    "difference": "В DDA есть второй надземный уровень и дополнительные части; схема BN размещает только z=0."
+  },
+  {
+    "name": "Авианосец",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "overmap_special:aircraft_carrier"
+    ],
+    "difference": "В DDA размещены ещё две части на z=4; схема BN заканчивается на z=3."
+  },
+  {
+    "name": "Лагерь FEMA",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "overmap_special:fema_camp_mutable"
+    ],
+    "difference": "В BN старый фиксированный лагерь 3×3. В DDA модульная схема с новыми блоками и другим расширением.",
+    "bn_analogues": [
+      "overmap_special:FEMA_camp"
+    ]
+  },
+  {
+    "name": "Модульные фермы Ишервудов и конные фермы",
+    "status": "expanded_or_older_version",
+    "source_identities": [
+      "overmap_special:Isherwood Farm Mutable",
+      "overmap_special:Horse Farm Mutable"
+    ],
+    "difference": "Фермы и их обитатели в BN уже есть, но новых модульных комплексов DDA нет.",
+    "bn_analogues": [
+      "overmap_special:Isherwood Farms",
+      "overmap_special:farm_horse"
+    ]
+  }
+]

@@ -170,7 +170,18 @@
       "native_patch": true,
       "runtime_validated": false
     },
-    "report": "location_expansion/LOCATION_EXPANSION_REPORT.json"
+    "report": "location_expansion/LOCATION_EXPANSION_REPORT.json",
+    "catalog_audit": {
+      "source_files": 159,
+      "DDA_registrations": 729,
+      "BN_registrations": 641,
+      "DDA_terrain_ids": 6467,
+      "BN_terrain_ids": 5463,
+      "reviewed_groups": 54,
+      "unresolved_rename_groups_excluded_from_user_list": 3,
+      "report": "location_catalog/MISSING_AND_PARTIAL.md",
+      "scope": "Pinned core registrations, full OMT declaration catalogs, mapgen file inventory, focused mapgen checks; no claim of exhaustive interior semantic diff"
+    }
   },
   "pending_native_tests": [
     "Boat mission assignment, 249/250 nails, mission serialization, full wrap_up and routed canoe",

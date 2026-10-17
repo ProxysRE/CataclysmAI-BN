@@ -1,0 +1,658 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01",
+    "SOURCE.part02",
+    "SOURCE.part03",
+    "SOURCE.part04",
+    "SOURCE.part05",
+    "SOURCE.part06"
+  ],
+  "bundle_sha256": "2d6e8f7f41f149b73ad5fba030ad9c22b04b01bec3975c76d7b82691b61071d2",
+  "files": {
+    "bn/data/json/overmap/multitile_city_buildings.json": {
+      "sha256": "376bfc4aa0282fc51e1759ddb38175695785e8221dbb26794f59e9aa437f51a8",
+      "git_blob_sha": "13272aee65f03d8f307176561c7c1f4c9ae647b4"
+    },
+    "bn/data/json/overmap/overmap_mutable/anthill.json": {
+      "sha256": "f093390a0eacadcbaeff7e71b25af8ff185c10ed6f4d685e188bfd9e19108467",
+      "git_blob_sha": "86963047ddc7982fe0022ac813f30c694cecdba2"
+    },
+    "bn/data/json/overmap/overmap_mutable/lab.json": {
+      "sha256": "65015d761bc16029cbd4138c1381da0f4651c5e7c1b1f2a63bc25691b991179f",
+      "git_blob_sha": "0930a96ffd72941e5c3371f2d597ba3321fa0f71"
+    },
+    "bn/data/json/overmap/overmap_mutable/lake.json": {
+      "sha256": "502548019b3680a03d28291f2bfcf921878edfe0ee149944cbf06956f4a004ed",
+      "git_blob_sha": "a36bbeca14e0a01866d09f37b40e6cb90bf95a6b"
+    },
+    "bn/data/json/overmap/overmap_mutable/mine.json": {
+      "sha256": "2d512967c064ad7bd4a4fbc5fd9069879fb7d1be37485cd7819a0ffa7a688953",
+      "git_blob_sha": "6a57d7b8556db308f1bf5a9f4a20635b80764a83"
+    },
+    "bn/data/json/overmap/overmap_mutable/slimepit.json": {
+      "sha256": "15930fc17ee71345be8eee656823f9bb27831e2b85bc219ba7799ad5877a9917",
+      "git_blob_sha": "966b0ac7fddbbe44af4b10f78b9c46fd0dcbc003"
+    },
+    "bn/data/json/overmap/overmap_mutable/stream.json": {
+      "sha256": "ca17a99ed32a91d6e93eb19b8c60e1ba361f04d9add776018254b26193cec3cc",
+      "git_blob_sha": "14a0741628947f986f281ebb192d8f413d0002d1"
+    },
+    "bn/data/json/overmap/overmap_special/aircraft_carrier.json": {
+      "sha256": "1241a5919f8cd3dfc8dbb83c7a39cb7699a71273a68793bfa86f92c071855ead",
+      "git_blob_sha": "daa2697d10fc5823fb198f1c628660bbe38c873c"
+    },
+    "bn/data/json/overmap/overmap_special/bordered_world.json": {
+      "sha256": "ab7d08f62cb14ee8e42f390ce33482cf765d6d301d745f8f8681d9b9136e00e0",
+      "git_blob_sha": "fb561af4f7a459686b6c3930731242a8687f78d9"
+    },
+    "bn/data/json/overmap/overmap_special/central_lab.json": {
+      "sha256": "49d5da1716a7b7e6913a1ffa9dcb5e87b7e5a67b47073ab115b9128b1ac86b36",
+      "git_blob_sha": "41688e9c934f53854eeff2a512afde1b60b0c7a3"
+    },
+    "bn/data/json/overmap/overmap_special/lab_modular/lab_mutagen_6_floor.json": {
+      "sha256": "dadf0a9cb79c8adf7cebba86f6a54e4c23ce5d412dfc7e405dea3a06a3670b41",
+      "git_blob_sha": "ae8321937e82ac9f67a2cdbeca565c1a3361c147"
+    },
+    "bn/data/json/overmap/overmap_special/mil_airfield_multitile.json": {
+      "sha256": "8c53a22292c499940b2139de5dbd79b571e82be643f4db4f6b04ef149c2ed07c",
+      "git_blob_sha": "eaf2b9d4a71d737aae530a5b276e6a5f4abd6928"
+    },
+    "bn/data/json/overmap/overmap_special/mil_blacksite_multitile.json": {
+      "sha256": "e26592146f3bb222f9bcf16d335c8a25c1c4749e03ee0e24fd9cb6ff110f49a0",
+      "git_blob_sha": "06605c390b89b14ff32f98e0bbef4bd5633ae1b9"
+    },
+    "bn/data/json/overmap/overmap_special/mine.json": {
+      "sha256": "32c4b7e387cc5c7ccaa59adfc6702551713b543f7db75f8eea25a556f88e974f",
+      "git_blob_sha": "d6f411779c42af199c8c7e4c3933d35dea77bf34"
+    },
+    "bn/data/json/overmap/overmap_special/municipal_reactor.json": {
+      "sha256": "575123b3a64033324447b99e2234e6985c8df56e1d7dc7c37f4ee92e7ee37d55",
+      "git_blob_sha": "a59d124455fcf130cc093e983f41579367266e51"
+    },
+    "bn/data/json/overmap/overmap_special/nuclear_plant.json": {
+      "sha256": "26ba7fc84870741f26a9aa6bd596397c84c47df7b161523c42b4c514cb29dd85",
+      "git_blob_sha": "61356387488a439b85d33a9b5728628cd5adc580"
+    },
+    "bn/data/json/overmap/overmap_special/outlet_mall_multitile.json": {
+      "sha256": "591f6cc07a29816ea75941dc38c3918d0b0b8f03880b709634735d4fa54c8183",
+      "git_blob_sha": "261d6e203dab54add32bd57b93716198f2725931"
+    },
+    "bn/data/json/overmap/overmap_special/specials.json": {
+      "sha256": "ab82eb682e366a191c5c3d62bbb8b17567ee6d3beef04260093713895c4b514e",
+      "git_blob_sha": "133a3ba8eee8e212306a69063699d20d1f68f576"
+    },
+    "bn/data/json/overmap/overmap_special/state_police_multitile.json": {
+      "sha256": "d23b2e73c805e5203a45b1ac07fc5426f965f1bb9ebf849290916f45a34dc092",
+      "git_blob_sha": "5467233e5666db1160168ced7c41fd707f3096b2"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain.json": {
+      "sha256": "cbcfba53bdfad3d354ef91f41fd047f4f9fb812cd8aba7dc860d2e0a51824223",
+      "git_blob_sha": "01ff269fc5ae52f1356f625862a604cd13be5689"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_abstract.json": {
+      "sha256": "382fb339fae1aaca845e4caa270e01b93eff84f4f4438261d5e86bcc892e773f",
+      "git_blob_sha": "35b2320734b3e106aa686fa99f41e1017dc5ab66"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_afs.json": {
+      "sha256": "24ec7db5f931123df28509d58974bd127563887eb2436740416264fa8cde10da",
+      "git_blob_sha": "ad8d1bab4e256e98953d319429d74b7040062c67"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_agricultural.json": {
+      "sha256": "6c6ebe3489f2dd08cc5de302a16ea3e4412623cd4e767eaa3a030a65fa816232",
+      "git_blob_sha": "0622e379214f0bf1b37abba2ec0d88b1130ab0c2"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_aircraft_carrier.json": {
+      "sha256": "10d352625f92d95e722a58f5f9b6790f0f9a032b8ef65c4c3a175077130b4ea7",
+      "git_blob_sha": "a7c8b169045bf097fe9e77897edb4d8a14aad9d1"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_ants.json": {
+      "sha256": "f9b31ce939e662666acaf80464ef49bb287705af44bd728a526eaf31d7e95f30",
+      "git_blob_sha": "6505d05bd1e58ecf52954bc3821841278c0b3b7c"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_cemetery.json": {
+      "sha256": "9df3845054bc2ddf8249ff1a3889decdb69bd4dc10828cb24fe3e3e2e65bdd5d",
+      "git_blob_sha": "159a35b01c61531475a8b2560f8e9b25c3f00141"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_commercial.json": {
+      "sha256": "f7de3f622cab7a896a1d5f6acfe215af51d616cb2418afbea35a01de5b657290",
+      "git_blob_sha": "b3c89bdc932c59c4556b432a1eeffa673b5c0243"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_dams.json": {
+      "sha256": "3d3ab5319a59eea2cd01226735b6094d1f00271805ceac791c5bbf51ed761500",
+      "git_blob_sha": "75ab186dc8e36ed77a26009d62aca7d6f8194696"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_evac_center.json": {
+      "sha256": "6e69704a5cd8098f5d1c6879356c90f62680f466fde7b7a66b098cb10138cac4",
+      "git_blob_sha": "6c172133279bcbe9d1fd0278deced6359dff9eaf"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_fungal.json": {
+      "sha256": "de587534ee7da798dab25a01e6a98068a7519c3473881f8ea6865e10cea6fd88",
+      "git_blob_sha": "9b5b10be0bee009b130feb31ca5dce3b4aac3ba3"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_hardcoded.json": {
+      "sha256": "a6b8cc431394153100c5411511343dc2263ebadf7cc79cbefde05fc89f429400",
+      "git_blob_sha": "4f27901a06b7c115b03518123e037117fefb61a4"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_industrial.json": {
+      "sha256": "5395593966f7f995fb013359364a14967eaf1e17ddd8ecde8626efc7e628727b",
+      "git_blob_sha": "e88bb27508b54a887d935c5b7dc7e4ee4e786b4b"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_lab.json": {
+      "sha256": "51d417dfbf94843011bceafa705b6b4676f209a9c0813c4cc8a538adaa0be991",
+      "git_blob_sha": "923d53ac5f2fd2070676aa34b620a8eec57dc36a"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_mall.json": {
+      "sha256": "d6e298b8848522e1a93d3b03c186a9b51c17d741faa97d55620f4af0a1b3bf36",
+      "git_blob_sha": "58f8f84a207eae7889b24ad94c211926258fbed6"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_mansion.json": {
+      "sha256": "614e6c63b7b1961d831e2e23ce086e1cd1b5aff22431c7e4ac075a804ccb9f0e",
+      "git_blob_sha": "45f087b5079b6489aba1e77ea0a9334ee6a72d27"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_mi-go.json": {
+      "sha256": "1c2d03ae615456578ea3ed5d6eb94b87e0b9031963a63124e1c14da57dd22863",
+      "git_blob_sha": "6ec378319e06a2e407d213161b2d708c818d98c9"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json": {
+      "sha256": "20d7815c9a6a250d4150e526a011ad433df094f4e77108b63b2016cc94462770",
+      "git_blob_sha": "880a24301a2c5c8c8785d1b324b906c51c083365"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_military.json": {
+      "sha256": "652533d179fb71814cfff9f139cfd42a960c0e0398659a5d3dee4d575e2ce564",
+      "git_blob_sha": "94ae8284db7bc9bb3200b480d07454af62c5cb42"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_necropolis.json": {
+      "sha256": "13fa168da00c33007a3eaf34b9af9ee47277503e160d0ec1b02c3edf4944e9d1",
+      "git_blob_sha": "3f96883633caafa5e45e90cfd6aeb75dce76a8a2"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_nuclear_plant.json": {
+      "sha256": "2bfb7447dc088b23fdb5cf410fc69e5129dbafdfdf89b5805ca80ebeba1b426e",
+      "git_blob_sha": "3391507e7962aae2567c84b41ea110c67f5102a9"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_private_resort.json": {
+      "sha256": "e796bdb0b9e849e5ad8d5b10c0afda6e6dfc863ba609320f31ad2b9dbcc2414f",
+      "git_blob_sha": "c01fd8932b555f43c1a9e63ed24debb454369adc"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_public_institutional.json": {
+      "sha256": "4ee54c7b4b95cd390ae54aeb15b78a389342789a7e1e4da2e033f54de4609988",
+      "git_blob_sha": "d44148f06a3506ae47b1bfe8846afda16b3b9cdb"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_ranch_camp.json": {
+      "sha256": "0b5e75d4aee8474a07f598aa3f92b3e6f75b369df0744c11815d79673d0b083a",
+      "git_blob_sha": "12aa72814cdc9b10f926ed9c2da3bd5583eab077"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_recreational.json": {
+      "sha256": "21306a78eba08fc1e68bc67ec42b03537983fb0d246797b49ea76f89f1d4adf0",
+      "git_blob_sha": "cc053286c04869c4456745e01b0cf5a39374bb28"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_residential.json": {
+      "sha256": "3993ff0688e346af0421ee50992cf9c215dd65b5efb5e9679999cd937521fdda",
+      "git_blob_sha": "f0fb59fbaf35117685c04ebd5ca51196d7ca4d5d"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_river.json": {
+      "sha256": "2fd11f8b89ea99c4a91de6ed72fc00ad57a1ffe7d598b7887057e2febcab3526",
+      "git_blob_sha": "4bc75833d57f58aed89b9fe89e7785a582183b24"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json": {
+      "sha256": "118d45e4917004886b87b7053281c39a19f434330ffe95ada1cc37451ba7782a",
+      "git_blob_sha": "ce3dcafe5d95463f55350722d38960fedfa82641"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_speedway.json": {
+      "sha256": "9e69230fa13d2b943c05996cfd4610d2f5081adb8776985a90b5d00073c33141",
+      "git_blob_sha": "d6356aa842c71695545b75b5085ab37ce3dab1a9"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_stream.json": {
+      "sha256": "51793759bdf45a0074fc25b8800b0246dc6623c5356e11a9d4226f069e70c96d",
+      "git_blob_sha": "edb552ceddd20f433d97db8fd615faa0a4503ed7"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_transportation.json": {
+      "sha256": "4b5d3dc1c3ebd820145f6c4dcc958462bd369007350aa47f08d131c0dce51b50",
+      "git_blob_sha": "5939ae676fe59c73c303ec3089977a73e3607d71"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_triffid.json": {
+      "sha256": "3824cbd1a68b0482f1ff8e5308b6b978f0260e9913f9aeb464d6e4ca0041ad6d",
+      "git_blob_sha": "f1fd1c2468a2adc18cfd208c6a1425b6341167cc"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_urban.json": {
+      "sha256": "ef1cb8aa48f5e315824357f2a5918a97694d5e965105f2f5781552462c9412ba",
+      "git_blob_sha": "2de547557f58346d9abbf982bd7261f5ed263ec6"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_waste_junk.json": {
+      "sha256": "2d3dfb657c4c6d8eb2ee1c162ecace0c6b6fd35c94981ae26a38528b237660d7",
+      "git_blob_sha": "c4838ffd7e465df814f48743574b19e6bd6a86c5"
+    },
+    "bn/data/json/overmap/overmap_terrain/overmap_terrain_waterbody.json": {
+      "sha256": "ee46d2e7d45b2b924c566c706b20f471ef9ac988e296bc2c2dd68ba80788e096",
+      "git_blob_sha": "a8c759caab26a5705d0ae55eda87f24183228409"
+    },
+    "dda/data/json/mapgen/balthazar_fac/balthazar_bunker.json": {
+      "sha256": "8c850e3a4372bce49cf76aa8d018211d1fff58fd2b0198d811069536778ce460",
+      "git_blob_sha": "ebc39b78d27cc7dec2d416af3562cb153464a726"
+    },
+    "dda/data/json/mapgen/church_rural.json": {
+      "sha256": "72449cd8ee62001bcec78109e3c95c3b23480435a76160d65b4c90073e83dfa3",
+      "git_blob_sha": "49e4e35db399ef423c1f5a072d5f32dbfc48beb1"
+    },
+    "dda/data/json/mapgen/deserter_city/deserter_city_office.json": {
+      "sha256": "76d4c3e9c464057526d3c8f9764d2fa73540a475d546401fa2f77e4f37b1c589",
+      "git_blob_sha": "50f440db7163c12087257e678f1b52ec3c0f37b6"
+    },
+    "dda/data/json/mapgen/office_warehouse_anduril.json": {
+      "sha256": "d6da1137a45d5b2ab2011b9d392c576fe9626aeb7ac00b7e234410c88682cde9",
+      "git_blob_sha": "7dacebe3c9b6c62d728ea9eab6f218e0551380ad"
+    },
+    "dda/data/json/mapgen/robofac_quest_dls.json": {
+      "sha256": "55ed1d81c1d7cceb490593129cccec4ba1df1bd14e080b37295f004ec16c5913",
+      "git_blob_sha": "5d16821ed815273b69ad42dd125e8823c244735f"
+    },
+    "dda/data/json/mapgen/xedra_church_rural.json": {
+      "sha256": "4562f29ee20fb83053a280d8ae8dbdd448ef449cd92bd0dff501fc6315f1036b",
+      "git_blob_sha": "098e33beaa2293951f69cfa6efc8ae7ae4711bf3"
+    },
+    "dda/data/json/overmap/multitile_city_buildings.json": {
+      "sha256": "07b90fb7c7f64d26b601c93e75f1cb13a15d3ce406cb75a7d5628e898265f3d1",
+      "git_blob_sha": "42fe42c562ecd80e1a0349bb3ac59dc2b72b72a8"
+    },
+    "dda/data/json/overmap/overmap_mutable/alien_meadow.json": {
+      "sha256": "0bd94e4aa5e0d957d3f585c587dfad29232f7ce3968f76ac76efa3c9bf212512",
+      "git_blob_sha": "6187858d9329745daeff49ff05a84696504e1d11"
+    },
+    "dda/data/json/overmap/overmap_mutable/ancient_city_ruins.json": {
+      "sha256": "1045bc7db2eb0ce84882b28c4ad8471564842dea3c6ea957bdc3145b1e9b60d4",
+      "git_blob_sha": "1815e84f39303c3ad68184d35de32c7a60cdf5ba"
+    },
+    "dda/data/json/overmap/overmap_mutable/anthill.json": {
+      "sha256": "9004a5fd169ee3d0893b8d912a921eed75375d1383a6bbc5ce5e92e4a6f79ee1",
+      "git_blob_sha": "ab4bd34511e620c2fdbbd5516668d72731072aeb"
+    },
+    "dda/data/json/overmap/overmap_mutable/crater.json": {
+      "sha256": "58beb02f1e789115e1d72a65292b84418b41b27f3994eb46878eeb0b5f954b03",
+      "git_blob_sha": "c88952ca9ddd4f0810ee46faac2b49b41c7547dd"
+    },
+    "dda/data/json/overmap/overmap_mutable/dumpsite_mutable.json": {
+      "sha256": "e7439ea13968e7ff6e24be2d41922ea3119aa6d2cae0d781f36eccf516b684a9",
+      "git_blob_sha": "b15c1064f0d0ee4a4670918970df867191df358b"
+    },
+    "dda/data/json/overmap/overmap_mutable/farm_horse_mutable.json": {
+      "sha256": "5f3308e68fc68a1a91eec67af47dc79777923326843ebc6a3fa62835e281b971",
+      "git_blob_sha": "bae9becfde331b13382c5ecb74f58eeabface252"
+    },
+    "dda/data/json/overmap/overmap_mutable/farm_isherwood_mutable.json": {
+      "sha256": "ca1388a59f3f1e47cd8967f758e06de45975c2c13444693d69c1dbeed6fabca4",
+      "git_blob_sha": "aa532184e05f592f17f90df4b1ef58d4e8314a61"
+    },
+    "dda/data/json/overmap/overmap_mutable/farm_mutable.json": {
+      "sha256": "16928e0682720be9ffc93a4d2e15d8aa744db3fb1c6c85e83918c435049a7b42",
+      "git_blob_sha": "e6ff3d709a737b7d74cb8030c233195da5dbcb80"
+    },
+    "dda/data/json/overmap/overmap_mutable/fema.json": {
+      "sha256": "59b4351d48d88c9d560c75d0480a5e251b8d93eef2c6acba9a1c2b2d239efedd",
+      "git_blob_sha": "a032be8d7de8fe3802bd030bb8fd1d657772a354"
+    },
+    "dda/data/json/overmap/overmap_mutable/homeless_camp_mutable.json": {
+      "sha256": "3b07bdce3dfdc28c21a21975471b1c1248c8c27c7ca643dfff366b2fcf49f03f",
+      "git_blob_sha": "ebe9d8f095180dfd90a9069fa94984c227cc767b"
+    },
+    "dda/data/json/overmap/overmap_mutable/kelp_forest_mutable.json": {
+      "sha256": "1dfaa4bc40423858f51f8f0c52b44d65f7a88892c5197243b376bca557db490a",
+      "git_blob_sha": "b203ecb79f9461121ac2ff0856409cacd3be613c"
+    },
+    "dda/data/json/overmap/overmap_mutable/meadow_mutable.json": {
+      "sha256": "135b5ad3fc60aba91a5bc364fb4abba81b2dbbfbfedd849616a8325de0ea550c",
+      "git_blob_sha": "2364390a5c296b19dd47738afb1e4f8eb57295e1"
+    },
+    "dda/data/json/overmap/overmap_mutable/microlab_mutable.json": {
+      "sha256": "ff81dd626c77e3f7c5a7d2e842d7ab24f4dbb4ab735c083ac4a942a2c1396a09",
+      "git_blob_sha": "3ef92c3b7e93bae82451e3d0562dcb88922b6f7c"
+    },
+    "dda/data/json/overmap/overmap_mutable/mine_mutable.json": {
+      "sha256": "ef7515a7629922dc05ac3f139a77d64493a21a27f800637af2b1325cdf9b4b16",
+      "git_blob_sha": "cbb0e1417a644727fcfb894946e1b31145d75afd"
+    },
+    "dda/data/json/overmap/overmap_mutable/mobile_home_park_mutable.json": {
+      "sha256": "9ddf29d2ffdf7605ee6a7446b547305229ef9541b9939a3bc600e572d8bb866e",
+      "git_blob_sha": "7db6b441fb2d7782a470f20144c33b1a774e399b"
+    },
+    "dda/data/json/overmap/overmap_mutable/nether_monster_corpse.json": {
+      "sha256": "13e6e664dda1bb4f4baeedfa7e1b823dadb576676f50dfcdf1a81b70004828cf",
+      "git_blob_sha": "a792e9aa6768a6bc84d9260ca3541f56b5575f94"
+    },
+    "dda/data/json/overmap/overmap_mutable/river_cave.json": {
+      "sha256": "c3575905ef3b3fd71d11e025f85d9add747aa1e6909d86e3bd378eae504d23ce",
+      "git_blob_sha": "f16ef3ce2dbc680d2e2e12a668bb92ebe411a826"
+    },
+    "dda/data/json/overmap/overmap_mutable/roman_road.json": {
+      "sha256": "98cf59ba9a77b0ed01fe06cff605f01dc1fb93f802d607a6aab1067d109442e0",
+      "git_blob_sha": "48e6cc3741c9c8b2ccaf544312d67c0e7c18fa37"
+    },
+    "dda/data/json/overmap/overmap_mutable/stream.json": {
+      "sha256": "204f632467268ea41038d12ed5ddbe74af38781d39d1c63e80ec7ad2c148090f",
+      "git_blob_sha": "c216b7ce33b73150d357bc84d5a70e137505f993"
+    },
+    "dda/data/json/overmap/overmap_mutable/string_dimension_field_mutable.json": {
+      "sha256": "4eecff1cecd7f61add433556855065b4d1c370bf5fd1dbfe8e5db6fc1a95ff04",
+      "git_blob_sha": "45995a2615d148be040a30b2851b30bfa61fad6d"
+    },
+    "dda/data/json/overmap/overmap_mutable/string_dimension_plane_mutable.json": {
+      "sha256": "26ef011fb18827e2ea59186917dcadd11f986a4456517c3796f1ca3f5b15d231",
+      "git_blob_sha": "86feed616fbb64f6e5d102660c6bddeb4a54366d"
+    },
+    "dda/data/json/overmap/overmap_mutable/string_dimension_tunnels_mutable.json": {
+      "sha256": "679baa6403320f2494939714f728a6514ef8346b5f41b67e17cf8f1377c09c0a",
+      "git_blob_sha": "047807e95fb4d8f73042ddfd33d437ba4fbf5d6f"
+    },
+    "dda/data/json/overmap/overmap_special/aircraft_carrier.json": {
+      "sha256": "737a37801fe9fd83cf70c51237817672878513f7c74dcd085f3bceffb08bf555",
+      "git_blob_sha": "196a4e35f383059bc29710e2cb57cb178c61227c"
+    },
+    "dda/data/json/overmap/overmap_special/alien.json": {
+      "sha256": "154e16a3fc0aa863ef929806af20b04d84fdaf3a254b9729d7b3cee974d35562",
+      "git_blob_sha": "aec6661fd6ec36fbcec357f57b7d021e7687551e"
+    },
+    "dda/data/json/overmap/overmap_special/bordered_world.json": {
+      "sha256": "eae05f89bde1f2e2e0433f783d2a6b9b4ac5b40e9029832aad451f03c7872576",
+      "git_blob_sha": "e8fa898bb22fc0e062d3472b18c714b4469b96ac"
+    },
+    "dda/data/json/overmap/overmap_special/campus.json": {
+      "sha256": "c2e8b4b7a59802da7b57d19301fdb5d9ac54e6524c262d458327864bd82a899c",
+      "git_blob_sha": "e8286c9f35ac3c93c6e77615c6a39302e0f8d19e"
+    },
+    "dda/data/json/overmap/overmap_special/dls.json": {
+      "sha256": "82bfbed75c2143484e14cb6350716a6b88dc9cd30bdb59fd057a17b0e135f2f8",
+      "git_blob_sha": "7dbf0ea8f452573e7e8d3919c83c2693c94c3db5"
+    },
+    "dda/data/json/overmap/overmap_special/highway_specials.json": {
+      "sha256": "8ea1d82cb9dd762ffac3e02c42a0deda61cbadd8476d0b39dfeca3aa2769885b",
+      "git_blob_sha": "148a4512b7edfd0415af858641047b7eb3bb5a40"
+    },
+    "dda/data/json/overmap/overmap_special/lab_modular/lab_mini_specials.json": {
+      "sha256": "7588f65fae99feffd020785f43b7b2882b91118bc0b25f415225dd39404fa05e",
+      "git_blob_sha": "9b81a21b63f15a1801ce496dcc25081364c4a8f5"
+    },
+    "dda/data/json/overmap/overmap_special/lab_modular/lab_mutagen_6_floor.json": {
+      "sha256": "c019a65496da6c4438de6137f6518a99e1959932462d9aeda63e8c161bccfc7b",
+      "git_blob_sha": "fd8025b91634d564509b7c1221c2cc1a5a46185a"
+    },
+    "dda/data/json/overmap/overmap_special/mine.json": {
+      "sha256": "8a490d9d53e552e81cb8cb42a1ef12e72f28b0b9b0411bf2a11f92fa2642f9b0",
+      "git_blob_sha": "95c39234e223c30852477a4fa5955726233115ed"
+    },
+    "dda/data/json/overmap/overmap_special/netherum_labyrinth.json": {
+      "sha256": "7341c6cd30cbf8b55131754b442bb62f7e87f3de5fd0fbba968549fe4627a1b9",
+      "git_blob_sha": "566a3d3102d4ceea8f4b2403802ae7bd2acac36e"
+    },
+    "dda/data/json/overmap/overmap_special/nuclear_plant.json": {
+      "sha256": "06bc2b0357ae760092d7489ed119179917e77ddfe2a4a535575391f68217343a",
+      "git_blob_sha": "6940fd45fc7d5cbd175145272d56b3ef3e04f266"
+    },
+    "dda/data/json/overmap/overmap_special/oil_platform.json": {
+      "sha256": "81c343aea9f786be3c0577012622bd691962f8edd1353a415f0d3c8a0027c586",
+      "git_blob_sha": "e53240786edcda3ba64f8ee6cdb55c6a3c979a86"
+    },
+    "dda/data/json/overmap/overmap_special/overmap_special_vitrified.json": {
+      "sha256": "9abcc9764324d58232b2f613e9ef744b77c5c88aa3f6e33c7b93a90ef1f5961d",
+      "git_blob_sha": "a7b75c0244ef4ae0ff2c25f4b5ff5ac8098cbc2e"
+    },
+    "dda/data/json/overmap/overmap_special/portal_storm_dungeon.json": {
+      "sha256": "2c87fc0a41db3a0cd56c6ccea0001fa68c03abfeb65edafe4a9a1929df9f9bc5",
+      "git_blob_sha": "fa79e6e5269696b0e5abf945d99b5dab0d607e27"
+    },
+    "dda/data/json/overmap/overmap_special/reverberations.json": {
+      "sha256": "28409745812a9e97a285c4d8f726761e1c1de032d22b69f116d9de29fe9bf902",
+      "git_blob_sha": "198f33c89996cdc20b19fb0b6df35b9151341a6e"
+    },
+    "dda/data/json/overmap/overmap_special/scarlet_sea.json": {
+      "sha256": "232e4193c63a9764c5c1822198e2f13c26c09b149779f894759692e30e1ab95b",
+      "git_blob_sha": "239d3471a2e1dad41d31404be52f88ce1124aa23"
+    },
+    "dda/data/json/overmap/overmap_special/specials.json": {
+      "sha256": "fdadaf93487b7d051d995a0d128192c3838b5ecdffcaf1edf9709475f1c59fe4",
+      "git_blob_sha": "5870b1fb6a56b031e3756a0fa6ac2b328ba9e895"
+    },
+    "dda/data/json/overmap/overmap_special/string_dimension.json": {
+      "sha256": "c7a83751c69cc36b682ebab0954d2af8c930ca692293c4dc13f4d28531505738",
+      "git_blob_sha": "4e1a75263225fd1cf7b5ea25e0468e8e9179fc6b"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain.json": {
+      "sha256": "278d6d801be741c4aa8772e0ff77bf2a9f36dee5afbf7637736872439b39c400",
+      "git_blob_sha": "3ee89a4ee75092307a68b278f51c2c0270de3422"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_LIXA.json": {
+      "sha256": "61b2118bb7c63d75716541769ebeecb5d53c3566a40dcf697c0159e1afd9bc44",
+      "git_blob_sha": "1f4ad967e19327a7c48f1610cc18cc360c38ef37"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_abstract.json": {
+      "sha256": "8fa9fa796f73e200a3d99835d0e371e88b540327c238cf5aa99e41ac5cf43ff7",
+      "git_blob_sha": "649b48f2ba79971c6f9be5bfb3571f830a8826d3"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_agricultural.json": {
+      "sha256": "0173111a4ebba1c16d3e619cfcaa290368c886b92c75c111e607a6c2454bad43",
+      "git_blob_sha": "23438552ab2b1af0f28e42c41b976affc4917735"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_aircraft_carrier.json": {
+      "sha256": "bea8aba7f30ee429001893b7ac857ec612919efaa975cea851fc58eff5106e98",
+      "git_blob_sha": "e5f3821371c30c0ee8272d44e55bb5170e1f2842"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_alien.json": {
+      "sha256": "a9c92b9a13ca0bba73955796ccdd4003edae185996cf8df0b312a97df9f303b4",
+      "git_blob_sha": "df797e9ace5c1f1db08d07df9494057c1508e975"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_ants.json": {
+      "sha256": "17c61d408b0d9179109b7520ceb927e65530d03685660a77c78fc268e5e5a273",
+      "git_blob_sha": "c80abb0b1845cbad107ef77c66ecef27bb85c897"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_balthazar.json": {
+      "sha256": "b54c380699611b70531d56fb662cea3e2dd0dc296b8edc7188879aa7ee4eda19",
+      "git_blob_sha": "5fcf5c411d2082235268decd3653022d0a2650df"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_campus.json": {
+      "sha256": "54af6b98cb7ac74b8f8b716d1e2a7db2ebab67bdd84417487a3e8168dc3de4ec",
+      "git_blob_sha": "2c39b828d0b0ad3efb8fe14e217ad459bd830535"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_cemetery.json": {
+      "sha256": "0d5bd5d8710187a109486def317fc10f757cbdbdcb033d20d088dff859b39322",
+      "git_blob_sha": "2edb5e25bde47e9f03ebf5a61205cd4363e7a9ed"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_commercial.json": {
+      "sha256": "ccfbcaf1313daf0704e5aa199d712b9ad51303e0851da760e2d615bd9e528424",
+      "git_blob_sha": "f33b766458b4e4b26227b57b0c38ac8845c19689"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_deserter_city.json": {
+      "sha256": "9384820e39473c65630892a502715a5d11a85ae638964641b23219a226a52e3f",
+      "git_blob_sha": "10c0034f33ed479da0f48ca084100e88cdc65da6"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_dls.json": {
+      "sha256": "873d3366434ca17d85f5b84977f21062488939f8b9257268ff11c9bad0e64b70",
+      "git_blob_sha": "f2769881f6fa52cb2dfa543d561ba85846a06e01"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_evac_center.json": {
+      "sha256": "a161da6bb24e0d08685e579b5b418882cc55023c27f772c3ac4102f01aebfc18",
+      "git_blob_sha": "7f1f5b5039488632626fab74eca8433e6cd3569d"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_faction_base.json": {
+      "sha256": "6d2f8ebc45cedaa9aaea36d6315a56e6fbbeffdf117b1922c9897c8f4e8e7519",
+      "git_blob_sha": "3ecb445159c6a254feb75ab099d837702bb3a53d"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_fungal.json": {
+      "sha256": "a1c927f263ae679516bd387f5e160e828697a2a36fe30b2661425fa87b03bdd8",
+      "git_blob_sha": "ad39389b2eebd339d4f3847d6ee488d2ae50289c"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_hardcoded.json": {
+      "sha256": "4499ba8772615c3e8907e55b70e45dbc33234f90534e500ecdee350cfd821a2d",
+      "git_blob_sha": "0ea90c9a3c18b1624f21a8e08d3f003a8c050bc7"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_industrial.json": {
+      "sha256": "f6d0233a700119f76e963ecfd504add65e053558a6f0d15b0eb6d4d9f0e6e392",
+      "git_blob_sha": "af258ac7ad56db6e774ceb31e1ffd93f3bd383e6"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_isolated_road.json": {
+      "sha256": "ccb0ebe6b14a1ba40619cafa9d244e698d65bd9786b5a8814ae04d0d406e1c2b",
+      "git_blob_sha": "130af1229293a4c45bcc72def2906e6a20a4bb96"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_kelp_forest.json": {
+      "sha256": "be2eae3de7502008e9938ea25ae1d332b2c71fb8394dda1a8effbe33734bde83",
+      "git_blob_sha": "0c320fa0802d6cbeec0e2ef2087e52d93bfbb46a"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_lab.json": {
+      "sha256": "995f2975ceb112d4852731e38d5a9be1103dcc19242bbf81858bf45ee0391f02",
+      "git_blob_sha": "f324da90c30a83e931727977ec5208051ff76bba"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_mall.json": {
+      "sha256": "263cb231a3dcee2e112a7392f4d8130d2531b664a5637576088ac5311a27fa96",
+      "git_blob_sha": "7e6b3bc1fafa495571dc374538e3e880f326120c"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_mansion.json": {
+      "sha256": "a4e95ad69fc1587eb29c3a9a012285268f2e9bfcb062598cf4babfd016ac961f",
+      "git_blob_sha": "bee951dafae314f5d150eef5625e1811b84ca971"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_meadow.json": {
+      "sha256": "2c6fdb94824351e5653e2979ab68777a9c5e8ae6680fc4abb78e614b6b79118f",
+      "git_blob_sha": "c06c576f8928d8d272771999b65396830f708857"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_mi-go.json": {
+      "sha256": "32ce66e7010b97ca4255477ba63d6d82e0dfffdaa004e413061024d0dc4261c8",
+      "git_blob_sha": "5b577620a8ecaafc6770f964eae593f3e1c1b7cc"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json": {
+      "sha256": "3f546870048ee03e0c8261887738167de40b2ab25a6f7816e68a8f0611b20d9b",
+      "git_blob_sha": "f884b908262b1e95a88dbea35f3a9f8adba6e82b"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_military.json": {
+      "sha256": "5efe418906cf3cdf7b214bad011853516c28fa754ad7f1d1206a135099b5695c",
+      "git_blob_sha": "39d45bdc97a926b78d47a7ea5ce20d568f03802a"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_militia.json": {
+      "sha256": "65c78e10cc96ae1b5ded384218baf21ef1ccb6c7110c929c3b9a41c95ef812c0",
+      "git_blob_sha": "c2e79bbee5adc737658ec7ee919966fae4573fc2"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_nether.json": {
+      "sha256": "162a3682d242eaaab174d63af536bbdb4da746f37c1799781f2089aee3713397",
+      "git_blob_sha": "c74b622b6cc256184ca0268fb7f4f86daceeef22"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_nether_monster_corpse.json": {
+      "sha256": "6cdb9e645eb974d4f20f4e3583dfdbe1b4324b9a77057de6d1d91db935db64fb",
+      "git_blob_sha": "a1ebc72bab145db51f0221fb9ab39779262496b0"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_netherum_labyrinth.json": {
+      "sha256": "67a46716f4c4978596ecd704ef6d5c2453070596f792ee3ab8dfa296d21b779f",
+      "git_blob_sha": "f2995d3d757f1ba9230115c783a96c16b7fdb5de"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_nuclear_plant.json": {
+      "sha256": "8cda191135ba46fe0f6d41d943475959303cc0be17e25256c0a16822fbcd2032",
+      "git_blob_sha": "358e82b65f2079f879a4486e402131d390c90a4f"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_oil_platform.json": {
+      "sha256": "b7da37d0a5c8f39ddeb2082a16d60e498a89c169dfd39f18bf2ed2f8fe8856d3",
+      "git_blob_sha": "7f2eabb470531f96b0addfddea1f2981f647ffe8"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_private_resort.json": {
+      "sha256": "7d5926f25e2b2989a9cc1ac05628628b65a27c0a6620ad4b24ff3ae6bb521b9e",
+      "git_blob_sha": "7604986f8f060e67500a7363ef7a7b2e5484a303"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_public_institutional.json": {
+      "sha256": "5dd8177a730cb2e0024d453af9c2248e9933f919a83b971ab1ad0db600cb68a2",
+      "git_blob_sha": "bdc0851187db4e1591b6d2f3d4820710866f6406"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_ranch_camp.json": {
+      "sha256": "58e8f62831fc5271c21882beb9de9092fe846cfc383dd4d0209e320325d878eb",
+      "git_blob_sha": "a27248162e4ef061bb177548a04c9b51642c0440"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_ravines.json": {
+      "sha256": "25cebc045f4b924472bcace5ea3351448fc333efd78a2d40a21d3dd4920c99ca",
+      "git_blob_sha": "94d337c0b004d73e3655c68d72faf42a6becc056"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_recreational.json": {
+      "sha256": "f774d792c9cbf05f8300912ac371bbaa6424380c98b662e3d1e70ec9955ae179",
+      "git_blob_sha": "195d1b47426f0dbe945f9c713d05e425b95a30d5"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_residential.json": {
+      "sha256": "d7d1e19ddc82bddddc38aadfd87d18bdf295f59e635d47d419ddfb7ac5b40720",
+      "git_blob_sha": "950ead254ddef71e38018d04ac1e094765818dda"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_retirement_community.json": {
+      "sha256": "dd58746fe728bc5ea6d2d0875fde172da99bb0fa1f58ad6fce63ee90b4cfa3f8",
+      "git_blob_sha": "b0e3ace4fc40b65b00bc0366fe2eefdd6073748d"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_reverberations.json": {
+      "sha256": "f6ed8b55af648c205c945251ad73e5b8c8d17bb703c8b7e7311f233988e64312",
+      "git_blob_sha": "e77cca42adcae45744c755016326b977509ac6c5"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_river.json": {
+      "sha256": "7570ec8bfe70f8ff341a5e60990d58ee1e139757c4f7ed00a310066d52c795ca",
+      "git_blob_sha": "8e3f959e6fb92bf737ecf59fa8615654701fc07c"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_robofac_locs.json": {
+      "sha256": "1e3c8fe869a7c52fb3d01b999ddf100dc487287aa755f2bb82e448105027f129",
+      "git_blob_sha": "3b5e03c524d96ec2d58746af768731d7befab85c"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json": {
+      "sha256": "80d28021ed9aa003a4790406442f3946296b4276db2ec391615b5d8f0a537943",
+      "git_blob_sha": "8008553744ea7553f869a0a9cbbf01cb74a8471c"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_scarlet_sea.json": {
+      "sha256": "a09f036d471a17ff1f8659a35e9f3a025f1aa16612b84af5a14f6c78f3625ac4",
+      "git_blob_sha": "8af2be11d3dbe9db69c0c50100c2e63598fc89c1"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_special.json": {
+      "sha256": "04de004746a2d34e6f199da99930fabb016513e7e2e2a5c994c0146bee8f83b3",
+      "git_blob_sha": "0d78584b94bfb3ccc7dc99ef21dc34e76089adfa"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_speedway.json": {
+      "sha256": "ca1001b07beffba83389241b4b421b222cc92e73b02e0e3a22748ff4d28eeba2",
+      "git_blob_sha": "a0031294fd765d01e09c90e67556991301577023"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_stream.json": {
+      "sha256": "c2b4199109c628008786d6f161031645d12ed1c01bf9923ed9ec5437f0239a5c",
+      "git_blob_sha": "594963e4599e653eb4780d79fb92c96094db9ace"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_string_dimension.json": {
+      "sha256": "beba40cfb1f1c7d365f741db0b931f2a5f60da0bc37017d25f5da5d6e08f3eee",
+      "git_blob_sha": "ca17e514e42b86d65b75645649eeb52b982b1c82"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_sunkenheli.json": {
+      "sha256": "972cd106df97cbde9c6f3cea67a17e33815c49438281d82cc7f46c3b9b059914",
+      "git_blob_sha": "5e53d5e17fa3f4f523e3a7d494ee2a76d2a65726"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_supermarket.json": {
+      "sha256": "c1ebe9cc5ffdce89a7912eb7c5d51983dcc5f0e67fc77bfab256456a06a277ca",
+      "git_blob_sha": "34462044e60342d6586b7723cdca1d791f66b212"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_transportation.json": {
+      "sha256": "bbce0db69660e1b183eaec193f46ae3efbb9b01a2fbdd2435d753cfb70193dd4",
+      "git_blob_sha": "634e9d968d019f6f29758aebe3c30c22a330f110"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_triffid.json": {
+      "sha256": "c93c424fd65e3287851b879a7fb6ed6c139a583b73d2c5be5716fc74c53d3cbc",
+      "git_blob_sha": "be62f9aaf6952e1bd8c0684fa3d00379d7415744"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_waste_junk.json": {
+      "sha256": "e37d9cf5a74cb534c69d5489c6922baa06ed95cbb1caa2fca71ac263e8d7d5e0",
+      "git_blob_sha": "94fed5f4ef32204bdc5c132ab388e659bbaaf6da"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_waterbody.json": {
+      "sha256": "e54af485175f220a4cbaa903fdce1d5759e9a81c86cbdf5851f41838a563af5a",
+      "git_blob_sha": "ad66b87768aec8ff6e1da4b995a2bc7927afcaf3"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_xedra_fieldstations.json": {
+      "sha256": "a94ce7a2f0f8c5f265a07d3e226a47f4290061a4a333302dc99f97e20b55e019",
+      "git_blob_sha": "a2e8084e6f077b19dded208536ddf899eefe576b"
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_vitrified_terrain.json": {
+      "sha256": "10af0b912c25439cc635d09b5193707b107ac75ab0cdd949eeba157a371c2923",
+      "git_blob_sha": "9774ce1bbf1c10fda01d3851916c749c22992478"
+    },
+    "dda/data/json/overmap/overmap_terrain/river_cave.json": {
+      "sha256": "102c910ba6768b8d02c8ecdbb857abe566871c04ba48c7047b10256be6d00025",
+      "git_blob_sha": "a11a9ea1da5fd09f88fbc657615f5b7530991f89"
+    },
+    "meta/MAPGEN_FILE_INDEX.json": {
+      "sha256": "d9b256432de4a87ded911c890d8cd32ec12b106b678d35c47941cff95ebcf1d9",
+      "generated_index": true
+    }
+  }
+}

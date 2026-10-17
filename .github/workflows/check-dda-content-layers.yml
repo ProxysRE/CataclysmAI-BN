@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Compare pinned DDA and BN location catalogs
+        run: python npc-content/check_location_catalog.py
       - name: Reconstruct preserved artisan sources
         run: python npc-content/prepare_isolated_road.py --output npc-content/staging
       - name: Reject stale native patch sources
