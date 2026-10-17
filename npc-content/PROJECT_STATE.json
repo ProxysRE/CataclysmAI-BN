@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Complete ordinary rural church integrated; complete XEDRA geometry and equipment graph staged; native validation pending",
+  "stage": "XEDRA creature, particles, inert string and configurable native ranged pull prepared; paranormal church remains gated by equipment and behavioral review",
   "package": "Isolated Road",
   "native_compilation": "Windows game, 34 native cases / 2893 assertions and installed-data regression passed at 1031b295. Casing/quest-prop changes await their runs.",
   "remaining": [
@@ -373,5 +373,9 @@
     "ordinary": "native_prepared",
     "xedra": "staged_with_mechanical_blockers",
     "progress": "rural_churches/PORT_REPORT.json"
+  },
+  "xedra_creature": {
+    "status": "native_prepared_not_runtime_validated",
+    "progress": "xedra_creature/PORT_REPORT.json"
   }
 }

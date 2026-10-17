@@ -1,0 +1,117 @@
+[
+  {
+    "id": "fd_twisting_mass_dust",
+    "type": "field_type",
+    "intensity_levels": [
+      {
+        "name": "magenta sparkles",
+        "color": "magenta",
+        "sym": "*",
+        "light_emitted": 160,
+        "light_color": [
+          255,
+          0,
+          255
+        ],
+        "concentration": 1
+      }
+    ],
+    "priority": 9,
+    "half_life": "10 seconds",
+    "accelerated_decay": true,
+    "dirty_transparency_cache": true,
+    "phase": "gas",
+    "display_items": true,
+    "display_field": true,
+    "looks_like": "fd_tindalos_rift"
+  },
+  {
+    "id": "emit_twisting_mass_dust",
+    "type": "emit",
+    "field": "fd_twisting_mass_dust",
+    "intensity": 3,
+    "qty": 10,
+    "chance": 15
+  },
+  {
+    "id": "mon_twisting_mass",
+    "type": "MONSTER",
+    "name": {
+      "str": "glowing mass of strings",
+      "str_pl": "glowing masses of strings"
+    },
+    "description": "A multitude of thin, fluorescent purple strings violently writhe about the air.  Occasionally, individual strings lash out extremely far before retracting almost instantly.  The strings are so dense that they form a nearly solid, suffocating mass.",
+    "default_faction": "nether",
+    "bodytype": "spider",
+    "species": [
+      "NETHER"
+    ],
+    "diff": 5,
+    "volume": "122500 ml",
+    "weight": "81500 g",
+    "hp": 20,
+    "speed": 10,
+    "luminance": 1,
+    "material": [
+      "flesh"
+    ],
+    "symbol": "S",
+    "color": "magenta",
+    "scents_tracked": [
+      "sc_human"
+    ],
+    "aggression": 100,
+    "morale": 100,
+    "melee_skill": 6,
+    "vision_day": 5,
+    "vision_night": 5,
+    "harvest": "exempt",
+    "death_function": [
+      "DISAPPEAR"
+    ],
+    "emit_fields": [
+      {
+        "emit_id": "emit_twisting_mass_dust",
+        "delay": "1 s"
+      }
+    ],
+    "grab_strength": 35,
+    "special_attacks": [
+      [
+        "RANGED_PULL",
+        20
+      ]
+    ],
+    "flags": [
+      "SEES",
+      "NO_BREATHE",
+      "BASHES",
+      "GROUP_BASH"
+    ],
+    "ranged_pull_options": {
+      "range": 5,
+      "max_weight_ratio": 3.0,
+      "full_range": true,
+      "use_grab_strength": true,
+      "respect_seatbelts": true
+    }
+  },
+  {
+    "type": "GENERIC",
+    "id": "inert_glowing_string",
+    "category": "artifacts",
+    "symbol": ",",
+    "color": "magenta",
+    "name": {
+      "str": "glowing string"
+    },
+    "description": "A plastic test-tube housing a fluorescent purple string of unknown material.  The string gently flickers and twitches on its own.",
+    "price": "10 USD",
+    "price_postapoc": "1 USD",
+    "material": [
+      "plastic"
+    ],
+    "weight": "10 g",
+    "volume": "20 ml"
+  }
+]

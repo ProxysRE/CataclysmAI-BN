@@ -24,7 +24,9 @@ def check():
         from compare_location_catalog import read_sources
         plaza_payload, _ = plaza_data(json.loads(read_sources()[0]['bn/' + RADIO_CITY]))
         from prepare_rural_churches import prepare_data as church_data, PAYLOAD as CHURCH_PAYLOAD
+        from prepare_xedra_creature import payload as creature_data, PAYLOAD as CREATURE_PAYLOAD
         payload = {
+            CREATURE_PAYLOAD: json.dumps(creature_data()).encode(),
             CHURCH_PAYLOAD: json.dumps(church_data()).encode(),
             PLAZA_PAYLOAD: json.dumps(plaza_payload).encode(),
             HOTEL_PAYLOAD: json.dumps(hotel_payload).encode(),

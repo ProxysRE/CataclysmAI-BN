@@ -1,0 +1,17 @@
+{
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01"
+  ],
+  "bundle_sha256": "ac327c99156600c8e5c8295d4b408d1963f8a325e2bc4138b263609a8ab9513b",
+  "files": {
+    "dda/mattack_actors.cpp": "bff5cabe0c901a774a338c551ea6c5d26e73aa5e075aa9fea90cbc1cde32181b",
+    "bn/monstergenerator.cpp": "56fed9622622fdf771838e5f74cfc302769b7b24e47ae7ba96b2183943b9708e",
+    "bn/mtype.h": "361fb4d15ce24bc415e5163ceab9d9fa0579a418ceb3a2f1d9dcfff804e6784f",
+    "bn/monattack.cpp": "a262c1ba496b3531cad5512f28c1088b9023cc06e4dfbb01e1d2ae64b6a69cdb"
+  },
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  }
+}

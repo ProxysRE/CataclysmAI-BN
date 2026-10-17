@@ -1,0 +1,21 @@
+{
+  "status": "native_prepared_not_runtime_validated",
+  "native_source_files_modified": 3,
+  "new_definitions": [
+    "fd_twisting_mass_dust",
+    "emit_twisting_mass_dust",
+    "mon_twisting_mass",
+    "inert_glowing_string"
+  ],
+  "attack_implementation": "existing BN RANGED_PULL with optional data-driven profile",
+  "legacy_defaults_preserved": true,
+  "source_particles_exact": true,
+  "limitations": [
+    "BN grab lifecycle retained",
+    "RANGED_ATTACKER AI flag unsupported",
+    "BN corpse-free death wording",
+    "GRAB_FILTER/maimed_arm/exclusive grab conditions pending"
+  ],
+  "XEDRA_church_enabled": false,
+  "protective_equipment_complete": false
+}

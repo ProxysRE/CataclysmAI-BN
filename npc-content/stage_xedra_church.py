@@ -63,14 +63,15 @@ def stage():
     source_tent = next(e for e in json.loads(files['dda/rural_outdoors_nested.json']) if e.get('nested_mapgen_id') == 'tent_b_5x5_S')
     bn_tent = next(e for e in json.loads(files['bn/campsite.json']) if e.get('nested_mapgen_id') == 'tent_b_5x5_S')
     report = {'status': 'staged_not_installed', 'source_mapgen_blocks': len(maps),
+        'native_dependency_progress': 'Creature, particles and inert string prepared in xedra_creature; runtime pending; protective equipment still staged',
         'source_placement_cells': len(special['overmaps']), 'z_levels': [-1, 0, 1, 2],
         'npc_or_quest_definitions_in_these_location_sources': 0,
         'equipment_nodes_preserved': len(selected), 'equipment_edges': len(edges),
         'equipment_definitions': selected, 'equipment_reference_edges': edges,
         'unresolved_typed_references': [{'kind': k, 'id': n} for k,n in sorted(unresolved)],
         'scope_limit': 'Available-source item inheritance, transform targets, magazine defaults and typed quest-item references; not complete field, armor, enchantment or EOC closure',
-        'blocking_mechanics': ['ranged_pull attack with pull_weight_ratio=3 and grab_strength=35',
-            'fd_twisting_mass_dust behaviour, emitted at intensity 3',
+        'blocking_mechanics': ['runtime validation and review of BN grab lifecycle/AI adaptation',
+            'runtime validation of source dust field/emitter',
             'multi-subtype powered protective armor, material/bodypart protection and immunity flags',
             'worn item group contents and batteries', 'source tent erase-before-placement flag and BN tent geometry review'],
         'source_tent_equals_BN': source_tent == bn_tent,

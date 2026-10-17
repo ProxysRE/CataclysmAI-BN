@@ -222,7 +222,8 @@
         "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
         "native compatibility required by the source behavior"
       ],
-      "progress_record": "rural_churches/PORT_REPORT.json"
+      "progress_record": "rural_churches/PORT_REPORT.json",
+      "dependency_progress_record": "xedra_creature/PORT_REPORT.json"
     },
     {
       "name": "Моргáнтаун XEDRA",

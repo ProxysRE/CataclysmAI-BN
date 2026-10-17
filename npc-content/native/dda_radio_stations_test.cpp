@@ -1,4 +1,5 @@
 #include "avatar.h"
+#include "calendar.h"
 #include "catch/catch.hpp"
 #include "cata_utility.h"
 #include "coordinates.h"
@@ -6,6 +7,14 @@
 #include "overmap/overmapbuffer.h"
 #include "overmap/overmapbuffer_registry.h"
 #include "state_helpers.h"
+#include "map_helpers.h"
+#include "map/field_type.h"
+#include "map/utils/map_functions.h"
+#include "monattack.h"
+#include "monster.h"
+#include "mtype.h"
+#include "item.h"
+#include "units.h"
 
 #include <array>
 #include <string>
@@ -145,4 +154,52 @@ TEST_CASE( "rural_church_generates_basement_steeple_and_real_bell_terminal", "[d
     CHECK( generated.ter( tripoint_bub_ms( 7, 21, -1 ) ) == ter_id( "t_stairs_up" ) );
     CHECK( generated.ter( tripoint_bub_ms( 4, 6, -1 ) ) == ter_id( "t_stairs_up" ) );
     CHECK( generated.computer_at( tripoint_bub_ms( 4, 6, 1 ) ) != nullptr );
+}
+
+TEST_CASE( "XEDRA_creature_profile_and_particles_load_without_changing_legacy_defaults", "[dda_npc][dda_locations]" )
+{
+    const auto creature = mtype_id( "mon_twisting_mass" );
+    REQUIRE( creature.is_valid() );
+    const auto &profile = creature.obj();
+    CHECK( profile.ranged_pull_range == 5 );
+    CHECK( profile.ranged_pull_weight_ratio == Approx( 3.0f ) );
+    CHECK( profile.ranged_pull_full_range );
+    CHECK( profile.ranged_pull_use_grab_strength );
+    CHECK( profile.ranged_pull_respect_seatbelts );
+    CHECK( profile.grab_strength == 35 );
+    const auto &legacy = mtype_id( "mon_zombie" ).obj();
+    CHECK( legacy.ranged_pull_range == 3 );
+    CHECK( legacy.ranged_pull_weight_ratio == 0.0f );
+    CHECK_FALSE( legacy.ranged_pull_full_range );
+    CHECK_FALSE( legacy.ranged_pull_use_grab_strength );
+    CHECK_FALSE( legacy.ranged_pull_respect_seatbelts );
+    const auto particles = field_type_str_id( "fd_twisting_mass_dust" );
+    REQUIRE( particles.is_valid() );
+    REQUIRE( particles.obj().intensity_levels.size() == 1 );
+    CHECK( particles.obj().intensity_levels.front().light_emitted == 160 );
+    CHECK( emit_id( "emit_twisting_mass_dust" ).is_valid() );
+    CHECK( item( itype_id( "inert_glowing_string" ), calendar::turn ).typeId() ==
+           itype_id( "inert_glowing_string" ) );
+}
+
+TEST_CASE( "XEDRA_ranged_pull_rejects_overweight_target_before_movement", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    clear_map();
+    build_test_map( ter_id( "t_floor" ) );
+    auto &actor = get_avatar();
+    actor.setpos( map_local_to_abs( get_map(), tripoint_bub_ms( 60, 60, 0 ) ) );
+    auto &critter = spawn_test_monster( "mon_twisting_mass", tripoint_bub_ms( 65, 60, 0 ) );
+    critter.set_dest( actor.bub_pos() );
+    REQUIRE( critter.attack_target() == &actor );
+    auto lightweight = *critter.type;
+    const auto restore_type = restore_on_out_of_scope<const mtype *>( critter.type );
+    lightweight.weight = units::from_gram( 1 );
+    critter.type = &lightweight;
+    REQUIRE( actor.get_weight() > critter.get_weight() * 3.0f );
+    const auto before = actor.bub_pos();
+    const auto moves = critter.moves;
+    CHECK_FALSE( mattack::ranged_pull( &critter ) );
+    CHECK( actor.bub_pos() == before );
+    CHECK( critter.moves == moves );
 }

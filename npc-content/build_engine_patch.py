@@ -12,6 +12,7 @@ from prepare_radio_stations import prepare as prepare_radio, MAP as RADIO_MAP, C
 from prepare_tower_expansions import patch_sections as tower_patch, prepare as prepare_towers, PAYLOAD as HOTEL_PAYLOAD
 from prepare_shopping_plaza import PAYLOAD as PLAZA_PAYLOAD
 from prepare_rural_churches import prepare as prepare_churches, PAYLOAD as CHURCH_PAYLOAD
+from prepare_xedra_creature import prepare as prepare_creature, patch_sections as creature_patch, PAYLOAD as CREATURE_PAYLOAD, CORE as CREATURE_CORE
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD, MUTATIONS
 
 root = Path(__file__).resolve().parent
@@ -27,11 +28,12 @@ prepare_hub_access(check=True)
 prepare_radio(check=True)
 prepare_towers(check=True)
 prepare_churches(check=True)
+prepare_creature(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
         raise ValueError("BN source is not the pinned base")
-    for name in base_files + ("iexamine.cpp", "iexamine.h", "iexamine_elevator.cpp"):
+    for name in base_files + CREATURE_CORE + ("iexamine.cpp", "iexamine.h", "iexamine_elevator.cpp"):
         relative = Path("src") / name
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -51,6 +53,7 @@ if args.bn_source:
     (root / "engine_staging" / HOTEL_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / PLAZA_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / CHURCH_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / CREATURE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
@@ -117,6 +120,9 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_shopping_plaza_roofs.j
                                 "/dev/null", "b/" + PLAZA_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_rural_church.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + CHURCH_PAYLOAD))
+parts.append(creature_patch())
+parts.extend(difflib.unified_diff([], (root / "native/dda_xedra_creature.json").read_text(encoding="utf-8").splitlines(keepends=True),
+                                "/dev/null", "b/" + CREATURE_PAYLOAD))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()

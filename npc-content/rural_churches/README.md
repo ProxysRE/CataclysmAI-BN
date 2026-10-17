@@ -21,3 +21,5 @@ Blocking work remains: the glowing mass's ranged pull and grab strength, twistin
 Source pins and byte checksums are in SOURCE_MANIFEST.json. Raw shared files are preserved as compressed parts; preparation scripts import only selected definitions. Run check_rural_churches.py to reconstruct and verify the package.
 
 BN already has a RANGED_PULL action, but it has range 3 and damage-based pull distance, while this DDA monster requests range 5 and a weight-ratio pull. BN_RANGED_PULL_REVIEW.json preserves the pinned native function and exact differences. The existing BN implementation is the reuse candidate; a direct action-name substitution would change gameplay. The source dust field is also preserved: short-lived luminous particles with no explicit damage effects.
+
+Update: xedra_creature now prepares the actual creature, exact source field/emitter and inert string for the native build. Configurable BN ranged pull replaces the earlier fixed-range limitation. Windows validation is pending; grab lifecycle/AI differences and protective equipment are still explicit blockers for enabling the complete XEDRA location. See ../xedra_creature/README.md.

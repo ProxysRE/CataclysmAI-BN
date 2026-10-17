@@ -17,6 +17,8 @@ on:
       - 'npc-content/prepare_hotel_roofs.py'
       - 'npc-content/prepare_shopping_plaza.py'
       - 'npc-content/prepare_rural_churches.py'
+      - 'npc-content/prepare_xedra_creature.py'
+      - 'npc-content/xedra_creature/SOURCE*'
       - 'npc-content/rural_churches/SOURCE*'
       - 'npc-content/shopping_plaza/SOURCE*'
       - 'npc-content/hotel_roofs/SOURCE*'
@@ -109,6 +111,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_radio_stations.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_tower_expansions.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_rural_churches.py" --check --bn-source .
+          python "${{ github.workspace }}/package/npc-content/prepare_xedra_creature.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Radio station baseline or ID conflict" }
           python "${{ github.workspace }}/package/npc-content/prepare_hub_elevator.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Hub elevator source preflight failed" }
@@ -123,7 +126,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "6e1085672d55700a7ccc4bf45caf5e73264b5781706920bc122eed5cd04ade0b") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "9bf02f4fcc3e99bfde22cd37ce20e63ff5e2a222bf9babf2a4ae0fa8c0797be1") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch
@@ -155,7 +158,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
+          $files = @("src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "NPC formatting failed" }
       - name: Configure Windows game

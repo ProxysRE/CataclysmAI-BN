@@ -1,6 +1,7 @@
 {
   "status": "staged_not_installed",
   "source_mapgen_blocks": 4,
+  "native_dependency_progress": "Creature, particles and inert string prepared in xedra_creature; runtime pending; protective equipment still staged",
   "source_placement_cells": 5,
   "z_levels": [
     -1,
@@ -1571,8 +1572,8 @@
   ],
   "scope_limit": "Available-source item inheritance, transform targets, magazine defaults and typed quest-item references; not complete field, armor, enchantment or EOC closure",
   "blocking_mechanics": [
-    "ranged_pull attack with pull_weight_ratio=3 and grab_strength=35",
-    "fd_twisting_mass_dust behaviour, emitted at intensity 3",
+    "runtime validation and review of BN grab lifecycle/AI adaptation",
+    "runtime validation of source dust field/emitter",
     "multi-subtype powered protective armor, material/bodypart protection and immunity flags",
     "worn item group contents and batteries",
     "source tent erase-before-placement flag and BN tent geometry review"

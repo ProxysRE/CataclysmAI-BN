@@ -26,7 +26,8 @@
     "equipment_nodes": 9,
     "reference_edges": 70,
     "native_installed": false,
-    "review": "XEDRA_DEPENDENCY_REVIEW.json"
+    "review": "XEDRA_DEPENDENCY_REVIEW.json",
+    "native_dependencies": "creature, particles, inert string prepared; not runtime validated"
   },
   "pending": [
     "Windows native generation tests",

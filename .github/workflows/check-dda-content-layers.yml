@@ -27,7 +27,9 @@ jobs:
           sparse-checkout: data/json
           persist-credentials: false
       - name: Validate church dependencies against all pinned BN JSON definitions
-        run: python npc-content/prepare_rural_churches.py --check --bn-source bn-data
+        run: |
+          python npc-content/prepare_rural_churches.py --check --bn-source bn-data
+          python npc-content/prepare_xedra_creature.py --check --bn-data bn-data
       - name: Compare pinned DDA and BN location catalogs
         run: python npc-content/check_location_catalog.py
       - name: Reconstruct preserved artisan sources
@@ -60,6 +62,8 @@ jobs:
         run: python npc-content/check_shopping_plaza.py
       - name: Verify complete rural church and XEDRA dependency preservation
         run: python npc-content/check_rural_churches.py
+      - name: Verify native XEDRA creature and source-driven pull configuration
+        run: python npc-content/check_xedra_creature.py
       - name: Verify selective location dependencies and layouts
         run: python npc-content/check_location_layers.py
       - name: Verify every staged definition and blocked original
