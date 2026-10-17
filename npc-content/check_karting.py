@@ -3,7 +3,7 @@
 import copy
 import json
 from collections import Counter
-from prepare_karting import prepare_data, prepare, sources, CURRENCY, GROUPS
+from prepare_karting import prepare_data, prepare, sources, GROUPS
 from prepare_regional_locations import build, index_entries
 from quest_dependency_graph import namespace, ids
 
@@ -46,7 +46,7 @@ for c in special['connections']:
 assert special == old_special
 identities = [(namespace(e), i) for e in payload for i in ids(e)]
 assert len(identities) == len(set(identities))
-assert Counter(e['type'] for e in payload) == {'mapgen': 3, 'vehicle': 1, 'overmap_terrain': 1, 'overmap_special': 1, 'item_group': 6, 'GENERIC': 11, 'CONTAINER': 1}
+assert Counter(e['type'] for e in payload) == {'mapgen': 3, 'vehicle': 1, 'overmap_terrain': 1, 'overmap_special': 1, 'item_group': 4, 'CONTAINER': 1}
 assert not any(e.get('id') == 'coin_quarter' for e in payload)
 cash = next(e for e in payload if e.get('id') == 'cash_register')
 assert cash['contains'] == '1 L' and cash['rigid']
@@ -58,10 +58,15 @@ files = sources()
 frames = json.loads(files['bn/data/json/vehicleparts/frames.json'])
 assert ('vehicle_part', 'xlframe_vertical') in index_entries(frames)
 assert ('vehicle_part', 'xlframe') not in index_entries(frames)
-for e in payload:
-    if e.get('id') in CURRENCY:
-        old = next(o for o in json.loads(files['dda/data/json/items/generic/currency.json']) if o.get('id') == e['id'])
-        for field in ('name', 'description', 'price', 'price_postapoc', 'weight', 'volume', 'copy-from', 'use_action'):
-            assert e.get(field) == old.get(field), (e['id'], field)
+assert not any(e['type'] == 'GENERIC' for e in payload)
+assert not any(e.get('id') in ('banknotes', 'coins') for e in payload)
+full = next(e for e in payload if e.get('id') == 'cash_register_full')
+looted = next(e for e in payload if e.get('id') == 'cash_register_looted')
+assert full['items'] == [{'item': 'money_bundle', 'prob': 80, 'count': [1, 3]}]
+assert looted['items'] == [{'item': 'money_bundle', 'prob': 15, 'count': 1}, ['survnote', 4]]
+money = next(e for e in json.loads(files['bn/data/json/items/generic.json']) if e.get('id') == 'money_bundle')
+assert money['volume'] == '250 ml' and money['weight'] == '20 g'
+assert money['price'] == '400 USD' and money['price_postapoc'] == '25 cent'
+assert 3 * 250 <= 1000
 prepare(check=True)
-print('PASS: full 27-tile circuit, 48 matched ramp columns, 16-part kart, cash dependency tree and BN quarter reuse')
+print('PASS: full 27-tile circuit, 48 matched ramp columns, 16-part kart, stock BN money_bundle only; no imported denominations')

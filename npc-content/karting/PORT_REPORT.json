@@ -23,33 +23,32 @@
   "new_dependencies": {
     "vehicle": "go_kart",
     "vehicle_components": 16,
-    "cash_item_groups": 6,
-    "banknote_denominations": 6,
-    "coin_denominations_new": 5,
-    "cash_register_container": 1
+    "cash_item_groups": 4,
+    "cash_register_container": 1,
+    "new_currency_items": 0
   },
   "bn_reuse": [
     "All kart engine, wheel, frame, steering, electrical and fuel-system parts",
     "All rooms, roof utilities, furniture, terrain and ramp types",
     "Stock vending drink/food groups and vending behavior",
-    "Existing coin_quarter remains unchanged"
+    "Unmodified stock money_bundle for all imported cash loot"
   ],
   "adaptations": [
     "xlframe#vertical becomes BN's generated xlframe_vertical; no new frame implementation",
     "Site-local palette inlined into deferred mapgen objects",
     "Explicit local_road connection replaces legacy terrain:road connection field",
     "Unsupported lootable:true omitted; stock BN vending generation is used",
-    "DDA ITEM currency becomes BN GENERIC valuables with source descriptions and prices",
     "Cash register uses BN CONTAINER with rigid 1 L capacity and source external weight/volume",
     "DDA bash damage becomes BN bashing; structured DDA grip/balance modifier is omitted",
-    "DDA OVERMAP_UNIQUE becomes BN UNIQUE: at most one natural circuit per overmap, using BN placement logic"
+    "DDA OVERMAP_UNIQUE becomes BN UNIQUE: at most one natural circuit per overmap, using BN placement logic",
+    "Cash register banknote branch uses BN money_bundle: 1-3 at 80% in full registers, one at 15% in looted registers; DDA coin branch omitted"
   ],
   "limitations": [
     "DDA pocket shape filters and 2 kg pocket weight limit are not implemented; BN legacy container accepts general contents",
-    "DDA OLD_CURRENCY and pocket-shape flags are omitted; no global DDA barter or pocket system is introduced",
     "Exact DDA vending damage/looting distribution is not claimed",
     "Native load, actual generation and assembled vehicle tests are added but Windows results remain pending",
-    "DDA unique-special deck scheduling is not ported. BN interprets occurrences [10,100] as a 10/100 spawn roll for a UNIQUE site; geographic and long-run distribution can differ."
+    "DDA unique-special deck scheduling is not ported. BN interprets occurrences [10,100] as a 10/100 spawn roll for a UNIQUE site; geographic and long-run distribution can differ.",
+    "No DDA denominations, new coins, banknotes/coins groups or global currency expansion; DDA currency originals remain archived only"
   ],
   "checks": [
     "Original 72x72 rows, all floors, nested rooms and explicit placements preserved",
@@ -57,5 +56,14 @@
     "Typed native ID collision and direct reference closure required against pinned BN core JSON",
     "Pinned BN loader, vehicle and container source baselines checked before native patch",
     "Installed payload must exactly match generated circuit data before archive packaging"
-  ]
+  ],
+  "currency_source": {
+    "path": "bn/data/json/items/generic.json",
+    "item": "money_bundle",
+    "weight": "20 g",
+    "volume": "250 ml",
+    "price": "400 USD",
+    "price_postapoc": "25 cent",
+    "preserved": true
+  }
 }

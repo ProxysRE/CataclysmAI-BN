@@ -41,3 +41,11 @@ assert ('nested_mapgen', 'null') not in references({'nested': {'K': {'chunks': [
 assert references({'terrain': {'x': {'param': 'floor_color', 'fallback': 't_floor'}}, 'name': 'Some Name'}) == [('terrain', 't_floor')]
 subprocess.run([sys.executable, str(ROOT / 'prepare_regional_locations.py'), '--check'], check=True)
 print('Five complete staged sites; 235 terrain slots; source geometry preserved; not native-enabled')
+
+with_native = build(native_payloads=[ROOT / 'native/dda_karting_circuit.json'])
+farm = next(r for r in with_native['TRANSFER_REPORT.json']['sites'] if r['site'] == 'farm_supply')
+for identifier in ('cash_register_random', 'cash_register_looted'):
+    dependency = next(d for d in farm['dependencies'] if d['type'] == 'item_group' and d['id'] == identifier)
+    assert dependency['status'] == 'provided_by_native_port_review_adaptation'
+assert with_native['farm_supply.json'] == outputs['farm_supply.json']
+print('PASS: shared native cash providers recognized without mutating staged farm geometry')

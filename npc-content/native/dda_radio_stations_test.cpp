@@ -344,14 +344,11 @@ TEST_CASE( "karting_vehicle_and_cash_dependencies_are_native_bn_definitions", "[
     REQUIRE( kart.blueprint != nullptr );
     CHECK( kart.blueprint->part_count() == 16 );
     for( const auto *name : { "cash_register_full", "cash_register_looted", "cash_register_empty",
-                             "cash_register_random", "banknotes", "coins" } ) {
+                             "cash_register_random" } ) {
         CHECK( item_group::group_is_defined( item_group_id( name ) ) );
     }
-    for( const auto *name : { "cash_register", "money_one", "money_two", "money_five", "money_ten",
-                             "money_twenty", "money_fifty", "coin_penny", "coin_nickel", "coin_dime",
-                             "coin_quarter", "coin_half_dollar", "coin_dollar" } ) {
-        CHECK( itype_id( name ).is_valid() );
-    }
+    CHECK( itype_id( "cash_register" ).is_valid() );
+    CHECK( itype_id( "money_bundle" ).is_valid() );
     auto cash = item::spawn( "cash_register", calendar::start_of_cataclysm );
     CHECK( cash->is_container() );
 }

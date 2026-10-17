@@ -13,8 +13,6 @@ from quest_dependency_graph import namespace, ids
 ROOT = Path(__file__).resolve().parent
 FOLDER = ROOT / 'karting'
 PAYLOAD = 'data/json/dda_karting_circuit.json'
-CURRENCY = ['money_one', 'money_two', 'money_five', 'money_ten', 'money_twenty', 'money_fifty',
-            'coin_penny', 'coin_nickel', 'coin_dime', 'coin_half_dollar', 'coin_dollar']
 GROUPS = ['cash_register_full', 'cash_register_looted', 'cash_register_empty', 'cash_register_random']
 
 
@@ -46,19 +44,17 @@ def prepare_data():
                 assert connection.pop('terrain') == 'road'
                 connection['connection'] = 'local_road'
     source_groups = json.loads(files['dda/data/json/itemgroups/cash_register.json'])
-    result += [copy.deepcopy(e) for e in source_groups if e.get('id') in GROUPS]
-    result += [copy.deepcopy(e) for e in json.loads(files['dda/data/json/itemgroups/Clothing_Gear/wallets.json']) if e.get('id') in ('banknotes', 'coins')]
-    for source in json.loads(files['dda/data/json/items/generic/currency.json']):
-        if source.get('id') not in CURRENCY:
+    for source in source_groups:
+        if source.get('id') not in GROUPS:
             continue
-        e = copy.deepcopy(source)
-        e['type'] = 'GENERIC'
-        if 'category' in e:
-            e['category'] = 'valuables'
-        # Shape flags serve DDA pockets. OLD_CURRENCY's DDA trade policy is not
-        # imported globally. Preserve source values with BN price_postapoc.
-        e.pop('flags', None)
-        result.append(e)
+        group = copy.deepcopy(source)
+        if group['id'] == 'cash_register_full':
+            # BN money_bundle is 250 ml, not an individual banknote. Three
+            # bundles fit the original 1 L cash drawer without overflow.
+            group['items'] = [{'item': 'money_bundle', 'prob': 80, 'count': [1, 3]}]
+        elif group['id'] == 'cash_register_looted':
+            group['items'] = [{'item': 'money_bundle', 'prob': 15, 'count': 1}, ['survnote', 4]]
+        result.append(group)
     cash = copy.deepcopy(next(e for e in json.loads(files['dda/data/json/items/generic.json']) if e.get('id') == 'cash_register'))
     cash['type'] = 'CONTAINER'
     pocket = cash.pop('pocket_data')[0]
@@ -133,15 +129,22 @@ def validate_json_only(root, payload):
     # contain C++ files. Never weakens JSON validation.
     # validate_bn's source comparison is deliberately separate from closure.
     index = set()
+    money_definition = None
     paths = sorted((root / 'data/json').rglob('*.json'))
     assert len(paths) > 100
     for path in paths:
         data = json.loads(path.read_text(encoding='utf-8'))
-        index.update(index_entries(data if isinstance(data, list) else [data]))
+        entries = data if isinstance(data, list) else [data]
+        index.update(index_entries(entries))
+        for entry in entries:
+            if namespace(entry) == 'item' and entry.get('id') == 'money_bundle':
+                money_definition = entry
     new_ids = {(namespace(e), i) for e in payload for i in ids(e)}
     assert not new_ids & index, sorted(new_ids & index)
     assert not (required_refs(payload) - index - new_ids), sorted(required_refs(payload) - index - new_ids)
-    assert ('item', 'coin_quarter') in index
+    assert ('item', 'money_bundle') in index
+    expected_money = next(e for e in json.loads(sources()['bn/data/json/items/generic.json']) if e.get('id') == 'money_bundle')
+    assert money_definition == expected_money, 'BN money bundle definition drift'
     print('PASS: native karting typed dependency closure against all BN JSON')
 
 

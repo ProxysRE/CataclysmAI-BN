@@ -33,3 +33,5 @@ Site-local palettes are expanded into mapgen objects, in source order, preservin
 ## Native integration checkpoint
 
 The karting circuit now has a separate BN adaptation in `prepare_karting.py` and `native/dda_karting_circuit.json`. See `karting/PORT_REPORT.json` for the compatibility limits. Its native build/runtime result is pending. This folder continues to preserve source staging candidates; the other four groups are not enabled.
+
+The dependency audit also accepts `--native-payload npc-content/native/dda_karting_circuit.json`. It records common port-provided groups separately from stock BN definitions, so future farm-shop cash loot can reuse the adapted cash register groups. The user requested stock BN currency only: all imported cash uses existing `money_bundle`; DDA denominations and coin/banknote groups are not installed.

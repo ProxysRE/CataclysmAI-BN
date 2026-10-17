@@ -36,7 +36,7 @@ jobs:
       - name: Verify bulk regional location staging and audit pinned BN references
         run: |
           python npc-content/check_regional_locations.py
-          python npc-content/prepare_regional_locations.py --check --bn-source bn-data --report regional-dependency-audit.json
+          python npc-content/prepare_regional_locations.py --check --bn-source bn-data --native-payload npc-content/native/dda_karting_circuit.json --report regional-dependency-audit.json
       - name: Preserve full regional dependency audit
         uses: actions/upload-artifact@v4
         with:

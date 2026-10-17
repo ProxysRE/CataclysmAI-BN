@@ -5,6 +5,7 @@
   },
   "bn_scan": "catalog_only",
   "installed": false,
+  "native_dependency_payloads": [],
   "reference_scan_scope": "Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions only; not a complete transitive loader validation.",
   "remaining": [
     "Resolve all shared nested/palette and item dependencies",
@@ -2369,7 +2370,7 @@
         {
           "type": "furniture",
           "id": "f_null",
-          "status": "provided_in_site"
+          "status": "bn_id_present_review_semantics"
         },
         {
           "type": "furniture",
@@ -3454,7 +3455,7 @@
         {
           "type": "terrain",
           "id": "t_null",
-          "status": "provided_in_site"
+          "status": "bn_id_present_review_semantics"
         },
         {
           "type": "terrain",

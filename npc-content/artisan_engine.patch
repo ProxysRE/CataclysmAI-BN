@@ -2539,7 +2539,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_radio_stations_test.cpp
-@@ -0,0 +1,357 @@
+@@ -0,0 +1,354 @@
 +#include "avatar.h"
 +#include "calendar.h"
 +#include "bodypart.h"
@@ -2886,14 +2886,11 @@
 +    REQUIRE( kart.blueprint != nullptr );
 +    CHECK( kart.blueprint->part_count() == 16 );
 +    for( const auto *name : { "cash_register_full", "cash_register_looted", "cash_register_empty",
-+                             "cash_register_random", "banknotes", "coins" } ) {
++                             "cash_register_random" } ) {
 +        CHECK( item_group::group_is_defined( item_group_id( name ) ) );
 +    }
-+    for( const auto *name : { "cash_register", "money_one", "money_two", "money_five", "money_ten",
-+                             "money_twenty", "money_fifty", "coin_penny", "coin_nickel", "coin_dime",
-+                             "coin_quarter", "coin_half_dollar", "coin_dollar" } ) {
-+        CHECK( itype_id( name ).is_valid() );
-+    }
++    CHECK( itype_id( "cash_register" ).is_valid() );
++    CHECK( itype_id( "money_bundle" ).is_valid() );
 +    auto cash = item::spawn( "cash_register", calendar::start_of_cataclysm );
 +    CHECK( cash->is_container() );
 +}
@@ -32672,7 +32669,7 @@
 +]
 --- /dev/null
 +++ b/data/json/dda_karting_circuit.json
-@@ -0,0 +1,1519 @@
+@@ -0,0 +1,1246 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -33839,19 +33836,11 @@
 +    "container-item": "cash_register",
 +    "items": [
 +      {
-+        "group": "banknotes",
++        "item": "money_bundle",
 +        "prob": 80,
 +        "count": [
-+          5,
-+          33
-+        ]
-+      },
-+      {
-+        "group": "coins",
-+        "prob": 80,
-+        "count": [
-+          5,
-+          33
++          1,
++          3
 +        ]
 +      }
 +    ]
@@ -33863,20 +33852,9 @@
 +    "container-item": "cash_register",
 +    "items": [
 +      {
-+        "group": "banknotes",
++        "item": "money_bundle",
 +        "prob": 15,
-+        "count": [
-+          1,
-+          2
-+        ]
-+      },
-+      {
-+        "group": "coins",
-+        "prob": 50,
-+        "count": [
-+          1,
-+          10
-+        ]
++        "count": 1
 +      },
 +      [
 +        "survnote",
@@ -33914,260 +33892,6 @@
 +        "prob": 15
 +      }
 +    ]
-+  },
-+  {
-+    "type": "item_group",
-+    "id": "banknotes",
-+    "items": [
-+      {
-+        "item": "money_one",
-+        "prob": 26
-+      },
-+      {
-+        "item": "money_two",
-+        "prob": 2
-+      },
-+      {
-+        "item": "money_five",
-+        "prob": 6
-+      },
-+      {
-+        "item": "money_ten",
-+        "prob": 5
-+      },
-+      {
-+        "item": "money_twenty",
-+        "prob": 23
-+      },
-+      {
-+        "item": "money_fifty",
-+        "prob": 5
-+      }
-+    ]
-+  },
-+  {
-+    "type": "item_group",
-+    "id": "coins",
-+    "items": [
-+      {
-+        "item": "coin_penny",
-+        "prob": 57
-+      },
-+      {
-+        "item": "coin_nickel",
-+        "prob": 10
-+      },
-+      {
-+        "item": "coin_dime",
-+        "prob": 19
-+      },
-+      {
-+        "item": "coin_quarter",
-+        "prob": 13
-+      },
-+      {
-+        "item": "coin_half_dollar",
-+        "prob": 1
-+      },
-+      {
-+        "item": "coin_dollar",
-+        "prob": 1
-+      }
-+    ]
-+  },
-+  {
-+    "type": "GENERIC",
-+    "category": "valuables",
-+    "id": "coin_penny",
-+    "name": {
-+      "str": "penny",
-+      "str_pl": "pennies"
-+    },
-+    "description": "A one-cent coin, featuring a portrait of Abraham Lincoln.  You could flip it.",
-+    "weight": "3 g",
-+    "volume": "1 ml",
-+    "price": "1 cent",
-+    "price_postapoc": "1 cent",
-+    "material": [
-+      "copper"
-+    ],
-+    "symbol": "o",
-+    "color": "brown",
-+    "use_action": [
-+      "COIN_FLIP"
-+    ]
-+  },
-+  {
-+    "type": "GENERIC",
-+    "category": "valuables",
-+    "id": "coin_nickel",
-+    "name": {
-+      "str": "nickel"
-+    },
-+    "description": "A five-cent coin, featuring a portrait of Thomas Jefferson.  You could flip it.",
-+    "weight": "5 g",
-+    "volume": "1 ml",
-+    "price": "5 cent",
-+    "price_postapoc": "1 cent",
-+    "material": [
-+      "copper"
-+    ],
-+    "symbol": "o",
-+    "color": "light_gray",
-+    "use_action": [
-+      "COIN_FLIP"
-+    ]
-+  },
-+  {
-+    "type": "GENERIC",
-+    "category": "valuables",
-+    "id": "coin_dime",
-+    "name": {
-+      "str": "dime"
-+    },
-+    "description": "A ten-cent coin, featuring a portrait of Franklin D Roosevelt.  You could flip it.",
-+    "weight": "2 g",
-+    "volume": "1 ml",
-+    "price": "10 cent",
-+    "price_postapoc": "1 cent",
-+    "material": [
-+      "copper"
-+    ],
-+    "symbol": "o",
-+    "color": "light_gray",
-+    "use_action": [
-+      "COIN_FLIP"
-+    ]
-+  },
-+  {
-+    "type": "GENERIC",
-+    "category": "valuables",
-+    "id": "coin_half_dollar",
-+    "name": {
-+      "str": "half-dollar coin"
-+    },
-+    "description": "A fifty-cent coin, featuring a portrait of John F Kennedy.  You could flip it.",
-+    "weight": "11 g",
-+    "volume": "1 ml",
-+    "price": "50 cent",
-+    "price_postapoc": "1 cent",
-+    "material": [
-+      "copper"
-+    ],
-+    "symbol": "o",
-+    "color": "light_gray",
-+    "use_action": [
-+      "COIN_FLIP"
-+    ]
-+  },
-+  {
-+    "type": "GENERIC",
-+    "category": "valuables",
-+    "id": "coin_dollar",
-+    "name": {
-+      "str": "dollar coin"
-+    },
-+    "description": "A one-dollar coin, featuring a portrait of Susan B Anthony.  You could flip it.",
-+    "weight": "8 g",
-+    "volume": "1 ml",
-+    "price": "1 USD",
-+    "price_postapoc": "1 cent",
-+    "material": [
-+      "copper"
-+    ],
-+    "symbol": "o",
-+    "color": "light_gray",
-+    "use_action": [
-+      "COIN_FLIP"
-+    ]
-+  },
-+  {
-+    "type": "GENERIC",
-+    "category": "valuables",
-+    "id": "money_one",
-+    "name": {
-+      "str": "one-dollar bill"
-+    },
-+    "description": "A one-dollar bill, featuring a portrait of George Washington.",
-+    "weight": "1 g",
-+    "volume": "1 ml",
-+    "price": "1 USD",
-+    "price_postapoc": "0 cent",
-+    "material": [
-+      "paper"
-+    ],
-+    "symbol": "$",
-+    "color": "green"
-+  },
-+  {
-+    "type": "GENERIC",
-+    "id": "money_two",
-+    "name": {
-+      "str": "two-dollar bill"
-+    },
-+    "description": "A two-dollar bill, featuring a portrait of Thomas Jefferson.",
-+    "looks_like": "money_one",
-+    "copy-from": "money_one",
-+    "color": "green",
-+    "symbol": "$",
-+    "price": "2 USD",
-+    "price_postapoc": "0 cent"
-+  },
-+  {
-+    "type": "GENERIC",
-+    "id": "money_five",
-+    "name": {
-+      "str": "five-dollar bill"
-+    },
-+    "description": "A five-dollar bill, featuring a portrait of Abraham Lincoln.",
-+    "looks_like": "money_one",
-+    "copy-from": "money_one",
-+    "color": "green",
-+    "symbol": "$",
-+    "price": "5 USD",
-+    "price_postapoc": "0 cent"
-+  },
-+  {
-+    "type": "GENERIC",
-+    "id": "money_ten",
-+    "name": {
-+      "str": "ten-dollar bill"
-+    },
-+    "description": "A ten-dollar bill, featuring a portrait of Alexander Hamilton.",
-+    "looks_like": "money_one",
-+    "copy-from": "money_one",
-+    "color": "green",
-+    "symbol": "$",
-+    "price": "10 USD",
-+    "price_postapoc": "0 cent"
-+  },
-+  {
-+    "type": "GENERIC",
-+    "id": "money_twenty",
-+    "name": {
-+      "str": "twenty-dollar bill"
-+    },
-+    "description": "A twenty-dollar bill, featuring a portrait of Andrew Jackson.",
-+    "looks_like": "money_one",
-+    "copy-from": "money_one",
-+    "color": "green",
-+    "symbol": "$",
-+    "price": "20 USD",
-+    "price_postapoc": "0 cent"
-+  },
-+  {
-+    "type": "GENERIC",
-+    "id": "money_fifty",
-+    "name": {
-+      "str": "fifty-dollar bill"
-+    },
-+    "description": "A fifty-dollar bill, featuring a portrait of Ulysses S Grant.",
-+    "looks_like": "money_one",
-+    "copy-from": "money_one",
-+    "color": "green",
-+    "symbol": "$",
-+    "price": "50 USD",
-+    "price_postapoc": "1 cent"
 +  },
 +  {
 +    "id": "cash_register",

@@ -3,51 +3,16 @@
     "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
     "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
   },
-  "bundle_sha256": "1da37eb27fd51f89cfe970a5049f45dc3eab5cae77f5986bc929036baaffa834",
+  "bundle_sha256": "f74206e5887b9cf09e78d3829b8c14f08e6a3ce4a2b876297cf452ad9ef204eb",
   "parts": [
     "SOURCE.part00",
     "SOURCE.part01",
     "SOURCE.part02",
     "SOURCE.part03",
-    "SOURCE.part04"
+    "SOURCE.part04",
+    "SOURCE.part05"
   ],
   "files": {
-    "bn/src/item_group.h": {
-      "sha256": "78790c25b3e0bc911e68cbe9050f06ba0bed73061cd03952e7bc5ab8b5afcecf"
-    },
-    "bn/src/mapgen/mapgen.cpp": {
-      "sha256": "e634d0630dfe7ebf262fde108595c6ef999037b0a170f1c02ee54b8275be9948"
-    },
-    "bn/src/overmap/overmap.cpp": {
-      "sha256": "93c01ef074fc9a0b498e88c90867b92c94f7183066d213beb440dffe16ee6816"
-    },
-    "bn/src/vehicle/veh_type.cpp": {
-      "sha256": "7974952d98b76b903c646b7c3f11dd7c01fed348a11b715bb13867d4e8c9d990"
-    },
-    "bn/src/vehicle/veh_type.h": {
-      "sha256": "6ab3cc39743cedda58245c120d5962b7cc1c5964ab85c55728a9a99660c957c3"
-    },
-    "bn/data/json/vehicleparts/wheel.json": {
-      "sha256": "55d5ca493c40c3b414e16cfedce2ca1e2e22a002c9ea3e10cec7b9c120f55424"
-    },
-    "bn/data/json/vehicleparts/frames.json": {
-      "sha256": "ae80e549c7329e55ea97c3ec33d648387c60f206b39db95d4f1932d416bebd9e"
-    },
-    "bn/data/json/vehicleparts/combustion.json": {
-      "sha256": "da6efb5e1f23c88fd1a8668699176bd8019b4818fc832e5ddcba901c8b2ee1d0"
-    },
-    "bn/data/json/overmap/special_locations.json": {
-      "sha256": "9ca092fa43a03c42d881b936d809d5f868b7b2b98f3c5501ea81e3867fb54bda"
-    },
-    "bn/data/json/vehicles/cars.json": {
-      "sha256": "b48a354f2aaa4e45e39473f04bb867f96f9545ef4ca9293b2b3963a3a837d26c"
-    },
-    "bn/data/json/items/containers.json": {
-      "sha256": "183a010a4e71e13939f5f2c7a4053c0f225188a81d13cc509a956e4f873003e8"
-    },
-    "bn/data/json/items/fluff.json": {
-      "sha256": "741a1dca7554b4e48b38005e39abd7b09049648972e34c686789f802801388d1"
-    },
     "dda/src/overmap.cpp": {
       "sha256": "822656a44165f578fb1ede664edbeb54e5372c63358646da6a2d7910f25268f5"
     },
@@ -62,6 +27,48 @@
     },
     "dda/data/json/items/generic/currency.json": {
       "sha256": "507eee8cfd0f3cc55f916cff40cf72062d9b46d7762c60403ddb3740736b291c"
+    },
+    "bn/src/item_group.h": {
+      "sha256": "78790c25b3e0bc911e68cbe9050f06ba0bed73061cd03952e7bc5ab8b5afcecf"
+    },
+    "bn/data/json/vehicleparts/combustion.json": {
+      "sha256": "da6efb5e1f23c88fd1a8668699176bd8019b4818fc832e5ddcba901c8b2ee1d0"
+    },
+    "bn/data/json/vehicleparts/wheel.json": {
+      "sha256": "55d5ca493c40c3b414e16cfedce2ca1e2e22a002c9ea3e10cec7b9c120f55424"
+    },
+    "bn/data/json/vehicleparts/frames.json": {
+      "sha256": "ae80e549c7329e55ea97c3ec33d648387c60f206b39db95d4f1932d416bebd9e"
+    },
+    "bn/data/json/overmap/special_locations.json": {
+      "sha256": "9ca092fa43a03c42d881b936d809d5f868b7b2b98f3c5501ea81e3867fb54bda"
+    },
+    "bn/data/json/items/ammo.json": {
+      "sha256": "cd47ad17eddc749730a7ea2d9243dec52f120a025cbaa409f3ffa8acd2944a03"
+    },
+    "bn/data/json/items/fluff.json": {
+      "sha256": "741a1dca7554b4e48b38005e39abd7b09049648972e34c686789f802801388d1"
+    },
+    "bn/data/json/items/containers.json": {
+      "sha256": "183a010a4e71e13939f5f2c7a4053c0f225188a81d13cc509a956e4f873003e8"
+    },
+    "bn/data/json/items/generic.json": {
+      "sha256": "65119930ff18e3c99bcfaa549273a3a229c3aff598e1b82ab9c1dbe842d80fb8"
+    },
+    "bn/data/json/vehicles/cars.json": {
+      "sha256": "b48a354f2aaa4e45e39473f04bb867f96f9545ef4ca9293b2b3963a3a837d26c"
+    },
+    "bn/src/overmap/overmap.cpp": {
+      "sha256": "93c01ef074fc9a0b498e88c90867b92c94f7183066d213beb440dffe16ee6816"
+    },
+    "bn/src/vehicle/veh_type.h": {
+      "sha256": "6ab3cc39743cedda58245c120d5962b7cc1c5964ab85c55728a9a99660c957c3"
+    },
+    "bn/src/vehicle/veh_type.cpp": {
+      "sha256": "7974952d98b76b903c646b7c3f11dd7c01fed348a11b715bb13867d4e8c9d990"
+    },
+    "bn/src/mapgen/mapgen.cpp": {
+      "sha256": "e634d0630dfe7ebf262fde108595c6ef999037b0a170f1c02ee54b8275be9948"
     }
   }
 }

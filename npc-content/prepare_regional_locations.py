@@ -14,6 +14,7 @@ from pathlib import Path
 from compare_location_catalog import read_sources, normalized, physical_refs
 from quest_dependency_graph import namespace, ids
 
+BUILTIN_IDS = {('terrain', 't_null'), ('furniture', 'f_null')}
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'regional_locations'
 SITES = {
@@ -123,7 +124,7 @@ def references(obj):
 
 
 def index_entries(entries):
-    result = {('terrain', 't_null'), ('furniture', 'f_null')}
+    result = set(BUILTIN_IDS)
     for e in entries:
         for identifier in ids(e):
             result.add((namespace(e) + ('_abstract' if 'id' not in e else ''), identifier))
@@ -142,7 +143,7 @@ def index_entries(entries):
     return result
 
 
-def build(bn_source=None):
+def build(bn_source=None, native_payloads=()):
     files, manifest = read_bundle()
     catalog, _ = read_sources()
     sides = {s: [e for p, text in catalog.items() if p.startswith(s + '/')
@@ -156,6 +157,10 @@ def build(bn_source=None):
         for path in paths:
             data = json.loads(path.read_text(encoding='utf-8'))
             bn_index.update(index_entries(data if isinstance(data, list) else [data]))
+    native_index = set()
+    for path in native_payloads:
+        native_index.update(index_entries(json.loads(path.read_text(encoding='utf-8'))))
+    native_index -= BUILTIN_IDS
     outputs, reports = {}, []
     for site, names in SITES.items():
         entries = [e for name in names for e in json.loads(files[name])
@@ -176,7 +181,7 @@ def build(bn_source=None):
                 new['object'] = expand(new['object'], palettes)
             staged.append(new)
         staged.extend(copy.deepcopy(selected_terrain + specials))
-        local_index = index_entries(staged)
+        local_index = index_entries(staged) - BUILTIN_IDS
         refs = {ref for e in staged if e.get('type') == 'mapgen' for ref in references(e.get('object', {}))}
         for e in staged:
             if e.get('type') == 'vehicle':
@@ -189,6 +194,7 @@ def build(bn_source=None):
         refs = sorted(refs)
         obligations = [{'type': kind, 'id': identifier,
                         'status': 'provided_in_site' if (kind, identifier) in local_index else
+                                  'provided_by_native_port_review_adaptation' if (kind, identifier) in native_index else
                                   'bn_id_present_review_semantics' if (kind, identifier) in bn_index else
                                   'unresolved_under_scanned_type' if bn_source else 'requires_full_bn_scan'}
                        for kind, identifier in refs]
@@ -202,7 +208,7 @@ def build(bn_source=None):
                         'unregistered_mapgen_terrain_ids': sorted(omt - set(terrain))})
         outputs[site + '.json'] = staged
     report = {'pins': manifest['pins'], 'bn_scan': 'full_core_json' if bn_source else 'catalog_only',
-              'installed': False, 'reference_scan_scope': 'Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions only; not a complete transitive loader validation.',
+              'installed': False, 'native_dependency_payloads': [p.name for p in native_payloads], 'reference_scan_scope': 'Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions only; not a complete transitive loader validation.',
               'remaining': ['Resolve all shared nested/palette and item dependencies',
                             'Review BN counterparts semantically; matching ID is not parity',
                             'Adapt DDA schema, parameters, ramps and functional furniture without substitutions',
@@ -218,11 +224,12 @@ def main():
     parser.add_argument('--bn-source', type=Path)
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--report', type=Path)
+    parser.add_argument('--native-payload', type=Path, action='append', default=[])
     args = parser.parse_args()
-    outputs = build(args.bn_source)
+    outputs = build(args.bn_source, args.native_payload)
     for name, value in outputs.items():
         text = json.dumps(value, ensure_ascii=False, indent=2) + '\n'
-        if args.bn_source and name == 'TRANSFER_REPORT.json':
+        if (args.bn_source or args.native_payload) and name == 'TRANSFER_REPORT.json':
             if args.report:
                 args.report.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
             for site in value['sites']:
