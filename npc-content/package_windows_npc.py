@@ -81,6 +81,9 @@ def verify_install(folder):
     from prepare_xedra_gear import definitions as gear_data, PAYLOAD as GEAR_PAYLOAD
     if json.loads((folder / GEAR_PAYLOAD).read_text(encoding='utf-8')) != gear_data():
         raise ValueError('Installed XEDRA suit states differ')
+    from prepare_karting import prepare_data as karting_data, PAYLOAD as KARTING_PAYLOAD
+    if json.loads((folder / KARTING_PAYLOAD).read_text(encoding='utf-8')) != karting_data():
+        raise ValueError('Installed complete karting circuit differs')
     from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload, replacements
     if json.loads((folder / PAYLOAD).read_text(encoding='utf-8')) != payload():
         raise ValueError('Installed Hub access payload differs')

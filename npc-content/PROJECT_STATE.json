@@ -399,5 +399,12 @@
     "computer_eocs": 4,
     "progress": "regional_locations/TRANSFER_REPORT.json",
     "validation": "source geometry and reproducibility; full BN ID audit added to CI; runtime pending"
+  },
+  "karting": {
+    "status": "native_prepared_not_runtime_validated",
+    "progress": "karting/PORT_REPORT.json",
+    "payload": "data/json/dda_karting_circuit.json",
+    "geometry": "3x3, two track levels plus roof, source rows preserved",
+    "dependencies": "16-part kart; cash register, six groups, 11 new currency items; BN quarter reused"
   }
 }

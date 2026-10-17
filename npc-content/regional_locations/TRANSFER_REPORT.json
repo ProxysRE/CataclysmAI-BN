@@ -433,6 +433,16 @@
           "status": "requires_full_bn_scan"
         },
         {
+          "type": "item_group",
+          "id": "vending_drink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "vending_food",
+          "status": "requires_full_bn_scan"
+        },
+        {
           "type": "monstergroup",
           "id": "GROUP_ZOMBIE",
           "status": "requires_full_bn_scan"
@@ -704,7 +714,7 @@
         },
         {
           "type": "vehicle_part",
-          "id": "xlframe",
+          "id": "xlframe#vertical",
           "status": "requires_full_bn_scan"
         }
       ],
@@ -965,6 +975,11 @@
         {
           "type": "item_group",
           "id": "coffee_bathroom",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "default_vending_machine",
           "status": "requires_full_bn_scan"
         },
         {
@@ -1814,6 +1829,16 @@
           "status": "requires_full_bn_scan"
         },
         {
+          "type": "item_group",
+          "id": "vending_drink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "vending_food",
+          "status": "requires_full_bn_scan"
+        },
+        {
           "type": "nested_mapgen",
           "id": "nursing_home_coo",
           "status": "provided_in_site"
@@ -2344,7 +2369,7 @@
         {
           "type": "furniture",
           "id": "f_null",
-          "status": "requires_full_bn_scan"
+          "status": "provided_in_site"
         },
         {
           "type": "furniture",
@@ -3429,7 +3454,7 @@
         {
           "type": "terrain",
           "id": "t_null",
-          "status": "requires_full_bn_scan"
+          "status": "provided_in_site"
         },
         {
           "type": "terrain",

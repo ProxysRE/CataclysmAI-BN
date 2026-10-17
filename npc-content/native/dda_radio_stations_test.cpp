@@ -16,6 +16,9 @@
 #include "monster.h"
 #include "mtype.h"
 #include "item.h"
+#include "item_group.h"
+#include "vehicle/veh_type.h"
+#include "vehicle/vehicle.h"
 #include "units.h"
 
 #include <array>
@@ -235,4 +238,116 @@ TEST_CASE( "XEDRA_activity_suit_casual_state_reduces_coverage_and_loses_full_bod
         CHECK( suit.has_flag( flag_id( seal ) ) );
     }
     CHECK( suit.get_var( "port_state_marker" ) == "preserve" );
+}
+
+TEST_CASE( "karting_circuit_generates_source_ramps_and_stairs", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>( disable_mapgen );
+    disable_mapgen = false;
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    for( int row = 0; row < 3; ++row ) {
+        for( int column = 0; column < 3; ++column ) {
+            for( int z = 0; z < 3; ++z ) {
+                const auto name = "karting_" + std::to_string( row ) + "_" +
+                                  std::to_string( column ) + "_" + std::to_string( z ) + "_north";
+                REQUIRE( oter_id( name ).is_valid() );
+                buffer.ter_set( tripoint_abs_omt( 900 + column, 900 + row, z ), oter_id( name ) );
+            }
+        }
+    }
+    // Each pair uses the exact same source x/y on the two elevations.
+    const auto ramps = std::array<std::array<int, 3>, 48> {{
+            {{32, 9, 0}},
+            {{33, 9, 1}},
+            {{32, 10, 0}},
+            {{33, 10, 1}},
+            {{32, 11, 0}},
+            {{33, 11, 1}},
+            {{32, 12, 0}},
+            {{33, 12, 1}},
+            {{19, 21, 0}},
+            {{20, 21, 0}},
+            {{21, 21, 0}},
+            {{22, 21, 0}},
+            {{19, 22, 1}},
+            {{20, 22, 1}},
+            {{21, 22, 1}},
+            {{22, 22, 1}},
+            {{39, 22, 1}},
+            {{40, 22, 1}},
+            {{41, 22, 1}},
+            {{42, 22, 1}},
+            {{39, 23, 0}},
+            {{40, 23, 0}},
+            {{41, 23, 0}},
+            {{42, 23, 0}},
+            {{19, 34, 1}},
+            {{20, 34, 1}},
+            {{21, 34, 1}},
+            {{22, 34, 1}},
+            {{19, 35, 0}},
+            {{20, 35, 0}},
+            {{21, 35, 0}},
+            {{22, 35, 0}},
+            {{29, 35, 0}},
+            {{30, 35, 0}},
+            {{31, 35, 0}},
+            {{32, 35, 0}},
+            {{49, 35, 1}},
+            {{50, 35, 1}},
+            {{51, 35, 1}},
+            {{52, 35, 1}},
+            {{29, 36, 1}},
+            {{30, 36, 1}},
+            {{31, 36, 1}},
+            {{32, 36, 1}},
+            {{49, 36, 0}},
+            {{50, 36, 0}},
+            {{51, 36, 0}},
+            {{52, 36, 0}},
+        }};
+    for( int row = 0; row < 3; ++row ) {
+        for( int column = 0; column < 3; ++column ) {
+            auto generated = map( 2 );
+            generated.load( project_to<coords::sm>( point_abs_omt( 900 + column, 900 + row ) ), false );
+            for( const auto &ramp : ramps ) {
+                if( ramp[0] / 24 != column || ramp[1] / 24 != row ) {
+                    continue;
+                }
+                INFO( "ramp source=" << ramp[0] << "," << ramp[1] );
+                CHECK( generated.ter( tripoint_bub_ms( ramp[0] % 24, ramp[1] % 24, 0 ) ) == ter_id( ramp[2] ? "t_ramp_up_high" : "t_ramp_up_low" ) );
+                CHECK( generated.ter( tripoint_bub_ms( ramp[0] % 24, ramp[1] % 24, 1 ) ) == ter_id( ramp[2] ? "t_ramp_down_high" : "t_ramp_down_low" ) );
+            }
+            if( row == 2 && column == 1 ) {
+                CHECK( generated.ter( tripoint_bub_ms( 12, 10, 0 ) ) == ter_id( "t_wood_stairs_up" ) );
+                CHECK( generated.ter( tripoint_bub_ms( 12, 10, 1 ) ) == ter_id( "t_wood_stairs_down" ) );
+            }
+        }
+    }
+}
+
+TEST_CASE( "karting_vehicle_and_cash_dependencies_are_native_bn_definitions", "[dda_npc][dda_locations]" )
+{
+    REQUIRE( vproto_id( "go_kart" ).is_valid() );
+    const auto &kart = vproto_id( "go_kart" ).obj();
+    REQUIRE( kart.parts.size() == 16 );
+    for( const auto &part : kart.parts ) {
+        CHECK( part.part.is_valid() );
+    }
+    REQUIRE( kart.blueprint != nullptr );
+    CHECK( kart.blueprint->part_count() == 16 );
+    for( const auto *name : { "cash_register_full", "cash_register_looted", "cash_register_empty",
+                             "cash_register_random", "banknotes", "coins" } ) {
+        CHECK( item_group::group_is_defined( item_group_id( name ) ) );
+    }
+    for( const auto *name : { "cash_register", "money_one", "money_two", "money_five", "money_ten",
+                             "money_twenty", "money_fifty", "coin_penny", "coin_nickel", "coin_dime",
+                             "coin_quarter", "coin_half_dollar", "coin_dollar" } ) {
+        CHECK( itype_id( name ).is_valid() );
+    }
+    auto cash = item::spawn( "cash_register", calendar::start_of_cataclysm );
+    CHECK( cash->is_container() );
 }

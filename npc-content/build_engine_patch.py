@@ -13,6 +13,7 @@ from prepare_tower_expansions import patch_sections as tower_patch, prepare as p
 from prepare_shopping_plaza import PAYLOAD as PLAZA_PAYLOAD
 from prepare_rural_churches import prepare as prepare_churches, PAYLOAD as CHURCH_PAYLOAD
 from prepare_xedra_creature import prepare as prepare_creature, patch_sections as creature_patch, PAYLOAD as CREATURE_PAYLOAD, CORE as CREATURE_CORE
+from prepare_karting import prepare as prepare_karting, PAYLOAD as KARTING_PAYLOAD
 from prepare_xedra_gear import prepare as prepare_gear, PAYLOAD as GEAR_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD, MUTATIONS
 
@@ -31,6 +32,7 @@ prepare_towers(check=True)
 prepare_churches(check=True)
 prepare_creature(check=True)
 prepare_gear(check=True)
+prepare_karting(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
@@ -57,6 +59,7 @@ if args.bn_source:
     (root / "engine_staging" / CHURCH_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / CREATURE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / GEAR_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / KARTING_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
@@ -128,6 +131,8 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_xedra_creature.json").
                                 "/dev/null", "b/" + CREATURE_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_xedra_activity_suits.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + GEAR_PAYLOAD))
+parts.extend(difflib.unified_diff([], (root / "native/dda_karting_circuit.json").read_text(encoding="utf-8").splitlines(keepends=True),
+                                "/dev/null", "b/" + KARTING_PAYLOAD))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()

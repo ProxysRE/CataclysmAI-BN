@@ -26,7 +26,9 @@ def check():
         from prepare_rural_churches import prepare_data as church_data, PAYLOAD as CHURCH_PAYLOAD
         from prepare_xedra_creature import payload as creature_data, PAYLOAD as CREATURE_PAYLOAD
         from prepare_xedra_gear import definitions as gear_data, PAYLOAD as GEAR_PAYLOAD
+        from prepare_karting import prepare_data as karting_data, PAYLOAD as KARTING_PAYLOAD
         payload = {
+            KARTING_PAYLOAD: json.dumps(karting_data()).encode(),
             GEAR_PAYLOAD: json.dumps(gear_data()).encode(),
             CREATURE_PAYLOAD: json.dumps(creature_data()).encode(),
             CHURCH_PAYLOAD: json.dumps(church_data()).encode(),

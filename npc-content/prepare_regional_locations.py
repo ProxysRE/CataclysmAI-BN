@@ -114,6 +114,8 @@ def references(obj):
     for data in obj.get('nested', {}).values():
         if isinstance(data, dict):
             value('nested_mapgen', data.get('chunks', []))
+    for machine in list(obj.get('vendingmachines', {}).values()) + obj.get('place_vendingmachines', []):
+        value('item_group', machine.get('item_group', 'default_vending_machine'))
     for computer in obj.get('place_computers', []):
         value('effect_on_condition', computer.get('eocs', []))
         value('talk_topic', computer.get('chat_topics', []))
@@ -121,10 +123,14 @@ def references(obj):
 
 
 def index_entries(entries):
-    result = set()
+    result = {('terrain', 't_null'), ('furniture', 'f_null')}
     for e in entries:
         for identifier in ids(e):
-            result.add((namespace(e), identifier))
+            result.add((namespace(e) + ('_abstract' if 'id' not in e else ''), identifier))
+        if e.get('type') == 'vehicle_part':
+            for shape in e.get('shapes', []):
+                for base in ids(e):
+                    result.add(('vehicle_part', base + '_' + shape['direction']))
         if e.get('type') in ('monstergroup', 'vehicle_group') and isinstance(e.get('name'), str):
             result.add((e['type'], e['name']))
         for identifier in flatten(e.get('om_terrain', [])):
@@ -177,7 +183,7 @@ def build(bn_source=None):
                 for location in e.get('parts', []):
                     for part in location.get('parts', []):
                         identifier = part if isinstance(part, str) else part['part']
-                        refs.add(('vehicle_part', identifier.split('#')[0]))
+                        refs.add(('vehicle_part', identifier))
                         if isinstance(part, dict) and 'fuel' in part:
                             refs.add(('item', part['fuel']))
         refs = sorted(refs)

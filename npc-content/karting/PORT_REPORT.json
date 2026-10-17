@@ -1,0 +1,49 @@
+{
+  "status": "native_prepared_not_runtime_validated",
+  "source": "Pinned DDA full large karting circuit; existing BN types reused",
+  "geometry": {
+    "footprint": [3, 3],
+    "elevations": [0, 1, 2],
+    "mapgen_definitions": 3,
+    "terrain_slots": 27,
+    "matched_ramp_columns": 48,
+    "ramp_terrain_cells_across_two_levels": 96,
+    "source_stair_pair": [36, 58]
+  },
+  "new_dependencies": {
+    "vehicle": "go_kart",
+    "vehicle_components": 16,
+    "cash_item_groups": 6,
+    "banknote_denominations": 6,
+    "coin_denominations_new": 5,
+    "cash_register_container": 1
+  },
+  "bn_reuse": [
+    "All kart engine, wheel, frame, steering, electrical and fuel-system parts",
+    "All rooms, roof utilities, furniture, terrain and ramp types",
+    "Stock vending drink/food groups and vending behavior",
+    "Existing coin_quarter remains unchanged"
+  ],
+  "adaptations": [
+    "xlframe#vertical becomes BN's generated xlframe_vertical; no new frame implementation",
+    "Site-local palette inlined into deferred mapgen objects",
+    "Explicit local_road connection replaces legacy terrain:road connection field",
+    "Unsupported lootable:true omitted; stock BN vending generation is used",
+    "DDA ITEM currency becomes BN GENERIC valuables with source descriptions and prices",
+    "Cash register uses BN CONTAINER with rigid 1 L capacity and source external weight/volume",
+    "DDA bash damage becomes BN bashing; structured DDA grip/balance modifier is omitted"
+  ],
+  "limitations": [
+    "DDA pocket shape filters and 2 kg pocket weight limit are not implemented; BN legacy container accepts general contents",
+    "DDA OLD_CURRENCY and pocket-shape flags are omitted; no global DDA barter or pocket system is introduced",
+    "Exact DDA vending damage/looting distribution is not claimed",
+    "Native load, actual generation and assembled vehicle tests are added but Windows results remain pending"
+  ],
+  "checks": [
+    "Original 72x72 rows, all floors, nested rooms and explicit placements preserved",
+    "All 48 ramp columns and source stairs match between levels",
+    "Typed native ID collision and direct reference closure required against pinned BN core JSON",
+    "Pinned BN loader, vehicle and container source baselines checked before native patch",
+    "Installed payload must exactly match generated circuit data before archive packaging"
+  ]
+}

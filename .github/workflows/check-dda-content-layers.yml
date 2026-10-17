@@ -31,6 +31,8 @@ jobs:
           python npc-content/prepare_rural_churches.py --check --bn-source bn-data
           python npc-content/prepare_xedra_creature.py --check --bn-data bn-data
           python npc-content/prepare_xedra_gear.py --check --bn-source bn-data
+          python npc-content/prepare_karting.py --check --bn-data bn-data
+          python npc-content/check_karting.py
       - name: Verify bulk regional location staging and audit pinned BN references
         run: |
           python npc-content/check_regional_locations.py

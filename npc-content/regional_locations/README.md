@@ -1,6 +1,6 @@
 # Bulk regional location transfer layer
 
-Five complete source site groups are preserved at the project's pinned DDA revision. These are **staged candidates, not installed or playable additions**. No native patch or Windows payload is changed by this checkpoint.
+Five complete source site groups are preserved at the project's pinned DDA revision. These files are **source staging candidates, not installed directly**. The separate karting adaptation is prepared for native validation; the other four groups remain staging. See the native integration checkpoint below.
 
 | Group | Mapgen definitions | Terrain slots | Source placements |
 | --- | ---: | ---: | --- |
@@ -29,3 +29,7 @@ Site-local palettes are expanded into mapgen objects, in source order, preservin
 - Use BN counterparts where equivalent; port source definitions and engine support where needed. Do not replace working machinery with decorative objects.
 - Adapt numeric vision, road connections, scoped parameters and region aliases using the established BN loaders.
 - Enable each coherent site only after native load, generation, vertical-connection and placement tests pass.
+
+## Native integration checkpoint
+
+The karting circuit now has a separate BN adaptation in `prepare_karting.py` and `native/dda_karting_circuit.json`. See `karting/PORT_REPORT.json` for the compatibility limits. Its native build/runtime result is pending. This folder continues to preserve source staging candidates; the other four groups are not enabled.
