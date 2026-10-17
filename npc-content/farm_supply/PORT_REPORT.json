@@ -7,7 +7,8 @@
     "construction_furniture": 3,
     "new_item_adapters": 6,
     "red_industrial_carpet": 1,
-    "nested_damage_template": "1x1_bash"
+    "nested_damage_template": "1x1_bash",
+    "native_corpse_action": "Explicit placements and palette mappings; Windows runtime validation pending"
   },
   "bn_adaptations": [
     "ATM glyph becomes stock t_atm terrain, preserving BN banking behavior",
@@ -27,7 +28,7 @@
     "Floor wallets are represented by stock BN cash cards; banknotes use money_bundle and the coin branch is omitted"
   ],
   "blocking_work": [
-    "Implement or adapt source place_corpses: one source corpse-placement record remains intact",
+    "Validate new native place_corpses action in Windows CI; source record remains intact in the uninstalled candidate",
     "Resolve helmet_bike_modified: DDA places chin guard/visor inside a modular helmet; an ordinary BN helmet is not a container",
     "Validate new furniture flags, dismantling/bash drops, material and battery container generation in native BN",
     "Validate tool power/quality behavior and helmet properties; then add native generation/roof tests before embedding payload"

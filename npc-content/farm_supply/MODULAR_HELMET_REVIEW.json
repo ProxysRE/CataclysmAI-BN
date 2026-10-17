@@ -1,0 +1,30 @@
+{
+  "status": "source_dependency_preserved_not_native_enabled",
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "source_files": [
+    "data/json/items/armor/helmets.json",
+    "data/json/items/armor/head_attachments.json",
+    "data/json/itemgroups/activities_hobbies.json"
+  ],
+  "source_group": "helmet_bike_modified",
+  "contents": [
+    {
+      "item": "plastic_chin_guard",
+      "prob": 50
+    },
+    {
+      "item": "shield_visor",
+      "prob": 10
+    }
+  ],
+  "mechanism": "Two ablative helmet pockets accept flag-restricted armor attachments; attachments are CANT_WEAR and cover mouth_chin/eyes through the parent helmet.",
+  "bn_limitations": [
+    "Existing ARMOR helmet_bike does not have DDA ablative pockets or inherited protection from pocket contents.",
+    "Defining the item_group with container-item helmet_bike would not reproduce wearable protection or attachment/removal.",
+    "A decorative container or ordinary helmet replacement is not dependency closure.",
+    "Full DDA pocket port is outside this local farm adapter; investigate a reusable BN attachment mechanism before enabling group."
+  ],
+  "archived_attachments": "DDA_HEAD_ATTACHMENTS.json",
+  "native_enabled": false,
+  "archived_sha256": "ab675208682bfb3fe4d74bc3117e62f6e345ef0de28f2960ad7e419926c468e2"
+}

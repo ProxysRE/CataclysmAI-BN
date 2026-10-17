@@ -19,3 +19,7 @@ Order is adaptive; it does not require every earlier group to finish before inde
 Include the source maps/floors, generation, inhabitants, dialogue, factions, quests, connected quest sites and all missing transitive dependencies. Reuse BN items, monsters and mechanics when appropriate. Add native support where source behavior cannot otherwise work. An NPC-owned shop must retain its actual services and mission links; an underground complex must have working access.
 
 A completed package must pass native data loading, generation/navigation checks, applicable quest and save/reload tests, Windows compilation and installed-data verification. Report each gate separately.
+
+## Current farm-store integration checkpoint
+
+Both source layouts and roofs remain non-installed candidates. Merchandise uses BN resources, battery capacities, glues and stock money. A reusable native corpse mapgen action now supports explicit placements and palette bindings; species/age/null-group tests are included in the Windows suite, with results pending. The remaining modular-helmet dependency is preserved in farm_supply/MODULAR_HELMET_REVIEW.json; attaching protective armor through DDA ablative pockets cannot be achieved by declaring an ordinary BN helmet as a container. Farm item/furniture behavior and complete site generation still require native validation.

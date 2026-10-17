@@ -21,9 +21,52 @@
 #include "vehicle/veh_type.h"
 #include "vehicle/vehicle.h"
 #include "units.h"
+#include "dda_mapgen_corpses.h"
+#include "map/mapbuffer_registry.h"
+
+#include <sstream>
 
 #include <array>
 #include <string>
+
+TEST_CASE( "source_corpse_mapgen_keeps_species_age_and_empty_groups", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
+    calendar::turn = calendar::start_of_cataclysm + 10_days;
+    auto &actor = get_avatar();
+    auto scratch = mapgen_constructor( MAPBUFFER_REGISTRY.get( actor.get_dimension() ) );
+    scratch.reset_scratch_omt( tripoint_abs_omt( 0, 0, 0 ), ter_id( "t_floor" ),
+                              furn_id( "f_null" ), trap_id( "tr_null" ) );
+    const auto dat = mapgendata( scratch, mapgendata::dummy_settings );
+    const auto group = mongroup_id( "FERAL_HUMANS" );
+    REQUIRE( group.is_valid() );
+    const auto species = MonsterGroupManager::GetMonstersFromGroup( group );
+    for( int age : { 0, 3, 30 } ) {
+        scratch.i_clear( point_omt_ms( 7, 18 ) );
+        auto input = std::istringstream( "{\"group\":\"FERAL_HUMANS\",\"age\":" +
+                                       std::to_string( age ) + "}" );
+        auto parser = JsonIn( input );
+        const auto piece = jmapgen_corpse( parser.get_object() );
+        piece.apply( dat, jmapgen_int( 7 ), jmapgen_int( 18 ) );
+        auto stack = scratch.i_at( point_omt_ms( 7, 18 ) );
+        REQUIRE( stack.size() == 1 );
+        for( const item &body : stack ) {
+            REQUIRE( body.is_corpse() );
+            REQUIRE( body.get_mtype() != nullptr );
+            CHECK( std::find( species.begin(), species.end(), body.get_mtype()->id ) != species.end() );
+            CHECK( body.birthday() == std::max( calendar::turn - time_duration::from_days( age ),
+                                               calendar::start_of_cataclysm ) );
+        }
+    }
+    for( const auto &name : { "GROUP_NULL", "dda_test_missing_corpse_group" } ) {
+        auto input = std::istringstream( std::string( "{\"group\":\"" ) + name + "\"}" );
+        auto parser = JsonIn( input );
+        const auto piece = jmapgen_corpse( parser.get_object() );
+        piece.apply( dat, jmapgen_int( 8 ), jmapgen_int( 18 ) );
+        CHECK( scratch.i_at( point_omt_ms( 8, 18 ) ).empty() );
+    }
+}
 
 TEST_CASE( "radio_station_towers_generate_continuous_ladders_in_all_rotations", "[dda_npc][dda_locations]" )
 {

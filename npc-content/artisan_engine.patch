@@ -1253,6 +1253,57 @@
 +
 +} // namespace dda_port
 --- /dev/null
++++ b/src/dda_mapgen_corpses.h
+@@ -0,0 +1,48 @@
++#pragma once
++
++#include "calendar.h"
++#include "debug.h"
++#include "item.h"
++#include "mapgen/mapgen.h"
++#include "mapgen/mapgen_constructor.h"
++#include "mapgen/mapgendata.h"
++#include "mongroup.h"
++#include "rng.h"
++
++#include <algorithm>
++
++// Adapted from DDA jmapgen_corpse at the project's pinned source revision.
++// BN groups have a default monster rather than recursive subgroup entries.
++class jmapgen_corpse : public jmapgen_piece
++{
++    public:
++        mongroup_id group;
++        time_duration age;
++
++        explicit jmapgen_corpse( const JsonObject &jsi ) :
++            group( jsi.get_string( "group" ) ),
++            age( time_duration::from_days( jsi.get_int( "age", 0 ) ) ) {}
++
++        void check( const std::string &context, const mapgen_parameters & ) const override {
++            if( !group.is_valid() ) {
++                debugmsg( "Invalid corpse monster group %s in %s", group.str(), context );
++            }
++        }
++
++        void apply( const mapgendata &dat, const jmapgen_int &x,
++                    const jmapgen_int &y ) const override {
++            if( !group.is_valid() ) {
++                return;
++            }
++            auto candidates = MonsterGroupManager::GetMonstersFromGroup( group );
++            // A null default means 'no monster', never a generic human corpse.
++            candidates.erase( std::remove_if( candidates.begin(), candidates.end(),
++            []( const mtype_id &id ) { return id.is_null() || !id.is_valid(); } ), candidates.end() );
++            if( candidates.empty() ) {
++                return;
++            }
++            dat.m.add_item_or_charges( point_omt_ms( x.get(), y.get() ),
++                                      item::make_corpse( random_entry( candidates ),
++                                              std::max( calendar::turn - age, calendar::start_of_cataclysm ) ) );
++        }
++};
+--- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
 @@ -0,0 +1,957 @@
 +#include "artisan_bn_bridge.h"
@@ -2539,7 +2590,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_radio_stations_test.cpp
-@@ -0,0 +1,354 @@
+@@ -0,0 +1,397 @@
 +#include "avatar.h"
 +#include "calendar.h"
 +#include "bodypart.h"
@@ -2563,9 +2614,52 @@
 +#include "vehicle/veh_type.h"
 +#include "vehicle/vehicle.h"
 +#include "units.h"
++#include "dda_mapgen_corpses.h"
++#include "map/mapbuffer_registry.h"
++
++#include <sstream>
 +
 +#include <array>
 +#include <string>
++
++TEST_CASE( "source_corpse_mapgen_keeps_species_age_and_empty_groups", "[dda_npc][dda_locations]" )
++{
++    clear_all_state();
++    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
++    calendar::turn = calendar::start_of_cataclysm + 10_days;
++    auto &actor = get_avatar();
++    auto scratch = mapgen_constructor( MAPBUFFER_REGISTRY.get( actor.get_dimension() ) );
++    scratch.reset_scratch_omt( tripoint_abs_omt( 0, 0, 0 ), ter_id( "t_floor" ),
++                              furn_id( "f_null" ), trap_id( "tr_null" ) );
++    const auto dat = mapgendata( scratch, mapgendata::dummy_settings );
++    const auto group = mongroup_id( "FERAL_HUMANS" );
++    REQUIRE( group.is_valid() );
++    const auto species = MonsterGroupManager::GetMonstersFromGroup( group );
++    for( int age : { 0, 3, 30 } ) {
++        scratch.i_clear( point_omt_ms( 7, 18 ) );
++        auto input = std::istringstream( "{\"group\":\"FERAL_HUMANS\",\"age\":" +
++                                       std::to_string( age ) + "}" );
++        auto parser = JsonIn( input );
++        const auto piece = jmapgen_corpse( parser.get_object() );
++        piece.apply( dat, jmapgen_int( 7 ), jmapgen_int( 18 ) );
++        auto stack = scratch.i_at( point_omt_ms( 7, 18 ) );
++        REQUIRE( stack.size() == 1 );
++        for( const item &body : stack ) {
++            REQUIRE( body.is_corpse() );
++            REQUIRE( body.get_mtype() != nullptr );
++            CHECK( std::find( species.begin(), species.end(), body.get_mtype()->id ) != species.end() );
++            CHECK( body.birthday() == std::max( calendar::turn - time_duration::from_days( age ),
++                                               calendar::start_of_cataclysm ) );
++        }
++    }
++    for( const auto &name : { "GROUP_NULL", "dda_test_missing_corpse_group" } ) {
++        auto input = std::istringstream( std::string( "{\"group\":\"" ) + name + "\"}" );
++        auto parser = JsonIn( input );
++        const auto piece = jmapgen_corpse( parser.get_object() );
++        piece.apply( dat, jmapgen_int( 8 ), jmapgen_int( 18 ) );
++        CHECK( scratch.i_at( point_omt_ms( 8, 18 ) ).empty() );
++    }
++}
 +
 +TEST_CASE( "radio_station_towers_generate_continuous_ladders_in_all_rotations", "[dda_npc][dda_locations]" )
 +{
@@ -32499,6 +32593,32 @@
      z->add_effect( effect_grabbing, 2_turns );
      return true;
  }
+--- a/src/mapgen/mapgen.cpp
++++ b/src/mapgen/mapgen.cpp
+@@ -19,6 +19,7 @@
+ #include "computer.h"
+ #include "coordinates.h"
+ #include "debug.h"
++#include "dda_mapgen_corpses.h"
+ #include "drawing_primitives.h"
+ #include "enums.h"
+ #include "fluid_grid.h"
+@@ -3332,6 +3333,7 @@
+     new_pal.load_place_mapings<jmapgen_vending_machine>(jo, "vendingmachines", format_placings);
+     new_pal.load_place_mapings<jmapgen_toilet>(jo, "toilets", format_placings);
+     new_pal.load_place_mapings<jmapgen_gaspump>(jo, "gaspumps", format_placings);
++    new_pal.load_place_mapings<jmapgen_corpse>(jo, "corpses", format_placings);
+     new_pal.load_place_mapings<jmapgen_item_group>(jo, "items", format_placings);
+     new_pal.load_place_mapings<jmapgen_monster_group>(jo, "monsters", format_placings);
+     new_pal.load_place_mapings<jmapgen_vehicle>(jo, "vehicles", format_placings);
+@@ -3556,6 +3558,7 @@
+     objects.load_objects<jmapgen_gaspump>(jo, "place_gaspumps");
+     objects.load_objects<jmapgen_item_group>(jo, "place_items");
+     objects.load_objects<jmapgen_loot>(jo, "place_loot");
++    objects.load_objects<jmapgen_corpse>(jo, "place_corpses");
+     objects.load_objects<jmapgen_artifact>(jo, "place_artifact");
+     objects.load_objects<jmapgen_monster_group>(jo, "place_monsters");
+     objects.load_objects<jmapgen_vehicle>(jo, "place_vehicles");
 --- /dev/null
 +++ b/data/json/dda_xedra_creature.json
 @@ -0,0 +1,117 @@

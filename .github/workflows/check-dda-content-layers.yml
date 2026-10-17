@@ -33,6 +33,7 @@ jobs:
           python npc-content/prepare_xedra_gear.py --check --bn-source bn-data
           python npc-content/prepare_karting.py --check --bn-data bn-data
           python npc-content/check_karting.py
+          python npc-content/prepare_mapgen_corpses.py
       - name: Verify bulk regional location staging and audit pinned BN references
         run: |
           python npc-content/export_bn_ids.py --bn-source bn-data --output bn-id-index.json --cache npc-content/dependency_catalog/BN_ID_INDEX.json

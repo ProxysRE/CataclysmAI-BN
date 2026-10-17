@@ -111,7 +111,7 @@ def references(obj):
                 if key in data:
                     value(kind, data[key])
     for field, kind in [('terrain', 'terrain'), ('furniture', 'furniture'), ('items', 'item_group'),
-                        ('item', 'item'), ('monsters', 'monstergroup'), ('vehicles', 'vehicle'),
+                        ('item', 'item'), ('monsters', 'monstergroup'), ('corpses', 'monstergroup'), ('vehicles', 'vehicle'),
                         ('traps', 'trap'), ('fields', 'field_type')]:
         for data in obj.get(field, {}).values():
             value(kind, data)
@@ -122,6 +122,7 @@ def references(obj):
                               ('place_item', 'item', ('item',)),
                               ('place_monsters', 'monstergroup', ('monster', 'group')),
                               ('place_monster', 'MONSTER', ('monster',)),
+                              ('place_corpses', 'monstergroup', ('group',)),
                               ('place_vehicles', 'vehicle', ('vehicle',)),
                               ('place_npcs', 'npc', ('class',)),
                               ('place_nested', 'nested_mapgen', ('chunks',))]:

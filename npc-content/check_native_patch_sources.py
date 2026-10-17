@@ -15,6 +15,8 @@ from prepare_karting import prepare as prepare_karting, PAYLOAD as KARTING_PAYLO
 from prepare_xedra_gear import prepare as prepare_gear, PAYLOAD as GEAR_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD
 
+from prepare_mapgen_corpses import patch_sections as corpse_patch
+
 ROOT = Path(__file__).resolve().parent
 
 
@@ -38,6 +40,7 @@ def check():
     prepare_creature(check=True)
     prepare_gear(check=True)
     prepare_karting(check=True)
+    assert corpse_patch() in patch, "Stale corpse mapgen replacement"
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
     expected_hub = hub_access_patch()
@@ -45,7 +48,7 @@ def check():
     files = {
         'src/' + name: ROOT / 'native' / name
         for name in ('artisan_expression.h', 'artisan_bn_bridge.h', 'artisan_items.h',
-                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h')
+                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h', 'dda_mapgen_corpses.h')
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name

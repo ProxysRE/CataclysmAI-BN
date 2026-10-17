@@ -53,3 +53,6 @@ print('PASS: shared native cash providers recognized without mutating staged far
 inline = {'items': {'X': {'item': {'subtype': 'collection', 'entries': [{'group': 'guns_rifle_common_display', 'prob': 40}, {'item': 'fishing_hook_basic', 'count': [2, 5]}, {'item': 'water_clean', 'container-item': 'bottle_plastic'}]}, 'chance': 100}}}
 assert set(references(inline)) == {('item_group', 'guns_rifle_common_display'), ('item', 'fishing_hook_basic'), ('item', 'water_clean'), ('item', 'bottle_plastic')}
 print('PASS: inline loot collections expose typed group/item/container dependencies')
+
+assert references({'place_corpses': [{'group': 'FERAL_HUMANS', 'x': 7, 'y': 42}]}) == [('monstergroup', 'FERAL_HUMANS')]
+assert references({'corpses': {'c': {'group': 'FERAL_HUMANS', 'age': 3}}}) == [('monstergroup', 'FERAL_HUMANS')]

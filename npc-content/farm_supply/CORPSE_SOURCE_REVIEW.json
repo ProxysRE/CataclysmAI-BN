@@ -1,0 +1,18 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "source": "src/mapgen.cpp",
+  "class_excerpt": "class jmapgen_corpse : public jmapgen_piece\n{\n    public:\n        mongroup_id group;\n        time_duration age;\n        jmapgen_corpse( const JsonObject &jsi, std::string_view/*context*/ ) :\n            group( jsi.get_member( \"group\" ) )\n            , age( time_duration::from_days( jsi.get_int( \"age\", 0 ) ) ) {\n        }\n\n        void apply( const mapgendata &dat, const jmapgen_int &x, const jmapgen_int &y, const jmapgen_int &z,\n                    const std::string &/*context*/ ) const override {\n            const std::vector<mtype_id> monster_group =\n                MonsterGroupManager::GetMonstersFromGroup( group, true );\n            if( monster_group.empty() ) {\n                return;\n            }\n            const mtype_id &corpse_type = random_entry_ref( monster_group );\n            item corpse = item::make_corpse( corpse_type,\n                                             std::max( calendar::turn - age, calendar::start_of_cataclysm ) );\n            dat.m.add_item_or_charges( tripoint_bub_ms( x.get(), y.get(), dat.zlevel() + z.get() ),\n                                       corpse );\n        }\n};\n\n",
+  "registration": [
+    "    new_pal.load_place_mapings<jmapgen_corpse>( jo, \"corpses\", format_placings, c );",
+    "    objects.load_objects<jmapgen_corpse>( jo, \"place_corpses\", context_ );"
+  ],
+  "bn_mongroup_excerpt": "MonsterGroupManager::GetMonstersFromGroup( const mongroup_id &group )\n{\n    const MonsterGroup &g = group.obj();\n\n    std::vector<mtype_id> monsters;\n\n    monsters.push_back( g.defaultMonster );\n\n    for( auto &elem : g.monsters ) {\n        monsters.push_back( elem.name );\n    }\n    return monsters;\n}\n\n",
+  "notes": [
+    "BN monster groups have concrete entries and an optional default; no DDA recursive subgroup/event schema is introduced.",
+    "Uniform selection follows the DDA corpse action, not live-spawn frequency, density, pack-size or drop tables.",
+    "BN null/invalid types are filtered to avoid manufacturing a generic human corpse from 'no monster'.",
+    "Age is in days and birthday is clamped at start_of_cataclysm; placement uses BN point_omt_ms in the current generated z-level.",
+    "Both explicit place_corpses and palette corpses are registered. Native tests are scheduled; farm remains candidate until modular-helmet dependency is addressed."
+  ]
+}

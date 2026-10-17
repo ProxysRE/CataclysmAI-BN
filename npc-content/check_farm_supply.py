@@ -37,8 +37,8 @@ for e in payload:
         if e['id'] != 'quicklime_barrel':
             assert e['container-item'] == 'bag_canvas'
         assert 'charges' in e['items'][0] and 'count' not in e['items'][0]
-# The candidate deliberately retains the unsupported corpse feature. It is
-# a visible integration blocker, never silently dropped from the source map.
+# The candidate retains the source corpse feature; the new native action
+# must pass runtime checks before this map is installed.
 assert sum(len(e['object'].get('place_corpses', [])) for e in maps) == 1
 assert ('item_group', 'guns_rifle_common_display') in references(maps[0]['object'])
 assert any(e.get('nested_mapgen_id') == '1x1_bash' for e in payload)
@@ -69,4 +69,7 @@ for e in payload:
     if e['type'] == 'item_group':
         refs = references({'items': {'_': {'item': e}}})
         assert ('item_group', 'banknotes') not in refs and ('item_group', 'coins') not in refs
-print('PASS: full pinned BN ID cache; only modular-helmet group remains unresolved; native corpse bridge still required')
+print('PASS: full pinned BN ID cache; only modular-helmet group remains unresolved; native corpse action prepared, Windows runtime checks pending')
+
+from prepare_mapgen_corpses import prepare as check_corpse_action
+check_corpse_action()
