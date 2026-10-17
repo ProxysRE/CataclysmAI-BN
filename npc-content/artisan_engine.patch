@@ -107,7 +107,7 @@
  #include <map>
  #include <memory>
  #include <ostream>
-@@ -3000,7 +3003,198 @@
+@@ -3000,7 +3003,218 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
@@ -128,6 +128,26 @@
 +                    return;
 +                }
 +                d.alpha->assign_activity( activity, moves );
++            }
++        } );
++    } else if( jo.has_object( "dda_set_faction_trust" ) ) {
++        const auto specification = jo.get_object( "dda_set_faction_trust" );
++        const auto target = faction_id( specification.get_string( "target" ) );
++        const auto expression = dda_port::read_expression( specification.get_object( "expression" ) );
++        subeffect_fun = talk_effect_fun_t( std::function<auto( const dialogue & ) -> void>{
++            [target, expression]( const auto &d ) {
++                if( !d.alpha ) { return; }
++                const auto value = dda_port::evaluate_for_player( expression, *d.alpha, d.beta );
++                if( !value || *value < std::numeric_limits<int>::min() || *value > std::numeric_limits<int>::max() ) {
++                    debugmsg( "Invalid named faction trust assignment" );
++                    return;
++                }
++                auto *fac = g->faction_manager_ptr->get( target );
++                if( !fac ) {
++                    debugmsg( "Missing named faction for trust assignment: %s", target.str() );
++                    return;
++                }
++                fac->trusts_u = static_cast<int>( *value );
 +            }
 +        } );
 +    } else if( jo.has_int( "dda_add_faction_trust" ) ) {
@@ -307,7 +327,7 @@
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
-@@ -3502,6 +3696,13 @@
+@@ -3502,6 +3716,13 @@
          conditional_t<dialogue> dcondition;
          const dynamic_line_t yes = from_member( jo, "yes" );
          const dynamic_line_t no = from_member( jo, "no" );
@@ -675,7 +695,7 @@
  
 --- /dev/null
 +++ b/src/artisan_expression.h
-@@ -0,0 +1,151 @@
+@@ -0,0 +1,158 @@
 +#pragma once
 +
 +#include <cmath>
@@ -742,6 +762,13 @@
 +        const auto found = context.variables.find( "@opinion:" + node.name );
 +        if( found == context.variables.end() ) {
 +            return std::unexpected( "NPC opinion requires an NPC actor" );
++        }
++        return valid_number( found->second );
++    }
++    if( node.op == "faction_trust" && node.args.empty() ) {
++        const auto found = context.variables.find( "@faction_trust:" + node.name );
++        if( found == context.variables.end() ) {
++            return std::unexpected( "Missing named faction trust" );
 +        }
 +        return valid_number( found->second );
 +    }
@@ -829,7 +856,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/src/artisan_bn_bridge.h
-@@ -0,0 +1,175 @@
+@@ -0,0 +1,190 @@
 +#pragma once
 +
 +#include "artisan_expression.h"
@@ -838,6 +865,7 @@
 +#include "player.h"
 +#include "npc.h"
 +#include "game.h"
++#include "faction.h"
 +#include "rng.h"
 +
 +#include <charconv>
@@ -867,13 +895,19 @@
 +        result.npc_actor = actor == "npc";
 +        result.global_actor = actor == "global";
 +    }
++    if( result.op == "faction_trust" ) {
++        result.name = object.get_string( "name" );
++        if( result.name.empty() ) {
++            object.throw_error( "Named faction trust requires a faction ID" );
++        }
++    }
 +    if( object.has_array( "args" ) ) {
 +        for( const auto entry : object.get_array( "args" ) ) {
 +            result.args.push_back( read_expression( entry.get_object() ) );
 +        }
 +    }
 +    const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var" || result.op == "rand";
-+    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion" || result.op == "cataclysm";
++    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion" || result.op == "cataclysm" || result.op == "faction_trust";
 +    const auto ternary = result.op == "clamp";
 +    const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
 +                        result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
@@ -894,6 +928,14 @@
 +
 +inline auto collect_values( const expression &node, const expression_actors &actors,
 +                            std::unordered_map<std::string, double> &values ) -> std::expected<void, std::string> {
++    if( node.op == "faction_trust" ) {
++        const auto *fac = g->faction_manager_ptr->get( faction_id( node.name ) );
++        if( !fac ) {
++            return std::unexpected( "Missing named faction: " + node.name );
++        }
++        values["@faction_trust:" + node.name] = fac->trusts_u;
++        return {};
++    }
 +    if( node.op == "npc_opinion" ) {
 +        const auto *speaker = dynamic_cast<const npc *>( actors.npc );
 +        if( !speaker ) {
@@ -1169,7 +1211,7 @@
 +} // namespace dda_port
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
-@@ -0,0 +1,919 @@
+@@ -0,0 +1,957 @@
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
 +#include "avatar.h"
@@ -1191,6 +1233,44 @@
 +
 +#include <sstream>
 +#include <limits>
++
++TEST_CASE( "hub_penalty_changes_named_faction_instead_of_current_speaker", "[dda_npc]" ) {
++    clear_all_state();
++    get_avatar().reset_all_missions();
++    auto *hub = g->faction_manager_ptr->get( faction_id( "robofac" ) );
++    auto *followers = g->faction_manager_ptr->get( faction_id( "your_followers" ) );
++    REQUIRE( hub );
++    REQUIRE( followers );
++    const auto restore_hub = restore_on_out_of_scope<int>( hub->trusts_u );
++    const auto restore_followers = restore_on_out_of_scope<int>( followers->trusts_u );
++    hub->trusts_u = 35;
++    followers->trusts_u = 70;
++    auto actor = npc{};
++    auto speaker = npc{};
++    speaker.set_fac( faction_id( "your_followers" ) );
++    auto conversation = dialogue{};
++    conversation.alpha = &actor;
++    conversation.beta = &speaker;
++    auto input = std::istringstream( R"({"effect":{"dda_set_faction_trust":{"target":"robofac","expression":{"op":"subtract","args":[{"op":"faction_trust","name":"robofac"},{"op":"literal","value":20}]}}}})" );
++    auto parser = JsonIn( input );
++    const auto effect = talk_effect_t( parser.get_object() );
++    REQUIRE( effect.effects.size() == 1 );
++    effect.effects.front()( conversation );
++    CHECK( hub->trusts_u == 15 );
++    CHECK( followers->trusts_u == 70 );
++    // Evaluate the real faction again, not a cached dialogue variable.
++    conversation.beta = nullptr;
++    effect.effects.front()( conversation );
++    CHECK( hub->trusts_u == -5 );
++    CHECK( followers->trusts_u == 70 );
++    auto data = std::stringstream{};
++    auto output = JsonOut( data );
++    hub->serialize( output );
++    auto restored = faction{};
++    auto saved = JsonIn( data );
++    restored.deserialize( saved );
++    CHECK( restored.trusts_u == -5 );
++}
 +
 +TEST_CASE( "community_random_math_preserves_DDA_float_and_integer_semantics", "[dda_npc]" ) {
 +    const auto variables = std::unordered_map<std::string, double>{};
@@ -4467,3 +4547,23 @@
 +    "method": "json"
 +  }
 +]
+--- a/data/json/mapgen/chemical_lab.json
++++ b/data/json/mapgen/chemical_lab.json
+@@ -14,7 +14,7 @@
+         "......-~~~~~~~~~~~~~-...",
+         "......-~~~~~00~~~~~~-...",
+         "......-~~##W##W##W#~-...",
+-        "......-~~#A     @ #~-...",
++        "......-~~#A     c #~-...",
+         "......G~~=     CCC#~-...",
+         "......-~~# RR     W~-...",
+         "......-~~#####   c#~-...",
+@@ -35,7 +35,7 @@
+       "terrain": { "0": [ [ "t_region_groundcover_barren", 3 ], "t_region_groundcover" ] },
+       "faction_owner": [ { "id": "wasteland_scavengers", "x": [ 1, 23 ], "y": [ 1, 23 ] } ],
+       "items": { "C": [ { "item": "cabin_chemist_sell", "chance": 100, "repeat": [ 4, 5 ] } ] },
+-      "npcs": { "@": { "class": "NPC_cabin_chemist" } }
++      "place_npcs": [ { "class": "NPC_cabin_chemist", "x": 16, "y": 8 } ]
+     }
+   },
+   {

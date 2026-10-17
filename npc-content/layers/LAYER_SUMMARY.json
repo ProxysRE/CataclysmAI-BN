@@ -186,7 +186,7 @@
         "npc_guard_enum": 28,
         "string_equality": 441,
         "native_skill_threshold": 2,
-        "native_expression": 421,
+        "native_expression": 422,
         "dda_give_item": 222,
         "npc_guard_patrol_enum": 3,
         "npc_shopkeep_enum": 8,
@@ -199,7 +199,7 @@
         "global_string_assignment": 47,
         "inlined_eoc_calls": 3
       },
-      "blocked": 31,
+      "blocked": 30,
       "status": "staged_unvalidated"
     },
     "bunker_shop": {
@@ -222,7 +222,7 @@
   "totals": {
     "source_files": 158,
     "definitions": 1767,
-    "blocked_definitions": 66,
+    "blocked_definitions": 65,
     "overlap_records": 382,
     "reference_records": 4383,
     "external_reference_records": 867
@@ -237,7 +237,7 @@
     "Unsupported DDA arithmetic: Call(func=Name(id='num_input', ctx=Load()), args=[Constant(value=''), Name(id='v_item', ctx=Load())], keywords=[])": 1,
     "Unsupported DDA arithmetic: Name(id='v_item', ctx=Load())": 1,
     "Extended EOC definition requires native lifecycle support: EOC_MISSION_GET_DRIVEBELTS_done": 1,
-    "invalid syntax (<unknown>, line 1)": 2,
+    "invalid syntax (<unknown>, line 1)": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_CBM_SURGERY', 'duration': '2 hours'}": 4,
     "Unported activity effect: {'u_assign_activity': 'ACT_CBM_SURGERY', 'duration': '6 hours'}": 1,
     "Unported activity effect: {'u_assign_activity': 'ACT_GENERIC_EOC', 'duration': '10 minutes'}": 2,

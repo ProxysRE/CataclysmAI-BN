@@ -1,13 +1,13 @@
 {
   "checkpoint": {
-    "head": "962aeb067147586280ed44514099bc18e391c242",
-    "run_id": 38803907775,
+    "head": "c644c36547e6349663987d98b912ffe6b01cde66",
+    "run_id": 38976175204,
     "status": "success",
-    "test_cases": 20,
-    "assertions": 798
+    "test_cases": 31,
+    "assertions": 1065
   },
-  "native_patch_sha256": "3ca676c94836d4fddbdd714dceb9f79b365f23e90cb8959e1d653ac5e1b71816",
-  "native_community_sha256": "16d52f52b0448af495def32e7caec3fb7a72cfb679f6c8958694b879a4b5754e",
+  "native_patch_sha256": "6edba1068a99a33042d762618f445a198b7d1c294772936d04577c56290c9ab5",
+  "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
     "NPC templates and seven mission definitions",
@@ -17,12 +17,17 @@
     "Canoe and light map modification payloads",
     "Family dialogue survival/loss variants",
     "Faction stock and legacy save compatibility",
-    "BN dialogue extension preservation"
+    "BN dialogue extension preservation",
+    "Real basement family spawn and return dialogue routing",
+    "Boat payment boundaries and mission start/end callbacks",
+    "Global master save round-trip, real NPC opinion and conditional effects",
+    "DDA random math and rotated location conditions"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
     "Natural dock generation and random encounter integration",
     "Save/load over the complete quest chain"
   ],
-  "release_ready": false
+  "release_ready": false,
+  "note": "Checkpoint certifies the exact recorded patch; later map/trust changes need another Windows run."
 }

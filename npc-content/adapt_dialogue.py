@@ -168,6 +168,9 @@ def adapt(value, counts):
                     # reads and updates in the native numeric bridge.
             compiled = compile_expression(expression)
             counts["native_expression"] += 1
+            if compiled.get('target_kind') == 'faction_trust':
+                compiled.pop('target_kind')
+                return {'dda_set_faction_trust': compiled}
             if compiled.get('target_kind') == 'npc_opinion':
                 compiled.pop('target_kind')
                 return {'dda_set_npc_opinion': compiled}

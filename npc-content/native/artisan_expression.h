@@ -67,6 +67,13 @@ inline auto evaluate( const expression &node, const evaluation_context &context 
         }
         return valid_number( found->second );
     }
+    if( node.op == "faction_trust" && node.args.empty() ) {
+        const auto found = context.variables.find( "@faction_trust:" + node.name );
+        if( found == context.variables.end() ) {
+            return std::unexpected( "Missing named faction trust" );
+        }
+        return valid_number( found->second );
+    }
     if( node.op == "has_var" && node.args.size() == 1 && node.args[0].op == "variable" ) {
         const auto &variable = node.args[0];
         return context.variables.contains( variable.global_actor ? "@global:" + variable.name : variable.npc_actor ? "@npc:" + variable.name : variable.name ) ? 1.0 : 0.0;

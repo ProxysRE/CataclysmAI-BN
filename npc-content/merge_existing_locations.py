@@ -57,12 +57,25 @@ def prepare(root=ROOT):
     baseline = json.loads(files[baseline_path])
     source = json.loads(files[source_path])
     merged = merge_chemist(baseline, source, support)
+    text = files[baseline_path]
+    replacements = {
+        '"......-~~#A     @ #~-..."': '"......-~~#A     c #~-..."',
+        '"npcs": { "@": { "class": "NPC_cabin_chemist" } }':
+            '"place_npcs": [ { "class": "NPC_cabin_chemist", "x": 16, "y": 8 } ]',
+    }
+    for old, new in replacements.items():
+        if text.count(old) != 1:
+            raise ValueError('BN map formatting changed; re-review minimal replacement')
+        text = text.replace(old, new)
+    if json.loads(text) != merged:
+        raise ValueError('Minimal map patch differs from the reviewed semantic merge')
     destination = root / 'merged' / 'chemical_lab.json'
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + '\n')
+    destination.write_text(text)
     report = {
         'release_ready': False,
         'runtime_validated': False,
+        'included_in_native_patch': True,
         'installation': 'Replace the original BN mapgen file; never load this beside it',
         'target': 'data/json/mapgen/chemical_lab.json',
         'baseline': baseline_path,

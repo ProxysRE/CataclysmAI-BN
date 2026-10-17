@@ -15,6 +15,7 @@ def main():
     blockers = {(x['file'], x['index']) for x in report['blocked']}
     assert ('dda/data/json/npcs/exodii/common_talk.json', 3) not in blockers
     assert ('dda/data/json/npcs/robofac/robofac_ancilla_npcs/PAT/NPC_Pat.json', 4) not in blockers
+    assert ('dda/data/json/npcs/robofac/robofac_intercom/robofac_intercom_missions.json', 116) not in blockers
     manifest = json.loads((ROOT/'SOURCE_MANIFEST.json').read_text())
     total = 0
     for name, content in files.items():

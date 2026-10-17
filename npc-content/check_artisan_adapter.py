@@ -27,6 +27,11 @@ assert compile_expression('max(exodii_mission_wh_chance, 1)')['expression']['op'
 assert compile_expression('clamp(u_count, 0, 200)')['expression']['op'] == 'clamp'
 assert compile_expression('rng(1, 3)')['expression'] == {'op': 'rng', 'args': [{'op': 'literal', 'value': 1}, {'op': 'literal', 'value': 3}]}
 assert compile_expression('rand(13)')['expression'] == {'op': 'rand', 'args': [{'op': 'literal', 'value': 13}]}
+assert compile_expression("faction_trust('robofac') -= 20") == {
+    'target': 'robofac', 'target_kind': 'faction_trust',
+    'expression': {'op': 'subtract', 'args': [{'op': 'faction_trust', 'name': 'robofac'}, {'op': 'literal', 'value': 20}]}}
+assert compile_expression("faction_trust('robofac') >= 10")['expression']['args'][0] == {'op': 'faction_trust', 'name': 'robofac'}
+assert compile_expression("faction_trust('robofac')++")['expression']['op'] == 'add'
 for text in ('rng(1)', 'rng(1, 2, 3)', 'rand(1, 2)', 'rand(upper=13)'):
     try:
         compile_expression(text)

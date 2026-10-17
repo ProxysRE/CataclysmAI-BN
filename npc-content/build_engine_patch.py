@@ -6,6 +6,7 @@ import hashlib
 import re
 import subprocess
 from pathlib import Path
+from merge_existing_locations import prepare as prepare_existing_locations
 
 root = Path(__file__).resolve().parent
 base_files = ("condition.cpp", "npctalk.cpp", "faction.h", "faction.cpp",
@@ -15,6 +16,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--bn-source", type=Path,
                     help="Pinned BN checkout; restore staging before rebuilding")
 args = parser.parse_args()
+prepare_existing_locations()
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
@@ -38,12 +40,12 @@ if args.bn_source:
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
-    relative = Path("data/json/mapgen/dock.json")
-    content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
-    for directory in ("pinned", "engine_staging"):
-        target = root / directory / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(content)
+    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json")):
+        content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
+        for directory in ("pinned", "engine_staging"):
+            target = root / directory / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
     subprocess.run(["git", "apply", "--directory=engine_staging", str(root / "artisan_engine.patch")], cwd=root, check=True)
 parts = []
 for name in base_files:
@@ -69,6 +71,10 @@ parts.extend(difflib.unified_diff((root / "pinned" / path).read_text().splitline
 path = "data/json/mapgen/nested/dda_lighthouse_encounter.json"
 parts.extend(difflib.unified_diff([], (root / "native/mapgen/dda_lighthouse_encounter.json").read_text().splitlines(keepends=True),
                                 "/dev/null", "b/" + path))
+path = "data/json/mapgen/chemical_lab.json"
+parts.extend(difflib.unified_diff((root / "layers/bn" / path).read_text().splitlines(keepends=True),
+                                (root / "layers/merged/chemical_lab.json").read_text().splitlines(keepends=True),
+                                "a/" + path, "b/" + path))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()

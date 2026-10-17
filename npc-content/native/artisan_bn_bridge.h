@@ -6,6 +6,7 @@
 #include "player.h"
 #include "npc.h"
 #include "game.h"
+#include "faction.h"
 #include "rng.h"
 
 #include <charconv>
@@ -35,13 +36,19 @@ inline auto read_expression( const JsonObject &object ) -> expression {
         result.npc_actor = actor == "npc";
         result.global_actor = actor == "global";
     }
+    if( result.op == "faction_trust" ) {
+        result.name = object.get_string( "name" );
+        if( result.name.empty() ) {
+            object.throw_error( "Named faction trust requires a faction ID" );
+        }
+    }
     if( object.has_array( "args" ) ) {
         for( const auto entry : object.get_array( "args" ) ) {
             result.args.push_back( read_expression( entry.get_object() ) );
         }
     }
     const auto unary = result.op == "ceil" || result.op == "negate" || result.op == "not" || result.op == "has_var" || result.op == "rand";
-    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion" || result.op == "cataclysm";
+    const auto leaf = result.op == "literal" || result.op == "variable" || result.op == "now" || result.op == "npc_opinion" || result.op == "cataclysm" || result.op == "faction_trust";
     const auto ternary = result.op == "clamp";
     const auto binary = result.op == "add" || result.op == "subtract" || result.op == "multiply" || result.op == "divide" ||
                         result.op == "equal" || result.op == "not_equal" || result.op == "greater" || result.op == "greater_equal" ||
@@ -62,6 +69,14 @@ struct expression_actors {
 
 inline auto collect_values( const expression &node, const expression_actors &actors,
                             std::unordered_map<std::string, double> &values ) -> std::expected<void, std::string> {
+    if( node.op == "faction_trust" ) {
+        const auto *fac = g->faction_manager_ptr->get( faction_id( node.name ) );
+        if( !fac ) {
+            return std::unexpected( "Missing named faction: " + node.name );
+        }
+        values["@faction_trust:" + node.name] = fac->trusts_u;
+        return {};
+    }
     if( node.op == "npc_opinion" ) {
         const auto *speaker = dynamic_cast<const npc *>( actors.npc );
         if( !speaker ) {

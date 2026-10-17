@@ -1,6 +1,7 @@
 {
   "release_ready": false,
   "runtime_validated": false,
+  "included_in_native_patch": true,
   "installation": "Replace the original BN mapgen file; never load this beside it",
   "target": "data/json/mapgen/chemical_lab.json",
   "baseline": "bn/data/json/mapgen/chemical_lab.json",
@@ -43,5 +44,5 @@
     }
   ],
   "deferred_reason": "Zone IDs and shop consumers require native compatibility review",
-  "output_sha256": "ae21c77eb06af44e1f1903c5bc59a4878da354154e2e1af033394e4608f1d48c"
+  "output_sha256": "a2013626daffe01bb1798f624a9fe88dafa8742da2b446594b17a83ebce37a6e"
 }

@@ -20,6 +20,44 @@
 #include <sstream>
 #include <limits>
 
+TEST_CASE( "hub_penalty_changes_named_faction_instead_of_current_speaker", "[dda_npc]" ) {
+    clear_all_state();
+    get_avatar().reset_all_missions();
+    auto *hub = g->faction_manager_ptr->get( faction_id( "robofac" ) );
+    auto *followers = g->faction_manager_ptr->get( faction_id( "your_followers" ) );
+    REQUIRE( hub );
+    REQUIRE( followers );
+    const auto restore_hub = restore_on_out_of_scope<int>( hub->trusts_u );
+    const auto restore_followers = restore_on_out_of_scope<int>( followers->trusts_u );
+    hub->trusts_u = 35;
+    followers->trusts_u = 70;
+    auto actor = npc{};
+    auto speaker = npc{};
+    speaker.set_fac( faction_id( "your_followers" ) );
+    auto conversation = dialogue{};
+    conversation.alpha = &actor;
+    conversation.beta = &speaker;
+    auto input = std::istringstream( R"({"effect":{"dda_set_faction_trust":{"target":"robofac","expression":{"op":"subtract","args":[{"op":"faction_trust","name":"robofac"},{"op":"literal","value":20}]}}}})" );
+    auto parser = JsonIn( input );
+    const auto effect = talk_effect_t( parser.get_object() );
+    REQUIRE( effect.effects.size() == 1 );
+    effect.effects.front()( conversation );
+    CHECK( hub->trusts_u == 15 );
+    CHECK( followers->trusts_u == 70 );
+    // Evaluate the real faction again, not a cached dialogue variable.
+    conversation.beta = nullptr;
+    effect.effects.front()( conversation );
+    CHECK( hub->trusts_u == -5 );
+    CHECK( followers->trusts_u == 70 );
+    auto data = std::stringstream{};
+    auto output = JsonOut( data );
+    hub->serialize( output );
+    auto restored = faction{};
+    auto saved = JsonIn( data );
+    restored.deserialize( saved );
+    CHECK( restored.trusts_u == -5 );
+}
+
 TEST_CASE( "community_random_math_preserves_DDA_float_and_integer_semantics", "[dda_npc]" ) {
     const auto variables = std::unordered_map<std::string, double>{};
     const auto context = dda_port::evaluation_context{

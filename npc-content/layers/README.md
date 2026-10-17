@@ -67,7 +67,7 @@ The Hub comparison is 100 explicit DDA terrain cells versus 69 in pinned BN.
 BN already has underground layers; the source DDA layout additionally contains
 z=-1. These are placement-data facts, not a certified generated world.
 
-Known blocked definitions now number 66 in this expanded batch. This includes
+Known blocked definitions now number 65 in this expanded batch. This includes
 new EOC declarations requiring native lifecycle support, so the number is not
 directly comparable with the earlier 63 blockers in the smaller batch. Item,
 monster, palette and native schema closure remains incomplete. No bulk data
@@ -106,7 +106,7 @@ differences. The complete per-map variant plan is regenerated as
 
 `python npc-content/merge_existing_locations.py` builds `layers/merged/chemical_lab.json`
 from the exact BN baseline. It is a **replacement file**, never an additional
-weighted mapgen variant. It is not installed by the engine patch yet.
+weighted mapgen variant. The engine patch now replaces the original file; Windows validation of this addition is pending.
 
 The chemist keeps the original coordinate and gains DDA's chair. All other BN
 map content, including the roof, regional groundcover and heater, is preserved.

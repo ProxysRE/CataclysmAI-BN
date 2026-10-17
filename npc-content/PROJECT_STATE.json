@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Random dialogue math and native patch synchronization guard; broad packages remain staged",
+  "stage": "Confirmed Windows baseline; named faction trust and existing chemist map replacement added, new regression pending",
   "package": "Isolated Road",
-  "native_compilation": "Latest observed Windows compilation succeeded but suite failed one assertion. Current random-math and test-isolation patch is locally checked, not yet Windows certified.",
+  "native_compilation": "Verified Windows baseline: 31 cases, 1065 assertions at c644c365. Subsequent named-faction trust and chemist replacement require a new run.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -14,11 +14,11 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "962aeb067147586280ed44514099bc18e391c242",
-    "run_id": 38803907775,
+    "head": "c644c36547e6349663987d98b912ffe6b01cde66",
+    "run_id": 38976175204,
     "status": "success",
-    "test_cases": 20,
-    "assertions": 798
+    "test_cases": 31,
+    "assertions": 1065
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -43,11 +43,11 @@
     "epilogues": 2
   },
   "last_run": {
-    "head": "a935c705d87834c252eaff99e072f3ad11146e61",
-    "run_id": 38961335494,
-    "status": "failure",
-    "compilation": "success",
-    "failed_assertions": 1
+    "head": "c644c36547e6349663987d98b912ffe6b01cde66",
+    "run_id": 38976175204,
+    "status": "success",
+    "test_cases": 31,
+    "assertions": 1065
   },
   "lighthouse": {
     "npcs": 4,
@@ -132,7 +132,7 @@
     "totals": {
       "source_files": 158,
       "definitions": 1767,
-      "blocked_definitions": 66,
+      "blocked_definitions": 65,
       "overlap_records": 382,
       "reference_records": 4383,
       "external_reference_records": 867
@@ -144,13 +144,14 @@
       "real_npc_opinion_fields": "implemented; Windows regression pending",
       "full_duration_units": "local compiler checks passed",
       "blocked_before": 185,
-      "blocked_after": 66,
+      "blocked_after": 65,
       "world_scoped_variables": "implemented with master save/load and game setup reset; native Windows test pending",
       "EOC_expansion": "delayed/inline/recurring/extended calls explicitly blocked; singleton effect expansion fixed",
       "conditional_activation_EOCs": "runtime branch support implemented; scheduler/lifecycle metadata remain blocked",
       "math_helpers": "min/max/clamp and world cataclysm age; native tests pending",
       "chance_conditions": "Literal and actor/global-variable one_in_chance plus direct if/then/else effects; Windows pending",
-      "random_math": "DDA real rng and inclusive integer rand with round(n), runtime BN RNG callbacks; native Windows pending"
+      "random_math": "DDA real rng and inclusive integer rand with round(n), runtime BN RNG callbacks; native Windows pending",
+      "named_faction_trust": "Real trusts_u read/set, arithmetic and named Hub mission penalty; native regression pending"
     },
     "location_expansion": {
       "selected_support_definitions": 109,
@@ -199,7 +200,8 @@
     ],
     "fix": "Independent local actors now embedded in regenerated native patch; automated source/patch synchronization check added",
     "rerun": 38971654551,
-    "rerun_status": "Old rerun used stale patch; new regenerated-patch run to follow this commit"
+    "rerun_status": "success at regenerated patch checkpoint c644c365",
+    "resolved_by": 38976175204
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,
@@ -212,7 +214,7 @@
   "existing_location_merges": {
     "commit": "100da81b7adfd8358ae786965ba3ab143496624a",
     "target": "data/json/mapgen/chemical_lab.json",
-    "mode": "Generated BN replacement, not installed",
+    "mode": "Included in generated native patch as replacement; new Windows validation pending",
     "changes": [
       "DDA chair at original chemist position",
       "Explicit single NPC placement"

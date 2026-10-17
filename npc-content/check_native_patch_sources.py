@@ -2,13 +2,23 @@
 """Reject stale embedded native files before spending time on a Windows build."""
 import hashlib
 import re
+import difflib
 from pathlib import Path
+from merge_existing_locations import prepare as prepare_existing_locations
 
 ROOT = Path(__file__).resolve().parent
 
 
 def check():
     patch = (ROOT / 'artisan_engine.patch').read_text()
+    prepare_existing_locations()
+    target = 'data/json/mapgen/chemical_lab.json'
+    expected_map_patch = ''.join(difflib.unified_diff(
+        (ROOT / 'layers/bn' / target).read_text().splitlines(keepends=True),
+        (ROOT / 'layers/merged/chemical_lab.json').read_text().splitlines(keepends=True),
+        'a/' + target, 'b/' + target))
+    assert patch.count('+++ b/' + target + '\n') == 1, 'Expected one chemist replacement'
+    assert expected_map_patch in patch, 'Stale reviewed chemist map patch'
     files = {
         'src/' + name: ROOT / 'native' / name
         for name in ('artisan_expression.h', 'artisan_bn_bridge.h', 'artisan_items.h',

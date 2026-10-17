@@ -33,6 +33,11 @@ def compile_node(node):
         return {"op": comparisons[type(node.ops[0])], "args": [compile_node(node.left), compile_node(node.comparators[0])]}
     if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
         name = node.func.id
+        if name == 'faction_trust' and len(node.args) == 1 and not node.keywords:
+            argument = node.args[0]
+            if isinstance(argument, ast.Constant) and isinstance(argument.value, str) and re.fullmatch(r'[A-Za-z0-9_]+', argument.value):
+                return {'op': 'faction_trust', 'name': argument.value}
+            raise ValueError('faction_trust requires a literal faction ID')
         if name in {'rng', 'rand'} and len(node.args) == (2 if name == 'rng' else 1) and not node.keywords:
             return {'op': name, 'args': [compile_node(x) for x in node.args]}
         if name in {'min', 'max', 'clamp'} and len(node.args) == (3 if name == 'clamp' else 2) and not node.keywords:
@@ -74,6 +79,19 @@ def compile_expression(expression):
     expression = re.sub(r"'unit'\s*:", "unit=", expression.strip())
     if expression.startswith("!"):
         expression = "not " + expression[1:]
+    faction = re.fullmatch(r"(faction_trust\(['\"][A-Za-z0-9_]+['\"]\))\s*(\+\+|--|\+=|-=|=(?!=))\s*(.*)", expression)
+    if faction:
+        target, operation, rhs = faction.groups()
+        target_node = compile_node(ast.parse(target, mode='eval').body)
+        if operation in ('++', '--'):
+            if rhs:
+                raise ValueError('Unexpected operand after faction trust increment')
+            rhs = '1'
+            operation = '+=' if operation == '++' else '-='
+        compiled = compile_node(ast.parse(rhs, mode='eval').body)
+        if operation != '=':
+            compiled = {'op': 'add' if operation == '+=' else 'subtract', 'args': [target_node, compiled]}
+        return {'target': target_node['name'], 'target_kind': 'faction_trust', 'expression': compiled}
     opinion = re.fullmatch(r"(n_npc_(anger|fear|trust|value)\(\))\s*(\+\+|--|\+=|-=|=(?!=))\s*(.*)", expression)
     if opinion:
         target, field, operation, rhs = opinion.groups()
