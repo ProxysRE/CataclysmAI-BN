@@ -23,7 +23,9 @@ def check():
         from prepare_shopping_plaza import prepare_data as plaza_data, PAYLOAD as PLAZA_PAYLOAD
         from compare_location_catalog import read_sources
         plaza_payload, _ = plaza_data(json.loads(read_sources()[0]['bn/' + RADIO_CITY]))
+        from prepare_rural_churches import prepare_data as church_data, PAYLOAD as CHURCH_PAYLOAD
         payload = {
+            CHURCH_PAYLOAD: json.dumps(church_data()).encode(),
             PLAZA_PAYLOAD: json.dumps(plaza_payload).encode(),
             HOTEL_PAYLOAD: json.dumps(hotel_payload).encode(),
             RADIO_MAP: radio_maps[RADIO_MAP].encode(),

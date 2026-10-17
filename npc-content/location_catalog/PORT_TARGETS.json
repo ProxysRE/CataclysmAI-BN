@@ -214,14 +214,15 @@
       "target_operation": "port_specific_missing_location_or_variant",
       "wave": "4_standalone_overworld_locations",
       "scope_status": "accepted_goal",
-      "delivery_status": "not_validated_as_complete",
+      "delivery_status": "ordinary_native_prepared_xedra_staged_not_runtime_validated",
       "include": [
         "maps and all required floors",
         "normal world generation",
         "associated NPCs, factions, dialogue and quests where present",
         "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
         "native compatibility required by the source behavior"
-      ]
+      ],
+      "progress_record": "rural_churches/PORT_REPORT.json"
     },
     {
       "name": "Моргáнтаун XEDRA",

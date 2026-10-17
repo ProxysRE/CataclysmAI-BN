@@ -1,0 +1,1690 @@
+{
+  "status": "staged_not_installed",
+  "source_mapgen_blocks": 4,
+  "source_placement_cells": 5,
+  "z_levels": [
+    -1,
+    0,
+    1,
+    2
+  ],
+  "npc_or_quest_definitions_in_these_location_sources": 0,
+  "equipment_nodes_preserved": 9,
+  "equipment_edges": 70,
+  "equipment_definitions": [
+    {
+      "id": "inert_glowing_string",
+      "source": "dda/extradimensional_artifacts.json",
+      "definition": {
+        "type": "ITEM",
+        "id": "inert_glowing_string",
+        "category": "artifacts",
+        "symbol": ",",
+        "color": "magenta",
+        "name": {
+          "str": "glowing string"
+        },
+        "description": "A plastic test-tube housing a fluorescent purple string of unknown material.  The string gently flickers and twitches on its own.",
+        "price": "10 USD",
+        "price_postapoc": "1 USD",
+        "material": [
+          "plastic"
+        ],
+        "weight": "10 g",
+        "volume": "20 ml"
+      }
+    },
+    {
+      "id": "xedra_artifact_cleansuit",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "xedra_artifact_cleansuit",
+        "//": "Predecessor of, and lab equivalent to, the phase immersion suit",
+        "type": "ITEM",
+        "subtypes": [
+          "TOOL",
+          "ARMOR",
+          "ARTIFACT"
+        ],
+        "name": {
+          "str": "S02a hazmat suit"
+        },
+        "description": "A bulky hazardous materials handling suit.  This one appears outfitted for the highest levels of protection, featuring built in oversized rubber gloves, sealed boot covers with a rubber sole, and an active temperature control system.  It's clearly designed to accommodate additional equipment, including self-contained breathing apparatuses or powered air purifying respirator systems.  Strange wiring snakes the entire garment, connecting to small electronic pads on all of the joints and the head.  A battery compartment marked with \"X.E.D.R.A PROTOTYPE S02a\" is attached to the back.",
+        "weight": "2500 g",
+        "volume": "2500 ml",
+        "price": "1 kUSD 500 USD",
+        "price_postapoc": "80 USD",
+        "material": [
+          "plastic",
+          "hard_plastic_transp",
+          "butyl_rubber"
+        ],
+        "symbol": "[",
+        "looks_like": "hazmat_suit",
+        "color": "white",
+        "warmth": 10,
+        "longest_side": "12 cm",
+        "environmental_protection": 10,
+        "flags": [
+          "OVERSIZE",
+          "WATERPROOF",
+          "HOOD",
+          "RAINPROOF",
+          "RAD_PROOF",
+          "ELECTRONIC",
+          "SOFT",
+          "OUTER"
+        ],
+        "pocket_data": [
+          {
+            "pocket_type": "MAGAZINE_WELL",
+            "rigid": true,
+            "flag_restriction": [
+              "BATTERY_HEAVY"
+            ],
+            "default_magazine": "heavy_battery_cell"
+          }
+        ],
+        "armor": [
+          {
+            "material": [
+              {
+                "type": "hard_plastic_transp",
+                "covered_by_mat": 100,
+                "thickness": 1.0
+              }
+            ],
+            "//": "not in direct contact with eye or mouth",
+            "encumbrance": 5,
+            "coverage": 100,
+            "covers": [
+              "mouth",
+              "eyes"
+            ],
+            "volume_encumber_modifier": 0,
+            "layers": [
+              "OUTER"
+            ],
+            "rigid_layer_only": true
+          },
+          {
+            "material": [
+              {
+                "type": "butyl_rubber",
+                "covered_by_mat": 100,
+                "thickness": 2.0
+              }
+            ],
+            "encumbrance": 5,
+            "coverage": 100,
+            "covers": [
+              "hand_l",
+              "hand_r"
+            ],
+            "layers": [
+              "OUTER"
+            ],
+            "volume_encumber_modifier": 0
+          },
+          {
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "//": "feet have boot-covers with a tough footpad",
+            "specifically_covers": [
+              "foot_toes_r",
+              "foot_toes_l",
+              "foot_ankle_r",
+              "foot_ankle_l",
+              "foot_heel_r",
+              "foot_heel_l",
+              "foot_arch_r",
+              "foot_arch_l"
+            ],
+            "material": [
+              {
+                "type": "plastic",
+                "covered_by_mat": 100,
+                "thickness": 2
+              }
+            ],
+            "encumbrance": 5,
+            "coverage": 100,
+            "layers": [
+              "OUTER"
+            ],
+            "rigid_layer_only": true
+          },
+          {
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_sole_r",
+              "foot_sole_l"
+            ],
+            "material": [
+              {
+                "type": "butyl_rubber",
+                "covered_by_mat": 100,
+                "thickness": 2
+              }
+            ],
+            "encumbrance": 5,
+            "coverage": 100,
+            "layers": [
+              "OUTER"
+            ],
+            "rigid_layer_only": true
+          },
+          {
+            "material": [
+              {
+                "type": "plastic",
+                "covered_by_mat": 100,
+                "thickness": 2
+              }
+            ],
+            "//": "standard hazmat suit on most of body",
+            "encumbrance": 27,
+            "coverage": 100,
+            "covers": [
+              "arm_l",
+              "arm_r",
+              "leg_l",
+              "leg_r",
+              "head",
+              "torso"
+            ],
+            "layers": [
+              "OUTER"
+            ],
+            "volume_encumber_modifier": 0
+          }
+        ],
+        "use_action": {
+          "type": "transform",
+          "msg": "The %s starts to faintly vibrate.",
+          "target": "xedra_artifact_cleansuit_on",
+          "need_charges": 1,
+          "need_charges_msg": "It seems like this device needs power."
+        },
+        "charges_per_use": 1,
+        "tool_ammo": "battery",
+        "passive_effects": [
+          {
+            "id": "resonance_suit_active"
+          },
+          {
+            "id": "ench_climate_control_all"
+          }
+        ]
+      }
+    },
+    {
+      "id": "xedra_enviro_suit",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "xedra_enviro_suit",
+        "copy-from": "robofac_enviro_suit",
+        "type": "ITEM",
+        "subtypes": [
+          "ARMOR"
+        ],
+        "name": {
+          "str": "activity suit"
+        },
+        "description": "A single-piece brown and orange environmental suit, tailored in a way that slightly recalls a military flight suit.  The letters \"X.E.D.R.A\" are inscribed on its back, and a white shoulder patch on the right arm shows an arrow reaching within rings of concentric circles.  It requires a separate gas mask for full protection.",
+        "use_action": {
+          "type": "transform",
+          "menu_text": "Wear casually",
+          "msg": "You slip out of the top of the suit and tie the sleeves around your waist.",
+          "target": "xedra_enviro_suit_casual"
+        }
+      }
+    },
+    {
+      "id": "hazmat_suit",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "hazmat_suit",
+        "//": "Should be substantially more difficult to repair than ordinary plastic - ch_steel is difficulty 7",
+        "repairs_like": "ch_steel_lump",
+        "type": "ITEM",
+        "subtypes": [
+          "ARMOR"
+        ],
+        "category": "armor",
+        "name": {
+          "str": "hazmat suit"
+        },
+        "description": "An impermeable whole-body garment worn as protection against hazardous materials.  Restrictive and fragile, wearing it will provide complete protection against ambient radiation.  It requires a separate gas mask for full protection.",
+        "weight": "5000 g",
+        "volume": "17 L",
+        "price": "1 kUSD 175 USD",
+        "price_postapoc": "15 USD",
+        "material": [
+          "plastic"
+        ],
+        "symbol": "[",
+        "looks_like": "beekeeping_suit",
+        "color": "yellow",
+        "warmth": 40,
+        "material_thickness": 2,
+        "environmental_protection": 20,
+        "flags": [
+          "VARSIZE",
+          "WATERPROOF",
+          "RAINPROOF",
+          "GAS_PROOF",
+          "RAD_PROOF",
+          "ELECTRIC_IMMUNE",
+          "OUTER",
+          "SOFT"
+        ],
+        "armor": [
+          {
+            "encumbrance": 37,
+            "coverage": 100,
+            "covers": [
+              "head",
+              "torso",
+              "arm_l",
+              "arm_r",
+              "hand_l",
+              "hand_r",
+              "leg_l",
+              "leg_r",
+              "foot_l",
+              "foot_r"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "xedra_artifact_cleansuit_on",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "xedra_artifact_cleansuit_on",
+        "copy-from": "xedra_artifact_cleansuit",
+        "type": "ITEM",
+        "subtypes": [
+          "TOOL",
+          "ARMOR"
+        ],
+        "name": {
+          "str": "S02a hazmat suit (on)",
+          "str_pl": "S02a hazmat suits (on)"
+        },
+        "looks_like": "xedra_artifact_cleansuit",
+        "description": "A bulky hazardous materials handling suit.  This one appears outfitted for the highest levels of protection, featuring built in oversized rubber gloves, sealed boot covers with a rubber sole, and an active temperature control system.  It's clearly designed to accommodate additional equipment, including self-contained breathing apparatuses or powered air purifying respirator systems.  Strange wiring snakes the entire garment, connecting to small electronic pads on all of the joints and the head.  A battery compartment marked with \"X.E.D.R.A PROTOTYPE S02a\" is attached to the back.  The device is currently switched on.",
+        "turns_per_charge": 100,
+        "revert_to": "xedra_artifact_cleansuit",
+        "use_action": {
+          "type": "transform",
+          "ammo_scale": 0,
+          "menu_text": "Turn off",
+          "msg": "The %s stops vibrating.",
+          "target": "xedra_artifact_cleansuit"
+        },
+        "flags": [
+          "OVERSIZE",
+          "WATERPROOF",
+          "HOOD",
+          "RAINPROOF",
+          "RAD_PROOF",
+          "ELECTRONIC",
+          "TRADER_AVOID",
+          "SPAWN_ACTIVE",
+          "PORTAL_PROOF",
+          "ELECTRIC_IMMUNE",
+          "PSYSHIELD_PARTIAL",
+          "SOFT",
+          "OUTER"
+        ]
+      }
+    },
+    {
+      "id": "robofac_enviro_suit",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "robofac_enviro_suit",
+        "type": "ITEM",
+        "subtypes": [
+          "ARMOR"
+        ],
+        "category": "armor",
+        "name": {
+          "str": "Hub 01 environmental suit"
+        },
+        "description": "A lightweight environmental suit incorporating Kevlar-lined boots and gloves, worn by Hub personnel in their rare forays aboveground.  Colored brown and blue, the white seal of Hub 01 is embroidered on both of its upper arms.  It requires a separate gas mask for full protection.",
+        "weight": "4000 g",
+        "volume": "14 L",
+        "price": "1 kUSD 175 USD",
+        "price_postapoc": "20 USD",
+        "material": [
+          "nomex",
+          "kevlar",
+          "hc_steel",
+          "thermo_resin",
+          "lycra",
+          "vinyl"
+        ],
+        "symbol": "[",
+        "looks_like": "hazmat_suit",
+        "color": "brown",
+        "//": "2mm Nomex across the entire suit with a waterproof silicone outer to provide hazmat properties. Hands and feet reinforced/shaped with other materials to provide full-body hazmat protection with minimal encumbrance.",
+        "armor": [
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 2,
+                "//": "Back of hand from the wrist to the knuckles can be stiffer but still needs a little flexibility. This area can afford the most thickness on gloves."
+              },
+              {
+                "type": "thermo_resin",
+                "covered_by_mat": 30,
+                "thickness": 2,
+                "//": "Molded knuckle plates, spacious enough inside the gloves to flex your knuckles fine while providing extra knuckle protection because busting your knuckles sucks."
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "hand_l",
+              "hand_r"
+            ],
+            "specifically_covers": [
+              "hand_back_r",
+              "hand_back_l"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              16,
+              16
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 1
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "hand_l",
+              "hand_r"
+            ],
+            "specifically_covers": [
+              "hand_palm_r",
+              "hand_wrist_r",
+              "hand_palm_l",
+              "hand_wrist_l"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 25,
+                "thickness": 1,
+                "//": "A bit of Kevlar between the third and second knuckles, the part of the fingers where flexibility is least important."
+              },
+              {
+                "type": "lycra",
+                "covered_by_mat": 100,
+                "thickness": 1,
+                "//": "Fingers need to be the most flexible and tactile part of the hand. Lycra/nylon blend (as the lycra material is defined) will give both those qualities while sacrificing the least protection."
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "hand_l",
+              "hand_r"
+            ],
+            "specifically_covers": [
+              "hand_fingers_r",
+              "hand_fingers_l"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "thermo_resin",
+                "covered_by_mat": 85,
+                "thickness": 1,
+                "//": "The boots are reinforced with plastic plates throughout to protect against penetration."
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 1
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 90,
+                "thickness": 1,
+                "//": "The Kevlar is 2mm thick over most of the boots, and 1mm thick for flexible joints."
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_ankle_l",
+              "foot_heel_l",
+              "foot_ankle_r",
+              "foot_heel_r"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              25,
+              25
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "hc_steel",
+                "covered_by_mat": 25,
+                "thickness": 1,
+                "//": "Steel shank for excellent arch support and to maintain boot shape for longevity."
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_arch_l",
+              "foot_arch_r"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "hc_steel",
+                "covered_by_mat": 100,
+                "thickness": 1,
+                "//": "Steel toes"
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_toes_l",
+              "foot_toes_r"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "rubber",
+                "covered_by_mat": 100,
+                "thickness": 6
+              },
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_sole_l",
+              "foot_sole_r"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "head",
+              "torso",
+              "leg_l",
+              "leg_r",
+              "arm_l",
+              "arm_r"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              7,
+              7
+            ]
+          }
+        ],
+        "pocket_data": [
+          {
+            "pocket_type": "CONTAINER",
+            "max_contains_volume": "250 ml",
+            "max_contains_weight": "1 kg",
+            "moves": 80
+          },
+          {
+            "pocket_type": "CONTAINER",
+            "max_contains_volume": "250 ml",
+            "max_contains_weight": "1 kg",
+            "moves": 80
+          }
+        ],
+        "warmth": 40,
+        "environmental_protection": 20,
+        "use_action": {
+          "type": "transform",
+          "menu_text": "Wear casually",
+          "msg": "You slip out of the top of the suit and tie the sleeves around your waist.",
+          "target": "robofac_enviro_suit_casual"
+        },
+        "flags": [
+          "VARSIZE",
+          "WATERPROOF",
+          "RAINPROOF",
+          "GAS_PROOF",
+          "RAD_PROOF",
+          "ELECTRIC_IMMUNE",
+          "STURDY"
+        ]
+      }
+    },
+    {
+      "id": "xedra_enviro_suit_casual",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "xedra_enviro_suit_casual",
+        "copy-from": "robofac_enviro_suit_casual",
+        "type": "ITEM",
+        "subtypes": [
+          "ARMOR"
+        ],
+        "name": {
+          "str": "activity suit (casual)",
+          "str_pl": "activity suits (casual)"
+        },
+        "description": "A single-piece brown and orange environmental suit, tailored in a way that slightly recalls a military flight suit.  The upper portion has been tied around the waist casually.",
+        "use_action": {
+          "type": "transform",
+          "menu_text": "Wear normally",
+          "msg": "You untie the sleeves and put back on the top of the suit.",
+          "target": "xedra_enviro_suit"
+        }
+      }
+    },
+    {
+      "id": "beekeeping_suit",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "beekeeping_suit",
+        "type": "ITEM",
+        "subtypes": [
+          "ARMOR"
+        ],
+        "name": {
+          "str": "beekeeping suit"
+        },
+        "description": "A white suit commonly worn by professional beekeepers with straps on your ankles and wrists to prevent bees from flying in.  It's not a very tough fabric, but it's lightweight and has plenty of storage thanks to a chest pocket.",
+        "weight": "1587 g",
+        "volume": "3500 ml",
+        "price": "120 USD",
+        "price_postapoc": "1 USD",
+        "material": [
+          "cotton"
+        ],
+        "symbol": "[",
+        "looks_like": "hazmat_suit",
+        "color": "white",
+        "longest_side": "12 cm",
+        "armor": [
+          {
+            "covers": [
+              "torso"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              10,
+              15
+            ]
+          },
+          {
+            "covers": [
+              "leg_l",
+              "leg_r"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              10,
+              12
+            ]
+          },
+          {
+            "covers": [
+              "arm_l",
+              "arm_r"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              10,
+              10
+            ]
+          }
+        ],
+        "pocket_data": [
+          {
+            "pocket_type": "CONTAINER",
+            "max_contains_volume": "1600 ml",
+            "max_contains_weight": "3 kg",
+            "max_item_length": "18 cm",
+            "moves": 120
+          }
+        ],
+        "warmth": 25,
+        "material_thickness": 2,
+        "environmental_protection": 1,
+        "flags": [
+          "VARSIZE",
+          "OUTER"
+        ]
+      }
+    },
+    {
+      "id": "robofac_enviro_suit_casual",
+      "source": "dda/suits_protection.json",
+      "definition": {
+        "id": "robofac_enviro_suit_casual",
+        "type": "ITEM",
+        "subtypes": [
+          "ARMOR"
+        ],
+        "copy-from": "robofac_enviro_suit",
+        "name": {
+          "str": "Hub 01 environmental suit (casual)",
+          "str_pl": "Hub 01 environmental suits (casual)"
+        },
+        "description": "A lightweight environmental suit incorporating Kevlar-lined boots, worn by Hub personnel in their rare forays aboveground.  Colored brown and blue, the upper portion has been tied around the waist casually.",
+        "armor": [
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "thermo_resin",
+                "covered_by_mat": 85,
+                "thickness": 1,
+                "//": "The boots are reinforced with plastic plates throughout to protect against penetration."
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 1
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 90,
+                "thickness": 1,
+                "//": "The Kevlar is 2mm thick over most of the boots, and 1mm thick for flexible joints."
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_ankle_l",
+              "foot_heel_l",
+              "foot_ankle_r",
+              "foot_heel_r"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              25,
+              25
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "hc_steel",
+                "covered_by_mat": 25,
+                "thickness": 1,
+                "//": "Steel shank for excellent arch support and to maintain boot shape for longevity."
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_arch_l",
+              "foot_arch_r"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "hc_steel",
+                "covered_by_mat": 100,
+                "thickness": 1,
+                "//": "Steel toes"
+              },
+              {
+                "type": "kevlar",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_toes_l",
+              "foot_toes_r"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "rubber",
+                "covered_by_mat": 100,
+                "thickness": 6
+              },
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              }
+            ],
+            "covers": [
+              "foot_l",
+              "foot_r"
+            ],
+            "specifically_covers": [
+              "foot_sole_l",
+              "foot_sole_r"
+            ],
+            "coverage": 100,
+            "//": "encumbrance accounted for above",
+            "encumbrance": [
+              0,
+              0
+            ]
+          },
+          {
+            "material": [
+              {
+                "type": "nomex",
+                "covered_by_mat": 100,
+                "thickness": 2
+              },
+              {
+                "type": "vinyl",
+                "covered_by_mat": 100,
+                "thickness": 0.2
+              }
+            ],
+            "covers": [
+              "leg_l",
+              "leg_r"
+            ],
+            "coverage": 100,
+            "encumbrance": [
+              7,
+              7
+            ]
+          }
+        ],
+        "use_action": {
+          "type": "transform",
+          "menu_text": "Wear normally",
+          "msg": "You untie the sleeves and put back on the top of the suit.",
+          "target": "robofac_enviro_suit"
+        },
+        "delete": {
+          "flags": [
+            "RAINPROOF",
+            "GAS_PROOF",
+            "RAD_PROOF",
+            "ELECTRIC_IMMUNE"
+          ]
+        }
+      }
+    }
+  ],
+  "equipment_reference_edges": [
+    {
+      "from": "inert_glowing_string",
+      "kind": "ITEM_CATEGORY",
+      "to": "artifacts",
+      "field": "category"
+    },
+    {
+      "from": "inert_glowing_string",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "item",
+      "to": "hazmat_suit",
+      "field": "looks_like"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "material",
+      "to": "hard_plastic_transp",
+      "field": "material"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "material",
+      "to": "butyl_rubber",
+      "field": "material"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "OVERSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "WATERPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "HOOD",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "RAINPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "RAD_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "ELECTRONIC",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "SOFT",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "json_flag",
+      "to": "OUTER",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "item",
+      "to": "heavy_battery_cell",
+      "field": "pocket_data.default_magazine"
+    },
+    {
+      "from": "xedra_artifact_cleansuit",
+      "kind": "item",
+      "to": "xedra_artifact_cleansuit_on",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "xedra_enviro_suit",
+      "kind": "item",
+      "to": "robofac_enviro_suit",
+      "field": "copy-from"
+    },
+    {
+      "from": "xedra_enviro_suit",
+      "kind": "item",
+      "to": "xedra_enviro_suit_casual",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "item",
+      "to": "beekeeping_suit",
+      "field": "looks_like"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "ITEM_CATEGORY",
+      "to": "armor",
+      "field": "category"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "material",
+      "to": "plastic",
+      "field": "material"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "VARSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "WATERPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "RAINPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "GAS_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "RAD_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "ELECTRIC_IMMUNE",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "OUTER",
+      "field": "flags"
+    },
+    {
+      "from": "hazmat_suit",
+      "kind": "json_flag",
+      "to": "SOFT",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "item",
+      "to": "xedra_artifact_cleansuit",
+      "field": "copy-from"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "item",
+      "to": "xedra_artifact_cleansuit",
+      "field": "looks_like"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "item",
+      "to": "xedra_artifact_cleansuit",
+      "field": "revert_to"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "OVERSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "WATERPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "HOOD",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "RAINPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "RAD_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "ELECTRONIC",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "TRADER_AVOID",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "SPAWN_ACTIVE",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "PORTAL_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "ELECTRIC_IMMUNE",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "PSYSHIELD_PARTIAL",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "SOFT",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "json_flag",
+      "to": "OUTER",
+      "field": "flags"
+    },
+    {
+      "from": "xedra_artifact_cleansuit_on",
+      "kind": "item",
+      "to": "xedra_artifact_cleansuit",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "item",
+      "to": "hazmat_suit",
+      "field": "looks_like"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "ITEM_CATEGORY",
+      "to": "armor",
+      "field": "category"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "material",
+      "to": "nomex",
+      "field": "material"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "material",
+      "to": "kevlar",
+      "field": "material"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "material",
+      "to": "hc_steel",
+      "field": "material"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "material",
+      "to": "thermo_resin",
+      "field": "material"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "material",
+      "to": "lycra",
+      "field": "material"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "material",
+      "to": "vinyl",
+      "field": "material"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "VARSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "WATERPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "RAINPROOF",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "GAS_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "RAD_PROOF",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "ELECTRIC_IMMUNE",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "json_flag",
+      "to": "STURDY",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit",
+      "kind": "item",
+      "to": "robofac_enviro_suit_casual",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "xedra_enviro_suit_casual",
+      "kind": "item",
+      "to": "robofac_enviro_suit_casual",
+      "field": "copy-from"
+    },
+    {
+      "from": "xedra_enviro_suit_casual",
+      "kind": "item",
+      "to": "xedra_enviro_suit",
+      "field": "use_action.transform.target"
+    },
+    {
+      "from": "beekeeping_suit",
+      "kind": "item",
+      "to": "hazmat_suit",
+      "field": "looks_like"
+    },
+    {
+      "from": "beekeeping_suit",
+      "kind": "material",
+      "to": "cotton",
+      "field": "material"
+    },
+    {
+      "from": "beekeeping_suit",
+      "kind": "json_flag",
+      "to": "VARSIZE",
+      "field": "flags"
+    },
+    {
+      "from": "beekeeping_suit",
+      "kind": "json_flag",
+      "to": "OUTER",
+      "field": "flags"
+    },
+    {
+      "from": "robofac_enviro_suit_casual",
+      "kind": "item",
+      "to": "robofac_enviro_suit",
+      "field": "copy-from"
+    },
+    {
+      "from": "robofac_enviro_suit_casual",
+      "kind": "item",
+      "to": "robofac_enviro_suit",
+      "field": "use_action.transform.target"
+    }
+  ],
+  "unresolved_typed_references": [
+    {
+      "kind": "ITEM_CATEGORY",
+      "id": "armor"
+    },
+    {
+      "kind": "ITEM_CATEGORY",
+      "id": "artifacts"
+    },
+    {
+      "kind": "item",
+      "id": "basic_papr_belt_off"
+    },
+    {
+      "kind": "item",
+      "id": "gasfilter_med"
+    },
+    {
+      "kind": "item",
+      "id": "heavy_battery_cell"
+    },
+    {
+      "kind": "item",
+      "id": "medium_battery_cell"
+    },
+    {
+      "kind": "item",
+      "id": "papr_half_mask"
+    },
+    {
+      "kind": "json_flag",
+      "id": "ELECTRIC_IMMUNE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "ELECTRONIC"
+    },
+    {
+      "kind": "json_flag",
+      "id": "GAS_PROOF"
+    },
+    {
+      "kind": "json_flag",
+      "id": "HOOD"
+    },
+    {
+      "kind": "json_flag",
+      "id": "OUTER"
+    },
+    {
+      "kind": "json_flag",
+      "id": "OVERSIZE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "PORTAL_PROOF"
+    },
+    {
+      "kind": "json_flag",
+      "id": "PSYSHIELD_PARTIAL"
+    },
+    {
+      "kind": "json_flag",
+      "id": "RAD_PROOF"
+    },
+    {
+      "kind": "json_flag",
+      "id": "RAINPROOF"
+    },
+    {
+      "kind": "json_flag",
+      "id": "SOFT"
+    },
+    {
+      "kind": "json_flag",
+      "id": "SPAWN_ACTIVE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "STURDY"
+    },
+    {
+      "kind": "json_flag",
+      "id": "TRADER_AVOID"
+    },
+    {
+      "kind": "json_flag",
+      "id": "VARSIZE"
+    },
+    {
+      "kind": "json_flag",
+      "id": "WATERPROOF"
+    },
+    {
+      "kind": "material",
+      "id": "butyl_rubber"
+    },
+    {
+      "kind": "material",
+      "id": "cotton"
+    },
+    {
+      "kind": "material",
+      "id": "hard_plastic_transp"
+    },
+    {
+      "kind": "material",
+      "id": "hc_steel"
+    },
+    {
+      "kind": "material",
+      "id": "kevlar"
+    },
+    {
+      "kind": "material",
+      "id": "lycra"
+    },
+    {
+      "kind": "material",
+      "id": "nomex"
+    },
+    {
+      "kind": "material",
+      "id": "plastic"
+    },
+    {
+      "kind": "material",
+      "id": "thermo_resin"
+    },
+    {
+      "kind": "material",
+      "id": "vinyl"
+    }
+  ],
+  "scope_limit": "Available-source item inheritance, transform targets, magazine defaults and typed quest-item references; not complete field, armor, enchantment or EOC closure",
+  "blocking_mechanics": [
+    "ranged_pull attack with pull_weight_ratio=3 and grab_strength=35",
+    "fd_twisting_mass_dust behaviour, emitted at intensity 3",
+    "multi-subtype powered protective armor, material/bodypart protection and immunity flags",
+    "worn item group contents and batteries",
+    "source tent erase-before-placement flag and BN tent geometry review"
+  ],
+  "source_tent_equals_BN": false,
+  "source_monster": {
+    "id": "mon_twisting_mass",
+    "type": "MONSTER",
+    "name": {
+      "str": "glowing mass of strings",
+      "str_pl": "glowing masses of strings"
+    },
+    "description": "A multitude of thin, fluorescent purple strings violently writhe about the air.  Occasionally, individual strings lash out extremely far before retracting almost instantly.  The strings are so dense that they form a nearly solid, suffocating mass.",
+    "default_faction": "nether",
+    "bodytype": "spider",
+    "species": [
+      "NETHER"
+    ],
+    "diff": 5,
+    "volume": "122500 ml",
+    "weight": "81500 g",
+    "hp": 20,
+    "speed": 10,
+    "luminance": 1,
+    "material": [
+      "flesh"
+    ],
+    "symbol": "S",
+    "color": "magenta",
+    "scents_tracked": [
+      "sc_human"
+    ],
+    "aggression": 100,
+    "morale": 100,
+    "melee_skill": 6,
+    "vision_day": 5,
+    "vision_night": 5,
+    "harvest": "exempt",
+    "death_function": {
+      "message": "The %s shatters into innumerable, impossibly small fragments!",
+      "corpse_type": "NO_CORPSE"
+    },
+    "emit_fields": [
+      {
+        "emit_id": "emit_twisting_mass_dust",
+        "delay": "1 s"
+      }
+    ],
+    "grab_strength": 35,
+    "special_attacks": [
+      {
+        "id": "ranged_pull",
+        "range": 5,
+        "cooldown": 20,
+        "grab_data": {
+          "pull_weight_ratio": 3.0
+        }
+      }
+    ],
+    "flags": [
+      "SEES",
+      "NO_BREATHE",
+      "RANGED_ATTACKER",
+      "BASHES",
+      "GROUP_BASH"
+    ]
+  },
+  "source_emit": {
+    "id": "emit_twisting_mass_dust",
+    "type": "emit",
+    "field": "fd_twisting_mass_dust",
+    "intensity": 3,
+    "qty": 10,
+    "chance": 15
+  },
+  "source_field": {
+    "id": "fd_twisting_mass_dust",
+    "type": "field_type",
+    "intensity_levels": [
+      {
+        "name": "magenta sparkles",
+        "color": "magenta",
+        "sym": "*",
+        "light_emitted": 160,
+        "light_color": [
+          255,
+          0,
+          255
+        ],
+        "concentration": 1
+      }
+    ],
+    "priority": 9,
+    "half_life": "10 seconds",
+    "accelerated_decay": true,
+    "dirty_transparency_cache": true,
+    "phase": "gas",
+    "display_items": true,
+    "display_field": true,
+    "looks_like": "fd_tindalos_rift"
+  },
+  "BN_pull_review": "BN_RANGED_PULL_REVIEW.json",
+  "source_special_policy_preserved": {
+    "occurrences": [
+      20,
+      100
+    ],
+    "flags": [
+      "MAN_MADE",
+      "GLOBALLY_UNIQUE"
+    ]
+  },
+  "placement_policy_review": "Source XEDRA special requests 20..100 occurrences with GLOBALLY_UNIQUE; must review BN support before enabling",
+  "no_substitution": "No generic monster, inert armor or empty field-agent corpse is installed"
+}

@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Shopping plaza roofs integrated with radio/hotel expansion; Windows generation validation pending",
+  "stage": "Complete ordinary rural church integrated; complete XEDRA geometry and equipment graph staged; native validation pending",
   "package": "Isolated Road",
   "native_compilation": "Windows game, 34 native cases / 2893 assertions and installed-data regression passed at 1031b295. Casing/quest-prop changes await their runs.",
   "remaining": [
@@ -368,5 +368,10 @@
     "head": "1e27b1b4e3329c63ed5849c1ba1ddbb84f6bcb68",
     "run_id": 39042127816,
     "status": "success"
+  },
+  "rural_churches": {
+    "ordinary": "native_prepared",
+    "xedra": "staged_with_mechanical_blockers",
+    "progress": "rural_churches/PORT_REPORT.json"
   }
 }

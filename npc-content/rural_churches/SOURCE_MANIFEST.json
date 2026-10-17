@@ -1,0 +1,69 @@
+{
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01"
+  ],
+  "bundle_sha256": "3d48a3cb0332934f5d3fe5a37387a7c04047f38785d5779eb09b4063e775a285",
+  "files": {
+    "dda/NC_XEDRA_FIELD_AGENT_1.json": {
+      "sha256": "ff39c72a7da4b32d2a3c1b436b8b1c36530c9493b05f3a27fd80fcdc1fd7e6c3",
+      "git_blob_sha": "ae664cfafc3d2177df1a306eb60e183d8e89c3e0"
+    },
+    "dda/nether.json": {
+      "sha256": "435dbdb8d56ea8fcac9e7ad023cbd919cb3c029f735148077a66bfa51c8aeb9a",
+      "git_blob_sha": "d788e59c6504555242a66083bdcf850c0a85297e"
+    },
+    "dda/suits_protection.json": {
+      "sha256": "f08042cedb0d9abe5c9967c69f7d804890081b7a2afb6aebb32c6fa2569dac2b",
+      "git_blob_sha": "3b41729c792a5f942b3147a000214f8ff588ba7d"
+    },
+    "dda/field_type.json": {
+      "sha256": "3892aa33f4d1823a0f0b2969f8889fd9b9016b63866382441965b63b91ba6e13",
+      "git_blob_sha": "e493d586c8e567c447b0b6d18768ec3d25363667"
+    },
+    "dda/emit.json": {
+      "sha256": "41e4509a0f0ebcf2b8880f99ac2fa56f34680dff4a38a5d1fef9f057952dc80d",
+      "git_blob_sha": "f1c6f8fc133ac8db714cc6365f0ebd7ce7c5fe68"
+    },
+    "dda/church.json": {
+      "sha256": "6fb4fc0cc9e2548a6aabda3a820d981aa54c06aec83ce1933ff1e2fa72c398a3",
+      "git_blob_sha": "814050e14eeb134e0f274a90751fb5b6218a5d91"
+    },
+    "dda/cathedral_palette.json": {
+      "sha256": "b9fbddf468205cd5c9a42eb3dab3d16b318d3a6e2aa316a159ff4679279fad8d",
+      "git_blob_sha": "13db87fd88db450c60e1072e8b256a0440d134f0"
+    },
+    "dda/rural_outdoors_nested.json": {
+      "sha256": "143e21b8f03f790ea95fb96721004085fc73e3169d666b0c24c4493f635e0239",
+      "git_blob_sha": "63b12ea1e903e97c0db630f5be40f09055809a69"
+    },
+    "dda/extradimensional_artifacts.json": {
+      "sha256": "ecf40a72c92bf383fc654947e5eaffc26d45bc432d50f7863ca073d4154f2639",
+      "git_blob_sha": "3e05b54b5a1a751849181fd33875bfc9408da7d5"
+    },
+    "dda/terrain-walls.json": {
+      "sha256": "0aa0c79d98f42c655dd998bdc84fa96045c00e0f126b19125c969969cc959865",
+      "git_blob_sha": "c0e4086ee28c675eb5b3774ac0953acb1145ad1e"
+    },
+    "bn/campsite.json": {
+      "sha256": "02cc77fa500dc8b4e43e0af962c7f2d05397784734428472c180f5350cc4f7ad",
+      "git_blob_sha": "1156d995a1598dbb23e6ed9074763ffcaef226c5"
+    },
+    "bn/church.json": {
+      "sha256": "4454489e74a5d9e2d726cef9a989285bec1772d9127547081ae0dbee68446716",
+      "git_blob_sha": "62170b58e050bfb7a6ad28daefcf20cb60dde8bf"
+    },
+    "bn/cathedral_palette.json": {
+      "sha256": "497793426dd3b0c085e95ce25454de1376efa43d198bea939d7baa647308ac82",
+      "git_blob_sha": "1a9639ac42051190f706510cb40f4c6719221138"
+    },
+    "bn/terrain-walls.json": {
+      "sha256": "886e13973131a1cefa4b3d9e22e58deebeca76db9de79dd4893dbc6a94a04370",
+      "git_blob_sha": "8ee337d3b8b5f5af14448541400e6463abedee9c"
+    }
+  },
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  }
+}

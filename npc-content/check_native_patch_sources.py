@@ -9,6 +9,7 @@ from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_radio_stations import prepare as prepare_radio, PAYLOAD as RADIO_PAYLOAD
 from prepare_tower_expansions import patch_sections as tower_patch, prepare as prepare_towers, PAYLOAD as HOTEL_PAYLOAD
 from prepare_shopping_plaza import PAYLOAD as PLAZA_PAYLOAD
+from prepare_rural_churches import prepare as prepare_churches, PAYLOAD as CHURCH_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD
 
 ROOT = Path(__file__).resolve().parent
@@ -30,6 +31,7 @@ def check():
     prepare_hub_access(check=True)
     prepare_radio(check=True)
     prepare_towers(check=True)
+    prepare_churches(check=True)
     assert tower_patch() in patch, "Stale composed tower replacements"
     expected_hub = hub_access_patch()
     assert expected_hub in patch, "Stale Hub elevator native replacement"
@@ -47,6 +49,7 @@ def check():
         RADIO_PAYLOAD: ROOT / 'native/dda_radio_station_towers.json',
         HOTEL_PAYLOAD: ROOT / 'native/dda_hotel_roof_caps.json',
         PLAZA_PAYLOAD: ROOT / 'native/dda_shopping_plaza_roofs.json',
+        CHURCH_PAYLOAD: ROOT / 'native/dda_rural_church.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',

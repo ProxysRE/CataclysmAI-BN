@@ -72,6 +72,9 @@ def verify_install(folder):
     plaza_payload, _ = plaza_data(json.loads(read_sources()[0]['bn/' + RADIO_CITY]))
     if json.loads((folder / PLAZA_PAYLOAD).read_text(encoding='utf-8')) != plaza_payload:
         raise ValueError('Installed shopping plaza roofs differ')
+    from prepare_rural_churches import prepare_data as church_data, PAYLOAD as CHURCH_PAYLOAD
+    if json.loads((folder / CHURCH_PAYLOAD).read_text(encoding='utf-8')) != church_data():
+        raise ValueError('Installed rural church payload differs')
     from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload, replacements
     if json.loads((folder / PAYLOAD).read_text(encoding='utf-8')) != payload():
         raise ValueError('Installed Hub access payload differs')
@@ -100,6 +103,8 @@ def package(folder, output, source_head):
         'Both BN radio stations retain their buildings and gain DDA tower floors through z=6.\n'
         'All three existing hotel variants gain technical-enclosure roof caps at z=5.\n'
         'The existing abandoned shopping plaza gains seven DDA roof sections at z=1.\n'
+        'Includes the rural church with parking, basement, steeple and bell terminal.\n'
+        'The XEDRA rural church is staged; its creature and equipment are not installed.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'

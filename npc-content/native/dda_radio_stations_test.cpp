@@ -121,3 +121,28 @@ TEST_CASE( "shopping_plaza_roofs_generate_over_existing_bn_stores", "[dda_npc][d
         }
     }
 }
+
+TEST_CASE( "rural_church_generates_basement_steeple_and_real_bell_terminal", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>( disable_mapgen );
+    disable_mapgen = false;
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    const auto names = std::array<std::string, 4>{ "rural_church_basement", "rural_church", "rural_church_steeple", "rural_church_steeple_roof" };
+    buffer.ter_set( tripoint_abs_omt( 820, 820, 0 ), oter_id( "rural_church_parking_north" ) );
+    for( int z = -1; z <= 2; ++z ) {
+        const auto terrain = oter_id( names[z + 1] + "_north" );
+        REQUIRE( terrain.is_valid() );
+        buffer.ter_set( tripoint_abs_omt( 821, 820, z ), terrain );
+    }
+    auto generated = map( 2 );
+    generated.load( project_to<coords::sm>( point_abs_omt( 821, 820 ) ), false );
+    CHECK( generated.ter( tripoint_bub_ms( 1, 7, 0 ) ) == ter_id( "t_stairs_up" ) );
+    CHECK( generated.ter( tripoint_bub_ms( 1, 7, 1 ) ) == ter_id( "t_stairs_down" ) );
+    CHECK( generated.ter( tripoint_bub_ms( 7, 21, 0 ) ) == ter_id( "t_stairs_down" ) );
+    CHECK( generated.ter( tripoint_bub_ms( 7, 21, -1 ) ) == ter_id( "t_stairs_up" ) );
+    CHECK( generated.ter( tripoint_bub_ms( 4, 6, -1 ) ) == ter_id( "t_stairs_up" ) );
+    CHECK( generated.computer_at( tripoint_bub_ms( 4, 6, 1 ) ) != nullptr );
+}

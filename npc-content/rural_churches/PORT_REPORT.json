@@ -1,0 +1,36 @@
+{
+  "status": "ordinary_native_prepared_xedra_staged",
+  "ordinary": {
+    "mapgen_blocks": 4,
+    "placement_cells": 5,
+    "z_levels": [
+      -1,
+      0,
+      1,
+      2
+    ],
+    "preserved_source_rows": true,
+    "bell_terminal": "real BN computer using stock toll action",
+    "global_BN_palettes_modified": false,
+    "adaptations": [
+      "BN white wall and dirt terrain",
+      "source gray linoleum fallback",
+      "BN cathedral furniture and loot rules",
+      "BN numeric OMT visibility"
+    ],
+    "validation": "local geometry and packaging passed; Windows native execution pending"
+  },
+  "xedra": {
+    "mapgen_blocks": 4,
+    "placement_cells": 5,
+    "equipment_nodes": 9,
+    "reference_edges": 70,
+    "native_installed": false,
+    "review": "XEDRA_DEPENDENCY_REVIEW.json"
+  },
+  "pending": [
+    "Windows native generation tests",
+    "natural placement and player traversal",
+    "complete XEDRA monster, field and equipment mechanics"
+  ]
+}

@@ -11,6 +11,7 @@ from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_radio_stations import prepare as prepare_radio, MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD
 from prepare_tower_expansions import patch_sections as tower_patch, prepare as prepare_towers, PAYLOAD as HOTEL_PAYLOAD
 from prepare_shopping_plaza import PAYLOAD as PLAZA_PAYLOAD
+from prepare_rural_churches import prepare as prepare_churches, PAYLOAD as CHURCH_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD, MUTATIONS
 
 root = Path(__file__).resolve().parent
@@ -25,6 +26,7 @@ prepare_existing_locations()
 prepare_hub_access(check=True)
 prepare_radio(check=True)
 prepare_towers(check=True)
+prepare_churches(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
@@ -48,6 +50,7 @@ if args.bn_source:
     (root / "engine_staging" / RADIO_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / HOTEL_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / PLAZA_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / CHURCH_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
@@ -112,6 +115,8 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_hotel_roof_caps.json")
                                 "/dev/null", "b/" + HOTEL_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_shopping_plaza_roofs.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + PLAZA_PAYLOAD))
+parts.extend(difflib.unified_diff([], (root / "native/dda_rural_church.json").read_text(encoding="utf-8").splitlines(keepends=True),
+                                "/dev/null", "b/" + CHURCH_PAYLOAD))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()
