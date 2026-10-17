@@ -1,0 +1,3605 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "bn_scan": "catalog_only",
+  "installed": false,
+  "reference_scan_scope": "Explicit terrain/furniture/item/group/monster/vehicle/palette/nested positions only; not a complete transitive loader validation.",
+  "remaining": [
+    "Resolve all shared nested/palette and item dependencies",
+    "Review BN counterparts semantically; matching ID is not parity",
+    "Adapt DDA schema, parameters, ramps and functional furniture without substitutions",
+    "Normalize placement connections and numeric vision at native integration",
+    "Run native loading, generation, stairs and placement tests before enabling"
+  ],
+  "sites": [
+    {
+      "site": "small_lighthouse",
+      "state": "staged_not_installed",
+      "mapgen_definitions": 6,
+      "mapgen_terrain_slots": 6,
+      "overmap_terrain_definitions": 6,
+      "placements": [
+        "lighthouse_island_small"
+      ],
+      "local_palettes_expanded": [
+        "lighthouse_small_palette"
+      ],
+      "dependencies": [
+        {
+          "type": "furniture",
+          "id": "f_12000_gasoline_generator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_boulder_large",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_boulder_medium",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_chair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_cupboard",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_diesel_generator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_electrical_conduit",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_generator_broken",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_lighthouse_light",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_locker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_machinery_electronic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_machinery_old",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_military_generator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack_coat",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sofa",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_stool",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_woodstove",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "dishes_utility",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "fishing_items",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "fuel_gasoline",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "jackets",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "lighthouse_food",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "item_group",
+          "id": "lighthouse_fuel",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "item_group",
+          "id": "lighthouse_rainwater",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "item_group",
+          "id": "stash_wood",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_workshop",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "palette",
+          "id": "roof_palette",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_dock",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_glass_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_lighthouse_lens_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_up_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_flat_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_grate_window",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_railing",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_roof_red",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_open_air",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pit",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_railroad_rubble",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sand",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_stone_masonry_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_stone_masonry_floor_balcony",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_stone_masonry_wall_whitewashed",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_lighthouse_lens",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_wood",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_water_dp",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_water_sh",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "boat_motor_single",
+          "status": "requires_full_bn_scan"
+        }
+      ],
+      "additional_definitions": {
+        "item_group": 3
+      },
+      "source_mapgen_fields": [
+        "fill_ter",
+        "palettes",
+        "place_vehicles",
+        "rows"
+      ],
+      "unregistered_mapgen_terrain_ids": []
+    },
+    {
+      "site": "karting",
+      "state": "staged_not_installed",
+      "mapgen_definitions": 3,
+      "mapgen_terrain_slots": 27,
+      "overmap_terrain_definitions": 27,
+      "placements": [
+        "o_karting_l"
+      ],
+      "local_palettes_expanded": [
+        "karting_l"
+      ],
+      "dependencies": [
+        {
+          "type": "furniture",
+          "id": "f_armchair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_chair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_counter",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_crate_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_crate_o",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_locker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_pool_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_stool",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_utility_shelf",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_workbench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_toilet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_welding_gear",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "cash_register_random",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "clothing_biker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "clothing_work_set",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "mechanics",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "pool_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "monstergroup",
+          "id": "GROUP_ZOMBIE",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "11x11_recroom_open",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "crates_supplies_mechanics",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "diningroom_5x5_E_W",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "home_office_4x4_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "home_office_4x4_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "kitchen_5x5_N_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "kitchen_5x5_N_1A",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_4x4_N_S_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities_b",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities_d",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "palette",
+          "id": "roof_palette",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_guardrail",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_gutter_downspout",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_linoleum_gray",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_linoleum_gray_no_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_linoleum_white",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_linoleum_white_no_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_open_air",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_down_high",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_down_low",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_up_high",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_up_low",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sconc_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sidewalk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_strconc_floor_no_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_thconc_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_tile_flat_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_wood",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wood_stairs_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wood_stairs_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "go_kart",
+          "status": "provided_in_site"
+        }
+      ],
+      "additional_definitions": {
+        "vehicle": 1
+      },
+      "source_mapgen_fields": [
+        "fill_ter",
+        "nested",
+        "palettes",
+        "place_monsters",
+        "rows",
+        "terrain",
+        "vehicles"
+      ],
+      "unregistered_mapgen_terrain_ids": []
+    },
+    {
+      "site": "farm_supply",
+      "state": "staged_not_installed",
+      "mapgen_definitions": 4,
+      "mapgen_terrain_slots": 12,
+      "overmap_terrain_definitions": 12,
+      "placements": [
+        "Farm Supply Store",
+        "Farm Supply Store Looted"
+      ],
+      "local_palettes_expanded": [
+        "farm_supply_looted_palette",
+        "farm_supply_palette"
+      ],
+      "dependencies": [
+        {
+          "type": "furniture",
+          "id": "f_atm_off",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_chair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_chest_minifreezer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_clothing_rail",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_counter",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_crate_o",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_desk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_displaycase",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_displaycase_o",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dryer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dumpster",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_earthbag_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_freezer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_fridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_indoor_plant",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_indoor_plant_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_minifreezer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_minifridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_oven",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_pallet_brick",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_pallet_cement",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack_coat",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack_wood",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_safe_l",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sandbag_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sofa",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_stack_plank",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_trashcan",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_warehouse_shelf",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_washer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_fridge_breakroom",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_toilet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_dumpster",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_trashcan_public",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "cash_register_looted",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "cash_register_random",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "clothing_glasses",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "clothing_outdoor_shoes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "clothing_watch",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "coffee_bathroom",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farm_supply_quicklime_and_saltpetre",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farm_supply_rocks",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farm_supply_soil_and_sand",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "farming_seeds",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "fishing_items",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "petstore_shelves",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "sports",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "vending_drink_items",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "1x1_bash",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "farm_supply_fence_destruction",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "general_graffiti",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_infrastructure",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_infrastructure_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities_b",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_2x2_utilities_d",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_3x3_wine",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "roof_6x6_survivor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "shelter_graffiti",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_carpet_concrete_red",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_chainfence",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_chaingate_l",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_concrete_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_glass_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_glass_o",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_locked_interior",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_pickable",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_o",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_flat_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_glass_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_railing",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_open_air",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_groundcover",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_tree_shade",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_shrub_hydrangea",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_shrub_rose",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sidewalk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_thconc_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window_bars",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "farm_vehicles",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "industrial_transport",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "parkinglotbasic",
+          "status": "requires_full_bn_scan"
+        }
+      ],
+      "additional_definitions": {},
+      "source_mapgen_fields": [
+        "fill_ter",
+        "items",
+        "mapgensize",
+        "nested",
+        "palettes",
+        "place_corpses",
+        "place_liquids",
+        "place_monster",
+        "place_nested",
+        "rows",
+        "set",
+        "terrain",
+        "toilets",
+        "vehicles"
+      ],
+      "unregistered_mapgen_terrain_ids": []
+    },
+    {
+      "site": "nursing_home",
+      "state": "staged_not_installed",
+      "mapgen_definitions": 10,
+      "mapgen_terrain_slots": 66,
+      "overmap_terrain_definitions": 66,
+      "placements": [
+        "nursing_home_sh",
+        "nursing_home"
+      ],
+      "local_palettes_expanded": [
+        "nursing_home_lab_palette",
+        "nursing_home_palette",
+        "nursing_home_sh_palette"
+      ],
+      "dependencies": [
+        {
+          "type": "MONSTER",
+          "id": "mon_boomer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "MONSTER",
+          "id": "mon_zombie_rot",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "effect_on_condition",
+          "id": "EOC_NURSING_HOME_COO",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "effect_on_condition",
+          "id": "EOC_NURSING_HOME_RECEPTIONIST",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "effect_on_condition",
+          "id": "EOC_NURSING_HOME_RECEP_MANAGER",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "effect_on_condition",
+          "id": "EOC_NURSING_HOME_SCI",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "furniture",
+          "id": "f_12000_gasoline_generator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_IV_pole",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_anesthetic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_armchair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bed",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bookcase",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_chair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_console",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_console_broken",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_control_station",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_counter",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_counter_gate_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_crate_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_desk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dialysis",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_diesel_generator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dishwasher",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dresser",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dryer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dumpster",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_electron_microscope",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_freezer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_fridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_generator_broken",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_glass_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_indoor_plant",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_indoor_plant_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_locker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_metal_bench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_military_generator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_oven",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_region_flower",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_shower",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sofa",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_stool",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_street_light",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_toilet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_utility_shelf",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_ventilator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_wardrobe",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_washer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "coke",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "frozen_dinner",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "television",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_chemistry_bookcase",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_janitors_closet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_knife_drawer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_desk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_mess",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_supplies",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_pantry",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_science_personal_effects",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_silverware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_toilet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_hardware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_trashcan",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_utensils",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "allclothes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "bed",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "chem_lab",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "cleaning",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "common_mutation_books",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "dinnerware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "doctors_books",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "donated_clothes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "drugs_analgesic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "drugs_emergency",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "drugs_heal_simple",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "drugs_misc",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "drugs_pharmacy",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "electronics",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "games",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "gear_medical",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "groce_dairyegg",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "groce_frozen",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "groce_meat",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "groce_premade",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "groce_softdrink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "harddrugs",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "home_hw",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "homebooks",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "lab_bookshelves",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "lab_files_generic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "lab_glassware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "lab_mutagen_ingredients_fridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "literature",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "magazines",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "meth_ingredients",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "mut_lab",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "novels",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "nursing_home_clothes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "rare_mutation_books",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "restaur_bath",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "restaur_fridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "saline_bottle_random",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "science",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "softdrugs",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_common",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_science",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "nursing_home_coo",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "nursing_home_recep_manager",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "nursing_home_receptionist",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "nursing_home_sci",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "palette",
+          "id": "parametrized_walls_palette",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "palette",
+          "id": "roof_palette",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "talk_topic",
+          "id": "COMP_NURSING_HOME_COO",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "talk_topic",
+          "id": "COMP_NURSING_HOME_RECEPTIONIST",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "talk_topic",
+          "id": "COMP_NURSING_HOME_RECEP_MANAGER",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "talk_topic",
+          "id": "COMP_NURSING_HOME_SCI",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "terrain",
+          "id": "t_carpet_red",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_chainfence",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_chaingate_l",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_concrete_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_bar_locked",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_glass_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_locked_interior",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_pickable",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_elevator_control_off",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_flat_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_grate",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_gutter_downspout",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_laminated_door_glass_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_open_air",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_grass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_shrub_decorative",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_tree_shade",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_reinforced_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_rock",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sidewalk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_splitrail_fence",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_thconc_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_thconc_floor_olight",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_metal",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_water_sh",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window_bars_noglass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_zebra",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "hospital_bed_small",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "medical_cart",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "parkinglotbasic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "wheelchair",
+          "status": "requires_full_bn_scan"
+        }
+      ],
+      "additional_definitions": {
+        "effect_on_condition": 4,
+        "talk_topic": 59
+      },
+      "source_mapgen_fields": [
+        "fill_ter",
+        "items",
+        "mapgensize",
+        "monster",
+        "palettes",
+        "place_computers",
+        "place_item",
+        "place_loot",
+        "place_monster",
+        "place_signs",
+        "place_vehicles",
+        "rows",
+        "vendingmachines"
+      ],
+      "unregistered_mapgen_terrain_ids": []
+    },
+    {
+      "site": "retirement_community",
+      "state": "staged_not_installed",
+      "mapgen_definitions": 22,
+      "mapgen_terrain_slots": 124,
+      "overmap_terrain_definitions": 124,
+      "placements": [
+        "retirement_community"
+      ],
+      "local_palettes_expanded": [
+        "retirement_community_b_palette",
+        "retirement_community_c_palette",
+        "retirement_community_palette",
+        "retirement_community_park_palette"
+      ],
+      "dependencies": [
+        {
+          "type": "MONSTER",
+          "id": "mon_bat",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "MONSTER",
+          "id": "mon_feral_human_pipe",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "MONSTER",
+          "id": "mon_large_cockroach",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "MONSTER",
+          "id": "mon_pigeon",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "MONSTER",
+          "id": "mon_squirrel",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "MONSTER",
+          "id": "mon_zombie_child",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "effect_on_condition",
+          "id": "EOC_RET_COMM_HOME",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "effect_on_condition",
+          "id": "EOC_RET_COMM_OFFICE",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_air_conditioner",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_armchair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bathtub",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bed",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bench",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_birdbath",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_bookcase",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_brazier",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_camp_chair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_cardboard_box",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_chair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_coffee_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_console",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_console_broken",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_counter",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_cupboard",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_deckchair",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_desk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dishwasher",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_displaycase",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dive_block",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dresser",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dryer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_dumpster",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_entertainment_center",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_ergometer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_ergometer_mechanical",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_exercise",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_foot_locker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_foot_locker_aluminum",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_freezer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_fridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_glass_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_hedge_short",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_home_furnace",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_indoor_plant",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_indoor_plant_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_locker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_mannequin",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_null",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_oven",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_pinball_machine",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_pool_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_rack_coat",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_region_flower",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_room_divider",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_shower",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_sofa",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_speaker_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_stool",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_street_light",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_toilet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_tourist_table",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_trashcan",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_treadmill",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_treadmill_mechanical",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_wardrobe",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_washer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "furniture",
+          "id": "f_water_heater_family",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "bra",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "briefs",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "panties",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "pool_cue",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "stereo",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "television",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item",
+          "id": "wine_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_appliances_cupboard",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_bathroom_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_bathroom_medicine",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_bathroom_sink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_cookware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_dishes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_dishwasher",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_dresser_mens",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_dresser_womens",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_fridge",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_fridge_bachelor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_junk_drawer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_kitchen_sink",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_knife_drawer",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_desk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_office_filing_cabinet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_oven",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_pantry",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_silverware",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_spice_collection",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_toilet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_trash_trashcan",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_utensils",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_wardrobe_mens",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "SUS_wardrobe_womens",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "allclothes",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "barbecue",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "bed",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "chem_home",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "cigar_box_opened",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "cleaning",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "coat_rack",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "coats_unisex",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "construction_worker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "gear_survival",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "gym",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "hardware_clothing",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "hoarder",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "home_display_case",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "home_hw",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "homebooks",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "liquor_and_spirits",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "metal_workshop",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "misc_smoking_legal",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "museum_armor_arms",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "museum_armor_feet",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "museum_armor_head",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "museum_armor_legs",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "museum_armor_torso",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "museum_melee",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "nightstand",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "pants_female",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "pants_male",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "preserved_food",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "shirts",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "shower",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_common",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_common_small",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_general",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_plumbing",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "tools_workshop",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "toy_box",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "item_group",
+          "id": "wines_worthy",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_gym_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_gym_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_gym_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_gym_W",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_holdout_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_holdout_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_pool",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_sauna_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "5x5_sauna_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "6x6_sewing_open",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "basement_storage_1x1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_4x4_adult_1_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_4x4_adult_1_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_4x4_adult_2_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_4x4_adult_2_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_4x4_adult_2_W",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_E_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_E_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_N_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_N_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_S_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_S_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_W_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bedroom_5x5_adult_W_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bonus_room_3x3_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bonus_room_3x3_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bonus_room_3x3_4",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bonus_room_3x3_5",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bonus_room_3x3_N_6",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "bonus_room_3x3_S_5",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "diningroom_5x5_E_W",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "diningroom_5x5_N_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "firepit_5x5_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "firepit_5x5_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "garden_3x3_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "garden_3x3_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "garden_3x3_3",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "greenhouse_6x6_herbal",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "greenhouse_6x6_vegetable",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "home_office_4x4_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_E_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_E_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_N_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_N_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_S_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_S_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_W_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "livingroom_5x5_W_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "playset_4x4_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "playset_4x4_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "pond_6x6",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "reflecting_pool_5x5_1",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "reflecting_pool_5x5_2",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "ret_comm_home",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "ret_comm_office",
+          "status": "provided_in_site"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_guns_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_guns_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_junk_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_junk_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_pool_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_pool_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_recording_studio_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_recording_studio_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_woodworker_E",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_10x10_woodworker_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_bike",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_brewer_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_brewer_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_guns_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_guns_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_junk_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_office_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_office_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_6x6_woodworker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_7x7_junk_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_7x7_junk_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_7x7_recroom_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_7x7_recroom_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_7x7_wine_cellar_N",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "room_7x7_wine_cellar_S",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "shed_6x6_junk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "shed_6x6_woodworker",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "nested_mapgen",
+          "id": "spider_webs",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "palette",
+          "id": "roof_palette",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "palette",
+          "id": "sewers",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "talk_topic",
+          "id": "COMP_RET_COMM_HOME",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "talk_topic",
+          "id": "COMP_RET_COMM_OFFICE",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_backboard",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_bars",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_brick_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_carpet_purple",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_carpet_red",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_chainfence",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_chaingate_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_concrete",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_concrete_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_curtains",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_dirt_underground",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_bar_locked",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_glass_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_locked",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_locked_alarm",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_locked_peep",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_locked",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_door_metal_pickable",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_elevator",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_elevator_control_off",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_fence_metal",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_fence_rope",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_flat_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_gates_mech_control",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_grass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_gutter_downspout",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ladder_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_laminated_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_linoleum_gray",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_linoleum_white",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_manhole_cover",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_metal_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_null",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_open_air",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_pavement_y",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_privacy_fence",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_privacy_fencegate_c",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_down_high",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_down_low",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_ramp_up_high",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_grass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_groundcover",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_groundcover_forest",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_groundcover_urban",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_shrub_decorative",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_soil",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_region_tree_shade",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_reinforced_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_rock",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_rock_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_rock_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_rock_wall_half",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sand",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_screened_porch_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_shingle_flat_roof",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_sidewalk",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_slope_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_slope_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_soil",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_splitrail_fence",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_thconc_floor",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_glass",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_metal",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wall_wood",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_water_dp",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_water_pool",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_water_sh",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window_domestic",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window_no_curtains",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window_no_curtains_open",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_window_open",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wood_stairs_down",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_wood_stairs_up",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "terrain",
+          "id": "t_zebra",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "parking_garage",
+          "status": "requires_full_bn_scan"
+        },
+        {
+          "type": "vehicle",
+          "id": "van_cargo",
+          "status": "requires_full_bn_scan"
+        }
+      ],
+      "additional_definitions": {},
+      "source_mapgen_fields": [
+        "fill_ter",
+        "items",
+        "liquids",
+        "mapgensize",
+        "nested",
+        "palettes",
+        "place_computers",
+        "place_item",
+        "place_loot",
+        "place_monster",
+        "place_signs",
+        "place_vehicles",
+        "rows",
+        "terrain"
+      ],
+      "unregistered_mapgen_terrain_ids": []
+    }
+  ]
+}

@@ -31,6 +31,16 @@ jobs:
           python npc-content/prepare_rural_churches.py --check --bn-source bn-data
           python npc-content/prepare_xedra_creature.py --check --bn-data bn-data
           python npc-content/prepare_xedra_gear.py --check --bn-source bn-data
+      - name: Verify bulk regional location staging and audit pinned BN references
+        run: |
+          python npc-content/check_regional_locations.py
+          python npc-content/prepare_regional_locations.py --check --bn-source bn-data --report regional-dependency-audit.json
+      - name: Preserve full regional dependency audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: regional-location-dependency-audit
+          path: regional-dependency-audit.json
+          retention-days: 30
       - name: Compare pinned DDA and BN location catalogs
         run: python npc-content/check_location_catalog.py
       - name: Reconstruct preserved artisan sources

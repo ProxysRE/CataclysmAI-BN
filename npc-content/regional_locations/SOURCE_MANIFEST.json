@@ -1,0 +1,60 @@
+{
+  "pins": {
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
+  },
+  "bundle_sha256": "3827bb607e991f24aa4dcfa5e54b619fe176a6c005886f14c419b561f3563c94",
+  "parts": [
+    "SOURCE.part00"
+  ],
+  "files": {
+    "cars.json": {
+      "path": "data/json/vehicles/cars.json",
+      "sha256": "7d9db2436328ca2984d5d11440d260b1b79dc11cd99f694760c7001e40d21936"
+    },
+    "TALK_NURSING_HOME.json": {
+      "path": "data/json/npcs/computers/TALK_NURSING_HOME.json",
+      "sha256": "84109fbf1efcaa83c17ffbb051c2486a921dba4c106fb1453504e76f1e8f4b77"
+    },
+    "lighthouse_small.json": {
+      "path": "data/json/mapgen/lake_buildings/lighthouse_small.json",
+      "sha256": "be17afacb12b48513e6cc1feb801bd8ac8ee014cfdcf756e0cf4202a5458c452"
+    },
+    "karting_l.json": {
+      "path": "data/json/mapgen/karting_l.json",
+      "sha256": "9eb72898aa2d4291a216275f97600afa1af8fdb1ada6a80187e38c11e1fd1d88"
+    },
+    "karting_palette.json": {
+      "path": "data/json/mapgen_palettes/karting_l.json",
+      "sha256": "dc4ac8ccf55ed4182d370bb8d839ecddee2c0332102487ae432af6a0105c9156"
+    },
+    "farm_supply.json": {
+      "path": "data/json/mapgen/farm_supply.json",
+      "sha256": "516f3be92dcdff8aeb59ee3a963320641a4e337c85adc2305efc431de28f950c"
+    },
+    "farm_supply_palette.json": {
+      "path": "data/json/mapgen_palettes/farm_supply_palette.json",
+      "sha256": "72acd09505211a5a3e0c495a47bf2a4d9237473253385c4a88e494b74f11140c"
+    },
+    "nursing_home.json": {
+      "path": "data/json/mapgen/nursing_home.json",
+      "sha256": "d9df50676cb54b7a526c17d249f5d28e73de2a4b1b2c2505a471364a4748915b"
+    },
+    "nursing_home_palette.json": {
+      "path": "data/json/mapgen_palettes/nursing_home_palette.json",
+      "sha256": "8790b8176ffc7d1a86b1454875d45174c20bc01a0370447d2832c4fb8475d3eb"
+    },
+    "nursing_home_nested.json": {
+      "path": "data/json/mapgen/nested/nursing_home_nested.json",
+      "sha256": "227aa68764db01611c2d8a6ecf8ccab754be5dbc263467eaea86e483acc6d507"
+    },
+    "retirement_community.json": {
+      "path": "data/json/mapgen/retirement_community.json",
+      "sha256": "bb7511f9af55d9b08886fd25ba4bce4061ba533ae475436d241993a9165cb0c8"
+    },
+    "retirement_community_palette.json": {
+      "path": "data/json/mapgen_palettes/retirement_community_palette.json",
+      "sha256": "bd270753eb2eac14e0086d8fd5e0c6a38df789ec3d4c8ff4bcee40a9c1e811ba"
+    }
+  }
+}

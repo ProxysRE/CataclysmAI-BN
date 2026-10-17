@@ -387,5 +387,17 @@
     "compilation": "success",
     "data_loading": "failed; three schema/load-order fixes prepared",
     "record": "rural_churches/WINDOWS_DATA_FIX.json"
+  },
+  "regional_locations": {
+    "status": "bulk_staged_not_native_installed",
+    "groups": 5,
+    "mapgen_definitions": 45,
+    "terrain_mapgens": 38,
+    "nested_templates": 7,
+    "terrain_slots": 235,
+    "computer_dialogue_topics": 59,
+    "computer_eocs": 4,
+    "progress": "regional_locations/TRANSFER_REPORT.json",
+    "validation": "source geometry and reproducibility; full BN ID audit added to CI; runtime pending"
   }
 }
