@@ -12,7 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 
-ITEM_TYPES = {'ITEM', 'AMMO', 'ARMOR', 'GENERIC', 'GUN', 'GUNMOD', 'MAGAZINE',
+ITEM_TYPES = {'CONTAINER', 'ITEM', 'AMMO', 'ARMOR', 'GENERIC', 'GUN', 'GUNMOD', 'MAGAZINE',
               'TOOL', 'TOOL_ARMOR', 'COMESTIBLE', 'BOOK', 'BIONIC_ITEM', 'BATTERY',
               'ENGINE', 'PET_ARMOR', 'TOOLMOD', 'WHEEL'}
 ROOTS = ('broken_kord', 'kord', 'casket74mag', '545_ap', 'nano_fabricator_encryption_code')

@@ -18,6 +18,7 @@ on:
       - 'npc-content/prepare_shopping_plaza.py'
       - 'npc-content/prepare_rural_churches.py'
       - 'npc-content/prepare_karting.py'
+      - 'npc-content/quest_dependency_graph.py'
       - 'npc-content/karting/SOURCE*'
       - 'npc-content/prepare_regional_locations.py'
       - 'npc-content/regional_locations/SOURCE*'

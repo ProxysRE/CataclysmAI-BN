@@ -48,6 +48,8 @@ assert Counter(e['type'] for e in payload) == {'mapgen': 3, 'vehicle': 1, 'overm
 assert not any(e.get('id') == 'coin_quarter' for e in payload)
 cash = next(e for e in payload if e.get('id') == 'cash_register')
 assert cash['contains'] == '1 L' and cash['rigid']
+assert namespace(cash) == 'item'
+assert ('item', 'cash_register') in index_entries([cash])
 assert not {'pocket_data', 'longest_side', 'to_hit', 'melee_damage'}.intersection(cash)
 files = sources()
 # The native BN frame loader creates concrete shape IDs from abstract roots.
