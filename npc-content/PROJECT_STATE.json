@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Radio station tower expansion added to native patch; Hub panel materialization and all current native tests pending Windows",
+  "stage": "Hotel technical-enclosure caps integrated with radio tower expansion; Windows validation pending",
   "package": "Isolated Road",
   "native_compilation": "Windows game, 34 native cases / 2893 assertions and installed-data regression passed at 1031b295. Casing/quest-prop changes await their runs.",
   "remaining": [
@@ -358,5 +358,10 @@
     "assertions": 2897,
     "installed_test_cases": 35,
     "installed_assertions": 2897
+  },
+  "hub_access_checkpoint": {
+    "head": "029bcacf2f8b192b271e9a44f18dbd862db161aa",
+    "run_id": 39040970406,
+    "status": "success"
   }
 }

@@ -8,7 +8,8 @@ import subprocess
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
 from prepare_location_expansion import nuclear_patch, NUCLEAR
-from prepare_radio_stations import patch_sections as radio_patch, prepare as prepare_radio, MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD
+from prepare_radio_stations import prepare as prepare_radio, MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD
+from prepare_tower_expansions import patch_sections as tower_patch, prepare as prepare_towers, PAYLOAD as HOTEL_PAYLOAD
 from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as prepare_hub_access, PAYLOAD as HUB_PAYLOAD, MUTATIONS
 
 root = Path(__file__).resolve().parent
@@ -22,6 +23,7 @@ args = parser.parse_args()
 prepare_existing_locations()
 prepare_hub_access(check=True)
 prepare_radio(check=True)
+prepare_towers(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
@@ -43,6 +45,7 @@ if args.bn_source:
     (root / "engine_staging" / HUB_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_radio_stations_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / RADIO_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / HOTEL_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_dialogue_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_artisan_services_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/data/json/dda_artisan_activities.json").unlink(missing_ok=True)
@@ -100,9 +103,11 @@ parts.append(nuclear_patch()[0])
 parts.append(hub_access_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_hub_elevator_access.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + HUB_PAYLOAD))
-parts.append(radio_patch())
+parts.append(tower_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_radio_station_towers.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + RADIO_PAYLOAD))
+parts.extend(difflib.unified_diff([], (root / "native/dda_hotel_roof_caps.json").read_text(encoding="utf-8").splitlines(keepends=True),
+                                "/dev/null", "b/" + HOTEL_PAYLOAD))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()

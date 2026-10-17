@@ -57,12 +57,16 @@ def verify_install(folder):
         raise ValueError('Installed chemist map differs from the reviewed replacement')
 
     from prepare_radio_stations import MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD, prepare_data
-    radio_maps, radio_payload, _ = prepare_data()
+    _, radio_payload, _ = prepare_data()
+    from prepare_tower_expansions import prepare_data as tower_data, PAYLOAD as HOTEL_PAYLOAD
+    radio_maps, hotel_payload = tower_data()
     for relative in (RADIO_MAP, RADIO_CITY):
         if json.loads((folder / relative).read_text(encoding='utf-8')) != json.loads(radio_maps[relative]):
             raise ValueError('Installed radio station map differs: ' + relative)
     if json.loads((folder / RADIO_PAYLOAD).read_text(encoding='utf-8')) != radio_payload:
         raise ValueError('Installed radio tower payload differs')
+    if json.loads((folder / HOTEL_PAYLOAD).read_text(encoding='utf-8')) != hotel_payload:
+        raise ValueError('Installed hotel roof payload differs')
     from prepare_hub_elevator import MUTATIONS, PAYLOAD, payload, replacements
     if json.loads((folder / PAYLOAD).read_text(encoding='utf-8')) != payload():
         raise ValueError('Installed Hub access payload differs')

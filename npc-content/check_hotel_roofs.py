@@ -27,5 +27,5 @@ for original in json.loads(radio[CITY]):
 source_cap = next(e for e in json.loads(sources()['dda']) if 'hotel_tower_6_1_9' in str(e.get('om_terrain')))
 assert payload[1]['object'] == source_cap['object']
 assert payload[0]['id'] == source_cap['om_terrain'][0]
-assert report['status'] == 'prepared_not_installed_or_runtime_validated'
+assert report['status'] == 'native_code_prepared_not_runtime_validated'
 print('PASS: three hotel variants, exact DDA cap geometry, BN interiors preserved, radio composition retained')

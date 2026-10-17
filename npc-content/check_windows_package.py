@@ -17,8 +17,11 @@ def check():
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
         installed = root / 'CBN_DDA_NPC_DEV'
-        radio_maps, radio_payload, _ = prepare_data()
+        _, radio_payload, _ = prepare_data()
+        from prepare_tower_expansions import prepare_data as tower_data, PAYLOAD as HOTEL_PAYLOAD
+        radio_maps, hotel_payload = tower_data()
         payload = {
+            HOTEL_PAYLOAD: json.dumps(hotel_payload).encode(),
             RADIO_MAP: radio_maps[RADIO_MAP].encode(),
             RADIO_CITY: radio_maps[RADIO_CITY].encode(),
             RADIO_PAYLOAD: json.dumps(radio_payload).encode(),

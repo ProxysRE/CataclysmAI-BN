@@ -13,6 +13,9 @@ on:
       - 'npc-content/prepare_location_expansion.py'
       - 'npc-content/prepare_hub_elevator.py'
       - 'npc-content/prepare_radio_stations.py'
+      - 'npc-content/prepare_tower_expansions.py'
+      - 'npc-content/prepare_hotel_roofs.py'
+      - 'npc-content/hotel_roofs/SOURCE*'
       - 'npc-content/radio_stations/SOURCE_BUNDLE.base64'
       - 'npc-content/radio_stations/SOURCE_MANIFEST.json'
       - 'npc-content/check_location_expansion.py'
@@ -100,6 +103,7 @@ jobs:
       - name: Apply native NPC expression bridge
         run: |
           python "${{ github.workspace }}/package/npc-content/prepare_radio_stations.py" --check --bn-source .
+          python "${{ github.workspace }}/package/npc-content/prepare_tower_expansions.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Radio station baseline or ID conflict" }
           python "${{ github.workspace }}/package/npc-content/prepare_hub_elevator.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Hub elevator source preflight failed" }
@@ -114,7 +118,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "a0c4e2ca21203fd0fcc3faf9798e39e9824b04439bdb51bd3883330e3fc0ccc1") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "fc511fdbaacee19d9f391bd498fec28a0cc6aa9ed06125a35bd3e044c99f690c") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

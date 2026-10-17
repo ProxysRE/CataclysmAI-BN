@@ -1,5 +1,5 @@
 {
-  "status": "prepared_not_installed_or_runtime_validated",
+  "status": "native_code_prepared_not_runtime_validated",
   "scope": "two technical-enclosure roof caps, not a new inhabited storey",
   "existing_BN_mapgen_entries_preserved": 16,
   "roof_footprint_cells": 60,
@@ -88,7 +88,6 @@
     "roof_palette"
   ],
   "pending": [
-    "native patch composition with radio city edits",
     "Windows generation tests"
   ]
 }

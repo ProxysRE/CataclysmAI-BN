@@ -54,3 +54,36 @@ TEST_CASE( "radio_station_towers_generate_continuous_ladders_in_all_rotations", 
         }
     }
 }
+
+TEST_CASE( "hotel_technical_enclosures_receive_source_roof_caps", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>( disable_mapgen );
+    disable_mapgen = false;
+    auto &actor = get_avatar();
+    actor.reset_all_missions();
+    auto &buffer = get_overmapbuffer( actor.get_dimension() );
+    for( int column = 0; column < 3; ++column ) {
+        const auto suffix = std::to_string( 9 - column ) + "_north";
+        const auto lower = oter_id( "hotel_tower_roof_1_" + suffix );
+        const auto upper = oter_id( "hotel_tower_6_1_" + suffix );
+        REQUIRE( lower.is_valid() );
+        REQUIRE( upper.is_valid() );
+        buffer.ter_set( tripoint_abs_omt( 720 + column, 720, 4 ), lower );
+        buffer.ter_set( tripoint_abs_omt( 720 + column, 720, 5 ), upper );
+    }
+    for( int column = 0; column < 3; ++column ) {
+        INFO( "hotel column=" << column );
+        auto generated = map( 2 );
+        generated.load( project_to<coords::sm>( point_abs_omt( 720 + column, 720 ) ), false );
+        CHECK( generated.ter( tripoint_bub_ms( 12, 0, 5 ) ) == ter_id( "t_open_air" ) );
+        if( column == 1 ) {
+            CHECK( generated.ter( tripoint_bub_ms( 12, 10, 5 ) ) == ter_id( "t_open_air" ) );
+        } else {
+            const auto x = column == 0 ? 5 : 17;
+            CHECK( generated.ter( tripoint_bub_ms( x, 10, 5 ) ) == ter_id( "t_flat_roof" ) );
+            CHECK( generated.ter( tripoint_bub_ms( x, 9, 5 ) ) == ter_id( "t_gutter" ) );
+            CHECK_FALSE( generated.has_flag( "GOES_UP", tripoint_bub_ms( x, 10, 5 ) ) );
+        }
+    }
+}

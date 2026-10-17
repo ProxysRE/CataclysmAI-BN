@@ -62,12 +62,12 @@ def prepare_data(city_text=None):
         target['overmaps'].extend(extra)
         assert target['overmaps'][:-3] == original['overmaps']
         changes[name] = extra
-    return [omt, cap], city, {'status': 'prepared_not_installed_or_runtime_validated',
+    return [omt, cap], city, {'status': 'native_code_prepared_not_runtime_validated',
         'scope': 'two technical-enclosure roof caps, not a new inhabited storey',
         'existing_BN_mapgen_entries_preserved': len(bn_maps),
         'roof_footprint_cells': len(footprint), 'placements': changes,
         'dependencies_reused': ['generic_city_building', 'roof_palette'],
-        'pending': ['native patch composition with radio city edits', 'Windows generation tests']}
+        'pending': ['Windows generation tests']}
 
 
 def prepare():
@@ -79,4 +79,4 @@ def prepare():
 
 if __name__ == '__main__':
     prepare()
-    print('Prepared hotel roof caps; not installed in the native build')
+    print('Prepared hotel roof caps; native generation validation pending')
