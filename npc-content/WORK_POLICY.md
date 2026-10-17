@@ -9,3 +9,5 @@ User reaffirmed autonomous continuation on 2026-10-17. Repeated "continue" messa
 - Request user input only for a material unresolved product choice, missing user data, or an actual blocker outside existing authorization.
 - Work across several useful steps before reporting completion; avoid returning after a tiny audit when implementation can continue.
 - A completed assistant turn does not leave an autonomous coding worker running. GitHub jobs already started continue independently.
+
+The user accepted all confirmed missing/partial location groups as transfer goals on 2026-10-17. Follow location_catalog/PORT_TARGETS.json and PORT_ROADMAP.md; associated NPCs, quests and required dependencies are included. Keep the three renamed-layout review groups under investigation.

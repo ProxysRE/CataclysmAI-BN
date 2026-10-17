@@ -181,6 +181,16 @@
       "unresolved_rename_groups_excluded_from_user_list": 3,
       "report": "location_catalog/MISSING_AND_PARTIAL.md",
       "scope": "Pinned core registrations, full OMT declaration catalogs, mapgen file inventory, focused mapgen checks; no claim of exhaustive interior semantic diff"
+    },
+    "accepted_targets": {
+      "accepted_on": "2026-10-17",
+      "missing_location_or_variant_groups": 38,
+      "partial_or_older_version_groups": 13,
+      "unresolved_rename_groups": 3,
+      "scope_record": "location_catalog/PORT_TARGETS.json",
+      "roadmap": "location_catalog/PORT_ROADMAP.md",
+      "includes_NPC_quest_and_transitive_dependencies": true,
+      "all_targets_runtime_complete": false
     }
   },
   "pending_native_tests": [

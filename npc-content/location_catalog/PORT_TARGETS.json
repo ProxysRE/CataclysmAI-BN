@@ -1,0 +1,1112 @@
+{
+  "accepted_on": "2026-10-17",
+  "authorization": "User accepted the confirmed missing/partial location list as project goals, together with associated NPCs and quests",
+  "source_review": "location_catalog/REVIEWED_GROUPS.json",
+  "group_counts": {
+    "absent_specific_location_or_variant": 38,
+    "expanded_or_older_version": 13
+  },
+  "target_groups": [
+    {
+      "name": "База Экзодиев и её объекты",
+      "source_identities": [
+        "overmap_special:exodii_base",
+        "overmap_special:Out-of-place Stone Barn",
+        "overmap_special:Strange warehouse"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "2_additional_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Университетский кампус",
+      "source_identities": [
+        "overmap_special:campus",
+        "overmap_special:campus_lecture",
+        "overmap_special:campus_commons",
+        "overmap_special:campus_media",
+        "overmap_special:campus_health"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Церковный ретрит Godco",
+      "source_identities": [
+        "overmap_special:New England Church Retreat"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "База ополчения",
+      "source_identities": [
+        "overmap_special:Militia Lodge"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Isolated Road — поселение Коди и Джея",
+      "source_identities": [
+        "overmap_special:isolated_road"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Оружейная выставка",
+      "source_identities": [
+        "overmap_special:gun_show"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Бункер Бальтазара",
+      "source_identities": [
+        "overmap_special:balthazar_bunker"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "2_additional_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Лимнологическая станция",
+      "source_identities": [
+        "overmap_special:limnological_station"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "2_additional_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Поселение дезертиров",
+      "source_identities": [
+        "city_building:deserter_city"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "2_additional_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Островная тюрьма",
+      "source_identities": [
+        "overmap_special:Island prison"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Сельские церкви: обычная и XEDRA",
+      "source_identities": [
+        "overmap_special:church_rural",
+        "overmap_special:xedra_church_rural"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Моргáнтаун XEDRA",
+      "source_identities": [
+        "overmap_special:xedra_morgantown"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Рыбацкая хижина XEDRA",
+      "source_identities": [
+        "overmap_special:xedra_fishing_shack"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Физическая лаборатория LIXA",
+      "source_identities": [
+        "overmap_special:physics_lab_LIXA"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Нефтяная платформа",
+      "source_identities": [
+        "overmap_special:oil_platform"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Дом престарелых и его особый вариант",
+      "source_identities": [
+        "overmap_special:nursing_home",
+        "overmap_special:nursing_home_sh"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Посёлок для пожилых",
+      "source_identities": [
+        "overmap_special:retirement_community"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Нарколаборатории и трудовой лагерь бандитов",
+      "source_identities": [
+        "overmap_special:drug_lab",
+        "overmap_special:bandit_drug_lab",
+        "overmap_special:bandit_work_camp"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Контейнерная площадка и её бандитская версия",
+      "source_identities": [
+        "overmap_special:o_container_yard_inland",
+        "overmap_special:o_container_yard_inland_bandit"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Музей текстильной фабрики",
+      "source_identities": [
+        "city_building:textile_mill_museum"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Большой полицейский департамент",
+      "source_identities": [
+        "city_building:police_dept"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Большой футбольный стадион",
+      "source_identities": [
+        "city_building:stadium_football"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Офисный небоскрёб",
+      "source_identities": [
+        "city_building:office_skyscraper"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Модульные многоквартирные комплексы",
+      "source_identities": [
+        "city_building:apartment_complex_3x3",
+        "city_building:apartment_complex_3x3_alt",
+        "city_building:apartment_complex_line",
+        "city_building:apartment_complex_U",
+        "city_building:apartment_complex_U_alt"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Большой супермаркет",
+      "source_identities": [
+        "overmap_special:supermarket"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Магазины сельхозснабжения",
+      "source_identities": [
+        "overmap_special:Farm Supply Store",
+        "overmap_special:Farm Supply Store Looted"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Коттедж гончара",
+      "source_identities": [
+        "overmap_special:Pottery Cottage"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Жильё выживальщиков и лесной лагерь",
+      "source_identities": [
+        "overmap_special:Cabin_prepper",
+        "overmap_special:cabin_liam",
+        "overmap_special:survivor_forest_camp",
+        "overmap_special:Locked LMOE Shelter"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Малый островной маяк",
+      "source_identities": [
+        "overmap_special:lighthouse_island_small"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Затонувший вертолёт",
+      "source_identities": [
+        "overmap_special:sunken_helicopter"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Горячие источники",
+      "source_identities": [
+        "overmap_special:Hot Springs"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Кладбище Лакруа",
+      "source_identities": [
+        "overmap_special:cemetery_lacroix"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Большой картодром",
+      "source_identities": [
+        "overmap_special:o_karting_l"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Микролаборатория Ratkin",
+      "source_identities": [
+        "overmap_special:4x4_microlab_rodent"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Особые объекты ми-го",
+      "source_identities": [
+        "overmap_special:Barry's Mi-Go Scout Tower",
+        "overmap_special:Mi-Go Portal"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Городские дополнения",
+      "source_identities": [
+        "city_building:synagogue",
+        "city_building:urban_library",
+        "city_building:s_library_3",
+        "city_building:small_kindergarten",
+        "city_building:office_dentist",
+        "city_building:s_airsoft",
+        "city_building:office_warehouse_anduril"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Загадочные руины высокогорья",
+      "source_identities": [
+        "overmap_special:Standing stones Highlands",
+        "overmap_special:Crypt Highlands",
+        "overmap_special:Imperial Crypt Highlands",
+        "overmap_special:Ruined Tower Highlands",
+        "overmap_special:roman_road",
+        "overmap_special:imperial_road"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "4_standalone_overworld_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Лиминальные и иные измерения",
+      "source_identities": [
+        "overmap_special:inner_cabins_depths_entrance",
+        "overmap_special:inner_cabins_depths_cathedral",
+        "overmap_special:inner_cabins_depths_mall",
+        "overmap_special:inner_cabins_depths_hotel_tower_b",
+        "overmap_special:inner_cabins_depths_office_skyscraper",
+        "overmap_special:inner_cabins_depths_zoo",
+        "overmap_special:labyrinthine_structure",
+        "overmap_special:labyrinthine_structure_flooded",
+        "overmap_special:labyrinthine_structure_overgrown",
+        "overmap_special:scarlet_sea_xedra_hew",
+        "overmap_special:string_dimension_small_ziggurat",
+        "overmap_special:string_dimension_dome",
+        "overmap_special:string_dimension_ka_facility",
+        "overmap_special:portal_storm_dungeon_teleporter"
+      ],
+      "comparison_status": "absent_specific_location_or_variant",
+      "bn_analogues": [],
+      "target_operation": "port_specific_missing_location_or_variant",
+      "wave": "5_dimensions_and_engine_dependent_locations",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Hub 01",
+      "source_identities": [
+        "overmap_special:hub_01"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "1_started_communities_and_linked_sites",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Алькатрас",
+      "source_identities": [
+        "overmap_special:Alcatraz Prison"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Центр беженцев",
+      "source_identities": [
+        "overmap_special:evac_center"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Высотная городская больница",
+      "source_identities": [
+        "city_building:urban_35_hospital"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Офисная башня",
+      "source_identities": [
+        "city_building:office_tower"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Радиостанции с вышками",
+      "source_identities": [
+        "city_building:station_radio",
+        "city_building:station_radio_1"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Высотные гостиницы",
+      "source_identities": [
+        "city_building:hotel_1",
+        "city_building:hotel_2",
+        "city_building:hotel_3"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Зоопарк",
+      "source_identities": [
+        "city_building:zoo"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Существующий стадион",
+      "source_identities": [
+        "city_building:stadium"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Торговая площадь",
+      "source_identities": [
+        "city_building:shopping_plaza"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Авианосец",
+      "source_identities": [
+        "overmap_special:aircraft_carrier"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Лагерь FEMA",
+      "source_identities": [
+        "overmap_special:fema_camp_mutable"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [
+        "overmap_special:FEMA_camp"
+      ],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    },
+    {
+      "name": "Модульные фермы Ишервудов и конные фермы",
+      "source_identities": [
+        "overmap_special:Isherwood Farm Mutable",
+        "overmap_special:Horse Farm Mutable"
+      ],
+      "comparison_status": "expanded_or_older_version",
+      "bn_analogues": [
+        "overmap_special:Isherwood Farms",
+        "overmap_special:farm_horse"
+      ],
+      "target_operation": "merge_existing_BN_location",
+      "wave": "3_existing_BN_location_expansions",
+      "scope_status": "accepted_goal",
+      "delivery_status": "not_validated_as_complete",
+      "include": [
+        "maps and all required floors",
+        "normal world generation",
+        "associated NPCs, factions, dialogue and quests where present",
+        "missing transitive item/monster/terrain/furniture/recipe/vehicle/effect dependencies",
+        "native compatibility required by the source behavior"
+      ]
+    }
+  ],
+  "not_yet_confirmed_targets": [
+    {
+      "name": "Новые торговые и бытовые варианты",
+      "source_identities": [
+        "city_building:s_weldingstore",
+        "city_building:s_electronicstore",
+        "city_building:s_fabricstore",
+        "city_building:s_cosmetic",
+        "city_building:s_camping",
+        "city_building:s_gun_a",
+        "city_building:s_gun_b",
+        "city_building:s_cardealer",
+        "city_building:s_diner",
+        "city_building:strip_mall",
+        "city_building:barber_shop",
+        "city_building:salon"
+      ],
+      "next": "Resolve renamed BN analogues before claiming missing content; merge or skip duplicates"
+    },
+    {
+      "name": "Новые жилые варианты",
+      "source_identities": [
+        "city_building:house_34",
+        "city_building:house_35",
+        "city_building:house_36",
+        "city_building:house_37",
+        "city_building:house_38",
+        "city_building:house_39",
+        "city_building:house_40",
+        "city_building:house_41",
+        "city_building:house_42",
+        "city_building:house_43",
+        "city_building:house_44",
+        "city_building:house_45",
+        "city_building:house_46",
+        "city_building:multi_unit_two_story_basement",
+        "city_building:multi_unit_three_story_basement",
+        "city_building:s_apt",
+        "city_building:s_apt_2",
+        "city_building:house_fungus_01"
+      ],
+      "next": "Resolve renamed BN analogues before claiming missing content; merge or skip duplicates"
+    },
+    {
+      "name": "Новые прибрежные жилые варианты",
+      "source_identities": [
+        "overmap_special:Boat Rental 1",
+        "overmap_special:Boat Rental 2",
+        "overmap_special:Riverside Dwelling 1",
+        "overmap_special:Riverside Dwelling 2",
+        "overmap_special:Riverside Dwelling 3",
+        "overmap_special:Lakeside Cabin",
+        "overmap_special:Lakeside Cabin 1",
+        "overmap_special:Lakeside Cabin 2",
+        "overmap_special:Lakeside Cabin 3",
+        "overmap_special:Lakeside Cabin 4",
+        "overmap_special:Lakeside Cabin 5"
+      ],
+      "next": "Resolve renamed BN analogues before claiming missing content; merge or skip duplicates"
+    }
+  ],
+  "prior_scope_retained": "PORT_SCOPE.md NPC communities, services, camps, pockets and separate highway branch remain in scope; this list does not replace them",
+  "wave_order_is_adaptive": true,
+  "principles": [
+    "Deliver coherent location/NPC/quest/dependency chains, not empty scenery",
+    "Preserve existing BN locations, frequency policies and functioning content unless a reviewed source change is required",
+    "Use stock BN mechanisms when they preserve behavior; document native extensions and deliberate adaptations",
+    "Do not replace unsupported mechanics with silent placeholders or delete quest branches",
+    "Unknown dependencies add implementation work; they do not silently remove an accepted target",
+    "Source staging and static validation do not mean playable delivery"
+  ],
+  "completion_gates": [
+    "Pinned source provenance and overlap comparison",
+    "Typed dependency closure and schema review",
+    "Native data loading without new errors",
+    "Generation, placements and cross-floor navigation",
+    "NPC and quest lifecycle where present, including save/reload",
+    "Windows compilation, installed-data regression and portable packaging"
+  ]
+}
