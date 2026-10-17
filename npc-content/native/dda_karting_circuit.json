@@ -1153,7 +1153,7 @@
     ],
     "flags": [
       "CLASSIC",
-      "OVERMAP_UNIQUE",
+      "UNIQUE",
       "MAN_MADE"
     ]
   },

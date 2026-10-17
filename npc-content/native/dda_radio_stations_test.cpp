@@ -7,6 +7,7 @@
 #include "coordinates.h"
 #include "map/map.h"
 #include "overmap/overmapbuffer.h"
+#include "overmap/overmap_special.h"
 #include "overmap/overmapbuffer_registry.h"
 #include "state_helpers.h"
 #include "map_helpers.h"
@@ -331,6 +332,9 @@ TEST_CASE( "karting_circuit_generates_source_ramps_and_stairs", "[dda_npc][dda_l
 
 TEST_CASE( "karting_vehicle_and_cash_dependencies_are_native_bn_definitions", "[dda_npc][dda_locations]" )
 {
+    REQUIRE( overmap_special_id( "o_karting_l" ).is_valid() );
+    CHECK( overmap_special_id( "o_karting_l" )->has_flag( "UNIQUE" ) );
+    CHECK_FALSE( overmap_special_id( "o_karting_l" )->has_flag( "OVERMAP_UNIQUE" ) );
     REQUIRE( vproto_id( "go_kart" ).is_valid() );
     const auto &kart = vproto_id( "go_kart" ).obj();
     REQUIRE( kart.parts.size() == 16 );

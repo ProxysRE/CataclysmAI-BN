@@ -38,6 +38,8 @@ assert vehicle == original_vehicle
 assert sum(len(pos['parts']) for pos in vehicle['parts']) == 16
 special = copy.deepcopy(next(e for e in payload if e['type'] == 'overmap_special'))
 old_special = next(e for e in source if e['type'] == 'overmap_special')
+assert 'UNIQUE' in special['flags'] and 'OVERMAP_UNIQUE' not in special['flags']
+special['flags'] = ['OVERMAP_UNIQUE' if f == 'UNIQUE' else f for f in special['flags']]
 for c in special['connections']:
     assert c.pop('connection') == 'local_road'
     c['terrain'] = 'road'

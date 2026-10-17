@@ -3,11 +3,13 @@
     "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
     "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
   },
-  "bundle_sha256": "359f26f190b44e34e0ef09f337e406eb161436a0e68cb8c8ef424396b6dc92f4",
+  "bundle_sha256": "1da37eb27fd51f89cfe970a5049f45dc3eab5cae77f5986bc929036baaffa834",
   "parts": [
     "SOURCE.part00",
     "SOURCE.part01",
-    "SOURCE.part02"
+    "SOURCE.part02",
+    "SOURCE.part03",
+    "SOURCE.part04"
   ],
   "files": {
     "bn/src/item_group.h": {
@@ -15,6 +17,9 @@
     },
     "bn/src/mapgen/mapgen.cpp": {
       "sha256": "e634d0630dfe7ebf262fde108595c6ef999037b0a170f1c02ee54b8275be9948"
+    },
+    "bn/src/overmap/overmap.cpp": {
+      "sha256": "93c01ef074fc9a0b498e88c90867b92c94f7183066d213beb440dffe16ee6816"
     },
     "bn/src/vehicle/veh_type.cpp": {
       "sha256": "7974952d98b76b903c646b7c3f11dd7c01fed348a11b715bb13867d4e8c9d990"
@@ -42,6 +47,9 @@
     },
     "bn/data/json/items/fluff.json": {
       "sha256": "741a1dca7554b4e48b38005e39abd7b09049648972e34c686789f802801388d1"
+    },
+    "dda/src/overmap.cpp": {
+      "sha256": "822656a44165f578fb1ede664edbeb54e5372c63358646da6a2d7910f25268f5"
     },
     "dda/data/json/itemgroups/cash_register.json": {
       "sha256": "cfbe68d176f21fd9ad18c0240b862bb73314b33c76df6b0ffef97737193dbb34"

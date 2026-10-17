@@ -41,6 +41,7 @@ def prepare_data():
             for location in e['parts']:
                 location['parts'] = ['xlframe_vertical' if p == 'xlframe#vertical' else p for p in location['parts']]
         if e['type'] == 'overmap_special':
+            e['flags'] = ['UNIQUE' if f == 'OVERMAP_UNIQUE' else f for f in e['flags']]
             for connection in e.get('connections', []):
                 assert connection.pop('terrain') == 'road'
                 connection['connection'] = 'local_road'

@@ -2,13 +2,23 @@
   "status": "native_prepared_not_runtime_validated",
   "source": "Pinned DDA full large karting circuit; existing BN types reused",
   "geometry": {
-    "footprint": [3, 3],
-    "elevations": [0, 1, 2],
+    "footprint": [
+      3,
+      3
+    ],
+    "elevations": [
+      0,
+      1,
+      2
+    ],
     "mapgen_definitions": 3,
     "terrain_slots": 27,
     "matched_ramp_columns": 48,
     "ramp_terrain_cells_across_two_levels": 96,
-    "source_stair_pair": [36, 58]
+    "source_stair_pair": [
+      36,
+      58
+    ]
   },
   "new_dependencies": {
     "vehicle": "go_kart",
@@ -31,13 +41,15 @@
     "Unsupported lootable:true omitted; stock BN vending generation is used",
     "DDA ITEM currency becomes BN GENERIC valuables with source descriptions and prices",
     "Cash register uses BN CONTAINER with rigid 1 L capacity and source external weight/volume",
-    "DDA bash damage becomes BN bashing; structured DDA grip/balance modifier is omitted"
+    "DDA bash damage becomes BN bashing; structured DDA grip/balance modifier is omitted",
+    "DDA OVERMAP_UNIQUE becomes BN UNIQUE: at most one natural circuit per overmap, using BN placement logic"
   ],
   "limitations": [
     "DDA pocket shape filters and 2 kg pocket weight limit are not implemented; BN legacy container accepts general contents",
     "DDA OLD_CURRENCY and pocket-shape flags are omitted; no global DDA barter or pocket system is introduced",
     "Exact DDA vending damage/looting distribution is not claimed",
-    "Native load, actual generation and assembled vehicle tests are added but Windows results remain pending"
+    "Native load, actual generation and assembled vehicle tests are added but Windows results remain pending",
+    "DDA unique-special deck scheduling is not ported. BN interprets occurrences [10,100] as a 10/100 spawn roll for a UNIQUE site; geographic and long-run distribution can differ."
   ],
   "checks": [
     "Original 72x72 rows, all floors, nested rooms and explicit placements preserved",
