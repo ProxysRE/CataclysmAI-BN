@@ -14,13 +14,13 @@
     "Chest minifreezer candidate uses BN minifreezer with its electrical-grid behavior; no decorative appliance substitutes",
     "Food and trash use existing BN SUS_fridge, trash_dumpster and trash_cart groups; loot distribution differs from DDA",
     "Durasack supply packaging uses stock 15 L canvas bags; known BN AMMO resources use charges instead of repeated full stacks",
-    "Flaking-stone candidate maps to stock BN flint; stock limestone remains unchanged",
     "Material pallets retain source dismantling and bash drops, with BN damage ranges capped at 4 and SMALL_HIDE mapped to SHORT",
     "Native cash-register groups reuse stock BN money_bundle; no imported denominations",
     "Red industrial carpet materializes the stock BN parent to avoid forward terrain inheritance at root-level load time"
   ],
   "blocking_work": [
     "Resolve inline merchandise collections against the complete BN catalog, including missing groups, tools, clothing and hunting gear",
+    "Stock flint is absent at the pinned BN revision; source flaking/large rock definitions require a proper BN adaptation, not an assumed existing ID",
     "Review corpse placement: the source looted variant has place_corpses, which the pinned BN JSON loader does not register. Original record remains intact, not silently removed",
     "Resolve monster group dependencies and confirm all furniture flags and item-drop semantics in the native loader",
     "Check container amounts and dismantling yields with actual BN items",

@@ -35,6 +35,7 @@ jobs:
           python npc-content/check_karting.py
       - name: Verify bulk regional location staging and audit pinned BN references
         run: |
+          python npc-content/export_bn_ids.py --bn-source bn-data --output bn-id-index.json --cache npc-content/dependency_catalog/BN_ID_INDEX.json
           python npc-content/check_regional_locations.py
           python npc-content/check_farm_supply.py
           python npc-content/prepare_farm_supply.py --check --bn-source bn-data --audit --report farm-native-dependency-audit.json
@@ -46,6 +47,7 @@ jobs:
           path: |
             regional-dependency-audit.json
             farm-native-dependency-audit.json
+            bn-id-index.json
           retention-days: 30
       - name: Compare pinned DDA and BN location catalogs
         run: python npc-content/check_location_catalog.py

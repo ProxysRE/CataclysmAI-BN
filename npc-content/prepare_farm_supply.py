@@ -7,7 +7,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
-from prepare_regional_locations import build, references, index_entries
+from prepare_regional_locations import build, references, index_entries, BUILTIN_IDS
 from prepare_karting import prepare_data as karting_data, sources as karting_sources
 from quest_dependency_graph import namespace, ids
 
@@ -43,8 +43,6 @@ def adapt_drop(value):
         out['charges'] = out.pop('count')
     if out.get('item') == 'bag_durasack':
         out['item'] = 'bag_canvas'
-    if out.get('item') == 'rock_flaking':
-        out['item'] = 'flint'
     if 'damage' in out and 'item' in out:
         damage = out.pop('damage')
         out['damage-min'], out['damage-max'] = damage if isinstance(damage, list) else (damage, damage)
@@ -161,8 +159,8 @@ def validate_bn(root, report=False):
         data = json.loads(path.read_text(encoding='utf-8'))
         index.update(index_entries(data if isinstance(data, list) else [data]))
     payload = prepare_data()
-    new = {(namespace(e), i) for e in payload for i in ids(e)}
-    shared = {(namespace(e), i) for e in karting_data() for i in ids(e)}
+    new = index_entries(payload) - BUILTIN_IDS
+    shared = index_entries(karting_data()) - BUILTIN_IDS
     collisions = new & (index | shared)
     missing = sorted(dependency_refs(payload) - index - new - shared)
     print('Farm dependency audit:', json.dumps({'collisions': sorted(collisions), 'unresolved': missing}))
