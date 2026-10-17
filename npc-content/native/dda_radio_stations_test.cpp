@@ -338,7 +338,7 @@ TEST_CASE( "XEDRA_creature_profile_and_particles_load_without_changing_legacy_de
     CHECK_FALSE( legacy.ranged_pull_respect_seatbelts );
     const auto particles = field_type_str_id( "fd_twisting_mass_dust" );
     REQUIRE( particles.is_valid() );
-    REQUIRE( particles.obj().intensity_levels.size() == 1 );
+    REQUIRE( particles.obj().intensity_levels.size() == 3 );
     CHECK( particles.obj().intensity_levels.front().light_emitted == 160 );
     CHECK( emit_id( "emit_twisting_mass_dust" ).is_valid() );
     CHECK( item( itype_id( "inert_glowing_string" ), calendar::turn ).typeId() ==
@@ -489,6 +489,7 @@ TEST_CASE( "karting_circuit_generates_source_ramps_and_stairs", "[dda_npc][dda_l
 
 TEST_CASE( "karting_vehicle_and_cash_dependencies_are_native_bn_definitions", "[dda_npc][dda_locations]" )
 {
+    REQUIRE( oter_id( "s_lot" ).is_valid() );
     REQUIRE( overmap_special_id( "o_karting_l" ).is_valid() );
     CHECK( overmap_special_id( "o_karting_l" )->has_flag( "UNIQUE" ) );
     CHECK_FALSE( overmap_special_id( "o_karting_l" )->has_flag( "OVERMAP_UNIQUE" ) );

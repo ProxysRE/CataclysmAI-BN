@@ -17,5 +17,7 @@
     "GRAB_FILTER/maimed_arm/exclusive grab conditions pending"
   ],
   "XEDRA_church_enabled": false,
-  "protective_equipment_complete": false
+  "protective_equipment_complete": false,
+  "particle_schema_adaptation": "Remove unsupported DDA concentration; expand the identical visual profile to three BN intensity levels so the source intensity-3 emitter stays in range",
+  "runtime_status": "Windows startup fixes prepared after run 39063548662; rerun pending"
 }

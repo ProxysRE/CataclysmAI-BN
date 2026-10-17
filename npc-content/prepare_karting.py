@@ -40,6 +40,9 @@ def prepare_data():
             for location in e['parts']:
                 location['parts'] = ['xlframe_vertical' if p == 'xlframe#vertical' else p for p in location['parts']]
         if e['type'] == 'overmap_special':
+            for cell in e.get('overmaps', []):
+                if cell.get('overmap') == 's_lot_no_sidewalk_south':
+                    cell['overmap'] = 's_lot'  # BN parking lot is NO_ROTATE.
             e['flags'] = ['UNIQUE' if f == 'OVERMAP_UNIQUE' else f for f in e['flags']]
             for connection in e.get('connections', []):
                 assert connection.pop('terrain') == 'road'
@@ -99,6 +102,8 @@ def validate_bn(root, payload):
 
 def prepare(check=False, bn_source=None, bn_data=None):
     payload = prepare_data()
+    from check_placement_terrain import check_placements
+    check_placements(payload)
     if bn_source:
         validate_bn(bn_source, payload)
     elif bn_data:

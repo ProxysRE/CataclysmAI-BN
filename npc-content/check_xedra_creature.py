@@ -9,6 +9,11 @@ p = payload()
 church = church_sources()
 for name, filename in [('fd_twisting_mass_dust', 'field_type.json'), ('emit_twisting_mass_dust', 'emit.json')]:
     original = next(e for e in json.loads(church['dda/' + filename]) if e.get('id') == name)
+    if name == 'fd_twisting_mass_dust':
+        original = copy.deepcopy(original)
+        level = original['intensity_levels'][0]
+        assert level.pop('concentration') == 1
+        original['intensity_levels'] = [copy.deepcopy(level) for _ in range(3)]
     assert next(e for e in p if e.get('id') == name) == original
 original = next(e for e in json.loads(church['dda/extradimensional_artifacts.json']) if e.get('id') == 'inert_glowing_string')
 expected = copy.deepcopy(original);expected['type'] = 'GENERIC'
@@ -33,4 +38,4 @@ assert 'here.obstructed_by_vehicle_rotation( prev_point, i )' in new
 assert 'here.creature_on_trap( *target )' in new
 assert patch_sections().count('+++ b/src/') == 3
 prepare(check=True)
-print('PASS: exact source particles/string, configured native pull, unchanged legacy defaults and other attacks')
+print('PASS: adapted BN particle levels/source string, configured native pull, unchanged legacy defaults and other attacks')

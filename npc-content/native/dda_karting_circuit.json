@@ -882,7 +882,7 @@
           1,
           0
         ],
-        "overmap": "s_lot_no_sidewalk_south"
+        "overmap": "s_lot"
       },
       {
         "point": [
@@ -890,7 +890,7 @@
           2,
           0
         ],
-        "overmap": "s_lot_no_sidewalk_south"
+        "overmap": "s_lot"
       },
       {
         "point": [

@@ -67,6 +67,7 @@
     "preserved": true
   },
   "bn_adaptations": [
-    "Cash-register group containers use BN contents-group wrapper items and three internal content groups; root-level DDA container-item is not supported by BN"
+    "Cash-register group containers use BN contents-group wrapper items and three internal content groups; root-level DDA container-item is not supported by BN",
+    "DDA s_lot_no_sidewalk_south becomes stock BN s_lot with no orientation suffix because BN parking is NO_ROTATE; two parking placements and source positions are retained"
   ]
 }

@@ -12,8 +12,29 @@
           255,
           0,
           255
-        ],
-        "concentration": 1
+        ]
+      },
+      {
+        "name": "magenta sparkles",
+        "color": "magenta",
+        "sym": "*",
+        "light_emitted": 160,
+        "light_color": [
+          255,
+          0,
+          255
+        ]
+      },
+      {
+        "name": "magenta sparkles",
+        "color": "magenta",
+        "sym": "*",
+        "light_emitted": 160,
+        "light_color": [
+          255,
+          0,
+          255
+        ]
       }
     ],
     "priority": 9,

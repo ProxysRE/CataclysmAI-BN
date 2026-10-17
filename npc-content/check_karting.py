@@ -43,6 +43,9 @@ special['flags'] = ['OVERMAP_UNIQUE' if f == 'UNIQUE' else f for f in special['f
 for c in special['connections']:
     assert c.pop('connection') == 'local_road'
     c['terrain'] = 'road'
+for cell in special['overmaps']:
+    if cell.get('overmap') == 's_lot':
+        cell['overmap'] = 's_lot_no_sidewalk_south'
 assert special == old_special
 identities = [(namespace(e), i) for e in payload for i in ids(e)]
 assert len(identities) == len(set(identities))

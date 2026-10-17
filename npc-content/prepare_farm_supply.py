@@ -250,7 +250,10 @@ def prepare(check=False, bn_source=None, audit=False, report_path=None):
         result = validate_bn(bn_source, audit)
         if report_path:
             report_path.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
-    text = json.dumps(prepare_data(), ensure_ascii=True, indent=2) + '\n'
+    payload = prepare_data()
+    from check_placement_terrain import check_placements
+    check_placements(payload)
+    text = json.dumps(payload, ensure_ascii=True, indent=2) + '\n'
     for path in (FOLDER / 'CANDIDATE.json', ROOT / 'native/dda_farm_supply.json'):
         if check:
             assert path.read_text() == text

@@ -92,6 +92,10 @@ def payload():
     files = church_sources()
     field = next(e for e in json.loads(files['dda/field_type.json']) if e.get('id') == 'fd_twisting_mass_dust')
     emit = next(e for e in json.loads(files['dda/emit.json']) if e.get('id') == 'emit_twisting_mass_dust')
+    field = copy.deepcopy(field)
+    levels = field['intensity_levels']
+    assert len(levels) == 1 and levels[0].pop('concentration') == 1
+    field['intensity_levels'] = [copy.deepcopy(levels[0]) for _ in range(emit['intensity'])]
     mon = copy.deepcopy(next(e for e in json.loads(files['dda/nether.json']) if e.get('id') == 'mon_twisting_mass'))
     mon['special_attacks'] = [['RANGED_PULL', 20]]
     mon['ranged_pull_options'] = {'range': 5, 'max_weight_ratio': 3.0, 'full_range': True,
