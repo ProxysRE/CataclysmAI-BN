@@ -15,3 +15,14 @@ The user accepted all confirmed missing/partial location groups as transfer goal
 ## BN currency reuse (user instruction, 2026-10-17)
 
 Use stock BN money items for imported cash loot. The pinned BN definition `money_bundle` in `data/json/items/generic.json` is a bundle of twenty-dollar bills (250 ml, 20 g); `money_pile` is a separate, much larger item. Do not introduce DDA denominations, coin collections, `banknotes`/`coins` groups or a global monetary expansion. Map ordinary cash loot to `money_bundle` with container-safe quantities; preserve the original BN item, value, flags and distribution elsewhere. Upstream DDA currency files may remain archived as source references only.
+
+## Prefer functional BN counterparts (user instruction, 2026-10-18 Moscow)
+
+This clarification applies to existing staged content as well as future ports, and supersedes earlier notes that treated ordinary differences from DDA as blockers.
+
+- When BN already has a suitable counterpart for a creature, item, furniture, terrain or other dependency, reuse it even if its statistics, appearance or details differ from DDA. Exact mechanical or numerical parity is not a requirement.
+- When content genuinely has no suitable BN counterpart (for example unique XEDRA content), adapt the DDA original to BN's supported systems, retaining its approximate identity and purpose. Do not port an entire underlying DDA subsystem solely to reproduce incidental details.
+- Preserve the role of the location, quest and interaction. A harmless counterpart difference does not block a location; a missing required function still needs implementation.
+- Ask the user when the appropriate counterpart is genuinely uncertain or a replacement would materially change the content's intended role. Routine analog selection remains authorized.
+- Keep explicit mappings and substantive differences reviewable. Reassess staged dependency blockers under this policy; archived originals remain useful provenance, not an obligation to duplicate everything.
+- The earlier instruction to use stock BN money remains in force.
