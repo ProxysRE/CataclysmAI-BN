@@ -78,7 +78,8 @@ def replacements():
     function = replace_once(function, 'prev_effect + 4 );',
                             'z->type->ranged_pull_use_grab_strength ?\n                        std::max( prev_effect, z->get_grab_strength() ) : prev_effect + 4 );')
     result['monattack.cpp'] = text[:start] + function + text[end:]
-    return result
+    from prepare_civilians import extend_creature_core
+    return extend_creature_core(result)
 
 
 def patch_sections():

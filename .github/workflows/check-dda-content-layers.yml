@@ -39,6 +39,7 @@ jobs:
           python npc-content/check_terminal_archives.py
           python npc-content/prepare_eldercare_assets.py --check --bn-data bn-data
           python npc-content/check_eldercare_assets.py
+          python npc-content/check_civilians.py
           python npc-content/check_eldercare_fauna.py
           python npc-content/check_eldercare_loot.py
           python npc-content/bn_loot_containers.py

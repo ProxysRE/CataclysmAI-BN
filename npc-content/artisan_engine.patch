@@ -92,14 +92,15 @@
          condition = [and_conditionals]( const T & d ) {
 --- a/src/npctalk.cpp
 +++ b/src/npctalk.cpp
-@@ -1,4 +1,6 @@
+@@ -1,4 +1,7 @@
  #include "npctalk.h"
++#include "civilian_chat_ui.h"
 +#include "artisan_bn_bridge.h"
 +#include "artisan_items.h"
  
  #include "activity_type.h"
  #include "auto_pickup.h"
-@@ -80,6 +82,7 @@
+@@ -80,6 +83,7 @@
  #include <cstddef>
  #include <iterator>
  #include <list>
@@ -107,7 +108,62 @@
  #include <map>
  #include <memory>
  #include <ostream>
-@@ -3000,7 +3003,229 @@
+@@ -222,7 +226,8 @@
+     NPC_CHAT_ANIMAL_VEHICLE_FOLLOW,
+     NPC_CHAT_ANIMAL_VEHICLE_STOP_FOLLOW,
+     NPC_CHAT_COMMAND_MAGIC_VEHICLE_FOLLOW,
+-    NPC_CHAT_COMMAND_MAGIC_VEHICLE_STOP_FOLLOW
++    NPC_CHAT_COMMAND_MAGIC_VEHICLE_STOP_FOLLOW,
++    NPC_CHAT_CIVILIAN
+ };
+ 
+ // given a vector of NPCs, presents a menu to allow a player to pick one.
+@@ -435,6 +440,12 @@
+                rl_dist( u.bub_pos(), guy.bub_pos() ) <= SEEX * 2;
+     } );
+     const int available_count = available.size();
++    std::vector<monster *> civilians;
++    for( monster &person : all_monsters() ) {
++        if( can_chat_with_civilian( person, u ) ) {
++            civilians.push_back( &person );
++        }
++    }
+     const std::vector<npc *> followers = get_npcs_if( [&]( const npc & guy ) {
+         return guy.is_player_ally() && guy.is_following() && guy.can_hear( u.bub_pos(), volume );
+     } );
+@@ -484,6 +495,9 @@
+                         string_format( _( "Talk to %s" ), available.front()->name ) :
+                         _( "Talk to…" )
+                       );
++    }
++    if( !civilians.empty() ) {
++        nmenu.addentry( NPC_CHAT_CIVILIAN, true, 'p', _( "Talk to a nearby person" ) );
+     }
+     nmenu.addentry( NPC_CHAT_YELL, true, 'a',
+                     u.has_trait( trait_SHOUT2 ) ? _( "Scream" ) : u.has_trait( trait_SHOUT3 ) ? _( "Howl" ) :
+@@ -544,6 +558,21 @@
+     }
+ 
+     switch( nmenu.ret ) {
++        case NPC_CHAT_CIVILIAN: {
++            is_yell = false;
++            is_order = false;
++            uilist people;
++            people.title = _( "Talk to whom?" );
++            for( size_t i = 0; i < civilians.size(); ++i ) {
++                people.addentry( static_cast<int>( i ), true, -1, civilians[i]->get_name() );
++            }
++            people.query();
++            if( people.ret < 0 || static_cast<size_t>( people.ret ) >= civilians.size() ) {
++                return;
++            }
++            show_civilian_chat( *civilians[people.ret] );
++            break;
++        }
+         case NPC_CHAT_TALK: {
+             is_yell = false;
+ 
+@@ -3000,7 +3029,229 @@
  {
      talk_effect_fun_t subeffect_fun;
      const bool is_npc = true;
@@ -338,7 +394,7 @@
          subeffect_fun.set_add_effect( jo, "u_add_effect" );
      } else if( jo.has_string( "npc_add_effect" ) ) {
          subeffect_fun.set_add_effect( jo, "npc_add_effect", is_npc );
-@@ -3502,6 +3727,13 @@
+@@ -3502,6 +3753,13 @@
          conditional_t<dialogue> dcondition;
          const dynamic_line_t yes = from_member( jo, "yes" );
          const dynamic_line_t no = from_member( jo, "no" );
@@ -1397,6 +1453,134 @@
 +            load( in.get_object() );
 +        }
 +};
+--- /dev/null
++++ b/src/civilian_chat.h
+@@ -0,0 +1,78 @@
++#pragma once
++
++#include "json.h"
++#include "translations.h"
++#include <map>
++#include <string>
++#include <utility>
++#include <vector>
++
++// A deliberately read-only dialogue graph for non-NPC people.
++// Effects, trading and follower orders continue to require real NPC dialogue.
++struct civilian_chat_response {
++    translation text;
++    std::string target;
++};
++struct civilian_chat_page {
++    std::vector<translation> lines;
++    std::vector<civilian_chat_response> responses;
++};
++class civilian_chat
++{
++    public:
++        std::string root;
++        std::map<std::string, civilian_chat_page> pages;
++        static bool is_exit( const std::string &id ) {
++            return id.empty() || id == "TALK_DONE" || id == "TALK_NONE";
++        }
++        const civilian_chat_page *find( const std::string &id ) const {
++            const auto it = pages.find( id );
++            return it == pages.end() ? nullptr : &it->second;
++        }
++        bool empty() const {
++            return root.empty();
++        }
++        std::string next( const std::string &id, size_t choice ) const {
++            const auto *page = find( id );
++            if( !page || choice >= page->responses.size() ) {
++                return {};
++            }
++            const auto &target = page->responses[choice].target;
++            return !is_exit( target ) && find( target ) ? target : std::string();
++        }
++        void load( const JsonObject &jo ) {
++            root = jo.get_string( "root" );
++            pages.clear();
++            for( JsonObject source : jo.get_array( "pages" ) ) {
++                const std::string id = source.get_string( "id" );
++                if( is_exit( id ) || pages.count( id ) ) {
++                    source.throw_error( "Invalid or duplicate civilian dialogue page", "id" );
++                }
++                civilian_chat_page page;
++                source.read( "lines", page.lines );
++                if( page.lines.empty() ) {
++                    source.throw_error( "Civilian dialogue requires a line", "lines" );
++                }
++                for( JsonObject response : source.get_array( "responses" ) ) {
++                    civilian_chat_response entry;
++                    response.read( "text", entry.text );
++                    entry.target = response.get_string( "target" );
++                    page.responses.push_back( std::move( entry ) );
++                }
++                if( page.responses.empty() ) {
++                    source.throw_error( "Civilian dialogue requires a response", "responses" );
++                }
++                pages.emplace( id, std::move( page ) );
++            }
++            if( !find( root ) ) {
++                jo.throw_error( "Unknown civilian dialogue root", "root" );
++            }
++            for( const auto &entry : pages ) {
++                for( const auto &response : entry.second.responses ) {
++                    if( !is_exit( response.target ) && !find( response.target ) ) {
++                        jo.throw_error( "Unknown civilian dialogue response target", "pages" );
++                    }
++                }
++            }
++        }
++};
+--- /dev/null
++++ b/src/civilian_chat_ui.h
+@@ -0,0 +1,44 @@
++#pragma once
++
++#include "civilian_chat.h"
++#include "cata_utility.h"
++#include "monster.h"
++#include "mtype.h"
++#include "output.h"
++#include "rng.h"
++#include "ui.h"
++#include "line.h"
++#include "character.h"
++
++inline bool can_chat_with_civilian( const monster &person, const Character &speaker )
++{
++    return !person.is_dead() && !person.type->civilian_dialogue.empty() &&
++           person.attitude_to( speaker ) != Attitude::A_HOSTILE &&
++           person.bub_pos().z() == speaker.bub_pos().z() &&
++           rl_dist( person.bub_pos(), speaker.bub_pos() ) <= 2 && speaker.sees( person.bub_pos() );
++}
++
++inline void show_civilian_chat( const monster &person )
++{
++    const auto &graph = person.type->civilian_dialogue;
++    std::string current = graph.root;
++    while( const auto *page = graph.find( current ) ) {
++        std::string line = random_entry( page->lines ).translated();
++        // A leading ampersand marks source narration, not spoken words.
++        if( !line.empty() && line.front() == '&' ) {
++            line.erase( line.begin() );
++        }
++        uilist menu;
++        menu.title = person.get_name();
++        menu.text = line;
++        int choice = 0;
++        for( const auto &response : page->responses ) {
++            menu.addentry( choice++, true, -1, response.text.translated() );
++        }
++        menu.query();
++        if( menu.ret < 0 ) {
++            return;
++        }
++        current = graph.next( current, menu.ret );
++    }
++}
 --- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
 @@ -0,0 +1,957 @@
@@ -3564,6 +3748,79 @@
 +                 name == mtype_id( "mon_spider_cellar_giant" ) ||
 +                 name == mtype_id( "mon_spider_cellar_mom" ) ||
 +                 name == mtype_id( "mon_spider_cellar_mega" ) ) );
++    }
++}
+--- /dev/null
++++ b/tests/dda_civilians_test.cpp
+@@ -0,0 +1,70 @@
++#include "catch/catch.hpp"
++#include "avatar.h"
++#include "calendar.h"
++#include "civilian_chat.h"
++#include "civilian_chat_ui.h"
++#include "game.h"
++#include "map/map.h"
++#include "map_helpers.h"
++#include "monster.h"
++#include "mongroup.h"
++#include "mtype.h"
++#include "state_helpers.h"
++
++#include <sstream>
++
++TEST_CASE( "noncombatant_civilians_are_neutral_humans_with_source_dialogue", "[dda_npc][dda_locations]" )
++{
++    clear_all_state();
++    clear_map();
++    build_test_map( ter_id( "t_floor" ) );
++    auto &actor = get_avatar();
++    actor.setpos( map_local_to_abs( get_map(), tripoint_bub_ms( 60, 60, 0 ) ) );
++    monster zombie( mtype_id( "mon_zombie" ), tripoint_bub_ms( 64, 60, 0 ) );
++    for( const auto *name : { "mon_civilian_panic", "mon_civilian_stationary", "mon_civilian_parent" } ) {
++        INFO( name );
++        const auto type = mtype_id( name );
++        REQUIRE( type.is_valid() );
++        monster person( type, tripoint_bub_ms( 61, 60, 0 ) );
++        CHECK( person.attitude_to( actor ) != Attitude::A_HOSTILE );
++        CHECK( zombie.attitude_to( person ) == Attitude::A_HOSTILE );
++        CHECK_FALSE( type->civilian_dialogue.empty() );
++        CHECK( type->upgrade_group == mongroup_id( "GROUP_CIVILIANS_UPGRADE" ) );
++        CHECK( type->age_grow == 1 );
++        CHECK( type->half_life == 4 );
++        person.setpos( map_local_to_abs( get_map(), tripoint_bub_ms( 68, 60, 0 ) ) );
++        CHECK_FALSE( can_chat_with_civilian( person, actor ) );
++    }
++    const auto &panic = mtype_id( "mon_civilian_panic" )->civilian_dialogue;
++    CHECK( panic.next( panic.root, 0 ) == "TALK_CIVILIAN_PANIC_EVAC" );
++    CHECK( panic.next( panic.root, 1 ).empty() );
++    CHECK( panic.next( "TALK_CIVILIAN_PANIC_EVAC", 0 ).empty() );
++    const auto &parent = mtype_id( "mon_civilian_parent" )->civilian_dialogue;
++    REQUIRE( parent.find( parent.root ) != nullptr );
++    CHECK( parent.find( parent.root )->lines.size() == 3 );
++    CHECK( parent.next( parent.root, 0 ) == "TALK_CIVILIAN_PARENT_EVAC" );
++    CHECK( mtype_id( "mon_civilian_stationary" )->speed == 20 );
++    clear_all_state();
++}
++
++TEST_CASE( "civilian_read_only_dialogue_rejects_dangling_links", "[dda_npc][dda_locations]" )
++{
++    std::istringstream source( R"({"root":"start","pages":[{"id":"start","lines":["Hello"],"responses":[{"text":"Continue","target":"missing"}]}]})" );
++    JsonIn input( source );
++    civilian_chat graph;
++    CHECK_THROWS( graph.load( input.get_object() ) );
++}
++
++TEST_CASE( "civilian_evolution_preserves_single_monster_selection", "[dda_npc][dda_locations]" )
++{
++    const auto group = mongroup_id( "GROUP_CIVILIANS_UPGRADE" );
++    REQUIRE( group.is_valid() );
++    CHECK( group->freq_total == 90600 );
++    CHECK( group->monsters.size() == 11 );
++    for( int attempt = 0; attempt < 100; ++attempt ) {
++        const auto evolved = MonsterGroupManager::GetRandomMonsterFromGroup( group );
++        CHECK( evolved.is_valid() );
++        CHECK( evolved != mtype_id( "mon_civilian_panic" ) );
++        CHECK( evolved != mtype_id( "mon_civilian_parent" ) );
 +    }
 +}
 --- /dev/null
@@ -33084,20 +33341,29 @@
 +]
 --- a/src/mtype.h
 +++ b/src/mtype.h
-@@ -350,6 +350,13 @@
+@@ -2,6 +2,7 @@
+ 
+ #include "behavior.h"
+ #include "calendar.h"
++#include "civilian_chat.h"
+ #include "catalua_type_operators.h"
+ #include "color.h"
+ #include "cursesdef.h"
+@@ -349,6 +350,14 @@
+         int melee_sides = 0;    /** number of sides those dice have */
  
          int grab_strength = 1;    /**intensity of the effect_grabbed applied*/
- 
++        civilian_chat civilian_dialogue;
++
 +        // Optional ranged-pull profile. Defaults preserve all legacy attacks.
 +        int ranged_pull_range = 3;
 +        float ranged_pull_weight_ratio = 0.0f;
 +        bool ranged_pull_full_range = false;
 +        bool ranged_pull_use_grab_strength = false;
 +        bool ranged_pull_respect_seatbelts = false;
-+
+ 
          // Pet food category this monster is in
          pet_food_data petfood;
- 
 --- a/src/monstergenerator.cpp
 +++ b/src/monstergenerator.cpp
 @@ -814,6 +814,15 @@
@@ -33116,6 +33382,16 @@
      assign( jo, "dodge", sk_dodge, strict, 0 );
      assign( jo, "armor_bash", armor_bash, strict, 0 );
      assign( jo, "armor_cut", armor_cut, strict, 0 );
+@@ -863,6 +872,9 @@
+     optional( jo, was_loaded, "mech_str_bonus", mech_str_bonus, 0 );
+     optional( jo, was_loaded, "mech_battery", mech_battery, itype_id() );
+     optional( jo, was_loaded, "aggro_character", aggro_character, true );
++    if( jo.has_object( "civilian_chat" ) ) {
++        civilian_dialogue.load( jo.get_object( "civilian_chat" ) );
++    }
+     assign( jo, "lua_attitude", lua_attitude );
+     assign( jo, "lua_ai", lua_ai );
+ 
 --- a/src/monattack.cpp
 +++ b/src/monattack.cpp
 @@ -67,6 +67,7 @@
@@ -33408,6 +33684,229 @@
  
  void computer_session::activate_function( computer_action action )
  {
+--- /dev/null
++++ b/data/json/dda_civilians.json
+@@ -0,0 +1,220 @@
++[
++  {
++    "id": "mon_civilian_panic",
++    "type": "MONSTER",
++    "name": {
++      "str": "panicked person"
++    },
++    "description": "This hysterical individual has a faint, yet fading, glint of intelligence in their bloodshot eyes.  They sometimes scream in fear and behave clearly irrationally.  This will quite likely cause their demise at the hands of the undead horde rather quickly.",
++    "default_faction": "human",
++    "bodytype": "human",
++    "species": [
++      "HUMAN"
++    ],
++    "material": [
++      "hflesh"
++    ],
++    "volume": "62500 ml",
++    "weight": "81500 g",
++    "hp": 75,
++    "speed": 90,
++    "symbol": "@",
++    "color": "white",
++    "aggression": -50,
++    "morale": -50,
++    "vision_day": 10,
++    "melee_dice": 1,
++    "melee_dice_sides": 2,
++    "melee_damage": [
++      {
++        "damage_type": "cut",
++        "amount": 3
++      }
++    ],
++    "harvest": "human",
++    "path_settings": {
++      "max_dist": 30,
++      "allow_open_doors": true,
++      "avoid_traps": true,
++      "avoid_sharp": true
++    },
++    "upgrades": {
++      "half_life": 4,
++      "age_grow": 1,
++      "into_group": "GROUP_CIVILIANS_UPGRADE"
++    },
++    "dodge": 1,
++    "death_drops": "default_zombie_death_drops",
++    "zombify_into": "mon_zombie",
++    "flags": [
++      "SEES",
++      "HEARS",
++      "WARM",
++      "HUMAN",
++      "CAN_OPEN_DOORS",
++      "PATH_AVOID_DANGER_2",
++      "GUILT"
++    ],
++    "aggro_character": false,
++    "death_function": [
++      "NORMAL"
++    ],
++    "special_attacks": [],
++    "civilian_chat": {
++      "root": "TALK_CIVILIAN_PANIC",
++      "pages": [
++        {
++          "id": "TALK_CIVILIAN_PANIC",
++          "lines": [
++            "&You see this crazed fellows eyes darting around anxiously, always anticipating impending doom.  Every now and then you can even hear them whimper in fear.  Although they do not seem aggressive, they definitely are out of their mind."
++          ],
++          "responses": [
++            {
++              "text": "You need to get to safety!",
++              "target": "TALK_CIVILIAN_PANIC_EVAC"
++            },
++            {
++              "text": "[Awkwardly distance yourself.]",
++              "target": "TALK_DONE"
++            }
++          ]
++        },
++        {
++          "id": "TALK_CIVILIAN_PANIC_EVAC",
++          "lines": [
++            "&They shriek and stumble backwards, as if you just became a threat."
++          ],
++          "responses": [
++            {
++              "text": "[Awkwardly distance yourself.]",
++              "target": "TALK_DONE"
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "id": "mon_civilian_stationary",
++    "type": "MONSTER",
++    "copy-from": "mon_civilian_panic",
++    "name": {
++      "str": "petrified person"
++    },
++    "description": "They just stand there, staring into the void, with a vacant expression on their face.  Barely moving, they will probably fall to the undead horde soon.",
++    "speed": 20,
++    "path_settings": {
++      "max_dist": 30,
++      "allow_open_doors": false,
++      "avoid_traps": false,
++      "avoid_sharp": false
++    }
++  },
++  {
++    "id": "mon_civilian_parent",
++    "type": "MONSTER",
++    "copy-from": "mon_civilian_panic",
++    "name": {
++      "str": "terrified parent"
++    },
++    "description": "Obsessed with finding their offspring, they scour the environment for certain death.",
++    "civilian_chat": {
++      "root": "TALK_CIVILIAN_PARENT",
++      "pages": [
++        {
++          "id": "TALK_CIVILIAN_PARENT",
++          "lines": [
++            "Have you seen my child?",
++            "I am not leaving without my little one!",
++            "Where is my kid?"
++          ],
++          "responses": [
++            {
++              "text": "Your child is likely dead by now and you should get to safety!",
++              "target": "TALK_CIVILIAN_PARENT_EVAC"
++            },
++            {
++              "text": "[Let them keep on searching.]",
++              "target": "TALK_DONE"
++            }
++          ]
++        },
++        {
++          "id": "TALK_CIVILIAN_PARENT_EVAC",
++          "lines": [
++            "No!  I just know it, they are still alive!"
++          ],
++          "responses": [
++            {
++              "text": "[Let them keep on searching.]",
++              "target": "TALK_DONE"
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "type": "monstergroup",
++    "name": "GROUP_CIVILIANS_UPGRADE",
++    "default": "mon_zombie_fat",
++    "freq_total": 90600,
++    "monsters": [
++      {
++        "monster": "mon_zombie",
++        "freq": 26400,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_zombie_fat",
++        "freq": 26600,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_zombie_tough",
++        "freq": 10000,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_zombie_crawler",
++        "freq": 6600,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_zombie_brainless",
++        "freq": 3000,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_feral_cop",
++        "freq": 1800,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_feral_human_pipe",
++        "freq": 7200,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_feral_human_crowbar",
++        "freq": 5400,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_feral_human_axe",
++        "freq": 1800,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_feral_human_tool",
++        "freq": 900,
++        "cost_multiplier": 0
++      },
++      {
++        "monster": "mon_feral_sapien_spear",
++        "freq": 900,
++        "cost_multiplier": 0
++      }
++    ]
++  }
++]
 --- /dev/null
 +++ b/data/json/dda_eldercare_fauna.json
 @@ -0,0 +1,931 @@

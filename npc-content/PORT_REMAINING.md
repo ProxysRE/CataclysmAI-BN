@@ -54,3 +54,8 @@ Two existing BN radio station variants now have a reviewed native replacement ad
 The shared support layer now prepares eight creature adaptations, four spawn groups, three equipment groups and one emitter (16 definitions). Added unique mother/warehouse cellar spiders and the five-entry timed basement group; source days map to BN numeric hours and follow BN upgrade-factor/boundary semantics. The stock BN death-spawn hook releases six juvenile spiders instead of DDA's random 3..8 age mixture. See eldercare_fauna/README.md for exact differences.
 
 Eleven definitions remain staged for the complete nursing-home/retirement sites: seven living civilians and four mixed, recursive or timed civilian-containing groups. Their friendly human role, dialogue, conditional guns and transition to zombies require actual adaptation; hostile-feral aliases would be incorrect. Full site installation/generation remains disabled. The previous creature checkpoint 0ad8b3a passed fast CI; new native Windows/installed checks, combat and generation remain pending.
+
+
+## Noncombatant civilian checkpoint, 2026-10-18
+
+Three unarmed living human types are now prepared with a native read-only dialogue graph in the BN chat menu and the existing human-faction/evolution/corpse mechanisms. A single-monster upgrade-only group preserves exact source hierarchical probabilities (90600 total). Seven definitions remain for the full sites: four armed civilian types and three mixed/timed map groups. Conditional guns and real hostile-target selection require their own native work; no armed type is silently replaced by a feral. Stock BN GUILT is an explicit approximation. New native compilation, source/installed runs and manual menu/behavior checks remain gates. See civilians/README.md.

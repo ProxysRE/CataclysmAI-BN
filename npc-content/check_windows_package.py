@@ -31,9 +31,11 @@ def check():
         from prepare_farm_supply import prepare_data as farm_data, PAYLOAD as FARM_PAYLOAD
         from prepare_terminal_archives import native_data as archive_data, PAYLOAD as ARCHIVE_PAYLOAD
         from prepare_eldercare_assets import native_data as asset_data, PAYLOAD as ASSET_PAYLOAD
+        from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD
         from prepare_eldercare_fauna import native_data as fauna_data, PAYLOAD as FAUNA_PAYLOAD
         from prepare_eldercare_loot import native_data as loot_data, PAYLOAD as LOOT_PAYLOAD
         payload = {
+            CIVILIAN_PAYLOAD: json.dumps(civilian_data()).encode(),
             FAUNA_PAYLOAD: json.dumps(fauna_data()).encode(),
             LOOT_PAYLOAD: json.dumps(loot_data()).encode(),
             ASSET_PAYLOAD: json.dumps(asset_data()).encode(),
@@ -78,7 +80,7 @@ def check():
                 assert archive.read('CBN_DDA_NPC_DEV/' + relative) == payload[relative]
                 assert build['files'][relative] == digest(installed / relative)
         assert output.with_suffix('.zip.sha256').read_text().split()[0] == digest(output)
-        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'stale_assets', 'stale_loot', 'stale_fauna', 'user_data'):
+        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'stale_assets', 'stale_loot', 'stale_fauna', 'stale_civilians', 'user_data'):
             if mutation == 'missing_translation':
                 path = installed / 'lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo'
                 path.unlink()
@@ -87,6 +89,9 @@ def check():
                 path.write_text('[]')
             elif mutation == 'stale_nuclear':
                 path = installed / NUCLEAR
+                path.write_text('[]')
+            elif mutation == 'stale_civilians':
+                path = installed / CIVILIAN_PAYLOAD
                 path.write_text('[]')
             elif mutation == 'stale_fauna':
                 path = installed / FAUNA_PAYLOAD

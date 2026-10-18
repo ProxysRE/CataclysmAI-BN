@@ -13403,113 +13403,6 @@
       {
         "source": "dda/data/json/monsters/civilians.json",
         "entry": {
-          "id": "mon_civilian_panic",
-          "type": "MONSTER",
-          "name": {
-            "str": "panicked person"
-          },
-          "description": "This hysterical individual has a faint, yet fading, glint of intelligence in their bloodshot eyes.  They sometimes scream in fear and behave clearly irrationally.  This will quite likely cause their demise at the hands of the undead horde rather quickly.",
-          "looks_like": "mon_dementia",
-          "default_faction": "human",
-          "bodytype": "human",
-          "species": [
-            "HUMAN"
-          ],
-          "material": [
-            "hflesh"
-          ],
-          "weakpoint_sets": [
-            "wps_humanoid_body",
-            "wps_vital_organs",
-            "wps_eyes"
-          ],
-          "chat_topics": [
-            "TALK_CIVILIAN_PANIC"
-          ],
-          "volume": "62500 ml",
-          "weight": "81500 g",
-          "hp": 75,
-          "speed": 90,
-          "symbol": "@",
-          "color": "white",
-          "diff": 2,
-          "aggression": -50,
-          "morale": -50,
-          "vision_day": 10,
-          "melee_dice": 1,
-          "melee_dice_sides": 2,
-          "melee_damage": [
-            {
-              "damage_type": "cut",
-              "amount": 3
-            }
-          ],
-          "families": [
-            "prof_gross_anatomy",
-            "prof_intro_biology",
-            "prof_physiology"
-          ],
-          "special_attacks": [
-            [
-              "PARROT_AT_DANGER",
-              0
-            ]
-          ],
-          "//": "They are human after all",
-          "harvest": "human",
-          "dissect": "dissect_human_sample_single",
-          "//COMMENT": "There is intentionally no death function here, GUILT_HUMAN is special-cased to apply the same penalties as murdering a NPC.",
-          "death_function": {},
-          "path_settings": {
-            "max_dist": 30,
-            "allow_open_doors": true,
-            "avoid_traps": true,
-            "avoid_sharp": true
-          },
-          "upgrades": {
-            "half_life": 4,
-            "age_grow": 1,
-            "into_group": "GROUP_CIVILIANS_UPGRADE"
-          },
-          "dodge": 1,
-          "death_drops": "default_zombie_death_drops",
-          "zombify_into": "mon_zombie",
-          "flags": [
-            "SEES",
-            "HEARS",
-            "WARM",
-            "HUMAN",
-            "CAN_OPEN_DOORS",
-            "PATH_AVOID_DANGER",
-            "CONVERSATION",
-            "GUILT_HUMAN"
-          ]
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/civilians.json",
-        "entry": {
-          "id": "mon_civilian_parent",
-          "type": "MONSTER",
-          "name": {
-            "str": "terrified parent"
-          },
-          "special_attacks": [
-            [
-              "PARROT",
-              0
-            ]
-          ],
-          "description": "Obsessed with finding their offspring, they scour the environment for certain death.",
-          "chat_topics": [
-            "TALK_CIVILIAN_PARENT"
-          ],
-          "copy-from": "mon_civilian_panic"
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/civilians.json",
-        "entry": {
           "id": "mon_civilian_police",
           "type": "MONSTER",
           "name": {
@@ -13732,27 +13625,6 @@
       {
         "source": "dda/data/json/monsters/civilians.json",
         "entry": {
-          "id": "mon_civilian_stationary",
-          "type": "MONSTER",
-          "name": {
-            "str": "petrified person"
-          },
-          "description": "They just stand there, staring into the void, with a vacant expression on their face.  Barely moving, they will probably fall to the undead horde soon.",
-          "//": "Will not be able to do this in their current mental state:",
-          "path_settings": {
-            "max_dist": 30,
-            "allow_open_doors": false,
-            "avoid_traps": false,
-            "avoid_sharp": false
-          },
-          "speed": 20,
-          "diff": 0,
-          "copy-from": "mon_civilian_panic"
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/civilians.json",
-        "entry": {
           "id": "mon_civilian_zombiefighter",
           "type": "MONSTER",
           "name": {
@@ -13947,45 +13819,6 @@
               "cost_multiplier": 0,
               "starts": "16 days",
               "ends": "24 days"
-            }
-          ]
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/civilians.json",
-        "entry": {
-          "id": "GROUP_CIVILIANS_UPGRADE",
-          "type": "monstergroup",
-          "monsters": [
-            {
-              "monster": "mon_zombie",
-              "weight": 264,
-              "cost_multiplier": 0
-            },
-            {
-              "monster": "mon_zombie_fat",
-              "weight": 266,
-              "cost_multiplier": 0
-            },
-            {
-              "monster": "mon_zombie_tough",
-              "weight": 100,
-              "cost_multiplier": 0
-            },
-            {
-              "monster": "mon_zombie_crawler",
-              "weight": 66,
-              "cost_multiplier": 0
-            },
-            {
-              "monster": "mon_zombie_brainless",
-              "weight": 30,
-              "cost_multiplier": 0
-            },
-            {
-              "group": "GROUP_FERAL",
-              "weight": 180,
-              "cost_multiplier": 0
             }
           ]
         }
@@ -14188,19 +14021,15 @@
           "GROUP_RETIREMENT_COMMUNITY"
         ]
       ],
-      "selected_definitions": 11,
+      "selected_definitions": 7,
       "selected_by_type": {
-        "MONSTER": 7,
-        "monstergroup": 4
+        "MONSTER": 4,
+        "monstergroup": 3
       },
       "bn_declared_references_needing_semantic_review": [
         [
           "MONSTER",
           "mon_boomer"
-        ],
-        [
-          "MONSTER",
-          "mon_dementia"
         ],
         [
           "MONSTER",
@@ -14245,18 +14074,6 @@
         [
           "MONSTER",
           "mon_zombie_runner"
-        ],
-        [
-          "MONSTER",
-          "mon_zombie_tough"
-        ],
-        [
-          "harvest",
-          "human"
-        ],
-        [
-          "item_group",
-          "default_zombie_death_drops"
         ]
       ],
       "unresolved_transitive_references": [],

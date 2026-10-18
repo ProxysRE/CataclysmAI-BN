@@ -130,3 +130,8 @@ Eleven further eldercare loot/lifecycle definitions close the remaining identifi
 
 
 The eldercare creature slice adds six adapted monsters (two armed ferals and four unique laboratory mutants), three source-weighted direct spawn groups, one standard-web emitter and three equipment groups. Juvenile cockroaches and small cellar spiders use existing BN equivalents. Eleven candidates remain: seven living civilians and four mixed/recursive/timed groups. The two specialized cellar spiders and their timed basement group are now adapted using BN death-spawn hooks and numeric-hour age windows. Full sites remain staged. Source-to-BN combat differences, unsupported DDA systems and validation boundaries are recorded in `eldercare_fauna/README.md`. New native and installed checks await Windows CI; local Python, patch and packaging checks do not establish gameplay balance.
+
+
+## Noncombatant civilian dialogue
+
+Three living people (panicked, petrified, searching parent) now have prepared BN-native definitions, read-only source response graphs accessible through the chat menu, and an exact single-monster evolution table. They remain neutral toward the player through existing BN behavior. Stock GUILT and BN evolution are adaptations, not complete DDA consequence/timing systems. Four armed civilian types and three civilian-containing map groups remain staged (seven definitions); full sites are still disabled. See `civilians/README.md` for source provenance, deliberate differences and validation gates. Windows source/installed tests and interactive menu verification remain pending.

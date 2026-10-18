@@ -1,0 +1,220 @@
+[
+  {
+    "id": "mon_civilian_panic",
+    "type": "MONSTER",
+    "name": {
+      "str": "panicked person"
+    },
+    "description": "This hysterical individual has a faint, yet fading, glint of intelligence in their bloodshot eyes.  They sometimes scream in fear and behave clearly irrationally.  This will quite likely cause their demise at the hands of the undead horde rather quickly.",
+    "default_faction": "human",
+    "bodytype": "human",
+    "species": [
+      "HUMAN"
+    ],
+    "material": [
+      "hflesh"
+    ],
+    "volume": "62500 ml",
+    "weight": "81500 g",
+    "hp": 75,
+    "speed": 90,
+    "symbol": "@",
+    "color": "white",
+    "aggression": -50,
+    "morale": -50,
+    "vision_day": 10,
+    "melee_dice": 1,
+    "melee_dice_sides": 2,
+    "melee_damage": [
+      {
+        "damage_type": "cut",
+        "amount": 3
+      }
+    ],
+    "harvest": "human",
+    "path_settings": {
+      "max_dist": 30,
+      "allow_open_doors": true,
+      "avoid_traps": true,
+      "avoid_sharp": true
+    },
+    "upgrades": {
+      "half_life": 4,
+      "age_grow": 1,
+      "into_group": "GROUP_CIVILIANS_UPGRADE"
+    },
+    "dodge": 1,
+    "death_drops": "default_zombie_death_drops",
+    "zombify_into": "mon_zombie",
+    "flags": [
+      "SEES",
+      "HEARS",
+      "WARM",
+      "HUMAN",
+      "CAN_OPEN_DOORS",
+      "PATH_AVOID_DANGER_2",
+      "GUILT"
+    ],
+    "aggro_character": false,
+    "death_function": [
+      "NORMAL"
+    ],
+    "special_attacks": [],
+    "civilian_chat": {
+      "root": "TALK_CIVILIAN_PANIC",
+      "pages": [
+        {
+          "id": "TALK_CIVILIAN_PANIC",
+          "lines": [
+            "&You see this crazed fellows eyes darting around anxiously, always anticipating impending doom.  Every now and then you can even hear them whimper in fear.  Although they do not seem aggressive, they definitely are out of their mind."
+          ],
+          "responses": [
+            {
+              "text": "You need to get to safety!",
+              "target": "TALK_CIVILIAN_PANIC_EVAC"
+            },
+            {
+              "text": "[Awkwardly distance yourself.]",
+              "target": "TALK_DONE"
+            }
+          ]
+        },
+        {
+          "id": "TALK_CIVILIAN_PANIC_EVAC",
+          "lines": [
+            "&They shriek and stumble backwards, as if you just became a threat."
+          ],
+          "responses": [
+            {
+              "text": "[Awkwardly distance yourself.]",
+              "target": "TALK_DONE"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "mon_civilian_stationary",
+    "type": "MONSTER",
+    "copy-from": "mon_civilian_panic",
+    "name": {
+      "str": "petrified person"
+    },
+    "description": "They just stand there, staring into the void, with a vacant expression on their face.  Barely moving, they will probably fall to the undead horde soon.",
+    "speed": 20,
+    "path_settings": {
+      "max_dist": 30,
+      "allow_open_doors": false,
+      "avoid_traps": false,
+      "avoid_sharp": false
+    }
+  },
+  {
+    "id": "mon_civilian_parent",
+    "type": "MONSTER",
+    "copy-from": "mon_civilian_panic",
+    "name": {
+      "str": "terrified parent"
+    },
+    "description": "Obsessed with finding their offspring, they scour the environment for certain death.",
+    "civilian_chat": {
+      "root": "TALK_CIVILIAN_PARENT",
+      "pages": [
+        {
+          "id": "TALK_CIVILIAN_PARENT",
+          "lines": [
+            "Have you seen my child?",
+            "I am not leaving without my little one!",
+            "Where is my kid?"
+          ],
+          "responses": [
+            {
+              "text": "Your child is likely dead by now and you should get to safety!",
+              "target": "TALK_CIVILIAN_PARENT_EVAC"
+            },
+            {
+              "text": "[Let them keep on searching.]",
+              "target": "TALK_DONE"
+            }
+          ]
+        },
+        {
+          "id": "TALK_CIVILIAN_PARENT_EVAC",
+          "lines": [
+            "No!  I just know it, they are still alive!"
+          ],
+          "responses": [
+            {
+              "text": "[Let them keep on searching.]",
+              "target": "TALK_DONE"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_CIVILIANS_UPGRADE",
+    "default": "mon_zombie_fat",
+    "freq_total": 90600,
+    "monsters": [
+      {
+        "monster": "mon_zombie",
+        "freq": 26400,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_zombie_fat",
+        "freq": 26600,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_zombie_tough",
+        "freq": 10000,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_zombie_crawler",
+        "freq": 6600,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_zombie_brainless",
+        "freq": 3000,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_feral_cop",
+        "freq": 1800,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_feral_human_pipe",
+        "freq": 7200,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_feral_human_crowbar",
+        "freq": 5400,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_feral_human_axe",
+        "freq": 1800,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_feral_human_tool",
+        "freq": 900,
+        "cost_multiplier": 0
+      },
+      {
+        "monster": "mon_feral_sapien_spear",
+        "freq": 900,
+        "cost_multiplier": 0
+      }
+    ]
+  }
+]

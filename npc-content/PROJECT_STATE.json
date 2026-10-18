@@ -431,10 +431,10 @@
     "equipment_groups": 3,
     "emitters": 1,
     "full_locations_installed": false,
-    "remaining_staged_definitions": 11,
+    "remaining_staged_definitions": 7,
     "remaining_categories": {
-      "living_civilians": 7,
-      "mixed_recursive_timed_groups": 4
+      "armed_civilians": 4,
+      "civilian_map_groups": 3
     },
     "counterpart_policy": "Stock BN juvenile cockroach and immature cellar spider; stock adult cellar spider retained as parent of unique variants",
     "brood_adaptation": "BN on_death.spawn_mon_near releases six juveniles within two tiles; source random 3..8 mixed ages is approximated",
@@ -444,5 +444,23 @@
       "run": 39141946170,
       "result": "success"
     }
+  },
+  "civilian_dialogue_layer": {
+    "status": "native_prepared_not_runtime_validated",
+    "definitions": 4,
+    "noncombatants": 3,
+    "evolution_groups": 1,
+    "source_topics_archived": 9,
+    "menu": "visible neutral civilian, same floor, within two tiles; read-only source response graph",
+    "mechanics": "existing human faction, monster evolution and corpses; new embedded read-only chat graph in mtype and entry in BN chat menu",
+    "guilt": "stock BN GUILT, not complete DDA GUILT_HUMAN consequences",
+    "source_evolution_weights": "exact rational subgroup expansion, total 90600; single-monster upgrade use only",
+    "source_differences": [
+      "No source monster parrot/snippets or portraits",
+      "No armed civilians/conditional guns yet",
+      "No trading, following or NPC conversion"
+    ],
+    "full_locations_installed": false,
+    "validation": "Source/static/reference, embedded patch, packaging checks; new native Windows source/installed runs, menu interaction and gameplay remain pending"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "files": {
+    "civilian_topics.json": "91480d7ea0bbcf3ea69ed066c019143ee55f2e2ce7dde3243a044f8b478b953e",
+    "bn_monster_factions.json": "441a651e5a85222f7fcadb3cf4b03dd363dba2b636cf19a0071c592a14594886"
+  },
+  "sources": {
+    "civilian_topics.json": "data/json/npcs/civilians/civilians.json",
+    "bn_monster_factions.json": "data/json/monster_factions.json"
+  }
+}

@@ -17,6 +17,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
+from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, extend_chat
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
 from prepare_eldercare_assets import prepare as prepare_assets, PAYLOAD as ASSET_PAYLOAD
@@ -52,6 +53,10 @@ def check():
     prepare_assets(check=True)
     prepare_loot(check=True)
     prepare_fauna(check=True)
+    prepare_civilians(check=True)
+    talk_section = patch.split("+++ b/src/npctalk.cpp\n", 1)[1].split("\n--- ", 1)[0]
+    assert talk_section.count("+#include \"civilian_chat_ui.h\"") == 1
+    assert "+            show_civilian_chat( *civilians[people.ret] );" in patch
     assert corpse_patch() in patch, "Stale corpse mapgen replacement"
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
@@ -63,11 +68,11 @@ def check():
     files = {
         'src/' + name: ROOT / 'native' / name
         for name in ('artisan_expression.h', 'artisan_bn_bridge.h', 'artisan_items.h',
-                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h', 'dda_mapgen_corpses.h', 'computer_archive.h')
+                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h', 'dda_mapgen_corpses.h', 'computer_archive.h', 'civilian_chat.h', 'civilian_chat_ui.h')
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
@@ -82,6 +87,7 @@ def check():
         FARM_PAYLOAD: ROOT / 'native/dda_farm_supply.json',
         ARCHIVE_PAYLOAD: ROOT / 'native/dda_terminal_archives.json',
         ASSET_PAYLOAD: ROOT / 'native/dda_eldercare_assets.json',
+        CIVILIAN_PAYLOAD: ROOT / 'native/dda_civilians.json',
         FAUNA_PAYLOAD: ROOT / 'native/dda_eldercare_fauna.json',
         LOOT_PAYLOAD: ROOT / 'native/dda_eldercare_loot.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
