@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Reproducible template coverage; never equate staged JSON with completed NPCs."""
 import argparse
+import base64
+import gzip
+import hashlib
 import json
 from pathlib import Path
 from export_bn_ids import read_cache
@@ -12,15 +15,44 @@ CHECKPOINT={'head':'e52486f7a9b5108353ef3381ba55bf72938001ef','run':39166343756,
             'result':'success','artifact':'https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39166343756/artifacts/12152373477'}
 
 
-def templates(root):
+def npc_ids(entries):
     result=set()
-    for path in root.rglob('*.json'):
-        try:data=json.loads(path.read_text())
-        except (ValueError,UnicodeError):continue
-        if not isinstance(data,list):continue
-        for e in data:
-            if isinstance(e,dict) and e.get('type')=='npc':
-                ids=e['id'];result.update(ids if isinstance(ids,list) else [ids])
+    for entry in entries:
+        if isinstance(entry,dict) and entry.get('type')=='npc':
+            identifiers=entry['id']
+            result.update(identifiers if isinstance(identifiers,list) else [identifiers])
+    return result
+
+
+def source_templates():
+    """Read preserved inputs only, independent of generated staging directories."""
+    result=set()
+    root=ROOT/'layers'
+    manifest=json.loads((root/'SOURCE_MANIFEST.json').read_text())
+    raw=gzip.decompress(base64.b64decode((root/'SOURCE_BUNDLE.json.gz.base64').read_text()))
+    assert hashlib.sha256(raw).hexdigest()==manifest['bundle_sha256']
+    files=json.loads(raw)
+    assert set(files)==set(manifest['files'])
+    for name,content in files.items():
+        data=content.encode()
+        record=manifest['files'][name]
+        assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==record['git_blob_sha'],name
+        if not name.startswith('dda/'):
+            continue  # BN files are comparison inputs, not selected DDA templates.
+        selected=record.get('selection')
+        result |= npc_ids(e for i,e in enumerate(json.loads(content)) if selected is None or i in selected)
+    for package in ('lighthouse','island_prison'):
+        root=ROOT/package
+        manifest=json.loads((root/'SOURCE_MANIFEST.json').read_text())
+        for name,digest in manifest['files'].items():
+            data=(root/'upstream'/name).read_bytes()
+            assert hashlib.sha256(data).hexdigest()==digest,name
+            result |= npc_ids(json.loads(data))
+    manifest=json.loads((ROOT/'SOURCE_MANIFEST.json').read_text())
+    raw=gzip.decompress(base64.b64decode((ROOT/'isolated_road_source.json.gz.base64').read_text()))
+    assert hashlib.sha256(raw).hexdigest()==manifest['source_payload_sha256']
+    for entries in json.loads(raw).values():
+        result |= npc_ids(entries)
     return result
 
 
@@ -39,7 +71,7 @@ def embedded():
 def report():
     summary=json.loads((ROOT/'layers/LAYER_SUMMARY.json').read_text())
     groups={name:v['definitions'].get('npc',0) for name,v in summary['groups'].items() if v['definitions'].get('npc',0)}
-    selected=templates(ROOT/'layers/staging')|templates(ROOT/'lighthouse/staging')|templates(ROOT/'island_prison')|templates(ROOT/'staging/bn_dialogue')
+    selected=source_templates()
     active=embedded()
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
     assert len(selected)==82 and sum(groups.values())==73
