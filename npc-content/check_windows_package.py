@@ -29,7 +29,9 @@ def check():
         from prepare_karting import prepare_data as karting_data, PAYLOAD as KARTING_PAYLOAD
         from prepare_eldercare import native_data as eldercare_data, PAYLOAD as ELDERCARE_PAYLOAD
         from prepare_farm_supply import prepare_data as farm_data, PAYLOAD as FARM_PAYLOAD
+        from prepare_terminal_archives import native_data as archive_data, PAYLOAD as ARCHIVE_PAYLOAD
         payload = {
+            ARCHIVE_PAYLOAD: json.dumps(archive_data()).encode(),
             FARM_PAYLOAD: json.dumps(farm_data()).encode(),
             ELDERCARE_PAYLOAD: json.dumps(eldercare_data()).encode(),
             KARTING_PAYLOAD: json.dumps(karting_data()).encode(),
@@ -70,7 +72,7 @@ def check():
                 assert archive.read('CBN_DDA_NPC_DEV/' + relative) == payload[relative]
                 assert build['files'][relative] == digest(installed / relative)
         assert output.with_suffix('.zip.sha256').read_text().split()[0] == digest(output)
-        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'user_data'):
+        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'user_data'):
             if mutation == 'missing_translation':
                 path = installed / 'lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo'
                 path.unlink()
@@ -79,6 +81,9 @@ def check():
                 path.write_text('[]')
             elif mutation == 'stale_nuclear':
                 path = installed / NUCLEAR
+                path.write_text('[]')
+            elif mutation == 'stale_archives':
+                path = installed / ARCHIVE_PAYLOAD
                 path.write_text('[]')
             elif mutation == 'stale_farm':
                 path = installed / FARM_PAYLOAD

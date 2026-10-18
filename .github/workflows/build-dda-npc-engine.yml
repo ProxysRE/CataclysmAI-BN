@@ -20,6 +20,8 @@ on:
       - 'npc-content/prepare_karting.py'
       - 'npc-content/prepare_mapgen_corpses.py'
       - 'npc-content/prepare_eldercare.py'
+      - 'npc-content/prepare_terminal_archives.py'
+      - 'npc-content/terminal_archives/**'
       - 'npc-content/prepare_farm_supply.py'
       - 'npc-content/farm_supply/SOURCE*'
       - 'npc-content/bn_loot_containers.py'
@@ -132,6 +134,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_karting.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_mapgen_corpses.py" --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_eldercare.py" --check --bn-source .
+          python "${{ github.workspace }}/package/npc-content/prepare_terminal_archives.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_farm_supply.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/bn_loot_containers.py" --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Radio station baseline or ID conflict" }
@@ -148,7 +151,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "46eb345a989d012b129a7f25303fcf391ec92f13e4f3b52d6524020f231d2edf") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "58ec0957b4709597ba6d0a64a1086f8bc9b5451cdd264a718a7fc5b3c05e2bd8") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch
@@ -180,7 +183,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("src/mapgen/mapgen.cpp", "src/dda_mapgen_corpses.h", "src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
+          $files = @("src/computer.h", "src/computer.cpp", "src/computer_archive.h", "src/computer_session.h", "src/computer_session.cpp", "tests/dda_computer_archive_test.cpp", "src/mapgen/mapgen.cpp", "src/dda_mapgen_corpses.h", "src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "NPC formatting failed" }
       - name: Configure Windows game

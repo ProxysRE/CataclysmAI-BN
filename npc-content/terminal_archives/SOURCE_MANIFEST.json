@@ -1,0 +1,10 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "bundle_sha256": "d078a610348356929c0a48d1c56fc9a7d7879a41304cc390e1080a65ec824e16",
+  "files": {
+    "src/computer.h": "f03a5cc61167d3929af21964d30f7868f7ff89cb195fa86750618915f3e5f1b6",
+    "src/computer.cpp": "36705d5e34f3399f04ae69bf028be18321dd50352f360a9bf69c9c59b7e59557",
+    "src/computer_session.h": "0927afd474b05fb3040850b0a9524079c57f2bfa1c3d8cd1a94cf91c3128bb8e",
+    "src/computer_session.cpp": "2b1256bef0b78017c9d87acaae16c15dfd61290d19650b958ac2ff8843522136"
+  }
+}

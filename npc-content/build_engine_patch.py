@@ -19,6 +19,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
+from prepare_terminal_archives import prepare as prepare_archives, patch_sections as archive_patch, CORE as ARCHIVE_CORE, PAYLOAD as ARCHIVE_PAYLOAD
 from prepare_mapgen_corpses import patch_sections as corpse_patch, CORE as CORPSE_CORE
 
 root = Path(__file__).resolve().parent
@@ -39,11 +40,12 @@ prepare_gear(check=True)
 prepare_karting(check=True)
 prepare_eldercare(check=True)
 prepare_farm(check=True)
+prepare_archives(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
         raise ValueError("BN source is not the pinned base")
-    for name in base_files + CREATURE_CORE + CORPSE_CORE + ("iexamine.cpp", "iexamine.h", "iexamine_elevator.cpp"):
+    for name in base_files + CREATURE_CORE + CORPSE_CORE + ARCHIVE_CORE + ("iexamine.cpp", "iexamine.h", "iexamine_elevator.cpp"):
         relative = Path("src") / name
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -58,6 +60,9 @@ if args.bn_source:
         (root / "engine_staging/src" / name).unlink(missing_ok=True)
     (root / "engine_staging/src/hub_elevator_access.h").unlink(missing_ok=True)
     (root / "engine_staging/src/dda_mapgen_corpses.h").unlink(missing_ok=True)
+    (root / "engine_staging/src/computer_archive.h").unlink(missing_ok=True)
+    (root / "engine_staging/tests/dda_computer_archive_test.cpp").unlink(missing_ok=True)
+    (root / "engine_staging" / ARCHIVE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / HUB_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_radio_stations_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / RADIO_PAYLOAD).unlink(missing_ok=True)
@@ -91,8 +96,8 @@ for name in base_files:
     old = (root / "pinned" / path).read_text().splitlines(keepends=True)
     new = (root / "engine_staging" / path).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
-for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h", "hub_elevator_access.h", "dda_mapgen_corpses.h",
-             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp"):
+for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h", "hub_elevator_access.h", "dda_mapgen_corpses.h", "computer_archive.h",
+             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff([], new, "/dev/null", "b/" + path))
@@ -137,6 +142,8 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_rural_church.json").re
                                 "/dev/null", "b/" + CHURCH_PAYLOAD))
 parts.append(creature_patch())
 parts.append(corpse_patch())
+parts.append(archive_patch())
+parts.extend(difflib.unified_diff([], (root / "native/dda_terminal_archives.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + ARCHIVE_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_xedra_creature.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + CREATURE_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_xedra_activity_suits.json").read_text(encoding="utf-8").splitlines(keepends=True),

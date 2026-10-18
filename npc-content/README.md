@@ -118,3 +118,8 @@ The artisan adapter now preserves the single shop group's rigid property and the
 The source shopkeeper_consumption_rates string is retained as legacy metadata: the pinned DDA npc_class::load no longer reads it. DDA now consumes and distributes stock through trade zones (consume_items_in_zones/distribute_items_to_npc_zones). Those consumers still require porting; this patch does not claim to reproduce that system. BN's existing inventory replacement remains in use until then.
 
 Native regression seeds a deterministic one-plank rigid collection, tests single sampling, no early restock and the exact six-day boundary, and checks stock BN defaults. The replacement Windows build is pending. Zero entries in the dialogue scanner's known-unsupported set does not mean that the complete content package is ready.
+
+
+## Eldercare terminal archives
+
+Six nursing-home and retirement-community terminals now have a BN-native read-only archive adapter: 72 original pages, response graphs, pagination and computer save persistence. A missing source legal-document page has a generic unavailable-file notice. Six reusable nested templates are included; the full locations remain staged with 26 unresolved dependency references. See `terminal_archives/README.md`. Python/source/packaging guards are available; new native compilation, installed tests and interactive UI validation remain pending.

@@ -36,6 +36,7 @@ jobs:
           python npc-content/prepare_mapgen_corpses.py
           python npc-content/prepare_eldercare.py --check --bn-data bn-data
           python npc-content/check_eldercare.py
+          python npc-content/check_terminal_archives.py
           python npc-content/bn_loot_containers.py
           python npc-content/check_placement_terrain.py
       - name: Verify bulk regional location staging and audit pinned BN references

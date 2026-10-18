@@ -1304,6 +1304,100 @@
 +        }
 +};
 --- /dev/null
++++ b/src/computer_archive.h
+@@ -0,0 +1,91 @@
++#pragma once
++
++#include "json.h"
++#include <map>
++#include <string>
++#include <utility>
++#include <vector>
++
++struct computer_archive_link {
++    std::string text;
++    std::string target;
++};
++struct computer_archive_page {
++    std::string id;
++    std::string text;
++    std::vector<computer_archive_link> links;
++};
++
++// Read-only records use BN's computer security and menus. No dialogue effects.
++class computer_archive
++{
++    public:
++        std::map<std::string, computer_archive_page> pages;
++        static bool is_exit( const std::string &id ) {
++            return id.empty() || id == "TALK_DONE" || id == "TALK_NONE";
++        }
++        const computer_archive_page *find( const std::string &id ) const {
++            const auto it = pages.find( id );
++            return it == pages.end() ? nullptr : &it->second;
++        }
++        std::string next( const std::string &id, size_t choice ) const {
++            const auto *page = find( id );
++            if( !page || choice >= page->links.size() ) {
++                return {};
++            }
++            const auto &target = page->links[choice].target;
++            return !is_exit( target ) && find( target ) ? target : std::string();
++        }
++        void load( const JsonObject &jo ) {
++            pages.clear();
++            if( !jo.has_array( "archive_pages" ) ) {
++                return;
++            }
++            for( JsonObject source : jo.get_array( "archive_pages" ) ) {
++                computer_archive_page page;
++                page.id = source.get_string( "id" );
++                page.text = source.get_string( "text" );
++                if( is_exit( page.id ) || pages.count( page.id ) ) {
++                    source.throw_error( "Invalid or duplicate archive page", "id" );
++                }
++                for( JsonObject link : source.get_array( "links" ) ) {
++                    page.links.push_back( { link.get_string( "text" ), link.get_string( "target" ) } );
++                }
++                const auto id = page.id;
++                pages.emplace( id, std::move( page ) );
++            }
++            for( const auto &entry : pages ) {
++                for( const auto &link : entry.second.links ) {
++                    if( !is_exit( link.target ) && !find( link.target ) ) {
++                        jo.throw_error( "Unresolved archive link", "archive_pages" );
++                    }
++                }
++            }
++        }
++        void serialize( JsonOut &out ) const {
++            out.start_object();
++            out.member( "archive_pages" );
++            out.start_array();
++            for( const auto &entry : pages ) {
++                const auto &page = entry.second;
++                out.start_object();
++                out.member( "id", page.id );
++                out.member( "text", page.text );
++                out.member( "links" );
++                out.start_array();
++                for( const auto &link : page.links ) {
++                    out.start_object();
++                    out.member( "text", link.text );
++                    out.member( "target", link.target );
++                    out.end_object();
++                }
++                out.end_array();
++                out.end_object();
++            }
++            out.end_array();
++            out.end_object();
++        }
++        void deserialize( JsonIn &in ) {
++            load( in.get_object() );
++        }
++};
+--- /dev/null
 +++ b/tests/dda_artisan_dialogue_test.cpp
 @@ -0,0 +1,957 @@
 +#include "artisan_bn_bridge.h"
@@ -3114,6 +3208,118 @@
 +            CHECK( volume <= registers.front()->type->container->contains );
 +        }
 +    }
++}
+--- /dev/null
++++ b/tests/dda_computer_archive_test.cpp
+@@ -0,0 +1,109 @@
++#include "catch/catch.hpp"
++#include "computer.h"
++#include "computer_archive.h"
++#include "json.h"
++#include <fstream>
++#include <set>
++#include <sstream>
++
++TEST_CASE( "computer_archives_keep_cycles_exits_and_save_data", "[dda_npc][dda_terminal]" )
++{
++    std::istringstream input( R"({"archive_pages":[
++        {"id":"a","text":"Record: 100%\nSecond line","links":[{"text":"Next","target":"b"},{"text":"Exit","target":"TALK_DONE"}]},
++        {"id":"b","text":"Other record","links":[{"text":"Back","target":"a"}]}]})" );
++    JsonIn parser( input );
++    computer_archive records;
++    records.load( parser.get_object() );
++    CHECK( records.next( "a", 0 ) == "b" );
++    CHECK( records.next( "b", 0 ) == "a" );
++    CHECK( records.next( "a", 1 ).empty() );
++    CHECK( records.next( "a", 99 ).empty() );
++    CHECK( records.next( "missing", 0 ).empty() );
++    computer cpu( "Archive", 2 );
++    cpu.set_archive( records );
++    computer_option option( "Read", COMPACT_NULL, 1 );
++    option.archive_page = "a";
++    cpu.add_option( option );
++    std::ostringstream saved;
++    JsonOut writer( saved );
++    cpu.serialize( writer );
++    std::istringstream restore( saved.str() );
++    JsonIn reader( restore );
++    computer loaded( "Empty", 0 );
++    loaded.deserialize( reader );
++    REQUIRE( loaded.get_archive().find( "a" ) );
++    CHECK( loaded.get_archive().find( "a" )->text == "Record: 100%\nSecond line" );
++    std::ostringstream again;
++    JsonOut second_writer( again );
++    loaded.serialize( second_writer );
++    CHECK( again.str() == saved.str() );
++    std::istringstream old_save( R"({"name":"Old","security":0,"options":[],"failures":[]})" );
++    JsonIn old_reader( old_save );
++    loaded.deserialize( old_reader );
++    CHECK( loaded.get_archive().pages.empty() );
++    std::istringstream old_option( R"({"name":"Old","action":"null","security":0})" );
++    JsonIn option_reader( old_option );
++    option.deserialize( option_reader );
++    CHECK( option.archive_page.empty() );
++}
++
++TEST_CASE( "computer_archives_reject_missing_links_and_mixed_actions", "[dda_npc][dda_terminal]" )
++{
++    std::istringstream input( R"({"archive_pages":[{"id":"a","text":"Record","links":[{"text":"Bad","target":"missing"}]}]})" );
++    JsonIn parser( input );
++    computer_archive records;
++    REQUIRE_THROWS( records.load( parser.get_object() ) );
++    std::istringstream duplicate( R"({"archive_pages":[{"id":"a","text":"One","links":[]},{"id":"a","text":"Two","links":[]}]})" );
++    JsonIn duplicates( duplicate );
++    REQUIRE_THROWS( records.load( duplicates.get_object() ) );
++    std::istringstream option( R"({"name":"Bad","action":"open","archive_page":"a"})" );
++    JsonIn options( option );
++    REQUIRE_THROWS( computer_option::from_json( options.get_object() ) );
++}
++
++TEST_CASE( "six_source_terminal_archives_survive_computer_saving", "[dda_npc][dda_terminal]" )
++{
++    std::ifstream file( "data/json/dda_terminal_archives.json" );
++    REQUIRE( file.good() );
++    JsonIn reader( file );
++    std::set<std::string> pages;
++    int count = 0;
++    for( JsonObject definition : reader.get_array() ) {
++        definition.allow_omitted_members();
++        auto object = definition.get_object( "object" );
++        object.allow_omitted_members();
++        for( JsonObject config : object.get_array( "place_computers" ) ) {
++            config.allow_omitted_members();
++            computer_archive archive;
++            archive.load( config );
++            computer cpu( "Fixture", 0 );
++            cpu.set_archive( archive );
++            for( JsonObject source_option : config.get_array( "options" ) ) {
++                auto option = computer_option::from_json( source_option );
++                REQUIRE( archive.find( option.archive_page ) );
++                cpu.add_option( option );
++            }
++            std::ostringstream saved;
++            JsonOut writer( saved );
++            cpu.serialize( writer );
++            std::istringstream input( saved.str() );
++            JsonIn parser( input );
++            computer loaded( "Empty", 0 );
++            loaded.deserialize( parser );
++            for( const auto &entry : archive.pages ) {
++                pages.insert( entry.first );
++                const auto *page = loaded.get_archive().find( entry.first );
++                REQUIRE( page );
++                CHECK( page->text == entry.second.text );
++                REQUIRE( page->links.size() == entry.second.links.size() );
++                for( size_t i = 0; i < page->links.size(); ++i ) {
++                    CHECK( page->links[i].text == entry.second.links[i].text );
++                    CHECK( page->links[i].target == entry.second.links[i].target );
++                }
++            }
++            ++count;
++        }
++    }
++    CHECK( count == 6 );
++    CHECK( pages.size() == 73 );
 +}
 --- /dev/null
 +++ b/data/json/dda_artisan_activities.json
@@ -32730,7 +32936,35 @@
  #include "drawing_primitives.h"
  #include "enums.h"
  #include "fluid_grid.h"
-@@ -3332,6 +3333,7 @@
+@@ -2459,14 +2460,19 @@
+     std::vector<computer_option> options;
+     std::vector<computer_failure> failures;
+     bool target;
++    computer_archive archive;
+     jmapgen_computer(const JsonObject& jsi) {
+         jsi.read("name", name);
+         jsi.read("access_denied", access_denied);
+         security = jsi.get_int("security", 0);
+         target = jsi.get_bool("target", false);
++        archive.load(jsi);
+         if (jsi.has_array("options")) {
+             for (JsonObject jo : jsi.get_array("options")) {
+                 options.emplace_back(computer_option::from_json(jo));
++                if (!options.back().archive_page.empty() && !archive.find(options.back().archive_page)) {
++                    jo.throw_error("Unknown archive root", "archive_page");
++                }
+             }
+         }
+         if (jsi.has_array("failures")) {
+@@ -2480,6 +2486,7 @@
+         dat.m.ter_set(r, t_console);
+         dat.m.furn_set(r, f_null);
+         computer* cpu = dat.m.add_computer(r, name.translated(), security);
++        cpu->set_archive(archive);
+         for (const auto& opt : options) { cpu->add_option(opt); }
+         for (const auto& opt : failures) { cpu->add_failure(opt); }
+         if (target && dat.mission()) { cpu->set_mission(dat.mission()->get_id()); }
+@@ -3332,6 +3339,7 @@
      new_pal.load_place_mapings<jmapgen_vending_machine>(jo, "vendingmachines", format_placings);
      new_pal.load_place_mapings<jmapgen_toilet>(jo, "toilets", format_placings);
      new_pal.load_place_mapings<jmapgen_gaspump>(jo, "gaspumps", format_placings);
@@ -32738,7 +32972,7 @@
      new_pal.load_place_mapings<jmapgen_item_group>(jo, "items", format_placings);
      new_pal.load_place_mapings<jmapgen_monster_group>(jo, "monsters", format_placings);
      new_pal.load_place_mapings<jmapgen_vehicle>(jo, "vehicles", format_placings);
-@@ -3556,6 +3558,7 @@
+@@ -3556,6 +3564,7 @@
      objects.load_objects<jmapgen_gaspump>(jo, "place_gaspumps");
      objects.load_objects<jmapgen_item_group>(jo, "place_items");
      objects.load_objects<jmapgen_loot>(jo, "place_loot");
@@ -32746,6 +32980,1494 @@
      objects.load_objects<jmapgen_artifact>(jo, "place_artifact");
      objects.load_objects<jmapgen_monster_group>(jo, "place_monsters");
      objects.load_objects<jmapgen_vehicle>(jo, "place_vehicles");
+--- a/src/computer.h
++++ b/src/computer.h
+@@ -4,6 +4,7 @@
+ #include <vector>
+ 
+ #include "calendar.h"
++#include "computer_archive.h"
+ 
+ class JsonIn;
+ class JsonOut;
+@@ -82,6 +83,7 @@
+     std::string name;
+     computer_action action;
+     int security;
++    std::string archive_page;
+ 
+     computer_option();
+     computer_option( const std::string &N, computer_action A, int S );
+@@ -118,6 +120,8 @@
+         void add_failure( computer_failure_type failure );
+         void set_access_denied_msg( const std::string &new_msg );
+         void set_mission( int id );
++        void set_archive( const computer_archive &records ) { archive = records; }
++        const computer_archive &get_archive() const { return archive; }
+         // Save/load
+         void load_legacy_data( const std::string &data );
+         void serialize( JsonOut &jout ) const;
+@@ -137,6 +141,7 @@
+         time_point next_attempt;
+         // Things we can do
+         std::vector<computer_option> options;
++        computer_archive archive;
+         // Things that happen if we fail a hack
+         std::vector<computer_failure> failures;
+         // Message displayed when the computer is secured and initial login fails.
+--- a/src/computer.cpp
++++ b/src/computer.cpp
+@@ -31,6 +31,7 @@
+     jout.member( "action" );
+     jout.write_as_string( action );
+     jout.member( "security", security );
++    jout.member( "archive_page", archive_page );
+     jout.end_object();
+ }
+ 
+@@ -40,6 +41,7 @@
+     name = jo.get_string( "name" );
+     action = jo.get_enum_value<computer_action>( "action" );
+     security = jo.get_int( "security" );
++    archive_page = jo.get_string( "archive_page", "" );
+ }
+ 
+ computer_failure::computer_failure()
+@@ -110,6 +112,7 @@
+ void computer::load_legacy_data( const std::string &data )
+ {
+     options.clear();
++    archive = {};
+     failures.clear();
+ 
+     std::istringstream dump( data );
+@@ -168,6 +171,7 @@
+     jout.member( "alerts", alerts );
+     jout.member( "next_attempt", next_attempt );
+     jout.member( "options", options );
++    jout.member( "archive", archive );
+     jout.member( "failures", failures );
+     jout.member( "access_denied", access_denied );
+     jout.end_object();
+@@ -185,6 +189,8 @@
+         jo.read( "alerts", alerts );
+         jo.read( "next_attempt", next_attempt );
+         jo.read( "options", options );
++        archive = {};
++        jo.read( "archive", archive );
+         jo.read( "failures", failures );
+         jo.read( "access_denied", access_denied );
+     }
+@@ -387,7 +393,12 @@
+     jo.read( "name", name );
+     const computer_action action = jo.get_enum_value<computer_action>( "action" );
+     const int sec = jo.get_int( "security", 0 );
+-    return computer_option( name.translated(), action, sec );
++    computer_option result( name.translated(), action, sec );
++    result.archive_page = jo.get_string( "archive_page", "" );
++    if( !result.archive_page.empty() && action != COMPACT_NULL ) {
++        jo.throw_error( "Archive options cannot execute other actions", "archive_page" );
++    }
++    return result;
+ }
+ 
+ computer_failure computer_failure::from_json( const JsonObject &jo )
+--- a/src/computer_session.h
++++ b/src/computer_session.h
+@@ -34,6 +34,8 @@
+ 
+         // Called by use()
+         void activate_function( computer_action action );
++        void activate_option( const computer_option &option );
++        void show_archive( std::string page_id );
+         // ...but we can also choose a specific failure.
+         void activate_failure( computer_failure_type fail );
+         // Generally called when we fail a hack attempt
+--- a/src/computer_session.cpp
++++ b/src/computer_session.cpp
+@@ -179,11 +179,11 @@
+                 } else {
+                     // Successfully hacked function
+                     comp.options[sel].security = 0;
+-                    activate_function( current.action );
++                    activate_option( current );
+                 }
+             }
+         } else { // No need to hack, just activate
+-            activate_function( current.action );
++            activate_option( current );
+         }
+         reset_terminal();
+         // Done processing a selected option.
+@@ -300,6 +300,43 @@
+     { COMPACT_UNLOCK_DISARM, &computer_session::action_unlock_disarm },
+     { COMPACT_UNLOCK_LABPASS, &computer_session::action_unlock_labpass },
+ };
++
++void computer_session::activate_option( const computer_option &option )
++{
++    if( option.archive_page.empty() ) {
++        activate_function( option.action );
++    } else {
++        show_archive( option.archive_page );
++    }
++}
++
++void computer_session::show_archive( std::string page_id )
++{
++    size_t offset = 0;
++    while( const auto *page = comp.archive.find( page_id ) ) {
++        const auto folded = foldstring( _( page->text ), std::max( 10, TERMX - 8 ) );
++        const size_t visible = std::max( 3, TERMY - static_cast<int>( page->links.size() ) - 12 );
++        if( offset >= folded.size() ) { offset = 0; }
++        std::string excerpt;
++        for( size_t i = offset; i < folded.size() && i < offset + visible; ++i ) {
++            excerpt += folded[i] + "\n";
++        }
++        uilist menu;
++        menu.text = excerpt;
++        const int count = static_cast<int>( page->links.size() );
++        for( int i = 0; i < count; ++i ) {
++            menu.addentry( i, true, -1, _( page->links[i].text ) );
++        }
++        if( offset > 0 ) { menu.addentry( count, true, -1, _( "Previous page" ) ); }
++        if( offset + visible < folded.size() ) { menu.addentry( count + 1, true, -1, _( "Next page" ) ); }
++        menu.addentry( count + 2, true, -1, _( "Close archive" ) );
++        menu.query();
++        if( menu.ret < 0 || menu.ret == count + 2 ) { return; }
++        if( menu.ret == count ) { offset = offset > visible ? offset - visible : 0; }
++        else if( menu.ret == count + 1 ) { offset += visible; }
++        else { page_id = comp.archive.next( page_id, menu.ret ); offset = 0; }
++    }
++}
+ 
+ void computer_session::activate_function( computer_action action )
+ {
+--- /dev/null
++++ b/data/json/dda_terminal_archives.json
+@@ -0,0 +1,1322 @@
++[
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_archive_comp_nursing_home_receptionist",
++    "method": "json",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_computers": [
++        {
++          "x": 0,
++          "y": 0,
++          "name": "Shady Hills: Receptionist",
++          "options": [
++            {
++              "name": "Access archived records",
++              "action": "null",
++              "archive_page": "COMP_NURSING_HOME_RECEPTIONIST"
++            }
++          ],
++          "archive_pages": [
++            {
++              "id": "COMP_NURSING_HOME_RECEPTIONIST",
++              "text": "Shady Hills Nursing Home.\n You are logged in as: Joe Shert, Receptionist.\n\nWARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Messages",
++                  "target": "COMP_NURSING_HOME_RECEP_EMAILS"
++                },
++                {
++                  "text": "Access Assigned Tasks",
++                  "target": "COMP_NURSING_HOME_RECEP_TASKS"
++                },
++                {
++                  "text": "Log Off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_CLEAN",
++              "text": "TASK: Clean Bathrooms\n Assigned to: Joe Shert, Reception\n Assigned by: Bryan Rooters, Reception Manager\n Priority: High\n Due in: 1 Day\n\n Notes: Clean each bathroom stall and refresh toilet paper.",
++              "links": [
++                {
++                  "text": "Set Task to Completed",
++                  "target": "COMP_NURSING_HOME_RECEP_ERROR"
++                },
++                {
++                  "text": "Add Comment",
++                  "target": "COMP_NURSING_HOME_RECEP_ERROR"
++                },
++                {
++                  "text": "RETURN TO ASSIGNED TASKS",
++                  "target": "COMP_NURSING_HOME_RECEP_TASKS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_EMAILS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR B231; UNABLE TO CONNECT TO MESSAGING SERVER.\n ERROR REFRESHING MESSAGES.  NOT ALL MESSAGES MAY BE DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "RE: Ghosts!?",
++                  "target": "COMP_NURSING_HOME_RECEP_GHOSTS"
++                },
++                {
++                  "text": "RE: Performance Evaluation",
++                  "target": "COMP_NURSING_HOME_RECEP_EVAL"
++                },
++                {
++                  "text": "RE: Mrs.  Palmero",
++                  "target": "COMP_NURSING_HOME_RECEP_PALMERO"
++                },
++                {
++                  "text": "RE: Housekeeping",
++                  "target": "COMP_NURSING_HOME_RECEP_HOUSEKEEPING"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_RECEPTIONIST"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_ERROR",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO ASSIGNED TASKS",
++                  "target": "COMP_NURSING_HOME_RECEP_TASKS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_EVAL",
++              "text": "FROM: Bryan Rooters, Reception Manager\n TO: Joe Shert, Receptionist\n RE: Performance Eval\n\n Hi Joe.\n Your 90-day performance evaluation is due.  Please plan to meet with me in my office on Tuesday.\n Thanks.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_RECEP_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_GHOSTS",
++              "text": "FROM: Connie Malackey, Receptionist\n TO: Joe Shert, Receptionist\n RE: Ghosts!?\n\n Joe!  After we heard those weird noises the other night, I talked to some of the nurses.\n We aren't the only ones!  Everyone has heard weird noises coming from the walls.\n Do you think this place is haunted!?",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_RECEP_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_HOUSEKEEPING",
++              "text": "FROM: Bryan Rooters, Reception Manager\n TO: Receptionists\n RE: Housekeeping\n\n Hi team,\n Please be aware that the decision has been made to let go some of the housekeeping staff.\n This decision was made by management to ensure that our operation can run as smoothly and efficiently as possible by passing on these cost savings to the residents.\n To keep up with our high standards of elder care, I will be assigning some additional small tasks to you in the near future.\n As you know, here at Shady Hills we value each and every employee and see this as an excellent opportunity to grow, learn, and provide for the Shady Hills family.\n Please let me know if you have any questions.\n Thanks.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_RECEP_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_NEWTASKS",
++              "text": "Welcome Joe to Shady Hills Assignment Database,\n\n You have [1] new task(s) assigned to you by your supervisor.\n When you have completed each task, be sure to submit them for approval.",
++              "links": [
++                {
++                  "text": "Clean Bathrooms [NEW!]",
++                  "target": "COMP_NURSING_HOME_RECEP_CLEAN"
++                },
++                {
++                  "text": "RETURN TO ASSIGNED TASKS",
++                  "target": "COMP_NURSING_HOME_RECEP_TASKS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_PALMERO",
++              "text": "FROM: Connie Malackey, Receptionist\n TO: Joe Shert, Receptionist\n RE: Mrs.  Palmero\n\n Hi Joe.\n So - you know how Mrs.  Palmero has been acting weird and constantly talking about baking cookies?\n I was talking to one of the nurses and they said that Mrs.  Palmero was prescribed this new medicine?\n It's this weird powder stuff.  Apparently the nurses aren't even qualified to give it to her - she needs a special doctor to come in every day!\n Crazy, right?  I wish all I had to worry about was baking cookies\u2026",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_RECEP_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_TASKS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR C310; UNABLE TO CONNECT TO SCHEDULING SERVER.\n ERROR REFRESHING TASKS.  NOT ALL TASKS MAY BE DISPLAYED.\n REPORT COMPLETED TASKS DIRECTLY TO SUPERVISOR VIA MESSAGING SYSTEM.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "New Assignments [1]",
++                  "target": "COMP_NURSING_HOME_RECEP_NEWTASKS"
++                },
++                {
++                  "text": "Pending Assignments",
++                  "target": "COMP_NURSING_HOME_RECEP_ERROR"
++                },
++                {
++                  "text": "Completed Assignments",
++                  "target": "COMP_NURSING_HOME_RECEP_ERROR"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_RECEPTIONIST"
++                }
++              ]
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_archive_comp_nursing_home_recep_manager",
++    "method": "json",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_computers": [
++        {
++          "x": 0,
++          "y": 0,
++          "name": "Shady Hills: Reception Manager",
++          "options": [
++            {
++              "name": "Access archived records",
++              "action": "null",
++              "archive_page": "COMP_NURSING_HOME_RECEP_MANAGER"
++            }
++          ],
++          "archive_pages": [
++            {
++              "id": "COMP_NURSING_HOME_MGR_AMANDARECORD",
++              "text": "EMPLOYEE NAME: Amanda Hugentskis\n EMPLOYEE TITLE: Receptionist\n HIRE DATE: xx-xx-xxxx\n Status: Terminated\n REVIEW DUE: December\n\n",
++              "links": [
++                {
++                  "text": "Assign Task to This Employee",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "View Most Recent Evaluation",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "Conduct an Evaluation for This Employee",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "RETURN TO EMPLOYEES",
++                  "target": "COMP_NURSING_HOME_MGR_RECORDS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_CONNIE",
++              "text": "FROM: Kristi Gordee, SVP Operations\n TO: Bryan Rooters, Reception Manager\n RE: Connie Malackey\n\n Bryan,\n Connie has been asking a lot of weird questions about 'Ghosts' and other such nonsense.\n This could look bad for us.  To make it worse, she is hanging out with Joe Shert a lot.\n Shut it down.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_MGR_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_CONNIEFILE",
++              "text": "EMPLOYEE NAME: Connie Malackey\n EMPLOYEE TITLE: Receptionist\n REVIEW DATE: 05-xx-xxxx\n REVIEW BY: Bryan Rooters, Reception Manager\n\n Connie gets along well with coworkers.  I have occasionally needed to remind her to start work on time as clocking in late is detrimental to other employees and, ultimately, our precious residents.  Connie works hard on assigned tasks but often lacks the drive to seek out additional tasks.\n I am recommending a generous 0.5% pay wage increase per corporate policy.\n\n Signed,\n Bryan Rooters\n Reception Manager",
++              "links": [
++                {
++                  "text": "RETURN TO RECORD",
++                  "target": "COMP_NURSING_HOME_MGR_CONNIERECORD"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_CONNIERECORD",
++              "text": "EMPLOYEE NAME: Connie Malackey\n EMPLOYEE TITLE: Receptionist\n HIRE DATE: xx-xx-xxxx\n Status: Active\n REVIEW DUE: May\n\n",
++              "links": [
++                {
++                  "text": "Assign Task to This Employee",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "View Most Recent Evaluation",
++                  "target": "COMP_NURSING_HOME_MGR_CONNIEFILE"
++                },
++                {
++                  "text": "Conduct an Evaluation for This Employee",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "RETURN TO EMPLOYEES",
++                  "target": "COMP_NURSING_HOME_MGR_RECORDS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_DOYOURJOB",
++              "text": "FROM: Kristi Gordee, SVP Operations\n TO: Bryan Rooters, Reception Manager\n RE: Do Your Job\n\n Bryan,\n Do you not conduct thorough background checks and reviews on new hires?  Joe is related to the Mayor of Springfield.  His 90 day New Employee evaluation is coming up.  Do your job.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_MGR_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_EMAILS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR B231; UNABLE TO CONNECT TO MESSAGING SERVER.\n ERROR REFRESHING MESSAGES.  NOT ALL MESSAGES MAY BE DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "RE: Do Your Job",
++                  "target": "COMP_NURSING_HOME_MGR_DOYOURJOB"
++                },
++                {
++                  "text": "RE: Performance Evaluation",
++                  "target": "COMP_NURSING_HOME_MGR_EVAL"
++                },
++                {
++                  "text": "RE: Connie Malackey",
++                  "target": "COMP_NURSING_HOME_MGR_CONNIE"
++                },
++                {
++                  "text": "RE: Housekeeping",
++                  "target": "COMP_NURSING_HOME_MGR_HOUSEKEEPING1"
++                },
++                {
++                  "text": "RE: Housekeeping",
++                  "target": "COMP_NURSING_HOME_MGR_HOUSEKEEPING2"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_RECEP_MANAGER"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_ERROR",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO EMPLOYEES",
++                  "target": "COMP_NURSING_HOME_MGR_RECORDS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_EVAL",
++              "text": "FROM: Joe Shert, Receptionist\n TO: Bryan Rooters, Reception Manager\n RE: Performance Evaluation\n\n Hi Mr. Rooters, I look forward to seeing you Tuesday for my evaluation.  I've been working really hard to show that I am Shady Hills material!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_MGR_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_HOUSEKEEPING1",
++              "text": "FROM: Joe Shert, Receptionist\n TO: Bryan Rooters, Reception Manager\n RE: Housekeeping\n\n Hi Mr. Rooters, with all due respect I feel that I may have been assigned more of these tasks than the other Receptionists.\n Jim said he hasn't had to do any cleaning in two weeks, yet I have been on cleaning duty 3 times.\n To be clear, I certainly do not mind the extra work!  I just want to ensure you're aware in case there is a computer glitch.\n Thank you and have a great day!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_MGR_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_HOUSEKEEPING2",
++              "text": "FROM: Amanda Hugentskis, Receptionist\n TO: Bryan Rooters, Reception Manager\n RE: Housekeeping\n\n Seriously?  This is ridiculous.  This place was a mess even with housekeeping personnel.\n I quit.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_MGR_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_JOEFILE",
++              "text": "EMPLOYEE NAME: Joseph Shert\n EMPLOYEE TITLE: Receptionist\n REVIEW DATE: 06-xx-xxxx\n REVIEW BY: Bryan Rooters, Reception Manager\n\n Joseph is always on time for work and gets along well with coworkers.  However, he has trouble taking direction and often speaks out against his superiors [See attached email: Housekeeping].\n Joe speaks a big game but unfortunately does not perform to the Shady Hills standard.\n As our standard is extremely important for the health and wellbeing of our residents, I have no choice but to recommend termination.\n\n Signed,\n Bryan Rooters\n Reception Manager",
++              "links": [
++                {
++                  "text": "RETURN TO RECORD",
++                  "target": "COMP_NURSING_HOME_MGR_JOERECORD"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_JOERECORD",
++              "text": "EMPLOYEE NAME: Joseph Shert\n EMPLOYEE TITLE: Receptionist\n HIRE DATE: xx-xx-xxxx\n STATUS: Active\n REVIEW DUE: June\n\n",
++              "links": [
++                {
++                  "text": "Assign Task to This Employee",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "View Most Recent Evaluation",
++                  "target": "COMP_NURSING_HOME_MGR_JOEFILE"
++                },
++                {
++                  "text": "Conduct an Evaluation for This Employee",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "RETURN TO EMPLOYEES",
++                  "target": "COMP_NURSING_HOME_MGR_RECORDS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_MGR_RECORDS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR D809; UNABLE TO CONNECT TO DATABASE.\n ERROR REFRESHING DATABASE.  NOT ALL RECORDS MAY BE DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n Please select an employee record below.",
++              "links": [
++                {
++                  "text": "JOSEPH SHERT; RECEPTIONIST",
++                  "target": "COMP_NURSING_HOME_MGR_JOERECORD"
++                },
++                {
++                  "text": "CONNIE MALACKEY; RECEPTIONIST",
++                  "target": "COMP_NURSING_HOME_MGR_CONNIERECORD"
++                },
++                {
++                  "text": "AMANDA HUGENTSKIS; RECEPTIONIST",
++                  "target": "COMP_NURSING_HOME_MGR_AMANDARECORD"
++                },
++                {
++                  "text": "JAMES NEONDORTHALL; RECEPTIONIST",
++                  "target": "COMP_NURSING_HOME_MGR_ERROR"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_RECEP_MANAGER"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_RECEP_MANAGER",
++              "text": "Shady Hills Nursing Home.\n You are logged in as: Bryan Rooters, Reception Manager.\n\n WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Messages",
++                  "target": "COMP_NURSING_HOME_MGR_EMAILS"
++                },
++                {
++                  "text": "Access Employee Files",
++                  "target": "COMP_NURSING_HOME_MGR_RECORDS"
++                },
++                {
++                  "text": "Log Off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_archive_comp_nursing_home_coo",
++    "method": "json",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_computers": [
++        {
++          "x": 0,
++          "y": 0,
++          "name": "Shady Hills: SVP Operations",
++          "options": [
++            {
++              "name": "Access archived records",
++              "action": "null",
++              "archive_page": "COMP_NURSING_HOME_COO"
++            }
++          ],
++          "archive_pages": [
++            {
++              "id": "COMP_NURSING_HOME_COO",
++              "text": "Shady Hills Nursing Home.\n You are logged in as: Kristi Gordee, SVP Operations.\n\n WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Messages",
++                  "target": "COMP_NURSING_HOME_COO_EMAILS"
++                },
++                {
++                  "text": "Access Nursing Home Main Drive",
++                  "target": "COMP_NURSING_HOME_COO_MAIN"
++                },
++                {
++                  "text": "Access Encrypted Drive",
++                  "target": "COMP_NURSING_HOME_COO_ERROR5"
++                },
++                {
++                  "text": "Log Off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ADVERT",
++              "text": "FROM: Big Science Supply Depot\n TO: Kristi Gordee, SVP Operations\n RE: Kristi, Act Now and Save!\n\n Hi KRISTI GORDEE,\n\n We appreciate you choosing BIG SCIENCE SUPPLY DEPOT for all your laboratory needs!  Based on your purchase history, might we recommend some of the below items?\n Now on sale for 15% off!\n\n * Book: Advanced Physical Chemistry\n * 1,000pc Medical Gauze\n * Jumbo Chemistry Kit\n\n Thank you for shopping BIG SCIENCE SUPPLY DEPOT!\n\n Please do not reply to this message as your reply will be routed to an unmonitored inbox.\n Questions?  Contact customer service xxx-xxx-xxxx.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_COO_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ATTACHMENT",
++              "text": "WARNING: Encrypted file.  Enter secure password.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_COO_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_BUDGET",
++              "text": "FROM: Peter St. Travers, SVP Research & Development\n TO: Kristi Gordee, SVP Operations\n RE: Budget\n\n Hi KRISTI GORDEE,\n\n Kristi, please see attached for my budget proposal.\n We need more jet injectors.\n  I am on the verge of a breakthrough - you need to run interference on this Shepherds issue.\n - Peter",
++              "links": [
++                {
++                  "text": "View Attachment",
++                  "target": "COMP_NURSING_HOME_COO_ATTACHMENT"
++                },
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_COO_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_EMAILS",
++              "text": "Shady Hills Nursing Home.\n You are logged in as: Kristi Gordee, SVP Operations.\n\n WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR B231; UNABLE TO CONNECT TO MESSAGING SERVER.\n ERROR REFRESHING MESSAGES.  NOT ALL MESSAGES MAY BE DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "RE: Thank you for your order",
++                  "target": "COMP_NURSING_HOME_COO_THANKS"
++                },
++                {
++                  "text": "RE: Budget",
++                  "target": "COMP_NURSING_HOME_COO_BUDGET"
++                },
++                {
++                  "text": "RE: Kristi, Act Now and Save!",
++                  "target": "COMP_NURSING_HOME_COO_ADVERT"
++                },
++                {
++                  "text": "RE: I am going to sue you",
++                  "target": "COMP_NURSING_HOME_COO_LAWSUIT"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_COO"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ERROR",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO MAIN DRIVE",
++                  "target": "COMP_NURSING_HOME_COO_MAIN"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ERROR2",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO RESIDENT RECORDS",
++                  "target": "COMP_NURSING_HOME_COO_RESIDENTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ERROR3",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO LEGAL FILES",
++                  "target": "COMP_NURSING_HOME_LEGAL"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ERROR4",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO PREVIOUS PAGE",
++                  "target": "COMP_NURSING_HOME_COO_LAWSUITS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_ERROR5",
++              "text": "WARNING: Encrypted file.  Enter secure password.",
++              "links": [
++                {
++                  "text": "RETURN TO MAIN DRIVE",
++                  "target": "COMP_NURSING_HOME_COO"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_LAWSUIT",
++              "text": "FROM: Leah Shepherds\n TO: Kristi Gordee, SVP Operations\n RE: I am going to sue you\n\n I don't know what kind of sick game your sham of a home is playing, but I am getting to the bottom of it.\n I've hired a lawyer and we are going to sue you.\n I should never have left grandpa in your care.\n How does a PERSON go missing from a NURSING HOME!?  I have pictures of how dirty and disgusting that place is.\n You should be ashamed!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_COO_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_LAWSUITS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR D766; UNABLE TO CONNECT TO MAIN SERVER.\n ERROR REFRESHING DATABASE.  ONLY CACHED INFORMATION DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Pending: Pablo Shepherds",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Vorm E. Thracks",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Mord R. Yuni-Korne",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Nina Palmero",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Niklaus Kaje",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Lexi Lute-Thor",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Robbie D. Nero",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Jimbob Jones",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Heather Feathers",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Shania Moses",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Elle Jackson-Samuels",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Walter Pinkman",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "Pending: Gustavo Hermanos",
++                  "target": "COMP_NURSING_HOME_COO_ERROR4"
++                },
++                {
++                  "text": "RETURN TO LEGAL FILES",
++                  "target": "COMP_NURSING_HOME_COO_LEGAL"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_LEGAL",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR D766; UNABLE TO CONNECT TO MAIN SERVER.\n ERROR REFRESHING DATABASE.  ONLY CACHED INFORMATION DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Pending Lawsuits",
++                  "target": "COMP_NURSING_HOME_COO_LAWSUITS"
++                },
++                {
++                  "text": "Access Closed Lawsuits",
++                  "target": "COMP_NURSING_HOME_COO_ERROR3"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_COO"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_MAIN",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR D766; UNABLE TO CONNECT TO MAIN SERVER.\n ERROR REFRESHING DATABASE.  ONLY CACHED INFORMATION DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Resident Records",
++                  "target": "COMP_NURSING_HOME_COO_RESIDENTS"
++                },
++                {
++                  "text": "Access Employee Records",
++                  "target": "COMP_NURSING_HOME_COO_ERROR"
++                },
++                {
++                  "text": "Access Budget Database",
++                  "target": "COMP_NURSING_HOME_COO_ERROR"
++                },
++                {
++                  "text": "Access Legal Files",
++                  "target": "COMP_NURSING_HOME_COO_LEGAL"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_COO"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_NINA",
++              "text": "RESIDENT NAME: Nina Palmero\n RESIDENT STATUS: Resident\n ASSIGNED ROOM: B02\n SOCIAL SECURITY NUMBER: xxx-xx-xxxx\n PAYMENT STATUS: Current\n PRIMARY PHYSICIAN: Peter St. Travers\n\n NOTES: Patient has specialized prescription; must be administered by Primary Physician daily.",
++              "links": [
++                {
++                  "text": "Access Resident Healthcare Records",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "Access Resident Legal Records",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "RETURN TO RESIDENT RECORDS",
++                  "target": "COMP_NURSING_HOME_COO_RESIDENTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_PABLO",
++              "text": "RESIDENT NAME: Pablo Shepherds\n RESIDENT STATUS: Missing\n ASSIGNED ROOM: A01\n SOCIAL SECURITY NUMBER: xxx-xx-xxxx\n PAYMENT STATUS: Current\n PRIMARY PHYSICIAN: Peter St. Travers\n\n NOTES: Patient absent as of xx-xx-xxxx.",
++              "links": [
++                {
++                  "text": "Access Resident Healthcare Records",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "Access Resident Legal Records",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "RETURN TO RESIDENT RECORDS",
++                  "target": "COMP_NURSING_HOME_COO_RESIDENTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_RESIDENTS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR D766; UNABLE TO CONNECT TO MAIN SERVER.\n ERROR REFRESHING DATABASE.  ONLY CACHED INFORMATION DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Resident: Pablo Shepherds",
++                  "target": "COMP_NURSING_HOME_COO_PABLO"
++                },
++                {
++                  "text": "Resident: Nina Palmero",
++                  "target": "COMP_NURSING_HOME_COO_NINA"
++                },
++                {
++                  "text": "Resident: Vorm E. Thracks",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "Resident: Mord R. Yuni-Korne",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "Resident: Robbie D. Nero",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "Resident: Niklaus Kaje",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "Resident: Lexi Lute-Thor",
++                  "target": "COMP_NURSING_HOME_COO_ERROR2"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_COO"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_COO_THANKS",
++              "text": "FROM: Big Science Supply Depot\n TO: Kristi Gordee, SVP Operations\n RE: Thank you for your order\n\n Hi KRISTI GORDEE,\n\n We have received your order and will begin processing it immediately.\n 1x Jet Injector, RX12 by Rivtech\n\n You will receive an additional email when your order has shipped.\n Thank you for shopping BIG SCIENCE SUPPLY DEPOT!\n\n Please do not reply to this message as your reply will be routed to an unmonitored inbox.\n Questions?  Contact customer service xxx-xxx-xxxx.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_COO_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_LEGAL",
++              "text": "ERROR: File unavailable.",
++              "links": [
++                {
++                  "text": "Log off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_archive_comp_nursing_home_sci",
++    "method": "json",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_computers": [
++        {
++          "x": 0,
++          "y": 0,
++          "name": "Shady Hills: Research & Development",
++          "options": [
++            {
++              "name": "Access archived records",
++              "action": "null",
++              "archive_page": "COMP_NURSING_HOME_SCI"
++            }
++          ],
++          "archive_pages": [
++            {
++              "id": "COMP_NURSING_HOME_SCI",
++              "text": "Shady Hills Corporation.\n You are logged in as: Peter St. Travers, SVP Research & Development.\n\nWARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Messages",
++                  "target": "COMP_NURSING_HOME_SCI_EMAILS"
++                },
++                {
++                  "text": "Access Project Database",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTS"
++                },
++                {
++                  "text": "Access Encrypted Drive",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR"
++                },
++                {
++                  "text": "Log Off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_BAD",
++              "text": "FROM: Vincent Fuels, Researcher\n TO: Peter St. Travers, SVP Research & Development\n RE: This is bad!\n\n While you were gone last night, the old man started to wake up and become cranky.\n We had to give him another dose of that elephant tranquilizer!\n I think he might actually be strong enough to break out of his cell now.\n We really need to do something before he kills someone!\n I know this experiment meant a lot to you, but it isn't worth the risk anymore!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_SCI_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_EMAILS",
++              "text": "Shady Hills Nursing Home.\n You are logged in as: Peter St. Travers, SVP Research & Development.\n\nWARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR B231; UNABLE TO CONNECT TO MESSAGING SERVER.\n ERROR REFRESHING MESSAGES.  NOT ALL MESSAGES MAY BE DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "RE: Shepherds",
++                  "target": "COMP_NURSING_HOME_SCI_SHEPHERDS"
++                },
++                {
++                  "text": "RE: This is bad!",
++                  "target": "COMP_NURSING_HOME_SCI_BAD"
++                },
++                {
++                  "text": "RE: Fix this",
++                  "target": "COMP_NURSING_HOME_SCI_FIXTHIS"
++                },
++                {
++                  "text": "RE: Results",
++                  "target": "COMP_NURSING_HOME_SCI_RESULTS"
++                },
++                {
++                  "text": "RE: Security",
++                  "target": "COMP_NURSING_HOME_SCI_SECURITY"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_SCI"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_ERROR",
++              "text": "WARNING: Encrypted file.  Enter secure password.",
++              "links": [
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_SCI"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_ERROR0",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO LAST PAGE",
++                  "target": "COMP_NURSING_HOME_SCI_PROCEDURES"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_ERROR2",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO PROJECTS",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_ERROR3",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO PROJECT",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTA"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_ERROR4",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO PROJECT",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTB"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_FIXTHIS",
++              "text": "FROM: Kristi Gordee, SVP Operations\n TO: Peter St. Travers, SVP Research & Development\n RE: Budget\n\n Peter,\n You need to find a way to reverse what you did ASAP.\n What exactly do you expect me to do to get us out of this?\n The police are investigating us now for foul play.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_SCI_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_GOALS",
++              "text": "PROJECT PROCEDURES: Big Pappy\n Goals\n\n 1) Study effects of cognitive and physical decline in geriatric residents.\n 2) Study effects of advanced medical and mutagenic serums on select patients.\n 3) Eliminate, or reverse, the physical and mental aging process in humans.",
++              "links": [
++                {
++                  "text": "RETURN TO PROCEDURES",
++                  "target": "COMP_NURSING_HOME_SCI_PROCEDURES"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_PROCEDURES",
++              "text": "PROJECT PROCEDURES: Big Pappy\n PAGE 1\n\n 1) Review patients for possible induction.  As a failsafe, patients selected for this program should have minimal or no contact with outside individuals and should additionally not be removed from their assigned rooms for longer than two days.  See 'Chapter 1: Induction' for greater detail.\n 2) Administer standard alchemical dosage according to patient profile.  See 'Chapter 2: Dosages' on typical process.\n 3) Monitor results over 7 days.  Patient will remain in general population outside of scheduled physicals unless determined otherwise by SVP Research & Development.\n 4) Patients deemed unworthy for general population are to remain in Secure lab room for special monitoring.  Official documentation will denote hospitalization in this circumstance to mitigate chance of suspicion.\n 5) To ensure unbiased compliance, selected patients and their families will not be informed of this process.",
++              "links": [
++                {
++                  "text": "View Primary Goals",
++                  "target": "COMP_NURSING_HOME_SCI_GOALS"
++                },
++                {
++                  "text": "Chapter 1: Induction",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR0"
++                },
++                {
++                  "text": "Chapter 2: Dosages",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR0"
++                },
++                {
++                  "text": "Chapter 3: Approved Serums",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR0"
++                },
++                {
++                  "text": "Chapter 4: Failsafe Protocol",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR0"
++                },
++                {
++                  "text": "RETURN TO PROJECTS",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_PROJECTA",
++              "text": "PROJECT CODE NAME: 'Big Pappy'\n PROJECT RESIDENT: Pablo Shepherds\n PROJECT STATUS: Active\n PROJECT START DATE: xx-xx-xxxx\n\n Entry Log 1: Started subject on assigned dosage.  Will monitor over 7 days.\n Entry Log 2: Subject within expected parameters.  Subject will remain in general population.\n Entry Log 3: Subject within expected parameters.  Subject will remain in general population.\n Entry Log 4: Subject showing signs of severe dementia.  Unexpected result.  Following removal protocol.  Moving patient to Secure room for 2 day period.\n Entry log 5: Subject stabilizing.  Attempting RA21E dosage.\n Entry Log 6: Subject within expected parameters.  Returning to general population.\n Entry Log 7: Subject within expected parameters.  Attempting Mutagenic Serum dose.  Following removal protocol.  Moving patient to Secure room for 2 day period.\n Entry Log 8: Subject has shown tremendous increase in girth and power.  Reduction in cognitive decline.  Symptoms of dementia nearly eliminated.\n Entry Log 9: Subject becoming belligerent.  Unknown cause.  Purifier Serum failing.  Initiated sedation protocol.  15mg Carfentanil required.  Initiating Failsafe protocol; subject cannot be returned to general population.\n Entry Log 10: Subject remains sedated.  Maintaining Failsafe protocol.  Attempting purifier serum trial.",
++              "links": [
++                {
++                  "text": "Add Entry Log",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR3"
++                },
++                {
++                  "text": "View Patient Medical History",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR3"
++                },
++                {
++                  "text": "View Dosages",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR3"
++                },
++                {
++                  "text": "View Mutagenic Serums",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR3"
++                },
++                {
++                  "text": "RETURN TO PROJECTS",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_PROJECTB",
++              "text": "PROJECT CODE NAME: 'Big Pappy'\n PROJECT RESIDENT: Nina Palmero\n PROJECT STATUS: Active\n PROJECT START DATE: xx-xx-xxxx\n\n Entry Log 1: Started subject on assigned dosage.  Will monitor over 7 days.\n Entry Log 2: Subject added to growing list of recent residents that are rejecting the dosage due to an unknown cause.  Attempting supplement of benzoylmethylecgonine to study possible results.  Will monitor over 7 days.  Maintaining subject in general population.\n Entry Log 3: Subject appears to have become obsessed with baked goods, unknown reason.",
++              "links": [
++                {
++                  "text": "Add Entry Log",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR4"
++                },
++                {
++                  "text": "View Patient Medical History",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR4"
++                },
++                {
++                  "text": "View Dosages",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR4"
++                },
++                {
++                  "text": "View Mutagenic Serums",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR4"
++                },
++                {
++                  "text": "RETURN TO PROJECTS",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_PROJECTS",
++              "text": "Shady Hills Corporation.\n You are logged in as: Peter St. Travers, SVP Research & Development.\n\n WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n ERROR D766; UNABLE TO CONNECT TO MAIN SERVER.\n ERROR REFRESHING DATABASE.  ONLY CACHED INFORMATION DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Project Procedures",
++                  "target": "COMP_NURSING_HOME_SCI_PROCEDURES"
++                },
++                {
++                  "text": "Pablo Shepherds",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTA"
++                },
++                {
++                  "text": "Nina Palmero",
++                  "target": "COMP_NURSING_HOME_SCI_PROJECTB"
++                },
++                {
++                  "text": "Vorm E. Thracks",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR2"
++                },
++                {
++                  "text": "Mord R. Yuni-Korne",
++                  "target": "COMP_NURSING_HOME_SCI_ERROR2"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_NURSING_HOME_SCI"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_RESULTS",
++              "text": "FROM: Unknown Sender\n TO: Peter St. Travers, SVP Research & Development\n RE: Results\n\n Looking forward to your report at the next meeting.\n I put a lot on the line for you, don't disappoint me, Peter.\n Get me results.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_SCI_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_SECURITY",
++              "text": "FROM: Will Higgins, VP Information Technology\n TO: Peter St. Travers, SVP Research & Development\n RE: Security\n\n Hello sir,\n I understand your concerns about security.  Rest assured, myself and my team take this very seriously.  I assure you that high-level encryption protects all of our systems.\n Nobody will be able to access any of our PCs without use of the owner's fingerprint authentication, even in the event that the main power supply is cut.\n Nobody unauthorized will ever be able to read our emails or documents.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_SCI_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_NURSING_HOME_SCI_SHEPHERDS",
++              "text": "FROM: Kristi Gordee, SVP Operations\n TO: Peter St. Travers, SVP Research & Development\n RE: Shepherds\n\n Peter,\n Leah Shepherds keeps sending me emails, and we just received the papers for yet another lawsuit.\n I don't know what you're thinking but this one is going to be really difficult and could cost us.\n The Board is going to be furious.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_NURSING_HOME_SCI_EMAILS"
++                }
++              ]
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_archive_comp_ret_comm_office",
++    "method": "json",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_computers": [
++        {
++          "x": 0,
++          "y": 0,
++          "name": "Shady Hills Corporation: Community Manager",
++          "options": [
++            {
++              "name": "Access archived records",
++              "action": "null",
++              "archive_page": "COMP_RET_COMM_OFFICE"
++            }
++          ],
++          "archive_pages": [
++            {
++              "id": "COMP_RET_COMM_EMAILS",
++              "text": "WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!\n\n WARNING!  ERROR B231; UNABLE TO CONNECT TO MESSAGING SERVER.\n ERROR REFRESHING MESSAGES.  NOT ALL MESSAGES MAY BE DISPLAYED.\n CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "RE: Seriously!?",
++                  "target": "COMP_RET_COMM_EMAILS_SERIOUSLY"
++                },
++                {
++                  "text": "RE: Noise complaint",
++                  "target": "COMP_RET_COMM_EMAILS_NOISE"
++                },
++                {
++                  "text": "RE: Horrible smell",
++                  "target": "COMP_RET_COMM_EMAILS_SMELL"
++                },
++                {
++                  "text": "[!]RE: Important Status Update",
++                  "target": "COMP_RET_COMM_EMAILS_STATUS"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_RET_COMM_OFFICE"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_EMAILS_NOISE",
++              "text": "FROM: Larry Landborn, Unit B11\n  TO: Shady Hills Corporation, Service Portal\n  RE: Noise complaint\n\n  Hello.  I am once again requesting your help with my neighbor in B10.  There are loud sounds from all times of day.  She claims her grandkids are visiting but the noises have been non-stop for weeks!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_EMAILS_SERIOUSLY",
++              "text": "FROM: Jamie Forest, Community Resident, Unit A02\n  TO: Shady Hills Corporation, Service Portal\n  RE: Seriously!?\n\n My son just told me he keeps receiving advertisements in the mail for a nursing home.  He told me that your company runs it!  Are you trying to get rid of me!?  You're sick!  I demand you have your CEO call me!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_EMAILS_SMELL",
++              "text": "FROM: Sandra Shells, Unit B06\n  TO: Shady Hills Corporation, Service Portal\n  RE: Horrible smell\n\n  There's a bad smell coming from unit B07.  Please look into it.  Thanks.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_EMAILS_STATUS",
++              "text": "FROM: Kristi Gordee, SVP Operations\n  TO: [Branch Managers], [Community Managers]\n  RE: Important Status Update\n\n Everyone,\n You are to follow your appropriate lockdown protocols at your discretion.  With the recent events as they are, we must do our utmost to ensure that our goals remain priority.\n\n Branch Managers - your deliveries will have an altered schedule.  I will send a separate email with details.  Ensure the hidden safe rooms are properly secured.\n Community Managers - Lockdown the community appropriately.  Tell the residents that it is for their protection, but do not let them leave.  We need them for the Big Pappy project to be successful.  I am going to send you some contacts who can discreetly install a heavy security gate.\n\n You will continue to receive your bonus pay as agreed upon.  Do not lose sight of our important endgame.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_ERROR",
++              "text": "ERROR ACCESSING SERVER",
++              "links": [
++                {
++                  "text": "RETURN TO DESKTOP",
++                  "target": "COMP_RET_COMM_OFFICE"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_OFFICE",
++              "text": "Shady Hills Corporation.\n You are logged in as: Randolph VanBuren, Community Manager.\n\n WARNING!  ERROR A101; FAILURE DETECTED IN POWER SUPPLY.\n RESERVE POWER ACTIVATED.  CONTACT INFORMATION TECHNOLOGY DEPARTMENT IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Messages",
++                  "target": "COMP_RET_COMM_EMAILS"
++                },
++                {
++                  "text": "Access Main Drives",
++                  "target": "COMP_RET_COMM_ERROR"
++                },
++                {
++                  "text": "Log Off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            }
++          ]
++        }
++      ]
++    }
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_archive_comp_ret_comm_home",
++    "method": "json",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_computers": [
++        {
++          "x": 0,
++          "y": 0,
++          "name": "Welcome to MY PC",
++          "options": [
++            {
++              "name": "Access archived records",
++              "action": "null",
++              "archive_page": "COMP_RET_COMM_HOME"
++            }
++          ],
++          "archive_pages": [
++            {
++              "id": "COMP_RET_COMM_EMAILS_BINGO",
++              "text": "FROM: BINGO CHAMPIONSHIPS ONLINE\n\n  Your Daily BINGO News!\n\n  Thank you for being a member of BINGO CHAMPIONSHIPS ONLINE!  Today we have an interview with our latest champion, WINIFRED SMITH!  Click the link below to hear her incredible story!",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_HOME_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_EMAILS_CLUB",
++              "text": "FROM: Jamie Forest, Community Resident, Unit A02\n\n  RE: Survivor's Club!?\n\n  Hey there!  Thanks for your interest in our club.  We are really excited to have you!  I'll have to come check out your panic room sometime!  A few of us are going to check out the cave in the park if you want to join us.  Officially, it's supposed to be off limits, but what are they going to do about it?  I heard it even connects to the sewers, maybe if the world really goes to hell like they're all thinking, we can make use of it!  I'm kidding, I don't believe that crap.",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_HOME_EMAILS"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_ERROR2",
++              "text": "The webpage cannot be found :( Check your connection and try again, or contact your Internet Service Provider.",
++              "links": [
++                {
++                  "text": "RETURN TO DESKTOP",
++                  "target": "COMP_RET_COMM_HOME"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_HOME",
++              "text": "MY PC.\n You are logged in as: ADMINISTRATOR.\n\n  WARNING!  ERROR IN POWER SUPPLY DETECTED.  RESERVE POWER ACTIVATED.  SAVE ALL WORK AND SAFELY SHUT DOWN THIS DEVICE IMMEDIATELY!",
++              "links": [
++                {
++                  "text": "Access Messages",
++                  "target": "COMP_RET_COMM_HOME_EMAILS"
++                },
++                {
++                  "text": "Connect to BINGO CHAMPIONSHIPS ONLINE",
++                  "target": "COMP_RET_COMM_ERROR2"
++                },
++                {
++                  "text": "Log Off",
++                  "target": "TALK_DONE"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_HOME_EMAILS",
++              "text": "Error connecting to server.  You will be unable to send or receive new messages.  Check your connection and try again, or contact your Internet Service Provider.",
++              "links": [
++                {
++                  "text": "RE: Security Gate",
++                  "target": "COMP_RET_COMM_HOME_EMAILS_GATE"
++                },
++                {
++                  "text": "RE: Survivor's Club",
++                  "target": "COMP_RET_COMM_EMAILS_CLUB"
++                },
++                {
++                  "text": "RE: Your Daily BINGO News!",
++                  "target": "COMP_RET_COMM_EMAILS_BINGO"
++                },
++                {
++                  "text": "RETURN TO MAIN PAGE",
++                  "target": "COMP_RET_COMM_HOME"
++                }
++              ]
++            },
++            {
++              "id": "COMP_RET_COMM_HOME_EMAILS_GATE",
++              "text": "FROM: Randolph VanBuren, Shady Hills Community Manager\n\n  RE: Security Gate\n\n  Greetings everyone in our fine community.  I wanted to give you an update on Shady Hills' official stance on the security and safety of our esteemed residents.  We are doing everything in our power to keep you safe from harm.  We understand the news has been frightening lately with talk of violence in the streets.  Rest assured you are safe inside of our neighborhood.  Out of an abundance of caution we are installing a new front gate to the entrance of the neighborhood.  This gate will keep back even the most violent of criminals.  Should you have any questions or concerns, please contact our service portal.\n\n  Thank you for your trust in Shady Hills,\n Randolph VanBuren",
++              "links": [
++                {
++                  "text": "RETURN TO MESSAGES",
++                  "target": "COMP_RET_COMM_HOME_EMAILS"
++                }
++              ]
++            }
++          ]
++        }
++      ]
++    }
++  }
++]
 --- /dev/null
 +++ b/data/json/dda_xedra_creature.json
 @@ -0,0 +1,138 @@

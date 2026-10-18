@@ -40,7 +40,7 @@ from bn_counterparts import check as check_counterparts, adapt_entry
 check_counterparts()
 adapted = build_layer(adapted=True)
 assert adapted['report']['selected_definitions'] == 30
-assert len(adapted['report']['unresolved_transitive_references']) == 27
+assert len(adapted['report']['unresolved_transitive_references']) == 26
 assert ('MONSTER', 'mon_zombie_medical') not in {k for v in adapted['source_candidates'] for k in declarations({v['source']: json.dumps([v['entry']])})}
 for name in ('nursing_home', 'retirement_community'):
     for entry in maps[name + '.json']:

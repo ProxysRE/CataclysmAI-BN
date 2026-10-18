@@ -17,6 +17,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
+from prepare_terminal_archives import prepare as prepare_archives, patch_sections as archive_patch, CORE as ARCHIVE_CORE, PAYLOAD as ARCHIVE_PAYLOAD
 from prepare_mapgen_corpses import patch_sections as corpse_patch
 
 ROOT = Path(__file__).resolve().parent
@@ -44,19 +45,23 @@ def check():
     prepare_karting(check=True)
     prepare_eldercare(check=True)
     prepare_farm(check=True)
+    prepare_archives(check=True)
     assert corpse_patch() in patch, "Stale corpse mapgen replacement"
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
     expected_hub = hub_access_patch()
     assert expected_hub in patch, "Stale Hub elevator native replacement"
+    assert archive_patch() in patch, "Stale terminal archive integration"
+    for name in ARCHIVE_CORE:
+        assert patch.count("+++ b/src/" + name + "\n") == 1, name
     files = {
         'src/' + name: ROOT / 'native' / name
         for name in ('artisan_expression.h', 'artisan_bn_bridge.h', 'artisan_items.h',
-                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h', 'dda_mapgen_corpses.h')
+                     'faction_food_stock.h', 'lighthouse_quest_updates.h', 'hub_elevator_access.h', 'dda_mapgen_corpses.h', 'computer_archive.h')
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
@@ -69,6 +74,7 @@ def check():
         KARTING_PAYLOAD: ROOT / 'native/dda_karting_circuit.json',
         ELDERCARE_PAYLOAD: ROOT / 'native/dda_eldercare_support.json',
         FARM_PAYLOAD: ROOT / 'native/dda_farm_supply.json',
+        ARCHIVE_PAYLOAD: ROOT / 'native/dda_terminal_archives.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',

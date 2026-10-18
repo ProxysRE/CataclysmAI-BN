@@ -127,7 +127,8 @@ def build_layer(adapted=False):
     from bn_counterparts import adapt_entry, MAPPINGS
     used = set()
     if adapted:
-        maps = [adapt_entry(e, used) for e in maps]
+        from prepare_terminal_archives import adapt_map
+        maps = [adapt_map(adapt_entry(e, used)) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
     provided = index_entries(maps)
     roots = {ref for entry in maps for ref in refs(entry)} - bn - provided
     # The provenance layer keeps original medical evolution; the adapted
@@ -167,7 +168,7 @@ def build_layer(adapted=False):
                        'bn_declared_references_needing_semantic_review': sorted(reused),
                        'unresolved_transitive_references': sorted(missing),
                        'scope': 'Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.',
-                       'blockers': ['Computer eocs/open_dialogue and terminal talkers require a real BN interaction bridge.',
+                       'blockers': [('Read-only terminal story graphs use the BN computer archive bridge; whole-site generation remains pending.' if adapted else 'Source computer eocs/open_dialogue are retained for provenance; adapted graphs use BN computer archives.'),
                                     'Unmatched recursive groups, living-civilian AI and mutation branches need adaptation; source medical variants may be superseded by stock BN counterparts.',
                                     'Preserve source timed entries and group probabilities; naive flattening can change density and civilian disappearance.',
                                     'Resolve remaining dependencies, compare BN counterparts, adapt schemas and run full location generation before installing either site.']}}
@@ -194,7 +195,8 @@ def prepare(check=False, bn_source=None, bn_data=None):
     from bn_counterparts import adapt_entry, check as check_counterparts
     check_counterparts(bn_source)
     regional = build()
-    adapted = {'locations': {name: [adapt_entry(e) for e in regional[name + '.json']] for name in ('nursing_home', 'retirement_community')},
+    from prepare_terminal_archives import adapt_map
+    adapted = {'locations': {name: [adapt_map(adapt_entry(e)) for e in regional[name + '.json'] if e['type'] not in ('talk_topic', 'effect_on_condition')] for name in ('nursing_home', 'retirement_community')},
                'dependencies': build_layer(adapted=True)}
     outputs = {FOLDER / 'ADAPTED_LOCATIONS.json': adapted, ROOT / 'native/dda_eldercare_support.json': payload,
                FOLDER / 'SOURCE_CANDIDATES.json': layer}

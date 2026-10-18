@@ -22,7 +22,8 @@ def replacement():
     ):
         assert text.count(old) == 1, old
         text = text.replace(old, new)
-    return text
+    from prepare_terminal_archives import extend_mapgen
+    return extend_mapgen(text)
 
 
 def patch_sections():
