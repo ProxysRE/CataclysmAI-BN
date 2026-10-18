@@ -19,3 +19,10 @@ The build stopped while compiling dda_radio_stations_test.cpp. Pinned BN item_co
 ## Windows run 39120054313: loading farm and eldercare support
 
 The game and tests compiled successfully. Native execution then reported the DDA-only overmap field `travel_cost_type: roof` in the farm shop and aborted on the web field's intensity array `[1, 3]`. The farm adapter removes only that unsupported roof category, retaining BN's inherited overmap behavior and all source geometry. The mapgen field action now uses existing BN `jmapgen_int` loading and per-placement sampling, so scalar/default intensities remain unchanged and source ranges need no fixed-value substitution. Both changes are included in the composed mapgen patch and guarded by Python checks. The next Windows run must confirm startup and native/installed tests.
+
+
+## Windows run 39130768375: archive file offsets and generator cargo
+
+The native suite completed in about 41 seconds. All cases except the file-backed six-terminal archive fixture passed; that fixture failed at the first JSON object's key. It now opens its file in binary mode because BN's JSON reader caches byte offsets, while Windows text-mode newline translation can invalidate seeks. The passing in-memory archive save/graph tests and the location-data loading separate this fixture path from production parsing. The next Windows run must verify the diagnosis.
+
+Initialization also logged three vehicle errors: the backup-generator prototypes tried to place a cable at a mount without a CARGO part. A stock BN cargo box now shares the same single-cell mount with each generator. Native part-count tests expect all seven parts; static checks require the cargo mount. Native/installed validation of these fixes remains pending.

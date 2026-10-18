@@ -13,7 +13,7 @@ for name in ('dda_eldercare_bed_small', 'dda_eldercare_medical_cart', 'dda_elder
              'dda_eldercare_military_generator', 'dda_eldercare_gasoline_generator'):
     vehicle = by_id[name]
     assert len(vehicle['parts']) == 1 and vehicle['parts'][0]['x'] == vehicle['parts'][0]['y'] == 0
-    assert len(vehicle['parts'][0]['parts']) == (6 if name.endswith('generator') else 3)
+    assert len(vehicle['parts'][0]['parts']) == (7 if name.endswith('generator') else 3)
 assert by_id['dda_eldercare_medical_cart']['parts'][0]['parts'] == ['xlframe_vertical_2', 'wheel_caster', 'veh_table']
 for old_name, new_name in [('hospital_bed_small', 'dda_eldercare_bed_small'), ('medical_cart', 'dda_eldercare_medical_cart')]:
     assert {(p['x'], p['y']) for p in declarations()[old_name]['parts']} == {(p['x'], p['y']) for p in by_id[new_name]['parts']}
@@ -53,3 +53,7 @@ for site in ('nursing_home', 'retirement_community'):
             assert not new['palettes']
 prepare(check=True)
 print('PASS: compact medical objects, real BN generator parts, exact weighted choices, 60 lab texts and source map rows')
+
+for e in payload:
+    if e.get('id', '').endswith('_generator'):
+        assert 'box' in e['parts'][0]['parts'], 'Cable loot needs an actual cargo part'

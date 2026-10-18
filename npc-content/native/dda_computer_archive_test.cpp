@@ -63,7 +63,7 @@ TEST_CASE( "computer_archives_reject_missing_links_and_mixed_actions", "[dda_npc
 
 TEST_CASE( "six_source_terminal_archives_survive_computer_saving", "[dda_npc][dda_terminal]" )
 {
-    std::ifstream file( "data/json/dda_terminal_archives.json" );
+    std::ifstream file( "data/json/dda_terminal_archives.json", std::ios::binary );
     REQUIRE( file.good() );
     JsonIn reader( file );
     std::set<std::string> pages;

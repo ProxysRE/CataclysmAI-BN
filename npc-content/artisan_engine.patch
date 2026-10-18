@@ -3277,7 +3277,7 @@
 +
 +TEST_CASE( "six_source_terminal_archives_survive_computer_saving", "[dda_npc][dda_terminal]" )
 +{
-+    std::ifstream file( "data/json/dda_terminal_archives.json" );
++    std::ifstream file( "data/json/dda_terminal_archives.json", std::ios::binary );
 +    REQUIRE( file.good() );
 +    JsonIn reader( file );
 +    std::set<std::string> pages;
@@ -3346,7 +3346,7 @@
 +        REQUIRE( id.is_valid() );
 +        const auto &prototype = id.obj();
 +        const int expected = std::string( name ) == "dda_eldercare_cargo_van" ? 101 :
-+                             std::string( name ).find( "generator" ) != std::string::npos ? 6 : 3;
++                             std::string( name ).find( "generator" ) != std::string::npos ? 7 : 3;
 +        REQUIRE( prototype.parts.size() == expected );
 +        for( const auto &part : prototype.parts ) {
 +            REQUIRE( part.part.is_valid() );
@@ -34048,7 +34048,7 @@
 +]
 --- /dev/null
 +++ b/data/json/dda_eldercare_assets.json
-@@ -0,0 +1,1050 @@
+@@ -0,0 +1,1053 @@
 +[
 +  {
 +    "id": "common_mutation_books",
@@ -34942,7 +34942,8 @@
 +          "small_storage_battery",
 +          "diesel_engine_v6",
 +          "generator_7500w",
-+          "controls_electronic"
++          "controls_electronic",
++          "box"
 +        ]
 +      }
 +    ],
@@ -34994,7 +34995,8 @@
 +          "small_storage_battery",
 +          "diesel_engine_v6",
 +          "generator_7500w",
-+          "controls_electronic"
++          "controls_electronic",
++          "box"
 +        ]
 +      }
 +    ],
@@ -35046,7 +35048,8 @@
 +          "small_storage_battery",
 +          "engine_vtwin",
 +          "generator_7500w",
-+          "controls_electronic"
++          "controls_electronic",
++          "box"
 +        ]
 +      }
 +    ],

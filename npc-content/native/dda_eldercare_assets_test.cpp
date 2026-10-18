@@ -20,7 +20,7 @@ TEST_CASE( "eldercare_medical_objects_and_generators_install_all_parts", "[dda_n
         REQUIRE( id.is_valid() );
         const auto &prototype = id.obj();
         const int expected = std::string( name ) == "dda_eldercare_cargo_van" ? 101 :
-                             std::string( name ).find( "generator" ) != std::string::npos ? 6 : 3;
+                             std::string( name ).find( "generator" ) != std::string::npos ? 7 : 3;
         REQUIRE( prototype.parts.size() == expected );
         for( const auto &part : prototype.parts ) {
             REQUIRE( part.part.is_valid() );

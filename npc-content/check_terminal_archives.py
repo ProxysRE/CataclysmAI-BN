@@ -29,3 +29,7 @@ assert 'foldstring(' in patched['src/computer_session.cpp']
 assert 'archive = {};\n        jo.read( "archive", archive );' in patched['src/computer.cpp']
 prepare(check=True)
 print('PASS: 72 unchanged source pages, closed graphs, six roots, safe legacy dispatch and save handling')
+
+# JsonIn uses byte offsets; file-backed fixtures must not translate CRLF on Windows.
+from pathlib import Path
+assert 'std::ios::binary' in (Path(__file__).resolve().parent / 'native/dda_computer_archive_test.cpp').read_text()

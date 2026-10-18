@@ -154,7 +154,7 @@ def native_data():
         vehicle = 'dda_eldercare_' + kind + '_generator'
         result.append({'type': 'vehicle', 'id': vehicle, 'name': kind + ' backup generator',
                        'parts': [{'x': 0, 'y': 0, 'parts': ['frame_cover', {'part': 'tank_small', 'fuel': fuel},
-                                  'small_storage_battery', engine, 'generator_7500w', 'controls_electronic']}],
+                                  'small_storage_battery', engine, 'generator_7500w', 'controls_electronic', 'box']}],
                        'items': [{'x': 0, 'y': 0, 'chance': 50, 'items': ['jumper_cable']}]})
         result.append({'type': 'mapgen', 'method': 'json', 'nested_mapgen_id': 'dda_eldercare_generator_' + kind,
                        'object': {'mapgensize': [1, 1], 'place_vehicles': [{'x': 0, 'y': 0, 'vehicle': vehicle, 'chance': 100, 'rotation': 0}]}})

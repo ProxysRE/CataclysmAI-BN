@@ -891,7 +891,8 @@
           "small_storage_battery",
           "diesel_engine_v6",
           "generator_7500w",
-          "controls_electronic"
+          "controls_electronic",
+          "box"
         ]
       }
     ],
@@ -943,7 +944,8 @@
           "small_storage_battery",
           "diesel_engine_v6",
           "generator_7500w",
-          "controls_electronic"
+          "controls_electronic",
+          "box"
         ]
       }
     ],
@@ -995,7 +997,8 @@
           "small_storage_battery",
           "engine_vtwin",
           "generator_7500w",
-          "controls_electronic"
+          "controls_electronic",
+          "box"
         ]
       }
     ],
