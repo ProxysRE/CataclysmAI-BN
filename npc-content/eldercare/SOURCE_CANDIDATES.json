@@ -4,6 +4,7 @@
     "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
   },
   "installed": false,
+  "optional_mod_dependencies": [],
   "source_candidates": [
     {
       "source": "dda/data/json/monsters/bird.json",
