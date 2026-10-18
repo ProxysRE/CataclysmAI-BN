@@ -78,7 +78,7 @@ TEST_CASE( "quest_USB_items_inherit_stock_BN_USB_and_use_normal_inventory_condit
     CHECK( has_license( conversation ) );
 }
 
-TEST_CASE( "exhibition_545_casing_uses_BN_generic_item_properties", "[dda_npc]" ) {
+TEST_CASE( "exhibition_545_casing_uses_BN_generic_item_properties", "[dda_npc][dda_shared_ammo]" ) {
     clear_all_state();
     const auto casing = item( itype_id( "545_casing" ), calendar::turn );
     const auto nine_mm = item( itype_id( "9mm_casing" ), calendar::turn );

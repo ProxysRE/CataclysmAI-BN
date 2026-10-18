@@ -17,6 +17,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
+from prepare_shared_casing import prepare as prepare_shared_casing, patch_sections as shared_casing_patch, TARGET as SHARED_CASING_TARGET
 from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, extend_chat, patch_sections as civilian_patch
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
@@ -54,9 +55,12 @@ def check():
     prepare_loot(check=True)
     prepare_fauna(check=True)
     prepare_civilians(check=True)
+    prepare_shared_casing(check=True)
     talk_section = patch.split("+++ b/src/npctalk.cpp\n", 1)[1].split("\n--- ", 1)[0]
     assert talk_section.count("+#include \"civilian_chat_ui.h\"") == 1
     assert "+            show_civilian_chat( *civilians[people.ret] );" in patch
+    assert shared_casing_patch() in patch
+    assert patch.count("+++ b/" + SHARED_CASING_TARGET + "\n") == 1
     assert civilian_patch() in patch
     assert patch.count("+++ b/" + CIVILIAN_PAYLOAD + "\n") == 1
     assert "+++ b/" + LEGACY_CORE + "\n" not in patch

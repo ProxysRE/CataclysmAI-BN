@@ -87,10 +87,20 @@ def audit(data, patch):
     overlaps = [r for r in data['records'] if (r['type'], r['id']) in new]
     reviews = json.loads(REVIEWS.read_text())
     assert reviews['bn_pin'] == PIN
-    approved = {(r['type'], r['id'], r['path']) for r in reviews['reviews'] if r.get('reason')}
+    approved = set()
+    for review in reviews['reviews']:
+        assert review.get('reason')
+        if review.get('resolution') == 'shared_definition_promotion':
+            from prepare_shared_casing import validate_resolution, TARGET
+            assert (review['type'], review['id'], review['path']) == ('item', '545_casing', TARGET)
+            validate_resolution(patch)
+        else:
+            raise AssertionError('No validator for collision resolution: ' + str(review))
+        approved.add((review['type'], review['id'], review['path']))
     unreviewed = [r for r in overlaps if (r['type'], r['id'], r['path']) not in approved]
     return {'bn_pin': PIN, 'new_core_declarations': len(new), 'mod_json_files': data['json_files'],
             'mod_records': len(data['records']), 'overlaps': overlaps, 'unreviewed': unreviewed,
+            'validated_resolutions': [r for r in reviews['reviews'] if (r['type'], r['id'], r['path']) in {(o['type'], o['id'], o['path']) for o in overlaps}],
             'scope': 'Exact typed IDs in all bundled mod JSON; names included for counterpart search. ID difference does not prove semantic uniqueness.'}
 
 

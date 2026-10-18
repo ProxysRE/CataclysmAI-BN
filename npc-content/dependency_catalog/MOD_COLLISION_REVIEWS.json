@@ -1,4 +1,12 @@
 {
   "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
-  "reviews": []
+  "reviews": [
+    {
+      "type": "item",
+      "id": "545_casing",
+      "path": "data/mods/exotic_ammo/generic/casing.json",
+      "resolution": "shared_definition_promotion",
+      "reason": "Reuse the byte-equivalent parsed BN Exotic Ammo item as a shared core quest dependency; remove only that item from the optional mod. Guard requires both exact equality and the removal patch."
+    }
+  ]
 }

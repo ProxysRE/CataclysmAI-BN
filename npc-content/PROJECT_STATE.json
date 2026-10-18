@@ -478,9 +478,21 @@
     "result": "success"
   },
   "bundled_mod_inventory": {
-    "status": "full_index_bootstrap_in_fast_CI_pending",
+    "status": "full_pinned_catalog_generated_and_local_audit_passed",
+    "json_files": 1001,
+    "records": 10471,
+    "provider_directories": 75,
     "scope": "all pinned data/mods JSON; typed IDs, display names, mod owners and dependencies",
-    "guard": "unreviewed new-core ID collisions block fast and native CI",
-    "limitations": "Exact IDs and name search require semantic review; optional providers remain explicit dependencies"
+    "new_core_declarations_audited": 289,
+    "unreviewed_collisions": 0,
+    "validated_resolution": "Existing identical BN Exotic Ammo 545 casing shared with core; original duplicate removed; equality and removal patch required by guard",
+    "full_fresh_tree_CI_repeat_pending": true,
+    "limitations": "Exact IDs and semantic search require human source comparison; third-party mods outside the bundled tree are not covered"
+  },
+  "shared_exotic_casing": {
+    "source": "data/mods/exotic_ammo/generic/casing.json",
+    "strategy": "one unchanged BN item definition in core, optional-mod duplicate removed",
+    "other_items_changed": false,
+    "source_and_installed_mod_combo_tests_pending": true
   }
 }

@@ -19,6 +19,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
+from prepare_shared_casing import prepare as prepare_shared_casing, patch_sections as shared_casing_patch, TARGET as SHARED_CASING_TARGET
 from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, extend_chat, patch_sections as civilian_patch
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
@@ -49,6 +50,7 @@ prepare_assets(check=True)
 prepare_loot(check=True)
 prepare_fauna(check=True)
 prepare_civilians(check=True)
+prepare_shared_casing(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
     if actual != "c621aaf42fa182473aad10feea2b55647704dcf1":
@@ -101,7 +103,7 @@ if args.bn_source:
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
-    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR), Path(MUTATIONS), Path(RADIO_MAP), Path(RADIO_CITY), Path(CIVILIAN_PAYLOAD)):
+    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR), Path(MUTATIONS), Path(RADIO_MAP), Path(RADIO_CITY), Path(CIVILIAN_PAYLOAD), Path(SHARED_CASING_TARGET)):
         content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -164,6 +166,7 @@ parts.append(creature_patch())
 parts.append(corpse_patch())
 parts.append(archive_patch())
 parts.append(civilian_patch())
+parts.append(shared_casing_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_fauna.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + FAUNA_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_loot.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + LOOT_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_assets.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + ASSET_PAYLOAD))

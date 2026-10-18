@@ -1,0 +1,15 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "sha256": "7b98f82e08683ea086db5b0b7e1884e70443539b61edabb5814bc942859c5f34",
+  "records": 10471,
+  "json_files": 1001,
+  "parts": [
+    "MOD_INDEX.part00",
+    "MOD_INDEX.part01",
+    "MOD_INDEX.part02",
+    "MOD_INDEX.part03",
+    "MOD_INDEX.part04",
+    "MOD_INDEX.part05",
+    "MOD_INDEX.part06"
+  ]
+}
