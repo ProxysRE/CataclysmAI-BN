@@ -90,6 +90,9 @@ def verify_install(folder):
     from prepare_eldercare import native_data as eldercare_data, PAYLOAD as ELDERCARE_PAYLOAD
     if json.loads((folder / ELDERCARE_PAYLOAD).read_text(encoding='utf-8')) != eldercare_data():
         raise ValueError('Installed eldercare support payload differs')
+    from prepare_eldercare_fauna import native_data as fauna_data, PAYLOAD as FAUNA_PAYLOAD
+    if json.loads((folder / FAUNA_PAYLOAD).read_text(encoding="utf-8")) != fauna_data():
+        raise ValueError("Installed eldercare fauna differs")
     from prepare_eldercare_loot import native_data as loot_data, PAYLOAD as LOOT_PAYLOAD
     if json.loads((folder / LOOT_PAYLOAD).read_text(encoding="utf-8")) != loot_data():
         raise ValueError("Installed eldercare loot differs")

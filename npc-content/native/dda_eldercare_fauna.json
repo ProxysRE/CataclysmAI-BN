@@ -1,0 +1,767 @@
+[
+  {
+    "type": "item_group",
+    "id": "dda_feral_cop_weapon",
+    "subtype": "distribution",
+    "items": [
+      [
+        "tonfa",
+        100
+      ]
+    ]
+  },
+  {
+    "id": "mon_feral_cop",
+    "name": {
+      "str": "feral cop"
+    },
+    "description": "Another of the crazed humans among the dead.  This police officer angrily mutters to themselves, wandering about with a truncheon in hand in search of someone to brutalize.",
+    "speed": 95,
+    "color": "blue",
+    "aggression": 100,
+    "melee_skill": 6,
+    "dodge": 3,
+    "death_drops": "mon_zombie_cop_death_drops",
+    "zombify_into": "mon_zombie_cop",
+    "type": "MONSTER",
+    "copy-from": "mon_feral_human_pipe",
+    "monster_weapon": "dda_feral_cop_weapon",
+    "starting_ammo": {
+      "rock": 0
+    },
+    "special_attacks": [
+      [
+        "PARROT_AT_DANGER",
+        5
+      ]
+    ],
+    "armor_bash": 8,
+    "armor_cut": 12,
+    "armor_stab": 9,
+    "armor_bullet": 14,
+    "armor_electric": 2
+  },
+  {
+    "type": "item_group",
+    "id": "dda_feral_spear_weapon",
+    "subtype": "distribution",
+    "items": [
+      [
+        "spear_knife",
+        100
+      ]
+    ]
+  },
+  {
+    "id": "mon_feral_sapien_spear",
+    "name": {
+      "str": "cunning feral"
+    },
+    "description": "This feral human's eyes look more focused, and its movements steadier, than others of their kind.  They're carrying a crude spear, and have assembled some basic armor from scavenged clothing and bits of riot armor, though you can see several gaps.  Despite these signs of greater intelligence, this creature is still only a few steps away from being a zombie themselves.",
+    "dodge": 3,
+    "vision_day": 50,
+    "death_drops": "dda_feral_spear_outfit",
+    "zombify_into": "mon_zombie_survivor",
+    "type": "MONSTER",
+    "copy-from": "mon_feral_human_pipe",
+    "monster_weapon": "dda_feral_spear_weapon",
+    "starting_ammo": {
+      "rock": 0
+    },
+    "special_attacks": [
+      [
+        "PARROT_AT_DANGER",
+        5
+      ]
+    ],
+    "armor_bash": 9,
+    "armor_cut": 14,
+    "armor_acid": 4,
+    "armor_bullet": 18
+  },
+  {
+    "type": "item_group",
+    "subtype": "collection",
+    "id": "dda_feral_spear_outfit",
+    "entries": [
+      {
+        "group": "underwear",
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "group": "survivorzed_bottoms",
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "group": "survivorzed_tops",
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "group": "survivorzed_gloves",
+        "prob": 95,
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "group": "survivorzed_boots",
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "group": "clothing_glasses",
+        "prob": 5,
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "group": "clothing_watch",
+        "prob": 5,
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "distribution": [
+          {
+            "item": "spearsling",
+            "prob": 50,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "spearsling",
+            "prob": 50,
+            "damage-min": 0,
+            "damage-max": 3
+          }
+        ],
+        "prob": 100
+      },
+      {
+        "distribution": [
+          {
+            "item": "police_belt",
+            "prob": 35,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "fireman_belt",
+            "prob": 35,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "tool_belt",
+            "prob": 30,
+            "damage-min": 0,
+            "damage-max": 3
+          }
+        ],
+        "prob": 50
+      },
+      {
+        "item": "kevlar",
+        "prob": 35,
+        "damage-min": 0,
+        "damage-max": 3
+      },
+      {
+        "distribution": [
+          {
+            "item": "tac_helmet",
+            "prob": 35,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "helmet_army",
+            "prob": 35,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "helmet_riot",
+            "prob": 30,
+            "damage-min": 0,
+            "damage-max": 3
+          }
+        ],
+        "prob": 50
+      },
+      {
+        "distribution": [
+          {
+            "item": "armor_riot",
+            "prob": 30,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "duster_leather",
+            "prob": 10,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "item": "ballistic_vest_esapi",
+            "prob": 30,
+            "damage-min": 0,
+            "damage-max": 3
+          },
+          {
+            "collection": [
+              {
+                "item": "kevlar",
+                "prob": 100,
+                "damage-min": 0,
+                "damage-max": 3
+              },
+              {
+                "item": "armguard_hard",
+                "prob": 50,
+                "damage-min": 0,
+                "damage-max": 3
+              },
+              {
+                "item": "legguard_hard",
+                "prob": 50,
+                "damage-min": 0,
+                "damage-max": 3
+              }
+            ],
+            "prob": 30
+          }
+        ],
+        "prob": 95
+      },
+      {
+        "group": "harddrugs",
+        "prob": 15
+      },
+      {
+        "group": "stash_food",
+        "prob": 15
+      },
+      {
+        "group": "ammo_common",
+        "prob": 15
+      },
+      {
+        "group": "stash_drugs",
+        "prob": 15
+      },
+      {
+        "group": "gear_survival",
+        "prob": 15
+      }
+    ]
+  },
+  {
+    "id": "mon_mutant_antler",
+    "name": {
+      "str": "ungulate mutant"
+    },
+    "description": "A gigantic mutated test subject, still wearing the tattered remains of an orange jumpsuit.  They walk on four warped legs ending in hooves, and their head is dominated by a glistening, tangled crown of antlers that scratch the ceiling.",
+    "bodytype": "horse",
+    "color": "brown",
+    "volume": "275 L",
+    "weight": "250 kg",
+    "hp": 210,
+    "speed": 150,
+    "aggression": 8,
+    "morale": 13,
+    "melee_skill": 6,
+    "melee_dice": 4,
+    "melee_dice_sides": 3,
+    "dodge": 6,
+    "vision_day": 25,
+    "vision_night": 8,
+    "bleed_rate": 70,
+    "harvest": "mutant_human",
+    "death_drops": "mon_mutant_experimental_death_drops",
+    "type": "MONSTER",
+    "copy-from": "mon_mutant_experimental",
+    "upgrades": false,
+    "armor_bash": 10,
+    "armor_cut": 11,
+    "armor_stab": 8,
+    "armor_bullet": 5,
+    "armor_electric": 2,
+    "melee_damage": [],
+    "flags": [
+      "BASHES",
+      "GROUP_BASH",
+      "GROUP_MORALE",
+      "HEARS",
+      "HIT_AND_RUN",
+      "PATH_AVOID_DANGER_2",
+      "SEES",
+      "SWARMS",
+      "WARM"
+    ],
+    "aggro_character": false,
+    "regen_morale": true,
+    "path_settings": {
+      "max_dist": 50,
+      "avoid_traps": true,
+      "avoid_sharp": true
+    },
+    "anger_triggers": [
+      "PLAYER_CLOSE",
+      "FRIEND_ATTACKED"
+    ],
+    "fear_triggers": [
+      "HURT",
+      "FIRE"
+    ],
+    "special_attacks": [
+      {
+        "cooldown": 6,
+        "move_cost": 150,
+        "damage_max_instance": [
+          {
+            "damage_type": "stab",
+            "amount": 15,
+            "armor_multiplier": 0.3
+          }
+        ],
+        "min_mul": 0.7,
+        "hit_dmg_u": "%1$s gores your %2$s with its antlers!",
+        "hit_dmg_npc": "%1$s gores <npcname> with its antlers!",
+        "miss_msg_u": "%1$s tries to gore you, but you dodge!",
+        "miss_msg_npc": "%1$s tries to gore <npcname>, but they dodge!",
+        "no_dmg_msg_u": "%1$s rams its antlers into your %2$s, but it bounces off your armor.",
+        "no_dmg_msg_npc": "%1$s tries to gore <npcname>, but it fails to penetrate their armor.",
+        "type": "melee",
+        "id": "dda_mutant_antler"
+      },
+      [
+        "SMASH",
+        12
+      ],
+      [
+        "EAT_CROP",
+        120
+      ]
+    ]
+  },
+  {
+    "id": "mon_mutant_arthropod",
+    "name": {
+      "str": "arthropod mutant"
+    },
+    "description": "A horribly mutated experimental subject.  Their original body - still wearing an orange jumpsuit - flops around lifelessly, carried by twelve segmented legs covered in hairy chitin erupting from their back.  At the base of the front pair of legs, an almost-human scalp gives way to a dozen irregularly-sized eyes and a set of mandibles, and from their hind end a stinger not unlike a scorpion's emerges.",
+    "bodytype": "spider",
+    "color": "i_black",
+    "volume": "180 L",
+    "weight": "200 kg",
+    "hp": 180,
+    "speed": 105,
+    "aggression": 45,
+    "morale": 40,
+    "melee_skill": 10,
+    "melee_dice": 3,
+    "melee_dice_sides": 3,
+    "dodge": 7,
+    "vision_day": 25,
+    "vision_night": 20,
+    "grab_strength": 50,
+    "bleed_rate": 50,
+    "harvest": "mutant_human",
+    "death_drops": "mon_mutant_evolved_death_drops",
+    "type": "MONSTER",
+    "copy-from": "mon_mutant_experimental",
+    "upgrades": false,
+    "armor_electric": 2,
+    "armor_bash": 11,
+    "armor_cut": 18,
+    "armor_stab": 12,
+    "armor_bullet": 12,
+    "melee_damage": [],
+    "flags": [
+      "BASHES",
+      "GROUP_BASH",
+      "GROUP_MORALE",
+      "HEARS",
+      "KEENNOSE",
+      "PATH_AVOID_DANGER_2",
+      "SEES",
+      "SMELLS",
+      "SWARMS",
+      "WEBWALK"
+    ],
+    "aggro_character": false,
+    "regen_morale": true,
+    "path_settings": {
+      "max_dist": 50,
+      "avoid_traps": true,
+      "avoid_sharp": true
+    },
+    "anger_triggers": [
+      "PLAYER_CLOSE",
+      "FRIEND_ATTACKED"
+    ],
+    "fear_triggers": [
+      "HURT",
+      "FIRE"
+    ],
+    "special_attacks": [
+      {
+        "cooldown": 6,
+        "move_cost": 180,
+        "damage_max_instance": [
+          {
+            "damage_type": "stab",
+            "amount": 14,
+            "armor_multiplier": 0.3
+          }
+        ],
+        "hit_dmg_u": "%1$s's stinger tail whips out and hits your %2$s!",
+        "hit_dmg_npc": "%1$s's tail stings <npcname>!",
+        "miss_msg_u": "%1$s tries to sting you, but you dodge!",
+        "miss_msg_npc": "%1$s tries to sting <npcname>, but they dodge!",
+        "no_dmg_msg_u": "%1$s's stinger bounces off your %2$s.",
+        "no_dmg_msg_npc": "%1$s tries to sting <npcname>, but it fails to penetrate their armor.",
+        "type": "melee",
+        "id": "dda_mutant_stinger",
+        "effects": [
+          {
+            "id": "poison",
+            "duration": 250,
+            "chance": 100,
+            "affect_hit_bp": true
+          }
+        ]
+      },
+      [
+        "GRAB",
+        10
+      ],
+      {
+        "type": "bite",
+        "cooldown": 10,
+        "move_cost": 105,
+        "damage_max_instance": [
+          {
+            "damage_type": "stab",
+            "amount": 13,
+            "armor_penetration": 15
+          }
+        ]
+      }
+    ],
+    "emit_fields": [
+      {
+        "emit_id": "dda_eldercare_web",
+        "delay": "5 seconds"
+      }
+    ]
+  },
+  {
+    "id": "mon_mutant_camouflaged",
+    "name": {
+      "str": "camouflaged mutant"
+    },
+    "description": "A mutated test subject, running on all fours at alarming speed.  Their short fur changes color to match the background in an instant, making you struggle to keep the thing in focus.  Their thin limbs end in long talons, and their mouth is held perpetually open by a set of knife-sized fangs.",
+    "bodytype": "dog",
+    "color": "blue",
+    "volume": "200 L",
+    "weight": "180 kg",
+    "hp": 160,
+    "speed": 115,
+    "aggression": 35,
+    "morale": 40,
+    "melee_skill": 6,
+    "melee_dice": 4,
+    "melee_dice_sides": 3,
+    "dodge": 9,
+    "vision_day": 25,
+    "vision_night": 15,
+    "attack_cost": 115,
+    "bleed_rate": 70,
+    "harvest": "mutant_human",
+    "death_drops": "mon_mutant_experimental_death_drops",
+    "type": "MONSTER",
+    "copy-from": "mon_mutant_experimental",
+    "upgrades": false,
+    "armor_bash": 10,
+    "armor_cut": 11,
+    "armor_stab": 8,
+    "armor_bullet": 5,
+    "armor_electric": 1,
+    "melee_damage": [],
+    "flags": [
+      "BASHES",
+      "CAMOUFLAGE",
+      "GROUP_BASH",
+      "GROUP_MORALE",
+      "HARDTOSHOOT",
+      "HEARS",
+      "HIT_AND_RUN",
+      "KEENNOSE",
+      "PATH_AVOID_DANGER_2",
+      "SEES",
+      "SMELLS",
+      "SWARMS",
+      "WARM"
+    ],
+    "aggro_character": false,
+    "regen_morale": true,
+    "path_settings": {
+      "max_dist": 50,
+      "avoid_traps": true,
+      "avoid_sharp": true
+    },
+    "anger_triggers": [
+      "PLAYER_CLOSE",
+      "FRIEND_ATTACKED"
+    ],
+    "fear_triggers": [
+      "HURT",
+      "FIRE"
+    ],
+    "special_attacks": [
+      {
+        "type": "leap",
+        "cooldown": 5,
+        "move_cost": 0,
+        "min_range": 2,
+        "max_range": 8
+      },
+      {
+        "type": "bite",
+        "cooldown": 7,
+        "move_cost": 115,
+        "damage_max_instance": [
+          {
+            "damage_type": "stab",
+            "amount": 15,
+            "armor_penetration": 25
+          }
+        ]
+      },
+      [
+        "EAT_FOOD",
+        120
+      ]
+    ]
+  },
+  {
+    "id": "mon_mutant_mollusk",
+    "name": {
+      "str": "shelled mutant"
+    },
+    "description": "An enormous mutant hidden beneath a gray segmented shell, crawling on a carpet of innumerable tentacles covered with suckers.  They hold three thicker, branching limbs high on their front end, each dotted with dozens of unblinking eyeballs.",
+    "bodytype": "snake",
+    "color": "dark_gray",
+    "volume": "375 L",
+    "weight": "400 kg",
+    "hp": 320,
+    "speed": 60,
+    "aggression": 30,
+    "morale": 80,
+    "melee_skill": 6,
+    "melee_dice": 4,
+    "melee_dice_sides": 4,
+    "dodge": 1,
+    "vision_day": 25,
+    "vision_night": 8,
+    "melee_damage": [
+      {
+        "damage_type": "bash",
+        "amount": 4
+      }
+    ],
+    "attack_cost": 60,
+    "grab_strength": 75,
+    "bleed_rate": 70,
+    "harvest": "mutant_human",
+    "death_drops": "mon_mutant_experimental_death_drops",
+    "type": "MONSTER",
+    "copy-from": "mon_mutant_experimental",
+    "upgrades": false,
+    "armor_bash": 22,
+    "armor_cut": 45,
+    "armor_stab": 30,
+    "armor_fire": 50,
+    "armor_bullet": 70,
+    "armor_electric": 6,
+    "flags": [
+      "BASHES",
+      "FIREPROOF",
+      "GROUP_BASH",
+      "GROUP_MORALE",
+      "HEARS",
+      "NOHEAD",
+      "PATH_AVOID_DANGER_2",
+      "SEES",
+      "SLUDGEPROOF",
+      "SLUDGETRAIL",
+      "STUN_IMMUNE",
+      "SWARMS",
+      "WARM"
+    ],
+    "aggro_character": false,
+    "regen_morale": true,
+    "path_settings": {
+      "max_dist": 50,
+      "avoid_traps": true,
+      "avoid_sharp": true
+    },
+    "anger_triggers": [
+      "PLAYER_CLOSE",
+      "FRIEND_ATTACKED"
+    ],
+    "fear_triggers": [],
+    "special_attacks": [
+      [
+        "RANGED_PULL",
+        10
+      ],
+      [
+        "GRAB",
+        15
+      ],
+      [
+        "TENTACLE",
+        15
+      ],
+      [
+        "EAT_FOOD",
+        120
+      ]
+    ]
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_FERAL",
+    "freq_total": 100,
+    "default": "mon_feral_human_crowbar",
+    "monsters": [
+      {
+        "monster": "mon_feral_cop",
+        "cost_multiplier": 3,
+        "freq": 10
+      },
+      {
+        "monster": "mon_feral_human_pipe",
+        "pack_size": [
+          2,
+          3
+        ],
+        "freq": 40,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_feral_human_crowbar",
+        "pack_size": [
+          2,
+          3
+        ],
+        "freq": 30,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_feral_human_axe",
+        "cost_multiplier": 2,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 10
+      },
+      {
+        "monster": "mon_feral_human_tool",
+        "cost_multiplier": 5,
+        "freq": 5
+      },
+      {
+        "monster": "mon_feral_sapien_spear",
+        "cost_multiplier": 2,
+        "freq": 5
+      }
+    ]
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_MUTANT_EVOLVED",
+    "freq_total": 1001,
+    "default": "mon_mutant_evolved",
+    "monsters": [
+      {
+        "monster": "mon_mutant_evolved",
+        "freq": 1,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_mutant_antler",
+        "freq": 450,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_mutant_mollusk",
+        "freq": 220,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_mutant_arthropod",
+        "freq": 180,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_mutant_evolved",
+        "freq": 80,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_mutant_camouflaged",
+        "freq": 60,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_mutant_alpha",
+        "freq": 10,
+        "cost_multiplier": 1
+      }
+    ]
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_NURSING_HOME_LAB",
+    "freq_total": 100,
+    "default": "mon_zombie_scientist",
+    "monsters": [
+      {
+        "monster": "mon_zombie_labsecurity",
+        "freq": 15,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_technician",
+        "freq": 10,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_scientist",
+        "freq": 40,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_nurse",
+        "freq": 35,
+        "cost_multiplier": 1
+      }
+    ]
+  },
+  {
+    "type": "emit",
+    "id": "dda_eldercare_web",
+    "field": "fd_web",
+    "intensity": 1,
+    "qty": 1,
+    "chance": 100
+  }
+]

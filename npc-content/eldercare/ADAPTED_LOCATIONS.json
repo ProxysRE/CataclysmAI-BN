@@ -6375,7 +6375,7 @@
               ]
             },
             {
-              "monster": "mon_large_cockroach",
+              "monster": "mon_giant_cockroach_nymph",
               "x": [
                 85,
                 91
@@ -13867,516 +13867,6 @@
         }
       },
       {
-        "source": "dda/data/json/monsters/feral_humans.json",
-        "entry": {
-          "id": "mon_feral_cop",
-          "type": "MONSTER",
-          "name": {
-            "str": "feral cop"
-          },
-          "description": "Another of the crazed humans among the dead.  This police officer angrily mutters to themselves, wandering about with a truncheon in hand in search of someone to brutalize.",
-          "copy-from": "mon_feral_human_pipe",
-          "default_faction": "feral_police",
-          "speed": 95,
-          "color": "blue",
-          "aggression": 100,
-          "melee_skill": 6,
-          "dodge": 3,
-          "special_attacks": [
-            [
-              "PARROT",
-              200
-            ],
-            [
-              "BLOW_WHISTLE",
-              25
-            ],
-            {
-              "id": "feral_weapon_PR24"
-            },
-            [
-              "PARROT_AT_DANGER",
-              0
-            ]
-          ],
-          "death_drops": "mon_zombie_cop_death_drops",
-          "fungalize_into": "mon_feral_cop_fungal_infected",
-          "zombify_into": "mon_zombie_cop",
-          "extend": {
-            "flags": [
-              "PRIORITIZE_TARGETS"
-            ],
-            "weakpoint_sets": [
-              "wps_humanoid_body_armor",
-              "wps_humanoid_open_helmet"
-            ],
-            "families": [
-              "prof_wp_syn_armored"
-            ]
-          },
-          "armor": {
-            "bash": 8,
-            "cut": 12,
-            "stab": 9,
-            "bullet": 14,
-            "electric": 2
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/feral_humans.json",
-        "entry": {
-          "id": "mon_feral_sapien_spear",
-          "type": "MONSTER",
-          "name": {
-            "str": "cunning feral"
-          },
-          "description": "This feral human's eyes look more focused, and its movements steadier, than others of their kind.  They're carrying a crude spear, and have assembled some basic armor from scavenged clothing and bits of riot armor, though you can see several gaps.  Despite these signs of greater intelligence, this creature is still only a few steps away from being a zombie themselves.",
-          "copy-from": "mon_feral_human_pipe",
-          "dodge": 3,
-          "special_attacks": [
-            [
-              "PARROT_AT_DANGER",
-              0
-            ],
-            {
-              "id": "feral_weapon_spear_knife"
-            }
-          ],
-          "vision_day": 50,
-          "death_drops": "feral_sapien_death_drops_spear",
-          "zombify_into": "mon_zombie_survivor",
-          "extend": {
-            "flags": [
-              "PRIORITIZE_TARGETS"
-            ],
-            "weakpoint_sets": [
-              "wps_humanoid_body_armor"
-            ],
-            "families": [
-              "prof_wp_syn_armored"
-            ]
-          },
-          "armor": {
-            "bash": 9,
-            "cut": 14,
-            "acid": 4,
-            "bullet": 18
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/insect_spider.json",
-        "entry": {
-          "id": "mon_large_cockroach",
-          "type": "MONSTER",
-          "name": {
-            "str": "oversized cockroach",
-            "str_pl": "oversized cockroaches"
-          },
-          "description": "An aggressive mutant cockroach the size of a small dog.",
-          "copy-from": "mon_giant_cockroach",
-          "proportional": {
-            "hp": 0.5,
-            "speed": 1.1,
-            "morale": 0.67,
-            "melee_dice_sides": 0.67
-          },
-          "volume": "15 L",
-          "weight": "20 kg",
-          "zombify_into": "mon_meat_cocoon_tiny",
-          "upgrades": {
-            "age_grow": 42,
-            "into": "mon_giant_cockroach"
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/mutant.json",
-        "entry": {
-          "id": "mon_mutant_antler",
-          "type": "MONSTER",
-          "name": {
-            "str": "ungulate mutant"
-          },
-          "description": "A gigantic mutated test subject, still wearing the tattered remains of an orange jumpsuit.  They walk on four warped legs ending in hooves, and their head is dominated by a glistening, tangled crown of antlers that scratch the ceiling.",
-          "symbol": "M",
-          "color": "brown",
-          "bodytype": "horse",
-          "species": [
-            "MUTANT",
-            "HUMAN"
-          ],
-          "default_faction": "lab_mutant",
-          "volume": "275 L",
-          "weight": "250 kg",
-          "hp": 210,
-          "aggression": 8,
-          "morale": 13,
-          "aggro_character": false,
-          "regen_morale": true,
-          "speed": 150,
-          "melee_skill": 6,
-          "melee_dice": 4,
-          "melee_dice_sides": 3,
-          "special_attacks": [
-            {
-              "id": "mutant_antler"
-            },
-            {
-              "id": "mutant_hoof"
-            },
-            [
-              "GRAZE",
-              120
-            ],
-            [
-              "BROWSE",
-              120
-            ]
-          ],
-          "dodge": 6,
-          "bleed_rate": 70,
-          "vision_day": 25,
-          "vision_night": 8,
-          "path_settings": {
-            "max_dist": 50,
-            "avoid_traps": true,
-            "avoid_sharp": true
-          },
-          "families": [
-            "prof_gross_anatomy",
-            "prof_intro_biology",
-            "prof_physiology"
-          ],
-          "harvest": "mutant_human",
-          "dissect": "dissect_cattle_sample_large",
-          "death_drops": "mon_mutant_experimental_death_drops",
-          "anger_triggers": [
-            "HOSTILE_SEEN",
-            "PLAYER_CLOSE",
-            "FRIEND_ATTACKED"
-          ],
-          "fear_triggers": [
-            "HURT",
-            "FIRE"
-          ],
-          "zombify_into": "mon_meat_cocoon_med",
-          "flags": [
-            "SEES",
-            "HEARS",
-            "WARM",
-            "HAS_MIND",
-            "SWARMS",
-            "GROUP_MORALE",
-            "BASHES",
-            "GROUP_BASH",
-            "HIT_AND_RUN",
-            "PATH_AVOID_DANGER",
-            "EATS"
-          ],
-          "armor": {
-            "bash": 10,
-            "cut": 11,
-            "stab": 8,
-            "bullet": 5,
-            "electric": 2
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/mutant.json",
-        "entry": {
-          "id": "mon_mutant_arthropod",
-          "type": "MONSTER",
-          "name": {
-            "str": "arthropod mutant"
-          },
-          "description": "A horribly mutated experimental subject.  Their original body - still wearing an orange jumpsuit - flops around lifelessly, carried by twelve segmented legs covered in hairy chitin erupting from their back.  At the base of the front pair of legs, an almost-human scalp gives way to a dozen irregularly-sized eyes and a set of mandibles, and from their hind end a stinger not unlike a scorpion's emerges.",
-          "copy-from": "mon_mutant_antler",
-          "bodytype": "spider",
-          "color": "i_black",
-          "volume": "180 L",
-          "weight": "200 kg",
-          "hp": 180,
-          "aggression": 45,
-          "morale": 40,
-          "speed": 105,
-          "melee_skill": 10,
-          "melee_dice": 3,
-          "grab_strength": 50,
-          "special_attacks": [
-            {
-              "id": "mutant_stinger"
-            },
-            {
-              "id": "mutant_spinneret"
-            },
-            {
-              "id": "grab"
-            },
-            {
-              "type": "bite",
-              "cooldown": 10,
-              "move_cost": 105,
-              "damage_max_instance": [
-                {
-                  "damage_type": "stab",
-                  "amount": 13,
-                  "armor_penetration": 15
-                }
-              ],
-              "min_mul": 0.8,
-              "max_mul": 1.1,
-              "infection_chance": 2
-            },
-            [
-              "EAT_CARRION",
-              120
-            ]
-          ],
-          "dodge": 7,
-          "bleed_rate": 50,
-          "vision_night": 20,
-          "weakpoint_sets": [
-            "wps_arthropod"
-          ],
-          "families": [
-            "prof_gross_anatomy",
-            "prof_intro_biology",
-            "prof_physiology",
-            "prof_wp_basic_bug"
-          ],
-          "harvest": "mutant_human",
-          "dissect": "dissect_spider_sample_large",
-          "emit_fields": [
-            {
-              "emit_id": "emit_web_small",
-              "delay": "5 s"
-            }
-          ],
-          "death_drops": "mon_mutant_evolved_death_drops",
-          "extend": {
-            "flags": [
-              "SMELLS",
-              "KEENNOSE",
-              "WEBWALK"
-            ],
-            "anger_triggers": [
-              "PLAYER_WEAK",
-              "HURT"
-            ],
-            "move_skills": {
-              "climb": 6
-            }
-          },
-          "delete": {
-            "flags": [
-              "HIT_AND_RUN",
-              "WARM"
-            ]
-          },
-          "armor": {
-            "electric": 2,
-            "bash": 11,
-            "cut": 18,
-            "stab": 12,
-            "bullet": 12
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/mutant.json",
-        "entry": {
-          "id": "mon_mutant_camouflaged",
-          "type": "MONSTER",
-          "name": {
-            "str": "camouflaged mutant"
-          },
-          "description": "A mutated test subject, running on all fours at alarming speed.  Their short fur changes color to match the background in an instant, making you struggle to keep the thing in focus.  Their thin limbs end in long talons, and their mouth is held perpetually open by a set of knife-sized fangs.",
-          "copy-from": "mon_mutant_antler",
-          "color": "blue",
-          "bodytype": "dog",
-          "volume": "200 L",
-          "weight": "180 kg",
-          "hp": 160,
-          "speed": 115,
-          "attack_cost": 115,
-          "aggression": 35,
-          "morale": 40,
-          "special_attacks": [
-            {
-              "id": "scratch",
-              "move_cost": 115,
-              "cooldown": 4,
-              "min_mul": 1.5,
-              "max_mul": 2.5
-            },
-            {
-              "type": "leap",
-              "move_cost": 0,
-              "cooldown": 5,
-              "min_range": 2,
-              "max_range": 8
-            },
-            {
-              "type": "bite",
-              "cooldown": 7,
-              "move_cost": 115,
-              "damage_max_instance": [
-                {
-                  "damage_type": "stab",
-                  "amount": 15,
-                  "armor_penetration": 25
-                }
-              ],
-              "min_mul": 0.8,
-              "max_mul": 1.1,
-              "infection_chance": 10
-            },
-            [
-              "EAT_FOOD",
-              120
-            ]
-          ],
-          "dodge": 9,
-          "vision_night": 15,
-          "harvest": "mutant_human",
-          "dissect": "dissect_chimera_sample_large",
-          "extend": {
-            "flags": [
-              "CAMOUFLAGE",
-              "SMELLS",
-              "KEENNOSE",
-              "HARDTOSHOOT"
-            ],
-            "move_skills": {
-              "climb": 6
-            }
-          },
-          "delete": {
-            "flags": [
-              "HAS_MIND"
-            ]
-          },
-          "armor": {
-            "bash": 10,
-            "cut": 11,
-            "stab": 8,
-            "bullet": 5,
-            "electric": 1
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/monsters/mutant.json",
-        "entry": {
-          "id": "mon_mutant_mollusk",
-          "type": "MONSTER",
-          "name": {
-            "str": "shelled mutant"
-          },
-          "description": "An enormous mutant hidden beneath a gray segmented shell, crawling on a carpet of innumerable tentacles covered with suckers.  They hold three thicker, branching limbs high on their front end, each dotted with dozens of unblinking eyeballs.",
-          "copy-from": "mon_mutant_antler",
-          "color": "dark_gray",
-          "bodytype": "snake",
-          "volume": "375 L",
-          "weight": "400 kg",
-          "hp": 320,
-          "speed": 60,
-          "attack_cost": 60,
-          "aggression": 30,
-          "morale": 80,
-          "melee_dice_sides": 4,
-          "melee_damage": [
-            {
-              "damage_type": "bash",
-              "amount": 4
-            }
-          ],
-          "grab_strength": 75,
-          "special_attacks": [
-            {
-              "id": "grab",
-              "cooldown": 15
-            },
-            {
-              "id": "grab_2",
-              "cooldown": 15
-            },
-            {
-              "id": "ranged_pull",
-              "range": 4,
-              "cooldown": 10
-            },
-            {
-              "id": "tentacle",
-              "move_cost": 60,
-              "range": 4,
-              "no_adjacent": true
-            },
-            {
-              "id": "grab_drag",
-              "cooldown": 15,
-              "grab_data": {
-                "drag_deviation": 1,
-                "drag_movecost_mod": 0.2
-              }
-            },
-            {
-              "id": "drag_followup",
-              "grab_data": {
-                "drag_deviation": 1,
-                "drag_movecost_mod": 0.2
-              }
-            },
-            [
-              "EAT_FOOD",
-              120
-            ]
-          ],
-          "dodge": 1,
-          "weakpoint_sets": [
-            "wps_arthropod"
-          ],
-          "families": [
-            "prof_gross_anatomy",
-            "prof_intro_biology",
-            "prof_physiology",
-            "prof_wp_basic_bug"
-          ],
-          "harvest": "mutant_human",
-          "dissect": "dissect_gastropod_sample_large",
-          "zombify_into": "mon_meat_cocoon_large",
-          "delete": {
-            "flags": [
-              "HIT_AND_RUN"
-            ],
-            "fear_triggers": [
-              "FIRE"
-            ]
-          },
-          "extend": {
-            "flags": [
-              "SMALLSLUDGETRAIL",
-              "SLUDGEPROOF",
-              "NOHEAD",
-              "STUN_IMMUNE",
-              "FIREPROOF",
-              "PULP_PRYING"
-            ]
-          },
-          "armor": {
-            "bash": 22,
-            "cut": 45,
-            "stab": 30,
-            "heat": 50,
-            "bullet": 70,
-            "electric": 6
-          }
-        }
-      },
-      {
         "source": "dda/data/json/monsters/insect_spider.json",
         "entry": {
           "id": "mon_spider_cellar_mega",
@@ -14653,55 +14143,6 @@
         }
       },
       {
-        "source": "dda/data/json/monsters/insect_spider.json",
-        "entry": {
-          "id": "mon_spider_cellar_small",
-          "type": "MONSTER",
-          "name": {
-            "str": "oversized cellar spider"
-          },
-          "description": "A cellar spider - also known as \"daddy long-legs\" - grown to distressing size.  Its body is about the size of your head, with the long, spindly legs raising it up to your knee.  It tries getting away from you with an unnervingly fluid run.",
-          "copy-from": "mon_spider_cellar_giant",
-          "proportional": {
-            "hp": 0.5,
-            "melee_dice_sides": 0.67
-          },
-          "aggression": -50,
-          "morale": 0,
-          "volume": "20 L",
-          "weight": "15 kg",
-          "extend": {
-            "fear_triggers": [
-              "PLAYER_CLOSE"
-            ],
-            "flags": [
-              "NO_BREED"
-            ]
-          },
-          "vision_day": 8,
-          "vision_night": 8,
-          "dissect": "dissect_spider_sample_single",
-          "zombify_into": "mon_meat_cocoon_tiny",
-          "upgrades": {
-            "age_grow": 14,
-            "into": "mon_spider_cellar_giant"
-          },
-          "delete": {
-            "anger_triggers": [
-              "PLAYER_CLOSE",
-              "PLAYER_WEAK",
-              "HOSTILE_SEEN"
-            ],
-            "flags": [
-              "GRABS"
-            ],
-            "special_attacks": [
-              "grab"
-            ]
-          }
-        }
-      },
-      {
         "source": "dda/data/json/monsters/civilians.json",
         "entry": {
           "id": "GROUP_CIVILIANS_STANDARD",
@@ -14828,94 +14269,6 @@
       {
         "source": "dda/data/json/monstergroups/zombies.json",
         "entry": {
-          "type": "monstergroup",
-          "id": "GROUP_FERAL",
-          "//": "default ferals",
-          "default": "mon_feral_human_crowbar",
-          "monsters": [
-            {
-              "monster": "mon_feral_cop",
-              "weight": 10,
-              "cost_multiplier": 3
-            },
-            {
-              "monster": "mon_feral_human_pipe",
-              "weight": 40,
-              "pack_size": [
-                2,
-                3
-              ]
-            },
-            {
-              "monster": "mon_feral_human_crowbar",
-              "weight": 30,
-              "pack_size": [
-                2,
-                3
-              ]
-            },
-            {
-              "monster": "mon_feral_human_axe",
-              "weight": 10,
-              "cost_multiplier": 2,
-              "pack_size": [
-                1,
-                2
-              ]
-            },
-            {
-              "monster": "mon_feral_human_tool",
-              "weight": 5,
-              "cost_multiplier": 5
-            },
-            {
-              "monster": "mon_feral_sapien_spear",
-              "weight": 5,
-              "cost_multiplier": 2
-            }
-          ]
-        }
-      },
-      {
-        "source": "dda/data/json/monstergroups/mutant_upgrades.json",
-        "entry": {
-          "id": "GROUP_MUTANT_EVOLVED",
-          "type": "monstergroup",
-          "default": "mon_mutant_evolved",
-          "monsters": [
-            {
-              "monster": "mon_mutant_evolved"
-            },
-            {
-              "monster": "mon_mutant_antler",
-              "weight": 450
-            },
-            {
-              "monster": "mon_mutant_mollusk",
-              "weight": 220
-            },
-            {
-              "monster": "mon_mutant_arthropod",
-              "weight": 180
-            },
-            {
-              "monster": "mon_mutant_evolved",
-              "weight": 80
-            },
-            {
-              "monster": "mon_mutant_camouflaged",
-              "weight": 60
-            },
-            {
-              "monster": "mon_mutant_alpha",
-              "weight": 10
-            }
-          ]
-        }
-      },
-      {
-        "source": "dda/data/json/monstergroups/zombies.json",
-        "entry": {
           "id": "GROUP_NURSING_HOME",
           "type": "monstergroup",
           "monsters": [
@@ -14959,31 +14312,6 @@
             {
               "monster": "mon_feral_human_pipe",
               "weight": 3
-            }
-          ]
-        }
-      },
-      {
-        "source": "dda/data/json/monstergroups/zombies.json",
-        "entry": {
-          "id": "GROUP_NURSING_HOME_LAB",
-          "type": "monstergroup",
-          "monsters": [
-            {
-              "monster": "mon_zombie_labsecurity",
-              "weight": 15
-            },
-            {
-              "monster": "mon_zombie_technician",
-              "weight": 10
-            },
-            {
-              "monster": "mon_zombie_scientist",
-              "weight": 40
-            },
-            {
-              "monster": "mon_zombie_nurse",
-              "weight": 35
             }
           ]
         }
@@ -15055,11 +14383,11 @@
         "entry": {
           "type": "monstergroup",
           "id": "GROUP_SPIDER_BASEMENT",
-          "default": "mon_spider_cellar_small",
+          "default": "mon_spider_cellar_giant_s",
           "//": "`monster` ignores group-level pack size, so numbers are set in mapgen",
           "monsters": [
             {
-              "monster": "mon_spider_cellar_small",
+              "monster": "mon_spider_cellar_giant_s",
               "weight": 30,
               "starts": "45 days",
               "ends": "180 days"
@@ -15166,20 +14494,8 @@
     "report": {
       "root_missing_identifiers": [
         [
-          "MONSTER",
-          "mon_large_cockroach"
-        ],
-        [
-          "monstergroup",
-          "GROUP_MUTANT_EVOLVED"
-        ],
-        [
           "monstergroup",
           "GROUP_NURSING_HOME"
-        ],
-        [
-          "monstergroup",
-          "GROUP_NURSING_HOME_LAB"
         ],
         [
           "monstergroup",
@@ -15190,10 +14506,10 @@
           "GROUP_SPIDER_BASEMENT"
         ]
       ],
-      "selected_definitions": 25,
+      "selected_definitions": 14,
       "selected_by_type": {
-        "MONSTER": 17,
-        "monstergroup": 8
+        "MONSTER": 9,
+        "monstergroup": 5
       },
       "bn_declared_references_needing_semantic_review": [
         [
@@ -15206,10 +14522,6 @@
         ],
         [
           "MONSTER",
-          "mon_feral_human_axe"
-        ],
-        [
-          "MONSTER",
           "mon_feral_human_crowbar"
         ],
         [
@@ -15218,23 +14530,11 @@
         ],
         [
           "MONSTER",
-          "mon_feral_human_tool"
-        ],
-        [
-          "MONSTER",
-          "mon_giant_cockroach"
-        ],
-        [
-          "MONSTER",
-          "mon_mutant_alpha"
-        ],
-        [
-          "MONSTER",
-          "mon_mutant_evolved"
-        ],
-        [
-          "MONSTER",
           "mon_spider_cellar_giant"
+        ],
+        [
+          "MONSTER",
+          "mon_spider_cellar_giant_s"
         ],
         [
           "MONSTER",
@@ -15262,10 +14562,6 @@
         ],
         [
           "MONSTER",
-          "mon_zombie_labsecurity"
-        ],
-        [
-          "MONSTER",
           "mon_zombie_nurse"
         ],
         [
@@ -15278,14 +14574,6 @@
         ],
         [
           "MONSTER",
-          "mon_zombie_scientist"
-        ],
-        [
-          "MONSTER",
-          "mon_zombie_technician"
-        ],
-        [
-          "MONSTER",
           "mon_zombie_tough"
         ],
         [
@@ -15293,24 +14581,8 @@
           "human"
         ],
         [
-          "harvest",
-          "mutant_human"
-        ],
-        [
           "item_group",
           "default_zombie_death_drops"
-        ],
-        [
-          "item_group",
-          "mon_mutant_evolved_death_drops"
-        ],
-        [
-          "item_group",
-          "mon_mutant_experimental_death_drops"
-        ],
-        [
-          "item_group",
-          "mon_zombie_cop_death_drops"
         ]
       ],
       "unresolved_transitive_references": [],
