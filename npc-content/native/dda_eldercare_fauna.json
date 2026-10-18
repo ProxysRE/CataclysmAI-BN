@@ -757,6 +757,170 @@
     ]
   },
   {
+    "id": "mon_spider_cellar_mom",
+    "name": {
+      "str": "mommy long-legs",
+      "str_pl": "mommy long legs"
+    },
+    "description": "This surprisingly shy giant cellar spider holds a head-sized ball of crawling spiderlings of different ages in its mandibles, carefully balancing on her long legs not to drop the precious cargo.  She seems uninterested in you.",
+    "speed": 85,
+    "aggression": -15,
+    "morale": 10,
+    "type": "MONSTER",
+    "copy-from": "mon_spider_cellar_giant",
+    "upgrades": false,
+    "flags": [
+      "CLIMBS",
+      "HEARS",
+      "PATH_AVOID_FIRE",
+      "PUSH_MON",
+      "SEES",
+      "SMELLS",
+      "STUMBLES",
+      "VENOM",
+      "WEBWALK"
+    ],
+    "anger_triggers": [
+      "STALK",
+      "PLAYER_CLOSE"
+    ],
+    "special_attacks": [
+      [
+        "GRAB",
+        25
+      ]
+    ],
+    "on_death": {
+      "death_function": [
+        "NORMAL"
+      ],
+      "spawn_mon_near": {
+        "distance": 2,
+        "ids": [
+          "mon_spider_cellar_giant_s",
+          "mon_spider_cellar_giant_s",
+          "mon_spider_cellar_giant_s",
+          "mon_spider_cellar_giant_s",
+          "mon_spider_cellar_giant_s",
+          "mon_spider_cellar_giant_s"
+        ]
+      }
+    }
+  },
+  {
+    "id": "mon_spider_cellar_mega",
+    "name": {
+      "str": "warehouse spider"
+    },
+    "description": "A tangle of branching chitinous legs operating seemingly independently, somehow still managing to carry a cow-sized central body.  A number of malformed, twitching legs hang from the cephalothorax, but the head -and especially the mandibles- still seem to be in working order.",
+    "morale": 50,
+    "dodge": 6,
+    "melee_dice": 3,
+    "melee_skill": 7,
+    "grab_strength": 75,
+    "bleed_rate": 60,
+    "type": "MONSTER",
+    "copy-from": "mon_spider_cellar_giant",
+    "upgrades": false,
+    "flags": [
+      "BASHES",
+      "CLIMBS",
+      "HARDTOSHOOT",
+      "HEARS",
+      "PATH_AVOID_FIRE",
+      "PUSH_MON",
+      "SEES",
+      "SMELLS",
+      "VENOM",
+      "WEBWALK"
+    ],
+    "anger_triggers": [
+      "STALK",
+      "PLAYER_WEAK",
+      "PLAYER_CLOSE"
+    ],
+    "special_attacks": [
+      [
+        "GRAB",
+        5
+      ],
+      {
+        "type": "bite",
+        "cooldown": 3,
+        "move_cost": 120,
+        "damage_max_instance": [
+          {
+            "damage_type": "cut",
+            "amount": 10
+          },
+          {
+            "damage_type": "stab",
+            "amount": 8
+          }
+        ],
+        "effects": [
+          {
+            "id": "poison",
+            "duration": 350,
+            "chance": 50,
+            "affect_hit_bp": true
+          }
+        ]
+      }
+    ],
+    "hp": 420,
+    "volume": "542500 ml",
+    "weight": "203750 g",
+    "speed": 120,
+    "attack_cost": 120,
+    "armor_bullet": 2,
+    "armor_bash": 5,
+    "armor_cut": 7,
+    "armor_stab": 7,
+    "armor_acid": 5,
+    "armor_electric": 3
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_SPIDER_BASEMENT",
+    "default": "mon_spider_cellar_giant_s",
+    "freq_total": 90,
+    "monsters": [
+      {
+        "monster": "mon_spider_cellar_giant_s",
+        "starts": 1080,
+        "ends": 4320,
+        "freq": 30,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_spider_cellar_giant",
+        "starts": 2880,
+        "ends": 6912,
+        "freq": 22,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_spider_cellar_mom",
+        "starts": 2880,
+        "freq": 8,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_spider_cellar_giant",
+        "starts": 6912,
+        "freq": 20,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_spider_cellar_mega",
+        "starts": 6912,
+        "freq": 10,
+        "cost_multiplier": 1
+      }
+    ]
+  },
+  {
     "type": "emit",
     "id": "dda_eldercare_web",
     "field": "fd_web",

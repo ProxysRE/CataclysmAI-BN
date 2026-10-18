@@ -420,5 +420,29 @@
     "identifiers": 33085,
     "json_files": 1933,
     "scope": "Pinned BN core JSON declared/generated identities; checked against full source in CI; not runtime parity"
+  },
+  "eldercare_creature_layer": {
+    "source_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+    "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "status": "native_prepared_not_runtime_validated",
+    "definitions": 16,
+    "monsters": 8,
+    "spawn_groups": 4,
+    "equipment_groups": 3,
+    "emitters": 1,
+    "full_locations_installed": false,
+    "remaining_staged_definitions": 11,
+    "remaining_categories": {
+      "living_civilians": 7,
+      "mixed_recursive_timed_groups": 4
+    },
+    "counterpart_policy": "Stock BN juvenile cockroach and immature cellar spider; stock adult cellar spider retained as parent of unique variants",
+    "brood_adaptation": "BN on_death.spawn_mon_near releases six juveniles within two tiles; source random 3..8 mixed ages is approximated",
+    "validation": "Python profile/schema/weights/reference/collision guards, patch apply and package equality/rejection; new native source/installed Windows tests and manual generation/combat remain pending",
+    "previous_fast_checkpoint": {
+      "head": "0ad8b3ad13f497bc4da0440991cfeb21d5d44169",
+      "run": 39141946170,
+      "result": "success"
+    }
   }
 }

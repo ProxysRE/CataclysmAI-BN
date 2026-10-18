@@ -19,6 +19,7 @@ PINS = {'bn': 'c621aaf42fa182473aad10feea2b55647704dcf1', 'dda': 'c19e95bc96d27d
 ALIASES = {'mon_large_cockroach': 'mon_giant_cockroach_nymph',
            'mon_spider_cellar_small': 'mon_spider_cellar_giant_s'}
 MUTANTS = ('mon_mutant_antler', 'mon_mutant_arthropod', 'mon_mutant_camouflaged', 'mon_mutant_mollusk')
+SPIDERS = ('mon_spider_cellar_mom', 'mon_spider_cellar_mega')
 GROUPS = ('GROUP_FERAL', 'GROUP_MUTANT_EVOLVED', 'GROUP_NURSING_HOME_LAB')
 
 
@@ -113,6 +114,55 @@ def mutant(name):
     return result
 
 
+def cellar_spiders():
+    """Use stock cellar-spider biology; adapt the two unique source roles."""
+    result = []
+    base = find('mon_spider_cellar_giant')
+    stock = find('mon_spider_cellar_giant', 'bn')
+    for name in SPIDERS:
+        source = find(name)
+        mon = {k: copy.deepcopy(source[k]) for k in ('id', 'name', 'description', 'speed', 'aggression', 'morale', 'dodge', 'melee_dice', 'melee_skill', 'grab_strength', 'bleed_rate') if k in source}
+        mon.update(type='MONSTER', **{'copy-from': 'mon_spider_cellar_giant'}, upgrades=False)
+        flags = set(stock['flags']) | set(source.get('extend', {}).get('flags', []))
+        flags -= set(source.get('delete', {}).get('flags', []))
+        mon['flags'] = sorted(flags)
+        mon['anger_triggers'] = [f for f in stock['anger_triggers'] if f not in source.get('delete', {}).get('anger_triggers', [])]
+        mon['special_attacks'] = [['GRAB', 25 if name.endswith('_mom') else 5]]
+        if name.endswith('_mom'):
+            # BN has a declarative nearby death-spawn hook, but no variable
+            # count/group in that hook. Six stock juveniles approximate the
+            # source's random 3..8 brood (both source age groups reuse BN).
+            mon['on_death'] = {'death_function': ['NORMAL'], 'spawn_mon_near': {
+                'distance': 2, 'ids': ['mon_spider_cellar_giant_s'] * 6}}
+        else:
+            factors = source['proportional']
+            mon['hp'] = round(base['hp'] * factors['hp'])
+            mon['volume'] = str(round(int(base['volume'].split()[0]) * factors['volume'])) + ' ml'
+            mon['weight'] = str(round(int(base['weight'].split()[0]) * factors['weight'])) + ' g'
+            mon['speed'] = round(base['speed'] * factors['speed'])
+            mon['attack_cost'] = round(base.get('attack_cost', 100) * factors['attack_cost'])
+            mon.update(armor(source))
+            mon['special_attacks'].append({'type': 'bite', 'cooldown': 3, 'move_cost': 120,
+                'damage_max_instance': copy.deepcopy(source['special_attacks'][3]['damage_max_instance']),
+                'effects': [{'id': 'poison', 'duration': 350, 'chance': 50, 'affect_hit_bp': True}]})
+        result.append(mon)
+    source = find('GROUP_SPIDER_BASEMENT')
+    entries = []
+    for entry in source['monsters']:
+        row = copy.deepcopy(entry)
+        row['freq'] = row.pop('weight', 1)
+        row.setdefault('cost_multiplier', 1)
+        for key in ('starts', 'ends'):
+            if key in row:
+                match = re.fullmatch(r'(\d+) days', row[key])
+                assert match, row[key]
+                row[key] = int(match[1]) * 24
+        entries.append(row)
+    result.append({'type': 'monstergroup', 'name': source['id'], 'default': source['default'],
+                   'freq_total': sum(e['freq'] for e in entries), 'monsters': entries})
+    return result
+
+
 def native_data():
     result = []
     for source, item, group in [('mon_feral_cop', 'tonfa', 'dda_feral_cop_weapon'),
@@ -148,8 +198,9 @@ def native_data():
             adapted.setdefault('cost_multiplier', 1)
             group['monsters'].append(adapted)
         result.append(group)
+    result += cellar_spiders()
     result.append({'type': 'emit', 'id': 'dda_eldercare_web', 'field': 'fd_web', 'intensity': 1, 'qty': 1, 'chance': 100})
-    return [adapt_entry(e) for e in result]
+    return [adapt_references(adapt_entry(e)) for e in result]
 
 
 def dependency_refs(payload):
@@ -167,6 +218,8 @@ def dependency_refs(payload):
                               ('harvest', 'harvest'), ('zombify_into', 'MONSTER')]:
                 if key in entry:
                     refs.add((kind, entry[key]))
+            for target in entry.get('on_death', {}).get('spawn_mon_near', {}).get('ids', []):
+                refs.add(('MONSTER', target))
             for emitter in entry.get('emit_fields', []):
                 refs.add(('emit', emitter['emit_id']))
     return refs
@@ -205,7 +258,7 @@ def prepare(check=False, bn_source=None):
         assert path.read_text() == text
     else:
         path.write_text(text)
-    print('PASS: six creatures, two weapon groups, three direct spawn groups; stock BN actors and identifier closure')
+    print('PASS: eight creatures, three equipment groups, four spawn groups; stock BN actors and identifier closure')
 
 
 if __name__ == '__main__':

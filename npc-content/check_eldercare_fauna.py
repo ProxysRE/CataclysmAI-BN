@@ -6,7 +6,7 @@ from prepare_eldercare_loot import native_data as loot_data
 from bn_counterparts import adapt_entry
 
 payload = native_data()
-assert len(payload) == 13
+assert len(payload) == 16
 by_id = {e.get('id', e.get('name')): e for e in payload if e['type'] != 'MONSTER'}
 monsters = {e['id']: e for e in payload if e['type'] == 'MONSTER'}
 for name, weapon in [('mon_feral_cop', 'tonfa'), ('mon_feral_sapien_spear', 'spear_knife')]:
@@ -47,3 +47,31 @@ for name in GROUPS:
 assert len(ALIASES) == 2
 prepare(check=True)
 print('PASS: six source creature profiles; three exact direct group weight tables; BN weapon ownership, actors, armor and juvenile counterparts')
+
+from prepare_eldercare_fauna import SPIDERS
+mom = monsters['mon_spider_cellar_mom']
+assert mom['speed'] == find('mon_spider_cellar_mom')['speed'] == 85
+assert mom['aggression'] == -15
+assert 'HARDTOSHOOT' not in mom['flags'] and 'STUMBLES' in mom['flags']
+assert mom['on_death'] == {'death_function': ['NORMAL'], 'spawn_mon_near': {'distance': 2, 'ids': ['mon_spider_cellar_giant_s'] * 6}}
+mega = monsters['mon_spider_cellar_mega']
+assert (mega['hp'], mega['volume'], mega['weight'], mega['speed'], mega['attack_cost']) == (420, '542500 ml', '203750 g', 120, 120)
+assert mega['armor_bash'] == 5 and mega['armor_cut'] == 7
+assert mega['special_attacks'][0] == ['GRAB', 5]
+source = find('GROUP_SPIDER_BASEMENT')
+group = by_id['GROUP_SPIDER_BASEMENT']
+assert group['default'] == 'mon_spider_cellar_giant_s'
+assert group['freq_total'] == 90
+for old, new in zip(source['monsters'], group['monsters']):
+    assert new['freq'] == old['weight']
+    for key in ('starts', 'ends'):
+        assert new.get(key) == (int(old[key].split()[0]) * 24 if key in old else None)
+    assert new['monster'] == ALIASES.get(old['monster'], old['monster'])
+assert len(group['monsters']) == len(source['monsters']) == 5
+print('PASS: two unique cellar spiders, supported brood death-spawn hook, source time windows converted to BN hours')
+
+spell = find('death_spider_cellar_mom')
+assert (spell['min_damage'], spell['max_damage'], spell['min_aoe'], spell['max_aoe']) == (3, 8, 2, 2)
+assert spell['effect'] == 'summon' and spell['effect_str'] == 'GROUP_SPIDER_MOM_SUMMON'
+brood = find('GROUP_SPIDER_MOM_SUMMON')
+assert brood['monsters'] == [{'monster': 'mon_spider_cellar_small', 'weight': 67}, {'monster': 'mon_spider_cellar_giant_s', 'weight': 33}]

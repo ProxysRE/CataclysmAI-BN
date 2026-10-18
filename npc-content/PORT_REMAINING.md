@@ -47,3 +47,10 @@ The latest failed run was a Windows cp1252 encoding error before compilation, no
 ## Radio stations, 2026-10-17
 
 Two existing BN radio station variants now have a reviewed native replacement adding DDA tower floors z=2..6, relocated into their existing courtyards. The buildings, computers and contents remain BN definitions. Static geometry/preservation checks pass; the new native real-mapgen regression covers both variants and four orientations with seven-level ladder continuity. Windows compilation/generation, natural placement and full world-save validation remain pending.
+
+
+## Eldercare creature checkpoint, 2026-10-18
+
+The shared support layer now prepares eight creature adaptations, four spawn groups, three equipment groups and one emitter (16 definitions). Added unique mother/warehouse cellar spiders and the five-entry timed basement group; source days map to BN numeric hours and follow BN upgrade-factor/boundary semantics. The stock BN death-spawn hook releases six juvenile spiders instead of DDA's random 3..8 age mixture. See eldercare_fauna/README.md for exact differences.
+
+Eleven definitions remain staged for the complete nursing-home/retirement sites: seven living civilians and four mixed, recursive or timed civilian-containing groups. Their friendly human role, dialogue, conditional guns and transition to zombies require actual adaptation; hostile-feral aliases would be incorrect. Full site installation/generation remains disabled. The previous creature checkpoint 0ad8b3a passed fast CI; new native Windows/installed checks, combat and generation remain pending.

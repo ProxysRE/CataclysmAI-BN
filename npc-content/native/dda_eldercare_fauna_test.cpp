@@ -1,5 +1,11 @@
 #include "catch/catch.hpp"
 #include "calendar.h"
+#include "cata_utility.h"
+#include "game.h"
+#include "map/map.h"
+#include "map_helpers.h"
+#include "monster.h"
+#include "state_helpers.h"
 #include "item.h"
 #include "item_group.h"
 #include "mongroup.h"
@@ -46,5 +52,51 @@ TEST_CASE( "eldercare_direct_spawn_groups_resolve_monsters", "[dda_npc][dda_loca
         for( int attempt = 0; attempt < 100; ++attempt ) {
             CHECK( MonsterGroupManager::GetResultFromGroup( group ).name.is_valid() );
         }
+    }
+}
+
+TEST_CASE( "eldercare_cellar_spider_brood_uses_native_death_spawns", "[dda_npc][dda_locations]" )
+{
+    clear_all_state();
+    clear_map();
+    build_test_map( ter_id( "t_floor" ) );
+    auto &mother = spawn_test_monster( "mon_spider_cellar_mom", tripoint_bub_ms( 65, 60, 0 ) );
+    REQUIRE_FALSE( mother.type->on_death.empty() );
+    mother.die( nullptr );
+    int juveniles = 0;
+    for( const monster &entry : g->all_monsters() ) {
+        if( entry.type->id == mtype_id( "mon_spider_cellar_giant_s" ) ) {
+            ++juveniles;
+        }
+    }
+    CHECK( juveniles == 6 );
+    CHECK( mtype_id( "mon_spider_cellar_mega" )->hp == 420 );
+    CHECK( mtype_id( "mon_spider_cellar_mega" )->special_attacks.count( "GRAB" ) == 1 );
+    clear_all_state();
+}
+
+TEST_CASE( "eldercare_cellar_spider_groups_keep_age_windows", "[dda_npc][dda_locations]" )
+{
+    const auto group = mongroup_id( "GROUP_SPIDER_BASEMENT" );
+    REQUIRE( group.is_valid() );
+    REQUIRE( group->monsters.size() == 5 );
+    CHECK( group->freq_total == 90 );
+    const auto &first = group->monsters.front();
+    CHECK( first.frequency == 30 );
+    CHECK( first.starts > 0_turns );
+    CHECK( first.ends == first.starts * 4 );
+    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
+    calendar::turn = calendar::start_of_cataclysm + first.starts - 1_turns;
+    for( int attempt = 0; attempt < 50; ++attempt ) {
+        CHECK( MonsterGroupManager::GetResultFromGroup( group ).name ==
+               mtype_id( "mon_spider_cellar_giant_s" ) );
+    }
+    calendar::turn = calendar::start_of_cataclysm + group->monsters.back().starts + 1_days;
+    for( int attempt = 0; attempt < 200; ++attempt ) {
+        const auto name = MonsterGroupManager::GetResultFromGroup( group ).name;
+        CHECK( ( name == mtype_id( "mon_spider_cellar_giant_s" ) ||
+                 name == mtype_id( "mon_spider_cellar_giant" ) ||
+                 name == mtype_id( "mon_spider_cellar_mom" ) ||
+                 name == mtype_id( "mon_spider_cellar_mega" ) ) );
     }
 }

@@ -9,10 +9,16 @@
     "SOURCE.part02",
     "SOURCE.part03",
     "SOURCE.part04",
-    "SOURCE.part05"
+    "SOURCE.part05",
+    "SOURCE.part06"
   ],
-  "bundle_sha256": "2744cc483bdce2d2585e8a110d99960595184e563e8adb9a5012f6751b1eefa4",
+  "bundle_sha256": "9ea4211cdaaddf4218aedaeee6527e112d950f926a30cb0b049f281a23f565d1",
   "files": {
+    "bn/data/json/monsters/feral_humans.json": "66e4bd912e18ffbd2e5f15c30b247e429b0531e8cd7ef021db256309033810b6",
+    "bn/data/json/monsters/mutant_human.json": "a8ad28105a4f4979ad61b7fbee47b4a383de47f99fd7ebb6607b6a1a3081e8a6",
+    "bn/src/mattack_actors.cpp": "10dea49295e1206db88aa579b8ecc24e78f7b0d41c6cc0d1afcb3754041294a9",
+    "bn/src/monstergenerator.cpp": "56fed9622622fdf771838e5f74cfc302769b7b24e47ae7ba96b2183943b9708e",
+    "dda/data/json/monster_special_attacks/monster_attacks.json": "15a1cde87c0b5086237e420f94203f39ae9b47580977b85360d4f2838d26d298",
     "dda/data/json/monstergroups/bugs.json": "b06a77b39529134b515253ae3c632d11b9f2edbc8b0955842754737d98e15c49",
     "dda/data/json/monstergroups/fish.json": "ab79407c334a5ac5126fc0cfde86e1448f143bc0b1808ecbdeb10b460af14ef0",
     "dda/data/json/monstergroups/misc.json": "d3b76aa1172aa42a4e36e562c5648c3e1af627f60feb31981cebd0be523803f3",
@@ -26,10 +32,9 @@
     "dda/data/json/monsters/mutant.json": "15896df1c2217ebed9ef9ad2f677c550fdf719939b8f2f4b8a9361f59c6a5387",
     "dda/data/json/monsters/zed-medical.json": "a24af370fa3499febcf5b5cd957a06764da2179a2d4069080891820bcfd63d21",
     "dda/data/json/monsters/zed_misc.json": "f8693330c17b0c05b1438e8c01a2fbe22fdf749e812ec59e4acd209f4c516928",
-    "bn/src/mattack_actors.cpp": "10dea49295e1206db88aa579b8ecc24e78f7b0d41c6cc0d1afcb3754041294a9",
-    "bn/data/json/monsters/feral_humans.json": "66e4bd912e18ffbd2e5f15c30b247e429b0531e8cd7ef021db256309033810b6",
-    "bn/data/json/monsters/mutant_human.json": "a8ad28105a4f4979ad61b7fbee47b4a383de47f99fd7ebb6607b6a1a3081e8a6",
-    "dda/data/json/monster_special_attacks/monster_attacks.json": "15a1cde87c0b5086237e420f94203f39ae9b47580977b85360d4f2838d26d298",
-    "bn/src/monstergenerator.cpp": "56fed9622622fdf771838e5f74cfc302769b7b24e47ae7ba96b2183943b9708e"
+    "bn/data/json/monsters/insect_spider.json": "81e986c418423180354b6765625067c09d898fc21bf5c56a74c0317ad073db1a",
+    "dda/data/json/monster_special_attacks/monster_deaths.json": "c43baf8807ac3e6bff85f5219631c14363e33acb6da6316a6f04fa9850e18860",
+    "dda/src/mongroup.cpp": "44730c1e943ad1e6e8024233d93cd2d4eb9580eb120707fc754074cf9f336395",
+    "bn/src/mongroup.cpp": "dd4e50b9ccc832562f46dd84eaa63af541bfdbcec40947a150e85ecebdf60c73"
   }
 }
