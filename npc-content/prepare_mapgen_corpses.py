@@ -22,6 +22,15 @@ def replacement():
     ):
         assert text.count(old) == 1, old
         text = text.replace(old, new)
+    start = text.index("class jmapgen_field:")
+    end = text.index("class jmapgen_npc:", start)
+    field = text[start:end]
+    for old, new in (("    int intensity;", "    jmapgen_int intensity;"),
+                     ('intensity(jsi.get_int("intensity", 1))', 'intensity(jsi, "intensity", 1, 1)'),
+                     ("chosen_id, intensity, age", "chosen_id, intensity.get(), age")):
+        assert field.count(old) == 1, old
+        field = field.replace(old, new)
+    text = text[:start] + field + text[end:]
     from prepare_terminal_archives import extend_mapgen
     return extend_mapgen(text)
 

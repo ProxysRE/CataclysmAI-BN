@@ -119,6 +119,9 @@ def prepare_data():
                     assert machine.pop('lootable') is True
         if e['type'] == 'overmap_terrain':
             e.pop('vision_levels', None)
+            # BN has no DDA overmap travel-cost categories; keep inherited BN behavior.
+            if 'travel_cost_type' in e:
+                assert e.pop('travel_cost_type') == 'roof'
             if isinstance(e.get('see_cost'), str):
                 e['see_cost'] = 2
         if e['type'] in ('overmap_special', 'city_building'):

@@ -14,3 +14,8 @@ The earlier fix already added test durations and 20-minute step limits. Native d
 ## Windows run 39077993956: test compilation
 
 The build stopped while compiling dda_radio_stations_test.cpp. Pinned BN item_contents exposes all_items_top() and num_item_stacks(), rather than range iteration and size(). Map item stacks yield item pointers. Adapted the container and corpse assertions to those interfaces and dereferenced the pointers. Patch application was checked against the pinned source. Native execution and installed-package validation remain pending the next Windows run.
+
+
+## Windows run 39120054313: loading farm and eldercare support
+
+The game and tests compiled successfully. Native execution then reported the DDA-only overmap field `travel_cost_type: roof` in the farm shop and aborted on the web field's intensity array `[1, 3]`. The farm adapter removes only that unsupported roof category, retaining BN's inherited overmap behavior and all source geometry. The mapgen field action now uses existing BN `jmapgen_int` loading and per-placement sampling, so scalar/default intensities remain unchanged and source ranges need no fixed-value substitution. Both changes are included in the composed mapgen patch and guarded by Python checks. The next Windows run must confirm startup and native/installed tests.

@@ -32936,6 +32936,26 @@
  #include "drawing_primitives.h"
  #include "enums.h"
  #include "fluid_grid.h"
+@@ -1521,16 +1522,16 @@
+ class jmapgen_field: public jmapgen_piece {
+ public:
+     mapgen_value<field_type_id> ftype;
+-    int intensity;
++    jmapgen_int intensity;
+     time_duration age;
+     jmapgen_field(const JsonObject& jsi)
+         : ftype(jsi.get_member("field")),
+-          intensity(jsi.get_int("intensity", 1)),
++          intensity(jsi, "intensity", 1, 1),
+           age(time_duration::from_turns(jsi.get_int("age", 0))) {}
+     void apply(const mapgendata& dat, const jmapgen_int& x, const jmapgen_int& y) const override {
+         field_type_id chosen_id = ftype.get(dat);
+         if (chosen_id.id().is_null()) { return; }
+-        dat.m.add_field(point_omt_ms(x.get(), y.get()), chosen_id, intensity, age);
++        dat.m.add_field(point_omt_ms(x.get(), y.get()), chosen_id, intensity.get(), age);
+     }
+ 
+     void check(const std::string& oter_name, const mapgen_parameters& parameters) const override {
 @@ -2459,14 +2460,19 @@
      std::vector<computer_option> options;
      std::vector<computer_failure> failures;
@@ -36062,7 +36082,7 @@
 +]
 --- /dev/null
 +++ b/data/json/dda_farm_supply.json
-@@ -0,0 +1,3890 @@
+@@ -0,0 +1,3889 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -38786,7 +38806,6 @@
 +    ],
 +    "copy-from": "generic_rural_building",
 +    "name": "farm supply store roof",
-+    "travel_cost_type": "roof",
 +    "sym": "s",
 +    "color": "yellow"
 +  },

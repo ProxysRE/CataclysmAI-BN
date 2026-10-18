@@ -50,3 +50,13 @@ for name in ('nursing_home', 'retirement_community'):
         elif entry['type'] in ('talk_topic', 'effect_on_condition'):
             assert entry == converted
 print('PASS: counterpart reuse reduces 42 source dependencies to 30; stories and map geometry unchanged')
+
+# Preserve DDA random web strength through BN's existing integer-range type.
+from prepare_mapgen_corpses import replacement
+mapgen = replacement()
+field = mapgen[mapgen.index('class jmapgen_field:'):mapgen.index('class jmapgen_npc:')]
+assert 'jmapgen_int intensity;' in field
+assert 'intensity(jsi, "intensity", 1, 1)' in field
+assert 'chosen_id, intensity.get(), age' in field
+assert spider['object']['place_fields'][0]['intensity'] == [1, 3]
+print('PASS: source web intensity range uses BN jmapgen_int; scalar/default behavior retained')

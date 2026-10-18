@@ -26,6 +26,7 @@ for old, new in zip(old_maps, maps):
         assert 'm' not in new['object']['furniture']
         assert new['object']['terrain']['m'] == 't_atm'
         assert 'f_chest_minifreezer' not in json.dumps(new['object']['furniture'])
+assert not any('travel_cost_type' in e for e in payload)
 identity = [(namespace(e), i) for e in payload for i in ids(e)]
 assert len(identity) == len(set(identity))
 assert sum(len(row) for e in maps for row in e.get('om_terrain', [])) == 12

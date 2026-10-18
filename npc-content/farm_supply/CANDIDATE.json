@@ -2721,7 +2721,6 @@
     ],
     "copy-from": "generic_rural_building",
     "name": "farm supply store roof",
-    "travel_cost_type": "roof",
     "sym": "s",
     "color": "yellow"
   },
