@@ -431,11 +431,8 @@
     "equipment_groups": 3,
     "emitters": 1,
     "full_locations_installed": false,
-    "remaining_staged_definitions": 5,
-    "remaining_categories": {
-      "unique_armed_civilians": 2,
-      "civilian_map_groups": 3
-    },
+    "remaining_staged_definitions": 0,
+    "remaining_categories": {},
     "counterpart_policy": "Stock BN juvenile cockroach and immature cellar spider; stock adult cellar spider retained as parent of unique variants",
     "brood_adaptation": "BN on_death.spawn_mon_near releases six juveniles within two tiles; source random 3..8 mixed ages is approximated",
     "validation": "Python profile/schema/weights/reference/collision guards, patch apply and package equality/rejection; new native source/installed Windows tests and manual generation/combat remain pending",
@@ -469,7 +466,7 @@
     "mod_spawn_lua_evolution_groups_unchanged": true,
     "other_subtypes_do_not_inherit_dialogue": true,
     "optional_mod_activation_automatic": false,
-    "remaining_full_site_definitions": 5,
+    "remaining_full_site_definitions": 0,
     "validation": "Python exact-field/source/patch/package checks; separate core and Civilians-enabled source/installed native runs pending"
   },
   "latest_clean_windows_build": {
@@ -486,13 +483,31 @@
     "new_core_declarations_audited": 289,
     "unreviewed_collisions": 0,
     "validated_resolution": "Existing identical BN Exotic Ammo 545 casing shared with core; original duplicate removed; equality and removal patch required by guard",
-    "full_fresh_tree_CI_repeat_pending": true,
-    "limitations": "Exact IDs and semantic search require human source comparison; third-party mods outside the bundled tree are not covered"
+    "full_fresh_tree_CI_repeat_pending": false,
+    "limitations": "Exact IDs and semantic search require human source comparison; third-party mods outside the bundled tree are not covered",
+    "fresh_tree_checkpoint": {
+      "head": "7ca251a165df4f17a7c376daeb205dbed58b93d7",
+      "run": 39154466261,
+      "result": "success"
+    }
   },
   "shared_exotic_casing": {
     "source": "data/mods/exotic_ammo/generic/casing.json",
     "strategy": "one unchanged BN item definition in core, optional-mod duplicate removed",
     "other_items_changed": false,
     "source_and_installed_mod_combo_tests_pending": true
+  },
+  "eldercare_group_layer": {
+    "status": "prepared_native_runtime_pending",
+    "optional_mod": "civilians",
+    "tables": 3,
+    "new_monsters": 0,
+    "armed_counterparts": {
+      "mon_civilian_police_rifle": "mon_civilian_police",
+      "mon_civilian_zombiegunner": "mon_civilian_survivor_pistol"
+    },
+    "validation": "48 exact rational outcome distributions including packs, budget costs, time boundaries and empty-subgroup root fallback; new native source/installed tests pending",
+    "full_locations_installed": false,
+    "remaining_work": "Mapgen schema and generation tests; population audit against Civilians Lua before enabling sites. Source-only weakpoint/anatomy/AI parity is not implied by typed closure."
   }
 }

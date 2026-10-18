@@ -64,3 +64,7 @@ Three unarmed living human types are now prepared with a native read-only dialog
 ## Current Civilians reuse correction, 2026-10-18
 
 Supersedes the standalone civilian checkpoint above. Six existing Civilians mod types now receive dialogue only. The duplicate core monsters and 90600-weight evolution group are removed; every original stock-mod field and all Lua/spawn/evolution data are preserved. Full sites remain conditional on Civilians and disabled. Five source candidates remain: two unique armed types and three location groups. A complete bundled-mod catalog/collision gate and mod-disabled/mod-enabled source/installed tests are added; full CI and manual behavior validation remain pending.
+
+## Eldercare population closure (2026-10-18)
+
+All five previously staged definitions are resolved: two armed people reuse existing Civilians counterparts, and three group tables compile to the stock BN format inside the optional mod. See eldercare/GROUP_ADAPTATION.md for intentional loadout/profile differences and exact probability checks. Typed adapted dependency closure is now zero staged/zero unresolved; whole sites remain disabled pending mapgen/schema/generation checks and the Civilians Lua population audit. New native source/installed validation is pending.

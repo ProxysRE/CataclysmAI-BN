@@ -20,6 +20,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
 from prepare_shared_casing import prepare as prepare_shared_casing, patch_sections as shared_casing_patch, TARGET as SHARED_CASING_TARGET
+from prepare_eldercare_groups import prepare as prepare_groups, PAYLOAD as GROUPS_PAYLOAD
 from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, extend_chat, patch_sections as civilian_patch
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
@@ -50,6 +51,7 @@ prepare_assets(check=True)
 prepare_loot(check=True)
 prepare_fauna(check=True)
 prepare_civilians(check=True)
+prepare_groups(check=True)
 prepare_shared_casing(check=True)
 if args.bn_source:
     actual = subprocess.check_output(["git", "-C", str(args.bn_source), "rev-parse", "HEAD"], text=True).strip()
@@ -74,6 +76,7 @@ if args.bn_source:
     (root / "engine_staging/tests/dda_computer_archive_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / ARCHIVE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / ASSET_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / GROUPS_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / LEGACY_CORE).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_civilians_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/src/civilian_chat.h").unlink(missing_ok=True)
@@ -166,6 +169,7 @@ parts.append(creature_patch())
 parts.append(corpse_patch())
 parts.append(archive_patch())
 parts.append(civilian_patch())
+parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_groups.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + GROUPS_PAYLOAD))
 parts.append(shared_casing_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_fauna.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + FAUNA_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_loot.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + LOOT_PAYLOAD))

@@ -72,7 +72,8 @@ def mod_providers():
         if name.endswith('.json'):
             data = json.loads(text)
             result += [e for e in data if isinstance(e, dict)] if isinstance(data, list) else [data]
-    return index_entries(result) - BUILTIN_IDS
+    from prepare_eldercare_groups import native_data as groups
+    return index_entries(result + groups()) - BUILTIN_IDS
 
 
 def native_data():

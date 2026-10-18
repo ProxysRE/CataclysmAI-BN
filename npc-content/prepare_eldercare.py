@@ -127,10 +127,11 @@ def build_layer(adapted=False):
     from bn_counterparts import adapt_entry, MAPPINGS
     from prepare_eldercare_fauna import native_data as fauna_data, adapt_references as adapt_fauna
     used = set()
+    from prepare_eldercare_groups import adapt_people, ALIASES
     if adapted:
         from prepare_terminal_archives import adapt_map
         from prepare_eldercare_assets import adapt_map as adapt_assets
-        maps = [adapt_fauna(adapt_assets(adapt_map(adapt_entry(e, used)))) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
+        maps = [adapt_people(adapt_fauna(adapt_assets(adapt_map(adapt_entry(e, used))))) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
     from prepare_eldercare_assets import native_data as asset_data
     from prepare_eldercare_loot import native_data as loot_data
     from prepare_civilians import mod_providers
@@ -160,7 +161,7 @@ def build_layer(adapted=False):
         path, entry = provider
         if adapted:
             from prepare_eldercare_assets import adapt_references
-            entry = adapt_fauna(adapt_references(adapt_entry(entry, used)))
+            entry = adapt_people(adapt_fauna(adapt_references(adapt_entry(entry, used))))
         selected[key] = {'source': path, 'entry': entry}
         pending.extend(refs(entry))
     # Aliases for one multi-ID declaration must not create duplicate entries.
@@ -169,6 +170,7 @@ def build_layer(adapted=False):
         unique[json.dumps(value['entry'], sort_keys=True)] = value
     candidates = sorted(unique.values(), key=lambda v: (namespace(v['entry']), str(ids(v['entry']))))
     return {'pins': PINS, 'installed': False, 'optional_mod_dependencies': ['civilians'] if adapted else [], 'source_candidates': candidates,
+            'optional_provider_adaptations': ({'mod': 'civilians', 'armed_civilian_aliases': ALIASES, 'spawn_groups': 'Three stock BN tables with probability-preserving one-level compilation; source pack/time/cost semantics, root default on empty subgroup.'} if adapted else {}),
             'counterpart_mappings_applied': [{'type': kind, 'source': source, 'bn_target': target, 'reason': reason} for (kind, source), (target, reason) in sorted(MAPPINGS.items()) if source in used],
             'report': {'root_missing_identifiers': sorted(roots),
                        'selected_definitions': len(candidates),
@@ -177,7 +179,7 @@ def build_layer(adapted=False):
                        'unresolved_transitive_references': sorted(missing),
                        'scope': 'Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.',
                        'blockers': [('Read-only terminal story graphs use the BN computer archive bridge; whole-site generation remains pending.' if adapted else 'Source computer eocs/open_dialogue are retained for provenance; adapted graphs use BN computer archives.'),
-                                    'Unmatched recursive groups, living-civilian AI and mutation branches need adaptation; source medical variants may be superseded by stock BN counterparts.',
+                                    ('Groups use probability-preserving stock BN tables in the optional Civilians mod; armed people reuse existing BN mod counterparts.' if adapted else 'Source recursive groups and civilian variants are retained for provenance.'),
                                     'Preserve source timed entries and group probabilities; naive flattening can change density and civilian disappearance.',
                                     'Resolve remaining dependencies, compare BN counterparts, adapt schemas and run full location generation before installing either site.']}}
 
@@ -206,7 +208,8 @@ def prepare(check=False, bn_source=None, bn_data=None):
     from prepare_terminal_archives import adapt_map
     from prepare_eldercare_assets import adapt_map as adapt_assets
     from prepare_eldercare_fauna import adapt_references as adapt_fauna
-    adapted = {'locations': {name: [adapt_fauna(adapt_assets(adapt_map(adapt_entry(e)))) for e in regional[name + '.json'] if e['type'] not in ('talk_topic', 'effect_on_condition')] for name in ('nursing_home', 'retirement_community')},
+    from prepare_eldercare_groups import adapt_people, ALIASES
+    adapted = {'locations': {name: [adapt_people(adapt_fauna(adapt_assets(adapt_map(adapt_entry(e))))) for e in regional[name + '.json'] if e['type'] not in ('talk_topic', 'effect_on_condition')] for name in ('nursing_home', 'retirement_community')},
                'dependencies': build_layer(adapted=True)}
     outputs = {FOLDER / 'ADAPTED_LOCATIONS.json': adapted, ROOT / 'native/dda_eldercare_support.json': payload,
                FOLDER / 'SOURCE_CANDIDATES.json': layer}

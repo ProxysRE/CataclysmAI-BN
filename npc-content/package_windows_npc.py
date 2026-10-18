@@ -93,6 +93,9 @@ def verify_install(folder):
     from prepare_shared_casing import payload as shared_casing_data, TARGET as SHARED_CASING_TARGET
     if json.loads((folder / SHARED_CASING_TARGET).read_text(encoding='utf-8')) != shared_casing_data():
         raise ValueError("Duplicate 545 casing remains in Exotic Ammo or other casings changed")
+    from prepare_eldercare_groups import native_data as groups_data, PAYLOAD as GROUPS_PAYLOAD
+    if json.loads((folder / GROUPS_PAYLOAD).read_text(encoding='utf-8')) != groups_data():
+        raise ValueError('Stale eldercare civilian groups')
     from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, mod_sources
     if json.loads((folder / CIVILIAN_PAYLOAD).read_text(encoding="utf-8")) != civilian_data():
         raise ValueError("Installed civilian data differs")

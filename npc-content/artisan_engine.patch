@@ -3760,10 +3760,11 @@
 +}
 --- /dev/null
 +++ b/tests/dda_civilians_test.cpp
-@@ -0,0 +1,80 @@
+@@ -0,0 +1,120 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "calendar.h"
++#include "cata_utility.h"
 +#include "civilian_chat.h"
 +#include "civilian_chat_ui.h"
 +#include "game.h"
@@ -3840,6 +3841,45 @@
 +    CHECK_FALSE( mtype_id( "mon_civilian_panic" ).is_valid() );
 +    CHECK_FALSE( mtype_id( "mon_civilian_parent" ).is_valid() );
 +    CHECK_FALSE( mongroup_id( "GROUP_CIVILIANS_UPGRADE" ).is_valid() );
++    CHECK_FALSE( mongroup_id( "GROUP_CIVILIANS_STANDARD" ).is_valid() );
++    CHECK_FALSE( mongroup_id( "GROUP_NURSING_HOME" ).is_valid() );
++    CHECK_FALSE( mongroup_id( "GROUP_RETIREMENT_COMMUNITY" ).is_valid() );
++}
++
++TEST_CASE( "eldercare_optional_groups_use_BN_civilian_counterparts_and_timing", "[dda_civilians]" )
++{
++    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
++    const auto civilians = mongroup_id( "GROUP_CIVILIANS_STANDARD" );
++    REQUIRE( civilians.is_valid() );
++    CHECK( civilians->freq_total == 266 );
++    REQUIRE( civilians->monsters.size() == 10 );
++    CHECK( civilians->monsters[2].name == mtype_id( "mon_civilian_survivor_pistol" ) );
++    CHECK( civilians->monsters[3].name == mtype_id( "mon_civilian_police" ) );
++    CHECK( civilians->monsters[3].cost_multiplier == 3 );
++    CHECK( civilians->monsters[7].pack_maximum == 5 );
++    CHECK_FALSE( mtype_id( "mon_civilian_police_rifle" ).is_valid() );
++    CHECK_FALSE( mtype_id( "mon_civilian_zombiegunner" ).is_valid() );
++    calendar::turn = calendar::start_of_cataclysm + civilians->monsters.back().ends + 1_days;
++    for( int i = 0; i < 100; ++i ) {
++        int budget = 20;
++        const auto result = MonsterGroupManager::GetResultFromGroup( civilians, &budget );
++        CHECK( result.name == mtype_id( "mon_civilian_panic" ) );
++        CHECK( result.pack_size == 1 );
++        CHECK( budget == 19 );
++    }
++    for( const auto *name : { "GROUP_NURSING_HOME", "GROUP_RETIREMENT_COMMUNITY" } ) {
++        const auto group = mongroup_id( name );
++        REQUIRE( group.is_valid() );
++        CHECK( group->freq_total == ( group == mongroup_id( "GROUP_NURSING_HOME" ) ?
++                                     27398 : 27930 ) );
++        REQUIRE( group->monsters.size() >= 10 );
++        CHECK( group->monsters.front().frequency == 300 );
++        for( int i = 0; i < 100; ++i ) {
++            const auto result = MonsterGroupManager::GetResultFromGroup( group );
++            CHECK( result.name.is_valid() );
++            CHECK_FALSE( result.name.str().find( "mon_civilian_" ) == 0 );
++        }
++    }
 +}
 --- /dev/null
 +++ b/data/json/dda_artisan_activities.json
@@ -35569,6 +35609,363 @@
      ],
      "flags": [
        "HUMAN",
+--- /dev/null
++++ b/data/mods/Civilians/dda_eldercare_groups.json
+@@ -0,0 +1,354 @@
++[
++  {
++    "type": "monstergroup",
++    "name": "GROUP_CIVILIANS_STANDARD",
++    "default": "mon_civilian_panic",
++    "freq_total": 266,
++    "monsters": [
++      {
++        "monster": "mon_civilian_stationary",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 30
++      },
++      {
++        "monster": "mon_civilian_zombiefighter",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 16
++      },
++      {
++        "monster": "mon_civilian_survivor_pistol",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 12
++      },
++      {
++        "monster": "mon_civilian_police",
++        "cost_multiplier": 3,
++        "ends": 288,
++        "freq": 4
++      },
++      {
++        "monster": "mon_civilian_police",
++        "cost_multiplier": 3,
++        "ends": 288,
++        "freq": 4
++      },
++      {
++        "monster": "mon_civilian_parent",
++        "cost_multiplier": 0,
++        "ends": 192,
++        "pack_size": [
++          1,
++          2
++        ],
++        "freq": 20
++      },
++      {
++        "monster": "mon_civilian_parent",
++        "cost_multiplier": 0,
++        "starts": 192,
++        "ends": 384,
++        "freq": 20
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "ends": 192,
++        "pack_size": [
++          1,
++          5
++        ],
++        "freq": 40
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "starts": 192,
++        "ends": 384,
++        "pack_size": [
++          1,
++          2
++        ],
++        "freq": 60
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "starts": 384,
++        "ends": 576,
++        "freq": 60
++      }
++    ]
++  },
++  {
++    "type": "monstergroup",
++    "name": "GROUP_NURSING_HOME",
++    "default": "mon_zombie_rot",
++    "freq_total": 27398,
++    "monsters": [
++      {
++        "monster": "mon_civilian_stationary",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 300
++      },
++      {
++        "monster": "mon_civilian_zombiefighter",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 160
++      },
++      {
++        "monster": "mon_civilian_survivor_pistol",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 120
++      },
++      {
++        "monster": "mon_civilian_police",
++        "cost_multiplier": 3,
++        "ends": 288,
++        "freq": 40
++      },
++      {
++        "monster": "mon_civilian_police",
++        "cost_multiplier": 3,
++        "ends": 288,
++        "freq": 40
++      },
++      {
++        "monster": "mon_civilian_parent",
++        "cost_multiplier": 0,
++        "ends": 192,
++        "pack_size": [
++          1,
++          2
++        ],
++        "freq": 200
++      },
++      {
++        "monster": "mon_civilian_parent",
++        "cost_multiplier": 0,
++        "starts": 192,
++        "ends": 384,
++        "freq": 200
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "ends": 192,
++        "pack_size": [
++          1,
++          5
++        ],
++        "freq": 400
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "starts": 192,
++        "ends": 384,
++        "pack_size": [
++          1,
++          2
++        ],
++        "freq": 600
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "starts": 384,
++        "ends": 576,
++        "freq": 600
++      },
++      {
++        "monster": "mon_zombie",
++        "freq": 3192,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_fat",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_rot",
++        "pack_size": [
++          3,
++          4
++        ],
++        "freq": 10640,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_crawler",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_brainless",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_nurse",
++        "freq": 5320,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_boomer",
++        "freq": 798,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_feral_human_pipe",
++        "freq": 798,
++        "cost_multiplier": 1
++      }
++    ]
++  },
++  {
++    "type": "monstergroup",
++    "name": "GROUP_RETIREMENT_COMMUNITY",
++    "default": "mon_zombie",
++    "freq_total": 27930,
++    "monsters": [
++      {
++        "monster": "mon_civilian_stationary",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 300
++      },
++      {
++        "monster": "mon_civilian_zombiefighter",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 160
++      },
++      {
++        "monster": "mon_civilian_survivor_pistol",
++        "cost_multiplier": 0,
++        "ends": 288,
++        "freq": 120
++      },
++      {
++        "monster": "mon_civilian_police",
++        "cost_multiplier": 3,
++        "ends": 288,
++        "freq": 40
++      },
++      {
++        "monster": "mon_civilian_police",
++        "cost_multiplier": 3,
++        "ends": 288,
++        "freq": 40
++      },
++      {
++        "monster": "mon_civilian_parent",
++        "cost_multiplier": 0,
++        "ends": 192,
++        "pack_size": [
++          1,
++          2
++        ],
++        "freq": 200
++      },
++      {
++        "monster": "mon_civilian_parent",
++        "cost_multiplier": 0,
++        "starts": 192,
++        "ends": 384,
++        "freq": 200
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "ends": 192,
++        "pack_size": [
++          1,
++          5
++        ],
++        "freq": 400
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "starts": 192,
++        "ends": 384,
++        "pack_size": [
++          1,
++          2
++        ],
++        "freq": 600
++      },
++      {
++        "monster": "mon_civilian_panic",
++        "cost_multiplier": 0,
++        "starts": 384,
++        "ends": 576,
++        "freq": 600
++      },
++      {
++        "monster": "mon_zombie",
++        "freq": 9044,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_fat",
++        "freq": 3724,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_runner",
++        "freq": 1596,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_rot",
++        "pack_size": [
++          2,
++          2
++        ],
++        "freq": 2660,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_crawler",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_brainless",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_child",
++        "freq": 798,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_boomer",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_zombie_dog",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_feral_human_pipe",
++        "freq": 1330,
++        "cost_multiplier": 1
++      },
++      {
++        "monster": "mon_feral_human_crowbar",
++        "freq": 798,
++        "cost_multiplier": 1
++      }
++    ]
++  }
++]
 --- a/data/mods/exotic_ammo/generic/casing.json
 +++ b/data/mods/exotic_ammo/generic/casing.json
 @@ -4,7 +4,9 @@

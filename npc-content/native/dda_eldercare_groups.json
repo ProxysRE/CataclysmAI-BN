@@ -1,0 +1,354 @@
+[
+  {
+    "type": "monstergroup",
+    "name": "GROUP_CIVILIANS_STANDARD",
+    "default": "mon_civilian_panic",
+    "freq_total": 266,
+    "monsters": [
+      {
+        "monster": "mon_civilian_stationary",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 30
+      },
+      {
+        "monster": "mon_civilian_zombiefighter",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 16
+      },
+      {
+        "monster": "mon_civilian_survivor_pistol",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 12
+      },
+      {
+        "monster": "mon_civilian_police",
+        "cost_multiplier": 3,
+        "ends": 288,
+        "freq": 4
+      },
+      {
+        "monster": "mon_civilian_police",
+        "cost_multiplier": 3,
+        "ends": 288,
+        "freq": 4
+      },
+      {
+        "monster": "mon_civilian_parent",
+        "cost_multiplier": 0,
+        "ends": 192,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 20
+      },
+      {
+        "monster": "mon_civilian_parent",
+        "cost_multiplier": 0,
+        "starts": 192,
+        "ends": 384,
+        "freq": 20
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "ends": 192,
+        "pack_size": [
+          1,
+          5
+        ],
+        "freq": 40
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "starts": 192,
+        "ends": 384,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 60
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "starts": 384,
+        "ends": 576,
+        "freq": 60
+      }
+    ]
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_NURSING_HOME",
+    "default": "mon_zombie_rot",
+    "freq_total": 27398,
+    "monsters": [
+      {
+        "monster": "mon_civilian_stationary",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 300
+      },
+      {
+        "monster": "mon_civilian_zombiefighter",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 160
+      },
+      {
+        "monster": "mon_civilian_survivor_pistol",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 120
+      },
+      {
+        "monster": "mon_civilian_police",
+        "cost_multiplier": 3,
+        "ends": 288,
+        "freq": 40
+      },
+      {
+        "monster": "mon_civilian_police",
+        "cost_multiplier": 3,
+        "ends": 288,
+        "freq": 40
+      },
+      {
+        "monster": "mon_civilian_parent",
+        "cost_multiplier": 0,
+        "ends": 192,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 200
+      },
+      {
+        "monster": "mon_civilian_parent",
+        "cost_multiplier": 0,
+        "starts": 192,
+        "ends": 384,
+        "freq": 200
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "ends": 192,
+        "pack_size": [
+          1,
+          5
+        ],
+        "freq": 400
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "starts": 192,
+        "ends": 384,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 600
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "starts": 384,
+        "ends": 576,
+        "freq": 600
+      },
+      {
+        "monster": "mon_zombie",
+        "freq": 3192,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_fat",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_rot",
+        "pack_size": [
+          3,
+          4
+        ],
+        "freq": 10640,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_crawler",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_brainless",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_nurse",
+        "freq": 5320,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_boomer",
+        "freq": 798,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_feral_human_pipe",
+        "freq": 798,
+        "cost_multiplier": 1
+      }
+    ]
+  },
+  {
+    "type": "monstergroup",
+    "name": "GROUP_RETIREMENT_COMMUNITY",
+    "default": "mon_zombie",
+    "freq_total": 27930,
+    "monsters": [
+      {
+        "monster": "mon_civilian_stationary",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 300
+      },
+      {
+        "monster": "mon_civilian_zombiefighter",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 160
+      },
+      {
+        "monster": "mon_civilian_survivor_pistol",
+        "cost_multiplier": 0,
+        "ends": 288,
+        "freq": 120
+      },
+      {
+        "monster": "mon_civilian_police",
+        "cost_multiplier": 3,
+        "ends": 288,
+        "freq": 40
+      },
+      {
+        "monster": "mon_civilian_police",
+        "cost_multiplier": 3,
+        "ends": 288,
+        "freq": 40
+      },
+      {
+        "monster": "mon_civilian_parent",
+        "cost_multiplier": 0,
+        "ends": 192,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 200
+      },
+      {
+        "monster": "mon_civilian_parent",
+        "cost_multiplier": 0,
+        "starts": 192,
+        "ends": 384,
+        "freq": 200
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "ends": 192,
+        "pack_size": [
+          1,
+          5
+        ],
+        "freq": 400
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "starts": 192,
+        "ends": 384,
+        "pack_size": [
+          1,
+          2
+        ],
+        "freq": 600
+      },
+      {
+        "monster": "mon_civilian_panic",
+        "cost_multiplier": 0,
+        "starts": 384,
+        "ends": 576,
+        "freq": 600
+      },
+      {
+        "monster": "mon_zombie",
+        "freq": 9044,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_fat",
+        "freq": 3724,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_runner",
+        "freq": 1596,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_rot",
+        "pack_size": [
+          2,
+          2
+        ],
+        "freq": 2660,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_crawler",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_brainless",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_child",
+        "freq": 798,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_boomer",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_zombie_dog",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_feral_human_pipe",
+        "freq": 1330,
+        "cost_multiplier": 1
+      },
+      {
+        "monster": "mon_feral_human_crowbar",
+        "freq": 798,
+        "cost_multiplier": 1
+      }
+    ]
+  }
+]

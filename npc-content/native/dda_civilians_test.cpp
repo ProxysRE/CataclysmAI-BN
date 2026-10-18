@@ -1,6 +1,7 @@
 #include "catch/catch.hpp"
 #include "avatar.h"
 #include "calendar.h"
+#include "cata_utility.h"
 #include "civilian_chat.h"
 #include "civilian_chat_ui.h"
 #include "game.h"
@@ -77,4 +78,43 @@ TEST_CASE( "core_game_does_not_duplicate_optional_Civilians_content", "[dda_npc]
     CHECK_FALSE( mtype_id( "mon_civilian_panic" ).is_valid() );
     CHECK_FALSE( mtype_id( "mon_civilian_parent" ).is_valid() );
     CHECK_FALSE( mongroup_id( "GROUP_CIVILIANS_UPGRADE" ).is_valid() );
+    CHECK_FALSE( mongroup_id( "GROUP_CIVILIANS_STANDARD" ).is_valid() );
+    CHECK_FALSE( mongroup_id( "GROUP_NURSING_HOME" ).is_valid() );
+    CHECK_FALSE( mongroup_id( "GROUP_RETIREMENT_COMMUNITY" ).is_valid() );
+}
+
+TEST_CASE( "eldercare_optional_groups_use_BN_civilian_counterparts_and_timing", "[dda_civilians]" )
+{
+    const auto restore_turn = restore_on_out_of_scope<time_point>( calendar::turn );
+    const auto civilians = mongroup_id( "GROUP_CIVILIANS_STANDARD" );
+    REQUIRE( civilians.is_valid() );
+    CHECK( civilians->freq_total == 266 );
+    REQUIRE( civilians->monsters.size() == 10 );
+    CHECK( civilians->monsters[2].name == mtype_id( "mon_civilian_survivor_pistol" ) );
+    CHECK( civilians->monsters[3].name == mtype_id( "mon_civilian_police" ) );
+    CHECK( civilians->monsters[3].cost_multiplier == 3 );
+    CHECK( civilians->monsters[7].pack_maximum == 5 );
+    CHECK_FALSE( mtype_id( "mon_civilian_police_rifle" ).is_valid() );
+    CHECK_FALSE( mtype_id( "mon_civilian_zombiegunner" ).is_valid() );
+    calendar::turn = calendar::start_of_cataclysm + civilians->monsters.back().ends + 1_days;
+    for( int i = 0; i < 100; ++i ) {
+        int budget = 20;
+        const auto result = MonsterGroupManager::GetResultFromGroup( civilians, &budget );
+        CHECK( result.name == mtype_id( "mon_civilian_panic" ) );
+        CHECK( result.pack_size == 1 );
+        CHECK( budget == 19 );
+    }
+    for( const auto *name : { "GROUP_NURSING_HOME", "GROUP_RETIREMENT_COMMUNITY" } ) {
+        const auto group = mongroup_id( name );
+        REQUIRE( group.is_valid() );
+        CHECK( group->freq_total == ( group == mongroup_id( "GROUP_NURSING_HOME" ) ?
+                                     27398 : 27930 ) );
+        REQUIRE( group->monsters.size() >= 10 );
+        CHECK( group->monsters.front().frequency == 300 );
+        for( int i = 0; i < 100; ++i ) {
+            const auto result = MonsterGroupManager::GetResultFromGroup( group );
+            CHECK( result.name.is_valid() );
+            CHECK_FALSE( result.name.str().find( "mon_civilian_" ) == 0 );
+        }
+    }
 }
