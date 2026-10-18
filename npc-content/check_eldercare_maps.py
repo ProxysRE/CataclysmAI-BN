@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""Guard full-site geometry and references beyond the earlier dependency slice."""
+import copy
+import json
+from prepare_eldercare_maps import ROOT, FOLDER, SITES, payloads, geometry, schema_refs, candidate_lua, LUA_MARKER, prepare
+from prepare_civilians import mod_sources
+
+prepare(check=True)
+source = json.loads((ROOT / 'eldercare/ADAPTED_LOCATIONS.json').read_text())['locations']
+payload = payloads()
+report = json.loads((ROOT / 'eldercare/MAP_ADAPTATION_REPORT.json').read_text())
+assert report['installed'] is False and report['activation_ready'] is False
+assert len(sum(payload.values(), [])) == 71
+assert sum(e['type']=='mapgen' for es in payload.values() for e in es) == 32
+assert sum(r['geometry']['mapgen_tiles'] for r in report['sites'].values()) == 190
+assert sum(len(r['geometry']['unsupported_constraint_only_cells']) for r in report['sites'].values()) == 3
+for site in SITES:
+    assert len(source[site]) == len(payload[site])
+    for before, after in zip(source[site], payload[site]):
+        assert before['type'] == after['type']
+        if before['type'] == 'mapgen':
+            # Preserve every floor/roof/basement row, map position, random
+            # wall parameter and terminal story graph through conversion.
+            for key in ('rows','parameters','place_computers','nested','mapgensize'):
+                assert before['object'].get(key) == after['object'].get(key), (site,key)
+            for key in ('om_terrain','nested_mapgen_id'):
+                assert before.get(key) == after.get(key)
+        if before['type']=='overmap_special':
+            assert [c['point'] for c in before['overmaps']] == [c['point'] for c in after['overmaps']]
+            assert before.get('occurrences') == after.get('occurrences')
+            assert before.get('city_distance') == after.get('city_distance')
+            assert [c['point'] for c in before['connections']] == [c['point'] for c in after['connections']]
+    altered=copy.deepcopy(payload[site])
+    special=next(e for e in altered if e['type']=='overmap_special')
+    special['overmaps'].append(copy.deepcopy(special['overmaps'][0]))
+    try: geometry(altered)
+    except AssertionError: pass
+    else: raise AssertionError('Duplicate special coordinate accepted')
+    altered=copy.deepcopy(payload[site])
+    mapped=next(e for e in altered if e['type']=='mapgen' and 'rows' in e['object'])
+    mapped['object']['rows'][0]+=' '
+    try: geometry(altered)
+    except AssertionError: pass
+    else: raise AssertionError('Invalid multi-OMT geometry accepted')
+# Each previously uncovered typed position must surface its missing provider.
+for field, kind, value in (
+    ('parameters','terrain',{'wall':{'type':'ter_str_id','default':{'distribution':[['missing_wall',1]]}}}),
+    ('liquids','item',{'x':{'liquid':'missing_liquid','amount':1}}),
+    ('place_loot','item_group',[{'group':'missing_loot','x':1,'y':1,'chance':100}]),
+    ('monster','MONSTER',{'x':{'monster':'missing_person','chance':100}})):
+    refs=schema_refs([{'type':'mapgen','object':{field:value}}])
+    target={'terrain':'missing_wall','item':'missing_liquid','item_group':'missing_loot','MONSTER':'missing_person'}[kind]
+    assert (kind,target) in refs,(field,refs)
+assert ('overmap_terrain_abstract','missing_parent') in schema_refs([{'type':'overmap_terrain','copy-from':'missing_parent'}])
+original=mod_sources()['main.lua']
+lua=candidate_lua()
+assert lua.count(LUA_MARKER)==1 and lua.replace(LUA_MARKER,'',1)==original
+assert 'OtMatchType.CONTAINS, omt_pos' in original
+assert lua.index('for _, prefix in ipairs(NPC_TERRAINS)') < lua.index('local size = map:get_map_size()')
+for entries in payload.values():
+    for e in entries:
+        if e['type']=='overmap_terrain':
+            assert all(n.startswith(SITES) for n in (e['id'] if isinstance(e['id'],list) else [e['id']]))
+# Candidate Lua is deliberately not shipped before the maps: existing optional
+# mod behavior remains unchanged while native compatibility is unverified.
+from prepare_civilians import patch_sections
+assert 'main.lua' not in patch_sections()
+print('PASS: 71 full-site declarations / 32 mapgen definitions / 190 custom OMT tiles; source geometry/parameters/stories preserved; extended reference and rotation guards; three frontage constraints explicitly block activation')

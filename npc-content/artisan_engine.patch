@@ -3796,8 +3796,8 @@
 +        CHECK( type->upgrade_group == mongroup_id( "GROUP_CIVILIANS_UPGRADE" ) );
 +        CHECK( type->age_grow == -1 );
 +        CHECK( type->half_life == 1 );
-+        person.setpos( map_local_to_abs( get_map(), tripoint_bub_ms( 68, 60, 0 ) ) );
-+        CHECK_FALSE( can_chat_with_civilian( person, actor ) );
++        monster distant_person( type, tripoint_bub_ms( 68, 60, 0 ) );
++        CHECK_FALSE( can_chat_with_civilian( distant_person, actor ) );
 +    }
 +    const auto &panic = mtype_id( "mon_civilian_panic" )->civilian_dialogue;
 +    CHECK( panic.next( panic.root, 0 ) == "TALK_CIVILIAN_PANIC_EVAC" );

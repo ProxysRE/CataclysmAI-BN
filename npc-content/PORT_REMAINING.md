@@ -68,3 +68,7 @@ Supersedes the standalone civilian checkpoint above. Six existing Civilians mod 
 ## Eldercare population closure (2026-10-18)
 
 All five previously staged definitions are resolved: two armed people reuse existing Civilians counterparts, and three group tables compile to the stock BN format inside the optional mod. See eldercare/GROUP_ADAPTATION.md for intentional loadout/profile differences and exact probability checks. Typed adapted dependency closure is now zero staged/zero unresolved; whole sites remain disabled pending mapgen/schema/generation checks and the Civilians Lua population audit. New native source/installed validation is pending.
+
+## Full eldercare map layer (2026-10-18, follow-up)
+
+Prepared all 71 site declarations / 32 mapgen definitions, covering 190 custom OMT tiles and all source rows, parameters, stories and vertical layouts. Extended reference/rotation checks found and adapted the missing road parent, parking-lot ID, station rotations and memorial loot using existing BN providers. See eldercare/MAP_ADAPTATION.md. The maps and Civilians Lua prefix exclusions are reproducible candidates, not installed payloads. Three source frontage cells contain placement constraints without terrain assignment, unsupported by BN's fixed-special loader; resolve that exact behavior before native generation validation and activation. The earlier dependency closure did not cover these additional reference positions or special-loader compatibility.

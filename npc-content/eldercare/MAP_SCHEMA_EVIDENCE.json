@@ -1,0 +1,193 @@
+{
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "bn_road": {
+    "type": "overmap_terrain",
+    "abstract": "generic_road",
+    "name": "generic_road",
+    "land_use_code": "transportation"
+  },
+  "dda_road": {
+    "type": "overmap_terrain",
+    "abstract": "road_abstract",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": "none",
+    "travel_cost_type": "road",
+    "looks_like": "road",
+    "vision_levels": "blends_till_outlines"
+  },
+  "bn_overmap_loader": [
+    "        mandatory(jo, false, \"connection\", connection);",
+    "    optional(jo, false, \"from\", from);",
+    "    assign(jo, \"see_cost\", see_cost, strict);",
+    "        mandatory(jo, was_loaded, \"occurrences\", constraints_.occurrences);",
+    "        assign(jo, \"city_sizes\", constraints_.city_size, strict);",
+    "        assign(jo, \"city_distance\", constraints_.city_distance, strict);",
+    "            special.has_flag(\"UNIQUE\")",
+    "        const bool unique = iter.special_details->has_flag(\"UNIQUE\");"
+  ],
+  "sources": [
+    "bn:data/json/overmap/overmap_terrain/overmap_terrain_abstract.json",
+    "dda:data/json/overmap/overmap_terrain/overmap_terrain_transportation.json",
+    "bn:src/overmap/overmap.cpp"
+  ],
+  "bn_external_terrain_sources": {
+    "data/json/overmap/overmap_terrain/overmap_terrain_hardcoded.json": [
+      {
+        "type": "overmap_terrain",
+        "id": "s_lot",
+        "copy-from": "generic_parking",
+        "name": "parking lot",
+        "sym": "O",
+        "color": "dark_gray",
+        "see_cost": 1,
+        "extras": "build",
+        "mondensity": 2,
+        "mapgen": [
+          {
+            "method": "builtin",
+            "name": "parking_lot"
+          }
+        ],
+        "flags": [
+          "SIDEWALK",
+          "NO_ROTATE"
+        ]
+      }
+    ],
+    "data/json/overmap/overmap_terrain/overmap_terrain_transportation.json": [
+      {
+        "type": "overmap_terrain",
+        "id": "sub_station",
+        "name": "subway station",
+        "sym": "S",
+        "color": "yellow",
+        "see_cost": 5,
+        "extras": "build",
+        "mondensity": 2,
+        "flags": [
+          "KNOWN_DOWN",
+          "SIDEWALK"
+        ]
+      },
+      {
+        "type": "overmap_terrain",
+        "id": "sub_station_roof",
+        "name": "subway station roof",
+        "sym": "S",
+        "color": "yellow",
+        "see_cost": 5,
+        "extras": "build",
+        "mondensity": 2,
+        "flags": [
+          "KNOWN_DOWN",
+          "SIDEWALK"
+        ]
+      },
+      {
+        "type": "overmap_terrain",
+        "id": "sewer_sub_station",
+        "name": "subway station (sewer level)",
+        "sym": "S",
+        "color": "yellow",
+        "see_cost": 5,
+        "spawns": {
+          "group": "GROUP_SEWER",
+          "population": [
+            1,
+            6
+          ],
+          "chance": 30
+        },
+        "extras": "subway",
+        "flags": [
+          "KNOWN_UP",
+          "KNOWN_DOWN"
+        ]
+      },
+      {
+        "type": "overmap_terrain",
+        "id": "underground_sub_station",
+        "name": "subway station (underground level)",
+        "sym": "S",
+        "color": "yellow",
+        "see_cost": 5,
+        "extras": "subway",
+        "spawns": {
+          "group": "GROUP_SUBWAY",
+          "population": [
+            1,
+            6
+          ],
+          "chance": 30
+        },
+        "flags": [
+          "KNOWN_UP"
+        ]
+      }
+    ],
+    "data/json/overmap/overmap_terrain/overmap_terrain_waste_junk.json": [
+      {
+        "type": "overmap_terrain",
+        "id": "sewer",
+        "name": "sewer",
+        "color": "green",
+        "see_cost": 5,
+        "extras": "sewer",
+        "spawns": {
+          "group": "GROUP_SEWER",
+          "population": [
+            1,
+            6
+          ],
+          "chance": 30
+        },
+        "flags": [
+          "LINEAR"
+        ]
+      }
+    ]
+  },
+  "dda_memorial_source": "data/json/itemgroups/collections_domestic.json",
+  "bn_memorial_source": "data/json/itemgroups/misc.json",
+  "bn_memorial": {
+    "type": "item_group",
+    "id": "makeshift_memorial",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "candle",
+        "prob": 100,
+        "count": [
+          1,
+          3
+        ],
+        "charges-max": 50
+      },
+      {
+        "item": "candle",
+        "prob": 33,
+        "count": [
+          1,
+          2
+        ],
+        "charges-min": 50
+      },
+      {
+        "item": "family_photo",
+        "prob": 20,
+        "count": [
+          1,
+          2
+        ]
+      },
+      {
+        "item": "teddy_bear",
+        "prob": 5
+      }
+    ]
+  },
+  "dda_memorial_snapshot_sha256": "a3ffa832259feea35e51deb22e9231b3d9c7e715575cc07c363307f2e1d114b1"
+}

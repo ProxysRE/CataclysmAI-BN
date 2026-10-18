@@ -442,14 +442,12 @@
       "result": "success"
     },
     "source_native_checkpoint": {
-      "head": "f8a62f83292e3c7ea044ccd0ac1fbed31bbbc160",
-      "run": 39143743019,
-      "test_cases_passed": 65,
-      "assertions_passed": 10620,
-      "initialization_clean": false,
-      "failure": "Five unsupported DDA bleed_rate fields; omitted in follow-up",
-      "installed_tests_reached": false,
-      "corrected_run_pending": true
+      "head": "115f102db24e277f20b5cab5dc80095e19e62e95",
+      "run": 39155903445,
+      "test_cases_passed": 67,
+      "assertions_passed": 10627,
+      "initialization_clean": true,
+      "installed_tests_reached": false
     },
     "optional_mod_dependencies": [
       "civilians"
@@ -467,7 +465,16 @@
     "other_subtypes_do_not_inherit_dialogue": true,
     "optional_mod_activation_automatic": false,
     "remaining_full_site_definitions": 0,
-    "validation": "Python exact-field/source/patch/package checks; separate core and Civilians-enabled source/installed native runs pending"
+    "validation": "Python exact-field/source/patch/package checks; separate core and Civilians-enabled source/installed native runs pending",
+    "source_native_checkpoint": {
+      "head": "115f102db24e277f20b5cab5dc80095e19e62e95",
+      "run": 39155903445,
+      "test_cases_passed": 5,
+      "assertions_passed": 766,
+      "clean_log": false,
+      "failure": "Temporary stack monster moved via tracker-aware setpos in test fixture; construct separate distant monster in follow-up",
+      "installed_tests_reached": false
+    }
   },
   "latest_clean_windows_build": {
     "head": "07109593d505b4095094129bc0e6dca4c3a6320b",
@@ -509,5 +516,31 @@
     "validation": "48 exact rational outcome distributions including packs, budget costs, time boundaries and empty-subgroup root fallback; new native source/installed tests pending",
     "full_locations_installed": false,
     "remaining_work": "Mapgen schema and generation tests; population audit against Civilians Lua before enabling sites. Source-only weakpoint/anatomy/AI parity is not implied by typed closure."
+  },
+  "eldercare_map_layer": {
+    "status": "complete_map_candidates_static_validated_not_installed",
+    "source_declarations": 71,
+    "mapgen_definitions": 32,
+    "custom_omt_tiles": 190,
+    "custom_placed_cells_including_variants": 196,
+    "reused_core_cells": 23,
+    "source_mapgen_rows": 1488,
+    "preserved": "Every source row, floor/basement layout, mapgen parameter, nested story archive and special coordinate",
+    "candidate_folder": "eldercare/native_candidate",
+    "ambient_civilian_spawn_fix": "Two prefix exclusions prepared as candidate Lua only; must be installed atomically with sites",
+    "activation_ready": false,
+    "remaining_blockers": [
+      "Three frontage constraint-only cells need exact adaptation for the BN fixed-special loader",
+      "Native initialization and full generation validation",
+      "Review stairs/elevators and reused station geometry"
+    ],
+    "extended_reference_scope": "Map parameters, direct monster palette pieces, liquid palettes, place_loot groups/items, OMT parent inheritance and concrete external rotations now audited as well",
+    "intentional_counterparts": [
+      "generic_road",
+      "s_lot",
+      "makeshift_memorial",
+      "west-rotated BN subway station levels"
+    ],
+    "full_locations_installed": false
   }
 }

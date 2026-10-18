@@ -34,3 +34,7 @@ The archive/generator fix 0710959 completed Windows run 39140851555 successfully
 
 
 The first civilian fast run 39150017965 also exposed a packaging error in its Python guard: it read an untracked local pinned/src/npctalk.cpp. The canonical file is now bundled in civilians/NPCTALK.part*, authenticated against its official pinned BN Git blob, and used directly by the guard. Windows source comparison checks the bundle against its real checkout. This fixes the CI fixture dependency; it is separate from native gameplay validation.
+
+## Civilians test tracker fixture (2026-10-18)
+
+Windows run 39155903445 compiled the game/tests, passed all 67 core cases (10,627 assertions), then all five optional-mod cases (766 assertions). The strict error-log gate correctly rejected the latter run: the test constructed a temporary unregistered stack monster, then called tracker-aware setpos, causing update_zombie_pos errors for the three noncombatants. Construct a separate distant temporary monster for the range-rejection assertion instead. No tracker bypass or error suppression is added to production code. Corrected source/installed runs remain pending; the failed run did not reach installed tests or packaging.

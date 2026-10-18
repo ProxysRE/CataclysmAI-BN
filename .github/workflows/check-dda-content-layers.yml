@@ -46,6 +46,8 @@ jobs:
           python npc-content/prepare_shared_casing.py --check
           python npc-content/check_civilians.py
           python npc-content/check_eldercare_groups.py
+          python npc-content/prepare_eldercare_maps.py --check --bn-data bn-data
+          python npc-content/check_eldercare_maps.py
           python npc-content/check_eldercare_fauna.py
           python npc-content/check_eldercare_loot.py
           python npc-content/bn_loot_containers.py

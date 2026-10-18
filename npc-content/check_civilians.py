@@ -32,3 +32,9 @@ assert 'can_chat_with_civilian( person, u )' in chat
 assert 'show_civilian_chat( *civilians[people.ret] );' in chat
 prepare(check=True)
 print('PASS: no duplicated core civilians/evolution group; six exact source dialogue graphs; stock mod definitions, groups and Lua retained')
+
+# Temporary unregistered monsters must not move through the world tracker.
+from prepare_civilians import ROOT
+fixture=(ROOT / "native/dda_civilians_test.cpp").read_text()
+assert "person.setpos(" not in fixture
+assert "monster distant_person( type, tripoint_bub_ms( 68, 60, 0 ) );" in fixture

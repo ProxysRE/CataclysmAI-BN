@@ -1,0 +1,24 @@
+# Full eldercare map candidates
+
+`prepare_eldercare_maps.py` converts the entire existing adapted site layer to reviewable BN map candidates in `native_candidate/`. It does not install these files or enable either location. The directory intentionally has no modinfo: copying it into a game is not an installation procedure.
+
+The layer contains all 71 declarations (32 mapgen definitions), covering 190 distinct custom OMT tiles. The two nursing-home variants reuse some floors, producing 196 custom placed cells across all three specials; 23 further retirement-community cells reuse existing BN parking/subway/sewer terrain. Source mapgen contains 1,488 rows. Every row, multi-OMT position, wall parameter distribution, nested archive, terminal story and special coordinate is preserved. Nursing-home content spans z=-3..1; retirement placement including stock stations spans z=-2..2.
+
+The earlier zero-unresolved dependency result had a documented narrower scope. This layer expands checks to map parameter distributions, direct monster palette bindings, liquid palettes, place_loot groups/items, overmap parent inheritance and concrete external rotations. This exposed references that were outside that earlier scope:
+
+- DDA road_abstract is absent in BN. Use the existing BN generic_road land-use parent with source road name/color and numeric visibility; no duplicate road system is introduced.
+- The DDA parking-lot ID is absent. Reuse stock BN s_lot without a rotation suffix, as already done in the karting adapter. Its layout is BN's own parking lot.
+- BN sewer_sub_station and underground_sub_station rotate, whereas DDA uses bare references here. Select their west peers to match the existing surface/roof station. Physical stair alignment between the reused BN station and surrounding source buildings still needs in-game testing.
+- The DDA memorial loot collection includes cremation urns and numerous personal/veteran/pet variants. Reuse BN makeshift_memorial (candles/photos/keepsakes) for the memorial table. This preserves the memorial role while using stock loot; it does not reproduce the source urn or every subtheme. No new memorial items/groups are created. The source definition and selected BN counterpart are archived for review.
+
+BN already supports mapgen parameter distributions and multi-OMT maps. Keep those mechanisms; do not replace random wall choices with a fixed material or per-tile independent random choices. Numeric visibility approximates none/all_clear as 0 and other source categories as 2. DDA priority is omitted. DDA global/overmap uniqueness maps to BN UNIQUE, whose per-overmap behavior is a documented approximation. Other source flags are retained as metadata; their presence does not implement missing BN mechanics. Source occurrence/city constraints are unchanged and still need balance testing.
+
+## Activation gate
+
+Three source special cells are **constraints only**, with a coordinate and permitted locations but no terrain assignment. They protect the road frontage without replacing that cell. The pinned BN fixed-special loader checks and places every cell as a terrain, so these source cells are not valid input to that loader. The report retains them and marks activation_ready=false. Do not silently delete their constraints or overwrite the frontage with an arbitrary road tile. They need an exact supported representation or a reviewed loader extension before installation.
+
+The source Civilians Lua also spawns people near furniture during map generation. `native_candidate/Civilians_main.lua` adds only the nursing_home and retirement_community exclusions to its existing NPC_TERRAINS mechanism. Reversing that insertion yields the exact archived original; gun AI, pulping, options, furniture rules, groups and ordinary spawning remain untouched. The candidate is not shipped yet: install the exclusion change atomically with the maps, then validate the actual Lua hook and source populations together.
+
+Static guards check candidate reproducibility, whole-site geometry/coordinates, all core/bundled-mod exact-ID collisions, extended references, source-pinned provider definitions and external rotation rules. Negative cases cover malformed multi-OMT rows, duplicate placement cells and missing references in the newly audited positions. These are not native initialization or generation tests. All floors, stairs/elevators, population counts, external connections and source/installed behavior still require Windows/native testing before activation.
+
+Source evidence is pinned to BN c621aaf42fa182473aad10feea2b55647704dcf1 and DDA c19e95bc96d27d8bef8e2e246a63cd4cd6f89974; see MAP_SCHEMA_EVIDENCE.json, MEMORIAL_SOURCE.json and the existing regional/eldercare source manifests. CI compares selected BN providers against the fresh pinned JSON checkout.
