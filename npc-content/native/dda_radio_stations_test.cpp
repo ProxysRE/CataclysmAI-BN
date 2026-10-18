@@ -44,12 +44,12 @@ TEST_CASE( "farm_material_and_feed_packages_fit_stock_BN_containers", "[dda_npc]
         REQUIRE( package->type->container != nullptr );
         REQUIRE_FALSE( package->contents.empty() );
         auto volume = 0_ml;
-        for( const item &content : package->contents ) {
-            volume += content.volume();
+        for( const item *content : package->contents.all_items_top() ) {
+            volume += content->volume();
         }
         CHECK( volume <= package->type->container->contains );
         if( std::string( group ) == "cement_bag" ) {
-            REQUIRE( package->contents.size() == 1 );
+            REQUIRE( package->contents.num_item_stacks() == 1 );
             CHECK( package->contents.front().typeId() == itype_id( "material_cement" ) );
             CHECK( package->contents.front().charges == 2800 );
         }
@@ -110,8 +110,8 @@ TEST_CASE( "farm_shops_generate_all_quadrants_roofs_ladders_and_source_corpse", 
                     CHECK( generated.ter( tripoint_bub_ms( 0, 21, 1 ) ) == ter_id( "t_ladder_down" ) );
                     if( variant == 1 ) {
                         int bodies = 0;
-                        for( const item &entry : generated.i_at( tripoint_bub_ms( 7, 18, 0 ) ) ) {
-                            bodies += entry.is_corpse();
+                        for( const item *entry : generated.i_at( tripoint_bub_ms( 7, 18, 0 ) ) ) {
+                            bodies += entry->is_corpse();
                         }
                         CHECK( bodies == 1 );
                     }
@@ -165,11 +165,11 @@ TEST_CASE( "source_corpse_mapgen_keeps_species_age_and_empty_groups", "[dda_npc]
         piece.apply( dat, jmapgen_int( 7 ), jmapgen_int( 18 ) );
         auto stack = scratch.i_at( point_omt_ms( 7, 18 ) );
         REQUIRE( stack.size() == 1 );
-        for( const item &body : stack ) {
-            REQUIRE( body.is_corpse() );
-            REQUIRE( body.get_mtype() != nullptr );
-            CHECK( std::find( species.begin(), species.end(), body.get_mtype()->id ) != species.end() );
-            CHECK( body.birthday() == std::max( calendar::turn - time_duration::from_days( age ),
+        for( const item *body : stack ) {
+            REQUIRE( body->is_corpse() );
+            REQUIRE( body->get_mtype() != nullptr );
+            CHECK( std::find( species.begin(), species.end(), body->get_mtype()->id ) != species.end() );
+            CHECK( body->birthday() == std::max( calendar::turn - time_duration::from_days( age ),
                                                calendar::start_of_cataclysm ) );
         }
     }
@@ -515,8 +515,8 @@ TEST_CASE( "karting_vehicle_and_cash_dependencies_are_native_bn_definitions", "[
             REQUIRE( registers.size() == 1 );
             CHECK( registers.front()->typeId() == itype_id( "cash_register" ) );
             auto volume = 0_ml;
-            for( const item &entry : registers.front()->contents ) {
-                volume += entry.volume();
+            for( const item *entry : registers.front()->contents.all_items_top() ) {
+                volume += entry->volume();
             }
             CHECK( volume <= registers.front()->type->container->contains );
         }

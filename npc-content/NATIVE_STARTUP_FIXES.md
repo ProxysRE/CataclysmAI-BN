@@ -9,3 +9,8 @@ Fixed in the current source:
 - The XEDRA field retained unsupported `concentration`, and its intensity-3 emitter exceeded the one-level BN field definition. Three identical BN visual levels now preserve the source emitter intensity, without the unsupported property.
 
 The earlier fix already added test durations and 20-minute step limits. Native data loading, generation and installed-package validation must succeed on the corrected revision before claiming a playable build. Fast Python CI alone does not establish that result.
+
+
+## Windows run 39077993956: test compilation
+
+The build stopped while compiling dda_radio_stations_test.cpp. Pinned BN item_contents exposes all_items_top() and num_item_stacks(), rather than range iteration and size(). Map item stacks yield item pointers. Adapted the container and corpse assertions to those interfaces and dereferenced the pointers. Patch application was checked against the pinned source. Native execution and installed-package validation remain pending the next Windows run.
