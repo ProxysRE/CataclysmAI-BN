@@ -1,0 +1,31 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01",
+    "SOURCE.part02",
+    "SOURCE.part03",
+    "SOURCE.part04",
+    "SOURCE.part05"
+  ],
+  "bundle_sha256": "874e783fa430969f47c363b3b71ca965b3b759b940d525b4dc73895a5089577e",
+  "files": {
+    "bn/data/json/items/comestibles/egg.json": "97ee793d931da471bd87e6f9cc7a21e615ee6f6cc6ec86f8fadcfdfbeac5a94a",
+    "bn/data/json/items/comestibles/med.json": "b5308c4ebf75d6efaa7fe0ed195a3f64c5f87f073009f5079f96c7ccda5a8aaa",
+    "bn/data/json/items/containers.json": "183a010a4e71e13939f5f2c7a4053c0f225188a81d13cc509a956e4f873003e8",
+    "bn/data/json/items/generic.json": "65119930ff18e3c99bcfaa549273a3a229c3aff598e1b82ab9c1dbe842d80fb8",
+    "bn/data/json/monsters/bird.json": "57556e16ee1dc7561ad984a1d9550be687588c4daaef896d533babea8ce4ceea",
+    "bn/data/json/recipes/chem/mutagen.json": "e3439dfc03b963aec75dab0849e2cd3ede1a7f021b8e8d4d58cb2d17a3935479",
+    "dda/data/json/itemgroups/Drugs_Tobacco_Alcohol/tobacco.json": "17022a3a4f05bd2b2859f816b19f1aeeae5c9d0697c5802221d15361a733c95c",
+    "dda/data/json/itemgroups/Labs/labs_mutagen.json": "5a457605ea6310f9a5c97c28b4a9a9b53d1342909ad1da6de2cc1a5caf232e40",
+    "dda/data/json/itemgroups/SUS/combos.json": "bed8beef8cf4c9739b1e453ea4ea2c3f24548b4585a073c1d988d8d45c327d50",
+    "dda/data/json/items/comestibles/egg.json": "85b3f198d4ad75b64c1da6f5061035048f5ca5a8057d694f8651062f06996879",
+    "dda/data/json/items/generic.json": "a2a106fa1cb7e47931cd23361d8a9b5ca58a62be102aec385dead8aebe52e03e",
+    "dda/data/json/monsterdrops/feral_humans.json": "8c21184dc9b14ed350187235eb3bf05d7d925b3987ca350c66a9cd37ef6be6ae",
+    "dda/data/json/monsters/bird.json": "a3806ae508425a39edbccd6e4a73caef72554ca2db1598ab10843e475b270213",
+    "dda/data/json/itemgroups/Locations_MapExtras/locations.json": "903bb5c8f2cd7b8d93083309ba40bda37fb21f7296cfbfa0b5dc7ddf46c04b29"
+  }
+}

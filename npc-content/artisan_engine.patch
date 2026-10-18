@@ -3392,6 +3392,76 @@
 +    CHECK( saline.front()->contents.front().charges == 5 );
 +}
 --- /dev/null
++++ b/tests/dda_eldercare_loot_test.cpp
+@@ -0,0 +1,67 @@
++#include "catch/catch.hpp"
++#include "calendar.h"
++#include "item.h"
++#include "item_contents.h"
++#include "item_group.h"
++#include "itype.h"
++#include "mongroup.h"
++#include "mtype.h"
++#include "units.h"
++
++TEST_CASE( "eldercare_cigar_boxes_fit_BN_containers_and_single_cigar_charges", "[dda_npc][dda_locations]" )
++{
++    for( int attempt = 0; attempt < 100; ++attempt ) {
++        const auto boxes = item_group::items_from( item_group_id( "cigar_box_opened" ), calendar::turn );
++        REQUIRE( boxes.size() == 1 );
++        const auto &box = boxes.front();
++        REQUIRE( box->typeId() == itype_id( "box_medium" ) );
++        REQUIRE( box->type->container != nullptr );
++        auto volume = 0_ml;
++        for( const auto *content : box->contents.all_items_top() ) {
++            volume += content->volume();
++            if( content->typeId() == itype_id( "cigar" ) ) {
++                CHECK( content->charges <= 25 );
++            }
++        }
++        CHECK( volume <= box->type->container->contains );
++    }
++}
++
++TEST_CASE( "eldercare_staff_holder_and_loot_use_BN_items", "[dda_npc][dda_locations]" )
++{
++    const auto holder = item::spawn( "lanyard", calendar::turn );
++    REQUIRE( holder->is_armor() );
++    CHECK( holder->get_storage() == 150_ml );
++    for( const auto *name : { "SUS_science_personal_effects", "feral_sapien_death_drops_spear",
++                             "lab_mutagen_ingredients_fridge", "nursing_home_clothes" } ) {
++        INFO( name );
++        REQUIRE( item_group::group_is_defined( item_group_id( name ) ) );
++        for( int attempt = 0; attempt < 25; ++attempt ) {
++            const auto stock = item_group::items_from( item_group_id( name ), calendar::turn );
++            for( const auto &entry : stock ) {
++                REQUIRE( static_cast<bool>( entry ) );
++                CHECK_FALSE( entry->is_null() );
++                CHECK( entry->typeId().is_valid() );
++            }
++        }
++    }
++}
++
++TEST_CASE( "eldercare_pigeon_eggs_hatch_chicks_that_grow_into_pigeons", "[dda_npc][dda_locations]" )
++{
++    const auto adult = mtype_id( "mon_pigeon" );
++    const auto chick = mtype_id( "mon_pigeon_chick" );
++    REQUIRE( adult.is_valid() );
++    REQUIRE( chick.is_valid() );
++    CHECK( adult->baby_egg == itype_id( "egg_pigeon" ) );
++    CHECK( adult->baby_count == 3 );
++    CHECK( adult->reproduces );
++    CHECK( chick->upgrade_into == adult );
++    const auto egg = item::spawn( "egg_pigeon", calendar::turn );
++    CHECK( egg->volume() == 15_ml );
++    const auto hatch = mongroup_id( "GROUP_EGG_PIGEON" );
++    REQUIRE( hatch.is_valid() );
++    for( int attempt = 0; attempt < 50; ++attempt ) {
++        CHECK( MonsterGroupManager::GetResultFromGroup( hatch ).name == chick );
++    }
++}
+--- /dev/null
 +++ b/data/json/dda_artisan_activities.json
 @@ -0,0 +1,15 @@
 +[
@@ -33233,6 +33303,749 @@
  
  void computer_session::activate_function( computer_action action )
  {
+--- /dev/null
++++ b/data/json/dda_eldercare_loot.json
+@@ -0,0 +1,740 @@
++[
++  {
++    "type": "item_group",
++    "subtype": "collection",
++    "id": "SUS_science_personal_effects",
++    "//": "These are personal effects, such as might be found at their workplace or on their person. The rates for medication (including vision aids) are intended to mirror the distribution of these items in the general US population.",
++    "//2": "diazepem ~5.6% in 2013 https://www.benzoinfo.com/prescribing-statistics/",
++    "//3": "antiparasitics: only data for US military could be found via Google searching, but if rate is comparable to general population it's not even 1% https://academic.oup.com/ofid/article/9/3/ofac040/6528390 https://health.mil/News/Articles/2024/01/01/MSMR-Ivermectin",
++    "//4": "~4.1% of the population with at least one stimulant prescription per year https://www.cdc.gov/mmwr/volumes/72/wr/mm7213a1.htm",
++    "//5": "~8.7% of the population have asthma, presumably only some require an inhaler https://www.cdc.gov/nchs/fastats/asthma.htm",
++    "items": [
++      {
++        "item": "inhaler",
++        "prob": 8,
++        "charges": [
++          10,
++          100
++        ]
++      },
++      [
++        "eyedrops",
++        20
++      ],
++      [
++        "eyedrops",
++        5
++      ],
++      {
++        "prob": 4,
++        "item": "adderall",
++        "charges": [
++          1,
++          10
++        ]
++      },
++      {
++        "collection": [
++          {
++            "item": "cash_card"
++          },
++          {
++            "item": "id_science"
++          }
++        ],
++        "prob": 15
++      },
++      [
++        "badge_doctor",
++        2
++      ],
++      [
++        "lanyard",
++        15
++      ],
++      {
++        "group": "phones",
++        "prob": 80
++      },
++      {
++        "prob": 30,
++        "item": "mobile_memory_card"
++      },
++      [
++        "mask_dust",
++        30
++      ],
++      {
++        "prob": 16,
++        "item": "contacts"
++      },
++      {
++        "group": "clothing_glasses",
++        "prob": 65
++      },
++      [
++        "wrapped_rad_badge",
++        5
++      ],
++      {
++        "prob": 1,
++        "item": "antiparasitic",
++        "charges": [
++          1,
++          10
++        ]
++      },
++      {
++        "prob": 6,
++        "item": "diazepam",
++        "charges": [
++          1,
++          10
++        ]
++      }
++    ]
++  },
++  {
++    "id": "lanyard",
++    "name": {
++      "str": "lanyard"
++    },
++    "description": "A flat, clear plastic sleeve for identification documents, laminated cards, and other small items.  It has a neck strap attached.",
++    "price": "10 cent",
++    "price_postapoc": "1 cent",
++    "symbol": "[",
++    "color": "white",
++    "material": [
++      "plastic"
++    ],
++    "weight": "250 g",
++    "volume": "250 ml",
++    "material_thickness": 1,
++    "type": "ARMOR",
++    "category": "clothing",
++    "covers": [
++      "torso"
++    ],
++    "coverage": 0,
++    "encumbrance": 0,
++    "warmth": 0,
++    "storage": "150 ml",
++    "flags": [
++      "OVERSIZE",
++      "BELTED",
++      "POWERARMOR_COMPATIBLE"
++    ]
++  },
++  {
++    "type": "item_group",
++    "subtype": "collection",
++    "id": "feral_sapien_death_drops_spear",
++    "entries": [
++      {
++        "group": "survivor_stabbing",
++        "prob": 100,
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "underwear",
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "survivorzed_bottoms",
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "survivorzed_tops",
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "survivorzed_gloves",
++        "prob": 95,
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "survivorzed_boots",
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "clothing_glasses",
++        "prob": 5,
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "group": "clothing_watch",
++        "prob": 5,
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "distribution": [
++          {
++            "item": "spearsling",
++            "prob": 50,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "spearsling",
++            "prob": 50,
++            "damage-min": 0,
++            "damage-max": 3
++          }
++        ],
++        "prob": 100
++      },
++      {
++        "distribution": [
++          {
++            "item": "police_belt",
++            "prob": 35,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "fireman_belt",
++            "prob": 35,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "tool_belt",
++            "prob": 30,
++            "damage-min": 0,
++            "damage-max": 3
++          }
++        ],
++        "prob": 50
++      },
++      {
++        "item": "kevlar",
++        "prob": 35,
++        "damage-min": 0,
++        "damage-max": 3
++      },
++      {
++        "distribution": [
++          {
++            "item": "tac_helmet",
++            "prob": 35,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "helmet_army",
++            "prob": 35,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "helmet_riot",
++            "prob": 30,
++            "damage-min": 0,
++            "damage-max": 3
++          }
++        ],
++        "prob": 50
++      },
++      {
++        "distribution": [
++          {
++            "item": "armor_riot",
++            "prob": 30,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "duster_leather",
++            "prob": 10,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "item": "ballistic_vest_esapi",
++            "prob": 30,
++            "damage-min": 0,
++            "damage-max": 3
++          },
++          {
++            "collection": [
++              {
++                "item": "kevlar",
++                "prob": 100,
++                "damage-min": 0,
++                "damage-max": 3
++              },
++              {
++                "item": "armguard_hard",
++                "prob": 50,
++                "damage-min": 0,
++                "damage-max": 3
++              },
++              {
++                "item": "legguard_hard",
++                "prob": 50,
++                "damage-min": 0,
++                "damage-max": 3
++              }
++            ],
++            "prob": 30
++          }
++        ],
++        "prob": 95
++      },
++      {
++        "group": "harddrugs",
++        "prob": 15
++      },
++      {
++        "group": "stash_food",
++        "prob": 15
++      },
++      {
++        "group": "ammo_common",
++        "prob": 15
++      },
++      {
++        "group": "stash_drugs",
++        "prob": 15
++      },
++      {
++        "group": "gear_survival",
++        "prob": 15
++      }
++    ]
++  },
++  {
++    "id": "lab_mutagen_ingredients_fridge",
++    "type": "item_group",
++    "subtype": "collection",
++    "entries": [
++      {
++        "item": "meat",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "carrot",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "blood_tainted_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "fish",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "meat_tainted",
++        "prob": 30,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "tallow",
++        "prob": 30,
++        "count": [
++          5,
++          15
++        ]
++      },
++      {
++        "item": "fish",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "fat_tainted",
++        "prob": 20,
++        "count": [
++          5,
++          10
++        ]
++      },
++      {
++        "item": "egg_bird_unfert",
++        "prob": 30,
++        "count": [
++          1,
++          12
++        ]
++      },
++      {
++        "item": "clam",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "assorted_bugs",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "chitin_piece",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "scute_piece",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "meat_tainted",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "clam",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "animal_blood_concentrate",
++        "prob": 40,
++        "charges": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "veggy",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "slime_scrap",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "feather",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "chitin_piece",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "water_clean",
++        "container-item": "bottle_plastic",
++        "prob": 65,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "item": "water_mineral",
++        "container-item": "bottle_plastic",
++        "prob": 35,
++        "count": [
++          1,
++          2
++        ]
++      }
++    ]
++  },
++  {
++    "type": "item_group",
++    "subtype": "collection",
++    "id": "nursing_home_clothes",
++    "entries": [
++      {
++        "distribution": [
++          {
++            "item": "jersey",
++            "prob": 5
++          },
++          {
++            "item": "longshirt",
++            "prob": 20
++          },
++          {
++            "item": "dress_shirt",
++            "prob": 10
++          },
++          {
++            "item": "longshirt",
++            "prob": 5
++          },
++          {
++            "item": "sweater",
++            "prob": 20
++          },
++          {
++            "item": "sweatshirt",
++            "prob": 20
++          },
++          {
++            "item": "tshirt",
++            "prob": 10
++          },
++          {
++            "item": "polo_shirt",
++            "prob": 10
++          }
++        ]
++      },
++      {
++        "distribution": [
++          {
++            "item": "pants_checkered",
++            "prob": 10
++          },
++          {
++            "item": "pants",
++            "prob": 40
++          },
++          {
++            "item": "jeans",
++            "prob": 20
++          },
++          {
++            "item": "jeans",
++            "prob": 5
++          },
++          {
++            "item": "pants",
++            "prob": 5
++          },
++          {
++            "item": "breeches",
++            "prob": 25
++          }
++        ]
++      },
++      {
++        "item": "slippers",
++        "prob": 50
++      }
++    ]
++  },
++  {
++    "type": "item_group",
++    "id": "cigar_box_opened",
++    "subtype": "collection",
++    "entries": [
++      {
++        "item": "box_medium",
++        "contents-group": "cigar_box_opened_contents"
++      }
++    ]
++  },
++  {
++    "id": "cigar_box_opened_contents",
++    "type": "item_group",
++    "subtype": "collection",
++    "entries": [
++      {
++        "item": "cigar",
++        "charges": [
++          0,
++          25
++        ]
++      },
++      {
++        "item": "paper",
++        "charges": 2,
++        "prob": 90
++      },
++      {
++        "item": "scissors",
++        "prob": 50
++      }
++    ]
++  },
++  {
++    "type": "MONSTER",
++    "id": "mon_pigeon",
++    "copy-from": "mon_crow",
++    "name": {
++      "str": "feral pigeon"
++    },
++    "description": "A gentle, plump, small-billed bird with a skin saddle, or cere, between its bill and forehead.  On the ground, it struts about with a characteristic bobbing of the head.  It is a strong, swift flier thanks to its long wings and powerful flight muscles.",
++    "color": "light_gray",
++    "petfood": {
++      "food": [
++        "BIRDFOOD"
++      ],
++      "feed": "The %s seems to like you!  It runs around your legs and seems friendly.",
++      "pet": "The %s runs around your leg."
++    },
++    "reproduction": {
++      "baby_egg": "egg_pigeon",
++      "baby_count": 3,
++      "baby_timer": 32
++    }
++  },
++  {
++    "type": "MONSTER",
++    "id": "mon_pigeon_chick",
++    "copy-from": "mon_crow_chick",
++    "name": {
++      "str": "pigeon squab"
++    },
++    "upgrades": {
++      "age_grow": 10,
++      "into": "mon_pigeon"
++    },
++    "petfood": {
++      "food": [
++        "BIRDFOOD"
++      ],
++      "feed": "The %s seems to like you!  It runs around your legs and seems friendly.",
++      "pet": "The %s runs around your leg."
++    }
++  },
++  {
++    "type": "COMESTIBLE",
++    "id": "egg_pigeon",
++    "copy-from": "egg_chicken",
++    "name": {
++      "str": "feral pigeon egg"
++    },
++    "weight": "17 g",
++    "volume": "15 ml",
++    "calories": 24,
++    "spoils_in": "9 days",
++    "rot_spawn": "GROUP_EGG_PIGEON"
++  },
++  {
++    "type": "monstergroup",
++    "name": "GROUP_EGG_PIGEON",
++    "default": "mon_pigeon_chick",
++    "freq_total": 1000,
++    "is_animal": true,
++    "monsters": [
++      {
++        "monster": "mon_pigeon_chick",
++        "freq": 1000,
++        "cost_multiplier": 1
++      }
++    ]
++  }
++]
 --- /dev/null
 +++ b/data/json/dda_eldercare_assets.json
 @@ -0,0 +1,1050 @@

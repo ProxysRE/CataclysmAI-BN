@@ -131,7 +131,8 @@ def build_layer(adapted=False):
         from prepare_eldercare_assets import adapt_map as adapt_assets
         maps = [adapt_assets(adapt_map(adapt_entry(e, used))) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
     from prepare_eldercare_assets import native_data as asset_data
-    provided = index_entries(maps + (asset_data() if adapted else []))
+    from prepare_eldercare_loot import native_data as loot_data
+    provided = index_entries(maps + (native_data() + asset_data() + loot_data() if adapted else []))
     roots = {ref for entry in maps for ref in refs(entry)} - bn - provided
     # The provenance layer keeps original medical evolution; the adapted
     # layer uses the stock BN medical zombie under the user's reuse policy.

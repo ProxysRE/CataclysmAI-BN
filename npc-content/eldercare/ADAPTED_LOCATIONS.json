@@ -13401,91 +13401,6 @@
     "installed": false,
     "source_candidates": [
       {
-        "source": "dda/data/json/monsters/bird.json",
-        "entry": {
-          "abstract": "mon_bird_flying_base",
-          "type": "MONSTER",
-          "name": {
-            "str": "flying bird abstract",
-            "//~": "NO_I18N"
-          },
-          "description": {
-            "str": "This is an abstract monster for other flying birds to copy from, so that we have some common foundation to work with.  If it appears in the game that's a bug.  Use this when your bird can fly, but cannot swim.",
-            "//~": "NO_I18N"
-          },
-          "bodytype": "bird",
-          "default_faction": "bird_small_flying",
-          "categories": [
-            "WILDLIFE"
-          ],
-          "species": [
-            "BIRD"
-          ],
-          "volume": "467 ml",
-          "weight": "350 g",
-          "//": "~0.75g/ml density for most wild birds",
-          "hp": 1,
-          "speed": 200,
-          "material": [
-            "flesh"
-          ],
-          "symbol": "v",
-          "color": "dark_gray",
-          "aggression": -99,
-          "morale": 5,
-          "melee_dice": 1,
-          "melee_dice_sides": 1,
-          "melee_damage": [
-            {
-              "damage_type": "cut",
-              "amount": 0
-            }
-          ],
-          "dodge": 4,
-          "families": [
-            "prof_gross_anatomy",
-            "prof_intro_biology",
-            "prof_physiology",
-            "prof_wp_flying",
-            "prof_wp_basic_bird"
-          ],
-          "weakpoint_sets": [
-            "wps_bird_body"
-          ],
-          "harvest": "bird_tiny",
-          "dissect": "dissect_bird_sample_single",
-          "baby_flags": [
-            "SPRING",
-            "SUMMER"
-          ],
-          "fear_triggers": [
-            "SOUND",
-            "PLAYER_CLOSE",
-            "FRIEND_ATTACKED",
-            "FRIEND_DIED",
-            "FIRE",
-            "HURT"
-          ],
-          "biosignature": {
-            "biosig_item": "feces_bird",
-            "biosig_timer": 4
-          },
-          "flags": [
-            "SEES",
-            "HEARS",
-            "ANIMAL",
-            "PATH_AVOID_DANGER",
-            "WARM",
-            "FLIES",
-            "SWARMS",
-            "CANPLAY",
-            "CAN_BE_CULLED",
-            "PET_WONT_FOLLOW",
-            "SMALL_HIDER"
-          ]
-        }
-      },
-      {
         "source": "dda/data/json/monsters/civilians.json",
         "entry": {
           "id": "mon_civilian_panic",
@@ -14462,32 +14377,6 @@
         }
       },
       {
-        "source": "dda/data/json/monsters/bird.json",
-        "entry": {
-          "id": "mon_pigeon",
-          "type": "MONSTER",
-          "name": {
-            "str": "feral pigeon"
-          },
-          "description": "A gentle, plump, small-billed bird with a skin saddle, or cere, between its bill and forehead.  On the ground, it struts about with a characteristic bobbing of the head.  It is a strong, swift flier thanks to its long wings and powerful flight muscles.",
-          "copy-from": "mon_bird_flying_base",
-          "reproduction": {
-            "baby_type": {
-              "baby_egg": "egg_pigeon"
-            },
-            "baby_count": 3,
-            "baby_timer": 32
-          },
-          "petfood": {
-            "food": [
-              "BIRDFOOD"
-            ],
-            "feed": "The %s seems to like you!  It runs around your legs and seems friendly.",
-            "pet": "The %s runs around your leg."
-          }
-        }
-      },
-      {
         "source": "dda/data/json/monsters/insect_spider.json",
         "entry": {
           "id": "mon_spider_cellar_mega",
@@ -14808,110 +14697,6 @@
             ],
             "special_attacks": [
               "grab"
-            ]
-          }
-        }
-      },
-      {
-        "source": "dda/data/json/itemgroups/Locations_MapExtras/locations.json",
-        "entry": {
-          "type": "item_group",
-          "subtype": "collection",
-          "id": "nursing_home_clothes",
-          "entries": [
-            {
-              "distribution": [
-                {
-                  "item": "jersey",
-                  "prob": 5
-                },
-                {
-                  "item": "longshirt",
-                  "prob": 20
-                },
-                {
-                  "item": "dress_shirt",
-                  "variant": "striped",
-                  "prob": 10
-                },
-                {
-                  "item": "longshirt",
-                  "prob": 5
-                },
-                {
-                  "item": "sweater",
-                  "prob": 20
-                },
-                {
-                  "item": "sweatshirt",
-                  "prob": 20
-                },
-                {
-                  "item": "tshirt",
-                  "prob": 10
-                },
-                {
-                  "item": "polo_shirt",
-                  "prob": 10
-                }
-              ]
-            },
-            {
-              "distribution": [
-                {
-                  "item": "pants_checkered",
-                  "prob": 10
-                },
-                {
-                  "item": "pants",
-                  "prob": 40
-                },
-                {
-                  "item": "jeans",
-                  "prob": 20
-                },
-                {
-                  "item": "jeans",
-                  "prob": 5
-                },
-                {
-                  "item": "pants",
-                  "variant": "pants_flag",
-                  "prob": 5
-                },
-                {
-                  "item": "breeches",
-                  "prob": 25
-                }
-              ]
-            },
-            {
-              "item": "slippers",
-              "prob": 50
-            }
-          ]
-        }
-      },
-      {
-        "source": "dda/data/json/mapgen/map_extras/spider.json",
-        "entry": {
-          "type": "mapgen",
-          "nested_mapgen_id": "spider_webs",
-          "object": {
-            "mapgensize": [
-              1,
-              1
-            ],
-            "place_fields": [
-              {
-                "field": "fd_web",
-                "x": 0,
-                "y": 0,
-                "intensity": [
-                  1,
-                  3
-                ]
-              }
             ]
           }
         }
@@ -15302,104 +15087,6 @@
             }
           ]
         }
-      },
-      {
-        "source": "dda/data/json/monstergroups/fish.json",
-        "entry": {
-          "type": "monstergroup",
-          "id": "GROUP_STOCKED_POND",
-          "is_animal": true,
-          "monsters": [
-            {
-              "monster": "mon_fish_rainbow_trout",
-              "weight": 50,
-              "cost_multiplier": 3,
-              "pack_size": [
-                1,
-                3
-              ]
-            },
-            {
-              "monster": "mon_fish_rainbow_trout",
-              "weight": 100,
-              "cost_multiplier": 3,
-              "conditions": [
-                "DAWN",
-                "DUSK"
-              ],
-              "pack_size": [
-                1,
-                3
-              ]
-            },
-            {
-              "monster": "mon_fish_sbass",
-              "weight": 25,
-              "cost_multiplier": 3,
-              "pack_size": [
-                1,
-                3
-              ]
-            },
-            {
-              "monster": "mon_fish_sbass",
-              "weight": 50,
-              "cost_multiplier": 3,
-              "conditions": [
-                "DAWN",
-                "DUSK"
-              ],
-              "pack_size": [
-                1,
-                3
-              ]
-            },
-            {
-              "monster": "mon_fish_perch",
-              "weight": 30,
-              "cost_multiplier": 3,
-              "pack_size": [
-                1,
-                3
-              ]
-            },
-            {
-              "monster": "mon_fish_perch",
-              "weight": 55,
-              "cost_multiplier": 3,
-              "conditions": [
-                "DAWN",
-                "DUSK"
-              ],
-              "pack_size": [
-                1,
-                3
-              ]
-            },
-            {
-              "monster": "mon_fish_salmon",
-              "weight": 15,
-              "cost_multiplier": 8,
-              "pack_size": [
-                4,
-                6
-              ]
-            },
-            {
-              "monster": "mon_fish_salmon",
-              "weight": 20,
-              "cost_multiplier": 8,
-              "conditions": [
-                "DAWN",
-                "DUSK"
-              ],
-              "pack_size": [
-                4,
-                6
-              ]
-            }
-          ]
-        }
       }
     ],
     "counterpart_mappings_applied": [
@@ -15426,24 +15113,6 @@
         "source": "f_treadmill_mechanical",
         "bn_target": "f_treadmill",
         "reason": "Existing BN treadmill; training retains BN power requirements."
-      },
-      {
-        "type": "item",
-        "source": "buttonshirt",
-        "bn_target": "dress_shirt",
-        "reason": "Existing BN button-down shirt."
-      },
-      {
-        "type": "item",
-        "source": "denim_shirt",
-        "bn_target": "longshirt",
-        "reason": "Existing long-sleeved everyday shirt; fabric and armor use BN values."
-      },
-      {
-        "type": "item",
-        "source": "jeans_skinny",
-        "bn_target": "jeans",
-        "reason": "Existing jeans; no separate fit variant needed."
       },
       {
         "type": "item_group",
@@ -15501,26 +15170,6 @@
           "mon_large_cockroach"
         ],
         [
-          "MONSTER",
-          "mon_pigeon"
-        ],
-        [
-          "item_group",
-          "SUS_science_personal_effects"
-        ],
-        [
-          "item_group",
-          "cigar_box_opened"
-        ],
-        [
-          "item_group",
-          "lab_mutagen_ingredients_fridge"
-        ],
-        [
-          "item_group",
-          "nursing_home_clothes"
-        ],
-        [
           "monstergroup",
           "GROUP_MUTANT_EVOLVED"
         ],
@@ -15539,22 +15188,12 @@
         [
           "monstergroup",
           "GROUP_SPIDER_BASEMENT"
-        ],
-        [
-          "monstergroup",
-          "GROUP_STOCKED_POND"
-        ],
-        [
-          "nested_mapgen",
-          "spider_webs"
         ]
       ],
-      "selected_definitions": 30,
+      "selected_definitions": 25,
       "selected_by_type": {
-        "MONSTER": 19,
-        "item_group": 1,
-        "mapgen": 1,
-        "monstergroup": 9
+        "MONSTER": 17,
+        "monstergroup": 8
       },
       "bn_declared_references_needing_semantic_review": [
         [
@@ -15580,22 +15219,6 @@
         [
           "MONSTER",
           "mon_feral_human_tool"
-        ],
-        [
-          "MONSTER",
-          "mon_fish_perch"
-        ],
-        [
-          "MONSTER",
-          "mon_fish_rainbow_trout"
-        ],
-        [
-          "MONSTER",
-          "mon_fish_salmon"
-        ],
-        [
-          "MONSTER",
-          "mon_fish_sbass"
         ],
         [
           "MONSTER",
@@ -15667,63 +15290,11 @@
         ],
         [
           "harvest",
-          "bird_tiny"
-        ],
-        [
-          "harvest",
           "human"
         ],
         [
           "harvest",
           "mutant_human"
-        ],
-        [
-          "item",
-          "breeches"
-        ],
-        [
-          "item",
-          "dress_shirt"
-        ],
-        [
-          "item",
-          "jeans"
-        ],
-        [
-          "item",
-          "jersey"
-        ],
-        [
-          "item",
-          "longshirt"
-        ],
-        [
-          "item",
-          "pants"
-        ],
-        [
-          "item",
-          "pants_checkered"
-        ],
-        [
-          "item",
-          "polo_shirt"
-        ],
-        [
-          "item",
-          "slippers"
-        ],
-        [
-          "item",
-          "sweater"
-        ],
-        [
-          "item",
-          "sweatshirt"
-        ],
-        [
-          "item",
-          "tshirt"
         ],
         [
           "item_group",
@@ -15742,28 +15313,7 @@
           "mon_zombie_cop_death_drops"
         ]
       ],
-      "unresolved_transitive_references": [
-        [
-          "item",
-          "egg_pigeon"
-        ],
-        [
-          "item_group",
-          "SUS_science_personal_effects"
-        ],
-        [
-          "item_group",
-          "cigar_box_opened"
-        ],
-        [
-          "item_group",
-          "feral_sapien_death_drops_spear"
-        ],
-        [
-          "item_group",
-          "lab_mutagen_ingredients_fridge"
-        ]
-      ],
+      "unresolved_transitive_references": [],
       "scope": "Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.",
       "blockers": [
         "Read-only terminal story graphs use the BN computer archive bridge; whole-site generation remains pending.",

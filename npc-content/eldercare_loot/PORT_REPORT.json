@@ -1,0 +1,122 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "status": "native_support_prepared_runtime_pending",
+  "definitions": 11,
+  "sample_adaptations": [
+    {
+      "source": "rabbit_sample",
+      "bn_item": "carrot",
+      "bn_recipe": "mutagen_rabbit"
+    },
+    {
+      "source": "rat_sample",
+      "bn_item": "blood_tainted_concentrate",
+      "bn_recipe": "mutagen_rat"
+    },
+    {
+      "source": "chiropteran_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_beast"
+    },
+    {
+      "source": "mouse_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_mouse"
+    },
+    {
+      "source": "fish_sample",
+      "bn_item": "fish",
+      "bn_recipe": "mutagen_fish"
+    },
+    {
+      "source": "gastropod_sample",
+      "bn_item": "clam",
+      "bn_recipe": "mutagen_cephalopod"
+    },
+    {
+      "source": "batrachian_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_beast"
+    },
+    {
+      "source": "insect_sample",
+      "bn_item": "assorted_bugs",
+      "bn_recipe": "mutagen_insect"
+    },
+    {
+      "source": "cattle_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_cattle"
+    },
+    {
+      "source": "spider_sample",
+      "bn_item": "chitin_piece",
+      "bn_recipe": "mutagen_spider"
+    },
+    {
+      "source": "troglobite_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_troglobite"
+    },
+    {
+      "source": "lizard_sample",
+      "bn_item": "scute_piece",
+      "bn_recipe": "mutagen_lizard"
+    },
+    {
+      "source": "ursine_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_ursine"
+    },
+    {
+      "source": "beast_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_beast"
+    },
+    {
+      "source": "human_sample",
+      "bn_item": "meat_tainted",
+      "bn_recipe": "mutagen"
+    },
+    {
+      "source": "cephalopod_sample",
+      "bn_item": "clam",
+      "bn_recipe": "mutagen_cephalopod"
+    },
+    {
+      "source": "lupine_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_lupine"
+    },
+    {
+      "source": "feline_sample",
+      "bn_item": "animal_blood_concentrate",
+      "bn_recipe": "mutagen_feline"
+    },
+    {
+      "source": "plant_sample",
+      "bn_item": "veggy",
+      "bn_recipe": "mutagen_plant"
+    },
+    {
+      "source": "slime_sample",
+      "bn_item": "slime_scrap",
+      "bn_recipe": "mutagen_slime"
+    },
+    {
+      "source": "bird_sample",
+      "bn_item": "feather",
+      "bn_recipe": "mutagen_bird"
+    },
+    {
+      "source": "crustacean_sample",
+      "bn_item": "chitin_piece",
+      "bn_recipe": "mutagen_spider"
+    }
+  ],
+  "whole_locations_installed": false,
+  "scope": "Loot, card-holder storage and pigeon lifecycle; no global DDA mutation, pocket, prescription or currency systems."
+}
