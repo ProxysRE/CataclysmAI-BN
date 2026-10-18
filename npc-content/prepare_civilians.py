@@ -87,10 +87,23 @@ def native_data():
     return result
 
 
+
+LUA_PAYLOAD = 'data/mods/Civilians/main.lua'
+MILITIA_EXCLUSION = '  -- Grey Moose lodge has explicit community NPCs.\n  "GMLODGE",\n'
+
+def lua_payload():
+    source = mod_sources()['main.lua']
+    anchor = 'local NPC_TERRAINS = {\n'
+    assert source.count(anchor) == 1
+    return source.replace(anchor, anchor + MILITIA_EXCLUSION, 1)
+
+
 def patch_sections():
     before = mod_sources()['civilians.json']
     after = json.dumps(native_data(), ensure_ascii=True, indent=2) + '\n'
-    return ''.join(difflib.unified_diff(before.splitlines(keepends=True), after.splitlines(keepends=True), 'a/' + PAYLOAD, 'b/' + PAYLOAD))
+    result = ''.join(difflib.unified_diff(before.splitlines(keepends=True), after.splitlines(keepends=True), 'a/' + PAYLOAD, 'b/' + PAYLOAD))
+    result += ''.join(difflib.unified_diff(mod_sources()['main.lua'].splitlines(keepends=True), lua_payload().splitlines(keepends=True), 'a/' + LUA_PAYLOAD, 'b/' + LUA_PAYLOAD))
+    return result
 
 
 def extend_creature_core(result):
@@ -166,6 +179,8 @@ def prepare(check=False, bn_source=None):
         assert path.read_text() == text
     else:
         path.write_text(text)
+    lua = lua_payload()
+    assert lua.replace(MILITIA_EXCLUSION, '', 1) == mod_sources()['main.lua']
     print('PASS: six dialogue additions to existing Civilians types; every original field and all spawn/evolution tables retained')
 
 

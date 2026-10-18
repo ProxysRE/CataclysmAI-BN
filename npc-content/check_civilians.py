@@ -20,7 +20,7 @@ for topic in sources():
         source = next(e for e in sources() if e['id'] == page['id'])
         assert page['lines'] == ([source['dynamic_line']] if isinstance(source['dynamic_line'], str) else source['dynamic_line'])
         assert page['responses'] == [{'text': r['text'], 'target': r['topic']} for r in source['responses']]
-# Groups and Lua are archived for provenance, not regenerated or installed as overrides.
+# Stock groups remain unchanged; Lua adds only the explicit-lodge exclusion.
 groups = json.loads(mod_sources()['monstergroup.json'])
 assert any(e['name'] == 'GROUP_CIVILIANS_UPGRADE' for e in groups)
 assert ('monstergroup', 'GROUP_CIVILIANS_UPGRADE') in mod_providers()
@@ -38,3 +38,6 @@ from prepare_civilians import ROOT
 fixture=(ROOT / "native/dda_civilians_test.cpp").read_text()
 assert "person.setpos(" not in fixture
 assert "monster distant_person( type, tripoint_bub_ms( 68, 60, 0 ) );" in fixture
+
+from prepare_civilians import lua_payload, MILITIA_EXCLUSION
+assert lua_payload().replace(MILITIA_EXCLUSION, "", 1) == mod_sources()["main.lua"]

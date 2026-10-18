@@ -1,0 +1,62 @@
+{
+  "source_files": {
+    "dda/data/json/mapgen/militia/GM_LODGE.json": {
+      "blob_sha": "bd03f73db4cafff7f0e07ee0400e4b3b8948c5f1",
+      "definitions": 5
+    },
+    "dda/data/json/mapgen_palettes/militia/GM_LODGE_PALETTE.json": {
+      "blob_sha": "6054979f13510150a0ba3defa6993b7b9b6ebf40",
+      "definitions": 1
+    },
+    "dda/data/json/npcs/factions.json": {
+      "blob_sha": "877d78bd745fc25af46cc6ac5588a6306298aa96",
+      "definitions": 1
+    },
+    "dda/data/json/npcs/militia/GM_Militia_Guard.json": {
+      "blob_sha": "f37146fa1950a469d59f915080a266b6cba55ef4",
+      "definitions": 5
+    },
+    "dda/data/json/npcs/militia/GM_Militia_Merchant.json": {
+      "blob_sha": "aa738853779934d85a5460a46c19d496ae9cdea2",
+      "definitions": 9
+    },
+    "dda/data/json/overmap/overmap_special/specials.json": {
+      "blob_sha": "5870b1fb6a56b031e3756a0fa6ac2b328ba9e895",
+      "definitions": 1
+    },
+    "dda/data/json/overmap/overmap_terrain/overmap_terrain_militia.json": {
+      "blob_sha": "c2e79bbee5adc737658ec7ee919966fae4573fc2",
+      "definitions": 1
+    }
+  },
+  "installed": false,
+  "native_payload_prepared": true,
+  "native_runtime_validated": false,
+  "definitions": {
+    "mapgen": 5,
+    "faction": 1,
+    "npc": 2,
+    "npc_class": 2,
+    "talk_topic": 9,
+    "item_group": 1,
+    "overmap_special": 1,
+    "overmap_terrain": 1
+  },
+  "unresolved_typed_refs": [],
+  "core_or_bundled_mod_collisions": [],
+  "item_aliases": {
+    "case_cigar": "box_small",
+    "goggles_chem": "glasses_safety",
+    "sneakers_steel": "boots_steel"
+  },
+  "group_aliases": {
+    "tools_toolbox": "tools_common",
+    "cigar_box_unopened": "cigar_box_opened"
+  },
+  "semantic_review": "Bundled Civilians NC_PROF_MILITIA is a generic class/profession, not these named community NPC templates, faction, dialogue or lodge.",
+  "remaining": [
+    "Native initialization, NPC interaction/trading and full map generation",
+    "Natural placement and save/reload",
+    "GMLODGE Civilians exclusion included atomically; mod-enabled native generation validation pending"
+  ]
+}

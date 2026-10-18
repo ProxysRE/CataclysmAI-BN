@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "XEDRA activity suit normal/casual states prepared using real BN armor; respirator multi-resource and S02a protection remain blockers",
+  "stage": "Grey Moose community promoted into native payload; source/installed validation pending. Reproducible NPC coverage in PORT_PROGRESS.json.",
   "package": "Isolated Road",
-  "native_compilation": "Windows game, 34 native cases / 2893 assertions and installed-data regression passed at 1031b295. Casing/quest-prop changes await their runs.",
+  "native_compilation": "Clean Windows checkpoint e52486f7: 67 core cases / 10627 assertions and 5 Civilians+Exotic Ammo cases / 766 assertions, repeated successfully on installed data. Frontage bridge and Grey Moose additions await newer runs.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -461,25 +461,33 @@
     "existing_types_with_added_dialogue": 6,
     "all_original_fields_preserved": true,
     "duplicate_core_payload_removed": true,
-    "mod_spawn_lua_evolution_groups_unchanged": true,
+    "mod_spawn_lua_evolution_groups_unchanged": "Stock Lua adds only GMLODGE to the existing exclusion list for the new fixed NPC community; spawn/evolution tables unchanged",
     "other_subtypes_do_not_inherit_dialogue": true,
     "optional_mod_activation_automatic": false,
     "remaining_full_site_definitions": 0,
     "validation": "Python exact-field/source/patch/package checks; separate core and Civilians-enabled source/installed native runs pending",
     "source_native_checkpoint": {
-      "head": "115f102db24e277f20b5cab5dc80095e19e62e95",
-      "run": 39155903445,
+      "head": "e52486f7a9b5108353ef3381ba55bf72938001ef",
+      "run": 39166343756,
       "test_cases_passed": 5,
       "assertions_passed": 766,
-      "clean_log": false,
-      "failure": "Temporary stack monster moved via tracker-aware setpos in test fixture; construct separate distant monster in follow-up",
-      "installed_tests_reached": false
-    }
+      "clean_log": true,
+      "installed_tests_reached": true,
+      "installed_result": "success"
+    },
+    "lua_exclusion_validation_pending": true
   },
   "latest_clean_windows_build": {
-    "head": "07109593d505b4095094129bc0e6dca4c3a6320b",
-    "run": 39140851555,
-    "result": "success"
+    "head": "e52486f7a9b5108353ef3381ba55bf72938001ef",
+    "run": 39166343756,
+    "result": "success",
+    "source_core_cases": 67,
+    "source_core_assertions": 10627,
+    "source_mod_cases": 5,
+    "source_mod_assertions": 766,
+    "installed_core_cases": 67,
+    "installed_mod_cases": 5,
+    "artifact": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39166343756/artifacts/12152373477"
   },
   "bundled_mod_inventory": {
     "status": "full_pinned_catalog_generated_and_local_audit_passed",
@@ -487,10 +495,10 @@
     "records": 10471,
     "provider_directories": 75,
     "scope": "all pinned data/mods JSON; typed IDs, display names, mod owners and dependencies",
-    "new_core_declarations_audited": 289,
+    "new_core_declarations_audited": 353,
     "unreviewed_collisions": 0,
     "validated_resolution": "Existing identical BN Exotic Ammo 545 casing shared with core; original duplicate removed; equality and removal patch required by guard",
-    "full_fresh_tree_CI_repeat_pending": false,
+    "full_fresh_tree_CI_repeat_pending": true,
     "limitations": "Exact IDs and semantic search require human source comparison; third-party mods outside the bundled tree are not covered",
     "fresh_tree_checkpoint": {
       "head": "7ca251a165df4f17a7c376daeb205dbed58b93d7",
@@ -502,7 +510,7 @@
     "source": "data/mods/exotic_ammo/generic/casing.json",
     "strategy": "one unchanged BN item definition in core, optional-mod duplicate removed",
     "other_items_changed": false,
-    "source_and_installed_mod_combo_tests_pending": true
+    "source_and_installed_mod_combo_tests_pending": false
   },
   "eldercare_group_layer": {
     "status": "prepared_native_runtime_pending",
@@ -556,5 +564,25 @@
     "native_cases": 2,
     "scope": "Four rotations, water rejection, terrain and occupied-tile preservation; invalid ID/duplicate point/invalid location guards",
     "full_eldercare_sites_installed": false
+  },
+  "npc_progress_report": "PORT_PROGRESS.json: 82 selected templates; 4 native-load verified at clean checkpoint; 6 embedded including two unverified militia additions; all-DDA completion percentage unknown",
+  "militia_native_layer": {
+    "status": "embedded_pending_native_tests",
+    "npc_templates": 2,
+    "dialogue_topics": 9,
+    "native_definitions": 22,
+    "placed_npcs": {
+      "merchant": 1,
+      "guards": 6
+    },
+    "omt_tiles": 24,
+    "mapgen_definitions": 5,
+    "levels": [
+      0,
+      1,
+      2
+    ],
+    "mission_definitions": 0,
+    "notes": "Source has trading/story dialogue, no quest chain; BN item/loot counterparts reused, food metadata uses existing bridge. Core/bundled-mod collision and typed closure checks passed; native generation/interaction/installed/mod-enabled tests pending."
   }
 }

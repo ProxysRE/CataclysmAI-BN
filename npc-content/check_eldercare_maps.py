@@ -54,7 +54,8 @@ for field, kind, value in (
     target={'terrain':'missing_wall','item':'missing_liquid','item_group':'missing_loot','MONSTER':'missing_person'}[kind]
     assert (kind,target) in refs,(field,refs)
 assert ('overmap_terrain_abstract','missing_parent') in schema_refs([{'type':'overmap_terrain','copy-from':'missing_parent'}])
-original=mod_sources()['main.lua']
+from prepare_civilians import lua_payload
+original=lua_payload()
 lua=candidate_lua()
 assert lua.count(LUA_MARKER)==1 and lua.replace(LUA_MARKER,'',1)==original
 assert 'OtMatchType.CONTAINS, omt_pos' in original
@@ -66,5 +67,5 @@ for entries in payload.values():
 # Candidate Lua is deliberately not shipped before the maps: existing optional
 # mod behavior remains unchanged while native compatibility is unverified.
 from prepare_civilians import patch_sections
-assert 'main.lua' not in patch_sections()
+assert 'nursing_home' not in patch_sections() and 'retirement_community' not in patch_sections()
 print('PASS: 71 full-site declarations / 32 mapgen definitions / 190 custom OMT tiles; source geometry/parameters/stories preserved; extended reference and rotation guards; three frontage constraints retained for native bridge validation')

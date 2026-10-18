@@ -18,6 +18,8 @@ local NPC_TERRAINS = {
   -- DDA eldercare maps have explicit source population tables.
   "nursing_home",
   "retirement_community",
+  -- Grey Moose lodge has explicit community NPCs.
+  "GMLODGE",
   "refctr", -- Refugee center related
   "evac_center", -- Evac center related
   "robofachq", -- Hub 01 HQ

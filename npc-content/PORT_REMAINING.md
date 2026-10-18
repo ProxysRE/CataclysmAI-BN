@@ -76,3 +76,9 @@ Prepared all 71 site declarations / 32 mapgen definitions, covering 190 custom O
 ## Constraint-only fixed specials (2026-10-19 Moscow)
 
 Prepared the small source-based DDA placement behavior in BN's existing fixed-special class: retain all required locations, skip NULL_ID terrain writes/occupied cells, and omit those non-generated cells from mapgen parameter collection/preview. Four-rotation placement/water/terrain tests and invalid-input checks are embedded for Windows source/installed execution. GLOBALLY_UNIQUE is retained using BN's existing global tracking. Full eldercare maps remain uninstalled pending bridge and full generation validation; see frontage/README.md.
+
+## Grey Moose promotion and measured NPC coverage (2026-10-19 Moscow)
+
+The whole Grey Moose community is now embedded for native testing: two templates, nine dialogue topics, faction/shop data and five maps covering 24 OMT tiles, with one trader and six guards. Existing BN items/loot and the ported cigar wrapper close all five missing trade-stock references; Civilians ambient spawning is excluded only on GMLODGE using its existing Lua mechanism. Native tests and packaging guards are prepared; no successful militia native run is claimed yet. See militia/README.md.
+
+PORT_PROGRESS.json now distinguishes 82 started templates, four native-load verified at clean e52486f7 (4.9%), and six embedded including two pending militia templates (7.3%). These are template-level metrics for selected packages, not all-DDA or full quest completion percentages. The clean checkpoint passed both core/mod-enabled suites on source and installed data and packaged Windows successfully; the newer frontage and militia changes await their runs.

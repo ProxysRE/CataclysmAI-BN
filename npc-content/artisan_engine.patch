@@ -3954,6 +3954,97 @@
 +    }
 +}
 --- /dev/null
++++ b/tests/dda_militia_test.cpp
+@@ -0,0 +1,88 @@
++#include "catch/catch.hpp"
++#include "avatar.h"
++#include "cata_utility.h"
++#include "dialogue.h"
++#include "game.h"
++#include "item_group.h"
++#include "map/map.h"
++#include "map_helpers.h"
++#include "npc.h"
++#include "npctalk.h"
++#include "overmap/overmapbuffer.h"
++#include "overmap/overmapbuffer_registry.h"
++#include "state_helpers.h"
++
++TEST_CASE( "grey_moose_trader_and_guard_load_with_source_roles", "[dda_npc][dda_militia]" )
++{
++    clear_all_state();
++    get_avatar().reset_all_missions();
++    for( const auto *id : { "MILITIA_MERCHANT", "MILITIA_GUARD1" } ) {
++        REQUIRE( string_id<npc_template>( id ).is_valid() );
++    }
++    npc merchant;
++    merchant.load_npc_template( string_id<npc_template>( "MILITIA_MERCHANT" ) );
++    CHECK( merchant.mission == NPC_MISSION_SHOPKEEP );
++    CHECK( merchant.get_fac_id() == faction_id( "GM_militia_faction" ) );
++    npc guard;
++    guard.load_npc_template( string_id<npc_template>( "MILITIA_GUARD1" ) );
++    CHECK( guard.mission == NPC_MISSION_GUARD_PATROL );
++    CHECK( guard.get_fac_id() == merchant.get_fac_id() );
++    REQUIRE( item_group::group_is_defined( item_group_id( "MILITIA_MERCHANT_misc" ) ) );
++    auto conversation = dialogue{};
++    conversation.alpha = &get_avatar();
++    conversation.beta = &merchant;
++    const auto first = conversation.dynamic_line( talk_topic( "TALK_MILITIA_MAIN" ) );
++    CHECK( first.find( "Welcome to our camp" ) != std::string::npos );
++    get_avatar().set_value( "npctalk_var_dialogue_first_meeting_talked_to_MILITIAMAIN", "yes" );
++    CHECK( conversation.dynamic_line( talk_topic( "TALK_MILITIA_MAIN" ) ) == "Hello again." );
++    clear_all_state();
++}
++
++TEST_CASE( "grey_moose_lodge_generates_two_floors_roof_and_seven_community_npcs", "[dda_npc][dda_militia][dda_civilians]" )
++{
++    clear_all_state();
++    get_avatar().reset_all_missions();
++    const auto restore_mapgen = restore_on_out_of_scope<bool>( disable_mapgen );
++    disable_mapgen = false;
++    auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
++    const int base = 1700;
++    for( int y = 0; y < 4; ++y ) {
++        for( int x = 0; x < 4; ++x ) {
++            const auto name = "GMLODGE" + std::to_string( y + 1 ) + "_" + std::to_string( x + 1 );
++            const auto terrain = oter_id( name + "_north" );
++            REQUIRE( terrain.is_valid() );
++            buffer.ter_set( tripoint_abs_omt( base + x, base + y, 0 ), terrain );
++        }
++    }
++    for( int y = 1; y <= 2; ++y ) {
++        for( int x = 1; x <= 2; ++x ) {
++            const auto stem = "GMLODGE" + std::to_string( y + 1 );
++            buffer.ter_set( tripoint_abs_omt( base + x, base + y, 1 ),
++                            oter_id( stem + "_" + std::to_string( x + 1 ) + "_2_north" ) );
++            buffer.ter_set( tripoint_abs_omt( base + x, base + y, 2 ),
++                            oter_id( stem + "_roof_" + std::to_string( x + 1 ) + "_north" ) );
++        }
++    }
++    for( int y = 0; y < 4; ++y ) {
++        for( int x = 0; x < 4; ++x ) {
++            INFO( "lodge cell=" << x << "," << y );
++            auto generated = map( 2 );
++            generated.load( project_to<coords::sm>( point_abs_omt( base + x, base + y ) ), false );
++            CHECK( generated.ter( tripoint_bub_ms( 12, 12, 0 ) ) != ter_id( "t_null" ) );
++            if( x >= 1 && x <= 2 && y >= 1 && y <= 2 ) {
++                CHECK( generated.ter( tripoint_bub_ms( 12, 12, 1 ) ) != ter_id( "t_null" ) );
++                CHECK( generated.ter( tripoint_bub_ms( 12, 12, 2 ) ) != ter_id( "t_null" ) );
++            }
++        }
++    }
++    int merchants = 0;
++    int guards = 0;
++    for( const auto &person : buffer.get_npcs_near_omt( tripoint_abs_omt( base + 2, base + 2, 0 ), 4 ) ) {
++        if( person->get_fac_id() != faction_id( "GM_militia_faction" ) ) { continue; }
++        if( person->mission == NPC_MISSION_SHOPKEEP ) { ++merchants; }
++        if( person->mission == NPC_MISSION_GUARD_PATROL ) { ++guards; }
++    }
++    CHECK( merchants == 1 );
++    CHECK( guards == 6 );
++    clear_all_state();
++}
+--- /dev/null
 +++ b/data/json/dda_artisan_activities.json
 @@ -0,0 +1,15 @@
 +[
@@ -35723,6 +35814,2972 @@
      ],
      "flags": [
        "HUMAN",
+--- a/data/mods/Civilians/main.lua
++++ b/data/mods/Civilians/main.lua
+@@ -15,6 +15,8 @@
+ -- NPC exclusive area list (avoid spawning wild civilians in these areas)
+ ---@type table<string>
+ local NPC_TERRAINS = {
++  -- Grey Moose lodge has explicit community NPCs.
++  "GMLODGE",
+   "refctr", -- Refugee center related
+   "evac_center", -- Evac center related
+   "robofachq", -- Hub 01 HQ
+--- /dev/null
++++ b/data/json/dda_grey_moose_lodge.json
+@@ -0,0 +1,2952 @@
++[
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "GMLODGE1_1",
++        "GMLODGE1_2",
++        "GMLODGE1_3",
++        "GMLODGE1_4"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "_": "t_region_groundcover_barren",
++        "%": "t_fence_barbed",
++        ".": "t_floor",
++        "+": "t_door_c",
++        "-": "t_wall_w",
++        ";": "t_dirtfloor",
++        "B": "t_floor",
++        ",": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            1
++          ],
++          [
++            "t_grass_tall",
++            1
++          ],
++          [
++            "t_region_groundcover",
++            5
++          ]
++        ],
++        "D": "t_floor",
++        "E": "t_floor",
++        "G": "t_palisade_gate",
++        "L": "t_floor",
++        "O": "t_floor",
++        "S": "t_floor",
++        "T": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            2
++          ],
++          [
++            "t_grass_tall",
++            2
++          ],
++          [
++            "t_region_groundcover",
++            2
++          ],
++          [
++            "t_region_tree",
++            4
++          ]
++        ],
++        "#": "t_wall_wood",
++        "X": "t_region_groundcover",
++        "Y": "t_floor",
++        "Z": "t_floor",
++        "b": "t_region_groundcover_barren",
++        "c": "t_floor",
++        "d": "t_floor",
++        "f": "t_floor",
++        "h": "t_floor",
++        "k": "t_floor",
++        "n": "t_floor",
++        "o": "t_carpet_red",
++        "r": "t_floor",
++        "s": "t_sidewalk",
++        "t": "t_floor",
++        "v": "t_window_domestic",
++        "w": "t_window_boarded",
++        "x": "t_region_groundcover",
++        "y": "t_splitrail_fence",
++        "|": "t_splitrail_fencegate_c",
++        "z": "t_floor",
++        "~": "t_water_sh",
++        "\u0394": "t_floor",
++        "@": "t_floor",
++        "u": "t_floor",
++        "\u0166": "t_floor",
++        "\u2021": "t_floor",
++        "*": "t_floor",
++        "`": "t_floor",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "6": "t_floor",
++        "7": "t_floor",
++        "$": "t_water_pump",
++        "<": "t_wood_stairs_up",
++        ">": "t_wood_stairs_down",
++        "F": "t_region_groundcover",
++        "M": "t_region_groundcover",
++        "?": "t_region_groundcover_barren",
++        "!": "t_floor",
++        "(": "t_region_groundcover",
++        ")": "t_region_groundcover"
++      },
++      "furniture": {
++        "B": "f_bathtub",
++        "D": "f_trashcan",
++        "E": "f_bookcase",
++        "L": "f_locker",
++        "O": "f_oven",
++        "S": "f_sink",
++        "Y": "f_sofa",
++        "Z": "f_crate_o",
++        "c": "f_counter",
++        "d": "f_dresser",
++        "f": "f_fridge",
++        "h": "f_chair",
++        "k": "f_desk",
++        "n": "f_table",
++        "r": "f_rack",
++        "t": "f_toilet",
++        "z": "f_crate_c",
++        "1": "f_bigmirror",
++        "2": "f_floor_lamp",
++        "3": "f_arcade_machine",
++        "4": "f_piano",
++        "5": "f_entertainment_center",
++        "6": "f_displaycase",
++        "7": "f_stool",
++        "8": "f_canvas_wall",
++        "9": "f_center_groundsheet",
++        "F": "f_firering",
++        "M": "f_butcher_rack",
++        "?": "f_camp_chair",
++        "`": "f_indoor_plant",
++        "@": "f_bed",
++        "\u2021": "f_woodstove",
++        "\u0166": "f_sink",
++        "u": "f_cupboard",
++        "\u0394": "f_armchair",
++        "\u0245": "f_wardrobe",
++        "^": "f_dryer",
++        "&": "f_washer",
++        "*": "f_dishwasher",
++        "(": "f_rotary_clothesline",
++        ")": "f_sandbag_half",
++        "!": "f_pool_table"
++      },
++      "items": {
++        "d": [
++          {
++            "item": "SUS_dresser_mens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "SUS_dresser_womens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "!": {
++          "item": "pool_table",
++          "chance": 30,
++          "repeat": [
++            1,
++            2
++          ]
++        },
++        "u": [
++          {
++            "item": "dishes_dining",
++            "chance": 30
++          },
++          {
++            "item": "tea_dishes",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "baked_goods",
++            "chance": 5
++          },
++          {
++            "item": "groce_condiment",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "dining",
++            "chance": 10
++          }
++        ],
++        "5": [
++          {
++            "item": "consumer_electronics",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          },
++          {
++            "item": "livingroom",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          }
++        ],
++        "f": {
++          "item": "SUS_fridge",
++          "chance": 100
++        },
++        "r": [
++          {
++            "item": "tools_home",
++            "chance": 40
++          },
++          {
++            "item": "cleaning",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "mechanics",
++            "chance": 1,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "camping",
++            "chance": 10
++          },
++          {
++            "item": "tools_survival",
++            "chance": 5,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "6": {
++          "item": "home_display_case",
++          "chance": 100
++        },
++        "L": [
++          {
++            "item": "tools_common",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "hardware",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "cleaning",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "E": [
++          {
++            "item": "homebooks",
++            "chance": 40,
++            "repeat": [
++              1,
++              4
++            ]
++          },
++          {
++            "item": "games",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "@": {
++          "item": "bed",
++          "chance": 50
++        },
++        "Z": [
++          {
++            "item": "SUS_pantry",
++            "chance": 55
++          },
++          {
++            "item": "cannedfood",
++            "chance": 80,
++            "repeat": [
++              3,
++              5
++            ]
++          }
++        ]
++      },
++      "fill_ter": "t_region_groundcover",
++      "faction_owner": [
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            0,
++            23
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            24,
++            47
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            48,
++            71
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            72,
++            95
++          ],
++          "y": [
++            0,
++            23
++          ]
++        }
++      ],
++      "rows": [
++        "yyyyyyyyyyyyyyyyyyy||yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
++        "y                           T                                                          T       y",
++        "y         T                                   T             T                                  y",
++        "y                     T                                                   T                    y",
++        "y                                            T                                                 y",
++        "y   T     ########            T                                                                y",
++        "y         #zzz.hr#                                                    T                        y",
++        "y         #.....r#                                       T                           T         y",
++        "y         #zz....#                    T                                                        y",
++        "y         ###v#+##                                                                             y",
++        "y                                                                      T                       y",
++        "y T                           T              T                                                 y",
++        "y                   T                                      T                                   y",
++        "y                                                                                              y",
++        "y      T                            T                                                          y",
++        "y             T                                 T                                 T            y",
++        "y                                                                   T                          y",
++        "y                                                                                              y",
++        "y                            T                         T                                       y",
++        "y                  T                                                                           y",
++        "y    T                                           T                          T                  y",
++        "y                                                                                    T         y",
++        "y                                     T                 T                                      y",
++        "y                T                                                T                            y"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "GMLODGE2_1",
++        "GMLODGE2_2",
++        "GMLODGE2_3",
++        "GMLODGE2_4"
++      ],
++      [
++        "GMLODGE3_1",
++        "GMLODGE3_2",
++        "GMLODGE3_3",
++        "GMLODGE3_4"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "_": "t_region_groundcover_barren",
++        "%": "t_fence_barbed",
++        ".": "t_floor",
++        "+": "t_door_c",
++        "-": "t_wall_w",
++        ";": "t_dirtfloor",
++        "B": "t_floor",
++        ",": "t_region_groundcover",
++        "D": "t_floor",
++        "E": "t_floor",
++        "G": "t_palisade_gate",
++        "L": "t_floor",
++        "O": "t_floor",
++        "S": "t_floor",
++        "T": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            2
++          ],
++          [
++            "t_grass_tall",
++            2
++          ],
++          [
++            "t_region_groundcover",
++            2
++          ],
++          [
++            "t_region_tree",
++            4
++          ]
++        ],
++        "#": "t_wall_wood",
++        "X": "t_region_groundcover",
++        "Y": "t_floor",
++        "Z": "t_floor",
++        "b": "t_region_groundcover_barren",
++        "c": "t_floor",
++        "d": "t_floor",
++        "f": "t_floor",
++        "h": "t_floor",
++        "k": "t_floor",
++        "n": "t_floor",
++        "o": "t_carpet_red",
++        "r": "t_floor",
++        "s": "t_sidewalk",
++        "t": "t_floor",
++        "v": "t_window_domestic",
++        "w": "t_window_boarded",
++        "x": "t_region_groundcover",
++        "y": "t_splitrail_fence",
++        "|": "t_splitrail_fencegate_c",
++        "z": "t_floor",
++        "~": "t_water_sh",
++        "\u0394": "t_floor",
++        "@": "t_floor",
++        "u": "t_floor",
++        "\u0166": "t_floor",
++        "\u2021": "t_floor",
++        "*": "t_floor",
++        "`": "t_floor",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "6": "t_floor",
++        "7": "t_floor",
++        "$": "t_water_pump",
++        "<": "t_wood_stairs_up",
++        ">": "t_wood_stairs_down",
++        "F": "t_region_groundcover",
++        "M": "t_region_groundcover",
++        "?": "t_region_groundcover_barren",
++        "!": "t_floor",
++        "(": "t_region_groundcover",
++        ")": "t_region_groundcover"
++      },
++      "furniture": {
++        "B": "f_bathtub",
++        "D": "f_trashcan",
++        "E": "f_bookcase",
++        "L": "f_locker",
++        "O": "f_oven",
++        "S": "f_sink",
++        "Y": "f_sofa",
++        "Z": "f_crate_o",
++        "c": "f_counter",
++        "d": "f_dresser",
++        "f": "f_fridge",
++        "h": "f_chair",
++        "k": "f_desk",
++        "n": "f_table",
++        "r": "f_rack",
++        "t": "f_toilet",
++        "z": "f_crate_c",
++        "1": "f_bigmirror",
++        "2": "f_floor_lamp",
++        "3": "f_arcade_machine",
++        "4": "f_piano",
++        "5": "f_entertainment_center",
++        "6": "f_displaycase",
++        "7": "f_stool",
++        "8": "f_canvas_wall",
++        "9": "f_center_groundsheet",
++        "F": "f_firering",
++        "M": "f_butcher_rack",
++        "?": "f_camp_chair",
++        "`": "f_indoor_plant",
++        "@": "f_bed",
++        "\u2021": "f_woodstove",
++        "\u0166": "f_sink",
++        "u": "f_cupboard",
++        "\u0394": "f_armchair",
++        "\u0245": "f_wardrobe",
++        "^": "f_dryer",
++        "&": "f_washer",
++        "*": "f_dishwasher",
++        "(": "f_rotary_clothesline",
++        ")": "f_sandbag_half",
++        "!": "f_pool_table"
++      },
++      "items": {
++        "d": [
++          {
++            "item": "SUS_dresser_mens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "SUS_dresser_womens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "!": {
++          "item": "pool_table",
++          "chance": 30,
++          "repeat": [
++            1,
++            2
++          ]
++        },
++        "u": [
++          {
++            "item": "dishes_dining",
++            "chance": 30
++          },
++          {
++            "item": "tea_dishes",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "baked_goods",
++            "chance": 5
++          },
++          {
++            "item": "groce_condiment",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "dining",
++            "chance": 10
++          }
++        ],
++        "5": [
++          {
++            "item": "consumer_electronics",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          },
++          {
++            "item": "livingroom",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          }
++        ],
++        "f": {
++          "item": "SUS_fridge",
++          "chance": 100
++        },
++        "r": [
++          {
++            "item": "tools_home",
++            "chance": 40
++          },
++          {
++            "item": "cleaning",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "mechanics",
++            "chance": 1,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "camping",
++            "chance": 10
++          },
++          {
++            "item": "tools_survival",
++            "chance": 5,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "6": {
++          "item": "home_display_case",
++          "chance": 100
++        },
++        "L": [
++          {
++            "item": "tools_common",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "hardware",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "cleaning",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "E": [
++          {
++            "item": "homebooks",
++            "chance": 40,
++            "repeat": [
++              1,
++              4
++            ]
++          },
++          {
++            "item": "games",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "@": {
++          "item": "bed",
++          "chance": 50
++        },
++        "Z": [
++          {
++            "item": "SUS_pantry",
++            "chance": 55
++          },
++          {
++            "item": "cannedfood",
++            "chance": 80,
++            "repeat": [
++              3,
++              5
++            ]
++          }
++        ]
++      },
++      "fill_ter": "t_region_groundcover",
++      "faction_owner": [
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            0,
++            23
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            24,
++            47
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            48,
++            71
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            72,
++            95
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            0,
++            23
++          ],
++          "y": [
++            24,
++            47
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            24,
++            47
++          ],
++          "y": [
++            24,
++            47
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            48,
++            71
++          ],
++          "y": [
++            24,
++            47
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            72,
++            95
++          ],
++          "y": [
++            24,
++            47
++          ]
++        }
++      ],
++      "rows": [
++        "y                                       T                               T                      y",
++        "y       T                  T                                  T                         T      y",
++        "y              T                                   T               T                           y",
++        "y                                                                             T                y",
++        "y       T                   ########+##v################v##+########                           y",
++        "y                 T         #B.t\u0166u#\u0394..\u2021`5EEE#LLLLLL#fOS*uuu.`#u\u0166t.B#                   T       y",
++        "y                           #B....+.........#......#.........+....B#                           y",
++        "y                           #######\u0394........#....hk#....uuu..#######                           y",
++        "y         T                 #L.t\u0166u#..YYY.YYY#.....k#....777..#u\u0166t.B#           T               y",
++        "y                        T  #L....+.........#2....D#.........+....B#                           y",
++        "y                           #######.........##+##+##.........#######                 T         y",
++        "y                T          #z....+..........................+....^#   T                       y",
++        "y      T                    #z....#...........oooo...........#r...&#                           y",
++        "y                           #Z....#..hhh.hhh..oooo..hhh.hhh..#r...##                           y",
++        "y                           #.....#..nnn.nnn..oooo..nnn.nnn..#r...L#                 T         y",
++        "y                           #ZZuu.#..hhh.hhh..oooo..hhh.hhh..#r.uuL#         T                 y",
++        "y    T          T           #######...........oooo...........#######                           y",
++        "y                           #@d@..+..........................+.2@d@#                           y",
++        "y                           #@.@..#..........................#..@.@#                      T    y",
++        "y                           #.....#...........oooo..#+##.....#.....#         T                 y",
++        "y             T         T   #@@.\u0394D#..........`oooo`.#.<#.....#D5..\u0394#                           y",
++        "y                           #######+###v####v##++##v####v###+#######             T             y",
++        "y                           #3.uuf...#        ssss   M   $#...2EE.\u0394#                           y",
++        "y       T    T              #........# (      ssss        #........#                           y",
++        "y                           #........#                ?   #........#  T                        y",
++        "y                           #...!!...# (             ___  #....Y..5#             T             y",
++        "y                  T        #2..!!..`v              ?_F_? v`...Y..5#                    T      y",
++        "y                           #...!!...#               ___  #....Y..5#                           y",
++        "y     T                     #........#                ?   #........#                           y",
++        "y                           #........#                    #........#                           y",
++        "y                  T        #\u0394......\u0394#                    #2..66...#                           y",
++        "y                           ##########                    ##########                 T         y",
++        "y           T                        ))))))))      ))))))))              T                     y",
++        "y                                                                                              y",
++        "y                                                                                              y",
++        "y                 T               T     ,,,,,,ssss,,,,,,                                       y",
++        "y     T                                ,,,,,,ss~~ss,,,,,,  T                          T        y",
++        "y                                     ,,,,,,ss~~~~ss,,,,,,                   T                 y",
++        "y             T                       ,,,,,,s~~~~~~s,,,,,,         T                           y",
++        "y                           T         ,,,,,,s~~~~~~s,,,,,,                           T         y",
++        "y                                     ,,,,,,ss~~~~ss,,,,,,                T                    y",
++        "y                    T                 ,,,,,,ss~~ss,,,,,,                                      y",
++        "y        T                              ,,,,,,ssss,,,,,,                         T             y",
++        "y                                  T        ,,,,,,,,                                           y",
++        "y                                            ,,,,,,           T                                y",
++        "y    T              T                                                              T           y",
++        "y                                     T                           T                            y",
++        "y           T                                     T                                  T         y"
++      ],
++      "place_npcs": [
++        {
++          "class": "MILITIA_GUARD1",
++          "x": 54,
++          "y": 25
++        },
++        {
++          "class": "MILITIA_GUARD1",
++          "x": 44,
++          "y": 25
++        },
++        {
++          "class": "MILITIA_GUARD1",
++          "x": 54,
++          "y": 6
++        },
++        {
++          "class": "MILITIA_GUARD1",
++          "x": 41,
++          "y": 6
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "GMLODGE4_1",
++        "GMLODGE4_2",
++        "GMLODGE4_3",
++        "GMLODGE4_4"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "_": "t_region_groundcover_barren",
++        "%": "t_fence_barbed",
++        ".": "t_floor",
++        "+": "t_door_c",
++        "-": "t_wall_w",
++        ";": "t_dirtfloor",
++        "B": "t_floor",
++        ",": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            1
++          ],
++          [
++            "t_grass_tall",
++            1
++          ],
++          [
++            "t_region_groundcover",
++            5
++          ]
++        ],
++        "D": "t_floor",
++        "E": "t_floor",
++        "G": "t_palisade_gate",
++        "L": "t_floor",
++        "O": "t_floor",
++        "S": "t_floor",
++        "T": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            2
++          ],
++          [
++            "t_grass_tall",
++            2
++          ],
++          [
++            "t_region_groundcover",
++            2
++          ],
++          [
++            "t_region_tree",
++            4
++          ]
++        ],
++        "#": "t_wall_wood",
++        "X": "t_region_groundcover",
++        "Y": "t_floor",
++        "Z": "t_floor",
++        "b": "t_region_groundcover_barren",
++        "c": "t_floor",
++        "d": "t_floor",
++        "f": "t_floor",
++        "h": "t_floor",
++        "k": "t_floor",
++        "n": "t_floor",
++        "o": "t_carpet_red",
++        "r": "t_floor",
++        "s": "t_sidewalk",
++        "t": "t_floor",
++        "v": "t_window_domestic",
++        "w": "t_window_boarded",
++        "x": "t_region_groundcover",
++        "y": "t_splitrail_fence",
++        "|": "t_splitrail_fencegate_c",
++        "z": "t_floor",
++        "~": "t_water_sh",
++        "\u0394": "t_floor",
++        "@": "t_floor",
++        "u": "t_floor",
++        "\u0166": "t_floor",
++        "\u2021": "t_floor",
++        "*": "t_floor",
++        "`": "t_floor",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "6": "t_floor",
++        "7": "t_floor",
++        "$": "t_water_pump",
++        "<": "t_wood_stairs_up",
++        ">": "t_wood_stairs_down",
++        "F": "t_region_groundcover",
++        "M": "t_region_groundcover",
++        "?": "t_region_groundcover_barren",
++        "!": "t_floor",
++        "(": "t_region_groundcover",
++        ")": "t_region_groundcover"
++      },
++      "furniture": {
++        "B": "f_bathtub",
++        "D": "f_trashcan",
++        "E": "f_bookcase",
++        "L": "f_locker",
++        "O": "f_oven",
++        "S": "f_sink",
++        "Y": "f_sofa",
++        "Z": "f_crate_o",
++        "c": "f_counter",
++        "d": "f_dresser",
++        "f": "f_fridge",
++        "h": "f_chair",
++        "k": "f_desk",
++        "n": "f_table",
++        "r": "f_rack",
++        "t": "f_toilet",
++        "z": "f_crate_c",
++        "1": "f_bigmirror",
++        "2": "f_floor_lamp",
++        "3": "f_arcade_machine",
++        "4": "f_piano",
++        "5": "f_entertainment_center",
++        "6": "f_displaycase",
++        "7": "f_stool",
++        "8": "f_canvas_wall",
++        "9": "f_center_groundsheet",
++        "F": "f_firering",
++        "M": "f_butcher_rack",
++        "?": "f_camp_chair",
++        "`": "f_indoor_plant",
++        "@": "f_bed",
++        "\u2021": "f_woodstove",
++        "\u0166": "f_sink",
++        "u": "f_cupboard",
++        "\u0394": "f_armchair",
++        "\u0245": "f_wardrobe",
++        "^": "f_dryer",
++        "&": "f_washer",
++        "*": "f_dishwasher",
++        "(": "f_rotary_clothesline",
++        ")": "f_sandbag_half",
++        "!": "f_pool_table"
++      },
++      "items": {
++        "d": [
++          {
++            "item": "SUS_dresser_mens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "SUS_dresser_womens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "!": {
++          "item": "pool_table",
++          "chance": 30,
++          "repeat": [
++            1,
++            2
++          ]
++        },
++        "u": [
++          {
++            "item": "dishes_dining",
++            "chance": 30
++          },
++          {
++            "item": "tea_dishes",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "baked_goods",
++            "chance": 5
++          },
++          {
++            "item": "groce_condiment",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "dining",
++            "chance": 10
++          }
++        ],
++        "5": [
++          {
++            "item": "consumer_electronics",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          },
++          {
++            "item": "livingroom",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          }
++        ],
++        "f": {
++          "item": "SUS_fridge",
++          "chance": 100
++        },
++        "r": [
++          {
++            "item": "tools_home",
++            "chance": 40
++          },
++          {
++            "item": "cleaning",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "mechanics",
++            "chance": 1,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "camping",
++            "chance": 10
++          },
++          {
++            "item": "tools_survival",
++            "chance": 5,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "6": {
++          "item": "home_display_case",
++          "chance": 100
++        },
++        "L": [
++          {
++            "item": "tools_common",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "hardware",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "cleaning",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "E": [
++          {
++            "item": "homebooks",
++            "chance": 40,
++            "repeat": [
++              1,
++              4
++            ]
++          },
++          {
++            "item": "games",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "@": {
++          "item": "bed",
++          "chance": 50
++        },
++        "Z": [
++          {
++            "item": "SUS_pantry",
++            "chance": 55
++          },
++          {
++            "item": "cannedfood",
++            "chance": 80,
++            "repeat": [
++              3,
++              5
++            ]
++          }
++        ]
++      },
++      "fill_ter": "t_region_groundcover",
++      "faction_owner": [
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            0,
++            23
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            24,
++            47
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            48,
++            71
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            72,
++            95
++          ],
++          "y": [
++            0,
++            23
++          ]
++        }
++      ],
++      "rows": [
++        "y                                              T                                T              y",
++        "y               T                                                                              y",
++        "y                                  T                                                           y",
++        "y                                                         T                                    y",
++        "y     T                                                                                  T     y",
++        "y                                                                               T              y",
++        "y               T                        T                 T                                   y",
++        "y                        T                                                 T                   y",
++        "y                                                                   T                          y",
++        "y                                                       T                                      y",
++        "y         T                      T                                T                            y",
++        "y                                           T                              T          T        y",
++        "y                         T                                                                    y",
++        "y  T                                 T                      T                            T     y",
++        "y                                                                 T                            y",
++        "y                    T                                                              T          y",
++        "y                                                 T                                            y",
++        "y              T                                                        T                      y",
++        "y                                  T                                                           y",
++        "y                                                            T                   T             y",
++        "y     T                                                                                        y",
++        "y                          T                                              T                    y",
++        "y                                                                                              y",
++        "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy||||yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "GMLODGE2_2_2",
++        "GMLODGE2_3_2"
++      ],
++      [
++        "GMLODGE3_2_2",
++        "GMLODGE3_3_2"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "_": "t_region_groundcover_barren",
++        "%": "t_fence_barbed",
++        ".": "t_floor",
++        "+": "t_door_c",
++        "-": "t_wall_w",
++        ";": "t_dirtfloor",
++        "B": "t_floor",
++        ",": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            1
++          ],
++          [
++            "t_grass_tall",
++            1
++          ],
++          [
++            "t_region_groundcover",
++            5
++          ]
++        ],
++        "D": "t_floor",
++        "E": "t_floor",
++        "G": "t_palisade_gate",
++        "L": "t_floor",
++        "O": "t_floor",
++        "S": "t_floor",
++        "T": [
++          "t_region_groundcover",
++          [
++            "t_grass_long",
++            2
++          ],
++          [
++            "t_grass_tall",
++            2
++          ],
++          [
++            "t_region_groundcover",
++            2
++          ],
++          [
++            "t_region_tree",
++            4
++          ]
++        ],
++        "#": "t_wall_wood",
++        "X": "t_region_groundcover",
++        "Y": "t_floor",
++        "Z": "t_floor",
++        "b": "t_region_groundcover_barren",
++        "c": "t_floor",
++        "d": "t_floor",
++        "f": "t_floor",
++        "h": "t_floor",
++        "k": "t_floor",
++        "n": "t_floor",
++        "o": "t_carpet_red",
++        "r": "t_floor",
++        "s": "t_sidewalk",
++        "t": "t_floor",
++        "v": "t_window_domestic",
++        "w": "t_window_boarded",
++        "x": "t_region_groundcover",
++        "y": "t_splitrail_fence",
++        "|": "t_splitrail_fencegate_c",
++        "z": "t_floor",
++        "~": "t_water_sh",
++        "\u0394": "t_floor",
++        "@": "t_floor",
++        "u": "t_floor",
++        "\u0166": "t_floor",
++        "\u2021": "t_floor",
++        "*": "t_floor",
++        "`": "t_floor",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "6": "t_floor",
++        "7": "t_floor",
++        "$": "t_water_pump",
++        "<": "t_wood_stairs_up",
++        ">": "t_wood_stairs_down",
++        "F": "t_region_groundcover",
++        "M": "t_region_groundcover",
++        "?": "t_region_groundcover_barren",
++        "!": "t_floor",
++        "(": "t_region_groundcover",
++        ")": "t_region_groundcover"
++      },
++      "furniture": {
++        "B": "f_bathtub",
++        "D": "f_trashcan",
++        "E": "f_bookcase",
++        "L": "f_locker",
++        "O": "f_oven",
++        "S": "f_sink",
++        "Y": "f_sofa",
++        "Z": "f_crate_o",
++        "c": "f_counter",
++        "d": "f_dresser",
++        "f": "f_fridge",
++        "h": "f_chair",
++        "k": "f_desk",
++        "n": "f_table",
++        "r": "f_rack",
++        "t": "f_toilet",
++        "z": "f_crate_c",
++        "1": "f_bigmirror",
++        "2": "f_floor_lamp",
++        "3": "f_arcade_machine",
++        "4": "f_piano",
++        "5": "f_entertainment_center",
++        "6": "f_displaycase",
++        "7": "f_stool",
++        "8": "f_canvas_wall",
++        "9": "f_center_groundsheet",
++        "F": "f_firering",
++        "M": "f_butcher_rack",
++        "?": "f_camp_chair",
++        "`": "f_indoor_plant",
++        "@": "f_bed",
++        "\u2021": "f_woodstove",
++        "\u0166": "f_sink",
++        "u": "f_cupboard",
++        "\u0394": "f_armchair",
++        "\u0245": "f_wardrobe",
++        "^": "f_dryer",
++        "&": "f_washer",
++        "*": "f_dishwasher",
++        "(": "f_rotary_clothesline",
++        ")": "f_sandbag_half",
++        "!": "f_pool_table"
++      },
++      "items": {
++        "d": [
++          {
++            "item": "SUS_dresser_mens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "SUS_dresser_womens",
++            "chance": 50,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "!": {
++          "item": "pool_table",
++          "chance": 30,
++          "repeat": [
++            1,
++            2
++          ]
++        },
++        "u": [
++          {
++            "item": "dishes_dining",
++            "chance": 30
++          },
++          {
++            "item": "tea_dishes",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "baked_goods",
++            "chance": 5
++          },
++          {
++            "item": "groce_condiment",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "dining",
++            "chance": 10
++          }
++        ],
++        "5": [
++          {
++            "item": "consumer_electronics",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          },
++          {
++            "item": "livingroom",
++            "chance": 10,
++            "repeat": [
++              1,
++              3
++            ]
++          }
++        ],
++        "f": {
++          "item": "SUS_fridge",
++          "chance": 100
++        },
++        "r": [
++          {
++            "item": "tools_home",
++            "chance": 40
++          },
++          {
++            "item": "cleaning",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "mechanics",
++            "chance": 1,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "camping",
++            "chance": 10
++          },
++          {
++            "item": "tools_survival",
++            "chance": 5,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "6": {
++          "item": "home_display_case",
++          "chance": 100
++        },
++        "L": [
++          {
++            "item": "tools_common",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "hardware",
++            "chance": 30,
++            "repeat": [
++              1,
++              2
++            ]
++          },
++          {
++            "item": "cleaning",
++            "chance": 10,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "E": [
++          {
++            "item": "homebooks",
++            "chance": 40,
++            "repeat": [
++              1,
++              4
++            ]
++          },
++          {
++            "item": "games",
++            "chance": 20,
++            "repeat": [
++              1,
++              2
++            ]
++          }
++        ],
++        "@": {
++          "item": "bed",
++          "chance": 50
++        },
++        "Z": [
++          {
++            "item": "SUS_pantry",
++            "chance": 55
++          },
++          {
++            "item": "cannedfood",
++            "chance": 80,
++            "repeat": [
++              3,
++              5
++            ]
++          }
++        ]
++      },
++      "fill_ter": "t_open_air",
++      "faction_owner": [
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            0,
++            23
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            24,
++            47
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            48,
++            71
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            72,
++            95
++          ],
++          "y": [
++            0,
++            23
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            0,
++            23
++          ],
++          "y": [
++            24,
++            47
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            24,
++            47
++          ],
++          "y": [
++            24,
++            47
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            48,
++            71
++          ],
++          "y": [
++            24,
++            47
++          ]
++        },
++        {
++          "id": "GM_militia_faction",
++          "x": [
++            72,
++            95
++          ],
++          "y": [
++            24,
++            47
++          ]
++        }
++      ],
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "    ####v###########vv####vv###########v####    ",
++        "    #@@@.1dEE#EE...............Zzz#EEd1..@@#    ",
++        "    #@@@.....#.........kh.........#......@@#    ",
++        "    #@@@....2#.........kk.........#2.......#    ",
++        "    v.......d#....................#d.......v    ",
++        "    #........#666....r....r......D#.....@.@#    ",
++        "    #3......D##########++##########D....@.@#    ",
++        "    #######+##E2E\u0394..............26##+#######    ",
++        "    #t\u0166uD.+.`#....................#`.+.Du\u0166t#    ",
++        "    v.....#.Y#\u0394...Y...oooo...Y...5#..#.....v    ",
++        "    #BB...#.Y#....Y...oooo...Y...5#..#...BB#    ",
++        "    #BB...#..#\u0394.......oooo...Y...5#..#...BB#    ",
++        "    #######..#........oooo........#..#######    ",
++        "    v@@d..+..+........oooo........+..+..d@@v    ",
++        "    #@@...#..#uSu7................#Y.#...@@#    ",
++        "    #.....#..#..u7..........#+##..#Y.#.....#    ",
++        "    #...\u0394.#..#f.......\u0394..\u0394..#.>#..#..#.\u0394...#    ",
++        "    #######..##v####v######v####v##..#######    ",
++        "    v@@d..+..#                    #..+..d@@v    ",
++        "    #@@...#..#                    #..#...@@#    ",
++        "    #.....#..#                    #..#.....#    ",
++        "    #...\u0394.#..#                    #..#.\u0394...#    ",
++        "    #######..v                    v..#######    ",
++        "    #@@d..+..#                    #..+..d@@#    ",
++        "    v@@...#..#                    #..#...@@v    ",
++        "    #.....#..#                    #..#.....#    ",
++        "    #...\u0394.#.`#                    #`.#.\u0394...#    ",
++        "    ##v####v##                    ##v####v##    ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                "
++      ],
++      "place_npcs": [
++        {
++          "class": "MILITIA_MERCHANT",
++          "x": 24,
++          "y": 6
++        },
++        {
++          "class": "MILITIA_GUARD1",
++          "x": 20,
++          "y": 6
++        },
++        {
++          "class": "MILITIA_GUARD1",
++          "x": 28,
++          "y": 6
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "GMLODGE2_roof_2",
++        "GMLODGE2_roof_3"
++      ],
++      [
++        "GMLODGE3_roof_2",
++        "GMLODGE3_roof_3"
++      ]
++    ],
++    "object": {
++      "palettes": [
++        "roof_palette"
++      ],
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ..........o........oo........o..........    ",
++        "    ...................oo...................    ",
++        "    ........................................    ",
++        "    ..........o..................o..........    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ..........o..................o..........    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ..........o..................o..........    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ........................................    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "    ..........                    ..........    ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "faction",
++    "id": "GM_militia_faction",
++    "name": "Grey Moose Militia Community",
++    "likes_u": 0,
++    "respects_u": 0,
++    "known_by_u": false,
++    "size": 3,
++    "power": 3,
++    "fac_food_supply": [
++      [
++        0,
++        {
++          "calories": 115200,
++          "vitamins": {}
++        }
++      ]
++    ],
++    "wealth": 20000,
++    "relations": {
++      "free_merchants": {
++        "knows your voice": true
++      },
++      "old_guard": {
++        "knows your voice": true
++      },
++      "your_followers": {
++        "knows your voice": true
++      },
++      "no_faction": {
++        "knows your voice": true
++      }
++    },
++    "description": "A small community of survivors who retreated to a remote lodge."
++  },
++  {
++    "type": "npc",
++    "id": "MILITIA_GUARD1",
++    "//": "A member of the Gray Moose Lodge, trying to safe in their isolated location",
++    "class": "MILITIA_GUARD1",
++    "attitude": 0,
++    "name_suffix": "Militia Guard",
++    "mission": 8,
++    "chat": "TALK_MILITIA_Guard1",
++    "faction": "GM_militia_faction"
++  },
++  {
++    "type": "npc_class",
++    "id": "MILITIA_GUARD1",
++    "name": {
++      "str": "Guard"
++    },
++    "job_description": "I'm a local guard.",
++    "traits": [
++      {
++        "group": "NPC_starting_traits"
++      },
++      {
++        "group": "Appearance_demographics"
++      }
++    ],
++    "common": false,
++    "bonus_int": {
++      "one_in": 4
++    },
++    "bonus_per": {
++      "one_in": 4
++    },
++    "skills": [
++      {
++        "skill": "ALL",
++        "level": {
++          "mul": [
++            {
++              "one_in": 3
++            },
++            {
++              "sum": [
++                {
++                  "dice": [
++                    2,
++                    2
++                  ]
++                },
++                {
++                  "constant": -2
++                },
++                {
++                  "one_in": 4
++                }
++              ]
++            }
++          ]
++        }
++      },
++      {
++        "skill": "mechanics",
++        "bonus": {
++          "one_in": 2
++        }
++      },
++      {
++        "skill": "electronics",
++        "bonus": {
++          "rng": [
++            0,
++            2
++          ]
++        }
++      },
++      {
++        "skill": "speech",
++        "bonus": {
++          "rng": [
++            3,
++            5
++          ]
++        }
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_Guard1",
++    "dynamic_line": {
++      "u_has_var": "dialogue_first_meeting_talked_to_LODGEMAIN",
++      "value": "yes",
++      "yes": "Hello again.",
++      "no": "I'm busy on watch duty.  Talk to the Boss upstairs."
++    },
++    "responses": [
++      {
++        "text": "What are you doing?",
++        "topic": "TALK_MILITIA_GUARD1_Introduction"
++      },
++      {
++        "text": "<end_talking_leave>",
++        "topic": "TALK_MILITIA_GUARD1_BYE"
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_GUARD1_Introduction",
++    "dynamic_line": "I'm on watch duty.  Talk to the Boss.  He's upstairs.",
++    "responses": [
++      {
++        "text": "\u2026",
++        "topic": "TALK_NONE"
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_GUARD1_BYE",
++    "dynamic_line": "Stay safe out there.  Hate to have to kill you after you've already died.",
++    "responses": [
++      {
++        "text": "\u2026",
++        "topic": "TALK_DONE"
++      }
++    ]
++  },
++  {
++    "type": "npc",
++    "id": "MILITIA_MERCHANT",
++    "//": "A member of the Gray Moose Militia, trying to safe in their isolated location",
++    "name_unique": "Darby Sutton",
++    "class": "MILITIA_MERCHANT",
++    "attitude": 0,
++    "name_suffix": "Survivor",
++    "mission": 3,
++    "chat": "TALK_MILITIA_MAIN",
++    "faction": "GM_militia_faction"
++  },
++  {
++    "type": "npc_class",
++    "id": "MILITIA_MERCHANT",
++    "name": {
++      "str": "Merchant"
++    },
++    "job_description": "I'm a local shopkeeper.",
++    "traits": [
++      {
++        "group": "NPC_starting_traits"
++      },
++      {
++        "group": "Appearance_demographics"
++      }
++    ],
++    "common": false,
++    "bonus_int": {
++      "one_in": 4
++    },
++    "bonus_per": {
++      "one_in": 4
++    },
++    "shopkeeper_item_group": "MILITIA_MERCHANT_misc",
++    "carry_override": "MILITIA_MERCHANT_misc",
++    "skills": [
++      {
++        "skill": "ALL",
++        "level": {
++          "mul": [
++            {
++              "one_in": 3
++            },
++            {
++              "sum": [
++                {
++                  "dice": [
++                    2,
++                    2
++                  ]
++                },
++                {
++                  "constant": -2
++                },
++                {
++                  "one_in": 4
++                }
++              ]
++            }
++          ]
++        }
++      },
++      {
++        "skill": "mechanics",
++        "bonus": {
++          "one_in": 2
++        }
++      },
++      {
++        "skill": "electronics",
++        "bonus": {
++          "rng": [
++            0,
++            2
++          ]
++        }
++      },
++      {
++        "skill": "speech",
++        "bonus": {
++          "rng": [
++            3,
++            5
++          ]
++        }
++      }
++    ]
++  },
++  {
++    "type": "item_group",
++    "id": "MILITIA_MERCHANT_misc",
++    "subtype": "collection",
++    "items": [
++      {
++        "item": "jerky",
++        "count": [
++          3,
++          8
++        ],
++        "prob": 30
++      },
++      {
++        "group": "tools_general",
++        "prob": 80,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "tools_home",
++        "prob": 80,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "tools_carpentry",
++        "prob": 30,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "tools_earthworking",
++        "prob": 30,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "tools_electronics",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "tools_mechanic",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "tools_plumbing",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "supplies_electronics",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "supplies_plumbing",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "supplies_hardware",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "supplies_fuel",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "supplies_metal",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "ammo_any_batteries_full",
++        "prob": 20,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "magazines",
++        "prob": 30,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "book_gunref",
++        "prob": 15
++      },
++      {
++        "group": "hardware_books",
++        "prob": 30,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "religious_books",
++        "prob": 30,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "homebooks",
++        "prob": 40,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "manuals",
++        "prob": 30
++      },
++      {
++        "group": "book_survival",
++        "prob": 15
++      },
++      {
++        "group": "novels",
++        "prob": 50,
++        "count": [
++          1,
++          3
++        ]
++      },
++      {
++        "group": "textbooks",
++        "prob": 30
++      },
++      {
++        "group": "cigar_box_opened",
++        "prob": 10
++      },
++      {
++        "item": "box_small",
++        "prob": 5
++      },
++      [
++        "trenchcoat",
++        25
++      ],
++      [
++        "trenchcoat_leather",
++        20
++      ],
++      [
++        "trenchcoat_fur",
++        10
++      ],
++      [
++        "vest_leather",
++        15
++      ],
++      [
++        "football_armor",
++        30
++      ],
++      [
++        "jacket_leather",
++        25
++      ],
++      [
++        "jacket_jean",
++        15
++      ],
++      [
++        "jacket_flannel",
++        15
++      ],
++      [
++        "pants_cargo",
++        40
++      ],
++      [
++        "shorts_cargo",
++        25
++      ],
++      [
++        "pants_army",
++        30
++      ],
++      [
++        "pants_leather",
++        15
++      ],
++      [
++        "gloves_fingerless",
++        30
++      ],
++      [
++        "gloves_tactical",
++        15
++      ],
++      [
++        "gauntlets_larmor",
++        25
++      ],
++      [
++        "gloves_fur",
++        5
++      ],
++      [
++        "gloves_leather",
++        35
++      ],
++      [
++        "gloves_work",
++        20
++      ],
++      [
++        "boots",
++        20
++      ],
++      [
++        "boots_steel",
++        20
++      ],
++      [
++        "boots_steel",
++        15
++      ],
++      [
++        "boots_hiking",
++        30
++      ],
++      [
++        "knee_high_boots",
++        5
++      ],
++      [
++        "boots_combat",
++        15
++      ],
++      [
++        "boots_larmor",
++        10
++      ],
++      [
++        "boots_fur",
++        10
++      ],
++      [
++        "helmet_larmor",
++        15
++      ],
++      [
++        "hood_rain",
++        15
++      ],
++      [
++        "dive_bag",
++        10
++      ],
++      [
++        "runner_bag",
++        20
++      ],
++      [
++        "backpack",
++        40
++      ],
++      [
++        "backpack_leather",
++        35
++      ],
++      [
++        "mbag",
++        25
++      ],
++      [
++        "slingpack",
++        15
++      ],
++      [
++        "rucksack",
++        10
++      ],
++      [
++        "duffelbag",
++        10
++      ],
++      [
++        "mask_hockey",
++        15
++      ],
++      [
++        "sunglasses",
++        15
++      ],
++      [
++        "glasses_safety",
++        10
++      ],
++      [
++        "glasses_safety",
++        5
++      ],
++      [
++        "goggles_ski",
++        5
++      ],
++      [
++        "tool_belt",
++        15
++      ],
++      [
++        "fanny",
++        5
++      ],
++      [
++        "dump_pouch",
++        5
++      ],
++      [
++        "ragpouch",
++        15
++      ],
++      [
++        "leather_pouch",
++        15
++      ],
++      [
++        "quiver",
++        15
++      ],
++      [
++        "quiver_large",
++        5
++      ],
++      [
++        "wristwatch",
++        30
++      ],
++      [
++        "diving_watch",
++        5
++      ],
++      [
++        "pocketwatch",
++        10
++      ],
++      [
++        "holster",
++        25
++      ],
++      [
++        "bandana",
++        20
++      ],
++      [
++        "scarf",
++        15
++      ],
++      [
++        "hat_boonie",
++        20
++      ],
++      {
++        "item": "balclava",
++        "variant": "black",
++        "prob": 10
++      },
++      [
++        "pickaxe",
++        20
++      ],
++      [
++        "makeshift_machete",
++        15
++      ],
++      [
++        "fungicide",
++        20
++      ],
++      [
++        "insecticide",
++        20
++      ],
++      [
++        "antifungal",
++        20
++      ],
++      [
++        "antiparasitic",
++        20
++      ],
++      [
++        "diazepam",
++        15
++      ],
++      [
++        "grapnel",
++        5
++      ],
++      [
++        "misc_repairkit",
++        15
++      ],
++      {
++        "group": "tools_common",
++        "prob": 20
++      },
++      [
++        "crowbar",
++        25
++      ],
++      [
++        "machete",
++        25
++      ],
++      [
++        "ax",
++        25
++      ],
++      [
++        "spear_knife",
++        30
++      ]
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_MAIN",
++    "dynamic_line": {
++      "u_has_var": "dialogue_first_meeting_talked_to_MILITIAMAIN",
++      "value": "yes",
++      "yes": "Hello again.",
++      "no": "Welcome to our camp.  Behave yourself while you are here.  What can I do for you?"
++    },
++    "speaker_effect": {
++      "effect": {
++        "u_add_var": "dialogue_first_meeting_talked_to_MILITIAMAIN",
++        "value": "yes"
++      }
++    },
++    "responses": [
++      {
++        "text": "What do you do here?",
++        "topic": "TALK_MILITIA_INTRODUCTION",
++        "condition": {
++          "not": {
++            "u_has_var": "dialogue_first_meeting_talked_to_MILITIAMAIN",
++            "value": "yes"
++          }
++        }
++      },
++      {
++        "text": "What's the story behind this place?",
++        "topic": "TALK_MILITIA_BACKGROUND",
++        "condition": {
++          "u_has_var": "dialogue_first_meeting_talked_to_MILITIAMAIN",
++          "value": "yes"
++        }
++      },
++      {
++        "text": "Is there something I can do for you?",
++        "topic": "TALK_MILITIA_HELP",
++        "condition": {
++          "u_has_var": "dialogue_first_meeting_talked_to_MILITIAMAIN",
++          "value": "yes"
++        }
++      },
++      {
++        "text": "Do you have anything to trade?",
++        "topic": "TALK_MILITIA_TRADE"
++      },
++      {
++        "text": "Time for me to leave.",
++        "topic": "TALK_MILITIA_BYE",
++        "condition": {
++          "u_has_var": "dialogue_first_meeting_talked_to_MILITIAMAIN",
++          "value": "yes"
++        }
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_INTRODUCTION",
++    "dynamic_line": "I'm the most senior member at this point, so I'm what passes for the leader here now.  I'm just trying to make plans to keep us alive since everything fell apart.",
++    "responses": [
++      {
++        "text": "I see.",
++        "topic": "TALK_NONE"
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_BACKGROUND",
++    "dynamic_line": "Well, that's a long story.  We are what's left of the Grey Moose militia.  We had plans for when things went south cause of crazy politicians or war, but we didn't expect people to go crazy then turn zombie.  Only a handful of our members actually made it through all that madness.  What's worse is that we lost so much of our supplies and gear due to military checkpoints and trigger happy soldiers.  It didn't matter that half of us were former military, the checkpoint guards just saw weapons, panicked and then confiscated everything but the clothes on our back.  So here we are, at our planned escape location, with not even a fraction of our manpower or supplies.",
++    "responses": [
++      {
++        "text": "I see.",
++        "topic": "TALK_NONE"
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_HELP",
++    "dynamic_line": "I can't say I can think of anything at the moment.  Our remoteness is our defense.  We want to keep a low profile and try to keep out of any trouble in this isolated location.  We are willing to trade for weapons and ammo though.  Keeping the nearby area clear and hunting is always eating away at our supplies.",
++    "responses": [
++      {
++        "text": "Keeping a low profile is good.",
++        "topic": "TALK_NONE"
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_TRADE",
++    "dynamic_line": "Let's trade then.",
++    "responses": [
++      {
++        "text": "\u2026",
++        "effect": "start_trade",
++        "topic": "TALK_NONE"
++      }
++    ]
++  },
++  {
++    "type": "talk_topic",
++    "id": "TALK_MILITIA_BYE",
++    "dynamic_line": "Stay safe out there.  Not enough of us are around anymore.",
++    "responses": [
++      {
++        "text": "\u2026",
++        "topic": "TALK_DONE"
++      }
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "Militia Lodge",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "GMLODGE1_1_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          0
++        ],
++        "overmap": "GMLODGE1_2_north"
++      },
++      {
++        "point": [
++          2,
++          0,
++          0
++        ],
++        "overmap": "GMLODGE1_3_north"
++      },
++      {
++        "point": [
++          3,
++          0,
++          0
++        ],
++        "overmap": "GMLODGE1_4_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "GMLODGE2_1_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          0
++        ],
++        "overmap": "GMLODGE2_2_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          0
++        ],
++        "overmap": "GMLODGE2_3_north"
++      },
++      {
++        "point": [
++          3,
++          1,
++          0
++        ],
++        "overmap": "GMLODGE2_4_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "overmap": "GMLODGE3_1_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          0
++        ],
++        "overmap": "GMLODGE3_2_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          0
++        ],
++        "overmap": "GMLODGE3_3_north"
++      },
++      {
++        "point": [
++          3,
++          2,
++          0
++        ],
++        "overmap": "GMLODGE3_4_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          0
++        ],
++        "overmap": "GMLODGE4_1_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          0
++        ],
++        "overmap": "GMLODGE4_2_north"
++      },
++      {
++        "point": [
++          2,
++          3,
++          0
++        ],
++        "overmap": "GMLODGE4_3_north"
++      },
++      {
++        "point": [
++          3,
++          3,
++          0
++        ],
++        "overmap": "GMLODGE4_4_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          1
++        ],
++        "overmap": "GMLODGE2_2_2_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          1
++        ],
++        "overmap": "GMLODGE2_3_2_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          1
++        ],
++        "overmap": "GMLODGE3_2_2_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          1
++        ],
++        "overmap": "GMLODGE3_3_2_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          2
++        ],
++        "overmap": "GMLODGE2_roof_2_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          2
++        ],
++        "overmap": "GMLODGE2_roof_3_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          2
++        ],
++        "overmap": "GMLODGE3_roof_2_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          2
++        ],
++        "overmap": "GMLODGE3_roof_3_north"
++      }
++    ],
++    "locations": [
++      "forest"
++    ],
++    "city_distance": [
++      7,
++      15
++    ],
++    "occurrences": [
++      50,
++      100
++    ],
++    "connections": [
++      {
++        "point": [
++          2,
++          4,
++          0
++        ],
++        "connection": "forest_trail",
++        "from": [
++          2,
++          0,
++          0
++        ]
++      }
++    ],
++    "flags": [
++      "WILDERNESS",
++      "GLOBALLY_UNIQUE",
++      "MAN_MADE",
++      "SAFE_AT_WORLDGEN"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "GMLODGE1_1",
++      "GMLODGE1_2",
++      "GMLODGE1_3",
++      "GMLODGE1_4",
++      "GMLODGE2_1",
++      "GMLODGE2_2",
++      "GMLODGE2_3",
++      "GMLODGE2_4",
++      "GMLODGE3_1",
++      "GMLODGE3_2",
++      "GMLODGE3_3",
++      "GMLODGE3_4",
++      "GMLODGE4_1",
++      "GMLODGE4_2",
++      "GMLODGE4_3",
++      "GMLODGE4_4",
++      "GMLODGE2_2_2",
++      "GMLODGE2_3_2",
++      "GMLODGE3_2_2",
++      "GMLODGE3_3_2",
++      "GMLODGE2_roof_2",
++      "GMLODGE2_roof_3",
++      "GMLODGE3_roof_2",
++      "GMLODGE3_roof_3"
++    ],
++    "name": "Militia Lodge",
++    "sym": "L",
++    "color": "brown",
++    "see_cost": 5
++  }
++]
 --- /dev/null
 +++ b/data/mods/Civilians/dda_eldercare_groups.json
 @@ -0,0 +1,354 @@

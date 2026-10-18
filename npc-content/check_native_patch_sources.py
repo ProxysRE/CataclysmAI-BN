@@ -5,6 +5,7 @@ import re
 import difflib
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_militia import prepare as prepare_militia, PAYLOAD as MILITIA_PAYLOAD
 from prepare_frontage import prepare as prepare_frontage, patch_sections as frontage_patch, TARGET as FRONTAGE_TARGET, sources as frontage_sources
 from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_radio_stations import prepare as prepare_radio, PAYLOAD as RADIO_PAYLOAD
@@ -20,7 +21,7 @@ from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
 from prepare_shared_casing import prepare as prepare_shared_casing, patch_sections as shared_casing_patch, TARGET as SHARED_CASING_TARGET
 from prepare_eldercare_groups import prepare as prepare_groups, PAYLOAD as GROUPS_PAYLOAD
-from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, extend_chat, patch_sections as civilian_patch
+from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, LUA_PAYLOAD, extend_chat, patch_sections as civilian_patch
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
 from prepare_eldercare_assets import prepare as prepare_assets, PAYLOAD as ASSET_PAYLOAD
@@ -34,6 +35,7 @@ def check():
     patch = (ROOT / 'artisan_engine.patch').read_text()
     prepare_existing_locations()
     prepare_frontage()
+    prepare_militia(check=True)
     target = 'data/json/mapgen/chemical_lab.json'
     expected_map_patch = ''.join(difflib.unified_diff(
         (ROOT / 'layers/bn' / target).read_text().splitlines(keepends=True),
@@ -85,7 +87,7 @@ def check():
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp', 'dda_militia_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
@@ -101,6 +103,7 @@ def check():
         ARCHIVE_PAYLOAD: ROOT / 'native/dda_terminal_archives.json',
         ASSET_PAYLOAD: ROOT / 'native/dda_eldercare_assets.json',
         FAUNA_PAYLOAD: ROOT / 'native/dda_eldercare_fauna.json',
+        MILITIA_PAYLOAD: ROOT / 'native/dda_grey_moose_lodge.json',
         GROUPS_PAYLOAD: ROOT / 'native/dda_eldercare_groups.json',
         LOOT_PAYLOAD: ROOT / 'native/dda_eldercare_loot.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',

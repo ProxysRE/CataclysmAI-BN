@@ -18,7 +18,8 @@ LUA_MARKER = '  -- DDA eldercare maps have explicit source population tables.\n 
 
 
 def candidate_lua():
-    source = mod_sources()['main.lua']
+    from prepare_civilians import lua_payload
+    source = lua_payload()
     anchor = 'local NPC_TERRAINS = {\n'
     assert source.count(anchor) == 1
     return source.replace(anchor, anchor + LUA_MARKER, 1)

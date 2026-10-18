@@ -93,16 +93,20 @@ def verify_install(folder):
     from prepare_shared_casing import payload as shared_casing_data, TARGET as SHARED_CASING_TARGET
     if json.loads((folder / SHARED_CASING_TARGET).read_text(encoding='utf-8')) != shared_casing_data():
         raise ValueError("Duplicate 545 casing remains in Exotic Ammo or other casings changed")
+    from prepare_militia import native_data as militia_data, PAYLOAD as MILITIA_PAYLOAD
+    if json.loads((folder / MILITIA_PAYLOAD).read_text(encoding='utf-8')) != militia_data():
+        raise ValueError('Installed Grey Moose community differs')
     from prepare_eldercare_groups import native_data as groups_data, PAYLOAD as GROUPS_PAYLOAD
     if json.loads((folder / GROUPS_PAYLOAD).read_text(encoding='utf-8')) != groups_data():
         raise ValueError('Stale eldercare civilian groups')
-    from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, mod_sources
+    from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, mod_sources, lua_payload
     if json.loads((folder / CIVILIAN_PAYLOAD).read_text(encoding="utf-8")) != civilian_data():
         raise ValueError("Installed civilian data differs")
     if (folder / LEGACY_CORE).exists():
         raise ValueError("Legacy duplicate core civilian definitions remain")
     for name, text in mod_sources().items():
-        if name != 'civilians.json' and (folder / 'data/mods/Civilians' / name).read_text(encoding='utf-8') != text:
+        expected = lua_payload() if name == 'main.lua' else text
+        if name != 'civilians.json' and (folder / 'data/mods/Civilians' / name).read_text(encoding='utf-8') != expected:
             raise ValueError("Stock Civilians support file differs: " + name)
     from prepare_eldercare_fauna import native_data as fauna_data, PAYLOAD as FAUNA_PAYLOAD
     if json.loads((folder / FAUNA_PAYLOAD).read_text(encoding="utf-8")) != fauna_data():

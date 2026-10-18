@@ -7,6 +7,7 @@ import re
 import subprocess
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_militia import prepare as prepare_militia, PAYLOAD as MILITIA_PAYLOAD
 from prepare_frontage import prepare as prepare_frontage, patch_sections as frontage_patch, TARGET as FRONTAGE_TARGET, sources as frontage_sources
 from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_radio_stations import prepare as prepare_radio, MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD
@@ -22,7 +23,7 @@ from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
 from prepare_shared_casing import prepare as prepare_shared_casing, patch_sections as shared_casing_patch, TARGET as SHARED_CASING_TARGET
 from prepare_eldercare_groups import prepare as prepare_groups, PAYLOAD as GROUPS_PAYLOAD
-from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, extend_chat, patch_sections as civilian_patch
+from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, LUA_PAYLOAD, extend_chat, patch_sections as civilian_patch
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
 from prepare_eldercare_assets import prepare as prepare_assets, PAYLOAD as ASSET_PAYLOAD
@@ -39,6 +40,7 @@ parser.add_argument("--bn-source", type=Path,
 args = parser.parse_args()
 prepare_existing_locations()
 prepare_frontage()
+prepare_militia(check=True)
 prepare_hub_access(check=True)
 prepare_radio(check=True)
 prepare_towers(check=True)
@@ -78,6 +80,8 @@ if args.bn_source:
     (root / "engine_staging/tests/dda_computer_archive_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / ARCHIVE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / ASSET_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / MILITIA_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging/tests/dda_militia_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / GROUPS_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / LEGACY_CORE).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_civilians_test.cpp").unlink(missing_ok=True)
@@ -108,7 +112,7 @@ if args.bn_source:
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
-    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR), Path(MUTATIONS), Path(RADIO_MAP), Path(RADIO_CITY), Path(CIVILIAN_PAYLOAD), Path(SHARED_CASING_TARGET)):
+    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR), Path(MUTATIONS), Path(RADIO_MAP), Path(RADIO_CITY), Path(CIVILIAN_PAYLOAD), Path(LUA_PAYLOAD), Path(SHARED_CASING_TARGET)):
         content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -128,7 +132,7 @@ for name in base_files:
         new = extend_chat("".join(new)).splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
 for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h", "hub_elevator_access.h", "dda_mapgen_corpses.h", "computer_archive.h", "civilian_chat.h", "civilian_chat_ui.h",
-             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp", "dda_eldercare_assets_test.cpp", "dda_eldercare_loot_test.cpp", "dda_eldercare_fauna_test.cpp", "dda_civilians_test.cpp", "dda_special_constraints_test.cpp"):
+             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp", "dda_eldercare_assets_test.cpp", "dda_eldercare_loot_test.cpp", "dda_eldercare_fauna_test.cpp", "dda_civilians_test.cpp", "dda_special_constraints_test.cpp", "dda_militia_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff([], new, "/dev/null", "b/" + path))
@@ -176,6 +180,7 @@ parts.append(corpse_patch())
 parts.append(frontage_patch())
 parts.append(archive_patch())
 parts.append(civilian_patch())
+parts.extend(difflib.unified_diff([], (root / "native/dda_grey_moose_lodge.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + MILITIA_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_groups.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + GROUPS_PAYLOAD))
 parts.append(shared_casing_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_fauna.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + FAUNA_PAYLOAD))
