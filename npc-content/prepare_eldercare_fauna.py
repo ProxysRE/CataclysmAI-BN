@@ -80,7 +80,7 @@ def mutant(name):
     merged.update(original)
     allowed = ('id', 'name', 'description', 'bodytype', 'color', 'volume', 'weight', 'hp', 'speed',
                'aggression', 'morale', 'melee_skill', 'melee_dice', 'melee_dice_sides', 'dodge',
-               'vision_day', 'vision_night', 'melee_damage', 'attack_cost', 'grab_strength', 'bleed_rate', 'harvest', 'death_drops')
+               'vision_day', 'vision_night', 'melee_damage', 'attack_cost', 'grab_strength', 'harvest', 'death_drops')
     result = {k: copy.deepcopy(merged[k]) for k in allowed if k in merged}
     result.update(type='MONSTER', **{'copy-from': 'mon_mutant_experimental'}, upgrades=False)
     result.update(armor(merged))
@@ -121,7 +121,7 @@ def cellar_spiders():
     stock = find('mon_spider_cellar_giant', 'bn')
     for name in SPIDERS:
         source = find(name)
-        mon = {k: copy.deepcopy(source[k]) for k in ('id', 'name', 'description', 'speed', 'aggression', 'morale', 'dodge', 'melee_dice', 'melee_skill', 'grab_strength', 'bleed_rate') if k in source}
+        mon = {k: copy.deepcopy(source[k]) for k in ('id', 'name', 'description', 'speed', 'aggression', 'morale', 'dodge', 'melee_dice', 'melee_skill', 'grab_strength') if k in source}
         mon.update(type='MONSTER', **{'copy-from': 'mon_spider_cellar_giant'}, upgrades=False)
         flags = set(stock['flags']) | set(source.get('extend', {}).get('flags', []))
         flags -= set(source.get('delete', {}).get('flags', []))
@@ -246,7 +246,11 @@ def prepare(check=False, bn_source=None):
             shared |= other_ids
     assert not dependency_refs(payload) - index - new - shared, dependency_refs(payload) - index - new - shared
     known_attacks = set(re.findall(r'add_hardcoded_attack\( "([A-Z0-9_]+)"', files['bn/src/monstergenerator.cpp']))
+    loader = files['bn/src/monstergenerator.cpp']
     for entry in payload:
+        if entry['type'] == 'MONSTER':
+            unknown = {k for k in entry if k not in ('type', 'id', 'copy-from') and ('\"' + k + '\"') not in loader}
+            assert not unknown, (entry['id'], unknown)
         for attack in entry.get('special_attacks', []):
             if isinstance(attack, list):
                 assert attack[0] in known_attacks

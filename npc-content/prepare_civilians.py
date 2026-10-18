@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Port noncombatant source people and their pure dialogue graphs to BN."""
 import argparse
+import base64
+import gzip
 import copy
 import hashlib
 import json
@@ -15,7 +17,16 @@ PAYLOAD = 'data/json/dda_civilians.json'
 PEOPLE = ('mon_civilian_panic', 'mon_civilian_stationary', 'mon_civilian_parent')
 
 
+def chat_source():
+    entry = json.loads((FOLDER / 'SOURCE_MANIFEST.json').read_text())['npctalk']
+    raw = gzip.decompress(base64.b64decode(''.join((FOLDER / n).read_text() for n in entry['parts']), validate=True))
+    assert hashlib.sha256(raw).hexdigest() == entry['sha256']
+    assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == entry['blob_sha']
+    return raw.decode('utf-8')
+
+
 def sources():
+    chat_source()
     manifest = json.loads((FOLDER / 'SOURCE_MANIFEST.json').read_text())
     assert manifest['dda_pin'] == 'c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'
     assert manifest['bn_pin'] == 'c621aaf42fa182473aad10feea2b55647704dcf1'
@@ -139,6 +150,7 @@ def extend_chat(text):
 def prepare(check=False, bn_source=None):
     sources()
     if bn_source:
+        assert (bn_source / 'src/npctalk.cpp').read_text(encoding='utf-8') == chat_source()
         assert json.loads((bn_source / 'data/json/monster_factions.json').read_text(encoding='utf-8')) == json.loads((FOLDER / 'bn_monster_factions.json').read_text())
     payload = native_data()
     bn = set(map(tuple, read_cache(ROOT / 'dependency_catalog/BN_ID_INDEX.json')['identifiers']))

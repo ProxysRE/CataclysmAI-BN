@@ -2,7 +2,7 @@
 """Guard exact source dialogue and single-monster evolution probabilities."""
 from collections import defaultdict
 from fractions import Fraction
-from prepare_civilians import native_data, dialogue, sources, prepare, PEOPLE, upgrade_group, extend_chat, ROOT
+from prepare_civilians import native_data, dialogue, sources, prepare, PEOPLE, upgrade_group, extend_chat, chat_source, ROOT
 from prepare_eldercare_fauna import find
 
 payload = native_data()
@@ -43,9 +43,14 @@ for row in group['monsters']:
     actual[row['monster']] += Fraction(row['freq'], group['freq_total'])
 assert actual == expected
 assert group['freq_total'] == 90600
-chat = extend_chat((ROOT / 'pinned/src/npctalk.cpp').read_text())
+chat = extend_chat(chat_source())
 assert extend_chat(chat) == chat
 assert 'can_chat_with_civilian( person, u )' in chat
 assert 'show_civilian_chat( *civilians[people.ret] );' in chat
 prepare(check=True)
 print('PASS: exact read-only source graphs, neutral noncombatants, source evolution fractions and idempotent menu integration')
+
+from prepare_eldercare_fauna import sources as fauna_sources
+loader = fauna_sources()['bn/src/monstergenerator.cpp']
+for mon in monsters.values():
+    assert not {k for k in mon if k not in ('type', 'id', 'copy-from', 'civilian_chat') and ('"' + k + '"') not in loader}

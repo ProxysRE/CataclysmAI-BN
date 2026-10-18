@@ -26,3 +26,11 @@ The game and tests compiled successfully. Native execution then reported the DDA
 The native suite completed in about 41 seconds. All cases except the file-backed six-terminal archive fixture passed; that fixture failed at the first JSON object's key. It now opens its file in binary mode because BN's JSON reader caches byte offsets, while Windows text-mode newline translation can invalidate seeks. The passing in-memory archive save/graph tests and the location-data loading separate this fixture path from production parsing. The next Windows run must verify the diagnosis.
 
 Initialization also logged three vehicle errors: the backup-generator prototypes tried to place a cable at a mount without a CARGO part. A stock BN cargo box now shares the same single-cell mount with each generator. Native part-count tests expect all seven parts; static checks require the cargo mount. Native/installed validation of these fixes remains pending.
+
+
+## Unsupported DDA bleeding scalar, 2026-10-18
+
+The archive/generator fix 0710959 completed Windows run 39140851555 successfully. The later fauna/spider run 39143743019 compiled and passed 65 source test cases with 10620 assertions, but correctly failed the initialization-error gate on five unsupported `bleed_rate` fields (four mutants and the warehouse spider). Removed this source-only scalar from adapted definitions, preserving source archives and BN bleeding defaults/flags. Added preflight top-level loader-key presence checks to fauna and civilian guards; these do not certify full nested schemas. Installed tests and packaging were not reached in the failing fauna run. A corrected native/installed Windows run remains required.
+
+
+The first civilian fast run 39150017965 also exposed a packaging error in its Python guard: it read an untracked local pinned/src/npctalk.cpp. The canonical file is now bundled in civilians/NPCTALK.part*, authenticated against its official pinned BN Git blob, and used directly by the guard. Windows source comparison checks the bundle against its real checkout. This fixes the CI fixture dependency; it is separate from native gameplay validation.

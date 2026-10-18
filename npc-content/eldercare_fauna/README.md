@@ -31,3 +31,8 @@ The warehouse spider resolves source proportional values to hp 420, volume 54250
 GROUP_SPIDER_BASEMENT preserves all five entries, weights, default, source age windows and total 90; days are converted to numeric BN hours (24 per day). Existing BN MONSTER_UPGRADE_FACTOR still scales these windows at load time. Inactive weight goes to the source's juvenile fallback, following BN selection semantics. BN requires turn strictly after starts and before ends; exact boundary turns are therefore subject to existing BN rules. Before the first eligible window, only the fallback is returned. Complete-site generation remains disabled.
 
 New native tests exercise actual maternal death spawning on an empty passable map and early/late group selection. These tests must still pass source and installed Windows runs; their presence is not runtime validation.
+
+
+## Native loading correction
+
+Windows run 39143743019 on f8a62f8 compiled and passed all 65 source native test cases (10620 assertions), including brood death spawning and timed groups. The source test step nevertheless correctly failed because initialization logged five unsupported `bleed_rate` members in four mutants and the warehouse spider. The adapted payload now omits that DDA scalar and uses BN bleeding defaults/flags. A loader-key presence guard rejects unrecognized top-level monster fields before rebuilding. This guard is not a complete nested-schema validator. Installed tests/package were not reached on that run; the corrected payload still requires a clean source and installed Windows run.

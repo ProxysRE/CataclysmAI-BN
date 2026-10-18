@@ -33909,7 +33909,7 @@
 +]
 --- /dev/null
 +++ b/data/json/dda_eldercare_fauna.json
-@@ -0,0 +1,931 @@
+@@ -0,0 +1,926 @@
 +[
 +  {
 +    "type": "item_group",
@@ -34191,7 +34191,6 @@
 +    "dodge": 6,
 +    "vision_day": 25,
 +    "vision_night": 8,
-+    "bleed_rate": 70,
 +    "harvest": "mutant_human",
 +    "death_drops": "mon_mutant_experimental_death_drops",
 +    "type": "MONSTER",
@@ -34281,7 +34280,6 @@
 +    "vision_day": 25,
 +    "vision_night": 20,
 +    "grab_strength": 50,
-+    "bleed_rate": 50,
 +    "harvest": "mutant_human",
 +    "death_drops": "mon_mutant_evolved_death_drops",
 +    "type": "MONSTER",
@@ -34393,7 +34391,6 @@
 +    "vision_day": 25,
 +    "vision_night": 15,
 +    "attack_cost": 115,
-+    "bleed_rate": 70,
 +    "harvest": "mutant_human",
 +    "death_drops": "mon_mutant_experimental_death_drops",
 +    "type": "MONSTER",
@@ -34489,7 +34486,6 @@
 +    ],
 +    "attack_cost": 60,
 +    "grab_strength": 75,
-+    "bleed_rate": 70,
 +    "harvest": "mutant_human",
 +    "death_drops": "mon_mutant_experimental_death_drops",
 +    "type": "MONSTER",
@@ -34730,7 +34726,6 @@
 +    "melee_dice": 3,
 +    "melee_skill": 7,
 +    "grab_strength": 75,
-+    "bleed_rate": 60,
 +    "type": "MONSTER",
 +    "copy-from": "mon_spider_cellar_giant",
 +    "upgrades": false,

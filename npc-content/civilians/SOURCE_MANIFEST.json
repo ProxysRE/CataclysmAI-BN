@@ -8,5 +8,14 @@
   "sources": {
     "civilian_topics.json": "data/json/npcs/civilians/civilians.json",
     "bn_monster_factions.json": "data/json/monster_factions.json"
+  },
+  "npctalk": {
+    "source": "src/npctalk.cpp",
+    "blob_sha": "11a79b1f911775d23ad7f0049725b3de7d43fabf",
+    "sha256": "a613b3caed087171127c4e8decb98a5c24c070147f8dde629c8f603f3190917a",
+    "parts": [
+      "NPCTALK.part00",
+      "NPCTALK.part01"
+    ]
   }
 }

@@ -75,3 +75,5 @@ assert (spell['min_damage'], spell['max_damage'], spell['min_aoe'], spell['max_a
 assert spell['effect'] == 'summon' and spell['effect_str'] == 'GROUP_SPIDER_MOM_SUMMON'
 brood = find('GROUP_SPIDER_MOM_SUMMON')
 assert brood['monsters'] == [{'monster': 'mon_spider_cellar_small', 'weight': 67}, {'monster': 'mon_spider_cellar_giant_s', 'weight': 33}]
+
+assert all('bleed_rate' not in mon for mon in monsters.values())
