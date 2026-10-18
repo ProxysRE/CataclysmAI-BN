@@ -24,10 +24,16 @@
           ]
         ],
         "object": {
-          "palettes": [
-            "parametrized_walls_palette"
-          ],
+          "palettes": [],
           "terrain": {
+            "|": {
+              "param": "interior_wall_type",
+              "fallback": "t_wall_w"
+            },
+            "#": {
+              "param": "exterior_wall_type",
+              "fallback": "t_brick_wall"
+            },
             "!": "t_region_tree_shade",
             "$": "t_region_shrub_decorative",
             "%": "t_splitrail_fence",
@@ -36,7 +42,7 @@
             "^": "t_ladder_up",
             "2": "t_carpet_red",
             "B": "t_region_grass",
-            "c": "t_zebra",
+            "c": "t_pavement_y",
             "C": "t_carpet_red",
             "d": "t_carpet_red",
             "D": "t_door_c",
@@ -63,10 +69,10 @@
             "y": "t_pavement_y",
             "z": "t_metal_floor",
             "Z": "t_wall_metal",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "-": "t_console_broken"
           },
           "furniture": {
-            "-": "f_console_broken",
             "*": "f_region_flower",
             "@": "f_counter",
             "_": "f_sink",
@@ -286,7 +292,7 @@
                 "chance": 50
               },
               {
-                "item": "SUS_trash_hardware",
+                "item": "hardware_trash",
                 "chance": 75
               },
               {
@@ -328,7 +334,7 @@
                 "chance": 50
               },
               {
-                "item": "SUS_trash_hardware",
+                "item": "hardware_trash",
                 "chance": 50
               },
               {
@@ -510,11 +516,11 @@
           },
           "vehicles": {
             "3": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 90
             },
             "8": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 270
             },
             "w": {
@@ -522,7 +528,7 @@
               "rotation": 90
             },
             "V": {
-              "vehicle": "medical_cart",
+              "vehicle": "dda_eldercare_medical_cart",
               "rotation": 0
             }
           },
@@ -935,7 +941,145 @@
                 5
               ]
             }
-          ]
+          ],
+          "parameters": {
+            "interior_wall_type": {
+              "type": "ter_str_id",
+              "default": {
+                "distribution": [
+                  [
+                    "t_wall_b",
+                    5
+                  ],
+                  [
+                    "t_wall_g",
+                    5
+                  ],
+                  [
+                    "t_wall_p",
+                    1
+                  ],
+                  [
+                    "t_wall_P",
+                    1
+                  ],
+                  [
+                    "t_wall_r",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    15
+                  ],
+                  [
+                    "t_wall_y",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    1
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_brick_wall",
+                    2
+                  ]
+                ]
+              }
+            },
+            "exterior_wall_type": {
+              "type": "ter_str_id",
+              "default": {
+                "distribution": [
+                  [
+                    "t_brick_wall",
+                    4
+                  ],
+                  [
+                    "t_wall_wood",
+                    2
+                  ],
+                  [
+                    "t_wall_w",
+                    4
+                  ],
+                  [
+                    "t_wall_w",
+                    2
+                  ],
+                  [
+                    "t_concrete_wall",
+                    2
+                  ],
+                  [
+                    "t_concrete_wall",
+                    4
+                  ],
+                  [
+                    "t_concrete_wall",
+                    2
+                  ],
+                  [
+                    "t_strconc_wall",
+                    1
+                  ],
+                  [
+                    "t_strconc_wall",
+                    2
+                  ],
+                  [
+                    "t_strconc_wall",
+                    1
+                  ],
+                  [
+                    "t_sconc_wall",
+                    1
+                  ],
+                  [
+                    "t_sconc_wall",
+                    2
+                  ],
+                  [
+                    "t_sconc_wall",
+                    1
+                  ]
+                ]
+              }
+            }
+          },
+          "nested": {
+            "#": {
+              "chunks": [
+                [
+                  "shelter_graffiti",
+                  1
+                ],
+                [
+                  "general_graffiti",
+                  1
+                ],
+                [
+                  "null",
+                  598
+                ]
+              ]
+            }
+          }
         }
       },
       {
@@ -962,10 +1106,16 @@
           ]
         ],
         "object": {
-          "palettes": [
-            "parametrized_walls_palette"
-          ],
+          "palettes": [],
           "terrain": {
+            "|": {
+              "param": "interior_wall_type",
+              "fallback": "t_wall_w"
+            },
+            "#": {
+              "param": "exterior_wall_type",
+              "fallback": "t_brick_wall"
+            },
             "!": "t_region_tree_shade",
             "$": "t_region_shrub_decorative",
             "%": "t_splitrail_fence",
@@ -974,7 +1124,7 @@
             "^": "t_ladder_up",
             "2": "t_carpet_red",
             "B": "t_region_grass",
-            "c": "t_zebra",
+            "c": "t_pavement_y",
             "C": "t_carpet_red",
             "d": "t_carpet_red",
             "D": "t_door_c",
@@ -1000,16 +1150,16 @@
             "y": "t_pavement_y",
             "z": "t_metal_floor",
             "Z": "t_wall_metal",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "-": "t_console_broken",
+            "~": "t_console",
+            "+": "t_console",
+            "=": "t_console"
           },
           "furniture": {
-            "-": "f_console_broken",
             "*": "f_region_flower",
             "@": "f_counter",
             "_": "f_sink",
-            "~": "f_console",
-            "+": "f_console",
-            "=": "f_console",
             "0": "f_oven",
             "2": "f_chair",
             "4": "f_chair",
@@ -1051,6 +1201,22 @@
             "x": "f_crate_c"
           },
           "nested": {
+            "#": {
+              "chunks": [
+                [
+                  "shelter_graffiti",
+                  1
+                ],
+                [
+                  "general_graffiti",
+                  1
+                ],
+                [
+                  "null",
+                  598
+                ]
+              ]
+            },
             "+": {
               "chunks": [
                 "nursing_home_receptionist"
@@ -1252,7 +1418,7 @@
                 "chance": 50
               },
               {
-                "item": "SUS_trash_hardware",
+                "item": "hardware_trash",
                 "chance": 75
               },
               {
@@ -1294,7 +1460,7 @@
                 "chance": 50
               },
               {
-                "item": "SUS_trash_hardware",
+                "item": "hardware_trash",
                 "chance": 50
               },
               {
@@ -1502,11 +1668,11 @@
           },
           "vehicles": {
             "3": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 90
             },
             "8": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 270
             },
             "w": {
@@ -1514,7 +1680,7 @@
               "rotation": 90
             },
             "V": {
-              "vehicle": "medical_cart",
+              "vehicle": "dda_eldercare_medical_cart",
               "rotation": 0
             }
           },
@@ -1966,7 +2132,127 @@
                 5
               ]
             }
-          ]
+          ],
+          "parameters": {
+            "interior_wall_type": {
+              "type": "ter_str_id",
+              "default": {
+                "distribution": [
+                  [
+                    "t_wall_b",
+                    5
+                  ],
+                  [
+                    "t_wall_g",
+                    5
+                  ],
+                  [
+                    "t_wall_p",
+                    1
+                  ],
+                  [
+                    "t_wall_P",
+                    1
+                  ],
+                  [
+                    "t_wall_r",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    15
+                  ],
+                  [
+                    "t_wall_y",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    1
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_wall_w",
+                    3
+                  ],
+                  [
+                    "t_brick_wall",
+                    2
+                  ]
+                ]
+              }
+            },
+            "exterior_wall_type": {
+              "type": "ter_str_id",
+              "default": {
+                "distribution": [
+                  [
+                    "t_brick_wall",
+                    4
+                  ],
+                  [
+                    "t_wall_wood",
+                    2
+                  ],
+                  [
+                    "t_wall_w",
+                    4
+                  ],
+                  [
+                    "t_wall_w",
+                    2
+                  ],
+                  [
+                    "t_concrete_wall",
+                    2
+                  ],
+                  [
+                    "t_concrete_wall",
+                    4
+                  ],
+                  [
+                    "t_concrete_wall",
+                    2
+                  ],
+                  [
+                    "t_strconc_wall",
+                    1
+                  ],
+                  [
+                    "t_strconc_wall",
+                    2
+                  ],
+                  [
+                    "t_strconc_wall",
+                    1
+                  ],
+                  [
+                    "t_sconc_wall",
+                    1
+                  ],
+                  [
+                    "t_sconc_wall",
+                    2
+                  ],
+                  [
+                    "t_sconc_wall",
+                    1
+                  ]
+                ]
+              }
+            }
+          }
         }
       },
       {
@@ -2065,12 +2351,12 @@
         "object": {
           "terrain": {
             " ": "t_open_air",
-            "-": "t_carpet_red",
+            "-": "t_console_broken",
             "#": "t_grate",
             "&": "t_floor",
             "^": "t_ladder_up",
-            "|": "t_window_bars_noglass",
-            "~": "t_carpet_red",
+            "|": "t_bars",
+            "~": "t_console",
             "1": "t_floor",
             "4": "t_floor",
             "5": "t_carpet_red",
@@ -2097,13 +2383,11 @@
             "x": "t_door_metal_c",
             "X": "t_door_metal_pickable",
             "y": "t_thconc_floor",
-            "Z": "t_wall_metal"
+            "Z": "t_wall_metal",
+            "=": "t_console_broken"
           },
           "furniture": {
-            "-": "f_console_broken",
             "%": "f_toilet",
-            "~": "f_console",
-            "=": "f_console_broken",
             "1": "f_table",
             "2": "f_table",
             "3": "f_chair",
@@ -2117,24 +2401,6 @@
             "e": "f_bookcase",
             "E": "f_bookcase",
             "F": "f_filing_cabinet",
-            "g": [
-              [
-                "f_generator_broken",
-                25
-              ],
-              [
-                "f_diesel_generator",
-                5
-              ],
-              [
-                "f_military_generator",
-                5
-              ],
-              [
-                "f_12000_gasoline_generator",
-                5
-              ]
-            ],
             "h": "f_anesthetic",
             "H": "f_armchair",
             "k": "f_sink",
@@ -2160,6 +2426,26 @@
               "chunks": [
                 "nursing_home_sci"
               ]
+            },
+            "g": {
+              "chunks": [
+                [
+                  "dda_eldercare_generator_broken",
+                  25
+                ],
+                [
+                  "dda_eldercare_generator_diesel",
+                  5
+                ],
+                [
+                  "dda_eldercare_generator_military",
+                  5
+                ],
+                [
+                  "dda_eldercare_generator_gasoline",
+                  5
+                ]
+              ]
             }
           },
           "items": {
@@ -2176,11 +2462,11 @@
           },
           "vehicles": {
             "7": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 90
             },
             "8": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 270
             },
             "w": {
@@ -2290,12 +2576,12 @@
         "object": {
           "terrain": {
             " ": "t_open_air",
-            "-": "t_carpet_red",
+            "-": "t_console_broken",
             "#": "t_grate",
             "&": "t_floor",
             "^": "t_ladder_up",
-            "|": "t_window_bars_noglass",
-            "~": "t_carpet_red",
+            "|": "t_bars",
+            "~": "t_console",
             "1": "t_floor",
             "4": "t_floor",
             "5": "t_carpet_red",
@@ -2322,13 +2608,11 @@
             "x": "t_door_metal_c",
             "X": "t_door_metal_pickable",
             "y": "t_thconc_floor",
-            "Z": "t_wall_metal"
+            "Z": "t_wall_metal",
+            "=": "t_console_broken"
           },
           "furniture": {
-            "-": "f_console_broken",
             "%": "f_toilet",
-            "~": "f_console",
-            "=": "f_console_broken",
             "1": "f_table",
             "2": "f_table",
             "3": "f_chair",
@@ -2342,24 +2626,6 @@
             "e": "f_bookcase",
             "E": "f_bookcase",
             "F": "f_filing_cabinet",
-            "g": [
-              [
-                "f_generator_broken",
-                25
-              ],
-              [
-                "f_diesel_generator",
-                5
-              ],
-              [
-                "f_military_generator",
-                5
-              ],
-              [
-                "f_12000_gasoline_generator",
-                5
-              ]
-            ],
             "h": "f_anesthetic",
             "H": "f_armchair",
             "k": "f_sink",
@@ -2385,6 +2651,26 @@
               "chunks": [
                 "nursing_home_sci"
               ]
+            },
+            "g": {
+              "chunks": [
+                [
+                  "dda_eldercare_generator_broken",
+                  25
+                ],
+                [
+                  "dda_eldercare_generator_diesel",
+                  5
+                ],
+                [
+                  "dda_eldercare_generator_military",
+                  5
+                ],
+                [
+                  "dda_eldercare_generator_gasoline",
+                  5
+                ]
+              ]
             }
           },
           "items": {
@@ -2401,11 +2687,11 @@
           },
           "vehicles": {
             "7": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 90
             },
             "8": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 270
             },
             "w": {
@@ -2515,12 +2801,12 @@
         "object": {
           "terrain": {
             " ": "t_open_air",
-            "-": "t_carpet_red",
+            "-": "t_console_broken",
             "#": "t_grate",
             "&": "t_floor",
             "^": "t_ladder_up",
-            "|": "t_window_bars_noglass",
-            "~": "t_carpet_red",
+            "|": "t_bars",
+            "~": "t_console",
             "1": "t_floor",
             "4": "t_floor",
             "5": "t_carpet_red",
@@ -2547,13 +2833,11 @@
             "x": "t_door_metal_c",
             "X": "t_door_metal_pickable",
             "y": "t_thconc_floor",
-            "Z": "t_wall_metal"
+            "Z": "t_wall_metal",
+            "=": "t_console_broken"
           },
           "furniture": {
-            "-": "f_console_broken",
             "%": "f_toilet",
-            "~": "f_console",
-            "=": "f_console_broken",
             "1": "f_table",
             "2": "f_table",
             "3": "f_chair",
@@ -2567,24 +2851,6 @@
             "e": "f_bookcase",
             "E": "f_bookcase",
             "F": "f_filing_cabinet",
-            "g": [
-              [
-                "f_generator_broken",
-                25
-              ],
-              [
-                "f_diesel_generator",
-                5
-              ],
-              [
-                "f_military_generator",
-                5
-              ],
-              [
-                "f_12000_gasoline_generator",
-                5
-              ]
-            ],
             "h": "f_anesthetic",
             "H": "f_armchair",
             "k": "f_sink",
@@ -2609,6 +2875,26 @@
             "~": {
               "chunks": [
                 "nursing_home_sci"
+              ]
+            },
+            "g": {
+              "chunks": [
+                [
+                  "dda_eldercare_generator_broken",
+                  25
+                ],
+                [
+                  "dda_eldercare_generator_diesel",
+                  5
+                ],
+                [
+                  "dda_eldercare_generator_military",
+                  5
+                ],
+                [
+                  "dda_eldercare_generator_gasoline",
+                  5
+                ]
               ]
             }
           },
@@ -2876,11 +3162,11 @@
           },
           "vehicles": {
             "7": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 90
             },
             "8": {
-              "vehicle": "hospital_bed_small",
+              "vehicle": "dda_eldercare_bed_small",
               "rotation": 270
             },
             "w": {
@@ -5084,7 +5370,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -5179,13 +5465,13 @@
             "y": "t_pavement_y",
             "z": "t_null",
             "Z": "t_null",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -5671,7 +5957,7 @@
             "*": "t_metal_floor",
             ",": "t_ramp_up_high",
             ";": "t_bars",
-            "@": "t_metal_floor",
+            "@": "t_console",
             "^": "t_wood_stairs_up",
             "<": "t_ladder_up",
             "_": "t_carpet_red",
@@ -5717,7 +6003,6 @@
             "\u20b8": "f_pool_table",
             "#": "f_glass_cabinet",
             "*": "f_toilet",
-            "@": "f_console",
             "_": [
               "f_foot_locker",
               "f_foot_locker"
@@ -5735,7 +6020,7 @@
             "d": "f_displaycase",
             "f": "f_fridge",
             "H": "f_home_furnace",
-            "h": "f_water_heater_family",
+            "h": "f_water_heater",
             "i": "f_cupboard",
             "I": "f_null",
             "j": "f_null",
@@ -6259,7 +6544,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -6354,13 +6639,13 @@
             "y": "t_pavement_y",
             "z": "t_null",
             "Z": "t_null",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -6724,7 +7009,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -6820,13 +7105,13 @@
             "z": "t_null",
             "Z": "t_null",
             "\u042f": "t_gutter_downspout",
-            "1": "t_grass"
+            "1": "t_grass",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -7193,7 +7478,7 @@
             "*": "t_metal_floor",
             ",": "t_ramp_up_high",
             ";": "t_bars",
-            "@": "t_metal_floor",
+            "@": "t_console",
             "^": "t_wood_stairs_up",
             "<": "t_ladder_up",
             "_": "t_carpet_red",
@@ -7239,7 +7524,6 @@
             "\u20b8": "f_pool_table",
             "#": "f_glass_cabinet",
             "*": "f_toilet",
-            "@": "f_console",
             "_": [
               "f_foot_locker",
               "f_foot_locker"
@@ -7257,7 +7541,7 @@
             "d": "f_displaycase",
             "f": "f_fridge",
             "H": "f_home_furnace",
-            "h": "f_water_heater_family",
+            "h": "f_water_heater",
             "i": "f_cupboard",
             "I": "f_null",
             "j": "f_null",
@@ -7585,7 +7869,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -7680,13 +7964,13 @@
             "y": "t_pavement_y",
             "z": "t_null",
             "Z": "t_null",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -8085,7 +8369,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -8182,13 +8466,13 @@
             "Z": "t_null",
             "\u042f": "t_gutter_downspout",
             "3": "t_grass",
-            ":": "t_grass"
+            ":": "t_grass",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -8595,7 +8879,7 @@
             "*": "t_metal_floor",
             ",": "t_ramp_up_high",
             ";": "t_bars",
-            "@": "t_metal_floor",
+            "@": "t_console",
             "^": "t_wood_stairs_up",
             "<": "t_ladder_up",
             "_": "t_carpet_red",
@@ -8641,7 +8925,6 @@
             "\u20b8": "f_pool_table",
             "#": "f_glass_cabinet",
             "*": "f_toilet",
-            "@": "f_console",
             "_": [
               "f_foot_locker",
               "f_foot_locker"
@@ -8659,7 +8942,7 @@
             "d": "f_displaycase",
             "f": "f_fridge",
             "H": "f_home_furnace",
-            "h": "f_water_heater_family",
+            "h": "f_water_heater",
             "i": "f_cupboard",
             "I": "f_null",
             "j": "f_null",
@@ -8966,7 +9249,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -9061,13 +9344,13 @@
             "y": "t_pavement_y",
             "z": "t_null",
             "Z": "t_null",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -9477,7 +9760,7 @@
         "object": {
           "terrain": {
             " ": "t_open_air",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_laminated_glass",
             "(": "t_null",
             "+": "t_linoleum_white",
@@ -9569,7 +9852,9 @@
             "y": "t_pavement_y",
             "z": "t_linoleum_white",
             "Z": "t_linoleum_white",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "_": "t_console",
+            "~": "t_console_broken"
           },
           "furniture": {
             "-": "f_locker",
@@ -9577,10 +9862,8 @@
             ";": "f_sofa",
             "@": "f_desk",
             "}": "f_room_divider",
-            "_": "f_console",
             "\u20b8": "f_pool_table",
             "*": "f_region_flower",
-            "~": "f_console_broken",
             "+": "f_dishwasher",
             "=": "f_counter",
             "5": "f_filing_cabinet",
@@ -9988,7 +10271,7 @@
             },
             {
               "rotation": 90,
-              "vehicle": "van_cargo",
+              "vehicle": "dda_eldercare_cargo_van",
               "x": 127,
               "y": 30
             },
@@ -10122,7 +10405,7 @@
             "*": "t_metal_floor",
             ",": "t_ramp_up_high",
             ";": "t_bars",
-            "@": "t_metal_floor",
+            "@": "t_console",
             "^": "t_wood_stairs_up",
             "<": "t_ladder_up",
             "_": "t_carpet_red",
@@ -10168,7 +10451,6 @@
             "\u20b8": "f_pool_table",
             "#": "f_glass_cabinet",
             "*": "f_toilet",
-            "@": "f_console",
             "_": [
               "f_foot_locker",
               "f_foot_locker"
@@ -10186,7 +10468,7 @@
             "d": "f_displaycase",
             "f": "f_fridge",
             "H": "f_home_furnace",
-            "h": "f_water_heater_family",
+            "h": "f_water_heater",
             "i": "f_cupboard",
             "I": "f_null",
             "j": "f_null",
@@ -10367,7 +10649,8 @@
             "W": "t_wall_wood",
             "y": "t_pavement_y",
             "Y": "t_sidewalk",
-            "Z": "t_brick_wall"
+            "Z": "t_brick_wall",
+            "z": "t_shrub"
           },
           "furniture": {
             "\u20b8": "f_tourist_table",
@@ -10379,7 +10662,6 @@
             "*": "f_region_flower",
             "o": "f_brazier",
             "I": "f_street_light",
-            "z": "f_hedge_short",
             "V": "f_camp_chair",
             "R": "f_rack",
             "C": "f_speaker_cabinet",
@@ -10833,7 +11115,7 @@
             "*": "t_metal_floor",
             ",": "t_ramp_up_high",
             ";": "t_bars",
-            "@": "t_metal_floor",
+            "@": "t_console",
             "^": "t_wood_stairs_up",
             "<": "t_ladder_up",
             "_": "t_carpet_red",
@@ -10879,7 +11161,6 @@
             "\u20b8": "f_pool_table",
             "#": "f_glass_cabinet",
             "*": "f_toilet",
-            "@": "f_console",
             "_": [
               "f_foot_locker",
               "f_foot_locker"
@@ -10897,7 +11178,7 @@
             "d": "f_displaycase",
             "f": "f_fridge",
             "H": "f_home_furnace",
-            "h": "f_water_heater_family",
+            "h": "f_water_heater",
             "i": "f_cupboard",
             "I": "f_null",
             "j": "f_null",
@@ -11039,7 +11320,7 @@
             " ": "t_open_air",
             "\u00e8": "t_concrete",
             "?": "t_manhole_cover",
-            "\u25a4": "t_zebra",
+            "\u25a4": "t_pavement_y",
             "'": "t_reinforced_glass",
             "(": "t_shingle_flat_roof",
             "&": "t_linoleum_gray",
@@ -11134,13 +11415,13 @@
             "y": "t_pavement_y",
             "z": "t_null",
             "Z": "t_null",
-            "\u042f": "t_gutter_downspout"
+            "\u042f": "t_gutter_downspout",
+            "@": "t_console",
+            "_": "t_console_broken"
           },
           "furniture": {
             "-": "f_cupboard",
             ";": "f_displaycase",
-            "@": "f_console",
-            "_": "f_console_broken",
             "\u20b8": "f_tourist_table",
             "*": "f_region_flower",
             "~": "f_washer",
@@ -13703,7 +13984,7 @@
               0
             ]
           ],
-          "death_drops": "mon_feral_cop_death_drops",
+          "death_drops": "mon_zombie_cop_death_drops",
           "fungalize_into": "mon_feral_cop_fungal_infected",
           "zombify_into": "mon_zombie_cop",
           "extend": {
@@ -15224,60 +15505,12 @@
           "mon_pigeon"
         ],
         [
-          "furniture",
-          "f_12000_gasoline_generator"
-        ],
-        [
-          "furniture",
-          "f_console"
-        ],
-        [
-          "furniture",
-          "f_console_broken"
-        ],
-        [
-          "furniture",
-          "f_diesel_generator"
-        ],
-        [
-          "furniture",
-          "f_generator_broken"
-        ],
-        [
-          "furniture",
-          "f_hedge_short"
-        ],
-        [
-          "furniture",
-          "f_military_generator"
-        ],
-        [
-          "furniture",
-          "f_water_heater_family"
-        ],
-        [
           "item_group",
           "SUS_science_personal_effects"
         ],
         [
           "item_group",
-          "SUS_trash_hardware"
-        ],
-        [
-          "item_group",
           "cigar_box_opened"
-        ],
-        [
-          "item_group",
-          "common_mutation_books"
-        ],
-        [
-          "item_group",
-          "hoarder"
-        ],
-        [
-          "item_group",
-          "lab_files_generic"
         ],
         [
           "item_group",
@@ -15286,14 +15519,6 @@
         [
           "item_group",
           "nursing_home_clothes"
-        ],
-        [
-          "item_group",
-          "rare_mutation_books"
-        ],
-        [
-          "item_group",
-          "saline_bottle_random"
         ],
         [
           "monstergroup",
@@ -15322,30 +15547,6 @@
         [
           "nested_mapgen",
           "spider_webs"
-        ],
-        [
-          "palette",
-          "parametrized_walls_palette"
-        ],
-        [
-          "terrain",
-          "t_window_bars_noglass"
-        ],
-        [
-          "terrain",
-          "t_zebra"
-        ],
-        [
-          "vehicle",
-          "hospital_bed_small"
-        ],
-        [
-          "vehicle",
-          "medical_cart"
-        ],
-        [
-          "vehicle",
-          "van_cargo"
         ]
       ],
       "selected_definitions": 30,
@@ -15535,41 +15736,13 @@
         [
           "item_group",
           "mon_mutant_experimental_death_drops"
+        ],
+        [
+          "item_group",
+          "mon_zombie_cop_death_drops"
         ]
       ],
       "unresolved_transitive_references": [
-        [
-          "furniture",
-          "f_12000_gasoline_generator"
-        ],
-        [
-          "furniture",
-          "f_console"
-        ],
-        [
-          "furniture",
-          "f_console_broken"
-        ],
-        [
-          "furniture",
-          "f_diesel_generator"
-        ],
-        [
-          "furniture",
-          "f_generator_broken"
-        ],
-        [
-          "furniture",
-          "f_hedge_short"
-        ],
-        [
-          "furniture",
-          "f_military_generator"
-        ],
-        [
-          "furniture",
-          "f_water_heater_family"
-        ],
         [
           "item",
           "egg_pigeon"
@@ -15580,15 +15753,7 @@
         ],
         [
           "item_group",
-          "SUS_trash_hardware"
-        ],
-        [
-          "item_group",
           "cigar_box_opened"
-        ],
-        [
-          "item_group",
-          "common_mutation_books"
         ],
         [
           "item_group",
@@ -15596,51 +15761,7 @@
         ],
         [
           "item_group",
-          "hoarder"
-        ],
-        [
-          "item_group",
-          "lab_files_generic"
-        ],
-        [
-          "item_group",
           "lab_mutagen_ingredients_fridge"
-        ],
-        [
-          "item_group",
-          "mon_feral_cop_death_drops"
-        ],
-        [
-          "item_group",
-          "rare_mutation_books"
-        ],
-        [
-          "item_group",
-          "saline_bottle_random"
-        ],
-        [
-          "palette",
-          "parametrized_walls_palette"
-        ],
-        [
-          "terrain",
-          "t_window_bars_noglass"
-        ],
-        [
-          "terrain",
-          "t_zebra"
-        ],
-        [
-          "vehicle",
-          "hospital_bed_small"
-        ],
-        [
-          "vehicle",
-          "medical_cart"
-        ],
-        [
-          "vehicle",
-          "van_cargo"
         ]
       ],
       "scope": "Typed map references, group leaves, monster inheritance/drops/upgrades/reproduction and dialogue links; not attacks, AI, all item schema or runtime compatibility.",

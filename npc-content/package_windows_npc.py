@@ -90,6 +90,9 @@ def verify_install(folder):
     from prepare_eldercare import native_data as eldercare_data, PAYLOAD as ELDERCARE_PAYLOAD
     if json.loads((folder / ELDERCARE_PAYLOAD).read_text(encoding='utf-8')) != eldercare_data():
         raise ValueError('Installed eldercare support payload differs')
+    from prepare_eldercare_assets import native_data as asset_data, PAYLOAD as ASSET_PAYLOAD
+    if json.loads((folder / ASSET_PAYLOAD).read_text(encoding="utf-8")) != asset_data():
+        raise ValueError("Installed eldercare assets differ")
     from prepare_terminal_archives import native_data as archive_data, PAYLOAD as ARCHIVE_PAYLOAD
     if json.loads((folder / ARCHIVE_PAYLOAD).read_text(encoding="utf-8")) != archive_data():
         raise ValueError("Installed terminal archives differ")

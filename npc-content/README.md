@@ -122,4 +122,6 @@ Native regression seeds a deterministic one-plank rigid collection, tests single
 
 ## Eldercare terminal archives
 
-Six nursing-home and retirement-community terminals now have a BN-native read-only archive adapter: 72 original pages, response graphs, pagination and computer save persistence. A missing source legal-document page has a generic unavailable-file notice. Six reusable nested templates are included; the full locations remain staged with 26 unresolved dependency references. See `terminal_archives/README.md`. Python/source/packaging guards are available; new native compilation, installed tests and interactive UI validation remain pending.
+Six nursing-home and retirement-community terminals now have a BN-native read-only archive adapter: 72 original pages, response graphs, pagination and computer save persistence. A missing source legal-document page has a generic unavailable-file notice. Six reusable nested templates are included; the full locations remain staged with five unresolved dependency references. See `terminal_archives/README.md`. Python/source/packaging guards are available; new native compilation, installed tests and interactive UI validation remain pending.
+
+The eldercare asset slice adds 33 native support definitions: compact medical objects, fuel generators on BN vehicle parts, a cargo van on the matching stock hull, recipe/household/medical loot, and nine laboratory papers with 60 source texts. Full sites remain staged. See `eldercare_assets/README.md` for adaptations and runtime gates.

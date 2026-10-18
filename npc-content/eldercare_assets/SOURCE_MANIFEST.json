@@ -1,0 +1,45 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "bundle_sha256": "3c83d0c7d1fce1fed73cdfbf0703ad574ef336cd8cecbf65e33e1972b1d79b91",
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01",
+    "SOURCE.part02",
+    "SOURCE.part03",
+    "SOURCE.part04",
+    "SOURCE.part05",
+    "SOURCE.part06",
+    "SOURCE.part07"
+  ],
+  "files": {
+    "bn/data/json/furniture_and_terrain/furniture-plumbing.json": "6a4b640aaebbd84ea50b2a04415eff06d95a9985d3ebc7310ff187aa7b3bc0a6",
+    "bn/data/json/furniture_and_terrain/terrain-fences-gates.json": "2e6fe63059d525c8c0a80903d28f5e750b66dd8036720b38b0edc98409c9249b",
+    "bn/data/json/furniture_and_terrain/terrain-flora.json": "441fa8053d0451178297ab8c79586c5c87b69a97fe7a7089063d5e8c6ca59cca",
+    "bn/data/json/furniture_and_terrain/terrain-mechanisms.json": "0730b558a877b87f534d281c9ab7ab8350722cb0e8d46bf561e3689e56b37aa7",
+    "bn/data/json/itemgroups/trash_and_debris.json": "dfd78aef76ec99524032538a19025191f536d6da3ae75870d638f74986507377",
+    "bn/data/json/items/newspaper.json": "fe6e22665464d06d2edfb03978e92f52c2737f1daf0052ebbe43429b71098749",
+    "bn/data/json/monsterdrops/zombie_cop.json": "24105e59b0b72580414afd5b23cfa73e9dbe01468242671f223a096c91e4e32c",
+    "bn/data/json/snippets/lab.json": "4549cd5c76b4ba66bd34c7a7e4d84a812f2e7c1d757a537bf9e3063aa5b9738e",
+    "bn/data/json/vehicleparts/alternator.json": "772698829b02a243c631745bf90848f5316c3550c6073526488c4b4539965695",
+    "bn/data/json/vehicleparts/furniture.json": "edbfe2e7a3801dd225e79fc96442e0b9d83995eaefd738092e7bf5b90ffa008a",
+    "bn/data/json/vehicles/carts.json": "407f2082f90e7f08fcdb3c68b38a5779243c3d973f71543e7001ba06e918acf9",
+    "bn/data/json/vehicles/utility.json": "8e7aa0b8a872a66cb6f7432b8f4a1f6eb31f24ba8e4fd3e183e5a613f96e9618",
+    "bn/data/json/vehicles/vans_busses.json": "8f409084c5845cf6703cd45199b2ff6f96ddc2abb3399ec458b706fc0610c384",
+    "bn/src/mapgen/mapgen_parameter.h": "7b701f15ef1c54c215eb6bfbbb2f8eb612e8cd2378ce711eac2b5c4f8c0743c7",
+    "dda/data/json/furniture_and_terrain/furniture-plumbing.json": "22a806732c543fca66bd9ce2c5b67e5aaed6259b9c663eb2a22e20a584862885",
+    "dda/data/json/furniture_and_terrain/furniture_generators.json": "c728efcb85466d4b9dd71d27dd4ef9d71f15b25f04996f228e7eb8e5fc014290",
+    "dda/data/json/itemgroups/Drugs_Tobacco_Alcohol/drugs.json": "7e3948ff4b128b2a11b0dc0a0c5bb7549967b15139ded7ba63e482b56429169e",
+    "dda/data/json/itemgroups/Labs/labs_common.json": "a33d5869b57e1592db6d675944ddc605025a81fdfe721a0616a99bfd82b11c11",
+    "dda/data/json/itemgroups/Labs/labs_mutagen.json": "5a457605ea6310f9a5c97c28b4a9a9b53d1342909ad1da6de2cc1a5caf232e40",
+    "dda/data/json/itemgroups/collections_domestic.json": "914e6110de0c2668dbc84bff65bb02a89486493e9bf1b2f304df2fe600105421",
+    "dda/data/json/items/newspaper.json": "7935fe4445be727f502008a3921005d0d9df5b4dcff03b6023d40e7c90422828",
+    "dda/data/json/mapgen_palettes/common_parameters.json": "abb3e250be1920840155264e84890f3c4aa12e9ec169f2e535add993905137e6",
+    "dda/data/json/snippets/lab.json": "6c3ef630e32d4dd7c628e5603953b52827a4396f9fa9af4b3adfd3095f2f6e92",
+    "dda/data/json/vehicles/carts.json": "964bc1ac1c04a6e8f7db3c2688625c77ccd0d982a6f1563c78a5f9cfa8ccbd73",
+    "dda/data/json/vehicles/vans_busses.json": "75796542d86f80137adafb5e35676fb9e2912dd0103ad485d21c0858781e9744",
+    "bn/data/json/items/comestibles/med.json": "b5308c4ebf75d6efaa7fe0ed195a3f64c5f87f073009f5079f96c7ccda5a8aaa"
+  }
+}

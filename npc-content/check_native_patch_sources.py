@@ -17,6 +17,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
+from prepare_eldercare_assets import prepare as prepare_assets, PAYLOAD as ASSET_PAYLOAD
 from prepare_terminal_archives import prepare as prepare_archives, patch_sections as archive_patch, CORE as ARCHIVE_CORE, PAYLOAD as ARCHIVE_PAYLOAD
 from prepare_mapgen_corpses import patch_sections as corpse_patch
 
@@ -46,6 +47,7 @@ def check():
     prepare_eldercare(check=True)
     prepare_farm(check=True)
     prepare_archives(check=True)
+    prepare_assets(check=True)
     assert corpse_patch() in patch, "Stale corpse mapgen replacement"
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
@@ -61,7 +63,7 @@ def check():
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
@@ -75,6 +77,7 @@ def check():
         ELDERCARE_PAYLOAD: ROOT / 'native/dda_eldercare_support.json',
         FARM_PAYLOAD: ROOT / 'native/dda_farm_supply.json',
         ARCHIVE_PAYLOAD: ROOT / 'native/dda_terminal_archives.json',
+        ASSET_PAYLOAD: ROOT / 'native/dda_eldercare_assets.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',
         'data/json/items/dda_quest_usb.json': ROOT / 'native/dda_quest_usb.json',
         'data/json/items/dda_545_casing.json': ROOT / 'native/dda_545_casing.json',

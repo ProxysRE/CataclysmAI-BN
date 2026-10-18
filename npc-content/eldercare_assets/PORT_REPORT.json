@@ -1,0 +1,50 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "status": "native_support_prepared_runtime_pending",
+  "definitions": 33,
+  "by_type": {
+    "item_group": 5,
+    "GENERIC": 9,
+    "snippet": 9,
+    "vehicle": 6,
+    "mapgen": 4
+  },
+  "source_lab_records": 60,
+  "stock_aliases": [
+    {
+      "type": "furniture",
+      "source": "f_water_heater_family",
+      "target": "f_water_heater",
+      "reason": "Stock BN water tank, keg interaction and capacity."
+    },
+    {
+      "type": "item_group",
+      "source": "SUS_trash_hardware",
+      "target": "hardware_trash",
+      "reason": "Stock hardware refuse."
+    },
+    {
+      "type": "item_group",
+      "source": "mon_feral_cop_death_drops",
+      "target": "mon_zombie_cop_death_drops",
+      "reason": "Stock police clothing and equipment drops; probabilities and weapons follow BN."
+    },
+    {
+      "type": "terrain",
+      "source": "t_window_bars_noglass",
+      "target": "t_bars",
+      "reason": "Stock transparent metal bars without glass."
+    },
+    {
+      "type": "terrain",
+      "source": "t_zebra",
+      "target": "t_pavement_y",
+      "reason": "Stock marked pavement; BN road-marking appearance."
+    }
+  ],
+  "whole_locations_installed": false,
+  "runtime_validation": "Windows native and installed tests pending; manual location interaction pending"
+}

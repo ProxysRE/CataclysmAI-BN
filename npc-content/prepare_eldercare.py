@@ -128,8 +128,10 @@ def build_layer(adapted=False):
     used = set()
     if adapted:
         from prepare_terminal_archives import adapt_map
-        maps = [adapt_map(adapt_entry(e, used)) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
-    provided = index_entries(maps)
+        from prepare_eldercare_assets import adapt_map as adapt_assets
+        maps = [adapt_assets(adapt_map(adapt_entry(e, used))) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
+    from prepare_eldercare_assets import native_data as asset_data
+    provided = index_entries(maps + (asset_data() if adapted else []))
     roots = {ref for entry in maps for ref in refs(entry)} - bn - provided
     # The provenance layer keeps original medical evolution; the adapted
     # layer uses the stock BN medical zombie under the user's reuse policy.
@@ -152,7 +154,8 @@ def build_layer(adapted=False):
             continue
         path, entry = provider
         if adapted:
-            entry = adapt_entry(entry, used)
+            from prepare_eldercare_assets import adapt_references
+            entry = adapt_references(adapt_entry(entry, used))
         selected[key] = {'source': path, 'entry': entry}
         pending.extend(refs(entry))
     # Aliases for one multi-ID declaration must not create duplicate entries.
@@ -196,7 +199,8 @@ def prepare(check=False, bn_source=None, bn_data=None):
     check_counterparts(bn_source)
     regional = build()
     from prepare_terminal_archives import adapt_map
-    adapted = {'locations': {name: [adapt_map(adapt_entry(e)) for e in regional[name + '.json'] if e['type'] not in ('talk_topic', 'effect_on_condition')] for name in ('nursing_home', 'retirement_community')},
+    from prepare_eldercare_assets import adapt_map as adapt_assets
+    adapted = {'locations': {name: [adapt_assets(adapt_map(adapt_entry(e))) for e in regional[name + '.json'] if e['type'] not in ('talk_topic', 'effect_on_condition')] for name in ('nursing_home', 'retirement_community')},
                'dependencies': build_layer(adapted=True)}
     outputs = {FOLDER / 'ADAPTED_LOCATIONS.json': adapted, ROOT / 'native/dda_eldercare_support.json': payload,
                FOLDER / 'SOURCE_CANDIDATES.json': layer}
