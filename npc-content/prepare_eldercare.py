@@ -133,8 +133,10 @@ def build_layer(adapted=False):
         maps = [adapt_fauna(adapt_assets(adapt_map(adapt_entry(e, used)))) for e in maps if e["type"] not in ("talk_topic", "effect_on_condition")]
     from prepare_eldercare_assets import native_data as asset_data
     from prepare_eldercare_loot import native_data as loot_data
-    from prepare_civilians import native_data as civilian_data
-    provided = index_entries(maps + (native_data() + asset_data() + loot_data() + fauna_data() + civilian_data() if adapted else []))
+    from prepare_civilians import mod_providers
+    provided = index_entries(maps + (native_data() + asset_data() + loot_data() + fauna_data() if adapted else []))
+    if adapted:
+        provided |= mod_providers()
     roots = {ref for entry in maps for ref in refs(entry)} - bn - provided
     # The provenance layer keeps original medical evolution; the adapted
     # layer uses the stock BN medical zombie under the user's reuse policy.
@@ -166,7 +168,7 @@ def build_layer(adapted=False):
     for value in selected.values():
         unique[json.dumps(value['entry'], sort_keys=True)] = value
     candidates = sorted(unique.values(), key=lambda v: (namespace(v['entry']), str(ids(v['entry']))))
-    return {'pins': PINS, 'installed': False, 'source_candidates': candidates,
+    return {'pins': PINS, 'installed': False, 'optional_mod_dependencies': ['civilians'] if adapted else [], 'source_candidates': candidates,
             'counterpart_mappings_applied': [{'type': kind, 'source': source, 'bn_target': target, 'reason': reason} for (kind, source), (target, reason) in sorted(MAPPINGS.items()) if source in used],
             'report': {'root_missing_identifiers': sorted(roots),
                        'selected_definitions': len(candidates),

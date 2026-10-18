@@ -24,6 +24,14 @@ inline void show_civilian_chat( const monster &person )
     std::string current = graph.root;
     while( const auto *page = graph.find( current ) ) {
         std::string line = random_entry( page->lines ).translated();
+        for( const auto &tag : { std::pair<std::string, std::string>{ "<freaking>", "freaking" },
+                                 { "<punc>", "!" } } ) {
+            size_t offset = 0;
+            while( ( offset = line.find( tag.first, offset ) ) != std::string::npos ) {
+                line.replace( offset, tag.first.size(), tag.second );
+                offset += tag.second.size();
+            }
+        }
         // A leading ampersand marks source narration, not spoken words.
         if( !line.empty() && line.front() == '&' ) {
             line.erase( line.begin() );

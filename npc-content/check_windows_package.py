@@ -31,7 +31,7 @@ def check():
         from prepare_farm_supply import prepare_data as farm_data, PAYLOAD as FARM_PAYLOAD
         from prepare_terminal_archives import native_data as archive_data, PAYLOAD as ARCHIVE_PAYLOAD
         from prepare_eldercare_assets import native_data as asset_data, PAYLOAD as ASSET_PAYLOAD
-        from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD
+        from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, mod_sources
         from prepare_eldercare_fauna import native_data as fauna_data, PAYLOAD as FAUNA_PAYLOAD
         from prepare_eldercare_loot import native_data as loot_data, PAYLOAD as LOOT_PAYLOAD
         payload = {
@@ -66,6 +66,7 @@ def check():
             'data/json/items/dda_545_casing.json': (ROOT / 'native/dda_545_casing.json').read_bytes(),
             'data/json/items/dda_quest_props.json': (ROOT / 'native/dda_quest_props.json').read_bytes(),
         }
+        payload.update({'data/mods/Civilians/' + name: text.encode() for name, text in mod_sources().items() if name != 'civilians.json'})
         for relative, data in payload.items():
             path = installed / relative
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -80,7 +81,7 @@ def check():
                 assert archive.read('CBN_DDA_NPC_DEV/' + relative) == payload[relative]
                 assert build['files'][relative] == digest(installed / relative)
         assert output.with_suffix('.zip.sha256').read_text().split()[0] == digest(output)
-        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'stale_assets', 'stale_loot', 'stale_fauna', 'stale_civilians', 'user_data'):
+        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'stale_assets', 'stale_loot', 'stale_fauna', 'stale_civilians', 'legacy_civilians', 'user_data'):
             if mutation == 'missing_translation':
                 path = installed / 'lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo'
                 path.unlink()
@@ -89,6 +90,9 @@ def check():
                 path.write_text('[]')
             elif mutation == 'stale_nuclear':
                 path = installed / NUCLEAR
+                path.write_text('[]')
+            elif mutation == 'legacy_civilians':
+                path = installed / LEGACY_CORE
                 path.write_text('[]')
             elif mutation == 'stale_civilians':
                 path = installed / CIVILIAN_PAYLOAD
@@ -122,6 +126,8 @@ def check():
                 raise AssertionError('Invalid installation accepted: ' + mutation)
             if mutation == 'user_data':
                 path.rmdir()
+            elif mutation == 'legacy_civilians':
+                path.unlink()
             else:
                 path.write_bytes(payload[path.relative_to(installed).as_posix()])
         try:

@@ -24,8 +24,12 @@ jobs:
           repository: cataclysmbn/Cataclysm-BN
           ref: c621aaf42fa182473aad10feea2b55647704dcf1
           path: bn-data
-          sparse-checkout: data/json
+          sparse-checkout: |
+            data/json
+            data/mods
           persist-credentials: false
+      - name: Reject unreviewed collisions with bundled mods
+        run: python npc-content/audit_bn_mod_content.py --bn-source bn-data --report bundled-mod-audit.json
       - name: Validate church dependencies against all pinned BN JSON definitions
         run: |
           python npc-content/prepare_rural_churches.py --check --bn-source bn-data

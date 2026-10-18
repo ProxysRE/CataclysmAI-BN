@@ -431,9 +431,9 @@
     "equipment_groups": 3,
     "emitters": 1,
     "full_locations_installed": false,
-    "remaining_staged_definitions": 7,
+    "remaining_staged_definitions": 5,
     "remaining_categories": {
-      "armed_civilians": 4,
+      "unique_armed_civilians": 2,
       "civilian_map_groups": 3
     },
     "counterpart_policy": "Stock BN juvenile cockroach and immature cellar spider; stock adult cellar spider retained as parent of unique variants",
@@ -453,36 +453,34 @@
       "failure": "Five unsupported DDA bleed_rate fields; omitted in follow-up",
       "installed_tests_reached": false,
       "corrected_run_pending": true
-    }
+    },
+    "optional_mod_dependencies": [
+      "civilians"
+    ]
   },
   "civilian_dialogue_layer": {
-    "status": "native_prepared_not_runtime_validated",
-    "definitions": 4,
-    "noncombatants": 3,
-    "evolution_groups": 1,
-    "source_topics_archived": 9,
-    "menu": "visible neutral civilian, same floor, within two tiles; read-only source response graph",
-    "mechanics": "existing human faction, monster evolution and corpses; new embedded read-only chat graph in mtype and entry in BN chat menu",
-    "guilt": "stock BN GUILT, not complete DDA GUILT_HUMAN consequences",
-    "source_evolution_weights": "exact rational subgroup expansion, total 90600; single-monster upgrade use only",
-    "source_differences": [
-      "No source monster parrot/snippets or portraits",
-      "No armed civilians/conditional guns yet",
-      "No trading, following or NPC conversion"
-    ],
-    "full_locations_installed": false,
-    "validation": "Source/static/reference, embedded patch, packaging checks; new native Windows source/installed runs, menu interaction and gameplay remain pending",
-    "first_fast_run": {
-      "head": "047979dbc6691dd6f96640d534bec7bec07f335c",
-      "run": 39150017965,
-      "result": "failure",
-      "cause": "Python guard depended on untracked pinned/src/npctalk.cpp",
-      "fix": "Bundled canonical baseline verified against official BN Git blob; corrected fast/native run pending"
-    }
+    "status": "prepared_existing_mod_integration_not_runtime_validated",
+    "new_core_definitions": 0,
+    "stock_mod": "civilians",
+    "modified_file": "data/mods/Civilians/civilians.json",
+    "existing_types_with_added_dialogue": 6,
+    "all_original_fields_preserved": true,
+    "duplicate_core_payload_removed": true,
+    "mod_spawn_lua_evolution_groups_unchanged": true,
+    "other_subtypes_do_not_inherit_dialogue": true,
+    "optional_mod_activation_automatic": false,
+    "remaining_full_site_definitions": 5,
+    "validation": "Python exact-field/source/patch/package checks; separate core and Civilians-enabled source/installed native runs pending"
   },
   "latest_clean_windows_build": {
     "head": "07109593d505b4095094129bc0e6dca4c3a6320b",
     "run": 39140851555,
     "result": "success"
+  },
+  "bundled_mod_inventory": {
+    "status": "full_index_bootstrap_in_fast_CI_pending",
+    "scope": "all pinned data/mods JSON; typed IDs, display names, mod owners and dependencies",
+    "guard": "unreviewed new-core ID collisions block fast and native CI",
+    "limitations": "Exact IDs and name search require semantic review; optional providers remain explicit dependencies"
   }
 }

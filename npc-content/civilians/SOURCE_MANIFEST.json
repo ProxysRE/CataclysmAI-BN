@@ -17,5 +17,20 @@
       "NPCTALK.part00",
       "NPCTALK.part01"
     ]
+  },
+  "bn_mod_sources": {
+    "civilians.json": "62cd1a621d196000a3b04c86dadbbb35269548270c0fc69f9c0a2542f73eaf55",
+    "itemgroups.json": "b59239c2f368186eaf62de270335439ec49f2fb3b20ef62e4dde3a30445ef292",
+    "main.lua": "07fc553e6bd2c7f968cc334f6ffb4e574c814d1a81f04a7b8d0c81407d56525f",
+    "mod_tileset.json": "ab85d913acc37b230172eb7fd2469026763b689a1ba66944fcdda427bced6448",
+    "modinfo.json": "f68d2184525fb649d2cd0fefbb52bb7248f6ddad6fc7292b8136bd43d0aeb4a1",
+    "monster_gun.json": "655b2bf0583d15a0176ebe6511224ad18318658ca65799e5a2ec12b7a8e2b538",
+    "monsterdrops.json": "dba2e9bf584e87ed997930ef4f589bc50f7dc18b76c31bf77caf2a41a0548465",
+    "monstergroup.json": "1ee66eaf61b071db5e9431355fb6e05bfe085dd1f1fcf8eedc04db755b6c2350",
+    "npcs.json": "6e09eadb80ccd39f3adb4229a48eabc1dc8d6caa936f1b37307755166ff5c1bc",
+    "options.lua": "455d72b5105903d74ddd4eb59db30b22034610ce59598ebd11cf04923aa4a09b",
+    "preload.lua": "381577cde8d7b9b0fc4ac18cb63b00f25b7a81ab227cbdc0d3ee5aec19afe7dc",
+    "professions.json": "da88a4d8919af66a4df14c8f9cc237e5b5d822566c8efc108ea94c93c9458bf3",
+    "speech.json": "8a14b372fe34f6e60faee5d61ffca2de067135d88fc252ba9de9856b2e1991ef"
   }
 }

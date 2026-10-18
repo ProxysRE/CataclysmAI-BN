@@ -13,7 +13,7 @@
 
 #include <sstream>
 
-TEST_CASE( "noncombatant_civilians_are_neutral_humans_with_source_dialogue", "[dda_npc][dda_locations]" )
+TEST_CASE( "noncombatant_civilians_are_neutral_humans_with_source_dialogue", "[dda_civilians]" )
 {
     clear_all_state();
     clear_map();
@@ -30,8 +30,8 @@ TEST_CASE( "noncombatant_civilians_are_neutral_humans_with_source_dialogue", "[d
         CHECK( zombie.attitude_to( person ) == Attitude::A_HOSTILE );
         CHECK_FALSE( type->civilian_dialogue.empty() );
         CHECK( type->upgrade_group == mongroup_id( "GROUP_CIVILIANS_UPGRADE" ) );
-        CHECK( type->age_grow == 1 );
-        CHECK( type->half_life == 4 );
+        CHECK( type->age_grow == -1 );
+        CHECK( type->half_life == 1 );
         person.setpos( map_local_to_abs( get_map(), tripoint_bub_ms( 68, 60, 0 ) ) );
         CHECK_FALSE( can_chat_with_civilian( person, actor ) );
     }
@@ -43,11 +43,11 @@ TEST_CASE( "noncombatant_civilians_are_neutral_humans_with_source_dialogue", "[d
     REQUIRE( parent.find( parent.root ) != nullptr );
     CHECK( parent.find( parent.root )->lines.size() == 3 );
     CHECK( parent.next( parent.root, 0 ) == "TALK_CIVILIAN_PARENT_EVAC" );
-    CHECK( mtype_id( "mon_civilian_stationary" )->speed == 20 );
+    CHECK( mtype_id( "mon_civilian_stationary" )->speed == 0 );
     clear_all_state();
 }
 
-TEST_CASE( "civilian_read_only_dialogue_rejects_dangling_links", "[dda_npc][dda_locations]" )
+TEST_CASE( "civilian_read_only_dialogue_rejects_dangling_links", "[dda_npc][dda_civilians]" )
 {
     std::istringstream source( R"({"root":"start","pages":[{"id":"start","lines":["Hello"],"responses":[{"text":"Continue","target":"missing"}]}]})" );
     JsonIn input( source );
@@ -55,16 +55,26 @@ TEST_CASE( "civilian_read_only_dialogue_rejects_dangling_links", "[dda_npc][dda_
     CHECK_THROWS( graph.load( input.get_object() ) );
 }
 
-TEST_CASE( "civilian_evolution_preserves_single_monster_selection", "[dda_npc][dda_locations]" )
+TEST_CASE( "existing_Civilians_keep_their_evolution_and_opt_in_dialogue", "[dda_civilians]" )
 {
     const auto group = mongroup_id( "GROUP_CIVILIANS_UPGRADE" );
     REQUIRE( group.is_valid() );
-    CHECK( group->freq_total == 90600 );
-    CHECK( group->monsters.size() == 11 );
-    for( int attempt = 0; attempt < 100; ++attempt ) {
-        const auto evolved = MonsterGroupManager::GetRandomMonsterFromGroup( group );
-        CHECK( evolved.is_valid() );
-        CHECK( evolved != mtype_id( "mon_civilian_panic" ) );
-        CHECK( evolved != mtype_id( "mon_civilian_parent" ) );
+    CHECK( group->freq_total == 1000 );
+    REQUIRE( group->monsters.size() == 8 );
+    CHECK( group->monsters.front().name == mtype_id( "mon_civilian_survivor_bow" ) );
+    CHECK( group->monsters.front().frequency == 16 );
+    for( const auto *name : { "mon_civilian_police", "mon_civilian_zombiefighter", "mon_civilian_icu" } ) {
+        const auto type = mtype_id( name );
+        REQUIRE( type.is_valid() );
+        CHECK_FALSE( type->civilian_dialogue.empty() );
     }
+    CHECK( mtype_id( "mon_civilian_survivor_pistol" )->civilian_dialogue.empty() );
+    CHECK( mtype_id( "mon_civilian_child" )->civilian_dialogue.empty() );
+}
+
+TEST_CASE( "core_game_does_not_duplicate_optional_Civilians_content", "[dda_npc]" )
+{
+    CHECK_FALSE( mtype_id( "mon_civilian_panic" ).is_valid() );
+    CHECK_FALSE( mtype_id( "mon_civilian_parent" ).is_valid() );
+    CHECK_FALSE( mongroup_id( "GROUP_CIVILIANS_UPGRADE" ).is_valid() );
 }

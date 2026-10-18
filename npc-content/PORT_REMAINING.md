@@ -59,3 +59,8 @@ Eleven definitions remain staged for the complete nursing-home/retirement sites:
 ## Noncombatant civilian checkpoint, 2026-10-18
 
 Three unarmed living human types are now prepared with a native read-only dialogue graph in the BN chat menu and the existing human-faction/evolution/corpse mechanisms. A single-monster upgrade-only group preserves exact source hierarchical probabilities (90600 total). Seven definitions remain for the full sites: four armed civilian types and three mixed/timed map groups. Conditional guns and real hostile-target selection require their own native work; no armed type is silently replaced by a feral. Stock BN GUILT is an explicit approximation. New native compilation, source/installed runs and manual menu/behavior checks remain gates. See civilians/README.md.
+
+
+## Current Civilians reuse correction, 2026-10-18
+
+Supersedes the standalone civilian checkpoint above. Six existing Civilians mod types now receive dialogue only. The duplicate core monsters and 90600-weight evolution group are removed; every original stock-mod field and all Lua/spawn/evolution data are preserved. Full sites remain conditional on Civilians and disabled. Five source candidates remain: two unique armed types and three location groups. A complete bundled-mod catalog/collision gate and mod-disabled/mod-enabled source/installed tests are added; full CI and manual behavior validation remain pending.

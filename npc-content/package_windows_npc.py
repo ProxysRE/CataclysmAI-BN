@@ -90,9 +90,14 @@ def verify_install(folder):
     from prepare_eldercare import native_data as eldercare_data, PAYLOAD as ELDERCARE_PAYLOAD
     if json.loads((folder / ELDERCARE_PAYLOAD).read_text(encoding='utf-8')) != eldercare_data():
         raise ValueError('Installed eldercare support payload differs')
-    from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD
+    from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, mod_sources
     if json.loads((folder / CIVILIAN_PAYLOAD).read_text(encoding="utf-8")) != civilian_data():
         raise ValueError("Installed civilian data differs")
+    if (folder / LEGACY_CORE).exists():
+        raise ValueError("Legacy duplicate core civilian definitions remain")
+    for name, text in mod_sources().items():
+        if name != 'civilians.json' and (folder / 'data/mods/Civilians' / name).read_text(encoding='utf-8') != text:
+            raise ValueError("Stock Civilians support file differs: " + name)
     from prepare_eldercare_fauna import native_data as fauna_data, PAYLOAD as FAUNA_PAYLOAD
     if json.loads((folder / FAUNA_PAYLOAD).read_text(encoding="utf-8")) != fauna_data():
         raise ValueError("Installed eldercare fauna differs")

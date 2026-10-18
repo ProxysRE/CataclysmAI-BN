@@ -3,6 +3,7 @@
 import argparse
 import base64
 import gzip
+import difflib
 import copy
 import hashlib
 import json
@@ -13,8 +14,10 @@ from prepare_regional_locations import index_entries, BUILTIN_IDS
 
 ROOT = Path(__file__).resolve().parent
 FOLDER = ROOT / 'civilians'
-PAYLOAD = 'data/json/dda_civilians.json'
-PEOPLE = ('mon_civilian_panic', 'mon_civilian_stationary', 'mon_civilian_parent')
+PAYLOAD = 'data/mods/Civilians/civilians.json'
+LEGACY_CORE = 'data/json/dda_civilians.json'
+PEOPLE = ('mon_civilian_panic', 'mon_civilian_stationary', 'mon_civilian_parent', 'mon_civilian_police', 'mon_civilian_zombiefighter', 'mon_civilian_icu')
+TOPICS = dict(zip(PEOPLE, ('TALK_CIVILIAN_PANIC', 'TALK_CIVILIAN_PANIC', 'TALK_CIVILIAN_PARENT', 'TALK_CIVILIAN_OFFICER', 'TALK_CIVILIAN_FIGHTER', 'TALK_CIVILIAN_ICU')))
 
 
 def chat_source():
@@ -53,42 +56,40 @@ def dialogue(root):
     return {'root': root, 'pages': [pages[k] for k in sorted(pages)]}
 
 
-def upgrade_group():
-    # This group is consumed ONLY by single-monster evolution. Both engines'
-    # GetRandomMonsterFromGroup ignore packs, cost and time windows here.
-    source = find('GROUP_CIVILIANS_UPGRADE')
-    ferals = find('GROUP_FERAL')
-    total = sum(e.get('weight', 1) for e in ferals['monsters'])
-    entries = []
-    for entry in source['monsters']:
-        if 'monster' in entry:
-            entries.append({'monster': entry['monster'], 'freq': entry['weight'] * total, 'cost_multiplier': 0})
-        else:
-            assert entry['group'] == 'GROUP_FERAL'
-            for child in ferals['monsters']:
-                entries.append({'monster': child['monster'], 'freq': entry['weight'] * child['weight'], 'cost_multiplier': 0})
-    return {'type': 'monstergroup', 'name': source['id'], 'default': 'mon_zombie_fat',
-            'freq_total': sum(e['freq'] for e in entries), 'monsters': entries}
+def mod_sources():
+    manifest = json.loads((FOLDER / 'SOURCE_MANIFEST.json').read_text())
+    result = {}
+    for name, digest in manifest['bn_mod_sources'].items():
+        raw = (FOLDER / 'bn_mod' / name).read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == digest, name
+        result[name] = raw.decode('utf-8')
+    return result
+
+
+def mod_providers():
+    result = []
+    for name, text in mod_sources().items():
+        if name.endswith('.json'):
+            data = json.loads(text)
+            result += [e for e in data if isinstance(e, dict)] if isinstance(data, list) else [data]
+    return index_entries(result) - BUILTIN_IDS
 
 
 def native_data():
-    original = find('mon_civilian_panic')
-    keys = ('id', 'type', 'name', 'description', 'default_faction', 'bodytype', 'species', 'material', 'volume', 'weight', 'hp', 'speed', 'symbol', 'color', 'aggression', 'morale', 'vision_day', 'melee_dice', 'melee_dice_sides', 'melee_damage', 'harvest', 'path_settings', 'upgrades', 'dodge', 'death_drops', 'zombify_into')
-    root = {key: copy.deepcopy(original[key]) for key in keys if key in original}
-    root['flags'] = ['SEES', 'HEARS', 'WARM', 'HUMAN', 'CAN_OPEN_DOORS', 'PATH_AVOID_DANGER_2', 'GUILT']
-    root['aggro_character'] = False
-    root['death_function'] = ['NORMAL']
-    root['special_attacks'] = []
-    root['civilian_chat'] = dialogue(original['chat_topics'][0])
-    result = [root]
-    for name in PEOPLE[1:]:
-        source = find(name)
-        mon = {key: copy.deepcopy(source[key]) for key in ('id', 'type', 'copy-from', 'name', 'description', 'speed', 'path_settings') if key in source}
-        if 'chat_topics' in source:
-            mon['civilian_chat'] = dialogue(source['chat_topics'][0])
-        result.append(mon)
-    result.append(upgrade_group())
+    result = json.loads(mod_sources()['civilians.json'])
+    seen = set()
+    for entry in result:
+        if entry.get('id') in TOPICS:
+            entry['civilian_chat'] = dialogue(TOPICS[entry['id']])
+            seen.add(entry['id'])
+    assert seen == set(PEOPLE)
     return result
+
+
+def patch_sections():
+    before = mod_sources()['civilians.json']
+    after = json.dumps(native_data(), ensure_ascii=True, indent=2) + '\n'
+    return ''.join(difflib.unified_diff(before.splitlines(keepends=True), after.splitlines(keepends=True), 'a/' + PAYLOAD, 'b/' + PAYLOAD))
 
 
 def extend_creature_core(result):
@@ -102,7 +103,7 @@ def extend_creature_core(result):
     cpp = result['monstergenerator.cpp']
     anchor = '    optional( jo, was_loaded, "aggro_character", aggro_character, true );'
     assert cpp.count(anchor) == 1
-    result['monstergenerator.cpp'] = cpp.replace(anchor, anchor + '\n    if( jo.has_object( "civilian_chat" ) ) {\n        civilian_dialogue.load( jo.get_object( "civilian_chat" ) );\n    }')
+    result['monstergenerator.cpp'] = cpp.replace(anchor, anchor + '\n    if( jo.has_object( "civilian_chat" ) ) {\n        civilian_dialogue.load( jo.get_object( "civilian_chat" ) );\n    } else {\n        civilian_dialogue = civilian_chat();\n    }')
     return result
 
 
@@ -152,22 +153,19 @@ def prepare(check=False, bn_source=None):
     if bn_source:
         assert (bn_source / 'src/npctalk.cpp').read_text(encoding='utf-8') == chat_source()
         assert json.loads((bn_source / 'data/json/monster_factions.json').read_text(encoding='utf-8')) == json.loads((FOLDER / 'bn_monster_factions.json').read_text())
+        for name, text in mod_sources().items():
+            assert (bn_source / 'data/mods/Civilians' / name).read_text(encoding='utf-8') == text, name
     payload = native_data()
-    bn = set(map(tuple, read_cache(ROOT / 'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
-    new = index_entries(payload) - BUILTIN_IDS
-    assert not bn & new
-    from prepare_eldercare_fauna import dependency_refs, native_data as fauna_data
-    shared = index_entries(fauna_data())
-    refs = dependency_refs(payload)
-    refs.add(('monstergroup', 'GROUP_CIVILIANS_UPGRADE'))
-    assert not refs - bn - new - shared, refs - bn - new - shared
+    original = json.loads(mod_sources()['civilians.json'])
+    stripped = [{k: v for k, v in e.items() if k != 'civilian_chat'} for e in payload]
+    assert stripped == original, 'Stock Civilians behavior was modified'
     path = ROOT / 'native/dda_civilians.json'
     text = json.dumps(payload, ensure_ascii=True, indent=2) + '\n'
     if check:
         assert path.read_text() == text
     else:
         path.write_text(text)
-    print('PASS: three noncombatant humans, pure dialogue graphs, exact single-monster evolution distribution')
+    print('PASS: six dialogue additions to existing Civilians types; every original field and all spawn/evolution tables retained')
 
 
 if __name__ == '__main__':

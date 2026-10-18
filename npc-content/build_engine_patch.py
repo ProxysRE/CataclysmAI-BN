@@ -19,7 +19,7 @@ from prepare_hub_elevator import patch_sections as hub_access_patch, prepare as 
 
 from prepare_farm_supply import prepare as prepare_farm, PAYLOAD as FARM_PAYLOAD
 from prepare_eldercare import prepare as prepare_eldercare, PAYLOAD as ELDERCARE_PAYLOAD
-from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, extend_chat
+from prepare_civilians import prepare as prepare_civilians, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, extend_chat, patch_sections as civilian_patch
 from prepare_eldercare_fauna import prepare as prepare_fauna, PAYLOAD as FAUNA_PAYLOAD
 from prepare_eldercare_loot import prepare as prepare_loot, PAYLOAD as LOOT_PAYLOAD
 from prepare_eldercare_assets import prepare as prepare_assets, PAYLOAD as ASSET_PAYLOAD
@@ -72,7 +72,7 @@ if args.bn_source:
     (root / "engine_staging/tests/dda_computer_archive_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / ARCHIVE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / ASSET_PAYLOAD).unlink(missing_ok=True)
-    (root / "engine_staging" / CIVILIAN_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / LEGACY_CORE).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_civilians_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/src/civilian_chat.h").unlink(missing_ok=True)
     (root / "engine_staging/src/civilian_chat_ui.h").unlink(missing_ok=True)
@@ -101,7 +101,7 @@ if args.bn_source:
     (root / "engine_staging/data/json/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/npcs/dda_lighthouse_community.json").unlink(missing_ok=True)
     (root / "engine_staging/data/json/mapgen/nested/dda_lighthouse_encounter.json").unlink(missing_ok=True)
-    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR), Path(MUTATIONS), Path(RADIO_MAP), Path(RADIO_CITY)):
+    for relative in (Path("data/json/mapgen/dock.json"), Path("data/json/mapgen/chemical_lab.json"), Path(NUCLEAR), Path(MUTATIONS), Path(RADIO_MAP), Path(RADIO_CITY), Path(CIVILIAN_PAYLOAD)):
         content = subprocess.check_output(["git", "-C", str(args.bn_source), "show", "HEAD:" + relative.as_posix()])
         for directory in ("pinned", "engine_staging"):
             target = root / directory / relative
@@ -163,7 +163,7 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_rural_church.json").re
 parts.append(creature_patch())
 parts.append(corpse_patch())
 parts.append(archive_patch())
-parts.extend(difflib.unified_diff([], (root / "native/dda_civilians.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + CIVILIAN_PAYLOAD))
+parts.append(civilian_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_fauna.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + FAUNA_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_loot.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + LOOT_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_assets.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + ASSET_PAYLOAD))

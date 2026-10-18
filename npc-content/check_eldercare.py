@@ -39,7 +39,7 @@ print('PASS: complete retirement story; 42 source dependencies kept separate; ex
 from bn_counterparts import check as check_counterparts, adapt_entry
 check_counterparts()
 adapted = build_layer(adapted=True)
-assert adapted['report']['selected_definitions'] == 7
+assert adapted['report']['selected_definitions'] == 5
 assert not adapted['report']['unresolved_transitive_references']
 assert ('MONSTER', 'mon_zombie_medical') not in {k for v in adapted['source_candidates'] for k in declarations({v['source']: json.dumps([v['entry']])})}
 for name in ('nursing_home', 'retirement_community'):
@@ -49,7 +49,7 @@ for name in ('nursing_home', 'retirement_community'):
             assert entry['object'].get('rows') == converted['object'].get('rows')
         elif entry['type'] in ('talk_topic', 'effect_on_condition'):
             assert entry == converted
-print('PASS: counterpart reuse reduces 42 source dependencies to 7; stories and map geometry unchanged')
+print('PASS: counterpart reuse reduces 42 source dependencies to 5; stories and map geometry unchanged')
 
 # Preserve DDA random web strength through BN's existing integer-range type.
 from prepare_mapgen_corpses import replacement

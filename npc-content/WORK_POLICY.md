@@ -26,3 +26,9 @@ This clarification applies to existing staged content as well as future ports, a
 - Ask the user when the appropriate counterpart is genuinely uncertain or a replacement would materially change the content's intended role. Routine analog selection remains authorized.
 - Keep explicit mappings and substantive differences reviewable. Reassess staged dependency blockers under this policy; archived originals remain useful provenance, not an obligation to duplicate everything.
 - The earlier instruction to use stock BN money remains in force.
+
+## Bundled-mod reuse and collisions
+
+Before each new content batch, check the pinned core identifier cache AND the complete bundled-mod catalog (including provider paths, names, mod IDs and dependencies). Search similar role/name terms as well as exact IDs. A match in an optional mod is not a core provider: record its dependency explicitly and preserve its native behavior. Prefer an existing suitable counterpart; extend only the missing content. Do not solve overlap by blindly renaming duplicate systems.
+
+New core JSON declarations must pass audit_bn_mod_content.py against the full pinned data/mods tree. Any new exact-ID overlap needs an explicit provider-specific, reasoned review in MOD_COLLISION_REVIEWS.json or an actual reuse/removal fix. Cache existence is not proof of semantic equivalence. Native compatibility must include both mod-disabled and mod-enabled runs when changing an optional mod. Packaging must reject obsolete duplicate core payloads.
