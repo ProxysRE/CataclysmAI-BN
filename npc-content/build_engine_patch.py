@@ -7,6 +7,7 @@ import re
 import subprocess
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_frontage import prepare as prepare_frontage, patch_sections as frontage_patch, TARGET as FRONTAGE_TARGET, sources as frontage_sources
 from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_radio_stations import prepare as prepare_radio, MAP as RADIO_MAP, CITY as RADIO_CITY, PAYLOAD as RADIO_PAYLOAD
 from prepare_tower_expansions import patch_sections as tower_patch, prepare as prepare_towers, PAYLOAD as HOTEL_PAYLOAD
@@ -37,6 +38,7 @@ parser.add_argument("--bn-source", type=Path,
                     help="Pinned BN checkout; restore staging before rebuilding")
 args = parser.parse_args()
 prepare_existing_locations()
+prepare_frontage()
 prepare_hub_access(check=True)
 prepare_radio(check=True)
 prepare_towers(check=True)
@@ -112,6 +114,10 @@ if args.bn_source:
             target = root / directory / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(content)
+    target = root / "engine_staging" / FRONTAGE_TARGET
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(frontage_sources()["bn/" + FRONTAGE_TARGET].encode())
+    (root / "engine_staging/tests/dda_special_constraints_test.cpp").unlink(missing_ok=True)
     subprocess.run(["git", "apply", "--directory=engine_staging", str(root / "artisan_engine.patch")], cwd=root, check=True)
 parts = []
 for name in base_files:
@@ -122,7 +128,7 @@ for name in base_files:
         new = extend_chat("".join(new)).splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
 for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h", "hub_elevator_access.h", "dda_mapgen_corpses.h", "computer_archive.h", "civilian_chat.h", "civilian_chat_ui.h",
-             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp", "dda_eldercare_assets_test.cpp", "dda_eldercare_loot_test.cpp", "dda_eldercare_fauna_test.cpp", "dda_civilians_test.cpp"):
+             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp", "dda_eldercare_assets_test.cpp", "dda_eldercare_loot_test.cpp", "dda_eldercare_fauna_test.cpp", "dda_civilians_test.cpp", "dda_special_constraints_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff([], new, "/dev/null", "b/" + path))
@@ -167,6 +173,7 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_rural_church.json").re
                                 "/dev/null", "b/" + CHURCH_PAYLOAD))
 parts.append(creature_patch())
 parts.append(corpse_patch())
+parts.append(frontage_patch())
 parts.append(archive_patch())
 parts.append(civilian_patch())
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_groups.json").read_text(encoding="utf-8").splitlines(keepends=True), "/dev/null", "b/" + GROUPS_PAYLOAD))

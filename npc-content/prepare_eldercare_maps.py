@@ -53,7 +53,7 @@ def payloads():
                     e['see_cost'] = 0 if e['see_cost'] in ('none', 'all_clear') else 2
             elif e['type'] == 'overmap_special':
                 e.pop('priority', None)  # No equivalent special-priority loader.
-                e['flags'] = ['UNIQUE' if f in ('OVERMAP_UNIQUE', 'GLOBALLY_UNIQUE') else f
+                e['flags'] = ['UNIQUE' if f == 'OVERMAP_UNIQUE' else f
                               for f in e.get('flags', [])]
                 for cell in e['overmaps']:
                     if cell.get('overmap') in tuple('s_lot_no_sidewalk_' + d for d in ('north','east','south','west')):
@@ -165,7 +165,7 @@ def geometry(entries):
             assert sum(abs(a-b) for a,b in zip(c['point'],c['from'])) == 1, c
     return {'mapgen_tiles': len(maps), 'row_count': rows_count, 'placed_cells': len(cells),
             'levels': sorted({c['point'][2] for c in cells + external}), 'cells': cells,
-            'unsupported_constraint_only_cells': constraint_only, 'reused_external_cells': external}
+            'constraint_only_cells': constraint_only, 'reused_external_cells': external}
 
 
 def prepare(check=False, bn_data=None):
@@ -201,16 +201,16 @@ def prepare(check=False, bn_data=None):
                          'unresolved_extended_refs': sorted(unknown)}
         assert not unknown, (site, sorted(unknown))
     report = {'pins': PINS, 'installed': False, 'optional_mod_dependencies': ['civilians'],
-              'activation_ready': False, 'sites': reports, 'validation': 'Static BN schema adaptation and extended typed references; not native load or generation validation',
+              'activation_ready': False, 'fixed_special_constraint_bridge': 'Prepared in prepare_frontage.py; native validation pending', 'sites': reports, 'validation': 'Static BN schema adaptation and extended typed references; not native load or generation validation',
               'intentional_adaptations': ['BN numeric overmap visibility: none/all_clear=0, remaining categories=2',
                     'DDA road_abstract -> existing BN generic_road with source road display; no new duplicate road parent',
-                    'DDA special uniqueness -> BN UNIQUE per-overmap semantics; global uniqueness is not implemented',
+                    'DDA OVERMAP_UNIQUE -> BN UNIQUE; existing BN GLOBALLY_UNIQUE retained unchanged',
                     'DDA special priority omitted; other source flags retained as metadata, unsupported BN behaviors are not implied',
                     'DDA memorial loot -> stock BN makeshift_memorial: candles/photos/keepsakes; no duplicate broad memorial subsystem or imported currency',
                     'BN sewer_sub_station is rotatable; west peer matches the surface station',
                     'DDA parking-lot placements -> stock BN s_lot (NO_ROTATE), as in the karting adapter',
                     'Vending lootable=true -> stock BN vending behavior; parameters and source geometry retained'],
-              'remaining': ['Adapt three constraint-only road-frontage special cells; BN fixed-special loader currently treats absent overmap as invalid terrain',
+              'remaining': ['Native source/installed validation of the prepared fixed-special constraint bridge for three road-frontage cells',
                     'Native initialization and generation for every placed cell',
                     'Review stairs/elevators, edge alignment and placement balance in game',
                     'Install candidate Civilians main.lua exclusion change atomically with maps; source/installed Lua runtime validation']}
@@ -222,7 +222,7 @@ def prepare(check=False, bn_data=None):
         else:
             path.parent.mkdir(parents=True,exist_ok=True)
             path.write_text(text)
-    print('PASS: complete eldercare map candidates:', {s:{k:v for k,v in r['geometry'].items() if k not in ('cells','unsupported_constraint_only_cells','reused_external_cells')} for s,r in reports.items()})
+    print('PASS: complete eldercare map candidates:', {s:{k:v for k,v in r['geometry'].items() if k not in ('cells','constraint_only_cells','reused_external_cells')} for s,r in reports.items()})
 
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)

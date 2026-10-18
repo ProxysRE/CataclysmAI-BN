@@ -5159,7 +5159,7 @@
       100
     ],
     "flags": [
-      "UNIQUE",
+      "GLOBALLY_UNIQUE",
       "RISK_EXTREME",
       "GENERIC_LOOT",
       "MAN_MADE",

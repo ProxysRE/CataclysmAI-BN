@@ -5,6 +5,7 @@ import re
 import difflib
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_frontage import prepare as prepare_frontage, patch_sections as frontage_patch, TARGET as FRONTAGE_TARGET, sources as frontage_sources
 from prepare_location_expansion import nuclear_patch, NUCLEAR
 from prepare_radio_stations import prepare as prepare_radio, PAYLOAD as RADIO_PAYLOAD
 from prepare_tower_expansions import patch_sections as tower_patch, prepare as prepare_towers, PAYLOAD as HOTEL_PAYLOAD
@@ -32,6 +33,7 @@ ROOT = Path(__file__).resolve().parent
 def check():
     patch = (ROOT / 'artisan_engine.patch').read_text()
     prepare_existing_locations()
+    prepare_frontage()
     target = 'data/json/mapgen/chemical_lab.json'
     expected_map_patch = ''.join(difflib.unified_diff(
         (ROOT / 'layers/bn' / target).read_text().splitlines(keepends=True),
@@ -69,6 +71,8 @@ def check():
     assert corpse_patch() in patch, "Stale corpse mapgen replacement"
     assert creature_patch() in patch, "Stale configurable native ranged pull"
     assert tower_patch() in patch, "Stale composed tower replacements"
+    assert frontage_patch() in patch, "Stale fixed-special constraint bridge"
+    assert patch.count("+++ b/" + FRONTAGE_TARGET + "\n") == 1
     expected_hub = hub_access_patch()
     assert expected_hub in patch, "Stale Hub elevator native replacement"
     assert archive_patch() in patch, "Stale terminal archive integration"
@@ -81,7 +85,7 @@ def check():
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',

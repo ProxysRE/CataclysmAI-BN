@@ -6,6 +6,8 @@ on:
       - '.github/workflows/build-dda-npc-engine.yml'
       - 'npc-content/artisan_engine.patch'
       - 'npc-content/build_engine_patch.py'
+      - 'npc-content/prepare_frontage.py'
+      - 'npc-content/frontage/**'
       - 'npc-content/package_windows_npc.py'
       - 'npc-content/prepare_quest_usb.py'
       - 'npc-content/prepare_quest_ammo.py'
@@ -151,6 +153,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_xedra_gear.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_karting.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_mapgen_corpses.py" --bn-source .
+          python "${{ github.workspace }}/package/npc-content/prepare_frontage.py" --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_eldercare.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_terminal_archives.py" --check --bn-source .
           python "${{ github.workspace }}/package/npc-content/prepare_eldercare_assets.py" --check --bn-source .
@@ -176,7 +179,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "3a6868d453dab798ff34229f4b96297ad3336d977938c23de39cccc7db1b6365") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "093ae453805142e6ea10ec7e59e2b5045ba15a3cbf75ea01abd92140f232d167") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

@@ -72,3 +72,7 @@ All five previously staged definitions are resolved: two armed people reuse exis
 ## Full eldercare map layer (2026-10-18, follow-up)
 
 Prepared all 71 site declarations / 32 mapgen definitions, covering 190 custom OMT tiles and all source rows, parameters, stories and vertical layouts. Extended reference/rotation checks found and adapted the missing road parent, parking-lot ID, station rotations and memorial loot using existing BN providers. See eldercare/MAP_ADAPTATION.md. The maps and Civilians Lua prefix exclusions are reproducible candidates, not installed payloads. Three source frontage cells contain placement constraints without terrain assignment, unsupported by BN's fixed-special loader; resolve that exact behavior before native generation validation and activation. The earlier dependency closure did not cover these additional reference positions or special-loader compatibility.
+
+## Constraint-only fixed specials (2026-10-19 Moscow)
+
+Prepared the small source-based DDA placement behavior in BN's existing fixed-special class: retain all required locations, skip NULL_ID terrain writes/occupied cells, and omit those non-generated cells from mapgen parameter collection/preview. Four-rotation placement/water/terrain tests and invalid-input checks are embedded for Windows source/installed execution. GLOBALLY_UNIQUE is retained using BN's existing global tracking. Full eldercare maps remain uninstalled pending bridge and full generation validation; see frontage/README.md.

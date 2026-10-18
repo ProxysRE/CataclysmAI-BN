@@ -10,10 +10,12 @@ source = json.loads((ROOT / 'eldercare/ADAPTED_LOCATIONS.json').read_text())['lo
 payload = payloads()
 report = json.loads((ROOT / 'eldercare/MAP_ADAPTATION_REPORT.json').read_text())
 assert report['installed'] is False and report['activation_ready'] is False
+sh=next(e for e in payload['nursing_home'] if e.get('id')=='nursing_home_sh')
+assert 'GLOBALLY_UNIQUE' in sh['flags'] and 'UNIQUE' not in sh['flags']
 assert len(sum(payload.values(), [])) == 71
 assert sum(e['type']=='mapgen' for es in payload.values() for e in es) == 32
 assert sum(r['geometry']['mapgen_tiles'] for r in report['sites'].values()) == 190
-assert sum(len(r['geometry']['unsupported_constraint_only_cells']) for r in report['sites'].values()) == 3
+assert sum(len(r['geometry']['constraint_only_cells']) for r in report['sites'].values()) == 3
 for site in SITES:
     assert len(source[site]) == len(payload[site])
     for before, after in zip(source[site], payload[site]):
@@ -65,4 +67,4 @@ for entries in payload.values():
 # mod behavior remains unchanged while native compatibility is unverified.
 from prepare_civilians import patch_sections
 assert 'main.lua' not in patch_sections()
-print('PASS: 71 full-site declarations / 32 mapgen definitions / 190 custom OMT tiles; source geometry/parameters/stories preserved; extended reference and rotation guards; three frontage constraints explicitly block activation')
+print('PASS: 71 full-site declarations / 32 mapgen definitions / 190 custom OMT tiles; source geometry/parameters/stories preserved; extended reference and rotation guards; three frontage constraints retained for native bridge validation')

@@ -530,7 +530,7 @@
     "ambient_civilian_spawn_fix": "Two prefix exclusions prepared as candidate Lua only; must be installed atomically with sites",
     "activation_ready": false,
     "remaining_blockers": [
-      "Three frontage constraint-only cells need exact adaptation for the BN fixed-special loader",
+      "Native validation of source-based fixed-special constraint bridge for three frontage cells",
       "Native initialization and full generation validation",
       "Review stairs/elevators and reused station geometry"
     ],
@@ -542,5 +542,19 @@
       "west-rotated BN subway station levels"
     ],
     "full_locations_installed": false
+  },
+  "fixed_special_constraint_bridge": {
+    "status": "prepared_source_installed_validation_pending",
+    "target": "src/overmap/overmap.cpp",
+    "source_behavior": "DDA fixed_overmap_special_data::place skips NULL_ID terrain while required_locations retains its constraints",
+    "changed_paths": [
+      "null-only validation exception",
+      "skip null in placement and occupied tiles",
+      "filter null from mapgen parameter terrain list",
+      "filter null from preview"
+    ],
+    "native_cases": 2,
+    "scope": "Four rotations, water rejection, terrain and occupied-tile preservation; invalid ID/duplicate point/invalid location guards",
+    "full_eldercare_sites_installed": false
   }
 }

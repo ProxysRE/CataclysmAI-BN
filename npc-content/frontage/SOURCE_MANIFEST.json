@@ -1,0 +1,19 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "parts": [
+    "SOURCE.part00",
+    "SOURCE.part01",
+    "SOURCE.part02",
+    "SOURCE.part03"
+  ],
+  "bundle_sha256": "4d086efc5dc17cf822a6c63919c5724829368dd31198614474ba02c1d4c9126d",
+  "files": {
+    "bn/src/overmap/overmap_special.h": "a1fd008625f4628ed4e2cfae2e4e1405b66c93a5a1a25e630a1182d1904c42ed",
+    "bn/src/overmap/overmap.cpp": "93c01ef074fc9a0b498e88c90867b92c94f7183066d213beb440dffe16ee6816",
+    "dda/src/overmap_special.cpp": "fed6f6a758bbaf80c09947f78b857ff6947cd058ebe888016a3e32bdc7fe8bc6",
+    "dda/src/overmap_special_fixed.cpp": "3a30b8a3747b1ac0de9da2ca5a865e1fba38cd466b23fefada336efe1bdfef88"
+  }
+}

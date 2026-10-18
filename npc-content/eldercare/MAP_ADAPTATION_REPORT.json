@@ -8,6 +8,7 @@
     "civilians"
   ],
   "activation_ready": false,
+  "fixed_special_constraint_bridge": "Prepared in prepare_frontage.py; native validation pending",
   "sites": {
     "nursing_home": {
       "types": {
@@ -964,7 +965,7 @@
             ]
           }
         ],
-        "unsupported_constraint_only_cells": [
+        "constraint_only_cells": [
           {
             "special": "nursing_home_sh",
             "point": [
@@ -2625,7 +2626,7 @@
             ]
           }
         ],
-        "unsupported_constraint_only_cells": [
+        "constraint_only_cells": [
           {
             "special": "retirement_community",
             "point": [
@@ -2856,7 +2857,7 @@
   "intentional_adaptations": [
     "BN numeric overmap visibility: none/all_clear=0, remaining categories=2",
     "DDA road_abstract -> existing BN generic_road with source road display; no new duplicate road parent",
-    "DDA special uniqueness -> BN UNIQUE per-overmap semantics; global uniqueness is not implemented",
+    "DDA OVERMAP_UNIQUE -> BN UNIQUE; existing BN GLOBALLY_UNIQUE retained unchanged",
     "DDA special priority omitted; other source flags retained as metadata, unsupported BN behaviors are not implied",
     "DDA memorial loot -> stock BN makeshift_memorial: candles/photos/keepsakes; no duplicate broad memorial subsystem or imported currency",
     "BN sewer_sub_station is rotatable; west peer matches the surface station",
@@ -2864,7 +2865,7 @@
     "Vending lootable=true -> stock BN vending behavior; parameters and source geometry retained"
   ],
   "remaining": [
-    "Adapt three constraint-only road-frontage special cells; BN fixed-special loader currently treats absent overmap as invalid terrain",
+    "Native source/installed validation of the prepared fixed-special constraint bridge for three road-frontage cells",
     "Native initialization and generation for every placed cell",
     "Review stairs/elevators, edge alignment and placement balance in game",
     "Install candidate Civilians main.lua exclusion change atomically with maps; source/installed Lua runtime validation"
