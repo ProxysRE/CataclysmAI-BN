@@ -11,11 +11,15 @@
 
 TEST_CASE( "fixed_special_frontage_constraints_do_not_replace_terrain", "[dda_npc][dda_locations]" )
 {
-    std::istringstream source( R"({"type":"overmap_special","locations":["land"],"occurrences":[0,0],"overmaps":[{"point":[0,0,0],"overmap":"forest"},{"point":[1,0,0],"locations":["land","road"]}]})" );
+    std::istringstream source( R"({"type":"overmap_special","id":"dda_frontage_fixture","locations":["land"],"occurrences":[0,0],"overmaps":[{"point":[0,0,0],"overmap":"forest"},{"point":[1,0,0],"locations":["land","road"]}]})" );
     JsonIn input( source );
-    overmap_special special;
-    special.id = overmap_special_id( "dda_frontage_fixture" );
-    special.load( input.get_object(), "test" );
+    // Placement stores this ID and later resolves it through the factory.
+    // Register the fixture exactly as loaded game data before exercising placement.
+    overmap_specials::load( input.get_object(), "test" );
+    const overmap_special_id fixture_id( "dda_frontage_fixture" );
+    REQUIRE( fixture_id.is_valid() );
+    // Finalize only this new fixture, as the factory finalizer does for its entries.
+    auto &special = const_cast<overmap_special &>( fixture_id.obj() );
     special.finalize();
     special.check();
     special.finalize_mapgen_parameters();

@@ -584,5 +584,14 @@
     ],
     "mission_definitions": 0,
     "notes": "Source has trading/story dialogue, no quest chain; BN item/loot counterparts reused, food metadata uses existing bridge. Core/bundled-mod collision and typed closure checks passed; native generation/interaction/installed/mod-enabled tests pending."
+  },
+  "frontage_native_validation": {
+    "run": 39171025443,
+    "compilation": "success",
+    "test_cases_passed": 69,
+    "assertions_passed": 10661,
+    "overall_result": "failure: unregistered test fixture ID logged an error",
+    "fix": "Register dda_frontage_fixture through overmap_specials::load before placement; finalize only that fixture; strict logged-error policy unchanged",
+    "fixed_native_rerun_pending": true
   }
 }

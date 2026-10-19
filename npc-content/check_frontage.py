@@ -28,5 +28,8 @@ for text in ('can_place_special','place_special','om_direction::type::north','om
              'om_direction::type::south','om_direction::type::west','river_center','om->ter( frontage ) == field',
              'is duplicated','dda_missing_location','dda_missing_terrain'):
     assert text in fixture,text
+assert 'overmap_specials::load( input.get_object(), "test" )' in fixture
+assert 'REQUIRE( fixture_id.is_valid() )' in fixture
+assert 'special.id = overmap_special_id( "dda_frontage_fixture" )' not in fixture
 assert patch_sections().count('+++ b/src/overmap/overmap.cpp')==1
 print('PASS: DDA placement behavior, mapgen/preview null filtering and original BN validation; native tests prepared for four rotations, preserved terrain, water rejection and invalid input')
