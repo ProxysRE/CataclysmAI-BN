@@ -11,7 +11,8 @@ TEST = ROOT / 'native/dda_eldercare_sites_test.cpp'
 
 
 def native_data():
-    return sum(payloads().values(), [])
+    from bn_shared_palettes import native_support
+    return sum(payloads().values(), []) + native_support()
 
 
 def native_test():
@@ -87,7 +88,10 @@ TEST_CASE( "complete_eldercare_specials_place_in_four_rotations", "[dda_civilian
                                om_direction::type::south, om_direction::type::west } ) {
             clear_all_state();
             INFO( name );
+            auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
+            buffer.clear();
             const overmap_special_id id( name );
+            CHECK_FALSE( buffer.contains_unique_special( id ) );
             REQUIRE( id.is_valid() );
             const auto &special = id.obj();
             const auto required = special.required_locations();
@@ -125,7 +129,7 @@ TEST_CASE( "complete_eldercare_specials_place_in_four_rotations", "[dda_civilian
 def prepare(check=False):
     prepare_maps(check=True)
     payload = native_data()
-    assert len(payload) == 71
+    assert len(payload) == 80  # 71 full-site declarations + nine closed rooftop solar chunks.
     outputs = {NATIVE: json.dumps(payload, indent=2, ensure_ascii=True)+'\n', TEST: native_test()}
     for path, text in outputs.items():
         if check:

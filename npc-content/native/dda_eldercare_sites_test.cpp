@@ -292,7 +292,10 @@ TEST_CASE( "complete_eldercare_specials_place_in_four_rotations", "[dda_civilian
                                om_direction::type::south, om_direction::type::west } ) {
             clear_all_state();
             INFO( name );
+            auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
+            buffer.clear();
             const overmap_special_id id( name );
+            CHECK_FALSE( buffer.contains_unique_special( id ) );
             REQUIRE( id.is_valid() );
             const auto &special = id.obj();
             const auto required = special.required_locations();

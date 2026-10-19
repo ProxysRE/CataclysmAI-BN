@@ -4060,7 +4060,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_eldercare_sites_test.cpp
-@@ -0,0 +1,324 @@
+@@ -0,0 +1,327 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "cata_utility.h"
@@ -4355,7 +4355,10 @@
 +                               om_direction::type::south, om_direction::type::west } ) {
 +            clear_all_state();
 +            INFO( name );
++            auto &buffer = get_overmapbuffer( get_avatar().get_dimension() );
++            buffer.clear();
 +            const overmap_special_id id( name );
++            CHECK_FALSE( buffer.contains_unique_special( id ) );
 +            REQUIRE( id.is_valid() );
 +            const auto &special = id.obj();
 +            const auto required = special.required_locations();
@@ -49214,7 +49217,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/Civilians/dda_eldercare_locations.json
-@@ -0,0 +1,13429 @@
+@@ -0,0 +1,13734 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -51536,7 +51539,33 @@
 +        "-......................................................................-",
 +        "5----------------------------------------------------------------------5",
 +        "                                                                        "
-+      ]
++      ],
++      "nested": {
++        "1": {
++          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
++          "chunks": [
++            [
++              "residential_6kW_solar",
++              31
++            ],
++            [
++              "residential_7kW_solar",
++              63
++            ],
++            [
++              "residential_8kW_solar",
++              31
++            ],
++            [
++              "null",
++              873
++            ]
++          ]
++        }
++      },
++      "terrain": {
++        "v": "t_ladder_down"
++      }
 +    },
 +    "method": "json"
 +  },
@@ -60814,7 +60843,10 @@
 +        "        |o-~~-o|        ",
 +        "        |o-~~-o|        ",
 +        "        |o-~~-o|        "
-+      ]
++      ],
++      "terrain": {
++        "<": "t_ladder_up"
++      }
 +    },
 +    "method": "json"
 +  },
@@ -62642,6 +62674,282 @@
 +      "URBAN",
 +      "MAN_MADE"
 +    ]
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_6kW_solar_v1",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "#####",
++        "#####",
++        "#####",
++        "#####",
++        "#####"
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      },
++      "furniture": {
++        "#": "f_solar_unit"
++      },
++      "flags": [
++        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_6kW_solar_v2",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "###  ",
++        "###  ",
++        "?##  ",
++        " ##  ",
++        " ##  "
++      ],
++      "terrain": {
++        "#": "t_flat_roof",
++        "?": "t_flat_roof"
++      },
++      "furniture": {
++        "#": "f_solar_unit_v2",
++        "?": [
++          [
++            "f_solar_unit_v2",
++            1
++          ],
++          [
++            "f_null",
++            1
++          ]
++        ]
++      },
++      "flags": [
++        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_6kW_solar",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "residential_6kW_solar_v1",
++              80
++            ],
++            [
++              "residential_6kW_solar_v2",
++              20
++            ]
++          ],
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_7kW_solar_v1",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "######",
++        "######",
++        "######",
++        "######",
++        "######",
++        "      "
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      },
++      "furniture": {
++        "#": "f_solar_unit"
++      },
++      "flags": [
++        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_7kW_solar_v2",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "      "
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      },
++      "furniture": {
++        "#": "f_solar_unit_v2"
++      },
++      "flags": [
++        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_7kW_solar",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "residential_7kW_solar_v1",
++              80
++            ],
++            [
++              "residential_7kW_solar_v2",
++              20
++            ]
++          ],
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_8kW_solar_v1",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "######",
++        "######",
++        "######",
++        "######",
++        "######",
++        "######"
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      },
++      "furniture": {
++        "#": "f_solar_unit"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_8kW_solar_v2",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   "
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      },
++      "furniture": {
++        "#": "f_solar_unit_v2"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "residential_8kW_solar",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "residential_8kW_solar_v1",
++              80
++            ],
++            [
++              "residential_8kW_solar_v2",
++              20
++            ]
++          ],
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
 +  }
 +]
 --- /dev/null

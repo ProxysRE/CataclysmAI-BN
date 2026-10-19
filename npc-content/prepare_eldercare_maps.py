@@ -30,6 +30,8 @@ def payloads():
         for e in entries:
             if e['type'] == 'mapgen':
                 e['method'] = 'json'
+                from bn_shared_palettes import repair
+                e['object'] = repair(e['object'])
                 for loot in e['object'].get('place_loot', []):
                     if loot.get('group') == 'memorial':
                         loot['group'] = 'makeshift_memorial'
@@ -188,8 +190,13 @@ def prepare(check=False, bn_data=None):
     from prepare_eldercare_assets import native_data as assets
     from prepare_eldercare_loot import native_data as loot
     from prepare_eldercare_fauna import native_data as fauna
-    provided = core | mod_providers() | index_entries(native_data()+assets()+loot()+fauna())
+    from bn_shared_palettes import native_support
+    support = native_support()
+    provided = core | mod_providers() | index_entries(native_data()+assets()+loot()+fauna()+support)
     declared = index_entries(sum(payload.values(), [])) - BUILTIN_IDS
+    support_ids = index_entries(support) - BUILTIN_IDS
+    assert not support_ids & (core | declared)
+    assert not support_ids & {(r['type'],r['id']) for r in mods['records']}
     assert not declared & core
     assert not declared & {(r['type'],r['id']) for r in mods['records']}
     reports = {}
@@ -198,6 +205,7 @@ def prepare(check=False, bn_data=None):
         reports[site] = {'types': dict(Counter(e['type'] for e in entries)), 'geometry': geometry(entries),
                          'unresolved_extended_refs': sorted(unknown)}
         assert not unknown, (site, sorted(unknown))
+    assert not schema_refs(support) - provided - declared
     report = {'pins': PINS, 'installed': False, 'native_embedded': True, 'optional_mod_dependencies': ['civilians'],
               'activation_ready': False, 'fixed_special_constraint_bridge': 'Prepared in prepare_frontage.py; native validation pending', 'sites': reports, 'validation': 'Static BN schema adaptation and extended typed references; not native load or generation validation',
               'intentional_adaptations': ['BN numeric overmap visibility: none/all_clear=0, remaining categories=2',

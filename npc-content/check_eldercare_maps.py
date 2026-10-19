@@ -23,8 +23,11 @@ for site in SITES:
         if before['type'] == 'mapgen':
             # Preserve every floor/roof/basement row, map position, random
             # wall parameter and terminal story graph through conversion.
-            for key in ('rows','parameters','place_computers','nested','mapgensize'):
+            for key in ('rows','parameters','place_computers','mapgensize'):
                 assert before['object'].get(key) == after['object'].get(key), (site,key)
+            # Shared palette repair may add source solar chunks to the local nested map.
+            for key,value in before['object'].get('nested',{}).items():
+                assert after['object']['nested'][key]==value
             for key in ('om_terrain','nested_mapgen_id'):
                 assert before.get(key) == after.get(key)
         if before['type']=='overmap_special':
@@ -68,3 +71,13 @@ for entries in payload.values():
 from prepare_civilians import patch_sections
 assert 'nursing_home' in patch_sections() and 'retirement_community' in patch_sections()
 print('PASS: 71 full-site declarations / 32 mapgen definitions / 190 custom OMT tiles; source geometry/parameters/stories preserved; extended reference and rotation guards; three frontage constraints retained for native bridge validation')
+
+# Source-shared glyphs that BN palettes do not define must be explicit locally.
+from bn_shared_palettes import repair, native_support, sources as palette_sources
+assert repair({'rows':['v1'],'palettes':['roof_palette']})['terrain']['v']=='t_ladder_down'
+assert repair({'rows':['v1'],'palettes':['roof_palette']})['nested']['1']['chunks']==[['residential_6kW_solar',31],['residential_7kW_solar',63],['residential_8kW_solar',31],['null',873]]
+assert repair({'rows':['<'],'palettes':['sewers']})['terrain']['<']=='t_ladder_up'
+assert repair({'rows':['v'],'palettes':['roof_palette'],'terrain':{'v':'t_ladder_up'}})['terrain']['v']=='t_ladder_up'
+original_solar=[e for e in palette_sources()['dda/nested_chunks_roof.json'] if e.get('nested_mapgen_id','').startswith(('residential_6kW_solar','residential_7kW_solar','residential_8kW_solar'))]
+assert [{k:v for k,v in e.items() if k!='method'} for e in native_support()]==original_solar
+print('PASS: shared roof/sewer glyph repair, native BN solar hardware, exact nine source nested chunks and spawn weights')

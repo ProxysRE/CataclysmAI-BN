@@ -2,7 +2,7 @@
   "remote_branch": "port/dda-npc-locations",
   "stage": "Complete small island lighthouse added alongside Grey Moose and full eldercare sites; native Windows generation/placement validation pending.",
   "package": "Isolated Road",
-  "native_compilation": "Clean Windows checkpoint e52486f7: 67 core cases / 10627 assertions and 5 Civilians+Exotic Ammo cases / 766 assertions, repeated successfully on installed data. Frontage bridge and Grey Moose additions await newer runs.",
+  "native_compilation": "Windows run 39261460157 on 87e1015 compiled successfully and passed 71 source core cases / 10719 assertions. Optional-mod initialization failed on shared palette gaps; installed tests/packaging did not run. Last complete source+installed portable checkpoint remains e52486f7.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -554,7 +554,10 @@
     "native_generation_cases": 4,
     "native_generation_placed_cells": 219,
     "native_generation_scope": "Three all-cell generation cases plus all three full specials in four rotations; validate land frontage rejection on water and exclude frontage from occupied cells; source and installed optional-mod suites",
-    "native_placement_rotations": 12
+    "native_placement_rotations": 12,
+    "shared_palette_repair": "Fill source roof/sewer glyph bindings absent from BN; add nine source rooftop solar chunks using existing BN solar furniture",
+    "additional_nested_support_definitions": 9,
+    "source_mod_validation_pending": true
   },
   "fixed_special_constraint_bridge": {
     "status": "prepared_source_installed_validation_pending",
@@ -573,7 +576,7 @@
   },
   "npc_progress_report": "PORT_PROGRESS.json: 82 selected templates; 4 native-load verified at clean checkpoint; 6 embedded including two unverified militia additions; all-DDA completion percentage unknown",
   "militia_native_layer": {
-    "status": "embedded_pending_native_tests",
+    "status": "source_core_validated_installed_pending",
     "npc_templates": 2,
     "dialogue_topics": 9,
     "native_definitions": 22,
@@ -601,13 +604,14 @@
     "fixed_native_rerun_pending": true
   },
   "militia_native_validation": {
-    "run": 39237846147,
+    "run": 39261460157,
     "compilation": "success",
-    "overall_result": "failure: population test queried only Z=0, finding 4 ground-floor guards and excluding upstairs NPCs",
+    "overall_result": "source core suite passed, including per-floor population and NPC roles; installed validation pending",
     "cause": "Root-level militia JSON constructed NPCs before enchantment values and options loaded",
     "fix": "Query Z=0,1,2 separately: expect 4 guards downstairs, merchant+2 guards upstairs, and no community NPCs on roof; total remains 1 merchant + 6 guards",
-    "fixed_native_rerun_pending": true,
-    "previous_initialization_order_error": "No longer reported after moving into stock NPC load phase"
+    "fixed_native_rerun_pending": false,
+    "previous_initialization_order_error": "No longer reported after moving into stock NPC load phase",
+    "source_runtime_validated": true
   },
   "small_lighthouse": {
     "status": "native_embedded_pending_validation",
@@ -629,5 +633,16 @@
       "Native initialization and source/installed tests",
       "Lake placement, boat access, grid/generator operation and manual traversal"
     ]
+  },
+  "latest_source_native_checkpoint": {
+    "run": 39261460157,
+    "head": "87e10151559e881979343958833a09e7eab918eb",
+    "compilation": "success",
+    "source_core_cases": 71,
+    "source_core_assertions": 10719,
+    "source_core_result": "success",
+    "optional_mod_result": "failed: missing shared palette glyphs and uncleared globally unique special state in test fixture",
+    "installed_tests_run": false,
+    "portable_package_produced": false
   }
 }
