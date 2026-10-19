@@ -52,6 +52,7 @@ jobs:
           python npc-content/check_frontage.py
           python npc-content/check_militia.py
           python npc-content/check_small_lighthouse.py
+          python npc-content/check_geometry_layer.py
           python npc-content/check_container_yards.py
           python npc-content/check_container_yard_adaptation.py
           python npc-content/check_container_yard_cargo.py

@@ -1,0 +1,115 @@
+{
+  "layer": 1,
+  "scope": "Terrain, structural nested layouts, typed terrain parameters and navigation-critical furniture only",
+  "native_validated": false,
+  "adaptations": {
+    "t_wood_wall_w": "BN t_wall_w, as in the existing ordinary church port",
+    "parametrized_linoleum_palette": "Use explicit source fallback t_linoleum_gray; decorative color parameter deferred",
+    "see_cost": "Source named visibility levels mapped to pinned BN integer costs",
+    "OVERMAP_UNIQUE": "BN UNIQUE flag"
+  },
+  "packages": {
+    "island_prison": {
+      "status": "geometry_candidate_not_native_validated",
+      "native_embedded": false,
+      "runtime_validated": false,
+      "definitions": {
+        "mapgen": 7,
+        "overmap_special": 1,
+        "overmap_terrain": 1
+      },
+      "special_cells": {
+        "Island prison": 130
+      },
+      "levels": [
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "unresolved_typed_refs": [],
+      "geometry_issues": [],
+      "deferred_records": 10,
+      "rows_preserved": true,
+      "core_overlaps_before_preview_namespacing": [],
+      "bundled_mod_overlaps_before_preview_namespacing": []
+    },
+    "xedra_church": {
+      "status": "geometry_candidate_not_native_validated",
+      "native_embedded": false,
+      "runtime_validated": false,
+      "definitions": {
+        "mapgen": 4,
+        "overmap_special": 1,
+        "overmap_terrain": 4
+      },
+      "special_cells": {
+        "xedra_church_rural": 5
+      },
+      "levels": [
+        -1,
+        0,
+        1,
+        2
+      ],
+      "unresolved_typed_refs": [],
+      "geometry_issues": [],
+      "deferred_records": 8,
+      "rows_preserved": true,
+      "core_overlaps_before_preview_namespacing": [],
+      "bundled_mod_overlaps_before_preview_namespacing": []
+    },
+    "container_yards": {
+      "status": "geometry_candidate_not_native_validated",
+      "native_embedded": false,
+      "runtime_validated": false,
+      "definitions": {
+        "mapgen": 36,
+        "overmap_terrain": 2,
+        "overmap_special": 2,
+        "terrain": 16
+      },
+      "special_cells": {
+        "o_container_yard_inland": 51,
+        "o_container_yard_inland_bandit": 51
+      },
+      "levels": [
+        0,
+        1,
+        2
+      ],
+      "unresolved_typed_refs": [],
+      "geometry_issues": [
+        {
+          "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+          "source": "shipping_container",
+          "placement": {
+            "chunks": [
+              "containers_roof"
+            ],
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "neighbors": {
+              "above": "open_air"
+            }
+          }
+        }
+      ],
+      "deferred_records": 41,
+      "rows_preserved": true,
+      "core_overlaps_before_preview_namespacing": [],
+      "bundled_mod_overlaps_before_preview_namespacing": []
+    }
+  },
+  "limits": [
+    "Cross-level nested placement is an explicit blocker until adapted; never silently ignore z",
+    "Shared BN external OMT cells retain their stock generation",
+    "Standalone preview identities and native all-floor testing required before installation",
+    "Source late-layer fields and full authenticated inputs are preserved"
+  ]
+}
