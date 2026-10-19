@@ -1,0 +1,9 @@
+# Inland container yards: complete staging layer
+
+Both missing DDA inland container-yard variants are selected together: o_container_yard_inland and o_container_yard_inland_bandit. Each special places 51 cells across z=0,1,2. The authenticated source bundle consists of both mapgen files and their full common cargo palette; corresponding overmap registrations are reconstructed from the already authenticated location catalog.
+
+STAGED_LOCATIONS.json contains 155 mapgen definitions, including 121 nested layouts, two grouped overmap-terrain definitions and both specials. All rows, fixed NPC/vehicle placements and the palette's 119 cargo outcomes (including the empty outcome) remain intact. The contents_nest selector keeps its source nest scope; independently rolling every cell would change the behavior. No branch is discarded to close references.
+
+This layer is NOT installed in the engine patch and is NOT a playable mod. TRANSFER_REPORT.json inventories 108 unresolved explicit typed references after stock BN and existing core-port reuse, with the scan scope stated separately. Three already available core-port providers are reused in the audit; core/bundled-mod identity collisions are checked. Identifier presence alone is not semantic compatibility.
+
+Remaining work includes BN nested-mapgen parameter support, wall color counterparts, per-item packaging and charge units, appliances/generators, bandit behavior, cargo dependencies and native generation. The rare banknotes cargo must use existing BN money with a reviewed quantity/value conversion; replacing each of 200..1000 source rolls with a money bundle is not acceptable. Existing BN or bundled-mod counterparts take priority over duplicate imports. Full native and installed validation follows only after dependency/schema closure.

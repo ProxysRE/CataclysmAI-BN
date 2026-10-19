@@ -42,6 +42,8 @@ def evidence():
     for game in ('bn','dda'):
         diesel=next(e for e in files[game+'/data/json/items/fuel.json'] if e.get('id')=='diesel')
         assert diesel['volume']=='200ml' and diesel['stack_size']==200
+    boxes={e['id']:e for e in files['bn/data/json/items/containers.json'] if e.get('type')=='CONTAINER'}
+    assert boxes['box_medium']['contains']=='3 L' and boxes['box_huge']['contains']=='40 L'
     assert files['dda/data/json/mapgen_palettes/roof_palette.json'][0]['terrain']['v']=='t_ladder_down'
     assert 'v' not in files['bn/data/json/mapgen_palettes/roof_palette.json'][0]['terrain']
     return files
@@ -67,6 +69,9 @@ def native_data():
                     o.setdefault('terrain',{})[glyph]=CROSS[f]
             if any('v' in row for row in o['rows']):
                 o['terrain']['v']='t_ladder_down'
+        elif e['type']=='item_group' and e['id']=='lighthouse_food':
+            assert e['container-item']=='box_medium'
+            e['container-item']='box_huge'  # BN 40 L box; keep every source food count/probability.
         elif e['type']=='overmap_terrain':
             assert e.pop('copy-from')=='lighthouse_abstract'
             e.update(sym='0',color='yellow',see_cost=5)
@@ -109,6 +114,7 @@ def prepare(check=False):
               'BN glass walls/doors replace optical lens pieces; DDA lens-specific shard yields are not reproduced',
               'BN grid floodlight starts off; power supply, switching and brightness use BN behavior; no rotating beacon simulation is claimed',
               'Red metal roof uses stock metal roof; BN tools/refuse groups retain BN contents',
+              'Food supplies use existing BN 40 L box_huge instead of overflowing 3 L box_medium; source contents/counts/probabilities retained',
               'Source diesel 0..50000 charges retained: both games use 200 charges per 200 ml',
               'Instant coffee uses existing BN roasted coffee beans: dry coffee supply, different preparation and units',
               'Submerged solid-earth foundation uses BN empty_rock; source coordinates retained, material/excavation follow BN'],

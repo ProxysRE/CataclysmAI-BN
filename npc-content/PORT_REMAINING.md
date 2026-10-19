@@ -90,3 +90,7 @@ Supersedes older candidate-only notes: all 71 site declarations are embedded wit
 ## Small island lighthouse, 2026-10-19
 
 Complete six-level location embedded with explicit BN counterparts, original lake/underwater coordinates and boat placement. Generator assemblies reused. Missing DDA roof v bindings converted to explicit downward ladders. Two core native cases and installed-package equality/stale-payload rejection added. Native source/installed generation, lake placement, boat access and power operation remain pending.
+
+## Complete inland container-yard staging, 2026-10-19
+
+Both normal and bandit variants are now preserved and palette-expanded as whole complexes, including all floors/roofs and every cargo branch. See container_yards/TRANSFER_REPORT.json for unresolved explicit references and the remaining native/schema gates. Not embedded yet; no playable-content count should include this staging.

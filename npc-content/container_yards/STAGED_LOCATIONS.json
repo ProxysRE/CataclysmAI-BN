@@ -1,0 +1,8319 @@
+[
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_1_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                 @      ",
+        "          v    @B       ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 20,
+          "rotation": 1
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ],
+        "B": [
+          [
+            "f_30gal_firebarrel",
+            50
+          ],
+          [
+            "f_tourist_table",
+            50
+          ]
+        ],
+        "@": [
+          [
+            "f_deckchair",
+            25
+          ],
+          [
+            "f_camp_chair",
+            25
+          ],
+          [
+            "f_armchair",
+            25
+          ],
+          [
+            "f_null",
+            25
+          ]
+        ]
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_1a_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_1b_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              6
+            ],
+            [
+              "containers_roof",
+              5
+            ]
+          ]
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_2_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1       1   1           ",
+        "    1           1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "           @B@          ",
+        "@                       ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ],
+        "B": [
+          [
+            "f_30gal_firebarrel",
+            50
+          ],
+          [
+            "f_tourist_table",
+            50
+          ]
+        ],
+        "@": [
+          [
+            "f_deckchair",
+            25
+          ],
+          [
+            "f_camp_chair",
+            25
+          ],
+          [
+            "f_armchair",
+            25
+          ],
+          [
+            "f_null",
+            25
+          ]
+        ]
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_3_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                    @   ",
+        "                    t@  ",
+        "                 B  @   ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ],
+        "B": "f_30gal_firebarrel",
+        "@": [
+          [
+            "f_deckchair",
+            25
+          ],
+          [
+            "f_camp_chair",
+            25
+          ],
+          [
+            "f_armchair",
+            25
+          ],
+          [
+            "f_null",
+            25
+          ]
+        ],
+        "t": [
+          [
+            "f_roulette_table",
+            25
+          ],
+          [
+            "f_portable_stove",
+            25
+          ],
+          [
+            "f_coffee_table",
+            25
+          ],
+          [
+            "f_tourist_table",
+            25
+          ]
+        ]
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_4_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1       1   1           ",
+        "    1           1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "               @B       ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ],
+        "B": "f_30gal_firebarrel",
+        "@": [
+          [
+            "f_deckchair",
+            25
+          ],
+          [
+            "f_camp_chair",
+            25
+          ],
+          [
+            "f_armchair",
+            25
+          ],
+          [
+            "f_null",
+            25
+          ]
+        ]
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_5_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_5a_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "containers_roof",
+              2
+            ]
+          ]
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_6_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,ffffffffffffff",
+        ",,,,,,,,,,fB        B   ",
+        ",,,,,,,,,,f @           ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,fB            "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ],
+        "B": "f_30gal_firebarrel"
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_office_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,((((,,,,,,,,,,,,,,,,,",
+        ",,((((((,,,,,,,,,,,,,,,,",
+        ",,,,((((((,,,,,,,,,,,,,,",
+        ",,,,,,,,(((,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        "ffffffffffffffffffffffff",
+        "f                       ",
+        "f  ==================== ",
+        "f A=-@-----CCr-----d-$= ",
+        "f  =ddd------------d\u00c1-= ",
+        "f  =--------w-t-------= ",
+        "f  ====D=============== ",
+        "f    B@                 ",
+        "f                       ",
+        "f              v v      ",
+        "f   v       v       v   ",
+        "f                       ",
+        "f                       ",
+        "f                       "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover",
+        "(": "t_region_groundcover",
+        "=": "t_wall_metal_corrugated",
+        "D": "t_door_c",
+        "-": "t_floor",
+        "\u00c1": "t_floor",
+        "d": "t_floor",
+        "C": "t_floor",
+        "&": "t_floor",
+        "r": "t_floor",
+        "$": "t_floor",
+        "w": "t_water_dispenser"
+      },
+      "furniture": {
+        "A": "f_air_conditioner",
+        "d": "f_desk",
+        "$": "f_filing_cabinet",
+        "\u00c1": "f_chair",
+        "C": "f_table",
+        "&": "f_table",
+        "r": "f_minifridge",
+        "t": "f_trashcan",
+        "(": "f_rubble_landfill",
+        "B": "f_30gal_firebarrel"
+      },
+      "items": {
+        "$": {
+          "item": "SUS_office_filing_cabinet"
+        },
+        "d": {
+          "item": "SUS_office_desk"
+        },
+        "r": {
+          "item": "SUS_fridge_partial_empty"
+        },
+        "C": {
+          "item": "SUS_coffee_cupboard"
+        },
+        "t": {
+          "item": "SUS_trash_trashcan"
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "motorcycle",
+          "chance": 90,
+          "rotation": 270
+        }
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        },
+        "\u00c1": {
+          "class": "hells_raiders_boss"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_office_roof_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "   ____________________ ",
+        "   __@_________________ ",
+        "   ____________________ ",
+        "   ____________________ ",
+        "   ____________________ ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "_": "t_metal_floor",
+        "@": "t_metal_floor"
+      },
+      "furniture": {
+        "@": "f_chair"
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_garage_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "f                       ",
+        "f                       ",
+        "f       v               ",
+        "f            @          ",
+        "f  w        B           ",
+        "f ==DDDDDDDD=====d====  ",
+        "f =w---------@------c=  ",
+        "f =---m-m-m---ppp---c=  ",
+        "f =m@---------ppp---c=  ",
+        "f =-m--m-m--m-------m=  ",
+        "f =m--m-m--m-llllllll=  ",
+        "f ====================  ",
+        "f                       ",
+        "ffffffffffffffffffffffff",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,(((((((((,,,,,,,,,",
+        ",,,,(((((((((((((,,,,,,,",
+        ",((((((((((((((,,,,,,,,,",
+        ",,,,,,,((((((,,,,,,,,,,,",
+        ",,,,,,,,,,,(((((,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,"
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover",
+        "(": "t_region_groundcover",
+        "=": "t_wall_metal_corrugated",
+        "d": "t_door_locked",
+        "D": "t_door_metal_o",
+        "w": "t_gates_mech_control",
+        "-": "t_thconc_floor",
+        "v": "t_thconc_floor",
+        "@": "t_thconc_floor",
+        "p": "t_thconc_floor",
+        "m": "t_thconc_floor",
+        "l": "t_thconc_floor"
+      },
+      "furniture": {
+        "p": "f_pool_table",
+        "l": "f_rack",
+        "c": "f_counter",
+        "m": "f_floor_mattress",
+        "B": "f_30gal_firebarrel",
+        "(": "f_rubble_landfill"
+      },
+      "items": {
+        "L": {
+          "item": "clothing_work_set",
+          "chance": 80
+        },
+        "l": {
+          "item": "mechanics",
+          "chance": 80,
+          "repeat": [
+            1,
+            10
+          ]
+        },
+        "c": {
+          "item": "mechanics",
+          "chance": 80,
+          "repeat": [
+            1,
+            6
+          ]
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "motorcycle",
+          "chance": 90,
+          "rotation": 270
+        }
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_garage_roof_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "_": "t_metal_floor"
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_entry_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f@             v        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                   @    ",
+        "                        ",
+        "     1                  ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                v       ",
+        "                        ",
+        "                        ",
+        "f@                      ",
+        "f                       ",
+        "f                       ",
+        "f                       "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "bandit_vehicles",
+          "chance": 50,
+          "rotation": 0
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        ",,,,,,,,,,f1            ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f1            ",
+        ",,,,,,,,,,f     v       ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 5,
+          "rotation": 3
+        }
+      },
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container",
+            "null"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_front_bandit"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f       v               ",
+        "f                       ",
+        "f                       ",
+        "f               v       ",
+        "f                       ",
+        "f@        1             ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f     v                 ",
+        "f                       ",
+        "f@                 v    ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 5,
+          "rotation": 3
+        }
+      },
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container",
+            "null"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      },
+      "npcs": {
+        "@": {
+          "class": "bandit"
+        }
+      },
+      "faction_owner": [
+        {
+          "id": "hells_raiders",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_1"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "          v             ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 20,
+          "rotation": 1
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_1a"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_1b"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              6
+            ],
+            [
+              "containers_roof",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_2"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1       1   1           ",
+        "    1           1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_3"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_4"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "1   1   1   1   1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1       1   1           ",
+        "    1           1       ",
+        "                    1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_5"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_5a"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "containers_roof",
+              2
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_base_6"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "1   1   1   1   1   1   ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,ffffffffffffff",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_office"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        "ffffffffffffffffffffffff",
+        "f                       ",
+        "f  ==================== ",
+        "f A=-c------CCr----d-$= ",
+        "f  =ddd------------dc-= ",
+        "f  =--------w-t-------= ",
+        "f  ====D=============== ",
+        "f                       ",
+        "f              v        ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover",
+        "=": "t_wall_metal_corrugated",
+        "D": "t_door_c",
+        "-": "t_floor",
+        "c": "t_floor",
+        "d": "t_floor",
+        "C": "t_floor",
+        "&": "t_floor",
+        "r": "t_floor",
+        "$": "t_floor",
+        "w": "t_water_dispenser"
+      },
+      "furniture": {
+        "A": "f_air_conditioner",
+        "d": "f_desk",
+        "$": "f_filing_cabinet",
+        "c": "f_chair",
+        "C": "f_table",
+        "&": "f_table",
+        "r": "f_minifridge",
+        "t": "f_trashcan"
+      },
+      "items": {
+        "$": {
+          "item": "SUS_office_filing_cabinet"
+        },
+        "d": {
+          "item": "SUS_office_desk"
+        },
+        "r": {
+          "item": "SUS_fridge_partial_empty"
+        },
+        "C": {
+          "item": "SUS_coffee_cupboard"
+        },
+        "t": {
+          "item": "SUS_trash_trashcan"
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "pickup",
+          "chance": 50,
+          "rotation": 270
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_office_roof"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "   ____________________ ",
+        "   ____________________ ",
+        "   ____________________ ",
+        "   ____________________ ",
+        "   ____________________ ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "_": "t_metal_floor"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_garage"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f  w                    ",
+        "f ==DDDDDDDD=====d====  ",
+        "f =w--------LLLLL---c=  ",
+        "f =----v------------c=  ",
+        "f =-----------------c=  ",
+        "f =------------------=  ",
+        "f =----------llllllll=  ",
+        "f ====================  ",
+        "f                       ",
+        "ffffffffffffffffffffffff",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,",
+        ",,,,,,,,,,,,,,,,,,,,,,,,"
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover",
+        "=": "t_wall_metal_corrugated",
+        "d": "t_door_c",
+        "D": "t_door_metal_locked",
+        "w": "t_gates_mech_control",
+        "-": "t_thconc_floor",
+        "v": "t_thconc_floor",
+        "L": "t_thconc_floor",
+        "l": "t_thconc_floor"
+      },
+      "furniture": {
+        "L": "f_locker",
+        "l": "f_rack",
+        "c": "f_counter"
+      },
+      "items": {
+        "L": {
+          "item": "clothing_work_set",
+          "chance": 80
+        },
+        "l": {
+          "item": "mechanics",
+          "chance": 80,
+          "repeat": [
+            1,
+            10
+          ]
+        },
+        "c": {
+          "item": "mechanics",
+          "chance": 80,
+          "repeat": [
+            1,
+            6
+          ]
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 90,
+          "rotation": 90
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_corner_garage_roof"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        " ______________________ ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "_": "t_metal_floor"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_entry"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f              v        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "     1                  ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "nested": {
+        "1": {
+          "chunks": [
+            [
+              "shipping_container",
+              3
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        }
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "semi_truck",
+          "chance": 50,
+          "rotation": 0
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        ",,,,,,,,,,f1            ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f1            ",
+        ",,,,,,,,,,f     v       ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             ",
+        ",,,,,,,,,,f             "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 5,
+          "rotation": 3
+        }
+      },
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container",
+            "null"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "container_yard_inland_fence_front"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_pavement",
+      "rows": [
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f       v               ",
+        "f                       ",
+        "f                       ",
+        "f               v       ",
+        "f                       ",
+        "f         1             ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f     v                 ",
+        "f                       ",
+        "f                  v    ",
+        "f                       ",
+        "f                       ",
+        "f                       ",
+        "f                       "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "terrain": {
+        "f": "t_chainfence",
+        ",": "t_region_groundcover"
+      },
+      "vehicles": {
+        "v": {
+          "vehicle": "forklift_vehicles",
+          "chance": 5,
+          "rotation": 3
+        }
+      },
+      "nested": {
+        "1": {
+          "chunks": [
+            "shipping_container",
+            "null"
+          ]
+        }
+      },
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            199
+          ],
+          [
+            "f_rubble",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "containers_roof",
+    "object": {
+      "parameters": {
+        "contents_nest": {
+          "type": "nested_mapgen_id",
+          "scope": "nest",
+          "//": "null represents an empty shipping container.  Odds: 20 common bulk items, 10 common diverse items (eg for common shops), 5 uncommon (eg art, antiques), 1 very rare/illegal",
+          "default": {
+            "distribution": [
+              [
+                "null",
+                20
+              ],
+              [
+                "shipping_container_appliances_1x1",
+                20
+              ],
+              [
+                "shipping_container_fridge_1x1",
+                20
+              ],
+              [
+                "shipping_container_freezer_1x1",
+                20
+              ],
+              [
+                "shipping_container_washerdryer_1x1",
+                20
+              ],
+              [
+                "shipping_container_exam_chair_1x1",
+                20
+              ],
+              [
+                "shipping_container_toilet_1x1",
+                20
+              ],
+              [
+                "shipping_container_armchair_1x1",
+                20
+              ],
+              [
+                "shipping_container_bookcase_1x1",
+                20
+              ],
+              [
+                "shipping_container_coffin_1x1",
+                20
+              ],
+              [
+                "shipping_container_stack_wooden_planks_1x1",
+                20
+              ],
+              [
+                "shipping_container_pallet_adobe_bricks_1x1",
+                20
+              ],
+              [
+                "shipping_container_stack_pipes_1x1",
+                20
+              ],
+              [
+                "shipping_container_mattress_1x1",
+                20
+              ],
+              [
+                "shipping_container_mannequin_1x1",
+                20
+              ],
+              [
+                "shipping_container_paint_1x1",
+                20
+              ],
+              [
+                "shipping_container_nails_1x1",
+                20
+              ],
+              [
+                "shipping_container_gravelbag_1x1",
+                20
+              ],
+              [
+                "shipping_container_sandbag_1x1",
+                20
+              ],
+              [
+                "shipping_container_rebar_1x1",
+                20
+              ],
+              [
+                "shipping_container_tampon_1x1",
+                20
+              ],
+              [
+                "shipping_container_men_pads_1x1",
+                20
+              ],
+              [
+                "shipping_container_v6_comb_1x1",
+                20
+              ],
+              [
+                "shipping_container_v6_diesel_1x1",
+                20
+              ],
+              [
+                "shipping_container_v8_comb_1x1",
+                20
+              ],
+              [
+                "shipping_container_v8_diesel_1x1",
+                20
+              ],
+              [
+                "shipping_container_v12_comb_1x1",
+                20
+              ],
+              [
+                "shipping_container_v12_diesel_1x1",
+                20
+              ],
+              [
+                "shipping_container_glue_strong_1x1",
+                20
+              ],
+              [
+                "shipping_container_protein_bars_1x1",
+                20
+              ],
+              [
+                "shipping_container_water_1x1",
+                20
+              ],
+              [
+                "shipping_container_toilet_paper_1x1",
+                20
+              ],
+              [
+                "shipping_container_soap_1x1",
+                20
+              ],
+              [
+                "shipping_container_duct_tape_1x1",
+                20
+              ],
+              [
+                "shipping_container_large_cardboard_box_1x1",
+                20
+              ],
+              [
+                "shipping_container_mp3_1x1",
+                20
+              ],
+              [
+                "shipping_container_new_phones_1x1",
+                20
+              ],
+              [
+                "shipping_container_circsaw_blade_1x1",
+                20
+              ],
+              [
+                "shipping_container_stereos_1x1",
+                20
+              ],
+              [
+                "shipping_container_barrels_1x1",
+                20
+              ],
+              [
+                "shipping_container_barstools_1x1",
+                20
+              ],
+              [
+                "shipping_container_wardrobe_1x1",
+                20
+              ],
+              [
+                "shipping_container_television_1x1",
+                20
+              ],
+              [
+                "shipping_container_vending_1x1",
+                20
+              ],
+              [
+                "shipping_container_flashlight_1x1",
+                20
+              ],
+              [
+                "shipping_container_fertilizer_1x1",
+                20
+              ],
+              [
+                "shipping_container_sunglasses_1x1",
+                20
+              ],
+              [
+                "shipping_container_open_gunsafe_1x1",
+                20
+              ],
+              [
+                "shipping_container_filing_cabinet_1x1",
+                20
+              ],
+              [
+                "shipping_container_emer_blanket_1x1",
+                20
+              ],
+              [
+                "shipping_container_diesel_generator_1x1",
+                20
+              ],
+              [
+                "shipping_container_portable_generator_1x1",
+                20
+              ],
+              [
+                "shipping_container_12000_gasoline_generator_1x1",
+                20
+              ],
+              [
+                "shipping_container_extinguisher_1x1",
+                20
+              ],
+              [
+                "shipping_container_sm_extinguisher_1x1",
+                20
+              ],
+              [
+                "shipping_container_light_bulb_1x1",
+                20
+              ],
+              [
+                "shipping_container_long_extension_cable_1x1",
+                20
+              ],
+              [
+                "shipping_container_extension_cable_1x1",
+                20
+              ],
+              [
+                "shipping_container_clothes_hanger_1x1",
+                20
+              ],
+              [
+                "shipping_container_bike_rack_1x1",
+                20
+              ],
+              [
+                "shipping_container_food_1x1",
+                10
+              ],
+              [
+                "shipping_container_books_1x1",
+                10
+              ],
+              [
+                "shipping_container_gift_shop_1x1",
+                10
+              ],
+              [
+                "shipping_container_otc_pharmacy_1x1",
+                10
+              ],
+              [
+                "shipping_container_electronics_1x1",
+                10
+              ],
+              [
+                "shipping_container_sunscreen_1x1",
+                10
+              ],
+              [
+                "shipping_container_cigs_1x1",
+                10
+              ],
+              [
+                "shipping_container_concrete_1x1",
+                10
+              ],
+              [
+                "shipping_container_brick_1x1",
+                10
+              ],
+              [
+                "shipping_container_wheel_1x1",
+                10
+              ],
+              [
+                "shipping_container_spare_parts_1x1",
+                10
+              ],
+              [
+                "shipping_container_glass_1x1",
+                10
+              ],
+              [
+                "shipping_container_wind_instrument_1x1",
+                10
+              ],
+              [
+                "shipping_container_string_instrument_1x1",
+                10
+              ],
+              [
+                "shipping_container_personal_devices_1x1",
+                10
+              ],
+              [
+                "shipping_container_elec_appliances_1x1",
+                10
+              ],
+              [
+                "shipping_container_newstorage_1x1",
+                10
+              ],
+              [
+                "shipping_container_batteries_1x1",
+                10
+              ],
+              [
+                "shipping_container_heavy_batteries_1x1",
+                10
+              ],
+              [
+                "shipping_container_petstore_1x1",
+                10
+              ],
+              [
+                "shipping_container_bedding_1x1",
+                10
+              ],
+              [
+                "shipping_container_fishing_rods_comm_1x1",
+                10
+              ],
+              [
+                "shipping_container_fishing_rods_port_1x1",
+                10
+              ],
+              [
+                "shipping_container_golf_ball_1x1",
+                10
+              ],
+              [
+                "shipping_container_camping_1x1",
+                10
+              ],
+              [
+                "shipping_container_spirits_1x1",
+                10
+              ],
+              [
+                "shipping_container_alternator_motorbike_1x1",
+                10
+              ],
+              [
+                "shipping_container_alternator_car_1x1",
+                10
+              ],
+              [
+                "shipping_container_alternator_truck_1x1",
+                10
+              ],
+              [
+                "shipping_container_decorative_tree_1x1",
+                10
+              ],
+              [
+                "shipping_container_foodplace_1x1",
+                5
+              ],
+              [
+                "shipping_container_antiques_1x1",
+                5
+              ],
+              [
+                "shipping_container_art_all_1x1",
+                5
+              ],
+              [
+                "shipping_container_radio_1x1",
+                5
+              ],
+              [
+                "shipping_container_dildo_1x1",
+                5
+              ],
+              [
+                "shipping_container_ar_basic_1x1",
+                5
+              ],
+              [
+                "shipping_container_microcentrifuge_1x1",
+                5
+              ],
+              [
+                "shipping_container_centrifuge_1x1",
+                5
+              ],
+              [
+                "shipping_container_shaker_1x1",
+                5
+              ],
+              [
+                "shipping_container_wine_keg_1x1",
+                5
+              ],
+              [
+                "shipping_container_inflatable_boat_1x1",
+                5
+              ],
+              [
+                "shipping_container_science_1x1",
+                1
+              ],
+              [
+                "shipping_container_chem_lab_1x1",
+                1
+              ],
+              [
+                "shipping_container_surgery_1x1",
+                1
+              ],
+              [
+                "shipping_container_pharmacy_1x1",
+                1
+              ],
+              [
+                "shipping_container_weed_1x1",
+                1
+              ],
+              [
+                "shipping_container_meth_1x1",
+                1
+              ],
+              [
+                "shipping_container_cigar_1x1",
+                1
+              ],
+              [
+                "shipping_container_antique_rare_1x1",
+                1
+              ],
+              [
+                "shipping_container_banknotes_1x1",
+                1
+              ],
+              [
+                "shipping_container_illegal_AK_1x1",
+                1
+              ],
+              [
+                "shipping_container_cockroach_1x1",
+                1
+              ],
+              [
+                "shipping_container_slime_1x1",
+                1
+              ],
+              [
+                "shipping_container_ar_advanced_1x1",
+                1
+              ],
+              [
+                "shipping_container_cocaine_1x1",
+                1
+              ],
+              [
+                "shipping_container_gunmod_common_1x1",
+                1
+              ],
+              [
+                "shipping_container_gunmod_rare_1x1",
+                1
+              ],
+              [
+                "shipping_container_illegal_AK_rounds_1x1",
+                1
+              ],
+              [
+                "shipping_container_dentist_1x1",
+                1
+              ]
+            ]
+          }
+        },
+        "exterior_wall_type": {
+          "type": "ter_str_id",
+          "scope": "nest",
+          "default": {
+            "distribution": [
+              [
+                "t_wall_metal_shipping_container_black",
+                1
+              ],
+              [
+                "t_wall_metal_shipping_container_white",
+                1
+              ],
+              [
+                "t_wall_metal_shipping_container_red",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_light_red",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_green",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_light_green",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_blue",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_light_blue",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_cyan",
+                2
+              ],
+              [
+                "t_wall_metal_shipping_container_light_cyan",
+                2
+              ],
+              [
+                "t_wall_metal_shipping_container_magenta",
+                2
+              ],
+              [
+                "t_wall_metal_shipping_container_brown",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_pink",
+                1
+              ],
+              [
+                "t_wall_metal_shipping_container_yellow",
+                4
+              ]
+            ]
+          }
+        },
+        "exterior_door_type": {
+          "type": "ter_str_id",
+          "scope": "nest",
+          "default": {
+            "distribution": [
+              [
+                "t_door_metal_c",
+                4
+              ],
+              [
+                "t_door_metal_locked",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "terrain": {
+        ".": "t_metal_floor",
+        "_": "t_metal_floor",
+        "#": {
+          "param": "exterior_wall_type",
+          "fallback": "t_wall_metal_shipping_container"
+        },
+        "+": {
+          "param": "exterior_door_type",
+          "fallback": "t_door_metal_c"
+        }
+      },
+      "nested": {
+        ".": {
+          "chunks": [
+            {
+              "param": "contents_nest",
+              "fallback": "null"
+            }
+          ]
+        },
+        "#": {
+          "chunks": [
+            [
+              "shelter_graffiti",
+              1
+            ],
+            [
+              "general_graffiti",
+              1
+            ],
+            [
+              "null",
+              98
+            ]
+          ]
+        }
+      },
+      "mapgensize": [
+        10,
+        10
+      ],
+      "rows": [
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      ",
+        "____      "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container",
+    "object": {
+      "parameters": {
+        "contents_nest": {
+          "type": "nested_mapgen_id",
+          "scope": "nest",
+          "//": "null represents an empty shipping container.  Odds: 20 common bulk items, 10 common diverse items (eg for common shops), 5 uncommon (eg art, antiques), 1 very rare/illegal",
+          "default": {
+            "distribution": [
+              [
+                "null",
+                20
+              ],
+              [
+                "shipping_container_appliances_1x1",
+                20
+              ],
+              [
+                "shipping_container_fridge_1x1",
+                20
+              ],
+              [
+                "shipping_container_freezer_1x1",
+                20
+              ],
+              [
+                "shipping_container_washerdryer_1x1",
+                20
+              ],
+              [
+                "shipping_container_exam_chair_1x1",
+                20
+              ],
+              [
+                "shipping_container_toilet_1x1",
+                20
+              ],
+              [
+                "shipping_container_armchair_1x1",
+                20
+              ],
+              [
+                "shipping_container_bookcase_1x1",
+                20
+              ],
+              [
+                "shipping_container_coffin_1x1",
+                20
+              ],
+              [
+                "shipping_container_stack_wooden_planks_1x1",
+                20
+              ],
+              [
+                "shipping_container_pallet_adobe_bricks_1x1",
+                20
+              ],
+              [
+                "shipping_container_stack_pipes_1x1",
+                20
+              ],
+              [
+                "shipping_container_mattress_1x1",
+                20
+              ],
+              [
+                "shipping_container_mannequin_1x1",
+                20
+              ],
+              [
+                "shipping_container_paint_1x1",
+                20
+              ],
+              [
+                "shipping_container_nails_1x1",
+                20
+              ],
+              [
+                "shipping_container_gravelbag_1x1",
+                20
+              ],
+              [
+                "shipping_container_sandbag_1x1",
+                20
+              ],
+              [
+                "shipping_container_rebar_1x1",
+                20
+              ],
+              [
+                "shipping_container_tampon_1x1",
+                20
+              ],
+              [
+                "shipping_container_men_pads_1x1",
+                20
+              ],
+              [
+                "shipping_container_v6_comb_1x1",
+                20
+              ],
+              [
+                "shipping_container_v6_diesel_1x1",
+                20
+              ],
+              [
+                "shipping_container_v8_comb_1x1",
+                20
+              ],
+              [
+                "shipping_container_v8_diesel_1x1",
+                20
+              ],
+              [
+                "shipping_container_v12_comb_1x1",
+                20
+              ],
+              [
+                "shipping_container_v12_diesel_1x1",
+                20
+              ],
+              [
+                "shipping_container_glue_strong_1x1",
+                20
+              ],
+              [
+                "shipping_container_protein_bars_1x1",
+                20
+              ],
+              [
+                "shipping_container_water_1x1",
+                20
+              ],
+              [
+                "shipping_container_toilet_paper_1x1",
+                20
+              ],
+              [
+                "shipping_container_soap_1x1",
+                20
+              ],
+              [
+                "shipping_container_duct_tape_1x1",
+                20
+              ],
+              [
+                "shipping_container_large_cardboard_box_1x1",
+                20
+              ],
+              [
+                "shipping_container_mp3_1x1",
+                20
+              ],
+              [
+                "shipping_container_new_phones_1x1",
+                20
+              ],
+              [
+                "shipping_container_circsaw_blade_1x1",
+                20
+              ],
+              [
+                "shipping_container_stereos_1x1",
+                20
+              ],
+              [
+                "shipping_container_barrels_1x1",
+                20
+              ],
+              [
+                "shipping_container_barstools_1x1",
+                20
+              ],
+              [
+                "shipping_container_wardrobe_1x1",
+                20
+              ],
+              [
+                "shipping_container_television_1x1",
+                20
+              ],
+              [
+                "shipping_container_vending_1x1",
+                20
+              ],
+              [
+                "shipping_container_flashlight_1x1",
+                20
+              ],
+              [
+                "shipping_container_fertilizer_1x1",
+                20
+              ],
+              [
+                "shipping_container_sunglasses_1x1",
+                20
+              ],
+              [
+                "shipping_container_open_gunsafe_1x1",
+                20
+              ],
+              [
+                "shipping_container_filing_cabinet_1x1",
+                20
+              ],
+              [
+                "shipping_container_emer_blanket_1x1",
+                20
+              ],
+              [
+                "shipping_container_diesel_generator_1x1",
+                20
+              ],
+              [
+                "shipping_container_portable_generator_1x1",
+                20
+              ],
+              [
+                "shipping_container_12000_gasoline_generator_1x1",
+                20
+              ],
+              [
+                "shipping_container_extinguisher_1x1",
+                20
+              ],
+              [
+                "shipping_container_sm_extinguisher_1x1",
+                20
+              ],
+              [
+                "shipping_container_light_bulb_1x1",
+                20
+              ],
+              [
+                "shipping_container_long_extension_cable_1x1",
+                20
+              ],
+              [
+                "shipping_container_extension_cable_1x1",
+                20
+              ],
+              [
+                "shipping_container_clothes_hanger_1x1",
+                20
+              ],
+              [
+                "shipping_container_bike_rack_1x1",
+                20
+              ],
+              [
+                "shipping_container_food_1x1",
+                10
+              ],
+              [
+                "shipping_container_books_1x1",
+                10
+              ],
+              [
+                "shipping_container_gift_shop_1x1",
+                10
+              ],
+              [
+                "shipping_container_otc_pharmacy_1x1",
+                10
+              ],
+              [
+                "shipping_container_electronics_1x1",
+                10
+              ],
+              [
+                "shipping_container_sunscreen_1x1",
+                10
+              ],
+              [
+                "shipping_container_cigs_1x1",
+                10
+              ],
+              [
+                "shipping_container_concrete_1x1",
+                10
+              ],
+              [
+                "shipping_container_brick_1x1",
+                10
+              ],
+              [
+                "shipping_container_wheel_1x1",
+                10
+              ],
+              [
+                "shipping_container_spare_parts_1x1",
+                10
+              ],
+              [
+                "shipping_container_glass_1x1",
+                10
+              ],
+              [
+                "shipping_container_wind_instrument_1x1",
+                10
+              ],
+              [
+                "shipping_container_string_instrument_1x1",
+                10
+              ],
+              [
+                "shipping_container_personal_devices_1x1",
+                10
+              ],
+              [
+                "shipping_container_elec_appliances_1x1",
+                10
+              ],
+              [
+                "shipping_container_newstorage_1x1",
+                10
+              ],
+              [
+                "shipping_container_batteries_1x1",
+                10
+              ],
+              [
+                "shipping_container_heavy_batteries_1x1",
+                10
+              ],
+              [
+                "shipping_container_petstore_1x1",
+                10
+              ],
+              [
+                "shipping_container_bedding_1x1",
+                10
+              ],
+              [
+                "shipping_container_fishing_rods_comm_1x1",
+                10
+              ],
+              [
+                "shipping_container_fishing_rods_port_1x1",
+                10
+              ],
+              [
+                "shipping_container_golf_ball_1x1",
+                10
+              ],
+              [
+                "shipping_container_camping_1x1",
+                10
+              ],
+              [
+                "shipping_container_spirits_1x1",
+                10
+              ],
+              [
+                "shipping_container_alternator_motorbike_1x1",
+                10
+              ],
+              [
+                "shipping_container_alternator_car_1x1",
+                10
+              ],
+              [
+                "shipping_container_alternator_truck_1x1",
+                10
+              ],
+              [
+                "shipping_container_decorative_tree_1x1",
+                10
+              ],
+              [
+                "shipping_container_foodplace_1x1",
+                5
+              ],
+              [
+                "shipping_container_antiques_1x1",
+                5
+              ],
+              [
+                "shipping_container_art_all_1x1",
+                5
+              ],
+              [
+                "shipping_container_radio_1x1",
+                5
+              ],
+              [
+                "shipping_container_dildo_1x1",
+                5
+              ],
+              [
+                "shipping_container_ar_basic_1x1",
+                5
+              ],
+              [
+                "shipping_container_microcentrifuge_1x1",
+                5
+              ],
+              [
+                "shipping_container_centrifuge_1x1",
+                5
+              ],
+              [
+                "shipping_container_shaker_1x1",
+                5
+              ],
+              [
+                "shipping_container_wine_keg_1x1",
+                5
+              ],
+              [
+                "shipping_container_inflatable_boat_1x1",
+                5
+              ],
+              [
+                "shipping_container_science_1x1",
+                1
+              ],
+              [
+                "shipping_container_chem_lab_1x1",
+                1
+              ],
+              [
+                "shipping_container_surgery_1x1",
+                1
+              ],
+              [
+                "shipping_container_pharmacy_1x1",
+                1
+              ],
+              [
+                "shipping_container_weed_1x1",
+                1
+              ],
+              [
+                "shipping_container_meth_1x1",
+                1
+              ],
+              [
+                "shipping_container_cigar_1x1",
+                1
+              ],
+              [
+                "shipping_container_antique_rare_1x1",
+                1
+              ],
+              [
+                "shipping_container_banknotes_1x1",
+                1
+              ],
+              [
+                "shipping_container_illegal_AK_1x1",
+                1
+              ],
+              [
+                "shipping_container_cockroach_1x1",
+                1
+              ],
+              [
+                "shipping_container_slime_1x1",
+                1
+              ],
+              [
+                "shipping_container_ar_advanced_1x1",
+                1
+              ],
+              [
+                "shipping_container_cocaine_1x1",
+                1
+              ],
+              [
+                "shipping_container_gunmod_common_1x1",
+                1
+              ],
+              [
+                "shipping_container_gunmod_rare_1x1",
+                1
+              ],
+              [
+                "shipping_container_illegal_AK_rounds_1x1",
+                1
+              ],
+              [
+                "shipping_container_dentist_1x1",
+                1
+              ]
+            ]
+          }
+        },
+        "exterior_wall_type": {
+          "type": "ter_str_id",
+          "scope": "nest",
+          "default": {
+            "distribution": [
+              [
+                "t_wall_metal_shipping_container_black",
+                1
+              ],
+              [
+                "t_wall_metal_shipping_container_white",
+                1
+              ],
+              [
+                "t_wall_metal_shipping_container_red",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_light_red",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_green",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_light_green",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_blue",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_light_blue",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_cyan",
+                2
+              ],
+              [
+                "t_wall_metal_shipping_container_light_cyan",
+                2
+              ],
+              [
+                "t_wall_metal_shipping_container_magenta",
+                2
+              ],
+              [
+                "t_wall_metal_shipping_container_brown",
+                4
+              ],
+              [
+                "t_wall_metal_shipping_container_pink",
+                1
+              ],
+              [
+                "t_wall_metal_shipping_container_yellow",
+                4
+              ]
+            ]
+          }
+        },
+        "exterior_door_type": {
+          "type": "ter_str_id",
+          "scope": "nest",
+          "default": {
+            "distribution": [
+              [
+                "t_door_metal_c",
+                4
+              ],
+              [
+                "t_door_metal_locked",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "terrain": {
+        ".": "t_metal_floor",
+        "_": "t_metal_floor",
+        "#": {
+          "param": "exterior_wall_type",
+          "fallback": "t_wall_metal_shipping_container"
+        },
+        "+": {
+          "param": "exterior_door_type",
+          "fallback": "t_door_metal_c"
+        }
+      },
+      "nested": {
+        ".": {
+          "chunks": [
+            {
+              "param": "contents_nest",
+              "fallback": "null"
+            }
+          ]
+        },
+        "#": {
+          "chunks": [
+            [
+              "shelter_graffiti",
+              1
+            ],
+            [
+              "general_graffiti",
+              1
+            ],
+            [
+              "null",
+              98
+            ]
+          ]
+        }
+      },
+      "mapgensize": [
+        10,
+        10
+      ],
+      "rows": [
+        "####      ",
+        "#..#      ",
+        "#..#      ",
+        "#..#      ",
+        "#..#      ",
+        "#..#      ",
+        "#..#      ",
+        "#..#      ",
+        "#..#      ",
+        "#++#      "
+      ],
+      "flags": [
+        "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            "containers_roof"
+          ],
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "neighbors": {
+            "above": "open_air"
+          }
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_food_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "cannedfood",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_foodplace_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "foodplace_food",
+          "chance": 95,
+          "amount": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_electronics_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "consumer_electronics",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_appliances_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_null",
+            5
+          ],
+          [
+            "f_dishwasher",
+            5
+          ],
+          [
+            "f_home_furnace",
+            5
+          ],
+          [
+            "f_washer",
+            5
+          ],
+          [
+            "f_oven",
+            5
+          ],
+          [
+            "f_dryer",
+            5
+          ],
+          [
+            "f_diesel_generator",
+            5
+          ],
+          [
+            "f_fridge",
+            1
+          ],
+          [
+            "f_glass_fridge",
+            1
+          ],
+          [
+            "f_glass_fridge_double",
+            1
+          ],
+          [
+            "f_heavy_duty_fridge",
+            1
+          ],
+          [
+            "f_display_fridge",
+            1
+          ],
+          [
+            "f_minifreezer",
+            1
+          ],
+          [
+            "f_freezer",
+            1
+          ],
+          [
+            "f_heavy_duty_freezer",
+            1
+          ],
+          [
+            "f_glass_freezer",
+            1
+          ],
+          [
+            "f_display_freezer",
+            1
+          ],
+          [
+            "f_exercise",
+            1
+          ],
+          [
+            "f_ball_mach",
+            5
+          ],
+          [
+            "f_arcade_machine",
+            5
+          ],
+          [
+            "f_pinball_machine",
+            5
+          ],
+          [
+            "f_ergometer",
+            1
+          ],
+          [
+            "f_ergometer_mechanical",
+            1
+          ],
+          [
+            "f_treadmill",
+            1
+          ],
+          [
+            "f_treadmill_mechanical",
+            1
+          ],
+          [
+            "f_piano",
+            5
+          ],
+          [
+            "f_speaker_cabinet",
+            5
+          ],
+          [
+            "f_training_dummy_light",
+            1
+          ],
+          [
+            "f_training_dummy_heavy",
+            1
+          ],
+          [
+            "f_archery_target_box",
+            1
+          ],
+          [
+            "f_archery_target_bale",
+            1
+          ],
+          [
+            "f_toilet",
+            5
+          ],
+          [
+            "f_water_heater",
+            1
+          ],
+          [
+            "f_water_heater_family",
+            1
+          ],
+          [
+            "f_water_purifier",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_fridge_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_fridge",
+            1
+          ],
+          [
+            "f_glass_fridge",
+            1
+          ],
+          [
+            "f_glass_fridge_double",
+            1
+          ],
+          [
+            "f_heavy_duty_fridge",
+            1
+          ],
+          [
+            "f_display_fridge",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_freezer_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_minifreezer",
+            1
+          ],
+          [
+            "f_freezer",
+            1
+          ],
+          [
+            "f_heavy_duty_freezer",
+            1
+          ],
+          [
+            "f_glass_freezer",
+            1
+          ],
+          [
+            "f_display_freezer",
+            1
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_washerdryer_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_washer",
+            5
+          ],
+          [
+            "f_dryer",
+            5
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_antiques_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "antique",
+          "chance": 95,
+          "repeat": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_books_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "homebooks",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_science_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "mundane_science",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_chem_lab_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "chem_lab",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_surgery_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "surgery",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_gift_shop_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "gift_shop",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_art_all_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "art_all",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_antique_rare_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "antique_rare",
+          "chance": 95,
+          "repeat": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_otc_pharmacy_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "drugs_heal_simple",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_pharmacy_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "drugs_pharmacy",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_weed_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "jar_weed",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_meth_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "meth_bag_zipper_6",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_sunscreen_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "sunscreen_bottle",
+          "chance": 95,
+          "repeat": [
+            30,
+            60
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_cigar_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "cigar_box_unopened",
+          "chance": 95,
+          "repeat": [
+            30,
+            50
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_cigs_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "cig_box_cigarette_20",
+          "chance": 95,
+          "repeat": [
+            100,
+            200
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_banknotes_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "banknotes",
+          "chance": 95,
+          "repeat": [
+            200,
+            1000
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_illegal_AK_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "ak47",
+          "chance": 70,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      },
+      "items": {
+        " ": {
+          "item": "magazines_akm",
+          "chance": 95,
+          "repeat": [
+            5,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_cockroach_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_cardboard_box"
+      },
+      "item": {
+        " ": {
+          "item": "feces_roach",
+          "chance": 20,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      },
+      "monsters": {
+        " ": {
+          "monster": "GROUP_ROACH",
+          "chance": 6,
+          "density": 0.0001
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_slime_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "monsters": {
+        " ": {
+          "monster": "GROUP_SLIME",
+          "chance": 4,
+          "density": 0.0001
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_concrete_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "concrete_bag",
+          "chance": 95,
+          "repeat": [
+            5,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_brick_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          "f_pallet_brick",
+          95
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_wheel_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "items": {
+        " ": {
+          "item": "wheels_no_wood",
+          "chance": 95,
+          "repeat": [
+            1,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_spare_parts_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "supplies_spares_vehicle",
+          "chance": 95,
+          "repeat": [
+            1,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_nails_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "nail_box_10lb_full",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_paint_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "paint",
+          "chance": 95,
+          "repeat": [
+            10,
+            15
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_gravelbag_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "gravelbag",
+          "chance": 95,
+          "repeat": [
+            10,
+            15
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_sandbag_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "sandbag",
+          "chance": 95,
+          "repeat": [
+            10,
+            15
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_rebar_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "rebar",
+          "chance": 95,
+          "amount": [
+            30,
+            50
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_glue_strong_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "glue_strong_professional_full",
+          "chance": 95,
+          "repeat": [
+            1,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_radio_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "radio",
+          "chance": 95,
+          "amount": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_dildo_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "sextoy",
+          "chance": 95,
+          "amount": [
+            5,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_ar_basic_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "ar_glasses_basic",
+          "chance": 95,
+          "amount": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_ar_advanced_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "ar_glasses_advanced",
+          "chance": 95,
+          "amount": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_mp3_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "mp3",
+          "chance": 95,
+          "amount": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_new_phones_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "new_phones",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_personal_devices_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "elecsto_persele",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_elec_appliances_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "elecsto_homapl",
+          "chance": 95,
+          "repeat": [
+            1,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_newstorage_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "elecsto_stor",
+          "chance": 95,
+          "repeat": [
+            20,
+            50
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_batteries_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "box_of_batteries_unopened",
+          "chance": 95,
+          "repeat": [
+            10,
+            30
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_heavy_batteries_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "ammo_heavy_batteries_full",
+          "chance": 95,
+          "repeat": [
+            10,
+            30
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_petstore_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "petstore_misc",
+          "chance": 95,
+          "repeat": [
+            5,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_protein_bars_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "protein_bar_wrapped_box",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_water_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "twoliter_water_batch",
+          "chance": 95,
+          "repeat": [
+            10,
+            30
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_toilet_paper_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "items": {
+        " ": {
+          "item": "toilet_paper_packed",
+          "chance": 95,
+          "repeat": [
+            10,
+            30
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_soap_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "soap_packed",
+          "chance": 95,
+          "repeat": [
+            10,
+            30
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_duct_tape_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "duct_tape_roll",
+          "chance": 95,
+          "repeat": [
+            10,
+            30
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_large_cardboard_box_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "box_large_folded",
+          "chance": 95,
+          "amount": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_circsaw_blade_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "circsaw_blade",
+          "chance": 95,
+          "amount": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_microcentrifuge_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "microcentrifuge",
+          "chance": 95,
+          "amount": 5
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_centrifuge_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "centrifuge",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_shaker_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_shaker"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_exam_chair_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_exam_chair"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_toilet_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_toilet"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_armchair_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "armchair",
+          "chance": 95,
+          "amount": 5
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_bookcase_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_bookcase"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_coffin_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_coffin_c"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_stack_wooden_planks_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_plank_stack_mid"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_pallet_adobe_bricks_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_brick_adobe"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_stack_pipes_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pipe_stack_mid"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_mattress_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "mattress",
+          "chance": 95,
+          "amount": 2
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_mannequin_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_mannequin"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_cocaine_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "coke_bag_zipper_1_8",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_flashlight_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "flashlight",
+          "chance": 95,
+          "amount": 10
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_glass_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "glass_shop",
+          "chance": 95,
+          "repeat": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_wind_instrument_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "mussto_windinst",
+          "chance": 95,
+          "repeat": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_string_instrument_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "mussto_stringinst",
+          "chance": 95,
+          "repeat": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_fertilizer_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "fertilizer_commercial_bag_canvas_60",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_wine_keg_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "items": {
+        " ": {
+          "item": "keg_wine_intact",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_bedding_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "bed",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_stereos_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "stereo",
+          "chance": 85,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_barrels_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "barrels",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_barstools_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "barstool",
+          "chance": 85,
+          "amount": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_wardrobe_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_wardrobe"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_utility_shelf_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_utility_shelf"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_television_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "television",
+          "chance": 95,
+          "amount": 2
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_dentist_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "dentist_supplies",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_vending_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_vending_c_off"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_gunmod_common_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "gunmod_common",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_gunmod_rare_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "gunmod_rare",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_tampon_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "tampon_box_full",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_men_pads_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "menstrual_pad_box_full",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_v6_comb_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "v6_combustion",
+          "chance": 90,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_v6_diesel_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "v6_diesel",
+          "chance": 90,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_v8_comb_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "v8_combustion",
+          "chance": 90,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_v8_diesel_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "v8_diesel",
+          "chance": 90,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_v12_comb_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "v12_combustion",
+          "chance": 90,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_v12_diesel_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "v12_diesel",
+          "chance": 90,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_illegal_AK_rounds_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "boxed_762",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_fishing_rods_comm_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "tools_fishingrods_commercial",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_fishing_rods_port_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "tools_fishingrods_portable",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_golf_ball_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "golf_ball",
+          "chance": 95,
+          "amount": 50
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_emer_blanket_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "emer_blanket",
+          "chance": 95,
+          "amount": 10
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_camping_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            70
+          ],
+          [
+            "f_cardboard_box",
+            30
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "camping",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_inflatable_boat_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            95
+          ],
+          [
+            "f_cardboard_box",
+            5
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "folded_inflatable_boat",
+          "chance": 95,
+          "amount": 1
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_sunglasses_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "sunglasses",
+          "chance": 95,
+          "amount": 20
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_spirits_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "items": {
+        " ": {
+          "item": "liquor_and_spirits",
+          "chance": 95,
+          "repeat": [
+            5,
+            10
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_alternator_motorbike_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "alternator_motorbike",
+          "chance": 95,
+          "amount": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_alternator_car_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "alternator_car",
+          "chance": 95,
+          "amount": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_alternator_truck_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            10
+          ],
+          [
+            "f_cardboard_box",
+            90
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "alternator_truck",
+          "chance": 95,
+          "amount": [
+            1,
+            5
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_decorative_tree_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_decorative_tree",
+            90
+          ],
+          [
+            "f_null",
+            10
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_open_gunsafe_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_gunsafe_o",
+            90
+          ],
+          [
+            "f_null",
+            10
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_filing_cabinet_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_filing_cabinet",
+            90
+          ],
+          [
+            "f_null",
+            10
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_diesel_generator_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_diesel_generator",
+            90
+          ],
+          [
+            "f_null",
+            10
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_portable_generator_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "portable_generator",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_12000_gasoline_generator_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "12000_gasoline_generator",
+          "chance": 95
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_extinguisher_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "extinguisher",
+          "chance": 95,
+          "repeat": [
+            8,
+            12
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_sm_extinguisher_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "sm_extinguisher",
+          "chance": 95,
+          "repeat": [
+            16,
+            24
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_light_bulb_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "light_bulb",
+          "chance": 95,
+          "repeat": [
+            45,
+            55
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_long_extension_cable_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "long_extension_cable",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_extension_cable_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "extension_cable",
+          "chance": 95,
+          "repeat": [
+            10,
+            20
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_clothes_hanger_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": [
+          [
+            "f_crate_c",
+            90
+          ],
+          [
+            "f_cardboard_box",
+            10
+          ]
+        ]
+      },
+      "item": {
+        " ": {
+          "item": "clothes_hanger",
+          "chance": 95,
+          "repeat": [
+            40,
+            50
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "shipping_container_bike_rack_1x1",
+    "object": {
+      "mapgensize": [
+        1,
+        1
+      ],
+      "furniture": {
+        " ": "f_pallet_belted"
+      },
+      "item": {
+        " ": {
+          "item": "bike_rack",
+          "chance": 95,
+          "repeat": [
+            2,
+            4
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "container_yard_inland_base_1",
+      "container_yard_inland_base_2",
+      "container_yard_inland_base_3",
+      "container_yard_inland_base_4",
+      "container_yard_inland_base_5",
+      "container_yard_inland_base_6",
+      "container_yard_inland_fence",
+      "container_yard_inland_fence_front",
+      "container_yard_inland_fence_entry",
+      "container_yard_inland_fence_corner",
+      "container_yard_inland_fence_corner_office",
+      "container_yard_inland_fence_corner_garage"
+    ],
+    "name": "inland container depot",
+    "sym": "I",
+    "color": "light_gray",
+    "vision_levels": "industrial_building",
+    "see_cost": "medium",
+    "extras": "build",
+    "spawns": {
+      "group": "GROUP_CIVILIAN",
+      "population": [
+        1,
+        2
+      ],
+      "chance": 75
+    }
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "container_yard_inland_base_1a",
+      "container_yard_inland_base_1b",
+      "container_yard_inland_base_5a",
+      "container_yard_inland_fence_corner_office_roof",
+      "container_yard_inland_fence_corner_garage_roof",
+      "container_yard_inland_base_1_bandit",
+      "container_yard_inland_base_2_bandit",
+      "container_yard_inland_base_3_bandit",
+      "container_yard_inland_base_4_bandit",
+      "container_yard_inland_base_5_bandit",
+      "container_yard_inland_base_6_bandit",
+      "container_yard_inland_fence_bandit",
+      "container_yard_inland_fence_front_bandit",
+      "container_yard_inland_fence_entry_bandit",
+      "container_yard_inland_fence_corner_bandit",
+      "container_yard_inland_fence_corner_office_bandit",
+      "container_yard_inland_fence_corner_garage_bandit",
+      "container_yard_inland_base_1a_bandit",
+      "container_yard_inland_base_1b_bandit",
+      "container_yard_inland_base_5a_bandit",
+      "container_yard_inland_fence_corner_office_roof_bandit",
+      "container_yard_inland_fence_corner_garage_roof_bandit"
+    ],
+    "name": "inland container depot",
+    "sym": "I",
+    "color": "light_gray",
+    "vision_levels": "industrial_building",
+    "see_cost": "medium",
+    "extras": "build"
+  },
+  {
+    "type": "overmap_special",
+    "id": "o_container_yard_inland",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1a_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          2
+        ],
+        "overmap": "container_yard_inland_base_1b_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_2_north"
+      },
+      {
+        "point": [
+          2,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_3_north"
+      },
+      {
+        "point": [
+          3,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_4_north"
+      },
+      {
+        "point": [
+          4,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_5_north"
+      },
+      {
+        "point": [
+          4,
+          0,
+          1
+        ],
+        "overmap": "container_yard_inland_base_5a_north"
+      },
+      {
+        "point": [
+          5,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_6_north"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_south"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1a_south"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          2
+        ],
+        "overmap": "container_yard_inland_base_1b_south"
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_2_south"
+      },
+      {
+        "point": [
+          2,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_3_south"
+      },
+      {
+        "point": [
+          3,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_4_south"
+      },
+      {
+        "point": [
+          4,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_5_south"
+      },
+      {
+        "point": [
+          4,
+          -1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_5a_south"
+      },
+      {
+        "point": [
+          5,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_6_south"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_south"
+      },
+      {
+        "point": [
+          0,
+          1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1b_south"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_south"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1b_south"
+      },
+      {
+        "point": [
+          2,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_south"
+      },
+      {
+        "point": [
+          2,
+          1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1b_south"
+      },
+      {
+        "point": [
+          3,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_2_south"
+      },
+      {
+        "point": [
+          4,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_6_south"
+      },
+      {
+        "point": [
+          5,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_3_south"
+      },
+      {
+        "point": [
+          -1,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_office_north"
+      },
+      {
+        "point": [
+          -1,
+          -2,
+          1
+        ],
+        "overmap": "container_yard_inland_fence_corner_office_roof_north"
+      },
+      {
+        "point": [
+          -1,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_garage_north"
+      },
+      {
+        "point": [
+          -1,
+          2,
+          1
+        ],
+        "overmap": "container_yard_inland_fence_corner_garage_roof_north"
+      },
+      {
+        "point": [
+          6,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_east"
+      },
+      {
+        "point": [
+          6,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_south"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_west"
+      },
+      {
+        "point": [
+          1,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_west"
+      },
+      {
+        "point": [
+          2,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_west"
+      },
+      {
+        "point": [
+          3,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_west"
+      },
+      {
+        "point": [
+          4,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_west"
+      },
+      {
+        "point": [
+          5,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_west"
+      },
+      {
+        "point": [
+          -1,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_front_north"
+      },
+      {
+        "point": [
+          -1,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_front_north"
+      },
+      {
+        "point": [
+          6,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_south"
+      },
+      {
+        "point": [
+          6,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_south"
+      },
+      {
+        "point": [
+          6,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_south"
+      },
+      {
+        "point": [
+          0,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_east"
+      },
+      {
+        "point": [
+          1,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_east"
+      },
+      {
+        "point": [
+          2,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_east"
+      },
+      {
+        "point": [
+          3,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_east"
+      },
+      {
+        "point": [
+          4,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_east"
+      },
+      {
+        "point": [
+          5,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_east"
+      },
+      {
+        "point": [
+          -1,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_entry_north"
+      }
+    ],
+    "connections": [
+      {
+        "point": [
+          -2,
+          0,
+          0
+        ],
+        "terrain": "road",
+        "from": [
+          -1,
+          0,
+          0
+        ]
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      1,
+      40
+    ],
+    "city_sizes": [
+      4,
+      -1
+    ],
+    "occurrences": [
+      10,
+      100
+    ],
+    "flags": [
+      "CLASSIC",
+      "MAN_MADE",
+      "OVERMAP_UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "o_container_yard_inland_bandit",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_bandit_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1a_bandit_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          2
+        ],
+        "overmap": "container_yard_inland_base_1b_bandit_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_2_bandit_north"
+      },
+      {
+        "point": [
+          2,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_3_bandit_north"
+      },
+      {
+        "point": [
+          3,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_4_bandit_north"
+      },
+      {
+        "point": [
+          4,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_5_bandit_north"
+      },
+      {
+        "point": [
+          4,
+          0,
+          1
+        ],
+        "overmap": "container_yard_inland_base_5a_bandit_north"
+      },
+      {
+        "point": [
+          5,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_base_6_bandit_north"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_bandit_south"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1a_bandit_south"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          2
+        ],
+        "overmap": "container_yard_inland_base_1b_bandit_south"
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_2_bandit_south"
+      },
+      {
+        "point": [
+          2,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_3_bandit_south"
+      },
+      {
+        "point": [
+          3,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_4_bandit_south"
+      },
+      {
+        "point": [
+          4,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_5_bandit_south"
+      },
+      {
+        "point": [
+          4,
+          -1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_5a_bandit_south"
+      },
+      {
+        "point": [
+          5,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_6_bandit_south"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_bandit_south"
+      },
+      {
+        "point": [
+          0,
+          1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1b_bandit_south"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_bandit_south"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1b_bandit_south"
+      },
+      {
+        "point": [
+          2,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_1_bandit_south"
+      },
+      {
+        "point": [
+          2,
+          1,
+          1
+        ],
+        "overmap": "container_yard_inland_base_1b_bandit_south"
+      },
+      {
+        "point": [
+          3,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_2_bandit_south"
+      },
+      {
+        "point": [
+          4,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_6_bandit_south"
+      },
+      {
+        "point": [
+          5,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_base_3_bandit_south"
+      },
+      {
+        "point": [
+          -1,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_office_bandit_north"
+      },
+      {
+        "point": [
+          -1,
+          -2,
+          1
+        ],
+        "overmap": "container_yard_inland_fence_corner_office_roof_bandit_north"
+      },
+      {
+        "point": [
+          -1,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_garage_bandit_north"
+      },
+      {
+        "point": [
+          -1,
+          2,
+          1
+        ],
+        "overmap": "container_yard_inland_fence_corner_garage_roof_bandit_north"
+      },
+      {
+        "point": [
+          6,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_bandit_east"
+      },
+      {
+        "point": [
+          6,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_corner_bandit_south"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_west"
+      },
+      {
+        "point": [
+          1,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_west"
+      },
+      {
+        "point": [
+          2,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_west"
+      },
+      {
+        "point": [
+          3,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_west"
+      },
+      {
+        "point": [
+          4,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_west"
+      },
+      {
+        "point": [
+          5,
+          2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_west"
+      },
+      {
+        "point": [
+          -1,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_front_bandit_north"
+      },
+      {
+        "point": [
+          -1,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_front_bandit_north"
+      },
+      {
+        "point": [
+          6,
+          -1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_south"
+      },
+      {
+        "point": [
+          6,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_south"
+      },
+      {
+        "point": [
+          6,
+          1,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_south"
+      },
+      {
+        "point": [
+          0,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_east"
+      },
+      {
+        "point": [
+          1,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_east"
+      },
+      {
+        "point": [
+          2,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_east"
+      },
+      {
+        "point": [
+          3,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_east"
+      },
+      {
+        "point": [
+          4,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_east"
+      },
+      {
+        "point": [
+          5,
+          -2,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_bandit_east"
+      },
+      {
+        "point": [
+          -1,
+          0,
+          0
+        ],
+        "overmap": "container_yard_inland_fence_entry_bandit_north"
+      }
+    ],
+    "connections": [
+      {
+        "point": [
+          -2,
+          0,
+          0
+        ],
+        "terrain": "road",
+        "from": [
+          -1,
+          0,
+          0
+        ]
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      1,
+      40
+    ],
+    "city_sizes": [
+      4,
+      -1
+    ],
+    "occurrences": [
+      10,
+      100
+    ],
+    "flags": [
+      "CLASSIC",
+      "MAN_MADE",
+      "OVERMAP_UNIQUE"
+    ]
+  }
+]

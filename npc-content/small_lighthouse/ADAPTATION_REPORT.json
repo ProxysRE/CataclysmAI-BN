@@ -41,6 +41,7 @@
     "BN glass walls/doors replace optical lens pieces; DDA lens-specific shard yields are not reproduced",
     "BN grid floodlight starts off; power supply, switching and brightness use BN behavior; no rotating beacon simulation is claimed",
     "Red metal roof uses stock metal roof; BN tools/refuse groups retain BN contents",
+    "Food supplies use existing BN 40 L box_huge instead of overflowing 3 L box_medium; source contents/counts/probabilities retained",
     "Source diesel 0..50000 charges retained: both games use 200 charges per 200 ml",
     "Instant coffee uses existing BN roasted coffee beans: dry coffee supply, different preparation and units",
     "Submerged solid-earth foundation uses BN empty_rock; source coordinates retained, material/excavation follow BN"

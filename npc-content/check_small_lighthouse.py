@@ -46,3 +46,13 @@ for e in new:
             if unicodedata.combining(char):glyphs[-1]+=char
             else:glyphs.append(char)
     assert not set(glyphs)-bound-{' '}, (e['om_terrain'],set(glyphs)-bound-{' '})
+
+food=next(e for e in payload if e.get('id')=='lighthouse_food')
+assert food['entries']==[{'item':'box_huge','contents-group':'lighthouse_food_contents'}]
+
+original_food=next(e for e in source if e.get('id')=='lighthouse_food')
+contents=next(e for e in payload if e.get('id')=='lighthouse_food_contents')
+assert contents['subtype']==original_food['subtype']=='collection'
+assert contents['entries'][:2]==original_food['entries'][:2]
+assert {k:v for k,v in contents['entries'][2].items() if k!='item'}=={k:v for k,v in original_food['entries'][2].items() if k!='item'}
+assert contents['entries'][2]['item']=='roasted_coffee_bean'

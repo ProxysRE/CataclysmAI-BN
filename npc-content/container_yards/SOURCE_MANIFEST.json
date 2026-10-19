@@ -1,0 +1,20 @@
+{
+  "repository": "CleverRaven/Cataclysm-DDA",
+  "dda_pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "bn_pin": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "license": "CC-BY-SA-3.0; original comments preserved",
+  "files": {
+    "data/json/mapgen/container_yard/container_yard_inland_bandit.json": {
+      "sha256": "5e575477dc8f388384a1d9d09cc8047091dc78ee6be6e8958ca1f52b4600368c",
+      "git_blob_sha": "cdc599a2e81b6e244013f0cc167cfb4fe51420dd"
+    },
+    "data/json/mapgen/container_yard/container_yard_inland_basic.json": {
+      "sha256": "674f09bf2afebeef605282e0eba95b5e310fa2a1aca148aac0e41ae2942922d5",
+      "git_blob_sha": "2e97ddb25d463905e403eaeb18fba8ec47be2ee1"
+    },
+    "data/json/mapgen_palettes/container_yard.json": {
+      "sha256": "465060199ef6ec2538c496b58968e5b815a4360932eb7e82dad641baf5956f93",
+      "git_blob_sha": "09f5a3b28f48a74b0dcd16b621b91b0cdbe3a4bf"
+    }
+  }
+}

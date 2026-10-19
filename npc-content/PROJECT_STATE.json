@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Complete small island lighthouse added alongside Grey Moose and full eldercare sites; native Windows generation/placement validation pending.",
+  "stage": "Both complete inland container yards and entire cargo graph staged; small lighthouse food packaging corrected after native capacity test; native rerun pending.",
   "package": "Isolated Road",
   "native_compilation": "Windows run 39261460157 on 87e1015 compiled successfully and passed 71 source core cases / 10719 assertions. Optional-mod initialization failed on shared palette gaps; installed tests/packaging did not run. Last complete source+installed portable checkpoint remains e52486f7.",
   "remaining": [
@@ -614,7 +614,7 @@
     "source_runtime_validated": true
   },
   "small_lighthouse": {
-    "status": "native_embedded_pending_validation",
+    "status": "source_generation_passed_food_wrapper_corrected_native_rerun_pending",
     "payload": "data/json/dda_small_lighthouse.json",
     "mapgen_definitions": 6,
     "above_ground_levels": [
@@ -632,7 +632,10 @@
     "remaining": [
       "Native initialization and source/installed tests",
       "Lake placement, boat access, grid/generator operation and manual traversal"
-    ]
+    ],
+    "source_generation_run": 39276113599,
+    "source_generation_result": "Six-floor generation, complete ladder chain and beacon furniture checks passed",
+    "supply_fix": "Preserve source food content/counts and use stock 40 L box_huge instead of overflowing 3 L box_medium"
   },
   "latest_source_native_checkpoint": {
     "run": 39261460157,
@@ -642,6 +645,31 @@
     "source_core_assertions": 10719,
     "source_core_result": "success",
     "optional_mod_result": "failed: missing shared palette glyphs and uncleared globally unique special state in test fixture",
+    "installed_tests_run": false,
+    "portable_package_produced": false
+  },
+  "container_yards": {
+    "status": "complete_staging_not_native",
+    "source_specials": 2,
+    "placements_per_special": 51,
+    "levels": [
+      0,
+      1,
+      2
+    ],
+    "mapgen_definitions": 155,
+    "nested_layouts": 121,
+    "cargo_outcomes_including_empty": 119,
+    "unresolved_explicit_refs": 108,
+    "native_embedded": false,
+    "report": "container_yards/TRANSFER_REPORT.json",
+    "remaining": "Per-nest parameters, all missing dependencies, appliances, packaging/currency conversion and complete native validation"
+  },
+  "latest_failed_native_attempt": {
+    "run": 39276113599,
+    "head": "2570876c248661aee7ada5e27fe8eac3069bc9b4",
+    "compilation": "success",
+    "failure": "Only small-lighthouse food wrapper capacity assertions failed in source core tests",
     "installed_tests_run": false,
     "portable_package_produced": false
   }

@@ -62990,7 +62990,7 @@
 +    "subtype": "collection",
 +    "entries": [
 +      {
-+        "item": "box_medium",
++        "item": "box_huge",
 +        "contents-group": "lighthouse_food_contents"
 +      }
 +    ]
