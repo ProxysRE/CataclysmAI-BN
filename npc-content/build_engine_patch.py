@@ -8,6 +8,7 @@ import subprocess
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
 from prepare_eldercare_sites import prepare as prepare_sites, PAYLOAD as SITES_PAYLOAD
+from prepare_small_lighthouse import prepare as prepare_small_lighthouse, PAYLOAD as SMALL_LIGHTHOUSE_PAYLOAD
 from prepare_militia import prepare as prepare_militia, PAYLOAD as MILITIA_PAYLOAD
 from prepare_frontage import prepare as prepare_frontage, patch_sections as frontage_patch, TARGET as FRONTAGE_TARGET, sources as frontage_sources
 from prepare_location_expansion import nuclear_patch, NUCLEAR
@@ -42,6 +43,7 @@ args = parser.parse_args()
 prepare_existing_locations()
 prepare_frontage()
 prepare_militia(check=True)
+prepare_small_lighthouse(check=True)
 prepare_sites(check=True)
 prepare_hub_access(check=True)
 prepare_radio(check=True)
@@ -83,6 +85,8 @@ if args.bn_source:
     (root / "engine_staging" / ARCHIVE_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / ASSET_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging" / MILITIA_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging" / SMALL_LIGHTHOUSE_PAYLOAD).unlink(missing_ok=True)
+    (root / "engine_staging/tests/dda_small_lighthouse_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging" / SITES_PAYLOAD).unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_eldercare_sites_test.cpp").unlink(missing_ok=True)
     (root / "engine_staging/tests/dda_militia_test.cpp").unlink(missing_ok=True)
@@ -136,7 +140,7 @@ for name in base_files:
         new = extend_chat("".join(new)).splitlines(keepends=True)
     parts.extend(difflib.unified_diff(old, new, "a/" + path, "b/" + path))
 for name in ("artisan_expression.h", "artisan_bn_bridge.h", "artisan_items.h", "faction_food_stock.h", "lighthouse_quest_updates.h", "hub_elevator_access.h", "dda_mapgen_corpses.h", "computer_archive.h", "civilian_chat.h", "civilian_chat_ui.h",
-             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp", "dda_eldercare_assets_test.cpp", "dda_eldercare_loot_test.cpp", "dda_eldercare_fauna_test.cpp", "dda_civilians_test.cpp", "dda_special_constraints_test.cpp", "dda_militia_test.cpp", "dda_eldercare_sites_test.cpp"):
+             "dda_artisan_dialogue_test.cpp", "dda_artisan_services_test.cpp", "dda_radio_stations_test.cpp", "dda_computer_archive_test.cpp", "dda_eldercare_assets_test.cpp", "dda_eldercare_loot_test.cpp", "dda_eldercare_fauna_test.cpp", "dda_civilians_test.cpp", "dda_special_constraints_test.cpp", "dda_militia_test.cpp", "dda_eldercare_sites_test.cpp", "dda_small_lighthouse_test.cpp"):
     path = ("tests/" if name.endswith("_test.cpp") else "src/") + name
     new = (root / "native" / name).read_text().splitlines(keepends=True)
     parts.extend(difflib.unified_diff([], new, "/dev/null", "b/" + path))
@@ -202,6 +206,7 @@ parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_support.json
 parts.extend(difflib.unified_diff([], (root / "native/dda_farm_supply.json").read_text(encoding="utf-8").splitlines(keepends=True),
                                 "/dev/null", "b/" + FARM_PAYLOAD))
 parts.extend(difflib.unified_diff([], (root / "native/dda_eldercare_locations.json").read_text().splitlines(keepends=True), "/dev/null", "b/" + SITES_PAYLOAD))
+parts.extend(difflib.unified_diff([], (root / "native/dda_small_lighthouse.json").read_text().splitlines(keepends=True), "/dev/null", "b/" + SMALL_LIGHTHOUSE_PAYLOAD))
 payload = "".join(parts).encode()
 (root / "artisan_engine.patch").write_bytes(payload)
 digest = hashlib.sha256(payload).hexdigest()

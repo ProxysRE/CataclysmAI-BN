@@ -1,0 +1,53 @@
+{
+  "native_embedded": true,
+  "runtime_validated": false,
+  "definitions": {
+    "item_group": 4,
+    "mapgen": 6,
+    "overmap_terrain": 2,
+    "overmap_special": 1
+  },
+  "levels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "aliases": {
+    "t_stone_masonry_floor": "t_rock_floor",
+    "t_stone_masonry_floor_balcony": "t_rock_floor_no_roof",
+    "t_stone_masonry_wall_whitewashed": "t_concrete_wall",
+    "t_metal_roof_red": "t_metal_flat_roof",
+    "t_wall_lighthouse_lens": "t_wall_glass",
+    "t_door_lighthouse_lens_c": "t_door_glass_c",
+    "f_lighthouse_light": "f_grid_floodlight_off",
+    "SUS_trash_floor": "floor_trash",
+    "tools_workshop": "tools_common",
+    "instant_coffee": "roasted_coffee_bean",
+    "solid_earth": "empty_rock"
+  },
+  "furniture_to_terrain": {
+    "f_machinery_old": "t_machinery_old",
+    "f_machinery_electronic": "t_machinery_electronic"
+  },
+  "unresolved_refs": [],
+  "source_rows_preserved": true,
+  "generator_reuse": "Existing four BN generator vehicle/nested assemblies; source weights retained",
+  "roof_palette_fix": "DDA v explicitly binds t_ladder_down; stock BN roof palette has no v binding",
+  "intentional_differences": [
+    "BN rock floors and concrete walls replace DDA masonry; appearance, destruction and loot follow BN",
+    "BN glass walls/doors replace optical lens pieces; DDA lens-specific shard yields are not reproduced",
+    "BN grid floodlight starts off; power supply, switching and brightness use BN behavior; no rotating beacon simulation is claimed",
+    "Red metal roof uses stock metal roof; BN tools/refuse groups retain BN contents",
+    "Source diesel 0..50000 charges retained: both games use 200 charges per 200 ml",
+    "Instant coffee uses existing BN roasted coffee beans: dry coffee supply, different preparation and units",
+    "Submerged solid-earth foundation uses BN empty_rock; source coordinates retained, material/excavation follow BN"
+  ],
+  "remaining": [
+    "Native initialization and complete generation",
+    "Lake placement/boat access and manual traversal",
+    "Grid lighting and generator operation in game"
+  ]
+}

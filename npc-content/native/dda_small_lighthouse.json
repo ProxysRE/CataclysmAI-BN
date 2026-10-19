@@ -1,0 +1,1470 @@
+[
+  {
+    "type": "item_group",
+    "id": "lighthouse_rainwater",
+    "items": [
+      {
+        "item": "water_clean",
+        "charges": [
+          50,
+          200
+        ],
+        "container-item": "30gal_barrel"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "lighthouse_fuel",
+    "items": [
+      {
+        "item": "diesel",
+        "charges": [
+          0,
+          50000
+        ],
+        "container-item": "30gal_drum"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "lighthouse_food",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_medium",
+        "contents-group": "lighthouse_food_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "lighthouse_food_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "distribution": [
+          {
+            "item": "can_sardine",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "can_tomato",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "soup_veggy",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "soup_meat",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "soup_chicken",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "soup_mushroom",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "soup_tomato",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "soup_dumplings",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "curry_veggy",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "curry_meat",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "can_corn",
+            "count": [
+              1,
+              10
+            ]
+          },
+          {
+            "item": "noodles_fast",
+            "count": [
+              1,
+              10
+            ]
+          }
+        ],
+        "prob": 90
+      },
+      {
+        "item": "con_milk",
+        "count": [
+          0,
+          10
+        ],
+        "prob": 25
+      },
+      {
+        "item": "roasted_coffee_bean",
+        "count": [
+          0,
+          5
+        ],
+        "prob": 50
+      }
+    ]
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "lighthouse_small_ground",
+    "object": {
+      "terrain": {
+        "~": "t_water_sh",
+        "\u2248": "t_water_dp",
+        ".": "t_railroad_rubble",
+        "\u00a8": "t_railroad_rubble",
+        "`": "t_railroad_rubble",
+        "O": "t_railroad_rubble",
+        "\u00fa": "t_pit",
+        "\u00a2": "t_sand",
+        "d": "t_dock",
+        "+": "t_rock_floor_no_roof",
+        ";": "t_rock_floor",
+        "\u00a4": "t_rock_floor",
+        "\u0271": "t_machinery_electronic",
+        "\u2c6e": "t_rock_floor",
+        "G": "t_rock_floor",
+        "m\u030c": "t_rock_floor",
+        "B": "t_floor",
+        "\u00df": "t_floor",
+        "|": "t_concrete_wall",
+        "\u00f1": "t_wall_wood",
+        "\u00e5": "t_wall_glass",
+        "@": "t_wall_glass",
+        "z": "t_metal_grate_window",
+        "\u00f6": "t_door_glass_c",
+        "/": "t_door_c",
+        "!": "t_door_glass_c",
+        "\u00eb": "t_metal_flat_roof",
+        "^": "t_metal_flat_roof",
+        "<": "t_ladder_up",
+        "\u2264": "t_ladder_up_down",
+        "%": "t_metal_railing",
+        "m": "t_machinery_old"
+      },
+      "furniture": {
+        "\u00a8": "f_boulder_large",
+        "`": "f_boulder_medium",
+        "h": "f_chair",
+        "X": "f_sofa",
+        "t": "f_table",
+        "P": "f_cupboard",
+        "f": "f_rack_coat",
+        "u": "f_stool",
+        "W": "f_woodstove",
+        "l": "f_locker",
+        "*": "f_grid_floodlight_off",
+        "\u2c6e": "f_electrical_conduit",
+        "m\u030c": "f_electrical_conduit"
+      },
+      "items": {
+        "\u00df": {
+          "item": "tools_common",
+          "chance": 50
+        },
+        "_": {
+          "item": "floor_trash",
+          "chance": 10
+        },
+        "P": {
+          "item": "dishes_utility",
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "O": {
+          "item": "lighthouse_rainwater"
+        },
+        "\u00a4": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00f5": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00e6": {
+          "item": "fuel_gasoline",
+          "chance": 75
+        },
+        "B": {
+          "item": "lighthouse_food",
+          "chance": 50
+        },
+        "l": {
+          "item": "fishing_items",
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u0175": {
+          "item": "stash_wood",
+          "chance": 75,
+          "repeat": [
+            6,
+            15
+          ]
+        },
+        "f": {
+          "item": "jackets",
+          "chance": 25
+        }
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248~~~~~~~~~~~~~\u2248\u2248\u2248",
+        "\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248~~\u00a2\u00a2\u00a2.....~~~~\u2248\u2248",
+        "\u2248dddddddd\u00a2\u00a2\u00a2......`~~~~\u2248",
+        "\u2248dddddddd\u00a2\u00a2.....\u00f1\u00f1\u00f1`~~~\u2248",
+        "\u2248\u2248\u2248\u2248~~~~~\u00a2\u00a2.....\u00f1\u00fa\u00f1`~~~\u2248",
+        "\u2248\u2248~~~~~\u00a2\u00a2\u00a2......\u00f1/\u00f1..\u00a8~~",
+        "~~~~~\u00a2\u00a2\u00a2\u00a2............~~~",
+        "~~\u00a2\u00a2\u00a2\u00a2......||/|||.....~",
+        "~\u00a2\u00a2\u00a2........|f_ht|.....~",
+        "~~\u00f1\u00f1\u00f1\u00f1\u00f1.....z___Pz.....~",
+        "~.\u00f1\u00f5\u00e6_/.....|<__W|.....~",
+        "~.\u00f1\u00f5\u00f5\u0175\u00f1.....|____|.....~",
+        "~.\u00f1\u00f1\u00f1\u00f1\u00f1.....|l_XX|...`~~",
+        "~..........O||/|||...``~",
+        "~~.........||;;;||...``~",
+        "~.........||;;;;;||..\u00a8~~",
+        "~.........|;;;;;;;|.`\u00a8~~",
+        "~`........|;;;;;;;|..\u00a8~\u2248",
+        "~`........|G;;\u2c6e\u0271;;|..\u00a8~\u2248",
+        "\u2248`........||;;<;\u00a4||.`\u00a8~\u2248",
+        "\u2248\u00a8`........||;\u00a4\u00a4||..`\u00a8\u00a8\u2248",
+        "\u2248\u2248\u00a8\u00a8```\u00a8\u00a8```|||||\u00a8\u00a8\u00a8\u00a8\u00a8\u00a8\u2248",
+        "\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u00a8\u00a8\u00a8\u00a8\u00a8\u00a8\u00a8\u00a8\u00a8\u2248\u2248\u2248\u2248\u2248\u2248\u2248",
+        "\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u00a8\u00a8\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248\u2248"
+      ],
+      "place_vehicles": [
+        {
+          "vehicle": "boat_motor_single",
+          "x": 4,
+          "y": 6,
+          "rotation": 180,
+          "status": 0
+        }
+      ],
+      "nested": {
+        "G": {
+          "chunks": [
+            [
+              "dda_eldercare_generator_broken",
+              25
+            ],
+            [
+              "dda_eldercare_generator_diesel",
+              5
+            ],
+            [
+              "dda_eldercare_generator_military",
+              5
+            ],
+            [
+              "dda_eldercare_generator_gasoline",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "lighthouse_small_z1",
+    "object": {
+      "terrain": {
+        "~": "t_water_sh",
+        "\u2248": "t_water_dp",
+        ".": "t_railroad_rubble",
+        "\u00a8": "t_railroad_rubble",
+        "`": "t_railroad_rubble",
+        "O": "t_railroad_rubble",
+        "\u00fa": "t_pit",
+        "\u00a2": "t_sand",
+        "d": "t_dock",
+        "+": "t_rock_floor_no_roof",
+        ";": "t_rock_floor",
+        "\u00a4": "t_rock_floor",
+        "\u0271": "t_machinery_electronic",
+        "\u2c6e": "t_rock_floor",
+        "G": "t_rock_floor",
+        "m\u030c": "t_rock_floor",
+        "B": "t_floor",
+        "\u00df": "t_floor",
+        "|": "t_concrete_wall",
+        "\u00f1": "t_wall_wood",
+        "\u00e5": "t_wall_glass",
+        "@": "t_wall_glass",
+        "z": "t_metal_grate_window",
+        "\u00f6": "t_door_glass_c",
+        "/": "t_door_c",
+        "!": "t_door_glass_c",
+        "\u00eb": "t_metal_flat_roof",
+        "^": "t_metal_flat_roof",
+        "<": "t_ladder_up",
+        "\u2264": "t_ladder_up_down",
+        "%": "t_metal_railing",
+        "m": "t_machinery_old",
+        "v": "t_ladder_down"
+      },
+      "furniture": {
+        "\u00a8": "f_boulder_large",
+        "`": "f_boulder_medium",
+        "h": "f_chair",
+        "X": "f_sofa",
+        "t": "f_table",
+        "P": "f_cupboard",
+        "f": "f_rack_coat",
+        "u": "f_stool",
+        "W": "f_woodstove",
+        "l": "f_locker",
+        "*": "f_grid_floodlight_off",
+        "\u2c6e": "f_electrical_conduit",
+        "m\u030c": "f_electrical_conduit"
+      },
+      "items": {
+        "\u00df": {
+          "item": "tools_common",
+          "chance": 50
+        },
+        "_": {
+          "item": "floor_trash",
+          "chance": 10
+        },
+        "P": {
+          "item": "dishes_utility",
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "O": {
+          "item": "lighthouse_rainwater"
+        },
+        "\u00a4": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00f5": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00e6": {
+          "item": "fuel_gasoline",
+          "chance": 75
+        },
+        "B": {
+          "item": "lighthouse_food",
+          "chance": 50
+        },
+        "l": {
+          "item": "fishing_items",
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u0175": {
+          "item": "stash_wood",
+          "chance": 75,
+          "repeat": [
+            6,
+            15
+          ]
+        },
+        "f": {
+          "item": "jackets",
+          "chance": 25
+        }
+      },
+      "palettes": [
+        "roof_palette"
+      ],
+      "fill_ter": "t_rock_floor",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                \u00eb\u00eb\u00eb     ",
+        "                \u00eb\u00eb\u00eb     ",
+        "                \u00eb\u00eb\u00eb     ",
+        "                        ",
+        "            ||z|||      ",
+        "            |B_BB|      ",
+        "  \u00eb\u00eb\u00eb\u00eb\u00eb     |___B|      ",
+        "  \u00eb\u00eb\u00eb\u00eb\u00eb     |v___|      ",
+        "  \u00eb\u00eb\u00eb\u00eb\u00eb     |___B|      ",
+        "  \u00eb\u00eb\u00eb\u00eb\u00eb     |__B\u00df|      ",
+        "            ||||||      ",
+        "           ||;;;||      ",
+        "          ||;;;;;||     ",
+        "          |;;;;;;;|     ",
+        "          |;;;;;;;|     ",
+        "          |;;;m\u030c;;;|     ",
+        "          ||;;\u2264;;||     ",
+        "           ||;;;||      ",
+        "            |||||       ",
+        "                        ",
+        "                        "
+      ],
+      "nested": {
+        "G": {
+          "chunks": [
+            [
+              "dda_eldercare_generator_broken",
+              25
+            ],
+            [
+              "dda_eldercare_generator_diesel",
+              5
+            ],
+            [
+              "dda_eldercare_generator_military",
+              5
+            ],
+            [
+              "dda_eldercare_generator_gasoline",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "lighthouse_small_z2",
+    "object": {
+      "terrain": {
+        "~": "t_water_sh",
+        "\u2248": "t_water_dp",
+        ".": "t_railroad_rubble",
+        "\u00a8": "t_railroad_rubble",
+        "`": "t_railroad_rubble",
+        "O": "t_railroad_rubble",
+        "\u00fa": "t_pit",
+        "\u00a2": "t_sand",
+        "d": "t_dock",
+        "+": "t_rock_floor_no_roof",
+        ";": "t_rock_floor",
+        "\u00a4": "t_rock_floor",
+        "\u0271": "t_machinery_electronic",
+        "\u2c6e": "t_rock_floor",
+        "G": "t_rock_floor",
+        "m\u030c": "t_rock_floor",
+        "B": "t_floor",
+        "\u00df": "t_floor",
+        "|": "t_concrete_wall",
+        "\u00f1": "t_wall_wood",
+        "\u00e5": "t_wall_glass",
+        "@": "t_wall_glass",
+        "z": "t_metal_grate_window",
+        "\u00f6": "t_door_glass_c",
+        "/": "t_door_c",
+        "!": "t_door_glass_c",
+        "\u00eb": "t_metal_flat_roof",
+        "^": "t_metal_flat_roof",
+        "<": "t_ladder_up",
+        "\u2264": "t_ladder_up_down",
+        "%": "t_metal_railing",
+        "m": "t_machinery_old"
+      },
+      "furniture": {
+        "\u00a8": "f_boulder_large",
+        "`": "f_boulder_medium",
+        "h": "f_chair",
+        "X": "f_sofa",
+        "t": "f_table",
+        "P": "f_cupboard",
+        "f": "f_rack_coat",
+        "u": "f_stool",
+        "W": "f_woodstove",
+        "l": "f_locker",
+        "*": "f_grid_floodlight_off",
+        "\u2c6e": "f_electrical_conduit",
+        "m\u030c": "f_electrical_conduit"
+      },
+      "items": {
+        "\u00df": {
+          "item": "tools_common",
+          "chance": 50
+        },
+        "_": {
+          "item": "floor_trash",
+          "chance": 10
+        },
+        "P": {
+          "item": "dishes_utility",
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "O": {
+          "item": "lighthouse_rainwater"
+        },
+        "\u00a4": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00f5": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00e6": {
+          "item": "fuel_gasoline",
+          "chance": 75
+        },
+        "B": {
+          "item": "lighthouse_food",
+          "chance": 50
+        },
+        "l": {
+          "item": "fishing_items",
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u0175": {
+          "item": "stash_wood",
+          "chance": 75,
+          "repeat": [
+            6,
+            15
+          ]
+        },
+        "f": {
+          "item": "jackets",
+          "chance": 25
+        }
+      },
+      "palettes": [
+        "roof_palette"
+      ],
+      "fill_ter": "t_rock_floor",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "           --------     ",
+        "           -^^^^^^-     ",
+        "           -^^^^^^-     ",
+        "           -^^^^^^-     ",
+        "           -^^^^^^-     ",
+        "           -^^^^^^-     ",
+        "           -^^^^^^-     ",
+        "           5|||||^-     ",
+        "           ||;;;||-     ",
+        "          ||;;;;;||     ",
+        "          |;;;;;;;|     ",
+        "          |;;;;;;;|     ",
+        "          |;;;m\u030c;;;|     ",
+        "          ||;;\u2264;;||     ",
+        "           ||;;;||      ",
+        "            |||||       ",
+        "                        ",
+        "                        "
+      ],
+      "nested": {
+        "G": {
+          "chunks": [
+            [
+              "dda_eldercare_generator_broken",
+              25
+            ],
+            [
+              "dda_eldercare_generator_diesel",
+              5
+            ],
+            [
+              "dda_eldercare_generator_military",
+              5
+            ],
+            [
+              "dda_eldercare_generator_gasoline",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "lighthouse_small_z3",
+    "object": {
+      "terrain": {
+        "~": "t_water_sh",
+        "\u2248": "t_water_dp",
+        ".": "t_railroad_rubble",
+        "\u00a8": "t_railroad_rubble",
+        "`": "t_railroad_rubble",
+        "O": "t_railroad_rubble",
+        "\u00fa": "t_pit",
+        "\u00a2": "t_sand",
+        "d": "t_dock",
+        "+": "t_rock_floor_no_roof",
+        ";": "t_rock_floor",
+        "\u00a4": "t_rock_floor",
+        "\u0271": "t_machinery_electronic",
+        "\u2c6e": "t_rock_floor",
+        "G": "t_rock_floor",
+        "m\u030c": "t_rock_floor",
+        "B": "t_floor",
+        "\u00df": "t_floor",
+        "|": "t_concrete_wall",
+        "\u00f1": "t_wall_wood",
+        "\u00e5": "t_wall_glass",
+        "@": "t_wall_glass",
+        "z": "t_metal_grate_window",
+        "\u00f6": "t_door_glass_c",
+        "/": "t_door_c",
+        "!": "t_door_glass_c",
+        "\u00eb": "t_metal_flat_roof",
+        "^": "t_metal_flat_roof",
+        "<": "t_ladder_up",
+        "\u2264": "t_ladder_up_down",
+        "%": "t_metal_railing",
+        "m": "t_machinery_old"
+      },
+      "furniture": {
+        "\u00a8": "f_boulder_large",
+        "`": "f_boulder_medium",
+        "h": "f_chair",
+        "X": "f_sofa",
+        "t": "f_table",
+        "P": "f_cupboard",
+        "f": "f_rack_coat",
+        "u": "f_stool",
+        "W": "f_woodstove",
+        "l": "f_locker",
+        "*": "f_grid_floodlight_off",
+        "\u2c6e": "f_electrical_conduit",
+        "m\u030c": "f_electrical_conduit"
+      },
+      "items": {
+        "\u00df": {
+          "item": "tools_common",
+          "chance": 50
+        },
+        "_": {
+          "item": "floor_trash",
+          "chance": 10
+        },
+        "P": {
+          "item": "dishes_utility",
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "O": {
+          "item": "lighthouse_rainwater"
+        },
+        "\u00a4": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00f5": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00e6": {
+          "item": "fuel_gasoline",
+          "chance": 75
+        },
+        "B": {
+          "item": "lighthouse_food",
+          "chance": 50
+        },
+        "l": {
+          "item": "fishing_items",
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u0175": {
+          "item": "stash_wood",
+          "chance": 75,
+          "repeat": [
+            6,
+            15
+          ]
+        },
+        "f": {
+          "item": "jackets",
+          "chance": 25
+        }
+      },
+      "palettes": [
+        "roof_palette"
+      ],
+      "fill_ter": "t_rock_floor",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "            |||||       ",
+        "           ||;;;||      ",
+        "          ||;;;;;||     ",
+        "          |;;;m;;;|     ",
+        "          |;;mmm;;|     ",
+        "          |;;;m\u030c;;;|     ",
+        "          ||;;\u2264;;||     ",
+        "           ||;;;||      ",
+        "            |||||       ",
+        "                        ",
+        "                        "
+      ],
+      "nested": {
+        "G": {
+          "chunks": [
+            [
+              "dda_eldercare_generator_broken",
+              25
+            ],
+            [
+              "dda_eldercare_generator_diesel",
+              5
+            ],
+            [
+              "dda_eldercare_generator_military",
+              5
+            ],
+            [
+              "dda_eldercare_generator_gasoline",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "lighthouse_small_z4",
+    "object": {
+      "terrain": {
+        "~": "t_water_sh",
+        "\u2248": "t_water_dp",
+        ".": "t_railroad_rubble",
+        "\u00a8": "t_railroad_rubble",
+        "`": "t_railroad_rubble",
+        "O": "t_railroad_rubble",
+        "\u00fa": "t_pit",
+        "\u00a2": "t_sand",
+        "d": "t_dock",
+        "+": "t_rock_floor_no_roof",
+        ";": "t_rock_floor",
+        "\u00a4": "t_rock_floor",
+        "\u0271": "t_machinery_electronic",
+        "\u2c6e": "t_rock_floor",
+        "G": "t_rock_floor",
+        "m\u030c": "t_rock_floor",
+        "B": "t_floor",
+        "\u00df": "t_floor",
+        "|": "t_concrete_wall",
+        "\u00f1": "t_wall_wood",
+        "\u00e5": "t_wall_glass",
+        "@": "t_wall_glass",
+        "z": "t_metal_grate_window",
+        "\u00f6": "t_door_glass_c",
+        "/": "t_door_c",
+        "!": "t_door_glass_c",
+        "\u00eb": "t_metal_flat_roof",
+        "^": "t_metal_flat_roof",
+        "<": "t_ladder_up",
+        "\u2264": "t_ladder_up_down",
+        "%": "t_metal_railing",
+        "m": "t_machinery_old",
+        "v": "t_ladder_down"
+      },
+      "furniture": {
+        "\u00a8": "f_boulder_large",
+        "`": "f_boulder_medium",
+        "h": "f_chair",
+        "X": "f_sofa",
+        "t": "f_table",
+        "P": "f_cupboard",
+        "f": "f_rack_coat",
+        "u": "f_stool",
+        "W": "f_woodstove",
+        "l": "f_locker",
+        "*": "f_grid_floodlight_off",
+        "\u2c6e": "f_electrical_conduit",
+        "m\u030c": "f_electrical_conduit"
+      },
+      "items": {
+        "\u00df": {
+          "item": "tools_common",
+          "chance": 50
+        },
+        "_": {
+          "item": "floor_trash",
+          "chance": 10
+        },
+        "P": {
+          "item": "dishes_utility",
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "O": {
+          "item": "lighthouse_rainwater"
+        },
+        "\u00a4": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00f5": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00e6": {
+          "item": "fuel_gasoline",
+          "chance": 75
+        },
+        "B": {
+          "item": "lighthouse_food",
+          "chance": 50
+        },
+        "l": {
+          "item": "fishing_items",
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u0175": {
+          "item": "stash_wood",
+          "chance": 75,
+          "repeat": [
+            6,
+            15
+          ]
+        },
+        "f": {
+          "item": "jackets",
+          "chance": 25
+        }
+      },
+      "palettes": [
+        "roof_palette"
+      ],
+      "fill_ter": "t_rock_floor",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "          %%%%%%%%%     ",
+        "         %%+++++++%%    ",
+        "         %++\u00e5\u00e5\u00e5\u00e5\u00e5++%    ",
+        "         %+\u00e5\u00e5;;;\u00e5\u00e5+%    ",
+        "         %+\u00e5;@@@;\u00e5+%    ",
+        "         %+\u00e5;@*@;\u00e5+%    ",
+        "         %+\u00e5;@\u00f6@;\u00e5+%    ",
+        "         %+\u00e5\u00e5;v;\u00e5\u00e5+%    ",
+        "         %++\u00e5\u00e5!\u00e5\u00e5++%    ",
+        "         %%++<++++%%    ",
+        "          %%%%%%%%%     ",
+        "                        "
+      ],
+      "nested": {
+        "G": {
+          "chunks": [
+            [
+              "dda_eldercare_generator_broken",
+              25
+            ],
+            [
+              "dda_eldercare_generator_diesel",
+              5
+            ],
+            [
+              "dda_eldercare_generator_military",
+              5
+            ],
+            [
+              "dda_eldercare_generator_gasoline",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "lighthouse_small_roof",
+    "object": {
+      "terrain": {
+        "~": "t_water_sh",
+        "\u2248": "t_water_dp",
+        ".": "t_railroad_rubble",
+        "\u00a8": "t_railroad_rubble",
+        "`": "t_railroad_rubble",
+        "O": "t_railroad_rubble",
+        "\u00fa": "t_pit",
+        "\u00a2": "t_sand",
+        "d": "t_dock",
+        "+": "t_rock_floor_no_roof",
+        ";": "t_rock_floor",
+        "\u00a4": "t_rock_floor",
+        "\u0271": "t_machinery_electronic",
+        "\u2c6e": "t_rock_floor",
+        "G": "t_rock_floor",
+        "m\u030c": "t_rock_floor",
+        "B": "t_floor",
+        "\u00df": "t_floor",
+        "|": "t_concrete_wall",
+        "\u00f1": "t_wall_wood",
+        "\u00e5": "t_wall_glass",
+        "@": "t_wall_glass",
+        "z": "t_metal_grate_window",
+        "\u00f6": "t_door_glass_c",
+        "/": "t_door_c",
+        "!": "t_door_glass_c",
+        "\u00eb": "t_metal_flat_roof",
+        "^": "t_metal_flat_roof",
+        "<": "t_ladder_up",
+        "\u2264": "t_ladder_up_down",
+        "%": "t_metal_railing",
+        "m": "t_machinery_old",
+        "v": "t_ladder_down"
+      },
+      "furniture": {
+        "\u00a8": "f_boulder_large",
+        "`": "f_boulder_medium",
+        "h": "f_chair",
+        "X": "f_sofa",
+        "t": "f_table",
+        "P": "f_cupboard",
+        "f": "f_rack_coat",
+        "u": "f_stool",
+        "W": "f_woodstove",
+        "l": "f_locker",
+        "*": "f_grid_floodlight_off",
+        "\u2c6e": "f_electrical_conduit",
+        "m\u030c": "f_electrical_conduit"
+      },
+      "items": {
+        "\u00df": {
+          "item": "tools_common",
+          "chance": 50
+        },
+        "_": {
+          "item": "floor_trash",
+          "chance": 10
+        },
+        "P": {
+          "item": "dishes_utility",
+          "repeat": [
+            1,
+            6
+          ]
+        },
+        "O": {
+          "item": "lighthouse_rainwater"
+        },
+        "\u00a4": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00f5": {
+          "item": "lighthouse_fuel",
+          "chance": 50
+        },
+        "\u00e6": {
+          "item": "fuel_gasoline",
+          "chance": 75
+        },
+        "B": {
+          "item": "lighthouse_food",
+          "chance": 50
+        },
+        "l": {
+          "item": "fishing_items",
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "\u0175": {
+          "item": "stash_wood",
+          "chance": 75,
+          "repeat": [
+            6,
+            15
+          ]
+        },
+        "f": {
+          "item": "jackets",
+          "chance": 25
+        }
+      },
+      "palettes": [
+        "roof_palette"
+      ],
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "            ^^^^^       ",
+        "           ^^^^^^^      ",
+        "           ^^^^^^^      ",
+        "           ^^^^^^^      ",
+        "           ^^^^^^^      ",
+        "           ^^^^^^^      ",
+        "            ^^^^^       ",
+        "             v          ",
+        "                        ",
+        "                        "
+      ],
+      "nested": {
+        "G": {
+          "chunks": [
+            [
+              "dda_eldercare_generator_broken",
+              25
+            ],
+            [
+              "dda_eldercare_generator_diesel",
+              5
+            ],
+            [
+              "dda_eldercare_generator_military",
+              5
+            ],
+            [
+              "dda_eldercare_generator_gasoline",
+              5
+            ]
+          ]
+        }
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "lighthouse_small_ground",
+    "name": "small lighthouse",
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY"
+    ],
+    "sym": "0",
+    "color": "yellow",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "lighthouse_small_z1",
+      "lighthouse_small_z2",
+      "lighthouse_small_z3",
+      "lighthouse_small_z4",
+      "lighthouse_small_roof"
+    ],
+    "name": "small lighthouse",
+    "sym": "0",
+    "color": "yellow",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_special",
+    "id": "lighthouse_island_small",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          2,
+          0,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "lighthouse_small_ground_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "lighthouse_small_z1_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          2
+        ],
+        "overmap": "lighthouse_small_z2_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          3
+        ],
+        "overmap": "lighthouse_small_z3_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          4
+        ],
+        "overmap": "lighthouse_small_z4_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          5
+        ],
+        "overmap": "lighthouse_small_roof_north"
+      },
+      {
+        "point": [
+          2,
+          1,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          2,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          2,
+          2,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          0,
+          -1
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -1
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          0,
+          2,
+          -1
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          0,
+          -2
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -2
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          0,
+          2,
+          -2
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          0,
+          -3
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -3
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          0,
+          2,
+          -3
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          0,
+          -4
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -4
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          0,
+          2,
+          -4
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          0,
+          -5
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_bed"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -5
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_bed"
+        ]
+      },
+      {
+        "point": [
+          0,
+          2,
+          -5
+        ],
+        "overmap": "empty_rock",
+        "locations": [
+          "lake_bed"
+        ]
+      }
+    ],
+    "locations": [
+      "lake_surface"
+    ],
+    "city_distance": [
+      3,
+      -1
+    ],
+    "city_sizes": [
+      4,
+      12
+    ],
+    "occurrences": [
+      0,
+      1
+    ],
+    "flags": [
+      "CLASSIC",
+      "LAKE",
+      "MAN_MADE",
+      "WILDERNESS"
+    ]
+  }
+]

@@ -15,3 +15,5 @@ Locations are at different gates. Rural XEDRA church, karting track and normal/l
 There are 51 accepted missing/partial location groups. Map files, terrain cells and roof variants are different units and cannot be divided by 51 to produce a completion percentage. Camp construction/work assignments and the pocket system remain separate unfinished work.
 
 An additional optional native case checks the three complete eldercare specials in all four rotations through the normal BN placement/connection path, including water rejection and occupied-cell counts. This increases the eldercare site cases to four; results remain pending. Grey Moose population tests now check each floor explicitly using the pinned BN nearby-NPC query semantics.
+
+The separate small island lighthouse is now embedded: all six maps z=0..5, original lake/underwater foundation and boat placement, BN counterpart dependencies and explicit downward ladders missing from the BN roof palette. Two additional core native cases cover generation/ladders/beacon and supply container capacity. Native and manual results remain pending. This adds a location, not an NPC template.

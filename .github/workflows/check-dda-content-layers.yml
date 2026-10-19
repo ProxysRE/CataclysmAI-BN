@@ -51,6 +51,7 @@ jobs:
           python npc-content/prepare_eldercare_sites.py --check
           python npc-content/check_frontage.py
           python npc-content/check_militia.py
+          python npc-content/check_small_lighthouse.py
           python npc-content/report_port_progress.py --check
           python npc-content/check_eldercare_fauna.py
           python npc-content/check_eldercare_loot.py

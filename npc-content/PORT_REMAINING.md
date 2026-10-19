@@ -86,3 +86,7 @@ PORT_PROGRESS.json now distinguishes 82 started templates, four native-load veri
 ## Complete eldercare promotion, 2026-10-19
 
 Supersedes older candidate-only notes: all 71 site declarations are embedded with Civilians, alongside atomic nursing_home/retirement_community ambient exclusions. Three native generation fixtures cover all 190 distinct custom tiles / 219 actual placements including variants and stock BN station/parking/sewer tiles. Source/installed native generation, natural special placement, stairs/elevators and manual traversal remain pending. No new NPC templates are counted for living monsters.
+
+## Small island lighthouse, 2026-10-19
+
+Complete six-level location embedded with explicit BN counterparts, original lake/underwater coordinates and boat placement. Generator assemblies reused. Missing DDA roof v bindings converted to explicit downward ladders. Two core native cases and installed-package equality/stale-payload rejection added. Native source/installed generation, lake placement, boat access and power operation remain pending.

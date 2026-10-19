@@ -1,0 +1,9 @@
+# Complete small island lighthouse
+
+This is the separate DDA small island lighthouse, not BN's existing large Lighthouse Island. The complete source geometry, all six above-ground maps (z=0..5), lake placement, submerged foundation coordinates, boat placement and source population/loot chances are retained. The native payload is data/json/dda_small_lighthouse.json. No new NPC is invented for it.
+
+Sources are reconstructed from the existing authenticated regional and location-catalog bundles. SOURCE_EVIDENCE.json authenticates the additional pinned BN/DDA roof palettes and fuel definitions using SHA256 and Git blob hashes. Both fuels have 200 charges per 200 ml, so the source 0..50000 diesel charges remain unchanged.
+
+The adapter reuses existing BN analogues rather than installing cosmetic duplicates: rock floors, concrete masonry counterpart, metal roofs, glass lens-wall/hinged-door counterparts, standard refuse/tools, roasted coffee beans and an initially switched-off grid floodlight. Their appearance, destruction, salvage, preparation, lighting and electrical behavior follow BN; no exact optical-lens or rotating-beacon simulation is claimed. The submerged solid-earth source cells use BN empty_rock, retaining coordinates but changing excavation material. Existing generator assemblies are reused with the original weights. Group-level food packaging is expressed through BN contents-group.
+
+DDA roof palette v means t_ladder_down; BN's roof palette has no v binding. The adapter explicitly preserves these ladder exits. Two native cases generate all six floors, assert the ladder chain and beacon location, and check the contents of all three supply groups fit the BN containers. Tests run with the normal core source and installed suites. Native results, natural lake placement, boat access, generator/grid operation and manual traversal remain pending.
