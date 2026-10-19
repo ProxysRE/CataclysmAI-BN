@@ -2,10 +2,11 @@
 """Guard the first complete militia community promotion and its BN reuse."""
 import copy
 from collections import Counter
-from prepare_militia import selected,native_data,prepare,ITEM_ALIASES,GROUP_ALIASES,ROOT
+from prepare_militia import selected,native_data,prepare,ITEM_ALIASES,GROUP_ALIASES,ROOT,PAYLOAD
 from prepare_regional_locations import expand
 from prepare_civilians import lua_payload, MILITIA_EXCLUSION,mod_sources
 
+assert PAYLOAD.startswith('data/json/npcs/'), 'NPC templates must load after core enchantment/option data'
 prepare(check=True)
 source,_=selected()
 payload=native_data()

@@ -15,7 +15,8 @@ from audit_bn_mod_content import read_cache as mod_cache
 
 ROOT=Path(__file__).resolve().parent
 FOLDER=ROOT/'militia'
-PAYLOAD='data/json/dda_grey_moose_lodge.json'
+# NPC construction reads enchantment values/options; match the stock NPC load phase.
+PAYLOAD='data/json/npcs/dda_grey_moose_lodge.json'
 ITEM_ALIASES={'case_cigar':'box_small','goggles_chem':'glasses_safety','sneakers_steel':'boots_steel'}
 GROUP_ALIASES={'tools_toolbox':'tools_common','cigar_box_unopened':'cigar_box_opened'}
 

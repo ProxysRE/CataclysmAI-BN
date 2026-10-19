@@ -35830,7 +35830,7 @@
    "evac_center", -- Evac center related
    "robofachq", -- Hub 01 HQ
 --- /dev/null
-+++ b/data/json/dda_grey_moose_lodge.json
++++ b/data/json/npcs/dda_grey_moose_lodge.json
 @@ -0,0 +1,2952 @@
 +[
 +  {

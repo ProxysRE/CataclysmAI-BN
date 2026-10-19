@@ -593,5 +593,13 @@
     "overall_result": "failure: unregistered test fixture ID logged an error",
     "fix": "Register dda_frontage_fixture through overmap_specials::load before placement; finalize only that fixture; strict logged-error policy unchanged",
     "fixed_native_rerun_pending": true
+  },
+  "militia_native_validation": {
+    "run": 39173371090,
+    "compilation": "success",
+    "overall_result": "failure during initialization",
+    "cause": "Root-level militia JSON constructed NPCs before enchantment values and options loaded",
+    "fix": "Place community payload in stock data/json/npcs load phase",
+    "fixed_native_rerun_pending": true
   }
 }
