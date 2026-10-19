@@ -1,0 +1,8 @@
+{
+  "upstream": "https://github.com/cataclysmbn/Cataclysm-BN",
+  "commit": "554950f3635f50ddd1d32c6e1b6e2bdee9842bd6",
+  "prototype": "DEV0.1",
+  "mod_id": "trkv_raid_core",
+  "schema": 1,
+  "engine_changes": false
+}

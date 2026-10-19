@@ -1,0 +1,26 @@
+[
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_test_home",
+    "name": "test refuge",
+    "sym": "T",
+    "color": "light_green",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_test_yard",
+    "name": "test raid yard",
+    "sym": "T",
+    "color": "light_green",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  }
+]

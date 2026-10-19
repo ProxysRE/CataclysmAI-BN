@@ -1,0 +1,32 @@
+[
+  {
+    "type": "furniture",
+    "id": "f_trkv_depart",
+    "name": "departure terminal",
+    "description": "Tarkov DEV0.1 test station. Examine to operate.",
+    "symbol": "&",
+    "color": "light_green",
+    "move_cost_mod": 0,
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT",
+      "PLACE_ITEM"
+    ],
+    "examine_action": "lua:TRKV_DEPART"
+  },
+  {
+    "type": "furniture",
+    "id": "f_trkv_extract",
+    "name": "extraction marker",
+    "description": "Tarkov DEV0.1 test station. Examine to operate.",
+    "symbol": "&",
+    "color": "light_green",
+    "move_cost_mod": 0,
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT",
+      "PLACE_ITEM"
+    ],
+    "examine_action": "lua:TRKV_EXTRACT"
+  }
+]

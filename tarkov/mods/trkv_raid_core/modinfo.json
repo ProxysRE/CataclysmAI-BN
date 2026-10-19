@@ -1,0 +1,12 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "trkv_raid_core",
+    "name": "Tarkov Project: DEV0.1 raid foundation",
+    "authors": [ "ProxysRE" ],
+    "description": "Technical prototype: persistent refuge, disposable raid, extraction and defeat. New test worlds only.",
+    "category": "content",
+    "dependencies": [ "bn" ],
+    "lua_api_version": 2
+  }
+]

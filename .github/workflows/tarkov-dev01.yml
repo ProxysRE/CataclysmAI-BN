@@ -1,0 +1,91 @@
+name: Tarkov DEV0.1 validation and BN runtime
+
+on:
+  push:
+    branches: [ project/tarkov-dev01 ]
+    paths: [ 'tarkov/**', '.github/workflows/tarkov-dev01.yml' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tarkov-dev01-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fast-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install lupa==2.6
+      - run: python tarkov/tools/check.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Tarkov_DEV0.1_mod_source
+          path: tarkov/
+
+  bn-runtime:
+    needs: fast-checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: 554950f3635f50ddd1d32c6e1b6e2bdee9842bd6
+          path: bn
+      - name: Install native dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libncurses-dev libsqlite3-dev zlib1g-dev libvulkan-dev mesa-vulkan-drivers libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev libxtst-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libasound2-dev libpulse-dev autoconf autoconf-archive automake libtool libltdl-dev
+      - uses: aminya/setup-cpp@v1
+        with:
+          compiler: llvm-22
+          cmake: true
+          ninja: true
+          setup-cpp: false
+      - uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: tarkov-bn-554950f-clang22
+          max-size: 3G
+      - name: Install prototype and real-engine tests
+        run: python3 tarkov/tools/install_into_bn.py bn --tests
+      - name: Configure BN
+        run: >-
+          cmake -S bn -B bn/build -G Ninja
+          -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER_LAUNCHER=ccache
+          -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE='-O0 -DNDEBUG'
+          -DCURSES=ON -DTILES=OFF -DSOUND=OFF -DTESTS=ON
+          -DLOCALIZE=OFF -DBACKTRACE=OFF -DRELEASE=ON
+          -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF
+          -DCATA_FORMAT_TARGETS=OFF -DLUA_DOCS_ON_BUILD=OFF
+          -DBUILD_SHADERCROSS=OFF
+      - name: Build game and tests
+        run: cmake --build bn/build --target cataclysm-bn cata_test --parallel 3
+      - name: Validate mod through the game executable
+        working-directory: bn
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: ./build/cataclysm-bn --check-mods trkv_raid_core
+      - name: Run actual BN lifecycle and persistence test
+        working-directory: bn
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: ./build/tests/cata_test --mods=trkv_raid_core '[tarkov]' --rng-seed 20261020 --reporter junit --out ../tarkov-runtime.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Tarkov_DEV0.1_runtime_logs
+          path: |
+            tarkov-runtime.xml
+            bn/build/CMakeFiles/CMakeConfigureLog.yaml
+            bn/config/debug.log
+            bn/user/config/debug.log

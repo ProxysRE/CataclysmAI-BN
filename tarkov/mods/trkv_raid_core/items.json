@@ -1,0 +1,18 @@
+[
+  {
+    "type": "GENERIC",
+    "id": "trkv_test_payload",
+    "name": {
+      "str": "sealed raid test package"
+    },
+    "description": "A numbered-looking test package used to verify extraction and map reset. No cash value yet.",
+    "weight": "100 g",
+    "volume": "250 ml",
+    "price": "0 cent",
+    "symbol": "*",
+    "color": "yellow",
+    "material": [
+      "plastic"
+    ]
+  }
+]
