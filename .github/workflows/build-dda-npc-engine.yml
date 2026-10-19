@@ -181,7 +181,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "61e74e177e3da1511ecadb67a871c49a8fae4b630324711f8fcfa257262122e0") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "8e6057f925a54f6102e0ec83dd6f5bd0fb969c259434c7a51901a3cbf2368b59") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch
@@ -213,7 +213,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("src/civilian_chat.h", "src/civilian_chat_ui.h", "tests/dda_civilians_test.cpp", "tests/dda_eldercare_fauna_test.cpp", "tests/dda_eldercare_loot_test.cpp", "tests/dda_eldercare_assets_test.cpp", "src/computer.h", "src/computer.cpp", "src/computer_archive.h", "src/computer_session.h", "src/computer_session.cpp", "tests/dda_computer_archive_test.cpp", "src/mapgen/mapgen.cpp", "src/dda_mapgen_corpses.h", "src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
+          $files = @("tests/dda_eldercare_sites_test.cpp", "src/civilian_chat.h", "src/civilian_chat_ui.h", "tests/dda_civilians_test.cpp", "tests/dda_eldercare_fauna_test.cpp", "tests/dda_eldercare_loot_test.cpp", "tests/dda_eldercare_assets_test.cpp", "src/computer.h", "src/computer.cpp", "src/computer_archive.h", "src/computer_session.h", "src/computer_session.cpp", "tests/dda_computer_archive_test.cpp", "src/mapgen/mapgen.cpp", "src/dda_mapgen_corpses.h", "src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "NPC formatting failed" }
       - name: Configure Windows game

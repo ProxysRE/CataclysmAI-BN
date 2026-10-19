@@ -15,11 +15,11 @@ TRY_TRIES = 5 -- Number of attempts to find a nearby empty tile
 -- NPC exclusive area list (avoid spawning wild civilians in these areas)
 ---@type table<string>
 local NPC_TERRAINS = {
+  -- Grey Moose lodge has explicit community NPCs.
+  "GMLODGE",
   -- DDA eldercare maps have explicit source population tables.
   "nursing_home",
   "retirement_community",
-  -- Grey Moose lodge has explicit community NPCs.
-  "GMLODGE",
   "refctr", -- Refugee center related
   "evac_center", -- Evac center related
   "robofachq", -- Hub 01 HQ

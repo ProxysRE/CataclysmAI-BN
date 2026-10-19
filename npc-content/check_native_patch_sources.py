@@ -5,6 +5,7 @@ import re
 import difflib
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_eldercare_sites import prepare as prepare_sites, PAYLOAD as SITES_PAYLOAD
 from prepare_militia import prepare as prepare_militia, PAYLOAD as MILITIA_PAYLOAD
 from prepare_frontage import prepare as prepare_frontage, patch_sections as frontage_patch, TARGET as FRONTAGE_TARGET, sources as frontage_sources
 from prepare_location_expansion import nuclear_patch, NUCLEAR
@@ -36,6 +37,7 @@ def check():
     prepare_existing_locations()
     prepare_frontage()
     prepare_militia(check=True)
+    prepare_sites(check=True)
     target = 'data/json/mapgen/chemical_lab.json'
     expected_map_patch = ''.join(difflib.unified_diff(
         (ROOT / 'layers/bn' / target).read_text().splitlines(keepends=True),
@@ -87,7 +89,7 @@ def check():
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp', 'dda_militia_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp', 'dda_militia_test.cpp', 'dda_eldercare_sites_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
@@ -104,6 +106,7 @@ def check():
         ASSET_PAYLOAD: ROOT / 'native/dda_eldercare_assets.json',
         FAUNA_PAYLOAD: ROOT / 'native/dda_eldercare_fauna.json',
         MILITIA_PAYLOAD: ROOT / 'native/dda_grey_moose_lodge.json',
+        SITES_PAYLOAD: ROOT / 'native/dda_eldercare_locations.json',
         GROUPS_PAYLOAD: ROOT / 'native/dda_eldercare_groups.json',
         LOOT_PAYLOAD: ROOT / 'native/dda_eldercare_loot.json',
         'data/json/dda_artisan_activities.json': ROOT / 'native/dda_artisan_activities.json',

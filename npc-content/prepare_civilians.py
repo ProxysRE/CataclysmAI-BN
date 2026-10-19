@@ -90,12 +90,13 @@ def native_data():
 
 LUA_PAYLOAD = 'data/mods/Civilians/main.lua'
 MILITIA_EXCLUSION = '  -- Grey Moose lodge has explicit community NPCs.\n  "GMLODGE",\n'
+ELDERCARE_EXCLUSION = '  -- DDA eldercare maps have explicit source population tables.\n  "nursing_home",\n  "retirement_community",\n'
 
 def lua_payload():
     source = mod_sources()['main.lua']
     anchor = 'local NPC_TERRAINS = {\n'
     assert source.count(anchor) == 1
-    return source.replace(anchor, anchor + MILITIA_EXCLUSION, 1)
+    return source.replace(anchor, anchor + MILITIA_EXCLUSION + ELDERCARE_EXCLUSION, 1)
 
 
 def patch_sections():
@@ -180,7 +181,7 @@ def prepare(check=False, bn_source=None):
     else:
         path.write_text(text)
     lua = lua_payload()
-    assert lua.replace(MILITIA_EXCLUSION, '', 1) == mod_sources()['main.lua']
+    assert lua.replace(MILITIA_EXCLUSION, '', 1).replace(ELDERCARE_EXCLUSION, '', 1) == mod_sources()['main.lua']
     print('PASS: six dialogue additions to existing Civilians types; every original field and all spawn/evolution tables retained')
 
 

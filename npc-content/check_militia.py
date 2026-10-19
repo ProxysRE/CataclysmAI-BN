@@ -4,7 +4,7 @@ import copy
 from collections import Counter
 from prepare_militia import selected,native_data,prepare,ITEM_ALIASES,GROUP_ALIASES,ROOT,PAYLOAD
 from prepare_regional_locations import expand
-from prepare_civilians import lua_payload, MILITIA_EXCLUSION,mod_sources
+from prepare_civilians import lua_payload, ELDERCARE_EXCLUSION, MILITIA_EXCLUSION,mod_sources
 
 assert PAYLOAD.startswith('data/json/npcs/'), 'NPC templates must load after core enchantment/option data'
 prepare(check=True)
@@ -32,7 +32,7 @@ assert npcs['MILITIA_GUARD1']['mission']==8
 assert {e['faction'] for e in npcs.values()}=={'GM_militia_faction'}
 assert not any(e['type']=='mission_definition' for e in source), 'Do not invent militia quests'
 assert {e['id'] for e in source if e['type']=='talk_topic'}=={e['id'] for e in payload if e['type']=='talk_topic'}
-assert lua_payload().replace(MILITIA_EXCLUSION,'',1)==mod_sources()['main.lua']
+assert lua_payload().replace(MILITIA_EXCLUSION,'',1).replace(ELDERCARE_EXCLUSION,'',1)==mod_sources()['main.lua']
 assert '"GMLODGE"' in lua_payload()
 assert not {'case_cigar','goggles_chem','sneakers_steel'} & {e.get('id') for e in payload if isinstance(e.get('id'),str)}
 print('PASS: two source NPC roles, nine dialogue topics, seven fixed NPC placements, five full mapgen layouts / 24 OMT cells, faction ownership and atomic Civilians exclusion; no invented missions/items')

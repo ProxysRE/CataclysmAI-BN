@@ -48,6 +48,7 @@ jobs:
           python npc-content/check_eldercare_groups.py
           python npc-content/prepare_eldercare_maps.py --check --bn-data bn-data
           python npc-content/check_eldercare_maps.py
+          python npc-content/prepare_eldercare_sites.py --check
           python npc-content/check_frontage.py
           python npc-content/check_militia.py
           python npc-content/report_port_progress.py --check

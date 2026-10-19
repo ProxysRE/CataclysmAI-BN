@@ -19,10 +19,7 @@ LUA_MARKER = '  -- DDA eldercare maps have explicit source population tables.\n 
 
 def candidate_lua():
     from prepare_civilians import lua_payload
-    source = lua_payload()
-    anchor = 'local NPC_TERRAINS = {\n'
-    assert source.count(anchor) == 1
-    return source.replace(anchor, anchor + LUA_MARKER, 1)
+    return lua_payload()
 
 
 def payloads():
@@ -201,7 +198,7 @@ def prepare(check=False, bn_data=None):
         reports[site] = {'types': dict(Counter(e['type'] for e in entries)), 'geometry': geometry(entries),
                          'unresolved_extended_refs': sorted(unknown)}
         assert not unknown, (site, sorted(unknown))
-    report = {'pins': PINS, 'installed': False, 'optional_mod_dependencies': ['civilians'],
+    report = {'pins': PINS, 'installed': False, 'native_embedded': True, 'optional_mod_dependencies': ['civilians'],
               'activation_ready': False, 'fixed_special_constraint_bridge': 'Prepared in prepare_frontage.py; native validation pending', 'sites': reports, 'validation': 'Static BN schema adaptation and extended typed references; not native load or generation validation',
               'intentional_adaptations': ['BN numeric overmap visibility: none/all_clear=0, remaining categories=2',
                     'DDA road_abstract -> existing BN generic_road with source road display; no new duplicate road parent',
@@ -214,7 +211,7 @@ def prepare(check=False, bn_data=None):
               'remaining': ['Native source/installed validation of the prepared fixed-special constraint bridge for three road-frontage cells',
                     'Native initialization and generation for every placed cell',
                     'Review stairs/elevators, edge alignment and placement balance in game',
-                    'Install candidate Civilians main.lua exclusion change atomically with maps; source/installed Lua runtime validation']}
+                    'Maps and Civilians Lua exclusions embedded atomically; native source/installed generation validation pending']}
     outputs = {FOLDER / (site+'.json'): json.dumps(entries,indent=2,ensure_ascii=True)+'\n' for site, entries in payload.items()}
     outputs[FOLDER / 'Civilians_main.lua'] = candidate_lua()
     outputs[ROOT / 'eldercare/MAP_ADAPTATION_REPORT.json'] = json.dumps(report,indent=2)+'\n'

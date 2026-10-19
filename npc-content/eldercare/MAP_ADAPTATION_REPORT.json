@@ -4,6 +4,7 @@
     "bn": "c621aaf42fa182473aad10feea2b55647704dcf1"
   },
   "installed": false,
+  "native_embedded": true,
   "optional_mod_dependencies": [
     "civilians"
   ],
@@ -2868,6 +2869,6 @@
     "Native source/installed validation of the prepared fixed-special constraint bridge for three road-frontage cells",
     "Native initialization and generation for every placed cell",
     "Review stairs/elevators, edge alignment and placement balance in game",
-    "Install candidate Civilians main.lua exclusion change atomically with maps; source/installed Lua runtime validation"
+    "Maps and Civilians Lua exclusions embedded atomically; native source/installed generation validation pending"
   ]
 }

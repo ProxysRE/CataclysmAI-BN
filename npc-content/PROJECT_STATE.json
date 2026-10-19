@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Grey Moose community promoted into native payload; source/installed validation pending. Reproducible NPC coverage in PORT_PROGRESS.json.",
+  "stage": "Both complete eldercare locations promoted atomically with Civilians population exclusions; full native source/installed generation pending; Grey Moose initialization fix in flight.",
   "package": "Isolated Road",
   "native_compilation": "Clean Windows checkpoint e52486f7: 67 core cases / 10627 assertions and 5 Civilians+Exotic Ammo cases / 766 assertions, repeated successfully on installed data. Frontage bridge and Grey Moose additions await newer runs.",
   "remaining": [
@@ -526,7 +526,7 @@
     "remaining_work": "Mapgen schema and generation tests; population audit against Civilians Lua before enabling sites. Source-only weakpoint/anatomy/AI parity is not implied by typed closure."
   },
   "eldercare_map_layer": {
-    "status": "complete_map_candidates_static_validated_not_installed",
+    "status": "complete_sites_embedded_in_optional_Civilians_pending_native_generation",
     "source_declarations": 71,
     "mapgen_definitions": 32,
     "custom_omt_tiles": 190,
@@ -535,12 +535,11 @@
     "source_mapgen_rows": 1488,
     "preserved": "Every source row, floor/basement layout, mapgen parameter, nested story archive and special coordinate",
     "candidate_folder": "eldercare/native_candidate",
-    "ambient_civilian_spawn_fix": "Two prefix exclusions prepared as candidate Lua only; must be installed atomically with sites",
+    "ambient_civilian_spawn_fix": "Both prefixes installed atomically with complete maps; stock Civilians Lua otherwise unchanged",
     "activation_ready": false,
     "remaining_blockers": [
-      "Native validation of source-based fixed-special constraint bridge for three frontage cells",
-      "Native initialization and full generation validation",
-      "Review stairs/elevators and reused station geometry"
+      "Native Windows initialization and complete source/installed generation tests",
+      "Natural placement, stairs/elevators, edge alignment and reused station geometry in game"
     ],
     "extended_reference_scope": "Map parameters, direct monster palette pieces, liquid palettes, place_loot groups/items, OMT parent inheritance and concrete external rotations now audited as well",
     "intentional_counterparts": [
@@ -549,7 +548,12 @@
       "makeshift_memorial",
       "west-rotated BN subway station levels"
     ],
-    "full_locations_installed": false
+    "full_locations_installed": false,
+    "native_embedded": true,
+    "payload": "data/mods/Civilians/dda_eldercare_locations.json",
+    "native_generation_cases": 3,
+    "native_generation_placed_cells": 219,
+    "native_generation_scope": "Every placed custom cell (196 including variants) and 23 reused BN cells; all 190 distinct custom OMTs, three special layouts; optional-mod source and installed test suites"
   },
   "fixed_special_constraint_bridge": {
     "status": "prepared_source_installed_validation_pending",
@@ -563,7 +567,8 @@
     ],
     "native_cases": 2,
     "scope": "Four rotations, water rejection, terrain and occupied-tile preservation; invalid ID/duplicate point/invalid location guards",
-    "full_eldercare_sites_installed": false
+    "full_eldercare_sites_installed": false,
+    "full_eldercare_sites_embedded": true
   },
   "npc_progress_report": "PORT_PROGRESS.json: 82 selected templates; 4 native-load verified at clean checkpoint; 6 embedded including two unverified militia additions; all-DDA completion percentage unknown",
   "militia_native_layer": {

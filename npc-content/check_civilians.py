@@ -39,5 +39,5 @@ fixture=(ROOT / "native/dda_civilians_test.cpp").read_text()
 assert "person.setpos(" not in fixture
 assert "monster distant_person( type, tripoint_bub_ms( 68, 60, 0 ) );" in fixture
 
-from prepare_civilians import lua_payload, MILITIA_EXCLUSION
-assert lua_payload().replace(MILITIA_EXCLUSION, "", 1) == mod_sources()["main.lua"]
+from prepare_civilians import lua_payload, ELDERCARE_EXCLUSION, MILITIA_EXCLUSION
+assert lua_payload().replace(MILITIA_EXCLUSION, "", 1).replace(ELDERCARE_EXCLUSION, "", 1) == mod_sources()["main.lua"]

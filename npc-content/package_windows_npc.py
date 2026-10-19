@@ -93,6 +93,9 @@ def verify_install(folder):
     from prepare_shared_casing import payload as shared_casing_data, TARGET as SHARED_CASING_TARGET
     if json.loads((folder / SHARED_CASING_TARGET).read_text(encoding='utf-8')) != shared_casing_data():
         raise ValueError("Duplicate 545 casing remains in Exotic Ammo or other casings changed")
+    from prepare_eldercare_sites import native_data as sites_data, PAYLOAD as SITES_PAYLOAD
+    if json.loads((folder / SITES_PAYLOAD).read_text(encoding='utf-8')) != sites_data():
+        raise ValueError('Installed complete eldercare locations differ')
     from prepare_militia import native_data as militia_data, PAYLOAD as MILITIA_PAYLOAD
     if json.loads((folder / MILITIA_PAYLOAD).read_text(encoding='utf-8')) != militia_data():
         raise ValueError('Installed Grey Moose community differs')
@@ -152,7 +155,7 @@ def package(folder, output, source_head):
         'XEDRA creature, particles and glowing string are included; activity suit states are included; the XEDRA church, powered respirator and S02a suit remain staged.\n'
         'Includes normal/looted farm supply stores with roofs, ladders and BN-packaged materials and food.\n'
         'Karting cash registers use stock BN money; no DDA denominations are installed.\n'
-        'Eldercare pond/web support is included; nursing-home and retirement-community maps remain staged.\n'
+        'Both complete eldercare sites and their population tables are included with the optional Civilians mod; complete native generation and manual traversal validation are pending.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'
         'Whole quest-chain field testing is still pending.\n'
