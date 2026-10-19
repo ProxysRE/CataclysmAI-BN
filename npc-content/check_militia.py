@@ -36,3 +36,7 @@ assert lua_payload().replace(MILITIA_EXCLUSION,'',1).replace(ELDERCARE_EXCLUSION
 assert '"GMLODGE"' in lua_payload()
 assert not {'case_cigar','goggles_chem','sneakers_steel'} & {e.get('id') for e in payload if isinstance(e.get('id'),str)}
 print('PASS: two source NPC roles, nine dialogue topics, seven fixed NPC placements, five full mapgen layouts / 24 OMT cells, faction ownership and atomic Civilians exclusion; no invented missions/items')
+
+stock=next(e for e in payload if e['type']=='item_group' and e['id']=='MILITIA_MERCHANT_misc')
+balaclavas=[e for e in stock['items'] if isinstance(e,dict) and e.get('item')=='balclava']
+assert balaclavas == [{'item':'balclava','prob':10}]

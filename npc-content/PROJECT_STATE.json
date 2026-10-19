@@ -600,11 +600,12 @@
     "fixed_native_rerun_pending": true
   },
   "militia_native_validation": {
-    "run": 39173371090,
+    "run": 39180556584,
     "compilation": "success",
-    "overall_result": "failure during initialization",
+    "overall_result": "failure: unsupported DDA cosmetic item-group variant field",
     "cause": "Root-level militia JSON constructed NPCs before enchantment values and options loaded",
-    "fix": "Place community payload in stock data/json/npcs load phase",
-    "fixed_native_rerun_pending": true
+    "fix": "Reuse stock BN balclava without the unsupported black cosmetic selector; retain item and probability",
+    "fixed_native_rerun_pending": true,
+    "previous_initialization_order_error": "No longer reported after moving into stock NPC load phase"
   }
 }

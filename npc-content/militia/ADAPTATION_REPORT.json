@@ -53,6 +53,9 @@
     "tools_toolbox": "tools_common",
     "cigar_box_unopened": "cigar_box_opened"
   },
+  "cosmetic_counterparts": {
+    "balclava:black": "stock BN balclava; source probability retained; no DDA cosmetic variant selector"
+  },
   "semantic_review": "Bundled Civilians NC_PROF_MILITIA is a generic class/profession, not these named community NPC templates, faction, dialogue or lodge.",
   "remaining": [
     "Native initialization, NPC interaction/trading and full map generation",

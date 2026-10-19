@@ -55,6 +55,10 @@ def adapt_stock(value):
         return [adapt_stock(v) for v in value]
     if not isinstance(value,dict):return value
     out={k:adapt_stock(v) for k,v in value.items()}
+    if 'variant' in out:
+        # BN has the same protective garment, without DDA's cosmetic variants.
+        assert out.get('item') == 'balclava' and out['variant'] == 'black'
+        out.pop('variant')
     if isinstance(out.get('item'),str):out['item']=ITEM_ALIASES.get(out['item'],out['item'])
     if isinstance(out.get('group'),str):out['group']=GROUP_ALIASES.get(out['group'],out['group'])
     return out
@@ -123,6 +127,7 @@ def prepare(check=False):
             'definitions':dict(collections.Counter(e['type'] for e in payload)),
             'unresolved_typed_refs':sorted(missing),'core_or_bundled_mod_collisions':sorted(collisions),
             'item_aliases':ITEM_ALIASES,'group_aliases':GROUP_ALIASES,
+            'cosmetic_counterparts':{'balclava:black':'stock BN balclava; source probability retained; no DDA cosmetic variant selector'},
             'semantic_review':'Bundled Civilians NC_PROF_MILITIA is a generic class/profession, not these named community NPC templates, faction, dialogue or lodge.',
             'remaining':['Native initialization, NPC interaction/trading and full map generation','Natural placement and save/reload','GMLODGE Civilians exclusion included atomically; mod-enabled native generation validation pending']}
     outputs={ROOT/'native/dda_grey_moose_lodge.json':payload,FOLDER/'ADAPTATION_REPORT.json':report}
