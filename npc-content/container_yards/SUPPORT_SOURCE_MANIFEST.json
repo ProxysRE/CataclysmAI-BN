@@ -1,0 +1,86 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "scope": "Full official furniture/terrain source files; original comments and declarations retained. CC-BY-SA-3.0.",
+  "parts": [
+    "SUPPORT_SOURCES.part00",
+    "SUPPORT_SOURCES.part01"
+  ],
+  "bundle_sha256": "d68b5dc87ffee3bea6b4ad7812f155ac7ba1852c1aceb1690c6e8393bd9874d8",
+  "files": {
+    "bn/data/json/furniture_and_terrain/furniture-appliances.json": {
+      "sha256": "91d7d824a50551b5ffebfe8bd6a414afea376697a2277d45afd660276f29d518",
+      "blob_sha": "5ac1245f1d0070a9fdbb91290a6c6732d3540373"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-fireplaces.json": {
+      "sha256": "946a7ef1700b065e3a3ec7b29bb1e8908efbb9a1f379fa9966d09ff736ab4423",
+      "blob_sha": "4f3a637c5e7828b2206aa436e522dc4376b39aca"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-medical.json": {
+      "sha256": "592d7e06adcc597d96f8b2a3119a30059b374b5950ae1dba1beb6d85d7d8d008",
+      "blob_sha": "f8499c598ab2fe1aeb19e407353172037f6519c6"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-plumbing.json": {
+      "sha256": "6a4b640aaebbd84ea50b2a04415eff06d95a9985d3ebc7310ff187aa7b3bc0a6",
+      "blob_sha": "ae2989590436adf59d97cfdff6a7c506dd1addfe"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-recreation.json": {
+      "sha256": "3f7ddbf166a1cd5aab7b94a5c6354d8bc9ebf1f7e14123397488406cff87a2d6",
+      "blob_sha": "0645cecea4c78896541d32db0989e5464ea6be41"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-seats.json": {
+      "sha256": "3c29977ce97a5ad9a3b171f2217e74f7a391ec82fd5d02d95410401a39e33e22",
+      "blob_sha": "3b5b9868458acd76b92a41b63c802e784e973470"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-storage.json": {
+      "sha256": "cc5d50a06444b22a6ec1a1c75db7a53d21892d34151181823be2c1ec9954cf98",
+      "blob_sha": "4843c52c563cafc1d0f9f2f13238bb2354510cd9"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-tools.json": {
+      "sha256": "028d24a05ba22f1314537898d6c6b34b29c266444bee860e6a3684a261916d1a",
+      "blob_sha": "32748b93b7c43daa62e9dea8d6b4a6ec3b5c6c2a"
+    },
+    "bn/data/json/furniture_and_terrain/terrain-walls.json": {
+      "sha256": "886e13973131a1cefa4b3d9e22e58deebeca76db9de79dd4893dbc6a94a04370",
+      "blob_sha": "8ee337d3b8b5f5af14448541400e6463abedee9c"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-fireplaces.json": {
+      "sha256": "1d71988dad7b23b480fade0e38257eea6963880ca517e3a7f8e874e16bc2b298",
+      "blob_sha": "3bad3a9386b63b4ca523bf1cc6717f4eedf5931f"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-medical.json": {
+      "sha256": "91d265584d58224b1d7c79fa1babd9887de866c313d6cfae8b0723650c7387f3",
+      "blob_sha": "225507746caea3dd87768945bb37c48f684159ae"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-pallet.json": {
+      "sha256": "a498eae587d2c700049e5d74cf7361feee6961b6f232a7622ed14840400e5c56",
+      "blob_sha": "5dc478537d9f5af7138a8bc8dc6e9b1fea3b58d0"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-recreation.json": {
+      "sha256": "41520d2b9eb2454a001387c1d185593889446d04ec92c0f9c7be839d493a5363",
+      "blob_sha": "8de4f58012a7f81e26853100f4f86e795a86a720"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-seats.json": {
+      "sha256": "6ca3bd6fef784cd0a6c8f764d87d39b60d91c0ff7425f6fb383bb321192f8fd8",
+      "blob_sha": "4e397171ebd114eb95217739d4a2cefce22eb86a"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-storage.json": {
+      "sha256": "3916fc2ebabe43e479b98fda2d8dd74ed438eab13b9c3903c6604d805ace48b5",
+      "blob_sha": "920f197c64600afd4103277a2cef28886a4530d7"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-terrains.json": {
+      "sha256": "b00ac991ac19e7e3455225aef1a965e55599233c74180a74836a13444d8603dc",
+      "blob_sha": "3353c2a75a575651fa6814e8e38d3f955efa47e5"
+    },
+    "dda/data/json/furniture_and_terrain/furniture_refrigeration.json": {
+      "sha256": "eccaadf086708399d755d3881b62e7455f82a24d328653a4f9e1d524a67f18d9",
+      "blob_sha": "ceec60dfffe5f2f5dde615fd259139383a3705bc"
+    },
+    "dda/data/json/furniture_and_terrain/terrain-walls.json": {
+      "sha256": "0aa0c79d98f42c655dd998bdc84fa96045c00e0f126b19125c969969cc959865",
+      "blob_sha": "c0e4086ee28c675eb5b3774ac0953acb1145ad1e"
+    }
+  }
+}

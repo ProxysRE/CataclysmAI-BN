@@ -53,6 +53,16 @@ def native_support():
     result=[]
     for e in sources()['dda/nested_chunks_roof.json']:
         if not e.get('nested_mapgen_id','').startswith(('residential_6kW_solar','residential_7kW_solar','residential_8kW_solar')):continue
-        e=copy.deepcopy(e);e['method']='json';result.append(e)
+        e=copy.deepcopy(e);e['method']='json'
+        # BN has coarser native removal. Use explicit glyph removal so nested
+        # chunks do not depend on propagation of flags through mapgen args.
+        # Only occupied solar cells are cleared; blank margins stay untouched.
+        obj=e['object']
+        if 'ERASE_ITEMS_BEFORE_PLACING_TERRAIN' in obj.get('flags',[]):
+            obj['flags'].remove('ERASE_ITEMS_BEFORE_PLACING_TERRAIN')
+            if not obj['flags']:obj.pop('flags')
+            assert 'remove_all' not in obj
+            obj['remove_all']={glyph:{} for glyph in obj['terrain']}
+        result.append(e)
     assert len(result)==9
     return result

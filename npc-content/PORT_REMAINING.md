@@ -94,3 +94,9 @@ Complete six-level location embedded with explicit BN counterparts, original lak
 ## Complete inland container-yard staging, 2026-10-19
 
 Both normal and bandit variants are now preserved and palette-expanded as whole complexes, including all floors/roofs and every cargo branch. See container_yards/TRANSFER_REPORT.json for unresolved explicit references and the remaining native/schema gates. Not embedded yet; no playable-content count should include this staging.
+
+## Container infrastructure and latest native result, 2026-10-20 Moscow
+
+Both yards now have an adapted infrastructure layer: 23 terrain/furniture declarations, 18 stock counterparts, 33 weighted appliance wrappers and 119 explicit one-cell cargo palettes. Source geometry, 121 original nested identities, cargo selection scope and outcome weights remain intact. Audit now includes glyph NPCs/ownership/flags and correct directional OMT normalization: 82 raw source blockers, 42 adapted explicit blockers remain. Hell's Raiders boss, special cargo, currency and slime remain visible obligations. Not embedded; not runtime validated. See container_yards/ADAPTATION_REPORT.json.
+
+Windows run 39305772099 compiled and passed 73 core cases / 11,030 assertions (including lighthouse capacity) and 10 optional-mod cases / 2,224 assertions, but optional initialization logged unsupported flags in four solar chunks. Those now use native BN glyph-based removal on occupied cells, with broader clearing documented in palette_compat/CLEARING_REVIEW.json. Source/installed rerun pending; installed tests and packaging did not run.

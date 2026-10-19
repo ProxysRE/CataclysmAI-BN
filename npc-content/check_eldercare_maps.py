@@ -79,5 +79,14 @@ assert repair({'rows':['v1'],'palettes':['roof_palette']})['nested']['1']['chunk
 assert repair({'rows':['<'],'palettes':['sewers']})['terrain']['<']=='t_ladder_up'
 assert repair({'rows':['v'],'palettes':['roof_palette'],'terrain':{'v':'t_ladder_up'}})['terrain']['v']=='t_ladder_up'
 original_solar=[e for e in palette_sources()['dda/nested_chunks_roof.json'] if e.get('nested_mapgen_id','').startswith(('residential_6kW_solar','residential_7kW_solar','residential_8kW_solar'))]
-assert [{k:v for k,v in e.items() if k!='method'} for e in native_support()]==original_solar
+import copy
+expected_solar=copy.deepcopy(original_solar)
+for e in expected_solar:
+    obj=e['object']
+    if 'ERASE_ITEMS_BEFORE_PLACING_TERRAIN' in obj.get('flags',[]):
+        obj['flags'].remove('ERASE_ITEMS_BEFORE_PLACING_TERRAIN')
+        if not obj['flags']:obj.pop('flags')
+        obj['remove_all']={glyph:{} for glyph in obj['terrain']}
+assert [{k:v for k,v in e.items() if k!='method'} for e in native_support()]==expected_solar
+assert sum('remove_all' in e['object'] for e in native_support())==4
 print('PASS: shared roof/sewer glyph repair, native BN solar hardware, exact nine source nested chunks and spawn weights')

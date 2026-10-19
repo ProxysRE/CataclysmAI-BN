@@ -52,6 +52,7 @@ def candidate():
 
 def required(entries):
     result=set()
+    own=index_entries(entries)
     def collect(kind,value):
         if isinstance(value,str):result.add((kind,value))
         elif isinstance(value,list):
@@ -67,6 +68,9 @@ def required(entries):
                 assert kind,param
                 collect(kind,param.get('default'))
             for p in obj.get('place_npcs',[]):collect('npc',p['class'])
+            for p in obj.get('npcs',{}).values():collect('npc',p['class'])
+            for p in obj.get('faction_owner',[]):collect('faction',p['id'])
+            for flag in obj.get('flags',[]):collect('json_flag',flag)
             for p in obj.get('place_loot',[]):
                 if 'item' in p:collect('item',p['item'])
                 if 'group' in p:collect('item_group',p['group'])
@@ -76,7 +80,11 @@ def required(entries):
         elif e['type']=='overmap_special':
             for cell in e['overmaps']:
                 name=cell['overmap']
-                if name.endswith('_north'):name=name[:-6]
+                # Rotatable OMT declarations generate all four directional IDs.
+                # Strip only a direction whose base is actually declared here.
+                for suffix in ('_north','_east','_south','_west'):
+                    if name.endswith(suffix) and ('overmap_terrain',name[:-len(suffix)]) in own:
+                        name=name[:-len(suffix)];break
                 result.add(('overmap_terrain',name))
     return result-BUILTIN_IDS-{('nested_mapgen','null')}
 

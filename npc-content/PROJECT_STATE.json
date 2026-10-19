@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Both complete inland container yards and entire cargo graph staged; small lighthouse food packaging corrected after native capacity test; native rerun pending.",
+  "stage": "Container-yard infrastructure adapted: 23 support declarations, 18 BN counterparts and 119 explicit one-cell cargo layouts; 42 typed blockers remain. Solar clearing initialization fix prepared; Windows rerun pending.",
   "package": "Isolated Road",
-  "native_compilation": "Windows run 39261460157 on 87e1015 compiled successfully and passed 71 source core cases / 10719 assertions. Optional-mod initialization failed on shared palette gaps; installed tests/packaging did not run. Last complete source+installed portable checkpoint remains e52486f7.",
+  "native_compilation": "Windows 39305772099 on 20e873a compiled successfully; all 73 core cases / 11030 assertions and 10 optional-mod cases / 2224 assertions passed. Optional initialization reported four unsupported solar clearing flags, so installed testing/packaging did not run. Fix uses native BN glyph removal; rerun pending. Last complete portable checkpoint remains e52486f7.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -666,11 +666,27 @@
     "remaining": "Per-nest parameters, all missing dependencies, appliances, packaging/currency conversion and complete native validation"
   },
   "latest_failed_native_attempt": {
-    "run": 39276113599,
-    "head": "2570876c248661aee7ada5e27fe8eac3069bc9b4",
-    "compilation": "success",
-    "failure": "Only small-lighthouse food wrapper capacity assertions failed in source core tests",
-    "installed_tests_run": false,
-    "portable_package_produced": false
+    "head": "20e873a7d9e57e3ab5632522c395a308e448462b",
+    "run_id": 39305772099,
+    "compiled": true,
+    "core_cases": 73,
+    "core_assertions": 11030,
+    "optional_cases": 10,
+    "optional_assertions": 2224,
+    "failure": "Optional initialization: unsupported solar ERASE_ITEMS_BEFORE_PLACING_TERRAIN flag in four nested chunks",
+    "fix": "Explicit native BN remove_all glyph bindings on occupied solar cells; coarser clearing documented",
+    "installed_tests_ran": false,
+    "portable_produced": false
+  },
+  "container_yards_infrastructure": {
+    "native_embedded": false,
+    "runtime_validated": false,
+    "support_definitions": 23,
+    "counterparts": 18,
+    "explicit_one_cell_layouts": 119,
+    "appliance_wrappers": 33,
+    "raw_typed_unresolved_after_audit_correction": 82,
+    "adapted_typed_unresolved": 42,
+    "source_file_count": 18
   }
 }

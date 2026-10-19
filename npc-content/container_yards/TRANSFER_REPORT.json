@@ -427,120 +427,16 @@
       "wheels_no_wood"
     ],
     [
+      "json_flag",
+      "ALLOW_TERRAIN_UNDER_OTHER_DATA"
+    ],
+    [
       "monstergroup",
       "GROUP_SLIME"
     ],
     [
-      "overmap_terrain",
-      "container_yard_inland_base_1_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_1_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_1a_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_1a_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_1b_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_1b_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_2_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_2_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_3_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_3_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_4_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_4_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_5_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_5_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_5a_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_5a_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_6_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_base_6_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_bandit_east"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_bandit_west"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_corner_bandit_east"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_corner_bandit_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_corner_east"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_corner_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_east"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_south"
-    ],
-    [
-      "overmap_terrain",
-      "container_yard_inland_fence_west"
+      "npc",
+      "hells_raiders_boss"
     ],
     [
       "terrain",
@@ -611,7 +507,7 @@
       "forklift_vehicles"
     ]
   ],
-  "unresolved_count": 108,
+  "unresolved_count": 82,
   "remaining": [
     "Review nested-mapgen parameters, per-container selection scope and shipping-container wall colors against BN",
     "Close every missing dependency with reviewed BN reuse or an actual source port; no dropped cargo outcomes",
