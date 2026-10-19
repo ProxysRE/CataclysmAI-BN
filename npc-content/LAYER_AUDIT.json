@@ -1,0 +1,749 @@
+{
+  "audited_at": "2026-10-20 Europe/Moscow",
+  "reviewed_head": "521256ae9e0126a6a097960677945fd0c6c534e3",
+  "fast_ci": {
+    "run": 39342183503,
+    "status": "success"
+  },
+  "native_checkpoint": {
+    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
+    "run_id": 39328860166,
+    "status": "success",
+    "test_cases": 73,
+    "assertions": 11030,
+    "mod_test_cases": 10,
+    "mod_assertions": 2224,
+    "installed_data_test_cases": 73,
+    "installed_data_assertions": 11030,
+    "installed_mod_test_cases": 10,
+    "installed_mod_assertions": 2224
+  },
+  "native_patch_sha256": "ccc020778563a5735fd6d93aaea0b3756ba6d030efa87bd885573547939a7ce6",
+  "legend": {
+    "В": "Включено в native-патч и последнюю проверенную сборку; это не ручная проверка каждой функции",
+    "П": "Подготовленный кандидат вне сборки, не самостоятельная проверенная геометрическая оболочка",
+    "Ч": "Сделана только часть заявленного слоя; точный объём в scope",
+    "Б": "Используется существующий BN; новое полное обновление DDA не заявляется",
+    "—": "Нет подтверждённого переноса этого слоя",
+    "н/п": "В рассмотренном пакете отдельный такой слой не заявлен"
+  },
+  "layers": [
+    "geometry",
+    "furnishing",
+    "loot",
+    "population",
+    "interactions"
+  ],
+  "rows": [
+    {
+      "id": "rural_church",
+      "name": "Обычная сельская церковь",
+      "target_group_indices": [
+        10
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "В",
+        "loot": "В",
+        "population": "Б",
+        "interactions": "В"
+      },
+      "scope": "Четыре генератора / пять размещённых клеток, z=-1..2. Настоящий колокольный терминал. Не церковь XEDRA.",
+      "evidence": [
+        "native/dda_rural_church.json",
+        "native/dda_radio_stations_test.cpp"
+      ],
+      "native_test_scope": [
+        "rural_church_generates_basement_steeple_and_real_bell_terminal"
+      ]
+    },
+    {
+      "id": "xedra_church",
+      "name": "Церковь XEDRA",
+      "target_group_indices": [
+        10
+      ],
+      "layers": {
+        "geometry": "П",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "Ч",
+        "interactions": "П"
+      },
+      "scope": "Четыре схемы и специальное размещение сохранены вне сборки. Отдельно включены существо, частицы и состояния костюма; это не установленная церковь.",
+      "evidence": [
+        "rural_churches/XEDRA_SOURCE_MAPS.json",
+        "rural_churches/XEDRA_DEPENDENCY_REVIEW.json",
+        "native/dda_xedra_creature.json",
+        "native/dda_xedra_activity_suits.json"
+      ],
+      "native_test_scope": [
+        "XEDRA_creature_profile_and_particles_load_without_changing_legacy_defaults",
+        "XEDRA_ranged_pull_rejects_overweight_target_before_movement"
+      ]
+    },
+    {
+      "id": "karting",
+      "name": "Большой картодром",
+      "target_group_indices": [
+        32
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "В",
+        "loot": "В",
+        "population": "В",
+        "interactions": "н/п"
+      },
+      "scope": "Полная перенесённая схема 3×3 с уровнями трассы и крышей; карт и кассы. Сюжетная цепочка в этом пакете не заявлена.",
+      "evidence": [
+        "native/dda_karting_circuit.json",
+        "karting/PORT_REPORT.json",
+        "native/dda_radio_stations_test.cpp"
+      ],
+      "native_test_scope": [
+        "karting_circuit_generates_source_ramps_and_stairs",
+        "karting_vehicle_and_cash_dependencies_are_native_bn_definitions"
+      ]
+    },
+    {
+      "id": "farm_supply",
+      "name": "Сельхозмагазины: обычный и разграбленный",
+      "target_group_indices": [
+        25
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "В",
+        "loot": "В",
+        "population": "В",
+        "interactions": "н/п"
+      },
+      "scope": "Обе схемы и крыша, строительные материалы, корм/батареи и явный труп. Это не модульные фермы Ишервудов.",
+      "evidence": [
+        "native/dda_farm_supply.json",
+        "native/dda_radio_stations_test.cpp"
+      ],
+      "native_test_scope": [
+        "farm_shops_generate_all_quadrants_roofs_ladders_and_source_corpse",
+        "farm_material_and_feed_packages_fit_stock_BN_containers"
+      ]
+    },
+    {
+      "id": "eldercare",
+      "name": "Дом престарелых, Shady Hills и посёлок для пожилых",
+      "target_group_indices": [
+        15,
+        16
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "В",
+        "loot": "В",
+        "population": "В",
+        "interactions": "Ч"
+      },
+      "scope": "Полные схемы установлены в необязательный Civilians. 219 размещённых клеток; 190 собственных OMT. Для взаимодействий перенесены терминальные архивы, не заявляется полное прохождение историй.",
+      "evidence": [
+        "native/dda_eldercare_locations.json",
+        "native/dda_eldercare_sites_test.cpp",
+        "native/dda_terminal_archives.json",
+        "native/dda_eldercare_groups.json"
+      ],
+      "native_test_scope": [
+        "complete_nursing_home_sh_generates_every_placed_floor",
+        "complete_nursing_home_generates_every_placed_floor",
+        "complete_retirement_community_generates_every_placed_floor",
+        "complete_eldercare_specials_place_in_four_rotations"
+      ]
+    },
+    {
+      "id": "small_lighthouse",
+      "name": "Малый островной маяк",
+      "target_group_indices": [
+        28
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "В",
+        "loot": "В",
+        "population": "Б",
+        "interactions": "н/п"
+      },
+      "scope": "Отдельная локация, шесть этажей z=0..5. Семья маячника относится к другому пакету. Наличие предметов питания/контейнеров проверено, полный ручной обход нет.",
+      "evidence": [
+        "native/dda_small_lighthouse.json",
+        "native/dda_small_lighthouse_test.cpp"
+      ],
+      "native_test_scope": [
+        "small_lighthouse_generates_all_six_levels_with_continuous_ladders",
+        "small_lighthouse_supplies_fit_their_BN_containers"
+      ]
+    },
+    {
+      "id": "militia",
+      "name": "Grey Moose / база ополчения",
+      "target_group_indices": [
+        3
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "В",
+        "loot": "В",
+        "population": "В",
+        "interactions": "В"
+      },
+      "scope": "24 OMT, два этажа и крыша. Два NPC-шаблона: один торговец и шесть размещений охраны. Девять тем диалога; отдельной цепочки заданий в источнике нет.",
+      "evidence": [
+        "native/dda_grey_moose_lodge.json",
+        "native/dda_militia_test.cpp"
+      ],
+      "native_test_scope": [
+        "grey_moose_trader_and_guard_load_with_source_roles",
+        "grey_moose_lodge_generates_two_floors_roof_and_seven_community_npcs"
+      ]
+    },
+    {
+      "id": "radio",
+      "name": "Две радиостанции: дополнительные этажи вышек",
+      "target_group_indices": [
+        43
+      ],
+      "layers": {
+        "geometry": "В",
+        "furnishing": "Б",
+        "loot": "Б",
+        "population": "Б",
+        "interactions": "Б"
+      },
+      "scope": "Добавлены этажи вышек z=2..6 и опоры. Здания, терминалы и наполнение остаются BN; это локальное расширение, не замена всех радиостанций.",
+      "evidence": [
+        "native/dda_radio_station_towers.json",
+        "radio_stations/PORT_REPORT.json",
+        "native/dda_radio_stations_test.cpp"
+      ],
+      "native_test_scope": [
+        "radio_station_towers_generate_continuous_ladders_in_all_rotations"
+      ]
+    },
+    {
+      "id": "hotel",
+      "name": "Высотные гостиницы: крышки технических надстроек",
+      "target_group_indices": [
+        44
+      ],
+      "layers": {
+        "geometry": "Ч",
+        "furnishing": "Ч",
+        "loot": "Б",
+        "population": "Б",
+        "interactions": "Б"
+      },
+      "scope": "Включены только верхние технические покрытия/размещения z=5. Это не новый жилой этаж и не вся версия гостиниц DDA.",
+      "evidence": [
+        "hotel_roofs/PORT_REPORT.json",
+        "native/dda_hotel_roof_caps.json",
+        "native/dda_radio_stations_test.cpp"
+      ],
+      "native_test_scope": [
+        "hotel_technical_enclosures_receive_source_roof_caps"
+      ]
+    },
+    {
+      "id": "plaza",
+      "name": "Торговая площадь: крыши",
+      "target_group_indices": [
+        47
+      ],
+      "layers": {
+        "geometry": "Ч",
+        "furnishing": "Ч",
+        "loot": "Б",
+        "population": "Б",
+        "interactions": "Б"
+      },
+      "scope": "Включены семь крыш над существующими магазинами BN. Первый этаж сохранён; полноценное новое наполнение DDA не заявляется.",
+      "evidence": [
+        "shopping_plaza/PORT_REPORT.json",
+        "native/dda_shopping_plaza_roofs.json",
+        "native/dda_radio_stations_test.cpp"
+      ],
+      "native_test_scope": [
+        "shopping_plaza_roofs_generate_over_existing_bn_stores"
+      ]
+    },
+    {
+      "id": "nuclear",
+      "name": "АЭС",
+      "target_group_indices": [],
+      "layers": {
+        "geometry": "Ч",
+        "furnishing": "Б",
+        "loot": "Б",
+        "population": "Б",
+        "interactions": "Б"
+      },
+      "scope": "АЭС уже существует в BN. Наше включённое изменение — 24 береговые клетки, 684→708 размещений. Реактор, здания, подземелья и их наполнение сохранены BN. Полная генерация всей АЭС отдельным тестом не подтверждена.",
+      "evidence": [
+        "location_expansion/LOCATION_EXPANSION_REPORT.json",
+        "location_expansion/merged/nuclear_plant.json",
+        "prepare_location_expansion.py"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "hub",
+      "name": "Расширенный Hub 01 и связанный robofac",
+      "target_group_indices": [
+        38
+      ],
+      "layers": {
+        "geometry": "П",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "Ч"
+      },
+      "scope": "Кандидат размещения 102 клетки вместо 69 BN, 33 добавления и две замены, включая восемь клеток z=-1. Полный комплекс вне сборки. В сборке отдельно проверены права/обработчики лифта и общие механизмы доверия; реальная поездка с грузом/спутниками не проверена. Для robofac выбраны 39 NPC, но они не установлены.",
+      "evidence": [
+        "location_expansion/hub_candidate/hub_01_special.json",
+        "location_expansion/LOCATION_EXPANSION_REPORT.json",
+        "layers/LAYER_SUMMARY.json",
+        "native/dda_artisan_services_test.cpp"
+      ],
+      "native_test_scope": [
+        "Hub_elevator_authorization_is_revocable_and_keeps_directional_floors",
+        "Hub_elevator_panels_bind_distinct_native_handlers_and_keep_stock_elevator"
+      ]
+    },
+    {
+      "id": "container_yards",
+      "name": "Обычная и бандитская контейнерные площадки",
+      "target_group_indices": [
+        18
+      ],
+      "layers": {
+        "geometry": "П",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "Обе целые схемы: по 51 клетке на z=0..2. 121 исходная вложенная схема, 119 вариантов груза. Инфраструктура и груз адаптированы, но 20 явных зависимостей и native-проверки остаются. Чистая геометрическая оболочка пока не выделена.",
+      "evidence": [
+        "container_yards/CARGO_REPORT.json",
+        "container_yards/CARGO_LOCATIONS.json",
+        "container_yards/CARGO_DEPENDENCIES.json",
+        "check_container_yard_cargo.py"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "campus",
+      "name": "Университетский кампус",
+      "target_group_indices": [
+        1
+      ],
+      "layers": {
+        "geometry": "П",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "Выбраны пять вариантов размещения, 26 mapgen-записей и два NPC. Поля исходных карт сохранены/адаптированы совместно, но самостоятельная BN-оболочка и полная зависимость/генерация не подтверждены.",
+      "evidence": [
+        "layers/LAYER_SUMMARY.json",
+        "layers/LOCATION_SUMMARY.json",
+        "layers/SOURCE_MANIFEST.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "godco",
+      "name": "Церковный ретрит Godco",
+      "target_group_indices": [
+        2
+      ],
+      "layers": {
+        "geometry": "П",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "43 mapgen-записи, схема ретрита на 61 клетку, 25 NPC, 46 заданий и 379 тем. Это подготовленный смешанный пакет, не готовая локация. Отдельные общие механизмы движка проверены отдельно.",
+      "evidence": [
+        "layers/LAYER_SUMMARY.json",
+        "layers/LOCATION_SUMMARY.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "island_prison",
+      "name": "Островная тюрьма",
+      "target_group_indices": [
+        9
+      ],
+      "layers": {
+        "geometry": "П",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "14 mapgen-записей, два размещения, три NPC, 18 тем, одно задание. Не Алькатрас. Тест выдачи награды в контейнере проверяет общий механизм, не весь пакет тюрьмы.",
+      "evidence": [
+        "island_prison/ADAPTATION_REPORT.json",
+        "island_prison/PLACEMENT_REVIEW.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "isolated_road",
+      "name": "Isolated Road: Коди и Джей",
+      "target_group_indices": [
+        4
+      ],
+      "layers": {
+        "geometry": "Ч",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "Два NPC, два задания, диалоги и сервисы подготовлены. В staging найдены шесть домашних chunks и восемь схем миссии; это не доказательство полного комплекта геометрии поселения. В сборке проверены отдельные общие основы ремесленных услуг и предметы заданий.",
+      "evidence": [
+        "ISOLATED_ROAD_AUDIT.json",
+        "staging/bn_dialogue/mapgen/isolated_road/isolated_road_home_chunks.json",
+        "staging/bn_dialogue/mapgen/isolated_road/isolated_road_mission_1.json",
+        "native/dda_artisan_services_test.cpp"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "exhibition",
+      "name": "Оружейная выставка",
+      "target_group_indices": [
+        5
+      ],
+      "layers": {
+        "geometry": "—",
+        "furnishing": "—",
+        "loot": "Ч",
+        "population": "—",
+        "interactions": "П"
+      },
+      "scope": "Регистрация и квестовые зависимости изучены. В сборке есть отдельные предметы/основы: USB, гильза и демилитаризованный Корд. Полная геометрия и размещение самой выставки не подтверждены.",
+      "evidence": [
+        "quest_dependency_graph.py",
+        "quest_dependencies/QUEST_PROP_PORT_REPORT.json",
+        "native/dda_artisan_services_test.cpp"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "chemist",
+      "name": "Занятая химлаборатория / химик",
+      "target_group_indices": [],
+      "layers": {
+        "geometry": "Б",
+        "furnishing": "Ч",
+        "loot": "Б",
+        "population": "Б",
+        "interactions": "П"
+      },
+      "scope": "Используется существующая лаборатория BN. Включён точечный перенос стула и представления точки появления существующего химика. Четыре задания, новые диалоги и торговые зоны не завершены.",
+      "evidence": [
+        "layers/EXISTING_LOCATION_MERGES.json",
+        "layers/LAYER_SUMMARY.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "lumbermill",
+      "name": "Лесопилка и её сотрудники",
+      "target_group_indices": [],
+      "layers": {
+        "geometry": "Б",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "Существующая лесопилка BN не дублируется. 11 mapgen-записей DDA, два NPC и пять заданий подготовлены для слияния. Нет подтверждения полного включённого обновления.",
+      "evidence": [
+        "layers/LAYER_SUMMARY.json",
+        "layers/LOCATION_MERGE_SUMMARY.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "scrap_trader",
+      "name": "Занятая свалка / торговец ломом",
+      "target_group_indices": [],
+      "layers": {
+        "geometry": "Ч",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "Локация BN есть, но исходная схема DDA содержит две клетки против одной в выбранном BN-размещении. Два mapgen, один NPC, пять заданий подготовлены, полное обновление вне сборки.",
+      "evidence": [
+        "layers/LAYER_SUMMARY.json",
+        "layers/LOCATION_SUMMARY.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "bunker_shop",
+      "name": "Магазин в бункере выжившего",
+      "target_group_indices": [],
+      "layers": {
+        "geometry": "Б",
+        "furnishing": "П",
+        "loot": "П",
+        "population": "П",
+        "interactions": "П"
+      },
+      "scope": "Существующее BN-размещение сохранено. Три mapgen, один NPC, шесть тем и 14 групп предметов подготовлены для слияния. Не бункер Бальтазара.",
+      "evidence": [
+        "layers/LAYER_SUMMARY.json",
+        "layers/LOCATION_SUMMARY.json"
+      ],
+      "native_test_scope": []
+    },
+    {
+      "id": "lighthouse_family",
+      "name": "Семья маячника и связанный выживший",
+      "target_group_indices": [],
+      "layers": {
+        "geometry": "Ч",
+        "furnishing": "Ч",
+        "loot": "Ч",
+        "population": "В",
+        "interactions": "Ч"
+      },
+      "scope": "Четыре NPC, 26 тем и семь заданий включены; встреча привязана к существующему доку BN, а карты обновления лодки/света/семьи работают через native-механизмы. Отдельно подготовленные исходные карты маяка не следует считать целиком установленным новым комплексом. Это не малый островной маяк. Полное прохождение цепочки и естественный поиск встречи ещё не проверены.",
+      "evidence": [
+        "lighthouse/VALIDATION.json",
+        "lighthouse/ADAPTATION_REPORT.json",
+        "native/dda_lighthouse_community.json",
+        "native/dda_artisan_dialogue_test.cpp"
+      ],
+      "native_test_scope": [
+        "lighthouse_family_spawns_underground_and_returns_through_dialogue",
+        "lighthouse_actual_quest_updates_create_boat_and_working_lights",
+        "lighthouse_actual_missions_and_npc_templates_load"
+      ]
+    }
+  ],
+  "accepted_target_groups": 51,
+  "groups_with_some_implementation_or_candidates": 17,
+  "catalog_only_target_groups": [
+    {
+      "index": 0,
+      "name": "База Экзодиев и её объекты",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 6,
+      "name": "Бункер Бальтазара",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 7,
+      "name": "Лимнологическая станция",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 8,
+      "name": "Поселение дезертиров",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 11,
+      "name": "Моргáнтаун XEDRA",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 12,
+      "name": "Рыбацкая хижина XEDRA",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 13,
+      "name": "Физическая лаборатория LIXA",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 14,
+      "name": "Нефтяная платформа",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 17,
+      "name": "Нарколаборатории и трудовой лагерь бандитов",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 19,
+      "name": "Музей текстильной фабрики",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 20,
+      "name": "Большой полицейский департамент",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 21,
+      "name": "Большой футбольный стадион",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 22,
+      "name": "Офисный небоскрёб",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 23,
+      "name": "Модульные многоквартирные комплексы",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 24,
+      "name": "Большой супермаркет",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 26,
+      "name": "Коттедж гончара",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 27,
+      "name": "Жильё выживальщиков и лесной лагерь",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 29,
+      "name": "Затонувший вертолёт",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 30,
+      "name": "Горячие источники",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 31,
+      "name": "Кладбище Лакруа",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 33,
+      "name": "Микролаборатория Ratkin",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 34,
+      "name": "Особые объекты ми-го",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 35,
+      "name": "Городские дополнения",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 36,
+      "name": "Загадочные руины высокогорья",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 37,
+      "name": "Лиминальные и иные измерения",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 39,
+      "name": "Алькатрас",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 40,
+      "name": "Центр беженцев",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 41,
+      "name": "Высотная городская больница",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 42,
+      "name": "Офисная башня",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 45,
+      "name": "Зоопарк",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 46,
+      "name": "Существующий стадион",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 48,
+      "name": "Авианосец",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 49,
+      "name": "Лагерь FEMA",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    },
+    {
+      "index": 50,
+      "name": "Модульные фермы Ишервудов и конные фермы",
+      "status": "catalogued_or_sources_compared_only_not_a_ported_shell"
+    }
+  ],
+  "independently_validated_geometry_only_packages": 0,
+  "important_limits": [
+    "Текущие карты в основном смешивают все слои. Наличие исходников/выбранных mapgen не доказывает готовую BN-оболочку.",
+    "Общая успешная загрузка не равна полному тесту мебели, добычи, боя и сюжетов. Объём конкретных тестов указан отдельно.",
+    "Отдельные новые оболочки следует проверять без наполнения; ошибки поздних слоёв не должны блокировать их учёт.",
+    "Не считать готовые крыши/береговые клетки полным переносом гостиницы, торговой площади или АЭС.",
+    "Не смешивать малый маяк с семьёй маячника, магазин в бункере с Бальтазаром, островную тюрьму с Алькатрасом."
+  ],
+  "record_health": {
+    "outdated_status_fields_found": true,
+    "examples": [
+      "PROJECT_STATE.farm_supply до аудита всё ещё указывал неустановленный кандидат",
+      "PROJECT_STATE.npc_progress_report до аудита сохранял 82/4 вместо актуальных 83/6",
+      "Ранние PORT_REPORT и PORT_REMAINING сохраняют исторические pending-статусы"
+    ],
+    "precedence": "Текущий патч + его точная native-проверка > актуальный аудит > исторические снимки"
+  },
+  "next_layer_policy": "Сначала широкий пакет геометрии и проходимости; далее обстановка, добыча, население, взаимодействия. Старые полные пакеты и источники сохранить.",
+  "shared_engine_support": {
+    "verified_slices": [
+      "Выражения и переменные игрока/NPC/мира, сохранение состояния",
+      "Мнение NPC, доверие фракции, платежи/награды и контейнеры",
+      "Ремесленные интервалы, ожидание NPC, обычные диалоги и некоторые непосредственные EOC",
+      "Права лифта Hub, терминальные архивы, corpse-mapgen и интеграция существующего Civilians"
+    ],
+    "not_complete": [
+      "Полная инфраструктура отложенных/повторяющихся событий DDA",
+      "Полное создание/развитие лагеря и назначения рабочих",
+      "Система карманов",
+      "Полные квестовые прохождения всех подготовленных сообществ"
+    ],
+    "scope": "Наличие общего механизма не засчитывает связанный пакет локации/NPC готовым"
+  }
+}

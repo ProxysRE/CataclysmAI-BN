@@ -1,5 +1,7 @@
 # Remaining work in the started DDA port
 
+Current layer-first inventory: LAYER_AUDIT.md / LAYER_AUDIT.json (2026-10-20). The chronological snapshots below retain historical pending states; use the current audit and native checkpoint when they conflict.
+
 Snapshot: 2026-10-17. Prepared JSON is not the same as a playable port. No progress
 percentage is assigned to work that has not passed runtime validation.
 

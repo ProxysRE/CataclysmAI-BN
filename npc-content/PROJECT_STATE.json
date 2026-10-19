@@ -136,10 +136,10 @@
     "remaining_release_gates": [
       "Full mission start/end and turn-in walkthrough",
       "Natural dock generation and encounter probability",
-      "Save/reload across quest stages",
-      "Playable Windows packaging"
+      "Save/reload across quest stages"
     ],
-    "basement_search_layer": -1
+    "basement_search_layer": -1,
+    "validation_scope": "Four NPC templates, dialogue/mission regression and tested world updates passed source and installed suites; full source location bundle/campaign not certified."
   },
   "location_expansion": {
     "scope": "NPC-linked and standalone sites; merge existing BN locations instead of duplicating",
@@ -318,7 +318,9 @@
     "stage": "native panel registration test after successful Windows compilation",
     "error": "Root-file terrain copy-from remained unresolved; invalid Hub panel terrain ID",
     "fix": "Materialize exact pinned BN control fields; preserve source baseline guard",
-    "rerun_status": "pending"
+    "rerun_status": "pending",
+    "historical": true,
+    "resolved_by_checkpoint": 39328860166
   },
   "latest_native_compile_failure": {
     "run_id": 38931402007,
@@ -326,7 +328,9 @@
       "Save serializer private (fixed in prior commit)",
       "Test cleanup called private unload_npcs"
     ],
-    "fix": "Cleanup now uses public erase_npc for active fixture NPCs only; pending Windows"
+    "fix": "Cleanup now uses public erase_npc for active fixture NPCs only; pending Windows",
+    "historical": true,
+    "resolved_by_checkpoint": 39328860166
   },
   "existing_location_merges": {
     "commit": "100da81b7adfd8358ae786965ba3ab143496624a",
@@ -346,22 +350,29 @@
   "windows_packaging": {
     "mode": "Official BN cmake --install, installed-data regression, verified ZIP and SHA256",
     "artifact": "CBN-DDA-NPC-Windows-x64",
-    "status": "Verified casing build at d5d66e0d; demilled prop, nuclear shoreline and Hub access bridge pending",
+    "status": "Source and installed core/mod suites passed at a379269; portable package verified",
     "local_checks": "Archive payload, provenance, checksum and incomplete/stale installation rejection passed",
     "includes_staged_bulk_communities": false,
     "includes_highway_branch": false,
-    "artifact_id": 12101510392,
-    "run_id": 39025912934,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39025912934/artifacts/12101510392",
-    "artifact_size_bytes": 205479259
+    "artifact_id": 12226743444,
+    "run_id": 39328860166,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444",
+    "artifact_size_bytes": 205593420
   },
   "latest_validated_native_checkpoint": {
-    "head": "d5d66e0dbe1b5dc3ed8d6e0ba09fddb13e2a9dec",
-    "run_id": 39025912934,
-    "test_cases": 35,
-    "assertions": 2897,
-    "installed_test_cases": 35,
-    "installed_assertions": 2897
+    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
+    "run_id": 39328860166,
+    "status": "success",
+    "test_cases": 73,
+    "assertions": 11030,
+    "mod_test_cases": 10,
+    "mod_assertions": 2224,
+    "installed_data_test_cases": 73,
+    "installed_data_assertions": 11030,
+    "installed_mod_test_cases": 10,
+    "installed_mod_assertions": 2224,
+    "artifact_id": 12226743444,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444"
   },
   "hub_access_checkpoint": {
     "head": "029bcacf2f8b192b271e9a44f18dbd862db161aa",
@@ -374,9 +385,10 @@
     "status": "success"
   },
   "rural_churches": {
-    "ordinary": "native_prepared",
-    "xedra": "staged_with_mechanical_blockers",
-    "progress": "rural_churches/PORT_REPORT.json"
+    "ordinary": "source_installed_generation_and_bell_terminal_validated",
+    "xedra": "source_candidate_not_native_installed",
+    "progress": "rural_churches/PORT_REPORT.json",
+    "validation_checkpoint": 39328860166
   },
   "xedra_creature": {
     "status": "native_prepared_not_runtime_validated",
@@ -405,19 +417,21 @@
     "validation": "source geometry and reproducibility; full BN ID audit added to CI; runtime pending"
   },
   "karting": {
-    "status": "native_prepared_not_runtime_validated",
+    "status": "native_source_installed_generation_kart_and_cash_validated",
     "progress": "karting/PORT_REPORT.json",
     "payload": "data/json/dda_karting_circuit.json",
     "geometry": "3x3, two track levels plus roof, source rows preserved",
-    "dependencies": "16-part kart; cash register and four cash groups; unmodified stock BN money_bundle; no new currency items"
+    "dependencies": "16-part kart; cash register and four cash groups; unmodified stock BN money_bundle; no new currency items",
+    "validation_checkpoint": 39328860166
   },
   "currency_policy": "Reuse BN money_bundle; do not introduce DDA denominations or global currency expansion (user instruction 2026-10-17)",
   "farm_supply": {
-    "status": "adapted_candidate_not_native_enabled",
+    "status": "native_source_installed_generation_and_material_packages_validated",
     "progress": "farm_supply/PORT_REPORT.json",
     "geometry": "normal/looted full shops, shared roof, fence damage",
     "dependencies": "20 groups; construction stacks; 6 item adapters; direct typed closure has one remaining modular-helmet group; stock BN money preserved",
-    "blocking": "place_corpses bridge; modular helmet group; native behavior and generation validation"
+    "blocking": "Natural placement and manual gameplay remain; old corpse/helmet typed blockers resolved by reviewed native support and BN reuse",
+    "validation_checkpoint": 39328860166
   },
   "bn_dependency_catalog": {
     "path": "dependency_catalog/BN_ID_INDEX.json",
@@ -482,16 +496,20 @@
     "lua_exclusion_validation_pending": true
   },
   "latest_clean_windows_build": {
-    "head": "e52486f7a9b5108353ef3381ba55bf72938001ef",
-    "run": 39166343756,
-    "result": "success",
-    "source_core_cases": 67,
-    "source_core_assertions": 10627,
-    "source_mod_cases": 5,
-    "source_mod_assertions": 766,
-    "installed_core_cases": 67,
-    "installed_mod_cases": 5,
-    "artifact": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39166343756/artifacts/12152373477"
+    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
+    "run_id": 39328860166,
+    "status": "success",
+    "test_cases": 73,
+    "assertions": 11030,
+    "mod_test_cases": 10,
+    "mod_assertions": 2224,
+    "installed_data_test_cases": 73,
+    "installed_data_assertions": 11030,
+    "installed_mod_test_cases": 10,
+    "installed_mod_assertions": 2224,
+    "artifact_id": 12226743444,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444",
+    "result": "success"
   },
   "bundled_mod_inventory": {
     "status": "full_pinned_catalog_generated_and_local_audit_passed",
@@ -530,7 +548,7 @@
     "remaining_work": "Mapgen schema and generation tests; population audit against Civilians Lua before enabling sites. Source-only weakpoint/anatomy/AI parity is not implied by typed closure."
   },
   "eldercare_map_layer": {
-    "status": "complete_sites_embedded_in_optional_Civilians_pending_native_generation",
+    "status": "complete_sites_embedded_and_source_installed_generation_validated",
     "source_declarations": 71,
     "mapgen_definitions": 32,
     "custom_omt_tiles": 190,
@@ -540,10 +558,9 @@
     "preserved": "Every source row, floor/basement layout, mapgen parameter, nested story archive and special coordinate",
     "candidate_folder": "eldercare/native_candidate",
     "ambient_civilian_spawn_fix": "Both prefixes installed atomically with complete maps; stock Civilians Lua otherwise unchanged",
-    "activation_ready": false,
+    "activation_ready": true,
     "remaining_blockers": [
-      "Native Windows initialization and complete source/installed generation tests",
-      "Natural placement, stairs/elevators, edge alignment and reused station geometry in game"
+      "Natural world placement frequency, stairs/elevators and manual site traversal; campaign persistence"
     ],
     "extended_reference_scope": "Map parameters, direct monster palette pieces, liquid palettes, place_loot groups/items, OMT parent inheritance and concrete external rotations now audited as well",
     "intentional_counterparts": [
@@ -552,7 +569,7 @@
       "makeshift_memorial",
       "west-rotated BN subway station levels"
     ],
-    "full_locations_installed": false,
+    "full_locations_installed": true,
     "native_embedded": true,
     "payload": "data/mods/Civilians/dda_eldercare_locations.json",
     "native_generation_cases": 4,
@@ -561,7 +578,9 @@
     "native_placement_rotations": 12,
     "shared_palette_repair": "Fill source roof/sewer glyph bindings absent from BN; add nine source rooftop solar chunks using existing BN solar furniture",
     "additional_nested_support_definitions": 9,
-    "source_mod_validation_pending": true
+    "source_mod_validation_pending": false,
+    "validation_checkpoint": 39328860166,
+    "activation_scope": "Included in the existing optional Civilians mod, which the player must enable; not silently enabled in worlds."
   },
   "fixed_special_constraint_bridge": {
     "status": "prepared_source_installed_validation_pending",
@@ -578,9 +597,9 @@
     "full_eldercare_sites_installed": false,
     "full_eldercare_sites_embedded": true
   },
-  "npc_progress_report": "PORT_PROGRESS.json: 82 selected templates; 4 native-load verified at clean checkpoint; 6 embedded including two unverified militia additions; all-DDA completion percentage unknown",
+  "npc_progress_report": "PORT_PROGRESS.json: 83 selected templates; 6 source/installed-load verified at a379269; full-DDA percentage unknown.",
   "militia_native_layer": {
-    "status": "source_core_validated_installed_pending",
+    "status": "source_and_installed_generation_and_NPC_population_validated",
     "npc_templates": 2,
     "dialogue_topics": 9,
     "native_definitions": 22,
@@ -596,7 +615,8 @@
       2
     ],
     "mission_definitions": 0,
-    "notes": "Source has trading/story dialogue, no quest chain; BN item/loot counterparts reused, food metadata uses existing bridge. Core/bundled-mod collision and typed closure checks passed; native generation/interaction/installed/mod-enabled tests pending."
+    "notes": "Two source NPC roles and seven placements across floors validated; source 9-topic dialogue present, no added quest chain. Natural placement, manual interactions and campaign persistence not certified.",
+    "validation_checkpoint": 39328860166
   },
   "frontage_native_validation": {
     "run": 39171025443,
@@ -608,17 +628,12 @@
     "fixed_native_rerun_pending": true
   },
   "militia_native_validation": {
-    "run": 39261460157,
-    "compilation": "success",
-    "overall_result": "source core suite passed, including per-floor population and NPC roles; installed validation pending",
-    "cause": "Root-level militia JSON constructed NPCs before enchantment values and options loaded",
-    "fix": "Query Z=0,1,2 separately: expect 4 guards downstairs, merchant+2 guards upstairs, and no community NPCs on roof; total remains 1 merchant + 6 guards",
-    "fixed_native_rerun_pending": false,
-    "previous_initialization_order_error": "No longer reported after moving into stock NPC load phase",
-    "source_runtime_validated": true
+    "run_id": 39328860166,
+    "status": "source_and_installed_success",
+    "scope": "Role loading and seven-NPC population across all source floors; not full manual gameplay"
   },
   "small_lighthouse": {
-    "status": "source_generation_passed_food_wrapper_corrected_native_rerun_pending",
+    "status": "source_and_installed_generation_ladders_beacon_supply_capacity_validated",
     "payload": "data/json/dda_small_lighthouse.json",
     "mapgen_definitions": 6,
     "above_ground_levels": [
@@ -634,12 +649,12 @@
     "scope": "Six-level generation and full ladder chain, beacon furniture, container capacity; core source and installed suites",
     "reuse": "Stock BN glass, stone/concrete, roof, machinery, grid lamp and dry coffee counterparts; existing generator assemblies",
     "remaining": [
-      "Native initialization and source/installed tests",
-      "Lake placement, boat access, grid/generator operation and manual traversal"
+      "Natural lake placement, boat access, grid/generator operation and manual traversal"
     ],
     "source_generation_run": 39276113599,
     "source_generation_result": "Six-floor generation, complete ladder chain and beacon furniture checks passed",
-    "supply_fix": "Preserve source food content/counts and use stock 40 L box_huge instead of overflowing 3 L box_medium"
+    "supply_fix": "Preserve source food content/counts and use stock 40 L box_huge instead of overflowing 3 L box_medium",
+    "validation_checkpoint": 39328860166
   },
   "latest_source_native_checkpoint": {
     "run": 39261460157,
@@ -731,5 +746,17 @@
     "installed_mod_assertions": 2224,
     "artifact_id": 12226743444,
     "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444"
-  }
+  },
+  "layer_audit": {
+    "report": "LAYER_AUDIT.md",
+    "data": "LAYER_AUDIT.json",
+    "reviewed_head": "521256ae9e0126a6a097960677945fd0c6c534e3",
+    "native_checkpoint": "a379269eee36b2545909d9418d18c95ee0af3052",
+    "accepted_target_groups": 51,
+    "groups_with_implementation_or_candidates": 17,
+    "catalog_only_groups": 34,
+    "geometry_only_independently_validated_packages": 0,
+    "note": "Mixed packages predating layer-first policy remain intact; ready geometry-only shells must be tracked separately. Old reports retain historical statuses."
+  },
+  "delivery_policy": "Layer-first across broad sets: geometry/access -> furniture/equipment -> loot/items -> creatures/NPCs -> dialogue/quests/events. Preserve full originals and completed packages; late-layer blockers do not block geometry-only validation."
 }

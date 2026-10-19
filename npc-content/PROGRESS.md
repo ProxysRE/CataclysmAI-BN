@@ -1,5 +1,7 @@
 # Verified progress, 2026-10-20 Moscow
 
+Current layer-first transition audit: LAYER_AUDIT.md / LAYER_AUDIT.json. It distinguishes the five content layers, mixed candidates, embedded scope and actual native test evidence across all accepted targets.
+
 The current portable checkpoint is a379269eee36b2545909d9418d18c95ee0af3052, Windows run 39328860166. Both the source and installed game passed 73 core cases / 11,030 assertions and 10 Civilians+Exotic Ammo cases / 2,224 assertions. Packaging passed and produced artifact 12226743444. The native patch has not changed since this successful checkpoint. Earlier lighthouse food-capacity and rooftop initialization failures are resolved.
 
 PORT_PROGRESS.json is the reproducible template inventory. It now selects 83 distinct NPC templates: 73 across eight bulk communities, four lighthouse templates, three prison templates, two Isolated Road templates and one explicitly selected container-yard raider boss. Archiving other raiders in the same source file does not select them. Six templates are embedded and source/installed loading is verified: four lighthouse NPCs and the two Grey Moose roles. This is 6/83 = 7.2% template-load coverage for the selected subset, not full quest completion or the percentage of all DDA NPCs. The all-DDA denominator remains unknown. Six Civilians monster types with dialogue, class definitions, dialogue topics and repeated guard spawns do not increase this count.
