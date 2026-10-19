@@ -551,9 +551,10 @@
     "full_locations_installed": false,
     "native_embedded": true,
     "payload": "data/mods/Civilians/dda_eldercare_locations.json",
-    "native_generation_cases": 3,
+    "native_generation_cases": 4,
     "native_generation_placed_cells": 219,
-    "native_generation_scope": "Every placed custom cell (196 including variants) and 23 reused BN cells; all 190 distinct custom OMTs, three special layouts; optional-mod source and installed test suites"
+    "native_generation_scope": "Three all-cell generation cases plus all three full specials in four rotations; validate land frontage rejection on water and exclude frontage from occupied cells; source and installed optional-mod suites",
+    "native_placement_rotations": 12
   },
   "fixed_special_constraint_bridge": {
     "status": "prepared_source_installed_validation_pending",
@@ -600,11 +601,11 @@
     "fixed_native_rerun_pending": true
   },
   "militia_native_validation": {
-    "run": 39180556584,
+    "run": 39237846147,
     "compilation": "success",
-    "overall_result": "failure: unsupported DDA cosmetic item-group variant field",
+    "overall_result": "failure: population test queried only Z=0, finding 4 ground-floor guards and excluding upstairs NPCs",
     "cause": "Root-level militia JSON constructed NPCs before enchantment values and options loaded",
-    "fix": "Reuse stock BN balclava without the unsupported black cosmetic selector; retain item and probability",
+    "fix": "Query Z=0,1,2 separately: expect 4 guards downstairs, merchant+2 guards upstairs, and no community NPCs on roof; total remains 1 merchant + 6 guards",
     "fixed_native_rerun_pending": true,
     "previous_initialization_order_error": "No longer reported after moving into stock NPC load phase"
   }

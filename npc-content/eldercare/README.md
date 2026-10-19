@@ -32,3 +32,5 @@ The patch also includes six reusable terminal templates in `data/json/dda_termin
 ## Remaining loot and pigeon cycle
 
 `../eldercare_loot/README.md` documents eleven further support definitions: staff possessions and wearable lanyards, opened cigar boxes, source spear-feral drops, nursing-home clothing, recipe-supported refrigerator ingredients, and pigeons with eggs and growing squabs. The adapted graph has no unresolved identifiers under its stated scope. Twenty-five creature/spawn-group source candidates remain staged; this is not a whole-location playability claim. Already installed pond/web support is excluded from that remainder to avoid duplicate definitions.
+
+Full placement regression: a fourth native case exercises all three source specials in all four rotations, checks water rejection at the road frontage, retains the source occupied-cell counts (54 / 18 / 147), excludes constraint-only frontage from occupied cells and then uses the normal BN connection-placement path. Natural world placement frequency, save/reload and manual traversal remain separate gates.

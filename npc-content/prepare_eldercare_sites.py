@@ -21,10 +21,17 @@ def native_test():
 #include "map/map.h"
 #include "map_helpers.h"
 #include "overmap/overmapbuffer.h"
+#include "overmap/overmap.h"
+#include "overmap/overmap_special.h"
+#include "overmap/om_direction.h"
 #include "overmap/overmapbuffer_registry.h"
 #include "state_helpers.h"
 #include <initializer_list>
+#include <algorithm>
+#include <memory>
+#include <vector>
 #include <set>
+#include <string>
 #include <utility>
 
 namespace {
@@ -72,6 +79,45 @@ void generate_site( int base, std::initializer_list<site_cell> cells )
                 lines.append(f'        {{ {x}, {y}, {z}, {json.dumps(cell["overmap"])} }},\n')
             lines.append('    } );\n}\n')
             index += 1
+    lines.append(r'''
+TEST_CASE( "complete_eldercare_specials_place_in_four_rotations", "[dda_civilians][dda_eldercare_sites]" )
+{
+    for( const auto *name : { "nursing_home_sh", "nursing_home", "retirement_community" } ) {
+        for( const auto dir : { om_direction::type::north, om_direction::type::east,
+                               om_direction::type::south, om_direction::type::west } ) {
+            clear_all_state();
+            INFO( name );
+            const overmap_special_id id( name );
+            REQUIRE( id.is_valid() );
+            const auto &special = id.obj();
+            const auto required = special.required_locations();
+            auto om = std::make_unique<overmap>( point_abs_om( 0, 0 ) );
+            const tripoint_om_omt origin( 60, 60, 0 );
+            std::vector<tripoint_om_omt> frontage;
+            for( const auto &cell : required ) {
+                const auto pos = origin + om_direction::rotate( cell.p, dir );
+                om->ter_set( pos, oter_id( "field" ) );
+                if( special.get_terrain_at( cell.p ).is_null() ) { frontage.push_back( pos ); }
+            }
+            REQUIRE( frontage.size() == 1 );
+            const auto expected = std::string( name ) == "nursing_home_sh" ? 54u :
+                                  std::string( name ) == "nursing_home" ? 18u : 147u;
+            REQUIRE( required.size() == expected + 1 );
+            om->ter_set( frontage.front(), oter_id( "river_center" ) );
+            CHECK_FALSE( om->can_place_special( special, origin, dir, false ) );
+            om->ter_set( frontage.front(), oter_id( "field" ) );
+            REQUIRE( om->can_place_special( special, origin, dir, false ) );
+            const auto used = om->place_special( special, origin, dir, city(), false, false );
+            CHECK( used.size() == expected );
+            CHECK( std::find( used.begin(), used.end(), frontage.front() ) == used.end() );
+            for( const auto &pos : used ) {
+                CHECK( om->ter( pos ).id() != oter_str_id::NULL_ID() );
+            }
+        }
+    }
+    clear_all_state();
+}
+''')
     assert index == 3 and placed == 219
     return ''.join(lines)
 
@@ -86,7 +132,7 @@ def prepare(check=False):
             assert path.read_text() == text, path
         else:
             path.write_text(text)
-    print('PASS: both complete sites embedded with Civilians; three native fixtures cover all 219 placed cells; runtime pending')
+    print('PASS: both complete sites embedded with Civilians; four native fixtures cover 219 cells and twelve full-special placements; runtime pending')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)

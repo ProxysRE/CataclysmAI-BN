@@ -77,10 +77,20 @@ TEST_CASE( "grey_moose_lodge_generates_two_floors_roof_and_seven_community_npcs"
     }
     int merchants = 0;
     int guards = 0;
-    for( const auto &person : buffer.get_npcs_near_omt( tripoint_abs_omt( base + 2, base + 2, 0 ), 4 ) ) {
-        if( person->get_fac_id() != faction_id( "GM_militia_faction" ) ) { continue; }
-        if( person->mission == NPC_MISSION_SHOPKEEP ) { ++merchants; }
-        if( person->mission == NPC_MISSION_GUARD_PATROL ) { ++guards; }
+    for( int z = 0; z <= 2; ++z ) {
+        int floor_merchants = 0;
+        int floor_guards = 0;
+        // BN's nearby-OMT query filters by the requested Z level.
+        for( const auto &person : buffer.get_npcs_near_omt( tripoint_abs_omt( base + 2, base + 2, z ), 4 ) ) {
+            if( person->get_fac_id() != faction_id( "GM_militia_faction" ) ) { continue; }
+            if( person->mission == NPC_MISSION_SHOPKEEP ) { ++floor_merchants; }
+            if( person->mission == NPC_MISSION_GUARD_PATROL ) { ++floor_guards; }
+        }
+        INFO( "lodge population z=" << z );
+        CHECK( floor_merchants == ( z == 1 ? 1 : 0 ) );
+        CHECK( floor_guards == ( z == 0 ? 4 : z == 1 ? 2 : 0 ) );
+        merchants += floor_merchants;
+        guards += floor_guards;
     }
     CHECK( merchants == 1 );
     CHECK( guards == 6 );

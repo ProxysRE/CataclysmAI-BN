@@ -40,3 +40,8 @@ print('PASS: two source NPC roles, nine dialogue topics, seven fixed NPC placeme
 stock=next(e for e in payload if e['type']=='item_group' and e['id']=='MILITIA_MERCHANT_misc')
 balaclavas=[e for e in stock['items'] if isinstance(e,dict) and e.get('item')=='balclava']
 assert balaclavas == [{'item':'balclava','prob':10}]
+
+fixture=(ROOT/'native/dda_militia_test.cpp').read_text()
+assert 'z <= 2' in fixture and 'base + 2, base + 2, z' in fixture
+assert 'floor_merchants == ( z == 1 ? 1 : 0 )' in fixture
+assert 'floor_guards == ( z == 0 ? 4 : z == 1 ? 2 : 0 )' in fixture

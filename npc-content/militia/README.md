@@ -13,3 +13,5 @@ Native tests are prepared for template/faction/shop/guard-role loading and first
 Native startup correction: the payload lives under `data/json/npcs/`, matching the stock NPC load phase. A root-level JSON file constructed NPCs before enchantment values/options existed. Windows compilation succeeded on run 39173371090, but initialization failed; the corrected package still requires a native rerun.
 
 Cosmetic adaptation: source `balclava` with variant `black` uses the existing BN `balclava`, keeping its probability of 10. BN rejects the DDA item-group variant selector; no garment, protection or loot entry is removed.
+
+Population fixture correction: pinned BN `src/overmap/overmapbuffer.cpp`, `get_npcs_near_omt`, rejects an NPC when its Z differs from the requested Z (unless the query uses INT_MIN). The original Z=0 query correctly found the four ground-floor guards. The test now queries each of Z=0,1,2 and checks the exact source distribution: four guards downstairs, one trader and two guards upstairs, no community NPCs on the roof. The expected total is unchanged.
