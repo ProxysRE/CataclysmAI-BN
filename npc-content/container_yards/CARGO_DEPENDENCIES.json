@@ -1,0 +1,1275 @@
+[
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_corrugated",
+    "copy-from": "t_wall_metal",
+    "name": "corrugated metal wall",
+    "description": "A wall made from a thin sheet of corrugated steel held in a frame, weather- and windproof but not very insulating or durable.",
+    "symbol": "#",
+    "color": "light_gray"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container",
+    "copy-from": "t_wall_metal",
+    "name": "shipping container wall",
+    "description": "A shipping container made of corrugated weathering steel.",
+    "symbol": "#",
+    "color": "light_gray"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_black",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "black"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_white",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "white"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_red",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "red"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_light_red",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "light_red"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_green",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "green"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_light_green",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "light_green"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_blue",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "blue"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_light_blue",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "light_blue"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_cyan",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "cyan"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_light_cyan",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "light_cyan"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_magenta",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "magenta"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_brown",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "brown"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_pink",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "pink"
+  },
+  {
+    "type": "terrain",
+    "id": "t_wall_metal_shipping_container_yellow",
+    "copy-from": "t_wall_metal_shipping_container",
+    "color": "yellow"
+  },
+  {
+    "type": "furniture",
+    "id": "f_pallet_brick_adobe",
+    "name": "pallet of adobe bricks",
+    "looks_like": "t_adobe_brick_wall",
+    "description": "A massive, packed-together block of adobe bricks wrapped with plastic packaging.  It makes for easy storage of building materials for masonry constructions.",
+    "symbol": "#",
+    "color": "brown",
+    "move_cost_mod": 5,
+    "required_str": -1,
+    "coverage": 60,
+    "flags": [
+      "TRANSPARENT",
+      "NOITEM",
+      "MOUNTABLE",
+      "REDUCE_SCENT",
+      "EASY_DECONSTRUCT",
+      "SHORT"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "adobe_brick",
+          "count": 400
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 1
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 30,
+      "str_max": 100,
+      "sound": "crash!",
+      "sound_fail": "bash!",
+      "items": [
+        {
+          "item": "pallet",
+          "count": 1
+        },
+        {
+          "item": "adobe_brick",
+          "count": 350
+        },
+        {
+          "item": "adobe_brick",
+          "count": 50,
+          "damage-min": 1,
+          "damage-max": 4
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 1,
+          "damage-min": 2,
+          "damage-max": 4
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_pallet_belted",
+    "name": "packed pallet",
+    "description": "A wooden pallet loaded with cargo, wrapped with a watertight cover, and belted to secure the contents.",
+    "symbol": "X",
+    "bgcolor": "brown",
+    "move_cost_mod": -1,
+    "coverage": 60,
+    "required_str": 40,
+    "max_volume": "1000 L",
+    "flags": [
+      "TRANSPARENT",
+      "CONTAINER",
+      "SEALED",
+      "ALLOW_FIELD_EFFECT",
+      "FLAMMABLE",
+      "PLACE_ITEM",
+      "MOUNTABLE",
+      "SHORT"
+    ],
+    "examine_action": "none",
+    "//": "probably should remove locked_object, because it mention you can pry it when actually you can't",
+    "deconstruct": {
+      "items": [
+        {
+          "item": "rope_6",
+          "count": 6
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 5
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 9,
+      "str_max": 50,
+      "sound": "rip!",
+      "sound_fail": "wham!",
+      "furn_set": "f_pallet_belted_open",
+      "items": [
+        {
+          "item": "rope_6",
+          "count": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "plastic_sheet",
+          "count": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_pallet_belted_open",
+    "name": "damaged pallet",
+    "description": "A wooden pallet, containing cargo and possessing a torn cover.  You can reach the contents, but it's awfully hard due to the belts still being in place.",
+    "symbol": "O",
+    "bgcolor": "brown",
+    "move_cost_mod": -1,
+    "coverage": 60,
+    "required_str": 40,
+    "max_volume": "1000 L",
+    "flags": [
+      "TRANSPARENT",
+      "CONTAINER",
+      "FLAMMABLE",
+      "PLACE_ITEM",
+      "MOUNTABLE",
+      "SHORT"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "rope_6",
+          "count": 4
+        },
+        {
+          "item": "plastic_sheet",
+          "count": 3
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 9,
+      "str_max": 50,
+      "sound": "rip!",
+      "sound_fail": "wham!",
+      "items": [
+        {
+          "item": "rope_6",
+          "count": [
+            2,
+            4
+          ]
+        },
+        {
+          "item": "plastic_sheet",
+          "count": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "pallet",
+          "count": 1
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_plank_stack_short",
+    "name": "short stack of planks",
+    "symbol": "#",
+    "color": "brown",
+    "move_cost_mod": 2,
+    "coverage": 40,
+    "description": "A short stack of planks, not easily traversable.",
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT",
+      "EASY_DECONSTRUCT",
+      "THIN_OBSTACLE",
+      "PERMEABLE",
+      "ORGANIC",
+      "FLAMMABLE_ASH"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "2x4",
+          "count": 242
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 50,
+      "str_max": 100,
+      "sound": "whump!",
+      "sound_fail": "crunch!",
+      "items": [
+        {
+          "item": "2x4",
+          "count": [
+            205,
+            242
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_plank_stack_mid",
+    "name": "stack of planks",
+    "symbol": "#",
+    "color": "brown",
+    "move_cost_mod": 2,
+    "coverage": 60,
+    "description": "A stack of planks as high as your shoulders.",
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT",
+      "EASY_DECONSTRUCT",
+      "THIN_OBSTACLE",
+      "PERMEABLE",
+      "ORGANIC",
+      "FLAMMABLE_ASH"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "2x4",
+          "count": 242
+        }
+      ],
+      "furn_set": "f_plank_stack_short"
+    },
+    "bash": {
+      "str_min": 50,
+      "str_max": 100,
+      "sound": "whump!",
+      "sound_fail": "crunch!",
+      "items": [
+        {
+          "item": "2x4",
+          "count": [
+            205,
+            242
+          ]
+        }
+      ],
+      "furn_set": "f_plank_stack_short"
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_pipe_stack_short",
+    "name": "short stack of pipes",
+    "symbol": "#",
+    "color": "light_gray",
+    "move_cost_mod": 2,
+    "coverage": 40,
+    "description": "A short stack of pipes, not easily traversable.",
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT",
+      "EASY_DECONSTRUCT",
+      "THIN_OBSTACLE",
+      "PERMEABLE"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "pipe",
+          "count": 2702
+        }
+      ]
+    },
+    "bash": {
+      "str_min": 50,
+      "str_max": 100,
+      "sound": "clang!",
+      "sound_fail": "metal screeching!",
+      "items": [
+        {
+          "item": "pipe",
+          "count": [
+            2296,
+            2702
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "furniture",
+    "id": "f_pipe_stack_mid",
+    "name": "stack of pipes",
+    "symbol": "#",
+    "color": "light_gray",
+    "move_cost_mod": 2,
+    "coverage": 60,
+    "description": "A stack of pipes as high as your shoulders.",
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT",
+      "EASY_DECONSTRUCT",
+      "THIN_OBSTACLE",
+      "PERMEABLE"
+    ],
+    "deconstruct": {
+      "items": [
+        {
+          "item": "pipe",
+          "count": 2702
+        }
+      ],
+      "furn_set": "f_pipe_stack_short"
+    },
+    "bash": {
+      "str_min": 50,
+      "str_max": 100,
+      "sound": "clang!",
+      "sound_fail": "metal screeching!",
+      "items": [
+        {
+          "item": "pipe",
+          "count": [
+            2296,
+            2702
+          ]
+        }
+      ],
+      "furn_set": "f_pipe_stack_short"
+    }
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_nail_box_10lb_full_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "nail",
+        "charges": 230,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_nail_box_10lb_full",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_small",
+        "contents-group": "dda_container_yard_nail_box_10lb_full_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_duct_tape_roll",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "duct_tape",
+        "charges": 200
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_cig_box_cigarette_20_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "cig",
+        "charges": 20,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_cig_box_cigarette_20",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_cigarette",
+        "contents-group": "dda_container_yard_cig_box_cigarette_20_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_coke_bag_zipper_1_8_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "coke",
+        "charges": [
+          1,
+          8
+        ],
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_coke_bag_zipper_1_8",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_zipper_small",
+        "contents-group": "dda_container_yard_coke_bag_zipper_1_8_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_meth_bag_zipper_6_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "meth",
+        "charges": 6,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_meth_bag_zipper_6",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_zipper_small",
+        "contents-group": "dda_container_yard_meth_bag_zipper_6_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_soap_packed_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "soap",
+        "charges": 50
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_soap_packed",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_medium",
+        "contents-group": "dda_container_yard_soap_packed_contents"
+      }
+    ]
+  },
+  {
+    "id": "tampon",
+    "name": {
+      "str": "tampon"
+    },
+    "type": "GENERIC",
+    "description": "A small cotton tampon with a plastic applicator.",
+    "symbol": "+",
+    "color": "white",
+    "looks_like": "cotton_ball",
+    "container": "bag_plastic",
+    "price": "25 cent",
+    "price_postapoc": "2 USD",
+    "//": "Makes a decent trade commodity but can be acquired in bulk.",
+    "weight": "10 g",
+    "volume": "50 ml",
+    "material": [
+      "plastic",
+      "cotton"
+    ],
+    "snippet_category": "dda_container_yard_tampon"
+  },
+  {
+    "type": "snippet",
+    "category": "dda_container_yard_tampon",
+    "text": [
+      {
+        "id": "tampon1",
+        "text": "A small cotton tampon with a plastic applicator.  Useless for some, an invaluable commodity for others."
+      },
+      {
+        "id": "tampon2",
+        "text": "A 'light' cotton tampon with a plastic applicator rated for light flows."
+      },
+      {
+        "id": "tampon3",
+        "text": "A 'super' cotton tampon with a plastic applicator rated for heavy flows."
+      },
+      {
+        "id": "tampon4",
+        "text": "A small, lavender-scented cotton tampon with a plastic applicator."
+      },
+      {
+        "id": "tampon5",
+        "text": "A small cotton tampon with a plastic applicator proudly claiming to be anti-microbial.  Ultra-fine print indicates that this tampon has no noticeable health benefits compared to others."
+      },
+      {
+        "id": "tampon6",
+        "text": "An expensive-looking tampon with a fancy, smooth plastic applicator.  The ultra-soft cotton has the appearance of a fluffy cloud."
+      },
+      {
+        "id": "tampon7",
+        "text": "A cheap-looking tampon.  The cotton looks rough, the plastic applicator has a few sharp edges, and the string is somehow already knotted."
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_tampon_box_full_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "tampon",
+        "count": 24,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_tampon_box_full",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_medium",
+        "contents-group": "dda_container_yard_tampon_box_full_contents"
+      }
+    ]
+  },
+  {
+    "id": "menstrual_pad",
+    "name": {
+      "str": "menstrual pad"
+    },
+    "type": "GENERIC",
+    "description": "An absorbent pad.",
+    "symbol": "=",
+    "color": "white",
+    "looks_like": "bandages",
+    "container": "bag_plastic",
+    "price": "25 cent",
+    "price_postapoc": "2 USD",
+    "//": "Makes a decent trade commodity but can be acquired in bulk.",
+    "weight": "10 g",
+    "volume": "50 ml",
+    "material": [
+      "plastic",
+      "cotton"
+    ],
+    "snippet_category": "dda_container_yard_menstrual_pad"
+  },
+  {
+    "type": "snippet",
+    "category": "dda_container_yard_menstrual_pad",
+    "text": [
+      {
+        "id": "menstrual_pad1",
+        "text": "An absorbent menstrual pad.  Unfortunately, not as useful as a bandage as you'd think.  The adhesive is on the side opposite of the absorbent part."
+      },
+      {
+        "id": "menstrual_pad2",
+        "text": "A small panty-liner only meant for the lightest flows."
+      },
+      {
+        "id": "menstrual_pad3",
+        "text": "A large menstrual pad meant for use overnight."
+      },
+      {
+        "id": "menstrual_pad4",
+        "text": "An absorbent menstrual pad with racing stripes, for the fastest flows.  Probably."
+      },
+      {
+        "id": "menstrual_pad5",
+        "text": "An absorbent menstrual pad that smells strongly of essential oils."
+      },
+      {
+        "id": "menstrual_pad6",
+        "text": "A pride-themed menstrual pad in trans flag coloring.  'Men can bleed too!' is proudly written on the packaging."
+      },
+      {
+        "id": "menstrual_pad7",
+        "text": "A cheap menstrual pad.  The cotton somehow looks like sandpaper and is almost see-through thin."
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_menstrual_pad_box_full_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "menstrual_pad",
+        "count": 24,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_menstrual_pad_box_full",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_medium",
+        "contents-group": "dda_container_yard_menstrual_pad_box_full_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_fertilizer_commercial_bag_canvas_60_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "fertilizer_commercial",
+        "charges": 60,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_fertilizer_commercial_bag_canvas_60",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bag_canvas",
+        "contents-group": "dda_container_yard_fertilizer_commercial_bag_canvas_60_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_protein_bar_wrapped_box_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "protein_bar_evac",
+        "count": 96,
+        "charges": 1,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_protein_bar_wrapped_box",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "box_huge",
+        "contents-group": "dda_container_yard_protein_bar_wrapped_box_contents"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_water_bottle_contents",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "water_clean",
+        "charges": 8,
+        "container-item": "null"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_twoliter_water_batch",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "bottle_twoliter",
+        "contents-group": "dda_container_yard_water_bottle_contents",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_tools_fishingrods_commercial",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "item": "fishing_rod_professional",
+        "prob": 2
+      },
+      {
+        "item": "fishing_rod_professional",
+        "prob": 4
+      },
+      {
+        "item": "fishing_rod_professional",
+        "prob": 3
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_tools_fishingrods_portable",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "item": "fishing_rod_professional",
+        "prob": 3
+      },
+      {
+        "item": "fishing_rod_professional",
+        "prob": 3
+      },
+      {
+        "item": "fishing_rod_basic",
+        "prob": 1
+      }
+    ]
+  },
+  {
+    "id": "dda_container_yard_wheels_no_wood",
+    "type": "item_group",
+    "items": [
+      [
+        "wheel_metal",
+        25
+      ],
+      [
+        "wheel_small",
+        35
+      ],
+      [
+        "wheel_motorbike",
+        25
+      ],
+      [
+        "wheel_bicycle",
+        40
+      ],
+      [
+        "wheel_wide_or",
+        25
+      ],
+      [
+        "wheel_bicycle_or",
+        25
+      ],
+      [
+        "wheel_motorbike_or",
+        25
+      ],
+      [
+        "wheel_slick",
+        25
+      ],
+      [
+        "wheel",
+        50
+      ]
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "dda_container_yard_money_bundles",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "money_bundle"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_pants_male",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_pants_male"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_pants_female",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_pants_female"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_shirt_male",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_shirt_male"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_shirt_female",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_shirt_female"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_gloves",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_gloves"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_coat",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_coat"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_vest",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_vest"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_shoes_male",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_shoes_male"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_shoes_female",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_shoes_female"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_masks",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_masks"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_hat",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_hat"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_extra",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_extra"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_bashing",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_bashing"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_cutting",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_cutting"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_stabbing",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_stabbing"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_unarmed",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_unarmed"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_pistol",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_pistol"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_shotgun",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_shotgun"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_rifle",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_rifle"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_smg",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_smg"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_launcher",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_launcher"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_throw",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_throw"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_archery",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_archery"
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "NC_BANDIT_LEADER_misc",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "group": "NC_BANDIT_misc"
+      }
+    ]
+  },
+  {
+    "type": "npc_class",
+    "id": "NC_BANDIT_LEADER",
+    "name": {
+      "str": "Survivor Leader"
+    },
+    "job_description": "I lead a group of survivors.",
+    "common": false,
+    "traits": [
+      {
+        "group": "BG_survival_story_CRIMINAL"
+      },
+      {
+        "group": "NPC_starting_traits"
+      },
+      {
+        "group": "Appearance_demographics"
+      }
+    ],
+    "bonus_str": {
+      "rng": [
+        3,
+        5
+      ]
+    },
+    "bonus_dex": {
+      "rng": [
+        1,
+        3
+      ]
+    },
+    "bonus_int": {
+      "rng": [
+        0,
+        2
+      ]
+    },
+    "bonus_per": {
+      "rng": [
+        0,
+        2
+      ]
+    },
+    "skills": [
+      {
+        "skill": "ALL",
+        "level": {
+          "sum": [
+            {
+              "dice": [
+                3,
+                2
+              ]
+            },
+            {
+              "constant": -4
+            }
+          ]
+        }
+      },
+      {
+        "skill": "dodge",
+        "bonus": {
+          "rng": [
+            2,
+            4
+          ]
+        }
+      },
+      {
+        "skill": "melee",
+        "bonus": {
+          "rng": [
+            3,
+            5
+          ]
+        }
+      },
+      {
+        "skill": "unarmed",
+        "bonus": {
+          "rng": [
+            2,
+            4
+          ]
+        }
+      },
+      {
+        "skill": "bashing",
+        "bonus": {
+          "rng": [
+            2,
+            6
+          ]
+        }
+      },
+      {
+        "skill": "stabbing",
+        "bonus": {
+          "rng": [
+            2,
+            6
+          ]
+        }
+      },
+      {
+        "skill": "cutting",
+        "bonus": {
+          "rng": [
+            2,
+            6
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "type": "npc",
+    "id": "hells_raiders_boss",
+    "//": "The boss of a local raider clan.",
+    "name_suffix": "Survivor",
+    "class": "NC_BANDIT_LEADER",
+    "attitude": 0,
+    "mission": 8,
+    "chat": "TALK_DONE",
+    "faction": "hells_raiders"
+  }
+]

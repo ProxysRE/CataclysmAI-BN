@@ -1,0 +1,245 @@
+{
+  "status": "cargo_and_raider_leader_adapted_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 188,
+    "overmap_terrain": 2,
+    "overmap_special": 2,
+    "terrain": 16,
+    "furniture": 7,
+    "item_group": 49,
+    "GENERIC": 2,
+    "snippet": 2,
+    "npc_class": 1,
+    "npc": 1
+  },
+  "quantity_groups": [
+    {
+      "source": "cig_box_cigarette_20",
+      "native_group": "dda_container_yard_cig_box_cigarette_20"
+    },
+    {
+      "source": "coke_bag_zipper_1_8",
+      "native_group": "dda_container_yard_coke_bag_zipper_1_8"
+    },
+    {
+      "source": "duct_tape_roll",
+      "native_group": "dda_container_yard_duct_tape_roll"
+    },
+    {
+      "source": "fertilizer_commercial_bag_canvas_60",
+      "native_group": "dda_container_yard_fertilizer_commercial_bag_canvas_60"
+    },
+    {
+      "source": "menstrual_pad_box_full",
+      "native_group": "dda_container_yard_menstrual_pad_box_full"
+    },
+    {
+      "source": "meth_bag_zipper_6",
+      "native_group": "dda_container_yard_meth_bag_zipper_6"
+    },
+    {
+      "source": "nail_box_10lb_full",
+      "native_group": "dda_container_yard_nail_box_10lb_full"
+    },
+    {
+      "source": "protein_bar_wrapped_box",
+      "native_group": "dda_container_yard_protein_bar_wrapped_box"
+    },
+    {
+      "source": "soap_packed",
+      "native_group": "dda_container_yard_soap_packed"
+    },
+    {
+      "source": "tampon_box_full",
+      "native_group": "dda_container_yard_tampon_box_full"
+    },
+    {
+      "source": "tools_fishingrods_commercial",
+      "native_group": "dda_container_yard_tools_fishingrods_commercial"
+    },
+    {
+      "source": "tools_fishingrods_portable",
+      "native_group": "dda_container_yard_tools_fishingrods_portable"
+    },
+    {
+      "source": "twoliter_water_batch",
+      "native_group": "dda_container_yard_twoliter_water_batch"
+    },
+    {
+      "source": "wheels_no_wood",
+      "native_group": "dda_container_yard_wheels_no_wood"
+    }
+  ],
+  "leader_equipment_groups": [
+    "NC_BANDIT_LEADER_pants_male",
+    "NC_BANDIT_LEADER_pants_female",
+    "NC_BANDIT_LEADER_shirt_male",
+    "NC_BANDIT_LEADER_shirt_female",
+    "NC_BANDIT_LEADER_gloves",
+    "NC_BANDIT_LEADER_coat",
+    "NC_BANDIT_LEADER_vest",
+    "NC_BANDIT_LEADER_shoes_male",
+    "NC_BANDIT_LEADER_shoes_female",
+    "NC_BANDIT_LEADER_masks",
+    "NC_BANDIT_LEADER_hat",
+    "NC_BANDIT_LEADER_extra",
+    "NC_BANDIT_LEADER_bashing",
+    "NC_BANDIT_LEADER_cutting",
+    "NC_BANDIT_LEADER_stabbing",
+    "NC_BANDIT_LEADER_unarmed",
+    "NC_BANDIT_LEADER_pistol",
+    "NC_BANDIT_LEADER_shotgun",
+    "NC_BANDIT_LEADER_rifle",
+    "NC_BANDIT_LEADER_smg",
+    "NC_BANDIT_LEADER_launcher",
+    "NC_BANDIT_LEADER_throw",
+    "NC_BANDIT_LEADER_archery",
+    "NC_BANDIT_LEADER_misc"
+  ],
+  "unsupported_leader_traits": [
+    "IGNORE_SOUND",
+    "NO_BASH",
+    "RETURN_TO_START_POS"
+  ],
+  "money_repeat": {
+    "source": [
+      200,
+      1000
+    ],
+    "bn": [
+      10,
+      50
+    ],
+    "chance": 95,
+    "max_loose_volume_ml": 12500
+  },
+  "reused_groups": {
+    "cigar_box_unopened": [
+      "cigar_box_opened",
+      "Reuse the already ported cigar box group; source sealed/full quantity is approximated by its existing contents."
+    ],
+    "magazines_akm": [
+      "display_ak47_mag",
+      "Stock BN AK magazine distribution and capacities."
+    ],
+    "new_phones": [
+      "phones",
+      "Stock BN phone models and battery charges; new-in-box state is approximated."
+    ],
+    "mundane_science": [
+      "tools_science",
+      "Stock BN laboratory equipment; source incidental chemicals/files are approximated."
+    ],
+    "dentist_supplies": [
+      "tools_medical",
+      "Stock BN medical instruments; use its broader portable medical selection."
+    ]
+  },
+  "slime_counterpart": "GROUP_BLOB",
+  "unresolved_typed_references": [
+    [
+      "item",
+      "12000_gasoline_generator"
+    ],
+    [
+      "item",
+      "ar_glasses_advanced"
+    ],
+    [
+      "item",
+      "ar_glasses_basic"
+    ],
+    [
+      "item",
+      "armchair"
+    ],
+    [
+      "item",
+      "barstool"
+    ],
+    [
+      "item",
+      "box_large_folded"
+    ],
+    [
+      "item",
+      "centrifuge"
+    ],
+    [
+      "item",
+      "extension_cable"
+    ],
+    [
+      "item",
+      "folded_inflatable_boat"
+    ],
+    [
+      "item",
+      "long_extension_cable"
+    ],
+    [
+      "item",
+      "portable_generator"
+    ],
+    [
+      "item",
+      "sextoy"
+    ],
+    [
+      "item_group",
+      "art_all"
+    ],
+    [
+      "item_group",
+      "boxed_762"
+    ],
+    [
+      "item_group",
+      "concrete_bag"
+    ],
+    [
+      "item_group",
+      "gift_shop"
+    ],
+    [
+      "item_group",
+      "glue_strong_professional_full"
+    ],
+    [
+      "item_group",
+      "gravelbag"
+    ],
+    [
+      "item_group",
+      "sunscreen_bottle"
+    ],
+    [
+      "item_group",
+      "toilet_paper_packed"
+    ]
+  ],
+  "unresolved_count": 20,
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "quantity_notes": [
+    "Source tobacco/drug/nail counts become explicit BN charges; no full-stack multiplication",
+    "Cigarette brands collapse to the stock BN cigarette; packed/telescopic rod choices reuse BN rods while retaining each selection weight",
+    "Five soap bars become 50 BN charges in a 3 L box; hygiene boxes keep 24 items in a 3 L box",
+    "Protein carton keeps all 96 rations in stock BN 40 L box; water batch keeps six 2 L bottles",
+    "Rare cash cargo keeps its branch weight and 95% cell chance; paper-count approximation of 20 bills per stock money bundle, 10..50 bundles rather than 200..1000 bundles. No denomination/value equivalence is claimed"
+  ],
+  "leader_notes": [
+    "Source identity, faction, attitude, patrol mission, chat endpoint, attributes and skill distributions retained",
+    "Existing BN bandit equipment groups are referenced; no copied item definitions",
+    "Three unsupported DDA-only AI traits omitted; BN patrol/hearing/bash behavior applies. No exact DDA AI parity claim"
+  ],
+  "remaining": [
+    "Resolve every listed dependency; do not drop a cargo outcome",
+    "At integration, split NPC/class definitions into data/json/npcs loading phase",
+    "Native schema loading, actual contents/container capacity and all cargo outcomes",
+    "Full site placement, vertical traversal, NPC population/ownership and manual play"
+  ],
+  "reference_scope": "Explicit map leaves, item-group leaves, NPC class/trait-group/skill references; not a full native schema/functional proof"
+}

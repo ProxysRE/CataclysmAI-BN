@@ -1,12 +1,18 @@
 {
   "checkpoint": {
-    "head": "1031b2950d973ca18dee72b5f66249c1676f5ee3",
-    "run_id": 39025566841,
+    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
+    "run_id": 39328860166,
     "status": "success",
-    "test_cases": 34,
-    "assertions": 2893
+    "test_cases": 73,
+    "assertions": 11030,
+    "mod_test_cases": 10,
+    "mod_assertions": 2224,
+    "installed_data_test_cases": 73,
+    "installed_data_assertions": 11030,
+    "installed_mod_test_cases": 10,
+    "installed_mod_assertions": 2224
   },
-  "native_patch_sha256": "af9c9a595591cc47a00baefbe200fe1494c7f8e7093836b937c109598d2a268b",
+  "native_patch_sha256": "ccc020778563a5735fd6d93aaea0b3756ba6d030efa87bd885573547939a7ce6",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -24,7 +30,11 @@
     "DDA random math and rotated location conditions",
     "Named Hub trust penalty with a speaker from another faction, and trust save/load",
     "Godco ACT_WAIT_NPC: actual 30-minute completion, speaker context, halfway save/reload and speed independence",
-    "Two USB quest items: existing BN item inheritance and ordinary inventory condition"
+    "Two USB quest items: existing BN item inheritance and ordinary inventory condition",
+    "Grey Moose trader/guard identities and seven NPCs across their floors",
+    "Complete small island lighthouse six-level generation, ladders, beacon and supply capacity",
+    "Complete eldercare site generation and all three specials in four rotations with optional mods",
+    "Installed portable data repeated both native suites successfully"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
@@ -32,13 +42,18 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Exact USB checkpoint and portable package. Later casing and demilled prop require subsequent validation.",
+  "note": "Exact native patch passed full source and installed suites on a379269; container-yard cargo/leader remains staged and is excluded from this native checkpoint. Manual campaign/release validation remains pending.",
   "portable_package": {
-    "run_id": 39025566841,
+    "run_id": 39328860166,
     "installed_tests": {
-      "cases": 34,
-      "assertions": 2893
+      "cases": 73,
+      "assertions": 11030
     },
-    "artifact_id": 12098864679
+    "installed_mod_tests": {
+      "cases": 10,
+      "assertions": 2224
+    },
+    "artifact_id": 12226743444,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444"
   }
 }

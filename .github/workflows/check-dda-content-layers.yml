@@ -54,6 +54,7 @@ jobs:
           python npc-content/check_small_lighthouse.py
           python npc-content/check_container_yards.py
           python npc-content/check_container_yard_adaptation.py
+          python npc-content/check_container_yard_cargo.py
           python npc-content/report_port_progress.py --check
           python npc-content/check_eldercare_fauna.py
           python npc-content/check_eldercare_loot.py

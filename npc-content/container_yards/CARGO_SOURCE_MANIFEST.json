@@ -1,0 +1,254 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "license": "CC-BY-SA-3.0; full source declarations and comments preserved",
+  "parts": [
+    "CARGO_SOURCES.part00",
+    "CARGO_SOURCES.part01",
+    "CARGO_SOURCES.part02",
+    "CARGO_SOURCES.part03",
+    "CARGO_SOURCES.part04",
+    "CARGO_SOURCES.part05"
+  ],
+  "bundle_sha256": "cfc22299b6fed2e5781b0fb2fb114bb614832f6ecec567a22f15cb2263cd3fe2",
+  "files": {
+    "bn/data/json/furniture_and_terrain/furniture-appliances.json": {
+      "sha256": "91d7d824a50551b5ffebfe8bd6a414afea376697a2277d45afd660276f29d518",
+      "blob_sha": "5ac1245f1d0070a9fdbb91290a6c6732d3540373"
+    },
+    "bn/data/json/furniture_and_terrain/furniture-storage.json": {
+      "sha256": "cc5d50a06444b22a6ec1a1c75db7a53d21892d34151181823be2c1ec9954cf98",
+      "blob_sha": "4843c52c563cafc1d0f9f2f13238bb2354510cd9"
+    },
+    "bn/data/json/furniture_and_terrain/terrain-floors-indoor.json": {
+      "sha256": "22d7f9bd0c44ddb5b349d5e7747f942b68de019457ed780682ca65f1cf7179a9",
+      "blob_sha": "08f29435c890f23ef7e5cc44fcd40c54622351fe"
+    },
+    "bn/data/json/furniture_and_terrain/terrain-manufactured.json": {
+      "sha256": "94354a471c01867df2b22db7e0f03434a1151bc579342d02b1484f79f46f3e31",
+      "blob_sha": "adccf37b77d8d9ce36f1bd1cb610f895561ffa9b"
+    },
+    "bn/data/json/itemgroups/SUS/domestic.json": {
+      "sha256": "2213f48878533280cfcc629d22df2408c04ea56d82b15a22f5c1f459518ce55f",
+      "blob_sha": "f8be72013546f68ca3da7fff9f4f90a847f661c0"
+    },
+    "bn/data/json/itemgroups/Weapons_Mods_Ammo/ammo.json": {
+      "sha256": "0fbb8f9ae5dee64813439e92d3ddddcb0702fc761d753704257a8e3789af693c",
+      "blob_sha": "4e72e312a55449bec76b54d028576e905b8eca0f"
+    },
+    "bn/data/json/itemgroups/Weapons_Mods_Ammo/nested_magazines.json": {
+      "sha256": "297f33a73eed96e6681b031fefa7db3267c9b73fe3acdc1ec24064aa60978743",
+      "blob_sha": "83c9b8aee30ace4760ac8d9b6eb7c1108f697642"
+    },
+    "bn/data/json/itemgroups/activities_hobbies.json": {
+      "sha256": "ada99b1da8e9eebd7352cee5282190c7ef563efcdf57941c1365e0602649840c",
+      "blob_sha": "3a9f5f3ccfe7a65d82d1e5e434ca51d5133edb3c"
+    },
+    "bn/data/json/itemgroups/art_antiques_crafts.json": {
+      "sha256": "e77d504637fe12b7b84d8431f022103f7028cbda3639c25677563298e43ef086",
+      "blob_sha": "842a92575cdb69efbcc2c2debaf70c858c1285fe"
+    },
+    "bn/data/json/itemgroups/collections_domestic.json": {
+      "sha256": "b7b82df326c480e99955e470813fbfbc2ba75d2842dbcd5c979c9fff7492567c",
+      "blob_sha": "1f0b4d778eb4c1260fac2842078660d9bdd29fcc"
+    },
+    "bn/data/json/itemgroups/electronics.json": {
+      "sha256": "a91832f4cfcd1570b147e20bf69b32873f2987c330fa98d1ef560bf4955ee8d3",
+      "blob_sha": "0825909d92fcf009e214eef2fa72095768f459ff"
+    },
+    "bn/data/json/itemgroups/tools.json": {
+      "sha256": "0fd0e9258ed4b03a59f537b59618a90b84029ecf2422f0719a8646f7f02ce836",
+      "blob_sha": "d75c6af803c5d1c76078cde9befe45d94f38de0c"
+    },
+    "bn/data/json/itemgroups/trash_and_debris.json": {
+      "sha256": "dfd78aef76ec99524032538a19025191f536d6da3ae75870d638f74986507377",
+      "blob_sha": "f92467a3bd0287328324637fc0496d647b36e055"
+    },
+    "bn/data/json/itemgroups/vehicles_fuel_related.json": {
+      "sha256": "9fac89ee5a88bf2e8aa22c6dd9678cdc7a030651578fb262a025d541d8f818a8",
+      "blob_sha": "cfb78c7f5b786ec8f22ff4a48296d8fdb6b15c77"
+    },
+    "bn/data/json/items/ammo/nail.json": {
+      "sha256": "f738c65bfc1438fdbd06f86dd6c3ec01e7a930a01ae2afefa62738971a035d06",
+      "blob_sha": "7d6d63b02a9578435ec81b6ab6e45579482351f6"
+    },
+    "bn/data/json/items/ammo.json": {
+      "sha256": "cd47ad17eddc749730a7ea2d9243dec52f120a025cbaa409f3ffa8acd2944a03",
+      "blob_sha": "27342607097b66fe3860ce80ea2c4a7354bec51b"
+    },
+    "bn/data/json/items/armor/helmets.json": {
+      "sha256": "17b54ece7e8ac3c5151e67b6917dbb473de55ece3c90cdf2141a71eff4858bde",
+      "blob_sha": "546089e5d434d0f3bea835d4ad4d8f93b9b27ebe"
+    },
+    "bn/data/json/items/battery.json": {
+      "sha256": "9c03491f51f8bead4753388a7b54cb5e30843ddd5583c12e5ea5dca3fe462ebf",
+      "blob_sha": "d6b1cde2cca550b4615394c275d75cda05a370e1"
+    },
+    "bn/data/json/items/chemicals_and_resources.json": {
+      "sha256": "c2b8b4b735f4fd2e49b4b87ac58e7b31842bc2ee1e250d71ed39f3ea611af133",
+      "blob_sha": "df3b03224dd7bf3084ed20c97e5f0aa447b2bb8e"
+    },
+    "bn/data/json/items/comestibles/med.json": {
+      "sha256": "b5308c4ebf75d6efaa7fe0ed195a3f64c5f87f073009f5079f96c7ccda5a8aaa",
+      "blob_sha": "4efaadcaa70e57948b5ddfeb9024ca161b9c3693"
+    },
+    "bn/data/json/items/comestibles/protein.json": {
+      "sha256": "e782bd1e200915e13c8c3fb6d48142dde0d012fe7737ace8d4c7d41e1d0fbbc4",
+      "blob_sha": "f7c799ed8d6e37198da3dc0e0891a9636fed0d9a"
+    },
+    "bn/data/json/items/containers.json": {
+      "sha256": "183a010a4e71e13939f5f2c7a4053c0f225188a81d13cc509a956e4f873003e8",
+      "blob_sha": "eb900c49461a23ad456191354ad85583b9f3a653"
+    },
+    "bn/data/json/items/generic.json": {
+      "sha256": "65119930ff18e3c99bcfaa549273a3a229c3aff598e1b82ab9c1dbe842d80fb8",
+      "blob_sha": "8297315be8b72997a0a6b24e4a5ea8918470f90b"
+    },
+    "bn/data/json/items/tool/toiletries.json": {
+      "sha256": "ff25fd7120af8a6b4da96847de20a84ece9b90c2d952d53e15159bd08f81869a",
+      "blob_sha": "ce7244ed91ac2406eb98ba9f322e068af71a61b9"
+    },
+    "bn/data/json/items/tool/workshop.json": {
+      "sha256": "761a31b90c04965c9a22586e1d6b3ca5c996a528706e2398d20abca47c72653a",
+      "blob_sha": "c94dcd819d5f58ea3ad4eac822e08ab75426de1a"
+    },
+    "bn/data/json/npcs/NC_BANDIT.json": {
+      "sha256": "5daffb4b8d3ec7873a15d2e48e44d570ba51b4287a0100375f57cef6791a9d40",
+      "blob_sha": "1b26c2e583b6a5910229723e8577c36522f29e52"
+    },
+    "bn/data/json/npcs/classes.json": {
+      "sha256": "66b0cc58a09a37b5f2d17a14f15bbad4521f1114300308e4d72502e5228b8a33",
+      "blob_sha": "43ef2e1b7dd87d66c6ff6475fbaaa4ec000203ba"
+    },
+    "dda/data/json/furniture_and_terrain/furniture-pallet.json": {
+      "sha256": "a498eae587d2c700049e5d74cf7361feee6961b6f232a7622ed14840400e5c56",
+      "blob_sha": "5dc478537d9f5af7138a8bc8dc6e9b1fea3b58d0"
+    },
+    "dda/data/json/itemgroups/Clothing_Gear/clothing.json": {
+      "sha256": "89adf459e7261066190e84c9c08a257db7d3debc0045b5363a0a6c0a21cf3169",
+      "blob_sha": "9c2cd2e253832322d274d0b3a55df3a227c0f5ae"
+    },
+    "dda/data/json/itemgroups/Clothing_Gear/gear_civilian.json": {
+      "sha256": "2f28172714d53773b5a5dd6cb70315af6a7c98de0b7cca7590d39c6fa20e7787",
+      "blob_sha": "7ddc527d91d2e6b887d51f66927310a48ed1125d"
+    },
+    "dda/data/json/itemgroups/Clothing_Gear/wallets.json": {
+      "sha256": "68bccc0bb16a1c45cd263fae967a5ee628fbf7912ba9c93471318836ac2ff20c",
+      "blob_sha": "5d956672c610f1d0e262dcadde31a8caa2b4215d"
+    },
+    "dda/data/json/itemgroups/Drugs_Tobacco_Alcohol/drugs.json": {
+      "sha256": "7e3948ff4b128b2a11b0dc0a0c5bb7549967b15139ded7ba63e482b56429169e",
+      "blob_sha": "0430b153440ad57b6b036275f82b581e585c46a7"
+    },
+    "dda/data/json/itemgroups/Drugs_Tobacco_Alcohol/illicit.json": {
+      "sha256": "0b033e468b096628c0117f977e714320d382e839cb8f9ccc93894a63eb8db31a",
+      "blob_sha": "54e592b3960088dde8dbf7ee12e9c59f50b7c8e6"
+    },
+    "dda/data/json/itemgroups/Drugs_Tobacco_Alcohol/supplies.json": {
+      "sha256": "89313e22baf9509b7aaae752ac5d4c252fae28df1a00a8c306b6b287f8b64128",
+      "blob_sha": "fdb05f9e736593979970fd4f58aaa78eb7492950"
+    },
+    "dda/data/json/itemgroups/Drugs_Tobacco_Alcohol/tobacco.json": {
+      "sha256": "17022a3a4f05bd2b2859f816b19f1aeeae5c9d0697c5802221d15361a733c95c",
+      "blob_sha": "e705b8f67d0f957b65deb0047a10789cca10bf97"
+    },
+    "dda/data/json/itemgroups/Food/snacks.json": {
+      "sha256": "55e18722a106e33ccdd2d61324ad64792bc051e70b59a7ddc96d70dd7add7e63",
+      "blob_sha": "555cbb7fa3e33f2e5b67b4bae804404ffaa46428"
+    },
+    "dda/data/json/itemgroups/Locations_MapExtras/Arsonist_stock.json": {
+      "sha256": "06edbddf1a7cad65158a52b8dd32edc3ffdfb2a65b1f4d5d8ef1798a7468ffa1",
+      "blob_sha": "dadcca36bfb9c33b32059010018ff5e6b14aa116"
+    },
+    "dda/data/json/itemgroups/Locations_MapExtras/airdrop.json": {
+      "sha256": "d166bdccc129db1d4c178353920c5e49bd923b30de97b8f95931f82b4dc43888",
+      "blob_sha": "fc3c60d8c961d83f3e39930f1a8ce885a4154d06"
+    },
+    "dda/data/json/itemgroups/Locations_MapExtras/locations_commercial.json": {
+      "sha256": "9aae0dcca6a3df7bb1d9212365e11dd6a5d6c7c9335a9abea6f4185c32bdefb7",
+      "blob_sha": "7527162f15eeb432458d10a506fe5fcbf6fa5d01"
+    },
+    "dda/data/json/itemgroups/SUS/fridges.json": {
+      "sha256": "33f20aee3996e5109dbf799434b8bd7e33df32a1c138156c221973436a49be1a",
+      "blob_sha": "9f5fd84ca31ff3fb26e790701a04889bbbe33b64"
+    },
+    "dda/data/json/itemgroups/SUS/trash.json": {
+      "sha256": "8a78ad3b1236ef1ec7db75ee3597fe7f27f12b54019a679f2ff353a7dd8cacff",
+      "blob_sha": "35104880bbab3c2c8c3619f75d25b050fb9d031f"
+    },
+    "dda/data/json/itemgroups/Weapons_Mods_Ammo/ammo/ammo.json": {
+      "sha256": "7a2acba788d8d8baf9c3258103b174cdd410859db92a11159f70a21aa55191e6",
+      "blob_sha": "aa265757b195f2c93bd33669d2ff09d9e24041ef"
+    },
+    "dda/data/json/itemgroups/activities_hobbies.json": {
+      "sha256": "4ed6be69f29a7d9e63bc547ee3009c26958ffbf9f0ad672d4b64791a53141ed3",
+      "blob_sha": "ccd7c9a3c93fa3682c2b379170420f61f30a2f32"
+    },
+    "dda/data/json/itemgroups/art_antiques_crafts.json": {
+      "sha256": "930550c4a335c32bcb70cd970cef449dd6c74bb50dce32e49a34fbf542fcd10f",
+      "blob_sha": "3112ae197c2b5f79bb4aba8673352fa0c050255c"
+    },
+    "dda/data/json/itemgroups/collections_domestic.json": {
+      "sha256": "914e6110de0c2668dbc84bff65bb02a89486493e9bf1b2f304df2fe600105421",
+      "blob_sha": "fbebb33d8af8a76275dfae43ae2b162e4089f004"
+    },
+    "dda/data/json/itemgroups/collections_trades.json": {
+      "sha256": "ee8bcd816fd2b63973a3cda006b8a30e0be04d83ddd6117d8da2cd03ee97c759",
+      "blob_sha": "aa7066b854c68e344d5de6cf357f815bca1649de"
+    },
+    "dda/data/json/itemgroups/electronics.json": {
+      "sha256": "cbdf26998a7b2323c97a8c4a680f4bf347e639c26b06a9ece9bf3d9e2e70f11a",
+      "blob_sha": "fbbe23dd3fa6ef4aa43b6d097e4ff6895b263315"
+    },
+    "dda/data/json/itemgroups/misc.json": {
+      "sha256": "4b6ebe4aeb2ed8b3b15b5528aa19fbe63f3d2c5461faa400c2bc7f4900eb9573",
+      "blob_sha": "1a49b30be88a470a3069fba20b3505c862aaf7be"
+    },
+    "dda/data/json/itemgroups/science_and_tech.json": {
+      "sha256": "d705ef7f97a37c5b8a5a5967985d4e59abb4668d1dcec1b708eb2c1924a9d15d",
+      "blob_sha": "6e8dafd882513be14b43570f1dedb9e653339229"
+    },
+    "dda/data/json/itemgroups/supplies.json": {
+      "sha256": "ddc76dd83c1b92cb87597ccb2d52327e776ceff9919fdeccd582d193638f9fca",
+      "blob_sha": "62b5a4d9e9e9911875f50efd76ba549560092e23"
+    },
+    "dda/data/json/itemgroups/tools.json": {
+      "sha256": "3f7bd18bbcf5a51906b62320931e5347abb3fcf15687d5d69f683f6666010e5e",
+      "blob_sha": "74ab2091bf76011a73a462ffe548d4bcbae0cb73"
+    },
+    "dda/data/json/items/armor/helmets.json": {
+      "sha256": "cc72d114644601e390e7625c73794b7cd948fd910b0b48750d16ad5ea19c3a35",
+      "blob_sha": "945e9361a4b0af2c3edaf9b94afb4e7f0d00d1e7"
+    },
+    "dda/data/json/items/generic/bathroom_house.json": {
+      "sha256": "060698b912c024626bc2fd45daf0e218f16867a510be388626180649e717b9d8",
+      "blob_sha": "9a4475e82a8001c68c0aaf015055ac0867994eb2"
+    },
+    "dda/data/json/items/resources/stone.json": {
+      "sha256": "3af078089547102eaa08d9856a05eb818f399664a5f2cbf122b827ebe9f598ea",
+      "blob_sha": "8ac62ae78a854a41009409021938ebd0187a54b9"
+    },
+    "dda/data/json/items/tool/toiletries.json": {
+      "sha256": "b2f460f7a01acabd0e0efdd50ef7455871f1909334ea685a2c47f5dbcb666804",
+      "blob_sha": "400f7b6886fb89a06379291529498b0b00c7ddde"
+    },
+    "dda/data/json/items/tool/workshop.json": {
+      "sha256": "f31e5ffb6464250b611c3532d11ec62a11af20e7420a001344102018056af96c",
+      "blob_sha": "e1636dc500d33599eca19db84518a1bf39c38244"
+    },
+    "dda/data/json/mapgen/nested/aux_nested.json": {
+      "sha256": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6",
+      "blob_sha": "2edb8c9ff3b5702699b961852767616b1c9de0c4"
+    },
+    "dda/data/json/npcs/hells_raiders/classes.json": {
+      "sha256": "8d2f2bda1dac6473f4222ba2d1d1765acbed5a90055069dea24f68997bdf37f7",
+      "blob_sha": "59455c6b73df94dd210ef0006bdc3b82fa0e5bea"
+    },
+    "dda/data/json/npcs/hells_raiders/npc.json": {
+      "sha256": "b8cbac8343f27f87ede739d98ab4663e4ade5c891f15e7cb0656a7c2f14b25b1",
+      "blob_sha": "329720050845770dee4fe78674bb9547b6dd7c31"
+    }
+  }
+}

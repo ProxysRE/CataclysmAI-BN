@@ -100,3 +100,9 @@ Both normal and bandit variants are now preserved and palette-expanded as whole 
 Both yards now have an adapted infrastructure layer: 23 terrain/furniture declarations, 18 stock counterparts, 33 weighted appliance wrappers and 119 explicit one-cell cargo palettes. Source geometry, 121 original nested identities, cargo selection scope and outcome weights remain intact. Audit now includes glyph NPCs/ownership/flags and correct directional OMT normalization: 82 raw source blockers, 42 adapted explicit blockers remain. Hell's Raiders boss, special cargo, currency and slime remain visible obligations. Not embedded; not runtime validated. See container_yards/ADAPTATION_REPORT.json.
 
 Windows run 39305772099 compiled and passed 73 core cases / 11,030 assertions (including lighthouse capacity) and 10 optional-mod cases / 2,224 assertions, but optional initialization logged unsupported flags in four solar chunks. Those now use native BN glyph-based removal on occupied cells, with broader clearing documented in palette_compat/CLEARING_REVIEW.json. Source/installed rerun pending; installed tests and packaging did not run.
+
+## Latest cargo slice and native checkpoint, 2026-10-20 Moscow
+
+Container-yard cargo candidate now includes 14 adapted quantity/selection groups, two missing hygiene items with snippets, the source raider leader/class and 24 stock bandit equipment references. Five groups and slime reuse existing providers; rare currency cargo maps to 10..50 money bundles with original rarity/chance. Twenty explicit dependencies remain; native loading, item/default-package capacities and all-outcome generation are not verified. This layer is not installed.
+
+The unchanged native patch now has a fully clean checkpoint: a379269 / run 39328860166, source and installed core 73/11030, optional mods 10/2224, portable artifact 12226743444. Earlier lighthouse capacity and solar initialization failures are resolved.

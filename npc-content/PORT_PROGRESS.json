@@ -1,7 +1,7 @@
 {
   "scope": "Distinct NPC template IDs in already selected community packages, including generic guards; not all DDA characters or the full agreed future scope",
   "all_dda_denominator_known": false,
-  "started_template_count": 82,
+  "started_template_count": 83,
   "started_template_ids": [
     "BEM_anchor_seller",
     "BEM_chatting_veteran",
@@ -63,6 +63,7 @@
     "godco_zachary_montes",
     "great_library_guard",
     "great_library_librarian",
+    "hells_raiders_boss",
     "hub_security",
     "hub_security_head",
     "jay_ruckers",
@@ -99,7 +100,8 @@
   "other_selected_groups": {
     "lighthouse": 4,
     "island_prison": 3,
-    "isolated_road": 2
+    "isolated_road": 2,
+    "container_yard_raider_leader": 1
   },
   "already_declared_in_bn_core": [
     "NPC_cabin_chemist",
@@ -121,32 +123,31 @@
     "NPC_survivor_lighthouse"
   ],
   "native_embedded_count": 6,
-  "native_embedded_template_coverage_percent": 7.3,
+  "native_embedded_template_coverage_percent": 7.2,
   "verified_template_ids": [
+    "MILITIA_GUARD1",
+    "MILITIA_MERCHANT",
     "NPC_lighthouse_girl",
     "NPC_lighthouse_man",
     "NPC_lighthouse_woman",
     "NPC_survivor_lighthouse"
   ],
-  "verified_template_load_count": 4,
-  "verified_template_load_coverage_percent": 4.9,
-  "embedded_awaiting_native_verification": [
-    "MILITIA_GUARD1",
-    "MILITIA_MERCHANT"
-  ],
+  "verified_template_load_count": 6,
+  "verified_template_load_coverage_percent": 7.2,
+  "embedded_awaiting_native_verification": [],
   "verified_checkpoint": {
-    "head": "e52486f7a9b5108353ef3381ba55bf72938001ef",
-    "run": 39166343756,
-    "source_core_cases": 67,
-    "source_core_assertions": 10627,
-    "source_mod_cases": 5,
-    "source_mod_assertions": 766,
-    "installed_core_cases": 67,
-    "installed_core_assertions": 10627,
-    "installed_mod_cases": 5,
-    "installed_mod_assertions": 766,
+    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
+    "run": 39328860166,
+    "source_core_cases": 73,
+    "source_core_assertions": 11030,
+    "source_mod_cases": 10,
+    "source_mod_assertions": 2224,
+    "installed_core_cases": 73,
+    "installed_core_assertions": 11030,
+    "installed_mod_cases": 10,
+    "installed_mod_assertions": 2224,
     "result": "success",
-    "artifact": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39166343756/artifacts/12152373477"
+    "artifact": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444"
   },
   "full_quest_chain_completion": "Not established by template loading or shared-engine tests; manual/full lifecycle validation is still required",
   "excluded_from_npc_counts": "Six existing Civilians monster types with dialogue; source archives; dialogue topics; npc_class definitions; multiple guard spawns of one template",

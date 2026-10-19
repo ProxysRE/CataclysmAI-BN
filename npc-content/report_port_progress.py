@@ -8,11 +8,11 @@ import json
 from pathlib import Path
 from export_bn_ids import read_cache
 ROOT=Path(__file__).resolve().parent
-VERIFIED={'NPC_lighthouse_girl','NPC_lighthouse_man','NPC_lighthouse_woman','NPC_survivor_lighthouse'}
-CHECKPOINT={'head':'e52486f7a9b5108353ef3381ba55bf72938001ef','run':39166343756,
-            'source_core_cases':67,'source_core_assertions':10627,'source_mod_cases':5,'source_mod_assertions':766,
-            'installed_core_cases':67,'installed_core_assertions':10627,'installed_mod_cases':5,'installed_mod_assertions':766,
-            'result':'success','artifact':'https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39166343756/artifacts/12152373477'}
+VERIFIED={'NPC_lighthouse_girl','NPC_lighthouse_man','NPC_lighthouse_woman','NPC_survivor_lighthouse','MILITIA_MERCHANT','MILITIA_GUARD1'}
+CHECKPOINT={'head':'a379269eee36b2545909d9418d18c95ee0af3052','run':39328860166,
+            'source_core_cases':73,'source_core_assertions':11030,'source_mod_cases':10,'source_mod_assertions':2224,
+            'installed_core_cases':73,'installed_core_assertions':11030,'installed_mod_cases':10,'installed_mod_assertions':2224,
+            'result':'success','artifact':'https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444'}
 
 
 def npc_ids(entries):
@@ -53,6 +53,10 @@ def source_templates():
     assert hashlib.sha256(raw).hexdigest()==manifest['source_payload_sha256']
     for entries in json.loads(raw).values():
         result |= npc_ids(entries)
+    # Count only the explicitly selected boss from its authenticated source,
+    # not every other raider archived alongside it or a generated candidate.
+    from prepare_container_yard_cargo import sources, definition
+    result |= npc_ids([definition(sources(),'dda','hells_raiders_boss')])
     return result
 
 
@@ -74,11 +78,11 @@ def report():
     selected=source_templates()
     active=embedded()
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
-    assert len(selected)==82 and sum(groups.values())==73
+    assert len(selected)==83 and sum(groups.values())==73
     assert VERIFIED <= active <= selected
     return {'scope':'Distinct NPC template IDs in already selected community packages, including generic guards; not all DDA characters or the full agreed future scope',
             'all_dda_denominator_known':False,'started_template_count':len(selected),'started_template_ids':sorted(selected),
-            'bulk_staged_groups':groups,'other_selected_groups':{'lighthouse':4,'island_prison':3,'isolated_road':2},
+            'bulk_staged_groups':groups,'other_selected_groups':{'lighthouse':4,'island_prison':3,'isolated_road':2,'container_yard_raider_leader':1},
             'already_declared_in_bn_core':sorted(n for n in selected if ('npc',n) in core),
             'native_embedded_ids':sorted(active),'native_embedded_count':len(active),'native_embedded_template_coverage_percent':round(100*len(active)/len(selected),1),
             'verified_template_ids':sorted(VERIFIED),'verified_template_load_count':len(VERIFIED),'verified_template_load_coverage_percent':round(100*len(VERIFIED)/len(selected),1),
