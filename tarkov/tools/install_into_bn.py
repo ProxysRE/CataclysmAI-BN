@@ -1,4 +1,4 @@
-"""Install the mod and optional runtime test overlay into a pinned BN checkout."""
+"""Install the engine fix, mod and optional tests into a pinned BN checkout."""
 import argparse
 import shutil
 import subprocess
@@ -15,6 +15,9 @@ def install(bn: Path, tests: bool) -> None:
     dest = bn / "data/mods/trkv_raid_core"
     if dest.exists():
         raise SystemExit(f"Destination already exists: {dest}; refusing to overwrite it.")
+    patch = ROOT / "patches/0001-restore-bounds-to-target-dimension.patch"
+    subprocess.run(["git", "-C", str(bn), "apply", "--check", str(patch)], check=True)
+    subprocess.run(["git", "-C", str(bn), "apply", str(patch)], check=True)
     shutil.copytree(ROOT / "mods/trkv_raid_core", dest)
     if tests:
         harness = bn / "tests/catalua_test.cpp"
@@ -25,7 +28,7 @@ def install(bn: Path, tests: bool) -> None:
                            + "\n" + (ROOT / "tests/bn_cold_harness.cpp.inc").read_text())
         shutil.copyfile(ROOT / "tests/bn_integration.lua", bn / "tests/lua/trkv_integration_test.lua")
 
-        # Preserve only explicitly requested test worlds; production game is untouched.
+        # Preserve only explicitly requested test worlds in the test driver.
         driver = bn / "tests/test_main.cpp"
         source = driver.read_text()
         replacements = [

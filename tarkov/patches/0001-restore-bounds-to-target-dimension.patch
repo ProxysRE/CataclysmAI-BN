@@ -1,0 +1,14 @@
+diff --git a/src/savegame.cpp b/src/savegame.cpp
+--- a/src/savegame.cpp
++++ b/src/savegame.cpp
+@@ -339,7 +339,9 @@
+         // boundary submaps for out-of-bounds areas
+         if( data.has_object( "pocket_info" ) ) {
+             pocket_dimension_data pocket_info;
+             data.read( "pocket_info", pocket_info );
+-            m.get_mapbuffer().set_pocket_info( pocket_info );
++            // m is still bound to the previous dimension until load_map below.
++            // Restore bounds to the destination buffer before it loads submaps.
++            MAPBUFFER_REGISTRY.get( current_dimension_id_ ).set_pocket_info( pocket_info );
+             get_overmapbuffer( current_dimension_id_ ).set_pocket_info( pocket_info );
+         }

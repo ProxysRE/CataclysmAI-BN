@@ -54,11 +54,11 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
     std::fprintf(stderr, "Tarkov cold: copying closed fixture\n");
     std::filesystem::copy(source, destination, std::filesystem::copy_options::recursive);
     std::fprintf(stderr, "Tarkov cold: fixture copied\n");
+    clear_all_state();
     const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
     disable_mapgen = false;
     // test_main initialized a scratch world. Detach it before init() replaces
     // WORLDINFO entries, or options_manager keeps a dangling WORLD_OPTIONS pointer.
-    clear_all_state();
     world_generator->set_active_world(nullptr);
     std::fprintf(stderr, "Tarkov cold: loading world from menu state\n");
     REQUIRE(g->load(std::string("TRKV_COLD_FIXTURE")));
