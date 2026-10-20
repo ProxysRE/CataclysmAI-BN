@@ -93,10 +93,25 @@ elseif test_data.stage == "control_loaded" then
   assert(player:wield(fixture("rifle")))
   assert(player:wear(fixture("nested_container"), false))
   check_equipped()
+elseif test_data.stage == "failed_entry" then
+  assert(not raid.start(state, api, 1800))
+  assert(api.at_home() and state.phase == "entering" and state.sequence == 1)
+  assert(state.wins == 0 and state.losses == 0 and state.outcome == "none")
+  check_equipped()
+  -- Time spent waiting at home must not turn a failed entry into a defeat.
+  state.deadline = api.now() - 1
+  assert(not raid.recover(state, api))
+  assert(api.at_home() and state.phase == "entering" and state.losses == 0)
+elseif test_data.stage == "entry_loaded" then
+  assert(api.at_home() and state.phase == "entering" and state.sequence == 1)
+  assert(state.deadline < api.now() and state.entry_duration == 1800)
+  assert(state.wins == 0 and state.losses == 0 and state.settled == 0)
+  check_equipped()
 elseif test_data.stage == "enter" then
   assert(api.return_home())
   assert(api.at_home())
   assert(raid.start(state, api, 1800))
+  assert(state.sequence == 1 and state.deadline == api.now() + 1800)
   assert(api.at_raid())
   check_boundary()
   check_equipped()

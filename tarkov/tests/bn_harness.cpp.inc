@@ -80,6 +80,48 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     verify_fixtures(*control_rifle, *control_pack);
     const auto rifle_before = snapshot(*control_rifle);
     const auto pack_before = snapshot(*control_pack);
+
+    // Fail the first entry's world save BEFORE BN creates the target dimension.
+    // Keep this database guard alive for the later independent return-failure test.
+    auto* const active_world = g->get_active_world();
+    REQUIRE(active_world != nullptr);
+    auto* db = static_cast<sqlite3*>(nullptr);
+    const auto restore_writes = on_out_of_scope([&]() {
+        if (db) {
+            CHECK(sqlite3_exec(db, "DROP TRIGGER IF EXISTS trkv_fail_entry", nullptr,
+                              nullptr, nullptr) == SQLITE_OK);
+            CHECK(sqlite3_exec(db, "DROP TRIGGER IF EXISTS trkv_fail_return", nullptr,
+                              nullptr, nullptr) == SQLITE_OK);
+            sqlite3_close(db);
+        }
+        active_world->rollback_save_tx();
+    });
+    const auto map_db_path = active_world->info->folder_path() + "/map.sqlite3";
+    REQUIRE(sqlite3_open(map_db_path.c_str(), &db) == SQLITE_OK);
+    REQUIRE(sqlite3_exec(db,
+                        "CREATE TRIGGER trkv_fail_entry BEFORE INSERT ON files "
+                        "BEGIN SELECT RAISE(ABORT, 'forced Tarkov entry failure'); END;",
+                        nullptr, nullptr, nullptr) == SQLITE_OK);
+    test_data["stage"] = "failed_entry";
+    const auto entry_errors = capture_debug_errors_during([&]() {
+        run_lua_test_script(lua, "trkv_integration_test.lua");
+    });
+    CHECK_THAT(entry_errors, Catch::Contains("forced Tarkov entry failure"));
+    CHECK_FALSE(active_world->is_save_tx_active());
+    REQUIRE(sqlite3_exec(db, "DROP TRIGGER trkv_fail_entry", nullptr,
+                        nullptr, nullptr) == SQLITE_OK);
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    test_data["stage"] = "entry_loaded";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
+    const auto* waiting_rifle = find_fixture("rifle");
+    const auto* waiting_pack = find_fixture("nested_container");
+    REQUIRE(waiting_rifle != nullptr);
+    REQUIRE(waiting_pack != nullptr);
+    CHECK(snapshot(*waiting_rifle) == rifle_before);
+    CHECK(snapshot(*waiting_pack) == pack_before);
+
     test_data["stage"] = "enter";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     REQUIRE(g->save(false));
@@ -133,19 +175,6 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     // The same SQLite trigger technique is used by BN's dimension API tests.
     test_data["stage"] = "prepare_write_failure";
     run_lua_test_script(lua, "trkv_integration_test.lua");
-    auto* const active_world = g->get_active_world();
-    REQUIRE(active_world != nullptr);
-    auto* db = static_cast<sqlite3*>(nullptr);
-    const auto restore_writes = on_out_of_scope([&]() {
-        if (db) {
-            CHECK(sqlite3_exec(db, "DROP TRIGGER IF EXISTS trkv_fail_return", nullptr,
-                              nullptr, nullptr) == SQLITE_OK);
-            sqlite3_close(db);
-        }
-        active_world->rollback_save_tx();
-    });
-    const auto map_db_path = active_world->info->folder_path() + "/map.sqlite3";
-    REQUIRE(sqlite3_open(map_db_path.c_str(), &db) == SQLITE_OK);
     REQUIRE(sqlite3_exec(db,
                         "CREATE TRIGGER trkv_fail_return BEFORE INSERT ON files "
                         "BEGIN SELECT RAISE(ABORT, 'forced Tarkov return failure'); END;",

@@ -87,3 +87,42 @@ assert(cleanup_checkpoint.phase == "home" and cleanup_checkpoint.wins == 1)
 assert(tick())
 assert(cleanup_checkpoint.wins == 1)
 print("PASS repeated load hooks settle cleanup once after loading")
+
+local pending = {}
+raid.initialize(pending)
+pending.phase, pending.sequence, pending.deadline, pending.entry_duration = "entering", 1, 1, 90
+root.raid, where, clock = pending, "home", 5000
+local entries = 0
+api.enter = function()
+  assert(not loading)
+  entries = entries + 1
+  if entries == 1 then return false end
+  where = "raid"
+  return true
+end
+api.cleanup = function() error("Pending entry must not reset a possibly absent dimension") end
+loading = true
+mod.loaded()
+mod.loaded()
+loading = false
+assert(tick())
+assert(entries == 0 and pending.phase == "entering" and where == "home")
+assert(pending.wins == 0 and pending.losses == 0 and penalties == 3)
+print("PASS loading a pending entry does not retry travel or apply a timeout")
+
+local answer, title = 2, nil
+UiList = { new = function() return {
+  title = function() end,
+  add = function(_, id, text) if id == 1 then title = text end end,
+  query = function() return answer end,
+} end }
+mod.start() -- closing the menu does not retry or discard the attempt
+assert(entries == 0 and pending.sequence == 1 and pending.phase == "entering")
+assert(title == "Retry pending raid entry")
+answer = 1
+mod.start() -- first explicit retry still fails
+assert(entries == 1 and pending.phase == "entering" and pending.sequence == 1)
+mod.start() -- second succeeds, with the originally requested 90 seconds
+assert(entries == 2 and pending.phase == "active" and pending.sequence == 1)
+assert(pending.deadline == 5090 and pending.wins == 0 and pending.losses == 0)
+print("PASS departure callback retries the same pending attempt only after menu confirmation")

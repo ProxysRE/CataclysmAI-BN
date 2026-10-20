@@ -29,3 +29,7 @@
   ordinary edits still leave expensive builds running.
 - Dimension IDs must match their world_type.save_prefix. Cold game::load infers
   the type from that prefix; the default pocket_dimension prefix is `pocket_`.
+
+- Failed first entry stays entering and waits for an explicit terminal retry. Never
+  reset a dimension that may not exist or turn reset failure into fake success.
+  A checkpoint already at the raid destination must retain its original deadline.

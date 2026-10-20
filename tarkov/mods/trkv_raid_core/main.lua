@@ -21,10 +21,10 @@ end
 mod.start = function()
   local state = current_state()
   raid.recover(state, api)
-  if state.phase ~= "home" or not api.at_home() then report(state); return end
+  if (state.phase ~= "home" and state.phase ~= "entering") or not api.at_home() then report(state); return end
   local menu = UiList.new()
   menu:title("Tarkov DEV0.1: departure terminal")
-  menu:add(1, "Enter test raid (30 game minutes)")
+  menu:add(1, state.phase == "entering" and "Retry pending raid entry" or "Enter test raid (30 game minutes)")
   menu:add(2, "Cancel")
   if menu:query() == 1 then raid.start(state, api, 30 * 60); report(state) end
 end

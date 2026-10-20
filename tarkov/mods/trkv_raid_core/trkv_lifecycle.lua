@@ -9,6 +9,7 @@ local raid = {}
 ---@field losses integer
 ---@field settled integer
 ---@field deadline integer
+---@field entry_duration integer
 ---@field outcome string
 ---@field penalty_applied boolean
 ---@field last_error string
@@ -32,6 +33,7 @@ function raid.initialize(state)
   state.losses = state.losses or 0
   state.settled = state.settled or 0
   state.deadline = state.deadline or 0
+  state.entry_duration = state.entry_duration or 0
   state.outcome = state.outcome or "none"
   state.penalty_applied = state.penalty_applied or false
   state.last_error = state.last_error or ""
@@ -102,8 +104,12 @@ end
 ---@param api RaidAdapter
 ---@param duration integer
 function raid.start(state, api, duration)
-  if state.phase ~= "home" or not api.at_home() then return false end
-  state.sequence = state.sequence + 1
+  if (state.phase ~= "home" and state.phase ~= "entering") or not api.at_home() then return false end
+  local retry = state.phase == "entering"
+  if retry and state.entry_duration > 0 then duration = state.entry_duration end
+  if type(duration) ~= "number" or duration <= 0 or duration % 1 ~= 0 then return false end
+  if not retry then state.sequence = state.sequence + 1 end
+  state.entry_duration = duration
   state.phase = "entering"
   state.outcome = "none"
   state.penalty_applied = false
@@ -118,9 +124,10 @@ function raid.start(state, api, duration)
     state.phase = "active"
     return true
   end
-  state.phase = "cleanup"
-  state.outcome = "entry_failed"
-  raid.cleanup(state, api)
+  -- A failed save may happen BEFORE the dimension even exists. reset_dimension
+  -- cannot distinguish that from another failure. Keep this attempt pending;
+  -- the departure terminal can retry it without deleting anything or scoring it.
+  state.last_error = "Entry failed; use the departure terminal to retry this raid."
   return false
 end
 
@@ -128,8 +135,21 @@ end
 ---@param api RaidAdapter
 function raid.recover(state, api)
   raid.initialize(state)
+  -- Migrate old DEV0.1 failed-entry checkpoints. No raid was played or scored.
+  if state.phase == "cleanup" and state.outcome == "entry_failed" and api.at_home() then
+    state.phase = "entering"
+    state.outcome = "none"
+  end
   if state.phase == "entering" then
-    if api.at_raid() then state.phase = "active" else state.phase = "cleanup" end
+    if api.at_raid() then
+      state.phase = "active"
+    else
+      state.last_error = api.at_home()
+        and "Entry pending; use the departure terminal to retry this raid."
+        or "Entry dimension mismatch; automatic changes stopped."
+      -- Loading must not silently retry travel or consume a failed raid's timer.
+      return false
+    end
   end
   if state.phase == "returning" then return raid.finish(state, api, state.outcome) end
   if state.phase == "cleanup" then return raid.cleanup(state, api) end
