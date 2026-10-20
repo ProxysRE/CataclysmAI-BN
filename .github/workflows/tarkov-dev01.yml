@@ -61,6 +61,7 @@ jobs:
           -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
           -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER_LAUNCHER=ccache
           -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE='-O0 -DNDEBUG'
+          -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${{ github.workspace }}/bn/build/bin
           -DCURSES=ON -DTILES=OFF -DSOUND=OFF -DTESTS=ON
           -DLOCALIZE=OFF -DBACKTRACE=OFF -DRELEASE=ON
           -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF
@@ -73,13 +74,13 @@ jobs:
         env:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
-        run: ./build/cataclysm-bn --check-mods trkv_raid_core
+        run: ./build/bin/cataclysm-bn --check-mods trkv_raid_core
       - name: Run actual BN lifecycle and persistence test
         working-directory: bn
         env:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
-        run: ./build/tests/cata_test --mods=trkv_raid_core '[tarkov]' --rng-seed 20261020 --reporter junit --out ../tarkov-runtime.xml
+        run: ./build/bin/cata_test --mods=trkv_raid_core '[tarkov]' --rng-seed 20261020 --reporter junit --out ../tarkov-runtime.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:

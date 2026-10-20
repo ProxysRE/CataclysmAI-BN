@@ -28,5 +28,19 @@
       "PLACE_ITEM"
     ],
     "examine_action": "lua:TRKV_EXTRACT"
+  },
+  {
+    "type": "furniture",
+    "id": "f_trkv_test_lamp",
+    "name": "test area lamp",
+    "description": "Permanent lighting for the technical test arena.",
+    "symbol": "*",
+    "color": "light_yellow",
+    "move_cost_mod": 0,
+    "required_str": -1,
+    "flags": [
+      "TRANSPARENT"
+    ],
+    "light_emitted": 160
   }
 ]
