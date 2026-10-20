@@ -54,6 +54,7 @@ Workflow `.github/workflows/tarkov-dev01.yml` собирает BN и его те
 
 - `docs/DECISIONS.md` — принятые и открытые решения.
 - `docs/ARCHITECTURE.md` — состояния и зависимости.
+- `docs/BUILD_STRATEGY.md` — рекомендация по собственной сборке и границам модуля.
 - `docs/ROADMAP.md` — этапы и условия завершения.
 - `docs/VERIFICATION.md` — уровни проверки и ограничения.
 - `docs/NPC_SPIKE.md` — средства BN и порядок первого эксперимента со стрелком.

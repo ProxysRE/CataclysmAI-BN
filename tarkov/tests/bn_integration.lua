@@ -55,16 +55,34 @@ local function store_payload()
   error("No extracted package to store in the refuge")
 end
 
+local function fixture(marker)
+  for _, item in ipairs(player:all_items(false)) do
+    if item:get_var_str("trkv_fixture", "") == marker then return item end
+  end
+  error("Missing carried fixture: " .. marker)
+end
+
+local function check_equipped()
+  assert(player:is_wielding(fixture("rifle")), "Test rifle is no longer wielded")
+  assert(player:is_worn(fixture("nested_container")), "Test backpack is no longer worn")
+end
+
 if test_data.stage == "home" then
   game.mod_runtime["trkv_raid_core"].started()
   assert(api.at_home() and state.phase == "home")
 elseif test_data.stage == "control_loaded" then
   assert(api.at_home() and state.phase == "home" and state.sequence == 0)
+  -- Equip only after BN's no-travel normalization reload, before the C++
+  -- baseline snapshots. Subsequent JSON comparisons still include every field.
+  assert(player:wield(fixture("rifle")))
+  assert(player:wear(fixture("nested_container"), false))
+  check_equipped()
 elseif test_data.stage == "enter" then
   assert(api.return_home())
   assert(api.at_home())
   assert(raid.start(state, api, 1800))
   assert(api.at_raid())
+  check_equipped()
   take_payload()
   assert(player:has_item_with_id(payload, false))
   assert(gapi.get_map():set_ter_at(local_pos(15, 15), TerId.new("t_wall"):int_id()))
@@ -75,6 +93,7 @@ elseif test_data.stage == "before_restore" then
 elseif test_data.stage == "restore" then
   assert(state ~= test_data.old_state, "BN must replace the nested save table")
   assert(state.phase == "active" and api.at_raid())
+  check_equipped()
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_wall"):int_id())
   -- Exercise the registered callbacks, including BN's repeated load notification.
   local mod = game.mod_runtime["trkv_raid_core"]
@@ -84,11 +103,13 @@ elseif test_data.stage == "restore" then
   assert(test_data.old_state.phase == "home" and test_data.old_state.wins == 90)
   assert(player:has_item_with_id(payload, false))
   assert(not raid.finish(state, api, "extracted"))
+  check_equipped()
 elseif test_data.stage == "loaded_cleanup" then
   assert(api.at_home() and state.phase == "cleanup" and state.wins == 0)
 elseif test_data.stage == "recovered_cleanup" then
   assert(api.at_home() and state.phase == "home" and state.wins == 1)
   assert(player:has_item_with_id(payload, false))
+  check_equipped()
   store_payload()
 elseif test_data.stage == "continue" then
   check_stash()
