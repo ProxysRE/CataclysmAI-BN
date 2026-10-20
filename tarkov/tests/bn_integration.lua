@@ -1,7 +1,9 @@
 -- Runs INSIDE BN's real Lua state, with the actual map, avatar and SQLite world.
 print("Tarkov runtime stage: " .. tostring(test_data.stage))
-local raid = require("data.mods.trkv_raid_core.trkv_lifecycle")
-local api = require("data.mods.trkv_raid_core.trkv_bn")
+-- BN clears package.path after mod loading. Use the exact module instances
+-- already loaded by main.lua, without invoking out-of-context require again.
+local raid = assert(package.loaded.trkv_lifecycle, "Lifecycle module was not loaded by main.lua")
+local api = assert(package.loaded.trkv_bn, "BN adapter was not loaded by main.lua")
 local root = game.mod_storage["trkv_raid_core"]
 local state = root.raid
 local player = gapi.get_avatar()

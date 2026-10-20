@@ -21,3 +21,6 @@
 - CI may restore the pinned native build directory. Its exact cache key must cover
   baseline, C++ overlay, installer, timestamp helper and workflow. Always execute
   CMake/Ninja and all runtime checks after restore; never cache test outcomes.
+- BN clears `package.path` after loading mods. Integration tests in the live game
+  Lua state should use the production module instances in `package.loaded`, not
+  call `require` again outside the mod-loading context.
