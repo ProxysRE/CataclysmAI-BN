@@ -24,3 +24,6 @@
 - BN clears `package.path` after loading mods. Integration tests in the live game
   Lua state should use the production module instances in `package.loaded`, not
   call `require` again outside the mod-loading context.
+- `[replace-broken-run]` in a commit message explicitly supersedes a known-broken
+  queued/running Tarkov check. Use only after diagnosing and correcting its error;
+  ordinary edits still leave expensive builds running.
