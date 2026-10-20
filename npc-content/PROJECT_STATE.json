@@ -814,5 +814,31 @@
     "runtime_validated": false,
     "navigation_expectations": 238,
     "coordinate_reconciliation": "No BN-only special coordinates; map content equality not asserted"
+  },
+  "geometry_campus_candidate": {
+    "status": "all first-layer maps extracted and adapted; not installed",
+    "mapgen_definitions": 26,
+    "unique_omt": 112,
+    "special_layouts": 5,
+    "placements_by_special": [
+      112,
+      16,
+      32,
+      20,
+      12
+    ],
+    "levels": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "unresolved_typed_refs": 0,
+    "native_embedded": false,
+    "runtime_validated": false,
+    "core_id_overlaps": 0,
+    "bundled_mod_id_overlaps": 0,
+    "report": "geometry_layer/CAMPUS_ADAPTATION_REPORT.json"
   }
 }

@@ -1,0 +1,206 @@
+{
+  "status": "adapted_geometry_candidate_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 26,
+    "overmap_special": 5,
+    "overmap_terrain": 10
+  },
+  "unique_omt": 112,
+  "placements_by_special": {
+    "campus": 112,
+    "campus_lecture": 16,
+    "campus_commons": 32,
+    "campus_media": 20,
+    "campus_health": 12
+  },
+  "source_occurrences": "All five source specials already have [0,0]; no natural appearance policy invented",
+  "unsupported_flags": [
+    {
+      "ids": [
+        "campus_admin_0_0_0",
+        "campus_admin_0_1_0",
+        "campus_admin_0_2_0",
+        "campus_admin_0_0_1",
+        "campus_admin_0_1_1",
+        "campus_admin_0_2_1",
+        "campus_admin_0_0_2",
+        "campus_admin_0_1_2",
+        "campus_admin_0_2_2",
+        "campus_admin_0_0_3",
+        "campus_admin_0_1_3",
+        "campus_admin_0_2_3"
+      ],
+      "flag": "SHOULD_NOT_SPAWN",
+      "reason": "Not in pinned BN oter_flags; source declaration retained in SHELLS and authenticated bundle"
+    },
+    {
+      "ids": [
+        "campus_commons_0_0_0",
+        "campus_commons_1_0_0",
+        "campus_commons_0_1_0",
+        "campus_commons_1_1_0",
+        "campus_commons_0_2_0",
+        "campus_commons_1_2_0",
+        "campus_commons_0_3_0",
+        "campus_commons_1_3_0",
+        "campus_commons_0_0_1",
+        "campus_commons_1_0_1",
+        "campus_commons_0_1_1",
+        "campus_commons_1_1_1",
+        "campus_commons_0_2_1",
+        "campus_commons_1_2_1",
+        "campus_commons_0_3_1",
+        "campus_commons_1_3_1",
+        "campus_commons_0_0_2",
+        "campus_commons_1_0_2",
+        "campus_commons_0_1_2",
+        "campus_commons_1_1_2",
+        "campus_commons_0_2_2",
+        "campus_commons_1_2_2",
+        "campus_commons_0_3_2",
+        "campus_commons_1_3_2"
+      ],
+      "flag": "SHOULD_NOT_SPAWN",
+      "reason": "Not in pinned BN oter_flags; source declaration retained in SHELLS and authenticated bundle"
+    },
+    {
+      "ids": [
+        "campus_media_0_0_0",
+        "campus_media_0_1_0",
+        "campus_media_1_0_0",
+        "campus_media_1_1_0",
+        "campus_media_0_0_1",
+        "campus_media_0_1_1",
+        "campus_media_1_0_1",
+        "campus_media_1_1_1",
+        "campus_media_0_0_2",
+        "campus_media_0_1_2",
+        "campus_media_1_0_2",
+        "campus_media_1_1_2",
+        "campus_media_0_0_3",
+        "campus_media_0_1_3",
+        "campus_media_1_0_3",
+        "campus_media_1_1_3"
+      ],
+      "flag": "SHOULD_NOT_SPAWN",
+      "reason": "Not in pinned BN oter_flags; source declaration retained in SHELLS and authenticated bundle"
+    },
+    {
+      "ids": [
+        "campus_health_0_0_0",
+        "campus_health_0_1_0",
+        "campus_health_0_2_0",
+        "campus_health_0_0_1",
+        "campus_health_0_1_1",
+        "campus_health_0_2_1",
+        "campus_health_0_0_2",
+        "campus_health_0_1_2",
+        "campus_health_0_2_2"
+      ],
+      "flag": "SHOULD_NOT_SPAWN",
+      "reason": "Not in pinned BN oter_flags; source declaration retained in SHELLS and authenticated bundle"
+    },
+    {
+      "ids": [
+        "campus_lecture_0_0_0",
+        "campus_lecture_0_1_0",
+        "campus_lecture_0_2_0",
+        "campus_lecture_0_3_0",
+        "campus_lecture_0_0_1",
+        "campus_lecture_0_1_1",
+        "campus_lecture_0_2_1",
+        "campus_lecture_0_3_1",
+        "campus_lecture_0_0_2",
+        "campus_lecture_0_1_2",
+        "campus_lecture_0_2_2",
+        "campus_lecture_0_3_2"
+      ],
+      "flag": "SHOULD_NOT_SPAWN",
+      "reason": "Not in pinned BN oter_flags; source declaration retained in SHELLS and authenticated bundle"
+    },
+    {
+      "ids": [
+        "pedestrian_9_8",
+        "pedestrian_10_8",
+        "pedestrian_9_11",
+        "pedestrian_10_11",
+        "pedestrian_11_5_0",
+        "pedestrian_12_5_0",
+        "pedestrian_13_5_0",
+        "pedestrian_14_5_0",
+        "pedestrian_11_6_0",
+        "pedestrian_12_6_0",
+        "pedestrian_13_6_0",
+        "pedestrian_14_6_0",
+        "pedestrian_11_7_0",
+        "pedestrian_12_7_0",
+        "pedestrian_13_7_0",
+        "pedestrian_11_8_0",
+        "pedestrian_12_8_0",
+        "pedestrian_13_8_0",
+        "pedestrian_12_9_0",
+        "pedestrian_13_9_0"
+      ],
+      "flag": "SHOULD_NOT_SPAWN",
+      "reason": "Not in pinned BN oter_flags; source declaration retained in SHELLS and authenticated bundle"
+    }
+  ],
+  "concrete_parent_inheritance": [
+    {
+      "ids": [
+        "campus_commons_0_0_3",
+        "campus_commons_1_0_3",
+        "campus_commons_0_1_3",
+        "campus_commons_1_1_3",
+        "campus_commons_0_2_3",
+        "campus_commons_1_2_3",
+        "campus_commons_0_3_3",
+        "campus_commons_1_3_3"
+      ],
+      "parent": "campus_commons_0_0_0"
+    },
+    {
+      "ids": [
+        "campus_media_0_0_4",
+        "campus_media_0_1_4",
+        "campus_media_1_0_4",
+        "campus_media_1_1_4"
+      ],
+      "parent": "campus_media_0_0_0"
+    },
+    {
+      "ids": [
+        "campus_health_0_0_3",
+        "campus_health_0_1_3",
+        "campus_health_0_2_3"
+      ],
+      "parent": "campus_health_0_0_0"
+    },
+    {
+      "ids": [
+        "campus_lecture_0_0_3",
+        "campus_lecture_0_1_3",
+        "campus_lecture_0_2_3",
+        "campus_lecture_0_3_3"
+      ],
+      "parent": "campus_lecture_0_0_0"
+    }
+  ],
+  "unresolved_typed_refs": [],
+  "bn_core_overlaps": [],
+  "bundled_mod_overlaps": [],
+  "preserved": [
+    "All 26 complete mapgen objects from first-layer extraction",
+    "All five special placement layouts and source occurrence policy",
+    "Four concrete OMT parent links; not mistaken for missing abstract definitions",
+    "Authenticated complete source and deferred furniture/loot/NPC fields"
+  ],
+  "remaining": [
+    "Native loading and whole-building generation",
+    "Stair/roof access verification",
+    "Choose installation identities only after reviewing BN and bundled-mod overlap report",
+    "Late-layer furniture, loot and population remain deferred"
+  ]
+}

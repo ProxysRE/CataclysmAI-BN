@@ -3,6 +3,15 @@
   "scope": "Terrain, structural nested layouts, typed terrain parameters and navigation-critical furniture only",
   "native_validated": false,
   "adaptations": {
+    "terrain_aliases": {
+      "t_wood_wall_w": "t_wall_w",
+      "t_wall_white": "t_wall_w",
+      "t_linoleum_white": "t_linoleum_white",
+      "t_floor_blue": "t_floor",
+      "t_floor_red": "t_floor",
+      "t_soil": "t_dirt",
+      "t_wall_metal_corrugated": "t_wall_metal_corrugated"
+    },
     "t_wood_wall_w": "BN t_wall_w, as in the existing ordinary church port",
     "parametrized_linoleum_palette": "Use explicit source fallback t_linoleum_gray; decorative color parameter deferred",
     "see_cost": "Source named visibility levels mapped to pinned BN integer costs",
@@ -679,6 +688,39 @@
           "hub_01"
         ]
       ]
+    },
+    "campus": {
+      "status": "geometry_candidate_not_native_validated",
+      "native_embedded": false,
+      "runtime_validated": false,
+      "declared_omt_without_mapgen": [],
+      "unique_mapped_omt": 112,
+      "constraint_only_cells": 0,
+      "definitions": {
+        "mapgen": 26,
+        "overmap_special": 5,
+        "overmap_terrain": 10
+      },
+      "special_cells": {
+        "campus": 112,
+        "campus_lecture": 16,
+        "campus_commons": 32,
+        "campus_media": 20,
+        "campus_health": 12
+      },
+      "levels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "unresolved_typed_refs": [],
+      "geometry_issues": [],
+      "deferred_records": 38,
+      "rows_preserved": true,
+      "core_overlaps_before_preview_namespacing": [],
+      "bundled_mod_overlaps_before_preview_namespacing": []
     }
   },
   "limits": [

@@ -76,7 +76,8 @@ def required(entries):
                 if 'group' in p:collect('item_group',p['group'])
             for p in obj.get('liquids',{}).values():collect('item',p['liquid'])
         elif e['type']=='overmap_terrain' and e.get('copy-from'):
-            result.add(('overmap_terrain_abstract',e['copy-from']))
+            kind='overmap_terrain' if ('overmap_terrain',e['copy-from']) in own else 'overmap_terrain_abstract'
+            result.add((kind,e['copy-from']))
         elif e['type']=='overmap_special':
             for cell in e['overmaps']:
                 if 'overmap' not in cell:continue # Placement constraints have no terrain ID.

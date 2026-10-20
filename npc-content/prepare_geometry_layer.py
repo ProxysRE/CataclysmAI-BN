@@ -68,7 +68,18 @@ def raw_sources():
         e=copy.deepcopy(e);e['object']=expand(e['object'],palettes);hub.append(e)
     hub+=json.loads(bundle['dda/data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json'])
     hub.append(next(e for e in json.loads(bundle['dda/data/json/overmap/overmap_special/specials.json']) if e.get('id')=='hub_01'))
-    return {'island_prison':prison,'xedra_church':church,'container_yards':yard,'hub_01':hub}
+    campus=[]
+    for path,text in bundle.items():
+        if path.startswith('dda/data/json/mapgen_palettes/campus/'):
+            for e in json.loads(text):palettes[e['id']]=e
+    for path,text in bundle.items():
+        if path.startswith('dda/data/json/mapgen/campus/'):
+            for e in json.loads(text):
+                assert e['type']=='mapgen' and 'om_terrain' in e,path
+                e=copy.deepcopy(e);e['object']=expand(e['object'],palettes);campus.append(e)
+    campus+=json.loads(bundle['dda/data/json/overmap/overmap_special/campus.json'])
+    campus+=json.loads(bundle['dda/data/json/overmap/overmap_terrain/overmap_terrain_campus.json'])
+    return {'island_prison':prison,'xedra_church':church,'container_yards':yard,'hub_01':hub,'campus':campus}
 
 
 def glyphs(rows):
@@ -136,7 +147,7 @@ def extract(entries):
         elif t=='overmap_terrain':
             for k in ('vision_levels','spawns','extras','mondensity'):
                 if k in e:deferred.append({'source':e['id'],'field':k,'value':e.pop(k)})
-            if isinstance(e.get('see_cost'),str):e['see_cost']={'all_clear':0,'high':5,'medium':2,'low':1,'none':0,'spaced_high':5,'full_high':5}[e['see_cost']]
+            if isinstance(e.get('see_cost'),str):e['see_cost']={'all_clear':0,'blends_till_outlines':2,'high':5,'medium':2,'low':1,'none':0,'spaced_high':5,'full_high':5}[e['see_cost']]
         elif t=='overmap_special':
             for connection in e.get('connections',[]):
                 if 'terrain' in connection:
@@ -191,7 +202,7 @@ def prepare(check=False):
                        'bundled_mod_overlaps_before_preview_namespacing':sorted((own-BUILTIN_IDS)&mods)}
         batches[name]=entries+support;later[name]=deferred
     report={'layer':1,'scope':'Terrain, structural nested layouts, typed terrain parameters and navigation-critical furniture only',
-            'native_validated':False,'adaptations':{'t_wood_wall_w':'BN t_wall_w, as in the existing ordinary church port','parametrized_linoleum_palette':'Use explicit source fallback t_linoleum_gray; decorative color parameter deferred','see_cost':'Source named visibility levels mapped to pinned BN integer costs','OVERMAP_UNIQUE':'BN UNIQUE flag','content_only_glyphs':'Explicitly repeat source fill_ter for glyphs whose later-layer bindings were deferred','connections':'Retain explicit connection; archive and remove deprecated terrain selector'},'packages':reports,'limits':['Cross-level nested placement is an explicit blocker until adapted; never silently ignore z','Shared BN external OMT cells retain their stock generation','Standalone preview identities and native all-floor testing required before installation','Source late-layer fields and full authenticated inputs are preserved']}
+            'native_validated':False,'adaptations':{'terrain_aliases':ALIASES,'t_wood_wall_w':'BN t_wall_w, as in the existing ordinary church port','parametrized_linoleum_palette':'Use explicit source fallback t_linoleum_gray; decorative color parameter deferred','see_cost':'Source named visibility levels mapped to pinned BN integer costs','OVERMAP_UNIQUE':'BN UNIQUE flag','content_only_glyphs':'Explicitly repeat source fill_ter for glyphs whose later-layer bindings were deferred','connections':'Retain explicit connection; archive and remove deprecated terrain selector'},'packages':reports,'limits':['Cross-level nested placement is an explicit blocker until adapted; never silently ignore z','Shared BN external OMT cells retain their stock generation','Standalone preview identities and native all-floor testing required before installation','Source late-layer fields and full authenticated inputs are preserved']}
     for file,value in [('SHELLS.json',batches),('LATER_LAYERS.json',later),('REPORT.json',report)]:
         text=json.dumps(value,indent=2,ensure_ascii=True)+'\n';p=OUT/file
         if check:assert p.read_text()==text,p
