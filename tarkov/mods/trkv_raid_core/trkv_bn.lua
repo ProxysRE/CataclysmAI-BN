@@ -1,4 +1,5 @@
 local adapter = {}
+adapter.world_type_id = "trkv_raid_space"
 adapter.home_id = "trkv_dev01_home"
 adapter.raid_id = "trkv_dev01_raid"
 
@@ -10,7 +11,7 @@ local function travel(dimension, terrain, x, y)
   return gapi.place_player_dimension_at({
     dimension_id = dimension,
     target_ms = TripointAbsMs.new(16 * 24 + x, 16 * 24 + y, 0),
-    world_type = "pocket_dimension",
+    world_type = adapter.world_type_id,
     bounds_min_omt = TripointAbsOmt.new(16, 16, 0),
     bounds_max_omt = TripointAbsOmt.new(16, 16, 0),
     overmap_terrain = { { { terrain } } },

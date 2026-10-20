@@ -19,6 +19,8 @@ Sky Island создан TGWeaver; BN-порт опубликован graysonchao
 - `src/game.cpp`: очистка измерения с внутренним сохранением игры.
 - `src/catalua.cpp` / `src/catalua_serde.cpp`: восстановление storage, замена
   вложенных таблиц и запуск load hooks.
+- `src/game.cpp::load` / `data/json/world_types.json`: восстановление типа измерения
+  по save_prefix. Наш тип пространства использует префикс имён наших измерений.
 - Штатный JSON mapgen и `lua:` действия мебели.
 
 ## Уроки Sky Island

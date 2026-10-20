@@ -1,0 +1,14 @@
+[
+  {
+    "type": "world_type",
+    "id": "trkv_raid_space",
+    "name": { "str": "Tarkov test space" },
+    "description": { "str": "Bounded refuge and raid spaces for the technical prototype." },
+    "region_settings": "default",
+    "infinite_bounds": false,
+    "boundary_terrain": "t_pd_border",
+    "save_prefix": "trkv_dev01_",
+    "allow_npc_travel": true,
+    "allow_vehicle_travel": false
+  }
+]

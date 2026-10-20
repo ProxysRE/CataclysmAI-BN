@@ -29,6 +29,15 @@ def main() -> None:
             for x, cell in enumerate(row):
                 if cell in "DEL":
                     assert (x, y) in visited, (definition["om_terrain"], cell)
+    # game::load infers a cold-loaded dimension's type from its save_prefix.
+    # Loading the adapter definitions here does not call any engine functions.
+    adapter = LuaRuntime().execute((MOD / "trkv_bn.lua").read_text())
+    world_types = {entry["id"]: entry for entry in json.loads((MOD / "world_types.json").read_text())}
+    realm = world_types[adapter.world_type_id]
+    assert realm["save_prefix"] and not realm["infinite_bounds"]
+    for dimension in (adapter.home_id, adapter.raid_id):
+        assert dimension.startswith(realm["save_prefix"]), (dimension, realm["save_prefix"])
+    print("PASS dimension IDs match the persisted world type prefix")
     runtime = LuaRuntime(unpack_returned_tuples=True)
     for path in [*MOD.glob("*.lua"), *(ROOT / "tarkov/tests").glob("*.lua")]:
         runtime.execute("assert(load(...))", path.read_text())

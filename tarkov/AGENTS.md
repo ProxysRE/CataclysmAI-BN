@@ -27,3 +27,5 @@
 - `[replace-broken-run]` in a commit message explicitly supersedes a known-broken
   queued/running Tarkov check. Use only after diagnosing and correcting its error;
   ordinary edits still leave expensive builds running.
+- Dimension IDs must match their world_type.save_prefix. Cold game::load infers
+  the type from that prefix; the default pocket_dimension prefix is `pocket_`.
