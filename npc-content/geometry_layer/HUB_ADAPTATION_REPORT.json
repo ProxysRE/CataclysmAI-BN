@@ -1,0 +1,135 @@
+{
+  "status": "adapted_geometry_candidate_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "counterparts": {
+    "t_zebra": "t_pavement_y",
+    "t_strconc_floor_olight": "t_thconc_floor_olight",
+    "t_secretdoor_concrete_c": "t_secretdoor_metal_c"
+  },
+  "differences": [
+    "Crosswalk uses BN yellow road markings, not DDA zebra artwork",
+    "Overhead light retains intensity 120; floor destruction, roof and local lighting follow BN thick-concrete floor",
+    "Secret passage retains BN closed/open door mechanics; appearance/material/drops are metal instead of DDA concrete"
+  ],
+  "road_inheritance": {
+    "source": "dda/data/json/overmap/overmap_terrain/overmap_terrain_transportation.json",
+    "source_abstract": {
+      "type": "overmap_terrain",
+      "abstract": "road_abstract",
+      "name": "road",
+      "copy-from": "generic_transportation",
+      "color": "dark_gray",
+      "see_cost": "none",
+      "travel_cost_type": "road",
+      "looks_like": "road",
+      "vision_levels": "blends_till_outlines"
+    },
+    "source_parent": {
+      "type": "overmap_terrain",
+      "abstract": "generic_transportation",
+      "see_cost": "none",
+      "vision_levels": "blends_till_outlines",
+      "travel_cost_type": "road",
+      "name": "generic_transportation",
+      "land_use_code": "transportation"
+    },
+    "applied_fields": [
+      "color",
+      "looks_like"
+    ],
+    "not_ported": [
+      "travel_cost_type",
+      "land_use_code",
+      "vision_levels"
+    ]
+  },
+  "generated_external_omt": {
+    "microlab_sub_connector_east": {
+      "base": "microlab_sub_connector",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json",
+      "inherited_flags": [
+        "RISK_HIGH",
+        "SOURCE_CHEMISTRY",
+        "SOURCE_MEDICINE"
+      ]
+    },
+    "microlab_sub_connector_north": {
+      "base": "microlab_sub_connector",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json",
+      "inherited_flags": [
+        "RISK_HIGH",
+        "SOURCE_CHEMISTRY",
+        "SOURCE_MEDICINE"
+      ]
+    },
+    "microlab_sub_connector_south": {
+      "base": "microlab_sub_connector",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json",
+      "inherited_flags": [
+        "RISK_HIGH",
+        "SOURCE_CHEMISTRY",
+        "SOURCE_MEDICINE"
+      ]
+    },
+    "microlab_sub_connector_west": {
+      "base": "microlab_sub_connector",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain_microlab.json",
+      "inherited_flags": [
+        "RISK_HIGH",
+        "SOURCE_CHEMISTRY",
+        "SOURCE_MEDICINE"
+      ]
+    },
+    "radio_tower_1_north": {
+      "base": "radio_tower_1",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain.json",
+      "inherited_flags": []
+    },
+    "radio_tower_even_north": {
+      "base": "radio_tower_even",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain.json",
+      "inherited_flags": []
+    },
+    "radio_tower_even_stair_only_north": {
+      "base": "radio_tower_even_stair_only",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain.json",
+      "inherited_flags": []
+    },
+    "radio_tower_odd_north": {
+      "base": "radio_tower_odd",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain.json",
+      "inherited_flags": []
+    },
+    "radio_tower_roof_1_north": {
+      "base": "radio_tower_roof_1",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain.json",
+      "inherited_flags": []
+    },
+    "radio_tower_top_north": {
+      "base": "radio_tower_top",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain.json",
+      "inherited_flags": []
+    },
+    "subway_ns": {
+      "base": "subway",
+      "declaration": "bn/data/json/overmap/overmap_terrain/overmap_terrain_transportation.json",
+      "inherited_flags": [
+        "LINEAR"
+      ]
+    }
+  },
+  "existing_project_terrain": [
+    "t_elevator_control_robofac_down",
+    "t_elevator_control_robofac_up"
+  ],
+  "project_provider_sha256": "fffe2cec5b2f32b41a343b171b8b513fb5020d75b54a81ea78d1adec9b8515fb",
+  "unresolved_typed_refs": [],
+  "mapgen_definitions": 9,
+  "remaining": [
+    "Native OMT flag/schema validation",
+    "Full generated map traversal and stair/elevator alignment",
+    "BN-only geometry reconciliation before replacing the existing Hub",
+    "NPCs, items, furniture and quests remain in later layers"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
-    "run_id": 39328860166,
+    "head": "925d3b47883354ecc2e49e529da2be0a30ace155",
+    "run_id": 39403524594,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -10,9 +10,13 @@
     "installed_data_test_cases": 73,
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
-    "installed_mod_assertions": 2224
+    "installed_mod_assertions": 2224,
+    "geometry_test_cases": 2,
+    "geometry_assertions": 63630,
+    "installed_geometry_test_cases": 2,
+    "installed_geometry_assertions": 63630
   },
-  "native_patch_sha256": "ccc020778563a5735fd6d93aaea0b3756ba6d030efa87bd885573547939a7ce6",
+  "native_patch_sha256": "33f7c7dc602250dd302360d18914b76621581ccf328362085cfbf74d3483f3ac",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -42,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Exact native patch passed full source and installed suites on a379269; container-yard cargo/leader remains staged and is excluded from this native checkpoint. Manual campaign/release validation remains pending.",
+  "note": "Exact native patch passed full source, installed and geometry-preview suites on 925d3b4. Hub and container-yard candidates remain excluded; manual traversal, full campaign and release validation pending.",
   "portable_package": {
-    "run_id": 39328860166,
+    "run_id": 39403524594,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -53,7 +57,26 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12226743444,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444"
+    "artifact_id": 12257794350,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39403524594/artifacts/12257794350",
+    "installed_geometry_tests": {
+      "cases": 2,
+      "assertions": 63630
+    },
+    "size": 205601696,
+    "digest": "sha256:28c59db1f2c9c12b2dc396ebe69fbe4240cffcb18d6a99999d0e3d0071cf9e92"
+  },
+  "geometry_preview": {
+    "mod": "dda_geometry_preview",
+    "packages": [
+      "island_prison",
+      "xedra_church"
+    ],
+    "source_and_installed": "passed without initialization errors",
+    "limits": [
+      "No claim of manual traversal or stair alignment",
+      "Natural placement disabled",
+      "Hub geometry not included"
+    ]
   }
 }
