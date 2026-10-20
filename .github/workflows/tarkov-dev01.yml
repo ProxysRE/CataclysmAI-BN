@@ -65,7 +65,7 @@ jobs:
           -DLOCALIZE=OFF -DBACKTRACE=OFF -DRELEASE=ON
           -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF
           -DCATA_FORMAT_TARGETS=OFF -DLUA_DOCS_ON_BUILD=OFF
-          -DBUILD_SHADERCROSS=OFF
+          -DBUILD_SHADERCROSS=ON -DSHADER_TARGETS=spirv
       - name: Build game and tests
         run: cmake --build bn/build --target cataclysm-bn cata_test --parallel 3
       - name: Validate mod through the game executable
