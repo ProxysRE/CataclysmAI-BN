@@ -181,7 +181,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "ccc020778563a5735fd6d93aaea0b3756ba6d030efa87bd885573547939a7ce6") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "4c06cd622d1ca0700d08b00b4108b88a933671248ba8cc9522998c3db6413870") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch
@@ -213,7 +213,7 @@ jobs:
           $formatter = (Get-Command clang-format -ErrorAction SilentlyContinue).Source
           if (!$formatter) { $formatter = "C:/Program Files/LLVM/bin/clang-format.exe" }
           if (!(Test-Path $formatter)) { throw "Missing clang-format" }
-          $files = @("tests/dda_small_lighthouse_test.cpp", "tests/dda_eldercare_sites_test.cpp", "src/civilian_chat.h", "src/civilian_chat_ui.h", "tests/dda_civilians_test.cpp", "tests/dda_eldercare_fauna_test.cpp", "tests/dda_eldercare_loot_test.cpp", "tests/dda_eldercare_assets_test.cpp", "src/computer.h", "src/computer.cpp", "src/computer_archive.h", "src/computer_session.h", "src/computer_session.cpp", "tests/dda_computer_archive_test.cpp", "src/mapgen/mapgen.cpp", "src/dda_mapgen_corpses.h", "src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
+          $files = @("tests/dda_geometry_preview_test.cpp", "tests/dda_small_lighthouse_test.cpp", "tests/dda_eldercare_sites_test.cpp", "src/civilian_chat.h", "src/civilian_chat_ui.h", "tests/dda_civilians_test.cpp", "tests/dda_eldercare_fauna_test.cpp", "tests/dda_eldercare_loot_test.cpp", "tests/dda_eldercare_assets_test.cpp", "src/computer.h", "src/computer.cpp", "src/computer_archive.h", "src/computer_session.h", "src/computer_session.cpp", "tests/dda_computer_archive_test.cpp", "src/mapgen/mapgen.cpp", "src/dda_mapgen_corpses.h", "src/mtype.h", "src/monstergenerator.cpp", "src/monattack.cpp", "src/iexamine.cpp", "src/iexamine.h", "src/iexamine_elevator.cpp", "src/hub_elevator_access.h", "src/game.h", "src/game.cpp", "src/savegame.cpp", "src/npc.cpp", "src/npc_class.cpp", "src/npc_class.h", "src/condition.cpp", "src/npctalk.cpp", "src/artisan_expression.h", "src/artisan_bn_bridge.h", "src/artisan_items.h", "src/faction_food_stock.h", "src/lighthouse_quest_updates.h", "src/faction.h", "src/faction.cpp", "src/savegame_json.cpp", "src/activity_type.h", "src/activity_type.cpp", "src/player_activity.cpp", "tests/dda_artisan_dialogue_test.cpp", "tests/dda_artisan_services_test.cpp", "tests/dda_radio_stations_test.cpp")
           & $formatter -i @files
           if ($LASTEXITCODE -ne 0) { throw "NPC formatting failed" }
       - name: Configure Windows game
@@ -268,6 +268,16 @@ jobs:
           $test = Get-ChildItem out/build/highways -Filter cata_test-tiles.exe -Recurse | Select-Object -First 1
           & $test.FullName "[dda_civilians],[dda_shared_ammo]" "--mods=civilians,exotic_ammo" --rng-seed 602 --reporter compact --durations yes --user-dir=./civilians_ci_test_user/ 2>&1 | Tee-Object npc-civilians-tests.log
           if ($LASTEXITCODE -ne 0) { throw "Civilians compatibility tests failed" }
+      - name: Test optional geometry preview on every placed floor
+        timeout-minutes: 20
+        env:
+          CATA_TEST_COMPUTE_ACCELERATION: cpu
+          SDL_AUDIODRIVER: dummy
+        run: |
+          $test = Get-ChildItem out/build/highways -Filter cata_test-tiles.exe -Recurse | Select-Object -First 1
+          if (!$test) { throw "Missing native test executable" }
+          & $test.FullName "[dda_geometry]" "--mods=dda_geometry_preview" --rng-seed 602 --reporter compact --durations yes --user-dir=./geometry_ci_test_user/ 2>&1 | Tee-Object npc-geometry-tests.log
+          if ($LASTEXITCODE -ne 0) { throw "Geometry preview tests failed" }
       - name: Install portable game using BN CMake rules
         run: |
           cmake --install out/build/highways --prefix "${{ github.workspace }}/npc-install/CBN_DDA_NPC_DEV"
@@ -295,6 +305,18 @@ jobs:
           $civTestUser = Join-Path $env:RUNNER_TEMP "npc-installed-civilians-user"
           & $test.FullName "[dda_civilians],[dda_shared_ammo]" "--mods=civilians,exotic_ammo" --rng-seed 602 --reporter compact --durations yes "--user-dir=$civTestUser/" 2>&1 | Tee-Object "${{ github.workspace }}/bn/npc-installed-civilians-tests.log"
           if ($LASTEXITCODE -ne 0) { throw "Installed Civilians compatibility tests failed" }
+      - name: Test installed optional geometry preview
+        timeout-minutes: 20
+        working-directory: npc-install/CBN_DDA_NPC_DEV
+        env:
+          CATA_TEST_COMPUTE_ACCELERATION: cpu
+          SDL_AUDIODRIVER: dummy
+        run: |
+          $test = Get-ChildItem "${{ github.workspace }}/bn/out/build/highways" -Filter cata_test-tiles.exe -Recurse | Select-Object -First 1
+          if (!$test) { throw "Missing native test executable" }
+          $geometryTestUser = Join-Path $env:RUNNER_TEMP "npc-installed-geometry-user"
+          & $test.FullName "[dda_geometry]" "--mods=dda_geometry_preview" --rng-seed 602 --reporter compact --durations yes "--user-dir=$geometryTestUser/" 2>&1 | Tee-Object "${{ github.workspace }}/bn/npc-installed-geometry-tests.log"
+          if ($LASTEXITCODE -ne 0) { throw "Geometry preview tests failed" }
       - name: Package verified portable Windows build
         working-directory: package
         run: |
@@ -313,6 +335,8 @@ jobs:
         with:
           name: dda-npc-engine-test-log
           path: |
+            bn/npc-geometry-tests.log
+            bn/npc-installed-geometry-tests.log
             bn/npc-civilians-tests.log
             bn/npc-installed-civilians-tests.log
             bn/bundled-mod-audit.json

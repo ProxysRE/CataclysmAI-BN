@@ -1,0 +1,15 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "dda_geometry_preview",
+    "name": "DDA geometry preview (unfinished)",
+    "authors": [
+      "ProxysRE"
+    ],
+    "description": "Terrain-only previews of the island prison and XEDRA church. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.",
+    "category": "buildings",
+    "dependencies": [
+      "bn"
+    ]
+  }
+]

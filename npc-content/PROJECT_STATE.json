@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Successful portable a379269 checkpoint recorded. Container cargo quantities, two hygiene items and source raider leader adapted; 20 typed yard dependencies remain, not embedded.",
+  "stage": "Geometry-first preview prepared for island prison and XEDRA church; native Windows validation pending. Container-yard cross-z roof remains blocked.",
   "package": "Isolated Road",
-  "native_compilation": "Windows run 39328860166 on a379269 succeeded: core 73 cases /11030 assertions and mods 10 cases /2224 assertions, both repeated successfully on installed portable data; Windows archive 12226743444 produced. Current native patch unchanged since this checkpoint. Yard cargo remains staged.",
+  "native_compilation": "Last successful portable checkpoint: a379269, run 39328860166. Current patch adds optional geometry preview and two all-floor tests; source/installed native validation must be repeated. Previous success is not evidence for the new patch.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -758,5 +758,21 @@
     "geometry_only_independently_validated_packages": 0,
     "note": "Mixed packages predating layer-first policy remain intact; ready geometry-only shells must be tracked separately. Old reports retain historical statuses."
   },
-  "delivery_policy": "Layer-first across broad sets: geometry/access -> furniture/equipment -> loot/items -> creatures/NPCs -> dialogue/quests/events. Preserve full originals and completed packages; late-layer blockers do not block geometry-only validation."
+  "delivery_policy": "Layer-first across broad sets: geometry/access -> furniture/equipment -> loot/items -> creatures/NPCs -> dialogue/quests/events. Preserve full originals and completed packages; late-layer blockers do not block geometry-only validation.",
+  "geometry_preview": {
+    "mod": "dda_geometry_preview",
+    "packages": [
+      "island_prison",
+      "xedra_church"
+    ],
+    "special_cells": 135,
+    "natural_occurrences": [
+      0,
+      0
+    ],
+    "runtime_validated": false,
+    "status": "embedded_in_patch_pending_native_validation",
+    "container_yards": "not embedded; cross-z nested roof blocker",
+    "native_patch_sha256": "4c06cd622d1ca0700d08b00b4108b88a933671248ba8cc9522998c3db6413870"
+  }
 }

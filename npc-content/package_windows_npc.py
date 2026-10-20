@@ -96,6 +96,10 @@ def verify_install(folder):
     from prepare_eldercare_sites import native_data as sites_data, PAYLOAD as SITES_PAYLOAD
     if json.loads((folder / SITES_PAYLOAD).read_text(encoding='utf-8')) != sites_data():
         raise ValueError('Installed complete eldercare locations differ')
+    from prepare_geometry_preview import payloads as geometry_payloads, FILES as GEOMETRY_FILES
+    for target, source in GEOMETRY_FILES.items():
+        if json.loads((folder / target).read_text(encoding='utf-8')) != geometry_payloads()[source]:
+            raise ValueError('Stale or incomplete geometry preview: ' + target)
     from prepare_small_lighthouse import native_data as small_lighthouse_data, PAYLOAD as SMALL_LIGHTHOUSE_PAYLOAD
     if json.loads((folder / SMALL_LIGHTHOUSE_PAYLOAD).read_text(encoding='utf-8')) != small_lighthouse_data():
         raise ValueError('Installed complete small lighthouse differs')
@@ -159,6 +163,7 @@ def package(folder, output, source_head):
         'Includes normal/looted farm supply stores with roofs, ladders and BN-packaged materials and food.\n'
         'Karting cash registers use stock BN money; no DDA denominations are installed.\n'
         'Includes the separate small island lighthouse, six above-ground levels; native/manual validation pending.\n'
+        'Optional DDA geometry preview: unfinished terrain-only prison and XEDRA church; enable explicitly in a test world and place through debug. No natural spawning, loot, inhabitants or quests.\n'
         'Both complete eldercare sites and their population tables are included with the optional Civilians mod; complete native generation and manual traversal validation are pending.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'

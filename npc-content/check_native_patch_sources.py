@@ -5,6 +5,7 @@ import re
 import difflib
 from pathlib import Path
 from merge_existing_locations import prepare as prepare_existing_locations
+from prepare_geometry_preview import prepare as prepare_geometry_preview, FILES as GEOMETRY_FILES
 from prepare_eldercare_sites import prepare as prepare_sites, PAYLOAD as SITES_PAYLOAD
 from prepare_small_lighthouse import prepare as prepare_small_lighthouse, PAYLOAD as SMALL_LIGHTHOUSE_PAYLOAD
 from prepare_militia import prepare as prepare_militia, PAYLOAD as MILITIA_PAYLOAD
@@ -39,6 +40,7 @@ def check():
     prepare_frontage()
     prepare_militia(check=True)
     prepare_small_lighthouse(check=True)
+    prepare_geometry_preview(check=True)
     prepare_sites(check=True)
     target = 'data/json/mapgen/chemical_lab.json'
     expected_map_patch = ''.join(difflib.unified_diff(
@@ -91,7 +93,7 @@ def check():
     }
     files.update({
         'tests/' + name: ROOT / 'native' / name
-        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp', 'dda_militia_test.cpp', 'dda_eldercare_sites_test.cpp', 'dda_small_lighthouse_test.cpp')
+        for name in ('dda_artisan_dialogue_test.cpp', 'dda_artisan_services_test.cpp', 'dda_radio_stations_test.cpp', 'dda_computer_archive_test.cpp', 'dda_eldercare_assets_test.cpp', 'dda_eldercare_loot_test.cpp', 'dda_eldercare_fauna_test.cpp', 'dda_civilians_test.cpp', 'dda_special_constraints_test.cpp', 'dda_militia_test.cpp', 'dda_eldercare_sites_test.cpp', 'dda_small_lighthouse_test.cpp', 'dda_geometry_preview_test.cpp')
     })
     files.update({
         HUB_PAYLOAD: ROOT / 'native/dda_hub_elevator_access.json',
@@ -119,6 +121,7 @@ def check():
         'data/json/npcs/dda_lighthouse_community.json': ROOT / 'native/dda_lighthouse_community.json',
         'data/json/mapgen/nested/dda_lighthouse_encounter.json': ROOT / 'native/mapgen/dda_lighthouse_encounter.json',
     })
+    files.update({target: ROOT / source for target, source in GEOMETRY_FILES.items()})
     for target, source in files.items():
         marker = '--- /dev/null\n+++ b/' + target + '\n'
         if patch.count(marker) != 1:

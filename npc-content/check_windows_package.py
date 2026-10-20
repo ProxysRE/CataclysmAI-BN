@@ -39,11 +39,13 @@ def check():
         from prepare_civilians import native_data as civilian_data, PAYLOAD as CIVILIAN_PAYLOAD, LEGACY_CORE, mod_sources, lua_payload
         from prepare_eldercare_fauna import native_data as fauna_data, PAYLOAD as FAUNA_PAYLOAD
         from prepare_eldercare_loot import native_data as loot_data, PAYLOAD as LOOT_PAYLOAD
+        from prepare_geometry_preview import payloads as geometry_payloads, FILES as GEOMETRY_FILES
         payload = {
             SHARED_CASING_TARGET: json.dumps(shared_casing_data()).encode(),
             MILITIA_PAYLOAD: json.dumps(militia_data()).encode(),
             SMALL_LIGHTHOUSE_PAYLOAD: json.dumps(small_lighthouse_data()).encode(),
             SITES_PAYLOAD: json.dumps(sites_data()).encode(),
+            **{target: json.dumps(geometry_payloads()[source]).encode() for target, source in GEOMETRY_FILES.items()},
             GROUPS_PAYLOAD: json.dumps(groups_data()).encode(),
             CIVILIAN_PAYLOAD: json.dumps(civilian_data()).encode(),
             FAUNA_PAYLOAD: json.dumps(fauna_data()).encode(),
@@ -92,7 +94,7 @@ def check():
                 assert archive.read('CBN_DDA_NPC_DEV/' + relative) == payload[relative]
                 assert build['files'][relative] == digest(installed / relative)
         assert output.with_suffix('.zip.sha256').read_text().split()[0] == digest(output)
-        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'stale_assets', 'stale_loot', 'stale_fauna', 'stale_civilians', 'stale_groups', 'stale_militia', 'stale_small_lighthouse', 'stale_sites', 'stale_civilian_lua', 'legacy_civilians', 'stale_shared_casing', 'user_data'):
+        for mutation in ('missing_translation', 'stale_map', 'stale_nuclear', 'stale_eldercare', 'stale_farm', 'stale_archives', 'stale_assets', 'stale_loot', 'stale_fauna', 'stale_civilians', 'stale_groups', 'stale_militia', 'stale_small_lighthouse', 'stale_sites', 'stale_geometry_map', 'stale_geometry_modinfo', 'stale_civilian_lua', 'legacy_civilians', 'stale_shared_casing', 'user_data'):
             if mutation == 'missing_translation':
                 path = installed / 'lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo'
                 path.unlink()
@@ -107,6 +109,9 @@ def check():
                 path.write_text('[]')
             elif mutation == 'legacy_civilians':
                 path = installed / LEGACY_CORE
+                path.write_text('[]')
+            elif mutation.startswith('stale_geometry_'):
+                path = installed / ('data/mods/DDA_Geometry_Preview/' + ('shells.json' if mutation.endswith('map') else 'modinfo.json'))
                 path.write_text('[]')
             elif mutation == 'stale_sites':
                 path = installed / SITES_PAYLOAD
