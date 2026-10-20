@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Hub, prison and XEDRA church geometry preview passed full source and installed Windows tests; complete campus first layer staged separately.",
+  "stage": "Full campus geometry added to isolated preview; native eight-case generation validation pending. Verified historical group scope: 10/51 (19.6%).",
   "package": "Isolated Road",
-  "native_compilation": "Successful Windows run 39428420703 on be7a2c1: source and installed 73 core /11030 assertions, 10 optional /2224, 3 geometry /159684; portable packaging passed. Campus remains excluded.",
+  "native_compilation": "Last successful archive: be7a2c1 / run 39428420703, source+installed 3 geometry cases /159684 assertions. New campus patch must pass a separate source and installed rerun.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -768,17 +768,18 @@
     "packages": [
       "island_prison",
       "xedra_church",
-      "hub_01"
+      "hub_01",
+      "campus"
     ],
-    "special_cells": 235,
+    "special_cells": 427,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "source_and_installed_geometry_generation_and_navigation_terrain_checks_passed",
+    "runtime_validated": false,
+    "status": "campus added; eight native layout cases pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "0f6d13bc3cac206fce79a3f49e2351d1a98605696050f1a9e701993dbcc7d190",
+    "native_patch_sha256": "5febdadaa846b355cad79e74643320154b5c05d29e73a535dbbf68b48e20c2e7",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -826,7 +827,7 @@
     ]
   },
   "geometry_campus_candidate": {
-    "status": "all first-layer maps extracted and adapted; not installed",
+    "status": "five native layout cases prepared; source and installed validation pending",
     "mapgen_definitions": 26,
     "unique_omt": 112,
     "special_layouts": 5,
@@ -845,10 +846,20 @@
       4
     ],
     "unresolved_typed_refs": 0,
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
     "core_id_overlaps": 0,
     "bundled_mod_id_overlaps": 0,
-    "report": "geometry_layer/CAMPUS_ADAPTATION_REPORT.json"
+    "report": "geometry_layer/CAMPUS_ADAPTATION_REPORT.json",
+    "installation_scope": "namespaced opt-in debug preview; original source IDs remain staged separately"
+  },
+  "geometry_layer_progress": {
+    "verified_groups": 10,
+    "accepted_groups": 51,
+    "verified_percent": 19.6,
+    "additional_prepared_groups": 1,
+    "verified_plus_prepared_percent": 21.6,
+    "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
+    "report": "geometry_layer/PROGRESS.json"
   }
 }

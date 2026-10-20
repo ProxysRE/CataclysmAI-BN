@@ -6,7 +6,7 @@
     "authors": [
       "ProxysRE"
     ],
-    "description": "Terrain-only previews of the island prison, XEDRA church and expanded Hub 01. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.",
+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01 and the campus. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.",
     "category": "buildings",
     "dependencies": [
       "bn"

@@ -1,0 +1,463 @@
+{
+  "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
+  "accepted_groups": 51,
+  "catalog_groups_deferred_for_rename_review": 3,
+  "verified_groups": 10,
+  "verified_percent": 19.6,
+  "additional_prepared_groups": 1,
+  "verified_plus_prepared_percent": 21.6,
+  "evidence_checkpoint": {
+    "head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
+    "run_id": 39428420703,
+    "status": "success",
+    "test_cases": 73,
+    "assertions": 11030,
+    "mod_test_cases": 10,
+    "mod_assertions": 2224,
+    "installed_data_test_cases": 73,
+    "installed_data_assertions": 11030,
+    "installed_mod_test_cases": 10,
+    "installed_mod_assertions": 2224,
+    "geometry_test_cases": 3,
+    "geometry_assertions": 159684,
+    "installed_geometry_test_cases": 3,
+    "installed_geometry_assertions": 159684
+  },
+  "rows": [
+    {
+      "name": "База Экзодиев и её объекты",
+      "source_identities": [
+        "overmap_special:exodii_base",
+        "overmap_special:Out-of-place Stone Barn",
+        "overmap_special:Strange warehouse"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Университетский кампус",
+      "source_identities": [
+        "overmap_special:campus",
+        "overmap_special:campus_lecture",
+        "overmap_special:campus_commons",
+        "overmap_special:campus_media",
+        "overmap_special:campus_health"
+      ],
+      "state": "prepared_pending_native_generation",
+      "evidence": "geometry_layer/CAMPUS_ADAPTATION_REPORT.json",
+      "scope": "All 26 first-layer maps; awaiting five native layout tests"
+    },
+    {
+      "name": "Церковный ретрит Godco",
+      "source_identities": [
+        "overmap_special:New England Church Retreat"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "База ополчения",
+      "source_identities": [
+        "overmap_special:Militia Lodge"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_grey_moose_lodge.json",
+      "scope": "Complete lodge floors and roof"
+    },
+    {
+      "name": "Isolated Road — поселение Коди и Джея",
+      "source_identities": [
+        "overmap_special:isolated_road"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Оружейная выставка",
+      "source_identities": [
+        "overmap_special:gun_show"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Бункер Бальтазара",
+      "source_identities": [
+        "overmap_special:balthazar_bunker"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Лимнологическая станция",
+      "source_identities": [
+        "overmap_special:limnological_station"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Поселение дезертиров",
+      "source_identities": [
+        "city_building:deserter_city"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Островная тюрьма",
+      "source_identities": [
+        "overmap_special:Island prison"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Namespaced shell preview; all special cells"
+    },
+    {
+      "name": "Сельские церкви: обычная и XEDRA",
+      "source_identities": [
+        "overmap_special:church_rural",
+        "overmap_special:xedra_church_rural"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_rural_church.json",
+      "scope": "Ordinary church plus XEDRA shell preview"
+    },
+    {
+      "name": "Моргáнтаун XEDRA",
+      "source_identities": [
+        "overmap_special:xedra_morgantown"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Рыбацкая хижина XEDRA",
+      "source_identities": [
+        "overmap_special:xedra_fishing_shack"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Физическая лаборатория LIXA",
+      "source_identities": [
+        "overmap_special:physics_lab_LIXA"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Нефтяная платформа",
+      "source_identities": [
+        "overmap_special:oil_platform"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Дом престарелых и его особый вариант",
+      "source_identities": [
+        "overmap_special:nursing_home",
+        "overmap_special:nursing_home_sh"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_eldercare_locations.json",
+      "scope": "Both nursing-home variants; optional Civilians data"
+    },
+    {
+      "name": "Посёлок для пожилых",
+      "source_identities": [
+        "overmap_special:retirement_community"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_eldercare_locations.json",
+      "scope": "Complete retirement community; optional Civilians data"
+    },
+    {
+      "name": "Нарколаборатории и трудовой лагерь бандитов",
+      "source_identities": [
+        "overmap_special:drug_lab",
+        "overmap_special:bandit_drug_lab",
+        "overmap_special:bandit_work_camp"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Контейнерная площадка и её бандитская версия",
+      "source_identities": [
+        "overmap_special:o_container_yard_inland",
+        "overmap_special:o_container_yard_inland_bandit"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Музей текстильной фабрики",
+      "source_identities": [
+        "city_building:textile_mill_museum"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Большой полицейский департамент",
+      "source_identities": [
+        "city_building:police_dept"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Большой футбольный стадион",
+      "source_identities": [
+        "city_building:stadium_football"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Офисный небоскрёб",
+      "source_identities": [
+        "city_building:office_skyscraper"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Модульные многоквартирные комплексы",
+      "source_identities": [
+        "city_building:apartment_complex_3x3",
+        "city_building:apartment_complex_3x3_alt",
+        "city_building:apartment_complex_line",
+        "city_building:apartment_complex_U",
+        "city_building:apartment_complex_U_alt"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Большой супермаркет",
+      "source_identities": [
+        "overmap_special:supermarket"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Магазины сельхозснабжения",
+      "source_identities": [
+        "overmap_special:Farm Supply Store",
+        "overmap_special:Farm Supply Store Looted"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_farm_supply.json",
+      "scope": "Normal and looted store geometry"
+    },
+    {
+      "name": "Коттедж гончара",
+      "source_identities": [
+        "overmap_special:Pottery Cottage"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Жильё выживальщиков и лесной лагерь",
+      "source_identities": [
+        "overmap_special:Cabin_prepper",
+        "overmap_special:cabin_liam",
+        "overmap_special:survivor_forest_camp",
+        "overmap_special:Locked LMOE Shelter"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Малый островной маяк",
+      "source_identities": [
+        "overmap_special:lighthouse_island_small"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_small_lighthouse.json",
+      "scope": "All six levels"
+    },
+    {
+      "name": "Затонувший вертолёт",
+      "source_identities": [
+        "overmap_special:sunken_helicopter"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Горячие источники",
+      "source_identities": [
+        "overmap_special:Hot Springs"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Кладбище Лакруа",
+      "source_identities": [
+        "overmap_special:cemetery_lacroix"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Большой картодром",
+      "source_identities": [
+        "overmap_special:o_karting_l"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_karting_circuit.json",
+      "scope": "Track, ramps, stairs and roof"
+    },
+    {
+      "name": "Микролаборатория Ratkin",
+      "source_identities": [
+        "overmap_special:4x4_microlab_rodent"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Особые объекты ми-го",
+      "source_identities": [
+        "overmap_special:Barry's Mi-Go Scout Tower",
+        "overmap_special:Mi-Go Portal"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Городские дополнения",
+      "source_identities": [
+        "city_building:synagogue",
+        "city_building:urban_library",
+        "city_building:s_library_3",
+        "city_building:small_kindergarten",
+        "city_building:office_dentist",
+        "city_building:s_airsoft",
+        "city_building:office_warehouse_anduril"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Загадочные руины высокогорья",
+      "source_identities": [
+        "overmap_special:Standing stones Highlands",
+        "overmap_special:Crypt Highlands",
+        "overmap_special:Imperial Crypt Highlands",
+        "overmap_special:Ruined Tower Highlands",
+        "overmap_special:roman_road",
+        "overmap_special:imperial_road"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Лиминальные и иные измерения",
+      "source_identities": [
+        "overmap_special:inner_cabins_depths_entrance",
+        "overmap_special:inner_cabins_depths_cathedral",
+        "overmap_special:inner_cabins_depths_mall",
+        "overmap_special:inner_cabins_depths_hotel_tower_b",
+        "overmap_special:inner_cabins_depths_office_skyscraper",
+        "overmap_special:inner_cabins_depths_zoo",
+        "overmap_special:labyrinthine_structure",
+        "overmap_special:labyrinthine_structure_flooded",
+        "overmap_special:labyrinthine_structure_overgrown",
+        "overmap_special:scarlet_sea_xedra_hew",
+        "overmap_special:string_dimension_small_ziggurat",
+        "overmap_special:string_dimension_dome",
+        "overmap_special:string_dimension_ka_facility",
+        "overmap_special:portal_storm_dungeon_teleporter"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Hub 01",
+      "source_identities": [
+        "overmap_special:hub_01"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Namespaced Hub shell; all 100 placed cells and navigation terrain"
+    },
+    {
+      "name": "Алькатрас",
+      "source_identities": [
+        "overmap_special:Alcatraz Prison"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Центр беженцев",
+      "source_identities": [
+        "overmap_special:evac_center"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Высотная городская больница",
+      "source_identities": [
+        "city_building:urban_35_hospital"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Офисная башня",
+      "source_identities": [
+        "city_building:office_tower"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Радиостанции с вышками",
+      "source_identities": [
+        "city_building:station_radio",
+        "city_building:station_radio_1"
+      ],
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_radio_station_towers.json",
+      "scope": "Approved tower-floor extension; stock BN buildings retained"
+    },
+    {
+      "name": "Высотные гостиницы",
+      "source_identities": [
+        "city_building:hotel_1",
+        "city_building:hotel_2",
+        "city_building:hotel_3"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Зоопарк",
+      "source_identities": [
+        "city_building:zoo"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Существующий стадион",
+      "source_identities": [
+        "city_building:stadium"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Торговая площадь",
+      "source_identities": [
+        "city_building:shopping_plaza"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Авианосец",
+      "source_identities": [
+        "overmap_special:aircraft_carrier"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Лагерь FEMA",
+      "source_identities": [
+        "overmap_special:fema_camp_mutable"
+      ],
+      "state": "not_counted_as_generation_verified"
+    },
+    {
+      "name": "Модульные фермы Ишервудов и конные фермы",
+      "source_identities": [
+        "overmap_special:Isherwood Farm Mutable",
+        "overmap_special:Horse Farm Mutable"
+      ],
+      "state": "not_counted_as_generation_verified"
+    }
+  ],
+  "limits": [
+    "Not percentage of all DDA content, source lines, map tiles or work hours",
+    "Groups have very different sizes; this is a transparent coarse meter",
+    "Generation-tested scopes include isolated previews and approved additions to existing BN locations",
+    "Not a claim of full player traversal, quest completion or final release acceptance",
+    "Other partially staged packages are not credited as finished",
+    "A pending new patch does not invalidate historical evidence, but must pass its own tests"
+  ]
+}

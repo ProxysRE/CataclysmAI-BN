@@ -11,7 +11,7 @@ MOD='dda_geometry_preview'
 BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
-PACKAGES=('island_prison','xedra_church','hub_01')
+PACKAGES=('island_prison','xedra_church','hub_01','campus')
 
 
 def payloads():
@@ -21,10 +21,11 @@ def payloads():
     for name in PACKAGES:
         p=report['packages'][name]
         assert not p['geometry_issues'],name
-        if name=='hub_01':
-            adapted=json.loads((OUT/'HUB_ADAPTATION_REPORT.json').read_text())
+        if name in ('hub_01','campus'):
+            stem='HUB' if name=='hub_01' else 'CAMPUS'
+            adapted=json.loads((OUT/(stem+'_ADAPTATION_REPORT.json')).read_text())
             assert not adapted['unresolved_typed_refs']
-            entries=json.loads((OUT/'HUB_ADAPTED_SHELL.json').read_text())
+            entries=json.loads((OUT/(stem+'_ADAPTED_SHELL.json')).read_text())
         else:
             assert not p['unresolved_typed_refs'],name
             entries=copy.deepcopy(shells[name])
@@ -38,7 +39,9 @@ def payloads():
                 if v.endswith(suffix) and v[:-len(suffix)] in omt:return 'dda_geo_'+v
             return v
         for e in entries:
-            if e['type']=='overmap_terrain':e['id']=rename(e['id'])
+            if e['type']=='overmap_terrain':
+                e['id']=rename(e['id'])
+                if e.get('copy-from') in omt:e['copy-from']=rename(e['copy-from'])
             elif e['type']=='mapgen':e['om_terrain']=rename(e['om_terrain'])
             elif e['type']=='overmap_special':
                 e['id']='dda_geo_'+e['id'].replace(' ','_').lower()
@@ -55,7 +58,7 @@ def payloads():
     generated={('overmap_terrain',n) for n in hub['generated_external_omt']}
     project=index_entries(json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text()))
     assert not required(result)-core-own-generated-project,sorted(required(result)-core-own-generated-project)
-    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church and expanded Hub 01. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
+    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01 and the campus. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
 
 
 def native_test():
@@ -105,13 +108,15 @@ def prepare(check=False):
     prepare_shells(check=True)
     from check_hub_geometry_access import prepare as check_access
     check_access(check=True)
+    from prepare_campus_geometry import prepare as check_campus
+    check_campus(check=True)
     texts={p:json.dumps(v,indent=2,ensure_ascii=True)+'\n' for p,v in payloads().items()}
     texts['native/'+TEST]=native_test()
     for p,text in texts.items():
         path=ROOT/p
         if check:assert path.read_text()==text,path
         else:path.write_text(text)
-    print('Geometry preview: three isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
+    print('Geometry preview: four isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');prepare(parser.parse_args().check)

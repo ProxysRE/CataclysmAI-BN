@@ -4461,7 +4461,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_geometry_preview_test.cpp
-@@ -0,0 +1,558 @@
+@@ -0,0 +1,780 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "cata_utility.h"
@@ -5018,6 +5018,228 @@
 +        { 3, 0, 12, 14, -6, "t_stairs_down" },
 +        { 3, 1, 12, 3, -7, "t_stairs_up" },
 +        { 3, 1, 12, 3, -6, "t_stairs_down" },
++    } );
++}
++
++TEST_CASE( "dda_geo_campus_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 4500, {
++        { 11, 9, 0, "dda_geo_campus_admin_0_0_0_north" },
++        { 11, 10, 0, "dda_geo_campus_admin_0_1_0_north" },
++        { 11, 11, 0, "dda_geo_campus_admin_0_2_0_north" },
++        { 11, 9, 1, "dda_geo_campus_admin_0_0_1_north" },
++        { 11, 10, 1, "dda_geo_campus_admin_0_1_1_north" },
++        { 11, 11, 1, "dda_geo_campus_admin_0_2_1_north" },
++        { 11, 9, 2, "dda_geo_campus_admin_0_0_2_north" },
++        { 11, 10, 2, "dda_geo_campus_admin_0_1_2_north" },
++        { 11, 11, 2, "dda_geo_campus_admin_0_2_2_north" },
++        { 11, 9, 3, "dda_geo_campus_admin_0_0_3_north" },
++        { 11, 10, 3, "dda_geo_campus_admin_0_1_3_north" },
++        { 11, 11, 3, "dda_geo_campus_admin_0_2_3_north" },
++        { 14, 7, 0, "dda_geo_campus_lecture_0_0_0_north" },
++        { 14, 8, 0, "dda_geo_campus_lecture_0_1_0_north" },
++        { 14, 9, 0, "dda_geo_campus_lecture_0_2_0_north" },
++        { 14, 10, 0, "dda_geo_campus_lecture_0_3_0_north" },
++        { 14, 7, 1, "dda_geo_campus_lecture_0_0_1_north" },
++        { 14, 8, 1, "dda_geo_campus_lecture_0_1_1_north" },
++        { 14, 9, 1, "dda_geo_campus_lecture_0_2_1_north" },
++        { 14, 10, 1, "dda_geo_campus_lecture_0_3_1_north" },
++        { 14, 7, 2, "dda_geo_campus_lecture_0_0_2_north" },
++        { 14, 8, 2, "dda_geo_campus_lecture_0_1_2_north" },
++        { 14, 9, 2, "dda_geo_campus_lecture_0_2_2_north" },
++        { 14, 10, 2, "dda_geo_campus_lecture_0_3_2_north" },
++        { 14, 7, 3, "dda_geo_campus_lecture_0_0_3_north" },
++        { 14, 8, 3, "dda_geo_campus_lecture_0_1_3_north" },
++        { 14, 9, 3, "dda_geo_campus_lecture_0_2_3_north" },
++        { 14, 10, 3, "dda_geo_campus_lecture_0_3_3_north" },
++        { 9, 4, 0, "dda_geo_campus_commons_0_0_0_north" },
++        { 10, 4, 0, "dda_geo_campus_commons_1_0_0_north" },
++        { 9, 5, 0, "dda_geo_campus_commons_0_1_0_north" },
++        { 10, 5, 0, "dda_geo_campus_commons_1_1_0_north" },
++        { 9, 6, 0, "dda_geo_campus_commons_0_2_0_north" },
++        { 10, 6, 0, "dda_geo_campus_commons_1_2_0_north" },
++        { 9, 7, 0, "dda_geo_campus_commons_0_3_0_north" },
++        { 10, 7, 0, "dda_geo_campus_commons_1_3_0_north" },
++        { 9, 4, 1, "dda_geo_campus_commons_0_0_1_north" },
++        { 10, 4, 1, "dda_geo_campus_commons_1_0_1_north" },
++        { 9, 5, 1, "dda_geo_campus_commons_0_1_1_north" },
++        { 10, 5, 1, "dda_geo_campus_commons_1_1_1_north" },
++        { 9, 6, 1, "dda_geo_campus_commons_0_2_1_north" },
++        { 10, 6, 1, "dda_geo_campus_commons_1_2_1_north" },
++        { 9, 7, 1, "dda_geo_campus_commons_0_3_1_north" },
++        { 10, 7, 1, "dda_geo_campus_commons_1_3_1_north" },
++        { 9, 4, 2, "dda_geo_campus_commons_0_0_2_north" },
++        { 10, 4, 2, "dda_geo_campus_commons_1_0_2_north" },
++        { 9, 5, 2, "dda_geo_campus_commons_0_1_2_north" },
++        { 10, 5, 2, "dda_geo_campus_commons_1_1_2_north" },
++        { 9, 6, 2, "dda_geo_campus_commons_0_2_2_north" },
++        { 10, 6, 2, "dda_geo_campus_commons_1_2_2_north" },
++        { 9, 7, 2, "dda_geo_campus_commons_0_3_2_north" },
++        { 10, 7, 2, "dda_geo_campus_commons_1_3_2_north" },
++        { 9, 4, 3, "dda_geo_campus_commons_0_0_3_north" },
++        { 10, 4, 3, "dda_geo_campus_commons_1_0_3_north" },
++        { 9, 5, 3, "dda_geo_campus_commons_0_1_3_north" },
++        { 10, 5, 3, "dda_geo_campus_commons_1_1_3_north" },
++        { 9, 6, 3, "dda_geo_campus_commons_0_2_3_north" },
++        { 10, 6, 3, "dda_geo_campus_commons_1_2_3_north" },
++        { 9, 7, 3, "dda_geo_campus_commons_0_3_3_north" },
++        { 10, 7, 3, "dda_geo_campus_commons_1_3_3_north" },
++        { 12, 10, 0, "dda_geo_campus_media_0_0_0_north" },
++        { 12, 11, 0, "dda_geo_campus_media_0_1_0_north" },
++        { 13, 10, 0, "dda_geo_campus_media_1_0_0_north" },
++        { 13, 11, 0, "dda_geo_campus_media_1_1_0_north" },
++        { 12, 10, 1, "dda_geo_campus_media_0_0_1_north" },
++        { 12, 11, 1, "dda_geo_campus_media_0_1_1_north" },
++        { 13, 10, 1, "dda_geo_campus_media_1_0_1_north" },
++        { 13, 11, 1, "dda_geo_campus_media_1_1_1_north" },
++        { 12, 10, 2, "dda_geo_campus_media_0_0_2_north" },
++        { 12, 11, 2, "dda_geo_campus_media_0_1_2_north" },
++        { 13, 10, 2, "dda_geo_campus_media_1_0_2_north" },
++        { 13, 11, 2, "dda_geo_campus_media_1_1_2_north" },
++        { 12, 10, 3, "dda_geo_campus_media_0_0_3_north" },
++        { 12, 11, 3, "dda_geo_campus_media_0_1_3_north" },
++        { 13, 10, 3, "dda_geo_campus_media_1_0_3_north" },
++        { 13, 11, 3, "dda_geo_campus_media_1_1_3_north" },
++        { 12, 10, 4, "dda_geo_campus_media_0_0_4_north" },
++        { 12, 11, 4, "dda_geo_campus_media_0_1_4_north" },
++        { 13, 10, 4, "dda_geo_campus_media_1_0_4_north" },
++        { 13, 11, 4, "dda_geo_campus_media_1_1_4_north" },
++        { 15, 5, 0, "dda_geo_campus_health_0_0_0_north" },
++        { 15, 6, 0, "dda_geo_campus_health_0_1_0_north" },
++        { 15, 7, 0, "dda_geo_campus_health_0_2_0_north" },
++        { 15, 5, 1, "dda_geo_campus_health_0_0_1_north" },
++        { 15, 6, 1, "dda_geo_campus_health_0_1_1_north" },
++        { 15, 7, 1, "dda_geo_campus_health_0_2_1_north" },
++        { 15, 5, 2, "dda_geo_campus_health_0_0_2_north" },
++        { 15, 6, 2, "dda_geo_campus_health_0_1_2_north" },
++        { 15, 7, 2, "dda_geo_campus_health_0_2_2_north" },
++        { 15, 5, 3, "dda_geo_campus_health_0_0_3_north" },
++        { 15, 6, 3, "dda_geo_campus_health_0_1_3_north" },
++        { 15, 7, 3, "dda_geo_campus_health_0_2_3_north" },
++        { 9, 8, 0, "dda_geo_pedestrian_9_8_north" },
++        { 10, 8, 0, "dda_geo_pedestrian_10_8_north" },
++        { 9, 11, 0, "dda_geo_pedestrian_9_11_north" },
++        { 10, 11, 0, "dda_geo_pedestrian_10_11_north" },
++        { 11, 5, 0, "dda_geo_pedestrian_11_5_0_north" },
++        { 12, 5, 0, "dda_geo_pedestrian_12_5_0_north" },
++        { 13, 5, 0, "dda_geo_pedestrian_13_5_0_north" },
++        { 14, 5, 0, "dda_geo_pedestrian_14_5_0_north" },
++        { 11, 6, 0, "dda_geo_pedestrian_11_6_0_north" },
++        { 12, 6, 0, "dda_geo_pedestrian_12_6_0_north" },
++        { 13, 6, 0, "dda_geo_pedestrian_13_6_0_north" },
++        { 14, 6, 0, "dda_geo_pedestrian_14_6_0_north" },
++        { 11, 7, 0, "dda_geo_pedestrian_11_7_0_north" },
++        { 12, 7, 0, "dda_geo_pedestrian_12_7_0_north" },
++        { 13, 7, 0, "dda_geo_pedestrian_13_7_0_north" },
++        { 11, 8, 0, "dda_geo_pedestrian_11_8_0_north" },
++        { 12, 8, 0, "dda_geo_pedestrian_12_8_0_north" },
++        { 13, 8, 0, "dda_geo_pedestrian_13_8_0_north" },
++        { 12, 9, 0, "dda_geo_pedestrian_12_9_0_north" },
++        { 13, 9, 0, "dda_geo_pedestrian_13_9_0_north" },
++    } );
++}
++
++TEST_CASE( "dda_geo_campus_lecture_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 4600, {
++        { 0, 0, 0, "dda_geo_campus_lecture_0_0_0_north" },
++        { 0, 1, 0, "dda_geo_campus_lecture_0_1_0_north" },
++        { 0, 2, 0, "dda_geo_campus_lecture_0_2_0_north" },
++        { 0, 3, 0, "dda_geo_campus_lecture_0_3_0_north" },
++        { 0, 0, 1, "dda_geo_campus_lecture_0_0_1_north" },
++        { 0, 1, 1, "dda_geo_campus_lecture_0_1_1_north" },
++        { 0, 2, 1, "dda_geo_campus_lecture_0_2_1_north" },
++        { 0, 3, 1, "dda_geo_campus_lecture_0_3_1_north" },
++        { 0, 0, 2, "dda_geo_campus_lecture_0_0_2_north" },
++        { 0, 1, 2, "dda_geo_campus_lecture_0_1_2_north" },
++        { 0, 2, 2, "dda_geo_campus_lecture_0_2_2_north" },
++        { 0, 3, 2, "dda_geo_campus_lecture_0_3_2_north" },
++        { 0, 0, 3, "dda_geo_campus_lecture_0_0_3_north" },
++        { 0, 1, 3, "dda_geo_campus_lecture_0_1_3_north" },
++        { 0, 2, 3, "dda_geo_campus_lecture_0_2_3_north" },
++        { 0, 3, 3, "dda_geo_campus_lecture_0_3_3_north" },
++    } );
++}
++
++TEST_CASE( "dda_geo_campus_commons_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 4700, {
++        { 0, 0, 0, "dda_geo_campus_commons_0_0_0_north" },
++        { 1, 0, 0, "dda_geo_campus_commons_1_0_0_north" },
++        { 0, 1, 0, "dda_geo_campus_commons_0_1_0_north" },
++        { 1, 1, 0, "dda_geo_campus_commons_1_1_0_north" },
++        { 0, 2, 0, "dda_geo_campus_commons_0_2_0_north" },
++        { 1, 2, 0, "dda_geo_campus_commons_1_2_0_north" },
++        { 0, 3, 0, "dda_geo_campus_commons_0_3_0_north" },
++        { 1, 3, 0, "dda_geo_campus_commons_1_3_0_north" },
++        { 0, 0, 1, "dda_geo_campus_commons_0_0_1_north" },
++        { 1, 0, 1, "dda_geo_campus_commons_1_0_1_north" },
++        { 0, 1, 1, "dda_geo_campus_commons_0_1_1_north" },
++        { 1, 1, 1, "dda_geo_campus_commons_1_1_1_north" },
++        { 0, 2, 1, "dda_geo_campus_commons_0_2_1_north" },
++        { 1, 2, 1, "dda_geo_campus_commons_1_2_1_north" },
++        { 0, 3, 1, "dda_geo_campus_commons_0_3_1_north" },
++        { 1, 3, 1, "dda_geo_campus_commons_1_3_1_north" },
++        { 0, 0, 2, "dda_geo_campus_commons_0_0_2_north" },
++        { 1, 0, 2, "dda_geo_campus_commons_1_0_2_north" },
++        { 0, 1, 2, "dda_geo_campus_commons_0_1_2_north" },
++        { 1, 1, 2, "dda_geo_campus_commons_1_1_2_north" },
++        { 0, 2, 2, "dda_geo_campus_commons_0_2_2_north" },
++        { 1, 2, 2, "dda_geo_campus_commons_1_2_2_north" },
++        { 0, 3, 2, "dda_geo_campus_commons_0_3_2_north" },
++        { 1, 3, 2, "dda_geo_campus_commons_1_3_2_north" },
++        { 0, 0, 3, "dda_geo_campus_commons_0_0_3_north" },
++        { 1, 0, 3, "dda_geo_campus_commons_1_0_3_north" },
++        { 0, 1, 3, "dda_geo_campus_commons_0_1_3_north" },
++        { 1, 1, 3, "dda_geo_campus_commons_1_1_3_north" },
++        { 0, 2, 3, "dda_geo_campus_commons_0_2_3_north" },
++        { 1, 2, 3, "dda_geo_campus_commons_1_2_3_north" },
++        { 0, 3, 3, "dda_geo_campus_commons_0_3_3_north" },
++        { 1, 3, 3, "dda_geo_campus_commons_1_3_3_north" },
++    } );
++}
++
++TEST_CASE( "dda_geo_campus_media_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 4800, {
++        { 0, 0, 0, "dda_geo_campus_media_0_0_0_north" },
++        { 0, 1, 0, "dda_geo_campus_media_0_1_0_north" },
++        { 1, 0, 0, "dda_geo_campus_media_1_0_0_north" },
++        { 1, 1, 0, "dda_geo_campus_media_1_1_0_north" },
++        { 0, 0, 1, "dda_geo_campus_media_0_0_1_north" },
++        { 0, 1, 1, "dda_geo_campus_media_0_1_1_north" },
++        { 1, 0, 1, "dda_geo_campus_media_1_0_1_north" },
++        { 1, 1, 1, "dda_geo_campus_media_1_1_1_north" },
++        { 0, 0, 2, "dda_geo_campus_media_0_0_2_north" },
++        { 0, 1, 2, "dda_geo_campus_media_0_1_2_north" },
++        { 1, 0, 2, "dda_geo_campus_media_1_0_2_north" },
++        { 1, 1, 2, "dda_geo_campus_media_1_1_2_north" },
++        { 0, 0, 3, "dda_geo_campus_media_0_0_3_north" },
++        { 0, 1, 3, "dda_geo_campus_media_0_1_3_north" },
++        { 1, 1, 3, "dda_geo_campus_media_1_0_3_north" },
++        { 1, 0, 3, "dda_geo_campus_media_1_1_3_north" },
++        { 0, 0, 4, "dda_geo_campus_media_0_0_4_north" },
++        { 0, 1, 4, "dda_geo_campus_media_0_1_4_north" },
++        { 1, 1, 4, "dda_geo_campus_media_1_0_4_north" },
++        { 1, 0, 4, "dda_geo_campus_media_1_1_4_north" },
++    } );
++}
++
++TEST_CASE( "dda_geo_campus_health_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 4900, {
++        { 0, 0, 0, "dda_geo_campus_admin_0_0_0_north" },
++        { 0, 1, 0, "dda_geo_campus_admin_0_1_0_north" },
++        { 0, 2, 0, "dda_geo_campus_admin_0_2_0_north" },
++        { 0, 0, 1, "dda_geo_campus_admin_0_0_1_north" },
++        { 0, 1, 1, "dda_geo_campus_admin_0_1_1_north" },
++        { 0, 2, 1, "dda_geo_campus_admin_0_2_1_north" },
++        { 0, 0, 2, "dda_geo_campus_admin_0_0_2_north" },
++        { 0, 1, 2, "dda_geo_campus_admin_0_1_2_north" },
++        { 0, 2, 2, "dda_geo_campus_admin_0_2_2_north" },
++        { 0, 0, 3, "dda_geo_campus_admin_0_0_3_north" },
++        { 0, 1, 3, "dda_geo_campus_admin_0_1_3_north" },
++        { 0, 2, 3, "dda_geo_campus_admin_0_2_3_north" },
 +    } );
 +}
 --- /dev/null
@@ -64998,7 +65220,7 @@
 +    "authors": [
 +      "ProxysRE"
 +    ],
-+    "description": "Terrain-only previews of the island prison, XEDRA church and expanded Hub 01. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.",
++    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01 and the campus. No loot, inhabitants or quests. Debug placement only; enable explicitly in a test world.",
 +    "category": "buildings",
 +    "dependencies": [
 +      "bn"
@@ -65007,7 +65229,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,4535 @@
+@@ -0,0 +1,8903 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -69541,5 +69763,4373 @@
 +      "MAN_MADE",
 +      "GLOBALLY_UNIQUE"
 +    ]
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_admin_0_0_0"
++      ],
++      [
++        "dda_geo_campus_admin_0_1_0"
++      ],
++      [
++        "dda_geo_campus_admin_0_2_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete",
++        ":": "t_wall_glass",
++        "%": "t_door_glass_c",
++        "0": "t_door_locked_interior",
++        "b": "t_rock_wall_half",
++        "?": [
++          "t_region_shrub",
++          "t_region_shrub_fruit",
++          "t_region_shrub_decorative"
++        ],
++        "[": [
++          [
++            "t_region_tree_fruit",
++            2
++          ],
++          [
++            "t_region_tree_nut",
++            2
++          ],
++          "t_region_tree_shade"
++        ],
++        "<": "t_stairs_up",
++        "E": "t_elevator"
++      },
++      "fill_ter": "t_dirt",
++      "rows": [
++        "...______________bb___bb",
++        "bbb_____bbbb_____b.b___b",
++        "..b_____b.?b_____b.bb___",
++        "?||:%:%:||.b_____b[.bb__",
++        ".|,,,,,,,|?b_____b...bb_",
++        ".|,,,,,,,|.b_____b.[..bb",
++        "?|,,,,,,,:?b_____b...[.b",
++        "?|,,,,,,,:.b_____bbbbbbb",
++        ".|,,,,,,,:?b____________",
++        "?|,,,,,,,|.bbbbb________",
++        ".|,,,,,,,|?..?.b________",
++        "?||||||0||||||.b________",
++        "..?|,,,,,0,,<|?b________",
++        "?[.|,,,,,|||||.b________",
++        ".?.|,,,,,,,,,:?b________",
++        "||||,,,,,,,,,:?b________",
++        "|,,,,,,,,,,,,:?b________",
++        "|,,,,,,,,,,,,:.b________",
++        "|,,,,,,,,,,,,|?bbb______",
++        "||||||||00|,,|?.?b______",
++        ".?:,,,,|,,||||||.b______",
++        "..:,,,,0,,0,,,,|?b______",
++        "?.:,,,,|,,|,,,,|.b______",
++        "..||||||,,||||||?b______",
++        ".?:,,,,|,,|,,,,:.b______",
++        "..:,,,,0,,0,,,,:?b______",
++        ".?:,,,,|,,|,,,,:?b______",
++        "..||||||,,||||||?b______",
++        "?.:,,,,|,,|,,,,:.b______",
++        "..:,,,,|,,|,,,,:?b______",
++        ".?|,,,,0,,0,,,,:?bbbbb__",
++        "..|,,,,|,,|,,,,|.?.??b__",
++        ".?||||||00||||||||||||__",
++        "..|,,,,,,,,,,,,,,,,,,|__",
++        ".?|,,,,,,,,,,,,,,,,,,|__",
++        ".?|,,,,,,,,,,,,,,,,,,:__",
++        "..|,,,,,,,,,,,,,,,,,,:__",
++        "?.|,,,,,,,,,,,,,,,,,,|__",
++        "?.|,,,,,,,,,,,,,,,,,,%__",
++        ".?|,,,,,,,,,,,,,,,,,,%__",
++        "..|,,,,,,,,,,,,,,,,,,|__",
++        ".?|,,,,,,,,,,,,,,,,,,%__",
++        ".?|,,,,,,,,,,,,,,,,,,%__",
++        "..|,,,,,,,,,,,,,,,,,,|__",
++        "?.|,,,,,,,,,,,,,,,,,,:__",
++        "..|,,,,,,,,,,,,,,,,,,:__",
++        ".?|,,,,,,,,,,,,,,,,,,|__",
++        "?.|||||||00|||||||||||__",
++        "?||,,,,,,,,,,,,,,|..?b__",
++        ".|,,,,,,,,,,,,,,,|.[.b__",
++        "?|,,,,,,,,,,,,,,,|...b__",
++        "?|,,,,,,,,,,,,,,,|???b__",
++        ".|,,,,,,,,,,,,,,,|bbbb__",
++        ".|,,,,,,,,,,,,,,,|______",
++        "?|,,,,,,,,,,,,,,,|______",
++        ".|,,,,,,,,,,,,,,,|______",
++        ".|,,|||||,,,,|||||______",
++        "?|EE|<,,0,,,,:__________",
++        ".|EE|,,,0,,,,:__________",
++        "?||||||||,,,,|__________",
++        "???b____|,,,,|__________",
++        "???b____|,,,,|__________",
++        "???b____||%%||__________",
++        "???b____________________",
++        "???b____________________",
++        "???b____________________",
++        "b??b____bbbbbbbbbbbbbbbb",
++        "b??b____b.[...........[.",
++        "b??b____b...[...[...[...",
++        "bbbb____b.....[.........",
++        "________b.[......[..[...",
++        "________b...[..........."
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_admin_0_0_1"
++      ],
++      [
++        "dda_geo_campus_admin_0_1_1"
++      ],
++      [
++        "dda_geo_campus_admin_0_2_1"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        ":": "t_wall_glass",
++        "0": "t_door_locked_interior",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up",
++        "E": "t_elevator"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        " |||||||||              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " ||||||0||||||          ",
++        "   |,,,,,0,,>|          ",
++        "   |,,,,,|,,<|          ",
++        "   |,,,,,|||||          ",
++        "||||,,,,,,,,,|          ",
++        "|,,,,,,,,,,,,|          ",
++        "|,,,,,,,,,,,,|          ",
++        "|,,,,,,,,,,,,|          ",
++        "|||,,,,,,,,,,|          ",
++        "  |,,,,,,,,,,|||        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  ||||||00||||||||||||||",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        " |||||||00||||||||||||||",
++        " ||,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,|||||,,,,|||||      ",
++        " |EE|>,,0,,,,:          ",
++        " |EE|<,,0,,,,:          ",
++        " ||||||||,,,,|          ",
++        "        |,,,,|          ",
++        "        |,,,,|          ",
++        "        ||||||          ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_admin_0_0_2"
++      ],
++      [
++        "dda_geo_campus_admin_0_1_2"
++      ],
++      [
++        "dda_geo_campus_admin_0_2_2"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        ":": "t_wall_glass",
++        "0": "t_door_locked_interior",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up",
++        "E": "t_elevator"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        " |||||||||              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " |,,,,,,,|              ",
++        " ||||||0||||||          ",
++        "   |,,,,,0,,,|          ",
++        "   |,,,,,|,,>|          ",
++        "   |,,,,,|||||          ",
++        "||||,,,,,,,,,|          ",
++        "|,,,,,,,,,,,,|          ",
++        "|,,,,,,,,,,,,|          ",
++        "|,,,,,,,,,,,,|          ",
++        "|||,,,,,,,,,,|          ",
++        "  |,,,,,,,,,,|||        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  |,,,,,,,,,,,,|        ",
++        "  ||||||00||||||||||||||",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        "  |,,,,,,,,,,,,,,,,,,,,|",
++        " |||||||00||||||||||||||",
++        " ||,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,|||||,,,,|||||      ",
++        " |EE|<,,0,,,,:          ",
++        " |EE|>,,0,,,,:          ",
++        " ||||||||,,,,|          ",
++        "        |,,,,|          ",
++        "        |,,,,|          ",
++        "        ||||||          ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_admin_0_0_3"
++      ],
++      [
++        "dda_geo_campus_admin_0_1_3"
++      ],
++      [
++        "dda_geo_campus_admin_0_2_3"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "R": "t_flat_roof",
++        ">": "t_stairs_down"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRR              ",
++        " RRRRRRRRRRRRR          ",
++        "   RRRRRRRRRRR          ",
++        "   RRRRRRRRRRR          ",
++        "   RRRRRRRRRRR          ",
++        "RRRRRRRRRRRRRR          ",
++        "RRRRRRRRRRRRRR          ",
++        "RRRRRRRRRRRRRR          ",
++        "RRRRRRRRRRRRRR          ",
++        "RRRRRRRRRRRRRR          ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRR        ",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        "  RRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRR>RRRRRRRR          ",
++        " RRRRRRRRRRRRR          ",
++        " RRRRRRRRRRRRR          ",
++        "        RRRRRR          ",
++        "        RRRRRR          ",
++        "        RRRRRR          ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_commons_0_0_0",
++        "dda_geo_campus_commons_1_0_0"
++      ],
++      [
++        "dda_geo_campus_commons_0_1_0",
++        "dda_geo_campus_commons_1_1_0"
++      ],
++      [
++        "dda_geo_campus_commons_0_2_0",
++        "dda_geo_campus_commons_1_2_0"
++      ],
++      [
++        "dda_geo_campus_commons_0_3_0",
++        "dda_geo_campus_commons_1_3_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete",
++        "'": "t_pavement",
++        ":": "t_wall_glass",
++        "%": "t_door_glass_c",
++        "0": "t_door_locked_interior",
++        "b": "t_rock_wall_half",
++        "`": "t_pavement_y",
++        "?": [
++          "t_region_shrub",
++          "t_region_shrub_fruit",
++          "t_region_shrub_decorative"
++        ],
++        "[": [
++          [
++            "t_region_tree_fruit",
++            2
++          ],
++          [
++            "t_region_tree_nut",
++            2
++          ],
++          "t_region_tree_shade"
++        ],
++        "<": "t_stairs_up"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "''''''''''''''''''''''''''''''''''''''''''''''''",
++        "'''''''''''''''''''''''''''''''''____________'''",
++        "'''''''''''_______________________||||||||||___'",
++        "'''''''''''__________________||||||,,,,,,,,|.._'",
++        "'''''''''''''''''''__________|,,,,,,,,,,,,,|.._'",
++        "'''''''''''''''''''____|||||||0|||||||||||||.._'",
++        "'''''''''''''''''''____|<,,,0,,|,,,,,,,,,,,|.._'",
++        "'''''''''''''''''''____||||||,,0,,,,,,,,,,,|..__",
++        "''''''''''''''`````____|,,,,,,,|||||||||||||....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "''''''''''''''`````____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,0,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "''''''''''''''`````____|,,,,,,,|||||||||||||....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|....",
++        "'''''''''''''''''''____|,,,,,,,|,,,,,,,,,,,|____",
++        "'''''''''''''''''''____|,,,,,,,:,,,,,,,,,,,:____",
++        "''''''''''''bbbbbbb____|,,,,,,,%,,,,,,,,,,,%____",
++        "'''''''''''bb......____|,,,,,,,:,,,,,,,,,,,:____",
++        "''''''''''bb.......____|,,,,,,,%,,,,,,,,,,,%____",
++        "''''''''''b........____|,,,,,,,:,,,,,,,,,,,:____",
++        "''''''''''b........____|,,,,,,,|,,,,,,,,,,,|____",
++        "''''''''''b........____|,,,,,,,|,,,,,,,,,,,|..__",
++        "_______________________|,,,,,,,|||||||||||||..__",
++        "_______________________|,,,,,,,|___..........___",
++        "_______________________|,,,,,,,|____........____",
++        "_______________________|,,,,,,,:_____......_____",
++        "_______________________|,,,,,,,%________________",
++        "_______________________|,,,,,,,%________________",
++        "_______________________|,,,,,,,:_____......_____",
++        "_______________________|,,,,,,,|____........____",
++        "_______________________|,,,,,,,|___..........___",
++        "______________bbbbbb___|,,,,,,,|||||||||||....__",
++        "''''''''''''''''b..bbb||,,,,,,,|,,,,,,,,,||||.__",
++        "''''''''''''''''b.....|,,,,,,,,|,,,,,,,,,,,,|bbb",
++        "''''''''''''''''b.....:,,,,,,,,0,,,,,,,,,,,,:[.b",
++        "''''''''''''''''b.....:,,,,,,,,|,,,,,,,,,,,,:..b",
++        "`````''''''`````b.....:,,,,,,,,|,,,,,,,,,,,,:.[b",
++        "''''''''''''''''b.....:,,,,,,,,|,,,,,,,,,,,,:..b",
++        "''''''''''''''''b.....|,,,,,,,,|,,,,,,,,,,,,|[.b",
++        "''''''''''''''''b.....|||,,,,,,|,,,,,,,,,,|||..b",
++        "''''''''''''''''b.......|,,,,,,|,,,,,,,,,,|[.[.b",
++        "`````''''''`````b.......|,,,,,,|,,,,,,,,,,|.[.[b",
++        "''''''''''''''''b.....|||,,,,,,|,,,,,,,,,,|||..b",
++        "''''''''''''''''b.....|,,,,,,,,|,,,,,,,,,,,,|[.b",
++        "''''''''''''''''b.....:,,,,,,,,|,,,,,,,,,,,,:..b",
++        "''''''''''''''''b.....|,,,,,,,,|,,,,,,,,,,,,|.[b",
++        "`````''''''`````b.....:,,,,,,,,|,,,,,,,,,,,,:..b",
++        "''''''''''''''''b.....|,,,,,,,,|,,,,,,,,,,,,|[.b",
++        "''''''''''''''''b.....|||,,,,,,|,,,,,,,,,,|||..b",
++        "''''''''''''''''b.......|,,,,,,|,,,,,,,,,,|..[.b",
++        "''''''''''''''''b.......|,,,,,,|,,,,,,,,,,|.[.[b",
++        "`````''''''`````bbbbbb|||,,,,,,|,,,,,,,,,,|||..b",
++        "''''''''''''''''______|,,,,,,,,|,,,,,,,,,,,,|.[b",
++        "''''''''''''''''______:,,,,,,,,|,,,,,,,,,,,,:[.b",
++        "'''''''''''''''_______|,,,,,,,,|,,,,,,,,,,,,:..b",
++        "__________________|||||,,,,,,,,|,,,,,,,,,,,,:.[b",
++        "__________________|,,,,,,,,,,,,|,,,,,,,,,,,,:..b",
++        "__________________:,,,,,,,,,,,,:,,,,,,,,,,,,|.[b",
++        "__________________%,,,,,,,,,,,,%,,,,,,,,,,|||[.b",
++        "__________________%,,,,,,,,,,,,%,,,,,,,,,,|[...b",
++        "__________________:,,,,,,,,,,,,:,,,,,,,,,,|..[.b",
++        "__________________%,,,,,,,,,,,,%,,,,,,,,,,|||..b",
++        "__________________%,,,,,,,,,,,,%,,,,,,,,,,,,|[.b",
++        "__________________:,,,,,,,,,,,,:,,,,,,,,,,,,:..b",
++        "__________________|,,,,,,,,,,,,|,,,,,,,,,,,,:.[b",
++        "________________bb|||||,,,,,,,,|,,,,,,,,,,,,:..b",
++        "________________b.....|,,,,,,,,|,,,,,,,,,,,,:..b",
++        "________________b..[..|||,,,,,,|,,,,,,,,,,|||[.b",
++        "________________b.......|,,,,,,|,,,,,,,,,,|....b",
++        "________________b...[...|,,,,,,|,,,,,,,,,,|....b",
++        "________________b.[...|||,,,,,,|,,,,,,,,,,|||[.b",
++        "________________bbbbbb|,,,,,,,,|,,,,,,,,,,,,|..b",
++        "______________________|,,,,,,,,|,,,,,,,,,,,,|bbb",
++        "______________________:,,,,,,,,|,,,,,,,,,,,,:___",
++        "______________________%,,,,,,,,|,,,,,,,,,,,,%___",
++        "______________________:,,,,,,,,|,,,,,,,,,,,,:___",
++        "______________________|,,,,,,,,|,,,,,,,,,,,,|..b",
++        "___________________bbb||||||||0|,,,,,,,,,,|||..b",
++        "___________________b.[..|<,,,,,|,,,,,,,,,,|..?bb",
++        "___________________b....||||||0|,,,,,,,,|||.?bb_",
++        "___________________b..[......|,,,,,,,,,,|[.?bb__",
++        "___________________b.....[...|,,,,,,|||||.?bb___",
++        "___________________b?..[...[.||:%%:||.[..?bb____",
++        "___________________bb.?..?.?...____......bb_____"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_commons_0_0_1",
++        "dda_geo_campus_commons_1_0_1"
++      ],
++      [
++        "dda_geo_campus_commons_0_1_1",
++        "dda_geo_campus_commons_1_1_1"
++      ],
++      [
++        "dda_geo_campus_commons_0_2_1",
++        "dda_geo_campus_commons_1_2_1"
++      ],
++      [
++        "dda_geo_campus_commons_0_3_1",
++        "dda_geo_campus_commons_1_3_1"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "R": "t_flat_roof",
++        ":": "t_wall_glass",
++        "0": "t_door_locked_interior",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                  ||||||||||    ",
++        "                             ||||||,,,,,,,,|    ",
++        "                             |,,,,,,,,,,,,,|    ",
++        "                       |||::||0|||||||||||||    ",
++        "                       |>,,,0,,|,,,,,,,,,,,|    ",
++        "                       |<,,,0,,0,,,,,,,,,,,|    ",
++        "                       ||||||,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |||||||,,,,,,,|          ",
++        "                       RRRRRR:,,,,,,,:          ",
++        "                       RRRRRR:,,,,,,,:          ",
++        "                       RRRRRR:,,,,,,,:          ",
++        "                       RRRRRR|,,,,,,,|||||      ",
++        "                      ||||||||,,,,,,,,,,,||||   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      ||||0||||||||,,,,,,,|||   ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,0,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,0,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                  |||||||||||||||||||00||||||   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,|||   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,:     ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,:     ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,|||   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |||||||||||||||||||00||||||   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                        :,,,,,,,,,,,,,,,,,:     ",
++        "                        :,,,,,,,,,,,,,,,,,:     ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,|||||00|,,,,,,,,,,,,|   ",
++        "                      |||<,,,,,||||0|0|||||||   ",
++        "                        |>,,,,,|,,,,|,,,,,|     ",
++        "                        ||||||||,,,,|,,,|||     ",
++        "                             |,,,,,,|,,,|       ",
++        "                             |,,,,,,|||||       ",
++        "                             ||||||||           ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_commons_0_0_2",
++        "dda_geo_campus_commons_1_0_2"
++      ],
++      [
++        "dda_geo_campus_commons_0_1_2",
++        "dda_geo_campus_commons_1_1_2"
++      ],
++      [
++        "dda_geo_campus_commons_0_2_2",
++        "dda_geo_campus_commons_1_2_2"
++      ],
++      [
++        "dda_geo_campus_commons_0_3_2",
++        "dda_geo_campus_commons_1_3_2"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        ":": "t_wall_glass",
++        "0": "t_door_locked_interior",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                  ||||||||||    ",
++        "                             ||||||,,,,,,,,|    ",
++        "                             |,,,,,,,,,,,,,|    ",
++        "                       |||::||0|||||||||||||    ",
++        "                       |>,,,0,,|,,,,,,,,,,,|    ",
++        "                       |<,,,0,,0,,,,,,,,,,,|    ",
++        "                       ||||||,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       :,,,,,,,0,,,,,,,,,,,:    ",
++        "                       :,,,,,,,|,,,,,,,,,,,:    ",
++        "                       |,,,,,,,|,,,,,,,,,,,|    ",
++        "                       |,,,,,,,|||||||||||||    ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |,,,,,,,,,,,,,|          ",
++        "                       |||||||,,,,,,,|          ",
++        "                             :,,,,,,,:          ",
++        "                             :,,,,,,,:          ",
++        "                             :,,,,,,,:          ",
++        "                             |,,,,,,,|||||      ",
++        "                      ||||||||,,,,,,,,,,,||||   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,|,,,,,,,,,,,,,,|   ",
++        "                      ||||0||||||||,,,,,,,|||   ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,0,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                        :,,,,,,,,,|,,,,,,,:     ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,0,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,|,,,,,,,,,|   ",
++        "                  |||||||||||||||||||00||||||   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,|||   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,:     ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,:     ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,|||   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |,,,,,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                  |||||||||||||||||||00||||||   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                        :,,,,,,,,,,,,,,,,,:     ",
++        "                        :,,,,,,,,,,,,,,,,,:     ",
++        "                      |||,,,,,,,|||,,,,,,,|||   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,,,,,,,,,,,,,,,,,,,,,|   ",
++        "                      |,|||||00|,,,,,,,,,,,,|   ",
++        "                      |||>,,,,,||||0|0|||||||   ",
++        "                        |<,,,,,|,,,,|,,,,,|     ",
++        "                        ||||||||,,,,|,,,|||     ",
++        "                             |,,,,,,|,,,|       ",
++        "                             |,,,,,,|||||       ",
++        "                             ||||||||           ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_commons_0_0_3",
++        "dda_geo_campus_commons_1_0_3"
++      ],
++      [
++        "dda_geo_campus_commons_0_1_3",
++        "dda_geo_campus_commons_1_1_3"
++      ],
++      [
++        "dda_geo_campus_commons_0_2_3",
++        "dda_geo_campus_commons_1_2_3"
++      ],
++      [
++        "dda_geo_campus_commons_0_3_3",
++        "dda_geo_campus_commons_1_3_3"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "R": "t_flat_roof",
++        ">": "t_stairs_down"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                  RRRRRRRRRR    ",
++        "                             RRRRRRRRRRRRRRR    ",
++        "                             RRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRRRRRRRR    ",
++        "                       RRRRRRRRRRRRRRR          ",
++        "                       RRRRRRRRRRRRRRR          ",
++        "                       RRRRRRRRRRRRRRR          ",
++        "                       RRRRRRRRRRRRRRR          ",
++        "                       RRRRRRRRRRRRRRR          ",
++        "                             RRRRRRRRR          ",
++        "                             RRRRRRRRR          ",
++        "                             RRRRRRRRR          ",
++        "                             RRRRRRRRRRRRR      ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRR     ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRR     ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                  RRRRRRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                      RRRRRRRRRRRRRRRRRRRRRRR   ",
++        "                        R>RRRRRRRRRRRRRRRRR     ",
++        "                        RRRRRRRRRRRRRRRRRRR     ",
++        "                             RRRRRRRRRRRR       ",
++        "                             RRRRRRRRRRRR       ",
++        "                             RRRRRRRR           ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_health_0_0_0"
++      ],
++      [
++        "dda_geo_campus_health_0_1_0"
++      ],
++      [
++        "dda_geo_campus_health_0_2_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "_": "t_concrete"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "________________________",
++        "________________________",
++        "________|||||||||_______",
++        "________|,,,,,,,|_______",
++        "________|,,,,,,,|_______",
++        "________|,,,,,,,|_______",
++        "________|,,,,,,,|_______",
++        "_____||||,,,,,,,|_______",
++        "_____|,,,,,,,,,,|_______",
++        "_____|,,,,,,,,,,|_______",
++        "_____|,,,,,,,,,,|_______",
++        "_____|,,,,,,,,,,|_______",
++        "_____|,,,,,,,,,,|_______",
++        "||||||,,,,,,,,,,||||____",
++        "|,,,,,,,,,,,,,,,,,,|____",
++        "|,,,,,,,,,,,,,,,,,,|____",
++        "|,,,,,,,,,,,,,,,,,,||___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|_____",
++        "|,,,,,,,,,,,,,,,,,|||___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,,|___",
++        "|,,,,,,,,,,,,,,,,,,||___",
++        "|,,,,,,,,,,,,,,,,,,|____",
++        "|,,,,,,,,,,,,,,,,,,|____",
++        ",,,,,,,,,,,,,,,,||||____",
++        ",,,,,,,,,,,,,,,,|_______",
++        ",,,,,,,,,,,,,,,,|_______",
++        ",,,,,,,,,,,,,,,,|_______",
++        "||||,,,,,,,,,,,,|_______",
++        "___|,,,,,,,,,,,,|_______",
++        "___|,,,,,,,,,,,,|_______",
++        "___||||||,,,,,,,|_______",
++        "________|||||||||_______"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_health_0_0_1"
++      ],
++      [
++        "dda_geo_campus_health_0_1_1"
++      ],
++      [
++        "dda_geo_campus_health_0_2_1"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "        |||||||||       ",
++        "        |,,,,,,,|       ",
++        "        |,,,,,,,|       ",
++        "        |,,,,,,,|       ",
++        "        |,,,,,,,|       ",
++        "     ||||,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "||||||,,,,,,,,,,||||    ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,,,,||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,||   ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        ",,,,,,,,,,,,,,,,||||    ",
++        ",,,,,,,,,,,,,,,,|       ",
++        ",,,,,,,,,,,,,,,,|       ",
++        ",,,,,,,,,,,,,,,,|       ",
++        "||||,,,,,,,,,,,,|       ",
++        "   |,,,,,,,,,,,,|       ",
++        "   |,,,,,,,,,,,,|       ",
++        "   ||||||,,,,,,,|       ",
++        "        |||||||||       "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_health_0_0_2"
++      ],
++      [
++        "dda_geo_campus_health_0_1_2"
++      ],
++      [
++        "dda_geo_campus_health_0_2_2"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "        |||||||||       ",
++        "        |,,,,,,,|       ",
++        "        |,,,,,,,|       ",
++        "        |,,,,,,,|       ",
++        "        |,,,,,,,|       ",
++        "     ||||,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "     |,,,,,,,,,,|       ",
++        "||||||,,,,,,,,,,||||    ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,,,,||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|     ",
++        "|,,,,,,,,,,,,,,,,,|||   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,,|   ",
++        "|,,,,,,,,,,,,,,,,,,||   ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,,,,|    ",
++        "|,,,,,,,,,,,,,,,||||    ",
++        "|,,,,,,,,,,,,,,,|       ",
++        "|,,,,,,,,,,,,,,,|       ",
++        "|,,,,,,,,,,,,,,,|       ",
++        "||||,,,,,,,,,,,,|       ",
++        "   |,,,,,,,,,,,,|       ",
++        "   |,,,,,,,,,,,,|       ",
++        "   ||||||,,,,,,,|       ",
++        "        |||||||||       "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_health_0_0_3"
++      ],
++      [
++        "dda_geo_campus_health_0_1_3"
++      ],
++      [
++        "dda_geo_campus_health_0_2_3"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "        RRRRRRRRR       ",
++        "        RRRRRRRRR       ",
++        "        RRRRRRRRR       ",
++        "        RRRRRRRRR       ",
++        "        RRRRRRRRR       ",
++        "     RRRRRRRRRRRR       ",
++        "     RRRRRRRRRRRR       ",
++        "     RRRRRRRRRRRR       ",
++        "     RRRRRRRRRRRR       ",
++        "     RRRRRRRRRRRR       ",
++        "     RRRRRRRRRRRR       ",
++        "RRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRR     ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRRR   ",
++        "RRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRR       ",
++        "RRRRRRRRRRRRRRRRR       ",
++        "RRRRRRRRRRRRRRRRR       ",
++        "RRRRRRRRRRRRRRRRR       ",
++        "   RRRRRRRRRRRRRR       ",
++        "   RRRRRRRRRRRRRR       ",
++        "   RRRRRRRRRRRRRR       ",
++        "        RRRRRRRRR       "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_lecture_0_0_0"
++      ],
++      [
++        "dda_geo_campus_lecture_0_1_0"
++      ],
++      [
++        "dda_geo_campus_lecture_0_2_0"
++      ],
++      [
++        "dda_geo_campus_lecture_0_3_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "_": "t_concrete",
++        "'": "t_pavement",
++        ":": "t_wall_glass",
++        "%": "t_door_glass_c",
++        "b": "t_rock_wall_half"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________||||||||||______",
++        "______|||,,,,,,,,|______",
++        "______|,,,,,,,,,,|______",
++        "______|,,,,,,,,,,|______",
++        "______|,,,,,,,,,,|||||||",
++        "______|,,,,,,,,,,,,,,,,,",
++        "______|,,,,,,,,,,,,,,,,,",
++        "______|,,,,,,,,,,,,,,,,,",
++        "____|||,,,,,,,,,,,,,,,,,",
++        "____|,,,,,,,,,,,,,,,,,||",
++        "____|,,,,,,,,,,,,,,,,,|_",
++        "____|,,,,,,,,,,,,,,,,,|_",
++        "____|,,,,,,,,,,,,,,,,,|_",
++        "____|,,,,,,,,,,,,,,,,,|_",
++        "____|,,,,,,,,,,,,,,,,,|_",
++        "_||||,,,,,,,,,,,,,,,,,||",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,|||||||",
++        "_|,,,,,,,,,,,,,,,|______",
++        "_|,,,,,,,,,,,,,,,|______",
++        "_:,,,,,,,,,,,,,,,|______",
++        "_:,,,,,,,,,,,,,,,|______",
++        "_:,,,,,,,,,,,,,,,|______",
++        "_|,,,,,,,,,,,,,,,||||||_",
++        "_%,,,,,,,,,,,,,,,,,,,,|_",
++        "_|,,,,,,,,,,,,,,,,,,,,|_",
++        "_%,,,,,,,,,,,,,,,,,,,,||",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_:,,,,,,,,,,,,,,,,,,,,,|",
++        "_:,,,,,,,,,,,,,,,,,,,,,|",
++        "_:,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,,|",
++        "_|,,,,,,,,,,,,,,,,,,,,||",
++        "_|,,,,,,,,,,,,,,,,,,,,|_",
++        "_|,,,,,,,,,,,,,,,,,,,,|_",
++        "_|||||,,,,,,,,,,,,,,|||_",
++        "_____|,,,,,,,,,,,,,,|___",
++        "____||,,,,,,,,,,,,,,|___",
++        "____|,,,,,,,,,,,,,,,|___",
++        "____|,,,,,,,,,,,,,,,|___",
++        "____|,,,,,,,,,,,,,,,|___",
++        "____|||||||,,,,,,,|||___",
++        "__________|,,,,,,,|_____",
++        "__________|,,,,,,,|_____",
++        "__________|,,,,,,,|_____",
++        "__________|,,,,,,,|_____",
++        "__________|||||||||_____",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "________________________",
++        "_bbbbbbbb_______________",
++        "_b''''''b_______________",
++        "_b''''''b_______________",
++        "_b''''''b_______________",
++        "_b''''''bbbbbbbbbbb'''''",
++        "_b''''''''''''''''''''''",
++        "_b''''''''''''''''''''''",
++        "bb''''''''''''''''''''''"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_lecture_0_0_1"
++      ],
++      [
++        "dda_geo_campus_lecture_0_1_1"
++      ],
++      [
++        "dda_geo_campus_lecture_0_2_1"
++      ],
++      [
++        "dda_geo_campus_lecture_0_3_1"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "        ||||||||||      ",
++        "      |||,,,,,,,,|      ",
++        "      |,,,,,,,,,,|      ",
++        "      |,,,,,,,,,,|      ",
++        "      |,,,,,,,,,,|||||||",
++        "      |,,,,,,,,,,,,,,,,,",
++        "      |,,,,,,,,,,,,,,,,,",
++        "      |,,,,,,,,,,,,,,,,,",
++        "    |||,,,,,,,,,,,,,,,,,",
++        "    |,,,,,,,,,,,,,,,,,||",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        " ||||,,,,,,,,,,,,,,,,,||",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,|||||||",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|||||| ",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |,,,,,,,,,,,,,,,,,,,,||",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,||",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |||||,,,,,,,,,,,,,,||| ",
++        "     |,,,,,,,,,,,,,,|   ",
++        "    ||,,,,,,,,,,,,,,|   ",
++        "    |,,,,,,,,,,,,,,,|   ",
++        "    |,,,,,,,,,,,,,,,|   ",
++        "    |,,,,,,,,,,,,,,,|   ",
++        "    |||||||,,,,,,,|||   ",
++        "          |,,,,,,,|     ",
++        "          |,,,,,,,|     ",
++        "          |,,,,,,,|     ",
++        "          |,,,,,,,|     ",
++        "          |||||||||     ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_lecture_0_0_2"
++      ],
++      [
++        "dda_geo_campus_lecture_0_1_2"
++      ],
++      [
++        "dda_geo_campus_lecture_0_2_2"
++      ],
++      [
++        "dda_geo_campus_lecture_0_3_2"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "        ||||||||||      ",
++        "      |||,,,,,,,,|      ",
++        "      |,,,,,,,,,,|      ",
++        "      |,,,,,,,,,,|      ",
++        "      |,,,,,,,,,,||||||R",
++        "      |,,,,,,,,,,,,,,,|R",
++        "      |,,,,,,,,,,,,,,,|R",
++        "      |,,,,,,,,,,,,,,,|R",
++        "    |||,,,,,,,,,,,,,,,|R",
++        "    |,,,,,,,,,,,,,,,,,|R",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        "    |,,,,,,,,,,,,,,,,,| ",
++        " ||||,,,,,,,,,,,,,,,,,||",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,|||||||",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|      ",
++        " |,,,,,,,,,,,,,,,|||||| ",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |,,,,,,,,,,,,,,,,,,,,||",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,,|",
++        " |,,,,,,,,,,,,,,,,,,,,||",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |,,,,,,,,,,,,,,,,,,,,| ",
++        " |||||,,,,,,,,,,,,,,||| ",
++        "     |,,,,,,,,,,,,,,|   ",
++        "    ||,,,,,,,,,,,,,,|   ",
++        "    |,,,,,,,,,,,,,,,|   ",
++        "    |,,,,,,,,,,,,,,,|   ",
++        "    |,,,,,,,,,,,,,,,|   ",
++        "    |||||||,,,,,,,|||   ",
++        "          |,,,,,,,|     ",
++        "          |,,,,,,,|     ",
++        "          |,,,,,,,|     ",
++        "          |,,,,,,,|     ",
++        "          |||||||||     ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_lecture_0_0_3"
++      ],
++      [
++        "dda_geo_campus_lecture_0_1_3"
++      ],
++      [
++        "dda_geo_campus_lecture_0_2_3"
++      ],
++      [
++        "dda_geo_campus_lecture_0_3_3"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "        RRRRRRRRRR      ",
++        "      RRRRRRRRRRRR      ",
++        "      RRRRRRRRRRRR      ",
++        "      RRRRRRRRRRRR      ",
++        "      RRRRRRRRRRRRRRRRR ",
++        "      RRRRRRRRRRRRRRRRR ",
++        "      RRRRRRRRRRRRRRRRR ",
++        "      RRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        "    RRRRRRRRRRRRRRRRRRR ",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRR      ",
++        " RRRRRRRRRRRRRRRRRRRRRR ",
++        " RRRRRRRRRRRRRRRRRRRRRR ",
++        " RRRRRRRRRRRRRRRRRRRRRR ",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRRR",
++        " RRRRRRRRRRRRRRRRRRRRRR ",
++        " RRRRRRRRRRRRRRRRRRRRRR ",
++        " RRRRRRRRRRRRRRRRRRRRRR ",
++        "     RRRRRRRRRRRRRRRR   ",
++        "    RRRRRRRRRRRRRRRRR   ",
++        "    RRRRRRRRRRRRRRRRR   ",
++        "    RRRRRRRRRRRRRRRRR   ",
++        "    RRRRRRRRRRRRRRRRR   ",
++        "    RRRRRRRRRRRRRRRRR   ",
++        "          RRRRRRRRR     ",
++        "          RRRRRRRRR     ",
++        "          RRRRRRRRR     ",
++        "          RRRRRRRRR     ",
++        "          RRRRRRRRR     ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_media_0_0_0",
++        "dda_geo_campus_media_1_0_0"
++      ],
++      [
++        "dda_geo_campus_media_0_1_0",
++        "dda_geo_campus_media_1_1_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete",
++        "'": "t_pavement",
++        ":": "t_wall_glass",
++        "%": "t_door_glass_c",
++        "0": "t_door_locked_interior",
++        "b": "t_rock_wall_half",
++        "?": [
++          "t_region_shrub",
++          "t_region_shrub_fruit",
++          "t_region_shrub_decorative"
++        ],
++        "[": [
++          [
++            "t_region_tree_fruit",
++            2
++          ],
++          [
++            "t_region_tree_nut",
++            2
++          ],
++          "t_region_tree_shade"
++        ]
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "________________________________________________",
++        "_bbbbbbbbbbbb______bbbbbbbbbbb__________________",
++        "_b[.?.?.??.?b______b.?..??.?.b__________________",
++        "_b..||||||||||:%%:|||||||||?.b__________________",
++        "_b[.|,,,,,,,,,,,,,,,,,,,,,|.[b__________________",
++        "_b.?|,,,,,,,,,,,,,,,,,,,,,|[.b__________________",
++        "bb[.|,,,,,,,,,,,,,,,,,,,,,|.?bbbbbbbbbbbbbbbbb__",
++        "b?.?|,,,,,,,,,,,,,,,,,,,,,|.[?.[..?.??.?..?..b__",
++        "|||||||||||||||||||||||,,,|||||||||[.|||||||.bbb",
++        "|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||||,,,,,|.?.b",
++        "|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||.b",
++        ":,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|.b",
++        ":,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||",
++        "|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,%",
++        "%,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||",
++        "%,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|_",
++        "|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|_",
++        "%,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|_",
++        "%,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||_",
++        "|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|__",
++        ":,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||__",
++        ":,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||||,,,,,|____",
++        "|,,,,,,,,,,,,,,,,,,,,,,,,,,,|||||||__|||||||____",
++        "||||||||||||||||||||||||,,,,|_________________bb",
++        "b....|,,,,,,,,|,,,,,,,,|,,,,|________________bb'",
++        "b.|||||||0||||||||0|||||,,,||_______________bb''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_______________bb'''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_______________b''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_______________b''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____bbbbbbbbbbb''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "b.|,,,,,,,,,,,,,,,,,,,,,,,,|_____b''''''''''''''",
++        "..||||||||||||||||||||||||||bbbb_b''''''''''''''",
++        "................................................",
++        ".[....[....[...[..[...[...[..[........[...[.[..[",
++        "......[...[.[..[...................[...[.[..[...",
++        "........................[...[.[..[.............."
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_media_0_0_1",
++        "dda_geo_campus_media_1_0_1"
++      ],
++      [
++        "dda_geo_campus_media_0_1_1",
++        "dda_geo_campus_media_1_1_1"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "    RRRRRRRRRRRRRRRRRRRRRRR                     ",
++        "    RRRRRRRRRRRRRRRRRRRRRRR                     ",
++        "    RRRRRRRRRRRRRRRRRRRRRRR                     ",
++        "    RRRRRRRRRRRRRRRRRRRRRRR                     ",
++        "    RRRRRRRRRRRRRRRRRRRRRRR                     ",
++        "||||||||RR|||||||RR|||||||RR|||||||  |||||||    ",
++        ",,,,,,,||||,,,,,||||,,,,,||||,,,,,||||,,,,,|    ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||||,,,,,|    ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,|||||||  |||||||    ",
++        "||||||,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "     |,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "  ||||,,,,,,,,,,,,,,,,,,,,,||                   ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  |,,,,,,,,,,,,,,,,,,,,,,,,|                    ",
++        "  ||||||||||||||||||||||||||                    ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_media_0_0_2",
++        "dda_geo_campus_media_1_0_2"
++      ],
++      [
++        "dda_geo_campus_media_0_1_2",
++        "dda_geo_campus_media_1_1_2"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "RRRRRRRR  RRRRRRR  RRRRRRR  RRRRRRR  RRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR    ",
++        "||||||||||||||||||||||||||||||||||||||||||||RR  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|RR  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||||",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,||",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|||| ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|RR  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,||||||||||||||||RR  ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRR    ",
++        ",,,,,,,,,,,,,,,,,,,,,,,,,,,,|RRRRRR  RRRRRRR    ",
++        "||||||,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "     |,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "  RRR||||||||||||||||||||||||                   ",
++        "  RRRRRRRRRRRRRRRRRRRRRRRRRR                    ",
++        "  RRRRR||||||||||||||||RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRRRR|,,,,,,,,,,,,,,|RRRRR                    ",
++        "  RRR|||,,,,,,,,,,,,,,|||RRR                    ",
++        "  RRR|,,,,,,,,,,,,,,,,,,|RRR                    ",
++        "  RRR|,,,,,,,,,,,,,,,,,,|RRR                    ",
++        "  RRR|,,,,,,,,,,,,,,,,,,|RRR                    ",
++        "  RRR|,,,,,,,,,,,,,,,,,,|RRR                    ",
++        "  RRR||||||||||||||||||||RRR                    ",
++        "  RRRRRRRRRRRRRRRRRRRRRRRRRR                    ",
++        "  RRRRRRRRRRRRRRRRRRRRRRRRRR                    ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_media_0_0_3",
++        "dda_geo_campus_media_1_0_3"
++      ],
++      [
++        "dda_geo_campus_media_0_1_3",
++        "dda_geo_campus_media_1_1_3"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ",": "t_floor",
++        "|": "t_brick_wall",
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR    ",
++        "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
++        "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
++        "RRRRR||||||||||||||||||||||||RRRRRRRRRRRRRRRRRRR",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRRRRR ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRRRRR ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRRRRR ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRRRRR ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRR    ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|RRRRRRRRRRRRRRR    ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "RRRRR|,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "     |,,,,,,,,,,,,,,,,,,,,,,|                   ",
++        "     ||||||||||||||||||||||||                   ",
++        "                                                ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "       RRRRRRRRRRRRRRRR                         ",
++        "     ||||||||||||||||||||                       ",
++        "     |,,,,,,,,,,,,,,,,,,|                       ",
++        "     |,,,,,,,,,,,,,,,,,,|                       ",
++        "     |,,,,,,,,,,,,,,,,,,|                       ",
++        "     |,,,,,,,,,,,,,,,,,,|                       ",
++        "     ||||||||||||||||||||                       ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_campus_media_0_0_4",
++        "dda_geo_campus_media_1_0_4"
++      ],
++      [
++        "dda_geo_campus_media_0_1_4",
++        "dda_geo_campus_media_1_1_4"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        "R": "t_flat_roof"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "     RRRRRRRRRRRRRRRRRRRRRRRR                   ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "     RRRRRRRRRRRRRRRRRRRR                       ",
++        "     RRRRRRRRRRRRRRRRRRRR                       ",
++        "     RRRRRRRRRRRRRRRRRRRR                       ",
++        "     RRRRRRRRRRRRRRRRRRRR                       ",
++        "     RRRRRRRRRRRRRRRRRRRR                       ",
++        "     RRRRRRRRRRRRRRRRRRRR                       ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_pedestrian_11_5_0",
++        "dda_geo_pedestrian_12_5_0",
++        "dda_geo_pedestrian_13_5_0",
++        "dda_geo_pedestrian_14_5_0"
++      ],
++      [
++        "dda_geo_pedestrian_11_6_0",
++        "dda_geo_pedestrian_12_6_0",
++        "dda_geo_pedestrian_13_6_0",
++        "dda_geo_pedestrian_14_6_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete",
++        "b": "t_rock_wall_half"
++      },
++      "fill_ter": "t_dirt",
++      "rows": [
++        "................................................___.............................................",
++        "................................................___.............................................",
++        "................................................___.............................................",
++        "................................................___.............................................",
++        "___________________________________________________.............................................",
++        "___________________________________________________.............................................",
++        "___________________________________________________.............................................",
++        "___.............................................___............................................_",
++        "___.............................................___...........................................__",
++        "___.............................................___..........................................___",
++        "___.............................................___.........................................____",
++        "___..........._____________________________________........................................_____",
++        "___..........._____________________________________........................................_____",
++        "___..........._____________________________________........................................_____",
++        "___...........___.........................................................................._____",
++        "___...........___.........................................................................._____",
++        "___...........___.........................................................................._____",
++        "___...........___.....................................................__________________________",
++        "___...........___.....................................................__________________________",
++        "___...........___.....................................................__________________________",
++        "___...........___....................................................___..................._____",
++        "___...........___...................................................___...................._____",
++        "___...........___..................................................___....................._____",
++        "___...........___.................................................___......................_____",
++        "___...........___................................................___......................._____",
++        "___...........___...............................................___........................_____",
++        "___...........___..............................................___........................._____",
++        "___...........___.............................................___.........................._____",
++        "___...........___............................................___..........................._____",
++        "___...........___...........................................___............................_____",
++        "___...........___..........................................___............................._____",
++        "___...........___.........................................___.............................._____",
++        "___...........___........................................___..............................._____",
++        "___...........___.......................................___................................_____",
++        "___...........___......................................___................................._____",
++        "___...........___.....................................___.................................._____",
++        "___...........___....................................___..................................._____",
++        "___...........___...................................___...................................._____",
++        "___...........___..................................___....................................._____",
++        "___...........___.................................___......................................_____",
++        "___...........___................................___......................................._____",
++        "___...........__________________________________________________________________________________",
++        "___...........__________________________________________________________________________________",
++        "___...........__________________________________________________________________________________",
++        "___..........................................___bb..........................bb__________________",
++        "___.........................................___bb.........................bb____________________",
++        "___........................................___bb........................bb______________________",
++        "___.......................................___bb.......................bb________________________"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_pedestrian_11_7_0",
++        "dda_geo_pedestrian_12_7_0",
++        "dda_geo_pedestrian_13_7_0"
++      ],
++      [
++        "dda_geo_pedestrian_11_8_0",
++        "dda_geo_pedestrian_12_8_0",
++        "dda_geo_pedestrian_13_8_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete",
++        "b": "t_rock_wall_half"
++      },
++      "fill_ter": "t_dirt",
++      "rows": [
++        "___......................................___bb.........................b",
++        "___.....................................___bb..........................b",
++        "___....................................___bb...........................b",
++        "___...................................___bb............................b",
++        "___..................................___bb.............................b",
++        "___.................................___bb..............................b",
++        "___................................___bb...............................b",
++        "___...............................___bb...............................bb",
++        "___..............................___bb...............................bb_",
++        "___.............................___bb...............................bb__",
++        "___............................___bb...............................bb___",
++        "___...........................___bb...............................bb____",
++        "___..........................___bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_____",
++        "___.........................____________________________________________",
++        "___........................_____________________________________________",
++        "___.......................______________________________________________",
++        "___......................___bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb_____",
++        "___.....................___bb.....................................b_____",
++        "___....................___bb......................................b_____",
++        "___...................___bb.......................................b_____",
++        "___..................___bb........................................b_____",
++        "___.................___bb.........................................b_____",
++        "___................___bb..........................................b_____",
++        "___...............___bb...........................................b_____",
++        ".................___bb............................................b_____",
++        "................___bb.............................................b_____",
++        "...............___bb..............................................b_____",
++        "..............___bb...............................................b_____",
++        ".............___bb................................................b_____",
++        "............___bb.................................................b_____",
++        "...........___bb..................................................b_____",
++        "..........___bb...................................................b_____",
++        ".........___bb....................................................b_____",
++        "........___bb.....................................................b_____",
++        ".......___bb......................................................b_____",
++        "......___bb.......................................................b_____",
++        ".....___bb........................................................._____",
++        "._________bb......................................................._____",
++        "___.___.____bb....................................................._____",
++        "__..___...___bb...................................................._____",
++        "_...___....___bb..................................................._____",
++        "....___.....___bb.................................................b_____",
++        "....___......___bb................................................b_____",
++        "....___.......___bb...............................................b_____",
++        "....___........___bb..............................................b_____",
++        "....___.........___bb.............................................b_____",
++        "....___..........___bb............................................b_____",
++        "....___...........___bb...........................................b_____"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_pedestrian_12_9_0",
++        "dda_geo_pedestrian_13_9_0"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete",
++        "b": "t_rock_wall_half"
++      },
++      "fill_ter": "t_dirt",
++      "rows": [
++        "..........................................b_____",
++        "b.........................................b_____",
++        "bb........................................b_____",
++        "_bb.......................................b_____",
++        "__bb......................................b_____",
++        ".__bb.....................................b_____",
++        "b.__bb....................................b_____",
++        "bb___bb...................................b_____",
++        "______bb..................................bb____",
++        "________bb...............................bb_____",
++        "_________bb.............................bb______",
++        "__________bb...........................bb_______",
++        "___________bb.........................bb________",
++        "____________bb.......................bb_________",
++        "_____________bb.....................bb__________",
++        "______________bb...................bb___________",
++        "_______________bb.................bb____________",
++        "________________bbbbbbbbbbbbbbbbbbb_____________",
++        "________________________________________________",
++        "________________________________________________",
++        "________________________________________________",
++        "________________________________________________",
++        "________________________________________________",
++        "________________________________________________"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_pedestrian_9_8",
++        "dda_geo_pedestrian_10_8"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete"
++      },
++      "fill_ter": "t_concrete",
++      "rows": [
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "................................................",
++        "..............................................._",
++        "..............................................__",
++        ".............................................___",
++        "............................................___.",
++        "...........................................___..",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___..."
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_pedestrian_9_11",
++        "dda_geo_pedestrian_10_11"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_region_groundcover_urban",
++        "_": "t_concrete"
++      },
++      "fill_ter": "t_concrete",
++      "rows": [
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................___...",
++        "..........................................____..",
++        ".........................................._____.",
++        "..........................................______",
++        "..........................................______",
++        "..........................................______"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_campus",
++    "overmaps": [
++      {
++        "point": [
++          11,
++          9,
++          0
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_0_north"
++      },
++      {
++        "point": [
++          11,
++          10,
++          0
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_0_north"
++      },
++      {
++        "point": [
++          11,
++          11,
++          0
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_0_north"
++      },
++      {
++        "point": [
++          11,
++          9,
++          1
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_1_north"
++      },
++      {
++        "point": [
++          11,
++          10,
++          1
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_1_north"
++      },
++      {
++        "point": [
++          11,
++          11,
++          1
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_1_north"
++      },
++      {
++        "point": [
++          11,
++          9,
++          2
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_2_north"
++      },
++      {
++        "point": [
++          11,
++          10,
++          2
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_2_north"
++      },
++      {
++        "point": [
++          11,
++          11,
++          2
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_2_north"
++      },
++      {
++        "point": [
++          11,
++          9,
++          3
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_3_north"
++      },
++      {
++        "point": [
++          11,
++          10,
++          3
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_3_north"
++      },
++      {
++        "point": [
++          11,
++          11,
++          3
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_3_north"
++      },
++      {
++        "point": [
++          14,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_0_north"
++      },
++      {
++        "point": [
++          14,
++          8,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_0_north"
++      },
++      {
++        "point": [
++          14,
++          9,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_0_north"
++      },
++      {
++        "point": [
++          14,
++          10,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_0_north"
++      },
++      {
++        "point": [
++          14,
++          7,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_1_north"
++      },
++      {
++        "point": [
++          14,
++          8,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_1_north"
++      },
++      {
++        "point": [
++          14,
++          9,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_1_north"
++      },
++      {
++        "point": [
++          14,
++          10,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_1_north"
++      },
++      {
++        "point": [
++          14,
++          7,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_2_north"
++      },
++      {
++        "point": [
++          14,
++          8,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_2_north"
++      },
++      {
++        "point": [
++          14,
++          9,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_2_north"
++      },
++      {
++        "point": [
++          14,
++          10,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_2_north"
++      },
++      {
++        "point": [
++          14,
++          7,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_3_north"
++      },
++      {
++        "point": [
++          14,
++          8,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_3_north"
++      },
++      {
++        "point": [
++          14,
++          9,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_3_north"
++      },
++      {
++        "point": [
++          14,
++          10,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_3_north"
++      },
++      {
++        "point": [
++          9,
++          4,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_0_north"
++      },
++      {
++        "point": [
++          10,
++          4,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_0_north"
++      },
++      {
++        "point": [
++          9,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_0_north"
++      },
++      {
++        "point": [
++          10,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_0_north"
++      },
++      {
++        "point": [
++          9,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_0_north"
++      },
++      {
++        "point": [
++          10,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_0_north"
++      },
++      {
++        "point": [
++          9,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_0_north"
++      },
++      {
++        "point": [
++          10,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_0_north"
++      },
++      {
++        "point": [
++          9,
++          4,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_1_north"
++      },
++      {
++        "point": [
++          10,
++          4,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_1_north"
++      },
++      {
++        "point": [
++          9,
++          5,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_1_north"
++      },
++      {
++        "point": [
++          10,
++          5,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_1_north"
++      },
++      {
++        "point": [
++          9,
++          6,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_1_north"
++      },
++      {
++        "point": [
++          10,
++          6,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_1_north"
++      },
++      {
++        "point": [
++          9,
++          7,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_1_north"
++      },
++      {
++        "point": [
++          10,
++          7,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_1_north"
++      },
++      {
++        "point": [
++          9,
++          4,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_2_north"
++      },
++      {
++        "point": [
++          10,
++          4,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_2_north"
++      },
++      {
++        "point": [
++          9,
++          5,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_2_north"
++      },
++      {
++        "point": [
++          10,
++          5,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_2_north"
++      },
++      {
++        "point": [
++          9,
++          6,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_2_north"
++      },
++      {
++        "point": [
++          10,
++          6,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_2_north"
++      },
++      {
++        "point": [
++          9,
++          7,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_2_north"
++      },
++      {
++        "point": [
++          10,
++          7,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_2_north"
++      },
++      {
++        "point": [
++          9,
++          4,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_3_north"
++      },
++      {
++        "point": [
++          10,
++          4,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_3_north"
++      },
++      {
++        "point": [
++          9,
++          5,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_3_north"
++      },
++      {
++        "point": [
++          10,
++          5,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_3_north"
++      },
++      {
++        "point": [
++          9,
++          6,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_3_north"
++      },
++      {
++        "point": [
++          10,
++          6,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_3_north"
++      },
++      {
++        "point": [
++          9,
++          7,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_3_north"
++      },
++      {
++        "point": [
++          10,
++          7,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_3_north"
++      },
++      {
++        "point": [
++          12,
++          10,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_0_0_0_north"
++      },
++      {
++        "point": [
++          12,
++          11,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_0_1_0_north"
++      },
++      {
++        "point": [
++          13,
++          10,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_1_0_0_north"
++      },
++      {
++        "point": [
++          13,
++          11,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_1_1_0_north"
++      },
++      {
++        "point": [
++          12,
++          10,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_0_0_1_north"
++      },
++      {
++        "point": [
++          12,
++          11,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_0_1_1_north"
++      },
++      {
++        "point": [
++          13,
++          10,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_1_0_1_north"
++      },
++      {
++        "point": [
++          13,
++          11,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_1_1_1_north"
++      },
++      {
++        "point": [
++          12,
++          10,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_0_0_2_north"
++      },
++      {
++        "point": [
++          12,
++          11,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_0_1_2_north"
++      },
++      {
++        "point": [
++          13,
++          10,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_1_0_2_north"
++      },
++      {
++        "point": [
++          13,
++          11,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_1_1_2_north"
++      },
++      {
++        "point": [
++          12,
++          10,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_0_0_3_north"
++      },
++      {
++        "point": [
++          12,
++          11,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_0_1_3_north"
++      },
++      {
++        "point": [
++          13,
++          10,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_1_0_3_north"
++      },
++      {
++        "point": [
++          13,
++          11,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_1_1_3_north"
++      },
++      {
++        "point": [
++          12,
++          10,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_0_0_4_north"
++      },
++      {
++        "point": [
++          12,
++          11,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_0_1_4_north"
++      },
++      {
++        "point": [
++          13,
++          10,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_1_0_4_north"
++      },
++      {
++        "point": [
++          13,
++          11,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_1_1_4_north"
++      },
++      {
++        "point": [
++          15,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_campus_health_0_0_0_north"
++      },
++      {
++        "point": [
++          15,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_campus_health_0_1_0_north"
++      },
++      {
++        "point": [
++          15,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_campus_health_0_2_0_north"
++      },
++      {
++        "point": [
++          15,
++          5,
++          1
++        ],
++        "overmap": "dda_geo_campus_health_0_0_1_north"
++      },
++      {
++        "point": [
++          15,
++          6,
++          1
++        ],
++        "overmap": "dda_geo_campus_health_0_1_1_north"
++      },
++      {
++        "point": [
++          15,
++          7,
++          1
++        ],
++        "overmap": "dda_geo_campus_health_0_2_1_north"
++      },
++      {
++        "point": [
++          15,
++          5,
++          2
++        ],
++        "overmap": "dda_geo_campus_health_0_0_2_north"
++      },
++      {
++        "point": [
++          15,
++          6,
++          2
++        ],
++        "overmap": "dda_geo_campus_health_0_1_2_north"
++      },
++      {
++        "point": [
++          15,
++          7,
++          2
++        ],
++        "overmap": "dda_geo_campus_health_0_2_2_north"
++      },
++      {
++        "point": [
++          15,
++          5,
++          3
++        ],
++        "overmap": "dda_geo_campus_health_0_0_3_north"
++      },
++      {
++        "point": [
++          15,
++          6,
++          3
++        ],
++        "overmap": "dda_geo_campus_health_0_1_3_north"
++      },
++      {
++        "point": [
++          15,
++          7,
++          3
++        ],
++        "overmap": "dda_geo_campus_health_0_2_3_north"
++      },
++      {
++        "point": [
++          9,
++          8,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_9_8_north"
++      },
++      {
++        "point": [
++          10,
++          8,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_10_8_north"
++      },
++      {
++        "point": [
++          9,
++          11,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_9_11_north"
++      },
++      {
++        "point": [
++          10,
++          11,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_10_11_north"
++      },
++      {
++        "point": [
++          11,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_11_5_0_north"
++      },
++      {
++        "point": [
++          12,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_12_5_0_north"
++      },
++      {
++        "point": [
++          13,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_13_5_0_north"
++      },
++      {
++        "point": [
++          14,
++          5,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_14_5_0_north"
++      },
++      {
++        "point": [
++          11,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_11_6_0_north"
++      },
++      {
++        "point": [
++          12,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_12_6_0_north"
++      },
++      {
++        "point": [
++          13,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_13_6_0_north"
++      },
++      {
++        "point": [
++          14,
++          6,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_14_6_0_north"
++      },
++      {
++        "point": [
++          11,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_11_7_0_north"
++      },
++      {
++        "point": [
++          12,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_12_7_0_north"
++      },
++      {
++        "point": [
++          13,
++          7,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_13_7_0_north"
++      },
++      {
++        "point": [
++          11,
++          8,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_11_8_0_north"
++      },
++      {
++        "point": [
++          12,
++          8,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_12_8_0_north"
++      },
++      {
++        "point": [
++          13,
++          8,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_13_8_0_north"
++      },
++      {
++        "point": [
++          12,
++          9,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_12_9_0_north"
++      },
++      {
++        "point": [
++          13,
++          9,
++          0
++        ],
++        "overmap": "dda_geo_pedestrian_13_9_0_north"
++      }
++    ],
++    "locations": [
++      "wilderness"
++    ],
++    "city_distance": [
++      3,
++      -1
++    ],
++    "city_sizes": [
++      1,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_campus_lecture",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_0_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_0_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_0_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_0_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_1_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_1_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_1_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_2_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_2_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_2_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_2_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_0_3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_1_3_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_2_3_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_campus_lecture_0_3_3_north"
++      }
++    ],
++    "locations": [
++      "wilderness"
++    ],
++    "city_distance": [
++      3,
++      -1
++    ],
++    "city_sizes": [
++      1,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_campus_commons",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_0_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_0_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_0_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_0_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_0_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_0_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_0_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_0_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_1_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_1_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_1_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_1_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_1_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_1_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_1_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_2_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_2_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_2_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_2_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_2_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_2_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_2_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_2_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_0_3_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_0_3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_1_3_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_1_3_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_2_3_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_2_3_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_0_3_3_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_campus_commons_1_3_3_north"
++      }
++    ],
++    "locations": [
++      "wilderness"
++    ],
++    "city_distance": [
++      3,
++      -1
++    ],
++    "city_sizes": [
++      1,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_campus_media",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_0_0_0_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_0_1_0_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_1_0_0_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_campus_media_1_1_0_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_0_0_1_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_0_1_1_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_1_0_1_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_campus_media_1_1_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_0_0_2_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_0_1_2_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_1_0_2_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_campus_media_1_1_2_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_0_0_3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_0_1_3_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_1_0_3_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_campus_media_1_1_3_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_0_0_4_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_0_1_4_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_1_0_4_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          4
++        ],
++        "overmap": "dda_geo_campus_media_1_1_4_north"
++      }
++    ],
++    "locations": [
++      "wilderness"
++    ],
++    "city_distance": [
++      3,
++      -1
++    ],
++    "city_sizes": [
++      1,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_campus_health",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_0_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_0_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_0_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_1_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_1_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_2_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_2_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_2_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_campus_admin_0_0_3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_campus_admin_0_1_3_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_campus_admin_0_2_3_north"
++      }
++    ],
++    "locations": [
++      "wilderness"
++    ],
++    "city_distance": [
++      3,
++      -1
++    ],
++    "city_sizes": [
++      1,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_admin_0_0_0",
++      "dda_geo_campus_admin_0_1_0",
++      "dda_geo_campus_admin_0_2_0",
++      "dda_geo_campus_admin_0_0_1",
++      "dda_geo_campus_admin_0_1_1",
++      "dda_geo_campus_admin_0_2_1",
++      "dda_geo_campus_admin_0_0_2",
++      "dda_geo_campus_admin_0_1_2",
++      "dda_geo_campus_admin_0_2_2",
++      "dda_geo_campus_admin_0_0_3",
++      "dda_geo_campus_admin_0_1_3",
++      "dda_geo_campus_admin_0_2_3"
++    ],
++    "name": "campus admin building",
++    "sym": "A",
++    "color": "red",
++    "see_cost": 5,
++    "flags": [
++      "SOURCE_CHEMISTRY",
++      "RISK_HIGH"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_commons_0_0_0",
++      "dda_geo_campus_commons_1_0_0",
++      "dda_geo_campus_commons_0_1_0",
++      "dda_geo_campus_commons_1_1_0",
++      "dda_geo_campus_commons_0_2_0",
++      "dda_geo_campus_commons_1_2_0",
++      "dda_geo_campus_commons_0_3_0",
++      "dda_geo_campus_commons_1_3_0",
++      "dda_geo_campus_commons_0_0_1",
++      "dda_geo_campus_commons_1_0_1",
++      "dda_geo_campus_commons_0_1_1",
++      "dda_geo_campus_commons_1_1_1",
++      "dda_geo_campus_commons_0_2_1",
++      "dda_geo_campus_commons_1_2_1",
++      "dda_geo_campus_commons_0_3_1",
++      "dda_geo_campus_commons_1_3_1",
++      "dda_geo_campus_commons_0_0_2",
++      "dda_geo_campus_commons_1_0_2",
++      "dda_geo_campus_commons_0_1_2",
++      "dda_geo_campus_commons_1_1_2",
++      "dda_geo_campus_commons_0_2_2",
++      "dda_geo_campus_commons_1_2_2",
++      "dda_geo_campus_commons_0_3_2",
++      "dda_geo_campus_commons_1_3_2"
++    ],
++    "name": "campus commons building",
++    "sym": "C",
++    "color": "light_blue",
++    "see_cost": 5,
++    "flags": []
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_commons_0_0_3",
++      "dda_geo_campus_commons_1_0_3",
++      "dda_geo_campus_commons_0_1_3",
++      "dda_geo_campus_commons_1_1_3",
++      "dda_geo_campus_commons_0_2_3",
++      "dda_geo_campus_commons_1_2_3",
++      "dda_geo_campus_commons_0_3_3",
++      "dda_geo_campus_commons_1_3_3"
++    ],
++    "name": "campus commons roof",
++    "color": "blue",
++    "copy-from": "dda_geo_campus_commons_0_0_0"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_media_0_0_0",
++      "dda_geo_campus_media_0_1_0",
++      "dda_geo_campus_media_1_0_0",
++      "dda_geo_campus_media_1_1_0",
++      "dda_geo_campus_media_0_0_1",
++      "dda_geo_campus_media_0_1_1",
++      "dda_geo_campus_media_1_0_1",
++      "dda_geo_campus_media_1_1_1",
++      "dda_geo_campus_media_0_0_2",
++      "dda_geo_campus_media_0_1_2",
++      "dda_geo_campus_media_1_0_2",
++      "dda_geo_campus_media_1_1_2",
++      "dda_geo_campus_media_0_0_3",
++      "dda_geo_campus_media_0_1_3",
++      "dda_geo_campus_media_1_0_3",
++      "dda_geo_campus_media_1_1_3"
++    ],
++    "name": "campus media building",
++    "sym": "C",
++    "color": "light_blue",
++    "see_cost": 5,
++    "flags": []
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_media_0_0_4",
++      "dda_geo_campus_media_0_1_4",
++      "dda_geo_campus_media_1_0_4",
++      "dda_geo_campus_media_1_1_4"
++    ],
++    "name": "campus media building roof",
++    "color": "blue",
++    "copy-from": "dda_geo_campus_media_0_0_0"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_health_0_0_0",
++      "dda_geo_campus_health_0_1_0",
++      "dda_geo_campus_health_0_2_0",
++      "dda_geo_campus_health_0_0_1",
++      "dda_geo_campus_health_0_1_1",
++      "dda_geo_campus_health_0_2_1",
++      "dda_geo_campus_health_0_0_2",
++      "dda_geo_campus_health_0_1_2",
++      "dda_geo_campus_health_0_2_2"
++    ],
++    "name": "campus health building",
++    "sym": "C",
++    "color": "red",
++    "see_cost": 5,
++    "flags": []
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_health_0_0_3",
++      "dda_geo_campus_health_0_1_3",
++      "dda_geo_campus_health_0_2_3"
++    ],
++    "name": "campus health building roof",
++    "copy-from": "dda_geo_campus_health_0_0_0"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_lecture_0_0_0",
++      "dda_geo_campus_lecture_0_1_0",
++      "dda_geo_campus_lecture_0_2_0",
++      "dda_geo_campus_lecture_0_3_0",
++      "dda_geo_campus_lecture_0_0_1",
++      "dda_geo_campus_lecture_0_1_1",
++      "dda_geo_campus_lecture_0_2_1",
++      "dda_geo_campus_lecture_0_3_1",
++      "dda_geo_campus_lecture_0_0_2",
++      "dda_geo_campus_lecture_0_1_2",
++      "dda_geo_campus_lecture_0_2_2",
++      "dda_geo_campus_lecture_0_3_2"
++    ],
++    "name": "campus lecture hall",
++    "sym": "C",
++    "color": "light_blue",
++    "see_cost": 5,
++    "flags": []
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_campus_lecture_0_0_3",
++      "dda_geo_campus_lecture_0_1_3",
++      "dda_geo_campus_lecture_0_2_3",
++      "dda_geo_campus_lecture_0_3_3"
++    ],
++    "name": "campus lecture hall roof",
++    "color": "blue",
++    "copy-from": "dda_geo_campus_lecture_0_0_0"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_pedestrian_9_8",
++      "dda_geo_pedestrian_10_8",
++      "dda_geo_pedestrian_9_11",
++      "dda_geo_pedestrian_10_11",
++      "dda_geo_pedestrian_11_5_0",
++      "dda_geo_pedestrian_12_5_0",
++      "dda_geo_pedestrian_13_5_0",
++      "dda_geo_pedestrian_14_5_0",
++      "dda_geo_pedestrian_11_6_0",
++      "dda_geo_pedestrian_12_6_0",
++      "dda_geo_pedestrian_13_6_0",
++      "dda_geo_pedestrian_14_6_0",
++      "dda_geo_pedestrian_11_7_0",
++      "dda_geo_pedestrian_12_7_0",
++      "dda_geo_pedestrian_13_7_0",
++      "dda_geo_pedestrian_11_8_0",
++      "dda_geo_pedestrian_12_8_0",
++      "dda_geo_pedestrian_13_8_0",
++      "dda_geo_pedestrian_12_9_0",
++      "dda_geo_pedestrian_13_9_0"
++    ],
++    "name": "campus pedestrian area",
++    "sym": ".",
++    "color": "light_green",
++    "see_cost": 5,
++    "flags": []
 +  }
 +]
