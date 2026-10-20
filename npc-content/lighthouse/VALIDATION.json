@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "925d3b47883354ecc2e49e529da2be0a30ace155",
-    "run_id": 39403524594,
+    "head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
+    "run_id": 39428420703,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 2,
-    "geometry_assertions": 63630,
-    "installed_geometry_test_cases": 2,
-    "installed_geometry_assertions": 63630
+    "geometry_test_cases": 3,
+    "geometry_assertions": 159684,
+    "installed_geometry_test_cases": 3,
+    "installed_geometry_assertions": 159684
   },
-  "native_patch_sha256": "33f7c7dc602250dd302360d18914b76621581ccf328362085cfbf74d3483f3ac",
+  "native_patch_sha256": "0f6d13bc3cac206fce79a3f49e2351d1a98605696050f1a9e701993dbcc7d190",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -46,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Exact native patch passed full source, installed and geometry-preview suites on 925d3b4. Hub and container-yard candidates remain excluded; manual traversal, full campaign and release validation pending.",
+  "note": "Exact native patch passed source and installed core, optional and three geometry suites on be7a2c1. Campus and container yards remain excluded; full character traversal and campaign/release acceptance remain pending.",
   "portable_package": {
-    "run_id": 39403524594,
+    "run_id": 39428420703,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,26 +57,29 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12257794350,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39403524594/artifacts/12257794350",
+    "artifact_id": 12272298536,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39428420703/artifacts/12272298536",
     "installed_geometry_tests": {
-      "cases": 2,
-      "assertions": 63630
+      "cases": 3,
+      "assertions": 159684
     },
-    "size": 205601696,
-    "digest": "sha256:28c59db1f2c9c12b2dc396ebe69fbe4240cffcb18d6a99999d0e3d0071cf9e92"
+    "size": 205609938,
+    "digest": "sha256:263f2b39b7d17f30b5e8b182bcc03a381865564f1cb5c2d23ac7b219a6dcc73a"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
     "packages": [
       "island_prison",
-      "xedra_church"
+      "xedra_church",
+      "hub_01"
     ],
     "source_and_installed": "passed without initialization errors",
+    "placed_cells": 235,
+    "hub_navigation_points": 238,
     "limits": [
-      "No claim of manual traversal or stair alignment",
-      "Natural placement disabled",
-      "Hub geometry not included"
+      "No full character traversal or real elevator travel acceptance claim",
+      "Natural preview placement disabled",
+      "Campus and container yards excluded"
     ]
   }
 }

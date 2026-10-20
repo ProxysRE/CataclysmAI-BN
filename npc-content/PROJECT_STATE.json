@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Expanded Hub geometry embedded only in namespaced optional preview; three-case native source/installed rerun pending.",
+  "stage": "Hub, prison and XEDRA church geometry preview passed full source and installed Windows tests; complete campus first layer staged separately.",
   "package": "Isolated Road",
-  "native_compilation": "Last successful Windows archive: 925d3b4 / run 39403524594 (prison/church preview). New Hub test/payload changes require a native rerun; prior success does not validate Hub.",
+  "native_compilation": "Successful Windows run 39428420703 on be7a2c1: source and installed 73 core /11030 assertions, 10 optional /2224, 3 geometry /159684; portable packaging passed. Campus remains excluded.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -14,8 +14,8 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "925d3b47883354ecc2e49e529da2be0a30ace155",
-    "run_id": 39403524594,
+    "head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
+    "run_id": 39428420703,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -25,10 +25,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 2,
-    "geometry_assertions": 63630,
-    "installed_geometry_test_cases": 2,
-    "installed_geometry_assertions": 63630
+    "geometry_test_cases": 3,
+    "geometry_assertions": 159684,
+    "installed_geometry_test_cases": 3,
+    "installed_geometry_assertions": 159684
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -775,8 +775,8 @@
       0,
       0
     ],
-    "runtime_validated": false,
-    "status": "Hub added; native rerun pending",
+    "runtime_validated": true,
+    "status": "source_and_installed_geometry_generation_and_navigation_terrain_checks_passed",
     "container_yards": "not embedded; cross-z nested roof blocker",
     "native_patch_sha256": "0f6d13bc3cac206fce79a3f49e2351d1a98605696050f1a9e701993dbcc7d190",
     "previous_attempt": {
@@ -792,12 +792,17 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "925d3b47883354ecc2e49e529da2be0a30ace155",
-    "run_id": 39403524594,
-    "artifact_id": 12257794350,
-    "artifact_size": 205601696,
-    "artifact_digest": "sha256:28c59db1f2c9c12b2dc396ebe69fbe4240cffcb18d6a99999d0e3d0071cf9e92",
-    "previous_successful_head": "925d3b47883354ecc2e49e529da2be0a30ace155"
+    "checkpoint_head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
+    "run_id": 39428420703,
+    "artifact_id": 12272298536,
+    "artifact_size": 205609938,
+    "artifact_digest": "sha256:263f2b39b7d17f30b5e8b182bcc03a381865564f1cb5c2d23ac7b219a6dcc73a",
+    "previous_successful_head": "925d3b47883354ecc2e49e529da2be0a30ace155",
+    "limits": [
+      "No full character traversal or real elevator travel acceptance claim",
+      "Natural preview placement disabled",
+      "Campus and container yards excluded"
+    ]
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -808,12 +813,17 @@
     "native_embedded": true,
     "note": "Raw obligations include generated directional/linear OMT and existing project elevator terrain; not all are missing BN content.",
     "adapted_unresolved_typed_refs": 0,
-    "status": "pending all-floor generation with source-derived navigation terrain expectations",
+    "status": "namespaced preview passed native source and installed generation; 238 projected navigation terrain checks passed",
     "report": "geometry_layer/HUB_ADAPTATION_REPORT.json",
     "installation_scope": "namespaced optional debug preview only; stock Hub untouched",
-    "runtime_validated": false,
+    "runtime_validated": true,
     "navigation_expectations": 238,
-    "coordinate_reconciliation": "No BN-only special coordinates; map content equality not asserted"
+    "coordinate_reconciliation": "No BN-only special coordinates; map content equality not asserted",
+    "remaining": [
+      "Actual character stair/elevator traversal",
+      "Reconcile map contents before replacing existing BN Hub",
+      "Later content layers"
+    ]
   },
   "geometry_campus_candidate": {
     "status": "all first-layer maps extracted and adapted; not installed",
