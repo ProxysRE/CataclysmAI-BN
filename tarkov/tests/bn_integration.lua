@@ -27,7 +27,12 @@ local function take_payload()
   error("Generated raid did not contain its test payload")
 end
 
-if test_data.stage == "enter" then
+if test_data.stage == "home" then
+  game.mod_runtime["trkv_raid_core"].started()
+  assert(api.at_home() and state.phase == "home")
+elseif test_data.stage == "control_loaded" then
+  assert(api.at_home() and state.phase == "home" and state.sequence == 0)
+elseif test_data.stage == "enter" then
   assert(api.return_home())
   assert(api.at_home())
   assert(raid.start(state, api, 1800))

@@ -13,7 +13,7 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     auto& lua = DynamicDataLoader::get_instance().lua->lua;
     auto test_data = lua.create_table();
     lua.globals()["test_data"] = test_data;
-    test_data["stage"] = "enter";
+    test_data["stage"] = "home";
     run_lua_test_script(lua, "trkv_integration_test.lua");
 
     auto rifle = item::spawn("ar15");
@@ -40,8 +40,48 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
         value.serialize(json);
         return output.str();
     };
-    const auto rifle_before = snapshot(carried_rifle);
-    const auto pack_before = snapshot(carried_pack);
+    const auto verify_fixtures = [](const item& gun, const item& bag) -> void {
+        CHECK(gun.typeId().str() == "ar15");
+        CHECK(gun.ammo_remaining() == 17);
+        CHECK(gun.damage() == 1375);
+        const auto mods = gun.contents.gunmods();
+        REQUIRE(mods.size() == 1);
+        CHECK(mods[0]->typeId().str() == "shoulder_strap");
+        CHECK(bag.typeId().str() == "backpack");
+        const auto& bottles = bag.contents.all_items_top();
+        REQUIRE(bottles.size() == 1);
+        CHECK(bottles[0]->typeId().str() == "bottle_plastic");
+        const auto& water = bottles[0]->contents.all_items_top();
+        REQUIRE(water.size() == 1);
+        CHECK(water[0]->typeId().str() == "water_clean");
+        CHECK(water[0]->charges == 2);
+    };
+    const auto find_fixture = [](const std::string& marker) -> const item* {
+        for (const auto* value : get_avatar().all_items(false)) {
+            if (value->get_var("trkv_fixture") == marker) { return value; }
+        }
+        return nullptr;
+    };
+    verify_fixtures(carried_rifle, carried_pack);
+    const auto saved_character = save_t::from_save_id(get_avatar().get_save_id());
+    REQUIRE(g->save(false));
+    // Control reload in the refuge, with NO dimension travel. BN assigns item
+    // ownership and activates food during load. Establish its canonical baseline
+    // first; don't ignore fields in the subsequent full JSON comparisons.
+    REQUIRE(g->load(saved_character));
+    const auto tick_scope = action_time_scale::scoped_calendar_turns_this_tick(1);
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    test_data["stage"] = "control_loaded";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
+    const auto* control_rifle = find_fixture("rifle");
+    const auto* control_pack = find_fixture("nested_container");
+    REQUIRE(control_rifle != nullptr);
+    REQUIRE(control_pack != nullptr);
+    verify_fixtures(*control_rifle, *control_pack);
+    const auto rifle_before = snapshot(*control_rifle);
+    const auto pack_before = snapshot(*control_pack);
+    test_data["stage"] = "enter";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
     REQUIRE(g->save(false));
 
     // Reload the actual character, map and Lua storage using game::load. It
@@ -49,9 +89,7 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     // Poison the old table to expose stale captures by registered callbacks.
     test_data["stage"] = "before_restore";
     run_lua_test_script(lua, "trkv_integration_test.lua");
-    const auto saved_character = save_t::from_save_id(get_avatar().get_save_id());
     REQUIRE(g->load(saved_character));
-    const auto tick_scope = action_time_scale::scoped_calendar_turns_this_tick(1);
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     test_data["stage"] = "restore";
     run_lua_test_script(lua, "trkv_integration_test.lua");
