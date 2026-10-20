@@ -118,6 +118,10 @@ elseif test_data.stage == "enter" then
   take_payload()
   assert(player:has_item_with_id(payload, false))
   assert(gapi.get_map():set_ter_at(local_pos(15, 15), TerId.new("t_wall"):int_id()))
+  -- The next real game::load/tick must warn, without renewing this saved deadline.
+  assert(state.time_warning == 0)
+  state.deadline = api.now() + 60
+  test_data.warning_deadline = state.deadline
 elseif test_data.stage == "before_restore" then
   test_data.old_state = state
   state.phase = "home"
@@ -125,6 +129,7 @@ elseif test_data.stage == "before_restore" then
 elseif test_data.stage == "restore" then
   assert(state ~= test_data.old_state, "BN must replace the nested save table")
   assert(state.phase == "active" and api.at_raid())
+  assert(state.time_warning == 2 and state.deadline == test_data.warning_deadline)
   check_boundary()
   check_equipped()
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_wall"):int_id())
@@ -148,6 +153,7 @@ elseif test_data.stage == "recovered_cleanup" then
 elseif test_data.stage == "continue" then
   check_stash()
   assert(raid.start(state, api, 1800))
+  assert(state.time_warning == 0)
   check_boundary()
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload() -- fixed map loot must regenerate after reset

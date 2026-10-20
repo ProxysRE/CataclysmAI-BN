@@ -10,6 +10,7 @@ local raid = {}
 ---@field settled integer
 ---@field deadline integer
 ---@field entry_duration integer
+---@field time_warning integer
 ---@field outcome string
 ---@field penalty_applied boolean
 ---@field last_error string
@@ -34,6 +35,7 @@ function raid.initialize(state)
   state.settled = state.settled or 0
   state.deadline = state.deadline or 0
   state.entry_duration = state.entry_duration or 0
+  state.time_warning = state.time_warning or 0
   state.outcome = state.outcome or "none"
   state.penalty_applied = state.penalty_applied or false
   state.last_error = state.last_error or ""
@@ -110,6 +112,7 @@ function raid.start(state, api, duration)
   if type(duration) ~= "number" or duration <= 0 or duration % 1 ~= 0 then return false end
   if not retry then state.sequence = state.sequence + 1 end
   state.entry_duration = duration
+  state.time_warning = 0
   state.phase = "entering"
   state.outcome = "none"
   state.penalty_applied = false

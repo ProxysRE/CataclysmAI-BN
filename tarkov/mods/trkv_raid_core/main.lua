@@ -70,9 +70,19 @@ local function tick()
     report(state)
   end
   local waiting_to_extract = state.phase == "returning" and state.outcome == "extracted"
-  if (state.phase == "active" or waiting_to_extract) and api.now() >= state.deadline then
-    raid.finish(state, api, "timeout")
-    report(state)
+  if state.phase == "active" or waiting_to_extract then
+    local remaining = state.deadline - api.now()
+    if remaining <= 0 then
+      raid.finish(state, api, "timeout")
+      report(state)
+    elseif api.at_raid() then
+      local level = remaining <= 60 and 2 or (remaining <= 300 and 1 or 0)
+      if level > state.time_warning then
+        state.time_warning = level
+        gapi.add_msg(string.format("[Tarkov DEV0.1] Raid time remaining: %d:%02d. Reach extraction.",
+          math.floor(remaining / 60), remaining % 60))
+      end
+    end
   end
   return true
 end

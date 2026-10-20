@@ -3,6 +3,7 @@ local raid = dofile("tarkov/mods/trkv_raid_core/trkv_lifecycle.lua")
 local root, mod = {}, {}
 local where, clock, penalties, tick = "home", 100, 0, nil
 local loading = false
+local messages = {}
 local player = {
   set_all_parts_hp_to_max = function() end,
   clear_effects = function() end,
@@ -20,7 +21,7 @@ local api = {
 game = { current_mod = "trkv_raid_core", mod_runtime = { trkv_raid_core = mod },
   mod_storage = { trkv_raid_core = root } }
 gapi = {
-  add_msg = function() end,
+  add_msg = function(message) messages[#messages + 1] = message end,
   get_avatar = function() return player end,
   add_on_every_x_hook = function(_, fn) tick = fn end,
 }
@@ -126,3 +127,60 @@ mod.start() -- second succeeds, with the originally requested 90 seconds
 assert(entries == 2 and pending.phase == "active" and pending.sequence == 1)
 assert(pending.deadline == 5090 and pending.wins == 0 and pending.losses == 0)
 print("PASS departure callback retries the same pending attempt only after menu confirmation")
+
+-- Restore normal travel/cleanup after the pending-entry fault fixture.
+api.enter = function() where = "raid"; return true end
+api.cleanup = function() return true end
+local warned = restored_raid()
+messages = {}
+clock = warned.deadline - 301
+assert(tick() and #messages == 0)
+clock = warned.deadline - 300
+assert(tick() and warned.time_warning == 1 and #messages == 1)
+assert(messages[1]:find("5:00", 1, true))
+assert(tick() and #messages == 1)
+clock = warned.deadline - 60
+assert(tick() and warned.time_warning == 2 and #messages == 2)
+assert(messages[2]:find("1:00", 1, true))
+assert(tick() and #messages == 2)
+print("PASS raid countdown warns once at five minutes and once at one minute")
+
+local restored_warning = {}
+for k, v in pairs(warned) do restored_warning[k] = v end
+root.raid = restored_warning
+mod.loaded()
+mod.loaded()
+assert(tick())
+-- report() adds a status line on load; count only timer warnings.
+local function warning_count()
+  local count = 0
+  for _, message in ipairs(messages) do
+    if message:find("Raid time remaining:", 1, true) then count = count + 1 end
+  end
+  return count
+end
+assert(warning_count() == 2 and restored_warning.time_warning == 2)
+assert(restored_warning.deadline == warned.deadline)
+print("PASS loaded warning state suppresses duplicate countdown and preserves deadline")
+
+local jumped = restored_raid()
+messages = {}
+clock = jumped.deadline - 45
+jumped.phase, jumped.outcome = "returning", "extracted"
+assert(tick() and jumped.time_warning == 2 and warning_count() == 1)
+assert(messages[1]:find("0:45", 1, true))
+-- A failed extraction remains subject to warnings and the same hard deadline.
+assert(tick() and warning_count() == 1)
+clock = jumped.deadline
+assert(tick() and jumped.losses == 1 and jumped.phase == "home")
+assert(warning_count() == 1)
+assert(raid.start(jumped, api, 1800) and jumped.time_warning == 0)
+print("PASS time jumps show only urgent warning and pending extraction still expires")
+
+messages = {}
+where = "unrelated"
+clock = jumped.deadline - 60
+assert(tick() and warning_count() == 0 and jumped.time_warning == 0)
+where, jumped.phase = "home", "entering"
+assert(tick() and warning_count() == 0)
+print("PASS countdown ignores unrelated dimensions and pending entry at home")
