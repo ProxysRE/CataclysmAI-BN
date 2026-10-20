@@ -18,3 +18,6 @@
   well as the engine-independent controller.
 - `game::load` blocks saving during load hooks. Defer recovery that travels or
   resets dimensions until a post-load game tick; both operations save internally.
+- CI may restore the pinned native build directory. Its exact cache key must cover
+  baseline, C++ overlay, installer, timestamp helper and workflow. Always execute
+  CMake/Ninja and all runtime checks after restore; never cache test outcomes.

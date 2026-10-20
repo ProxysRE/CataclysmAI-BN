@@ -55,6 +55,15 @@ jobs:
           max-size: 3G
       - name: Install prototype and real-engine tests
         run: python3 tarkov/tools/install_into_bn.py bn --tests
+      # The key covers every compiled project input. Content-only Lua/JSON edits
+      # reuse objects, but always run CMake/Ninja, mod validation and native tests.
+      - name: Stabilize pinned source timestamps
+        run: python3 tarkov/tools/stabilize_build_inputs.py bn
+      - uses: actions/cache/restore@v4
+        id: native-cache
+        with:
+          path: bn/build
+          key: trkv-native-v1-${{ runner.os }}-${{ hashFiles('tarkov/baseline.json', 'tarkov/tests/bn_harness.cpp.inc', 'tarkov/tools/install_into_bn.py', 'tarkov/tools/stabilize_build_inputs.py', '.github/workflows/tarkov-dev01.yml') }}
       - name: Configure BN
         run: >-
           cmake -S bn -B bn/build -G Ninja
@@ -69,6 +78,13 @@ jobs:
           -DBUILD_SHADERCROSS=ON -DSHADER_TARGETS=spirv
       - name: Build game and tests
         run: cmake --build bn/build --target cataclysm-bn cata_test --parallel 3
+      # Save immediately after successful compilation even if a runtime check
+      # later fails. A missing cache is harmless: the normal build still runs.
+      - uses: actions/cache/save@v4
+        if: steps.native-cache.outputs.cache-hit != 'true'
+        with:
+          path: bn/build
+          key: ${{ steps.native-cache.outputs.cache-primary-key }}
       - name: Validate mod through the game executable
         working-directory: bn
         env:

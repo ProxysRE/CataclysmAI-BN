@@ -71,6 +71,20 @@ elseif test_data.stage == "prepare_death" then
 elseif test_data.stage == "verify_death" then
   assert(api.at_home() and state.phase == "home" and state.losses == 3)
   assert(not player:has_item_with_id(payload, false))
+elseif test_data.stage == "prepare_write_failure" then
+  assert(raid.start(state, api, 1800))
+  take_payload()
+elseif test_data.stage == "failed_return" then
+  assert(not raid.finish(state, api, "extracted"))
+  assert(api.at_raid() and state.phase == "returning")
+  assert(state.wins == 1 and state.losses == 3)
+  assert(player:has_item_with_id(payload, false))
+elseif test_data.stage == "retry_return" then
+  game.mod_runtime["trkv_raid_core"].extract()
+  assert(api.at_home() and state.phase == "home")
+  assert(state.wins == 2 and state.losses == 3)
+  assert(player:has_item_with_id(payload, false))
+  assert(not raid.finish(state, api, "extracted"))
 else
   error("Unknown integration stage")
 end
