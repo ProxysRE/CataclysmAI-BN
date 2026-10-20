@@ -7,8 +7,8 @@
   "additional_prepared_groups": 0,
   "verified_plus_prepared_percent": 21.6,
   "evidence_checkpoint": {
-    "head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
-    "run_id": 39466430448,
+    "head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
+    "run_id": 39485820362,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 8,
-    "geometry_assertions": 381252,
-    "installed_geometry_test_cases": 8,
-    "installed_geometry_assertions": 381252
+    "geometry_test_cases": 9,
+    "geometry_assertions": 406338,
+    "installed_geometry_test_cases": 9,
+    "installed_geometry_assertions": 406338
   },
   "rows": [
     {

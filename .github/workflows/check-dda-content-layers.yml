@@ -55,6 +55,7 @@ jobs:
           python npc-content/check_geometry_layer.py
           python npc-content/prepare_godco_geometry.py --check
           python npc-content/prepare_campus_geometry.py --check
+          python npc-content/prepare_exodii_geometry.py --check
           python npc-content/report_geometry_progress.py --check
           python npc-content/prepare_hub_geometry.py --check
           python npc-content/check_hub_geometry_access.py --check

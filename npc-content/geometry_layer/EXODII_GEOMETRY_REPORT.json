@@ -1,0 +1,40 @@
+{
+  "status": "geometry_staged_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "source_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "source_files": 9,
+  "definitions": {
+    "mapgen": 16,
+    "overmap_special": 3,
+    "overmap_terrain": 13,
+    "terrain": 1
+  },
+  "world_maps": 13,
+  "structural_nested_maps": 3,
+  "unique_omt": 88,
+  "special_cells": {
+    "Out-of-place Stone Barn": 3,
+    "Strange warehouse": 2,
+    "exodii_base": 83
+  },
+  "source_rows_preserved": true,
+  "new_terrain": {
+    "id": "t_glassed_sand",
+    "reason": "Absent from pinned BN core and all bundled mods; source movement and bash behavior retained",
+    "deferred_visual_connections": {
+      "connect_groups": "SANDGLASS",
+      "connects_to": "SANDGLASS"
+    }
+  },
+  "unresolved_typed_refs": [],
+  "geometry_issues": [],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "Not in native patch or preview; no percentage credit",
+    "Furniture, loot, inhabitants, camp registration and quests remain archived",
+    "Missing terrain must be compared to BN equivalents before importing definitions",
+    "No player traversal or full source behavior parity claim"
+  ]
+}

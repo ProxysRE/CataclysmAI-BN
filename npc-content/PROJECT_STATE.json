@@ -777,8 +777,8 @@
       0,
       0
     ],
-    "runtime_validated": false,
-    "status": "initial Godco added; nine-case native source/installed rerun pending",
+    "runtime_validated": true,
+    "status": "Nine source and installed geometry cases passed, including initial Godco",
     "container_yards": "not embedded; cross-z nested roof blocker",
     "native_patch_sha256": "ed1bc80aab615c308a0deda9e13468e260028174622b0d832a72c85af8f2e5b8",
     "previous_attempt": {
@@ -794,27 +794,26 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
-    "run_id": 39466430448,
-    "artifact_id": 12289961298,
-    "artifact_size": 205617356,
-    "artifact_digest": "sha256:c2a6ef4f3de11716004289aaaaf9c7d4641286fabb61e7e644b466a4754c8c2f",
+    "checkpoint_head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
+    "run_id": 39485820362,
+    "artifact_id": 12296363792,
+    "artifact_size": 205620916,
+    "artifact_digest": "sha256:f7e9fa390933e0da341287d427a5aa872313558b100f6311cf2b3b8dc462bca7",
     "previous_successful_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
-      "Container yards excluded; initial Godco generation pending"
+      "Container yards and later Godco quest construction excluded"
     ],
-    "pending_run_id": 39485820362,
-    "pending_head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
     "validated_packages": [
       "island_prison",
       "xedra_church",
       "hub_01",
-      "campus"
+      "campus",
+      "godco_base"
     ],
-    "validated_geometry_cases": 8,
-    "validated_geometry_placements": 427
+    "validated_geometry_cases": 9,
+    "validated_geometry_placements": 488
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -874,7 +873,7 @@
     "report": "geometry_layer/PROGRESS.json"
   },
   "geometry_godco_candidate": {
-    "status": "Initial site only in isolated optional preview; native generation pending",
+    "status": "Initial-site geometry passed source and installed native generation; later quest construction deferred",
     "world_maps": 5,
     "structural_nested_maps": 2,
     "own_omt": 22,
@@ -882,12 +881,29 @@
     "constraint_records": 1,
     "unresolved_typed_refs": 0,
     "native_embedded": true,
-    "runtime_validated": false,
+    "runtime_validated": true,
     "construction_update_definitions": 18,
     "construction_nested_definitions": 20,
     "construction_cross_z_roof_blockers": 3,
     "report": "geometry_layer/GODCO_GEOMETRY_REPORT.json",
     "installation_scope": "separate debug preview identities; quest construction excluded",
-    "predecessor_forest": "Source road mask uses native removal; untouched forest loot excluded from empty-geometry assertion"
+    "predecessor_forest": "Source road mask uses native removal; untouched forest loot excluded from empty-geometry assertion",
+    "validation_checkpoint": 39485820362
+  },
+  "geometry_exodii_candidate": {
+    "status": "geometry_staged_not_installed",
+    "native_embedded": false,
+    "runtime_validated": false,
+    "world_maps": 13,
+    "structural_nested_maps": 3,
+    "unique_omt": 88,
+    "special_cells": {
+      "Out-of-place Stone Barn": 3,
+      "Strange warehouse": 2,
+      "exodii_base": 83
+    },
+    "unresolved_typed_refs": [],
+    "geometry_issues": [],
+    "report": "geometry_layer/EXODII_GEOMETRY_REPORT.json"
   }
 }

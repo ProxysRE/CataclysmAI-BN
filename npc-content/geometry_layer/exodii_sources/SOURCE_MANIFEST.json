@@ -1,0 +1,15 @@
+{
+  "repository": "CleverRaven/Cataclysm-DDA",
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/furniture_and_terrain/terrain-floors-outdoors.json": "6eb7eb3805738a6337e528a590b78ae904941e1f2576f2778b5b4a635e158e08",
+    "data/json/mapgen/exodii/exo_safehouse.json": "aa48fccb065eb03b18d734ceed475edb584d7e3019dc341e59f77f1da676bd85",
+    "data/json/mapgen/exodii/exo_warehouse.json": "39cbd9af9446f99e205bd0b4a307068d967dc812894df5ce72ce22e712ed7f34",
+    "data/json/mapgen/exodii/exodii_base.json": "8c07ccc02ceb3ac5465c2386aa58e5f84f7a3ac6033ed35a786f648852214da1",
+    "data/json/mapgen/exodii/exodii_base_safehouse.json": "d66c6dafbd32cd5a5d34bc12c0e460c63f99f84a352c3f5f377d7f04e4796633",
+    "data/json/mapgen/exodii/exodii_nested.json": "b2cc071df724c5eedbb319c7c813ce27b7c3c584e8af592f1c7dd2b98f601864",
+    "data/json/mapgen/exodii/exodii_nested_singletile.json": "c454c9d8515a8049a992576fd858eaa384854aacff58c5a9b78a84f5603c6892",
+    "data/json/mapgen_palettes/exodii/homebase.json": "ca44dfe137ea5ca1e99a29d2397f9ab1b3d6a1a0112717ad731a82ad46681614",
+    "data/json/mapgen_palettes/exodii/medieval.json": "00b458458a5c4a15f333f6a70fb121c738f77710bc734d68b362a33edb1daf92"
+  }
+}

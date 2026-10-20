@@ -81,3 +81,9 @@ Godco использует отдельные идентификаторы dda_g
 Run 39466430448 на 60e5c6b полностью успешен: основные 73/11 030, совместимость 10/2 224, геометрия 8/381 252, повторённые на установленных данных; архив 12289961298 собран. Кампус засчитан: 11/51 = 21,6% групп с проверенной заявленной геометрией. Это по-прежнему не процент полной проходимости или объёма кода.
 
 Начальный Godco добавлен в необязательный предпросмотр отдельным девятым случаем: вместе 488 размещаемых клеток. Проверка этой новой версии ожидается. Три будущие конструкции с крышами z=1 по-прежнему не включены. У въезда сохранён predecessor forest; source ERASE_ALL_BEFORE_PLACING_TERRAIN адаптирован через штатный BN remove_all только для ненулевых символов дороги. Неизменяемый лес вне полосы дороги сохраняет обычную генерацию BN. Маска проверок пустого лута охватывает всю геометрию Godco и полосу въезда, а не нетронутый лес; проверки отсутствия t_null охватывают все собственные клетки. Маска получена из исходных terrain-привязок, не задана вручную.
+
+### Exodii geometry staging
+
+`prepare_exodii_geometry.py --check` verifies nine pinned official source files, preserves all world-map rows and typed terrain bindings from palettes and inline mappings, and produces `EXODII_SHELLS.json`, `EXODII_LATER_LAYERS.json` and `EXODII_GEOMETRY_REPORT.json`. Scope: 13 world maps, three structural nested layouts, 88 OMT; base (83 cells), barn (3), warehouse (2). Full source remains in `exodii_sources`.
+
+Only missing terrain is introduced: source glassed sand, with visual SANDGLASS connections deferred. Core and bundled-mod identifier intersections are empty. These are staging artifacts, excluded from the native patch and completion meter; geometry schema, natural placement and native generation have not been certified.
