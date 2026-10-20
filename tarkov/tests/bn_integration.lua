@@ -33,8 +33,8 @@ if test_data.stage == "enter" then
   assert(player:has_item_with_id(payload, false))
   assert(gapi.get_map():set_ter_at(local_pos(15, 15), TerId.new("t_wall"):int_id()))
 elseif test_data.stage == "restore" then
-  root.raid = test_data.restored
-  state = root.raid
+  -- Restore deserialized values into the live table also used by registered callbacks.
+  for key, value in pairs(test_data.restored) do state[key] = value end
   assert(state.phase == "active")
   assert(raid.recover(state, api))
   assert(raid.finish(state, api, "extracted"))
@@ -52,6 +52,12 @@ elseif test_data.stage == "restore" then
   assert(raid.recover(state, api))
   assert(api.at_home() and state.losses == 2)
   test_data.passed = true
+elseif test_data.stage == "prepare_death" then
+  assert(raid.start(state, api, 1800))
+  take_payload()
+elseif test_data.stage == "verify_death" then
+  assert(api.at_home() and state.phase == "home" and state.losses == 3)
+  assert(not player:has_item_with_id(payload, false))
 else
   error("Unknown integration stage")
 end

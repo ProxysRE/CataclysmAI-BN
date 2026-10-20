@@ -28,5 +28,11 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     test_data["stage"] = "restore";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     CHECK(test_data["passed"].get<bool>());
+    test_data["stage"] = "prepare_death";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
+    get_avatar().set_all_parts_hp_cur(0);
+    CHECK_FALSE(get_avatar().is_dead_state());
+    test_data["stage"] = "verify_death";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
 }
 // TRKV_DEV01_TEST_END
