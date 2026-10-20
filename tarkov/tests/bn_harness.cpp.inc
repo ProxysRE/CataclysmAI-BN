@@ -43,19 +43,13 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     const auto pack_before = snapshot(carried_pack);
     REQUIRE(g->save(false));
 
-    // Round-trip the actual on-disk mod state through BN's own deserializer.
-    auto restored_root = lua.create_table();
+    // Use BN's actual load function: it REPLACES nested storage tables and runs
+    // the registered load callbacks. Poison the old table to expose stale captures.
+    test_data["stage"] = "before_restore";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
     auto* const active_world = g->get_active_world();
     REQUIRE(active_world != nullptr);
-    REQUIRE(active_world->read_from_file("lua_state.json", [&](std::istream& input) {
-        auto jsin = JsonIn(input);
-        auto saved = jsin.get_object();
-        saved.allow_omitted_members();
-        auto mod_data = saved.get_object("trkv_raid_core");
-        cata::deserialize_lua_table(restored_root, mod_data);
-    }, false));
-    REQUIRE(restored_root["raid"].is<sol::table>());
-    test_data["restored"] = restored_root["raid"].get<sol::table>();
+    REQUIRE(cata::load_world_lua_state(active_world, "lua_state.json"));
     test_data["stage"] = "restore";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     auto found_rifle = false;

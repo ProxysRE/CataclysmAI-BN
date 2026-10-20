@@ -32,13 +32,19 @@ if test_data.stage == "enter" then
   take_payload()
   assert(player:has_item_with_id(payload, false))
   assert(gapi.get_map():set_ter_at(local_pos(15, 15), TerId.new("t_wall"):int_id()))
+elseif test_data.stage == "before_restore" then
+  test_data.old_state = state
+  state.phase = "home"
+  state.wins = 90
 elseif test_data.stage == "restore" then
-  -- Restore deserialized values into the live table also used by registered callbacks.
-  for key, value in pairs(test_data.restored) do state[key] = value end
+  assert(state ~= test_data.old_state, "BN must replace the nested save table")
   assert(state.phase == "active")
-  assert(raid.recover(state, api))
-  assert(raid.finish(state, api, "extracted"))
+  -- Exercise the registered callbacks, including BN's repeated load notification.
+  local mod = game.mod_runtime["trkv_raid_core"]
+  mod.loaded()
+  mod.extract()
   assert(api.at_home() and state.wins == 1 and state.phase == "home")
+  assert(test_data.old_state.phase == "home" and test_data.old_state.wins == 90)
   assert(player:has_item_with_id(payload, false))
   assert(not raid.finish(state, api, "extracted"))
 elseif test_data.stage == "continue" then

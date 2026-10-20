@@ -13,3 +13,6 @@
 - Dimension reset saves before clearing data; saved cleanup must be replayable.
 - Don't cancel an expensive native build for documentation-only changes.
 - Save only plain data in mod_storage. Keep Item/Npc/Map references out of saves.
+- BN deserialization replaces nested storage tables. Resolve `storage.raid` inside
+  each callback; never capture its pre-load identity. Test registered callbacks as
+  well as the engine-independent controller.

@@ -35,7 +35,8 @@ def main() -> None:
     # The tests use repository-relative dofile paths.
     import os
     os.chdir(ROOT)
-    runtime.execute((ROOT / "tarkov/tests/lifecycle_test.lua").read_text())
+    for suite in ("lifecycle_test.lua", "main_test.lua"):
+        LuaRuntime(unpack_returned_tuples=True).execute((ROOT / "tarkov/tests" / suite).read_text())
     print("PASS JSON structure, map dimensions, symbol coverage, connectivity and Lua 5.4 syntax")
 
 

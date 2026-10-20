@@ -17,6 +17,8 @@ Sky Island создан TGWeaver; BN-порт опубликован graysonchao
 - `src/catalua_bindings_creature.cpp`: инвентарь, HP и drop_all_items.
 - `src/catalua_hooks.cpp`: события старта/загрузки/смерти.
 - `src/game.cpp`: очистка измерения с внутренним сохранением игры.
+- `src/catalua.cpp` / `src/catalua_serde.cpp`: восстановление storage, замена
+  вложенных таблиц и запуск load hooks.
 - Штатный JSON mapgen и `lua:` действия мебели.
 
 ## Уроки Sky Island

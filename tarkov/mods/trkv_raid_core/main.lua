@@ -5,27 +5,34 @@ local api = require("trkv_bn")
 api.check_capabilities()
 storage.raid = storage.raid or {}
 raid.initialize(storage.raid)
-local state = storage.raid
+-- BN replaces nested tables while deserializing mod_storage. Resolve it for each
+-- callback instead of capturing the table created before a save is loaded.
+local function current_state()
+  return storage.raid
+end
 
-local function report()
+---@param state table
+local function report(state)
   gapi.add_msg(string.format("[Tarkov DEV0.1] %s | raids: %d | extracted: %d | lost: %d",
     state.phase, state.sequence, state.wins, state.losses))
   if state.last_error ~= "" then gapi.add_msg(state.last_error) end
 end
 
 mod.start = function()
+  local state = current_state()
   raid.recover(state, api)
-  if state.phase ~= "home" or not api.at_home() then report(); return end
+  if state.phase ~= "home" or not api.at_home() then report(state); return end
   local menu = UiList.new()
   menu:title("Tarkov DEV0.1: departure terminal")
   menu:add(1, "Enter test raid (30 game minutes)")
   menu:add(2, "Cancel")
-  if menu:query() == 1 then raid.start(state, api, 30 * 60); report() end
+  if menu:query() == 1 then raid.start(state, api, 30 * 60); report(state) end
 end
 
 mod.extract = function()
+  local state = current_state()
   -- Only the mapped exit furniture calls this; there is no pocket evacuation remote.
-  if api.at_raid() then raid.finish(state, api, "extracted"); report() end
+  if api.at_raid() then raid.finish(state, api, "extracted"); report(state) end
 end
 
 mod.started = function()
@@ -33,10 +40,15 @@ mod.started = function()
   gapi.add_msg("Tarkov DEV0.1: examine the departure terminal. Use a NEW, disposable world.")
 end
 
-mod.loaded = function() raid.recover(state, api); report() end
+mod.loaded = function()
+  local state = current_state()
+  raid.recover(state, api)
+  report(state)
+end
 
 ---@param params table
 mod.death = function(params)
+  local state = current_state()
   local character = params and params.char
   if character ~= nil and not character:is_avatar() then return end
   if not api.at_raid() or (state.phase ~= "active" and state.phase ~= "returning") then return end
@@ -45,15 +57,16 @@ mod.death = function(params)
   player:set_all_parts_hp_to_max()
   player:clear_effects()
   raid.finish(state, api, "defeated")
-  report()
+  report(state)
   return true
 end
 
 local function tick()
+  local state = current_state()
   local waiting_to_extract = state.phase == "returning" and state.outcome == "extracted"
   if (state.phase == "active" or waiting_to_extract) and api.now() >= state.deadline then
     raid.finish(state, api, "timeout")
-    report()
+    report(state)
   end
   return true
 end
