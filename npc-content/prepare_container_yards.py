@@ -79,6 +79,7 @@ def required(entries):
             result.add(('overmap_terrain_abstract',e['copy-from']))
         elif e['type']=='overmap_special':
             for cell in e['overmaps']:
+                if 'overmap' not in cell:continue # Placement constraints have no terrain ID.
                 name=cell['overmap']
                 # Rotatable OMT declarations generate all four directional IDs.
                 # Strip only a direction whose base is actually declared here.

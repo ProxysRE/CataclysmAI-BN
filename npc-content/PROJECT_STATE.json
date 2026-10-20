@@ -771,8 +771,30 @@
       0
     ],
     "runtime_validated": false,
-    "status": "embedded_in_patch_pending_native_validation",
+    "status": "initialization fixes prepared; native rerun pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "4c06cd622d1ca0700d08b00b4108b88a933671248ba8cc9522998c3db6413870"
+    "native_patch_sha256": "33f7c7dc602250dd302360d18914b76621581ccf328362085cfbf74d3483f3ac",
+    "previous_attempt": {
+      "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
+      "run_id": 39345643352,
+      "compile": "success",
+      "core_source": "73 cases / 11030 assertions passed",
+      "optional_source": "10 cases / 2224 assertions passed",
+      "geometry_cases": "2 cases / 63630 assertions passed but initialization errors made suite fail",
+      "errors": [
+        "Content-only glyphs unbound after layer extraction",
+        "Deprecated terrain selector combined with explicit road connection"
+      ],
+      "installed_and_packaging": "not reached"
+    }
+  },
+  "geometry_hub_candidate": {
+    "mapgen_definitions": 9,
+    "unique_mapped_omt": 81,
+    "special_records": 102,
+    "constraint_only_records": 2,
+    "raw_reference_obligations": 17,
+    "native_embedded": false,
+    "note": "Raw obligations include generated directional/linear OMT and existing project elevator terrain; not all are missing BN content."
   }
 }

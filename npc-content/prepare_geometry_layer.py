@@ -3,7 +3,7 @@
 import argparse,copy,hashlib,json,re,unicodedata
 from collections import Counter
 from pathlib import Path
-from prepare_regional_locations import ROOT,expand,index_entries,BUILTIN_IDS,references
+from prepare_regional_locations import ROOT,expand,index_entries,BUILTIN_IDS,references,flatten
 from prepare_container_yards import candidate as yards,required
 from adapt_container_yards import support_data
 from bn_shared_palettes import sources as shared_sources
@@ -59,7 +59,16 @@ def raw_sources():
     yard=[e for e in yards() if e['type']!='mapgen' or 'om_terrain' in e or e.get('nested_mapgen_id') in ('shipping_container','containers_roof')]
     for e in yard:
         if e['type']=='mapgen':e['object']=expand(e['object'],palettes)
-    return {'island_prison':prison,'xedra_church':church,'container_yards':yard}
+    from prepare_community_layers import read_bundle as community_bundle,ROOT as COMMUNITY_ROOT
+    bundle=community_bundle(COMMUNITY_ROOT)
+    for e in json.loads(bundle['dda/data/json/mapgen_palettes/robofachq.json']):
+        palettes[e['id']]=e
+    hub=[]
+    for e in json.loads(bundle['dda/data/json/mapgen/robofachq_static.json']):
+        e=copy.deepcopy(e);e['object']=expand(e['object'],palettes);hub.append(e)
+    hub+=json.loads(bundle['dda/data/json/overmap/overmap_terrain/overmap_terrain_robofachq.json'])
+    hub.append(next(e for e in json.loads(bundle['dda/data/json/overmap/overmap_special/specials.json']) if e.get('id')=='hub_01'))
+    return {'island_prison':prison,'xedra_church':church,'container_yards':yard,'hub_01':hub}
 
 
 def glyphs(rows):
@@ -114,6 +123,12 @@ def extract(entries):
                     v=[x for x in v if x!='parametrized_linoleum_palette']
                     if v:issues.append({'type':'unexpanded_palette','names':v,'source':e.get('om_terrain')})
                     out[k]=v
+            # BN diagnoses non-space glyphs even when fill_ter supplies their floor.
+            # Make that exact underlying terrain explicit after deferring furniture/loot.
+            bound=set(out.get('terrain',{}))|set(out.get('furniture',{}))|set(out.get('nested',{}))
+            for c in sorted(used-bound-{' ','.'}):
+                assert 'fill_ter' in out,('Undefined geometry glyph without source fill',c,e.get('om_terrain'))
+                out.setdefault('terrain',{})[c]=copy.deepcopy(out['fill_ter'])
             out={k:v for k,v in out.items() if v not in ({},[])}
             assert out.get('rows')==o.get('rows')
             e['object']=out;e['method']='json'
@@ -121,8 +136,15 @@ def extract(entries):
         elif t=='overmap_terrain':
             for k in ('vision_levels','spawns','extras','mondensity'):
                 if k in e:deferred.append({'source':e['id'],'field':k,'value':e.pop(k)})
-            if isinstance(e.get('see_cost'),str):e['see_cost']={'high':5,'medium':2,'low':1,'none':0,'spaced_high':5,'full_high':5}[e['see_cost']]
+            if isinstance(e.get('see_cost'),str):e['see_cost']={'all_clear':0,'high':5,'medium':2,'low':1,'none':0,'spaced_high':5,'full_high':5}[e['see_cost']]
         elif t=='overmap_special':
+            for connection in e.get('connections',[]):
+                if 'terrain' in connection:
+                    if not connection.get('connection'):
+                        assert connection['terrain']=='road',connection
+                        connection['connection']='local_road'
+                    assert connection.get('connection'),connection
+                    deferred.append({'source':e['id'],'connection_point':connection['point'],'field':'deprecated_connection_terrain','value':connection.pop('terrain')})
             for cell in e['overmaps']:
                 for k in tuple(cell):
                     if k not in ('point','overmap','locations'):
@@ -151,12 +173,16 @@ def prepare(check=False):
         entries,deferred,issues=extract(original)
         support=walls if name=='container_yards' else []
         own=index_entries(entries+support)
+        mapped_omt={n for e in entries if e['type']=='mapgen' for n in flatten(e.get('om_terrain',[]))}
+        declared_omt={n for t,n in own if t=='overmap_terrain'}
         refs=required(entries)
         missing=refs-core-own
         # Wall definitions intentionally inherit BN metal-wall mechanics.
         for e in support:
             if 'copy-from' in e:assert ('terrain',e['copy-from']) in core|own
         reports[name]={'status':'geometry_candidate_not_native_validated','native_embedded':False,'runtime_validated':False,
+                       'declared_omt_without_mapgen':sorted(declared_omt-mapped_omt),'unique_mapped_omt':len(mapped_omt),
+                       'constraint_only_cells':sum('overmap' not in c for e in entries if e['type']=='overmap_special' for c in e['overmaps']),
                        'definitions':dict(Counter(e['type'] for e in entries+support)),
                        'special_cells':{e['id']:len(e['overmaps']) for e in entries if e['type']=='overmap_special'},
                        'levels':sorted({c['point'][2] for e in entries if e['type']=='overmap_special' for c in e['overmaps']}),
@@ -165,7 +191,7 @@ def prepare(check=False):
                        'bundled_mod_overlaps_before_preview_namespacing':sorted((own-BUILTIN_IDS)&mods)}
         batches[name]=entries+support;later[name]=deferred
     report={'layer':1,'scope':'Terrain, structural nested layouts, typed terrain parameters and navigation-critical furniture only',
-            'native_validated':False,'adaptations':{'t_wood_wall_w':'BN t_wall_w, as in the existing ordinary church port','parametrized_linoleum_palette':'Use explicit source fallback t_linoleum_gray; decorative color parameter deferred','see_cost':'Source named visibility levels mapped to pinned BN integer costs','OVERMAP_UNIQUE':'BN UNIQUE flag'},'packages':reports,'limits':['Cross-level nested placement is an explicit blocker until adapted; never silently ignore z','Shared BN external OMT cells retain their stock generation','Standalone preview identities and native all-floor testing required before installation','Source late-layer fields and full authenticated inputs are preserved']}
+            'native_validated':False,'adaptations':{'t_wood_wall_w':'BN t_wall_w, as in the existing ordinary church port','parametrized_linoleum_palette':'Use explicit source fallback t_linoleum_gray; decorative color parameter deferred','see_cost':'Source named visibility levels mapped to pinned BN integer costs','OVERMAP_UNIQUE':'BN UNIQUE flag','content_only_glyphs':'Explicitly repeat source fill_ter for glyphs whose later-layer bindings were deferred','connections':'Retain explicit connection; archive and remove deprecated terrain selector'},'packages':reports,'limits':['Cross-level nested placement is an explicit blocker until adapted; never silently ignore z','Shared BN external OMT cells retain their stock generation','Standalone preview identities and native all-floor testing required before installation','Source late-layer fields and full authenticated inputs are preserved']}
     for file,value in [('SHELLS.json',batches),('LATER_LAYERS.json',later),('REPORT.json',report)]:
         text=json.dumps(value,indent=2,ensure_ascii=True)+'\n';p=OUT/file
         if check:assert p.read_text()==text,p
