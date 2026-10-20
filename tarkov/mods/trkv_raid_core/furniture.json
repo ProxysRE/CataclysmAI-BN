@@ -35,7 +35,7 @@
     "name": "test area lamp",
     "description": "Permanent lighting for the technical test arena.",
     "symbol": "*",
-    "color": "light_yellow",
+    "color": "yellow",
     "move_cost_mod": 0,
     "required_str": -1,
     "flags": [

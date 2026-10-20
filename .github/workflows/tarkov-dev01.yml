@@ -81,6 +81,15 @@ jobs:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
         run: ./build/bin/cata_test --mods=trkv_raid_core '[tarkov]' --rng-seed 20261020 --reporter junit --out ../tarkov-runtime.xml
+      - name: Print runtime diagnostics
+        if: always()
+        run: |
+          for log in bn/config/debug.log bn/user/config/debug.log tarkov-runtime.xml; do
+            if [ -f "$log" ]; then
+              echo "Log: $log"
+              tail -n 180 "$log"
+            fi
+          done
       - uses: actions/upload-artifact@v4
         if: always()
         with:
