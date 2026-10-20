@@ -29,6 +29,8 @@ def prepare(check=False):
         if e['type']=='overmap_special' and 'priority'in e:
             deferred.append({'id':e['id'],'field':'priority','value':e.pop('priority')})
         if e['type']=='mapgen' and 'om_terrain'in e:
+            if e['object'].get('predecessor_mapgen')=='forest':
+                e['object']['remove_all']={c:{}for c,t in e['object']['terrain'].items()if t!='t_null'}
             slots=matrix(e);assert len(e['object']['rows'])==24*len(slots)
             assert all(len(row)==24*len(slots[0])for row in e['object']['rows'])
     catalog,_=read_sources();agri='bn/data/json/overmap/overmap_terrain/overmap_terrain_agricultural.json'
@@ -58,13 +60,17 @@ def prepare(check=False):
     assert len(vertical)==3
     assert {v['source']for v in vertical}=={'darryl_coop','eddie_food_storage','godco_permanent_trader_predatory'}
     for a,b in zip(source,entries):
-        if a['type']=='mapgen':assert rename_utility(a['object'])==b['object']
+        if a['type']=='mapgen':
+            expected=rename_utility(a['object'])
+            if expected.get('predecessor_mapgen')=='forest':expected['remove_all']={c:{}for c,t in expected['terrain'].items()if t!='t_null'}
+            assert expected==b['object']
     mods={(r['type'],r['id'])for r in mods_cache()['records']}
     report={'status':'initial_geometry_candidate_not_installed','native_embedded':False,'runtime_validated':False,
       'definitions':dict(Counter(e['type']for e in entries)),'world_maps':sum(e['type']=='mapgen' and 'om_terrain'in e for e in entries),'structural_nested_maps':sum(e['type']=='mapgen' and 'nested_mapgen_id'in e for e in entries), 'own_omt':len([n for t,n in own if t=='overmap_terrain']),
       'placed_cells':sum('overmap'in c for e in entries if e['type']=='overmap_special'for c in e['overmaps']),
       'constraint_records':sum('overmap'not in c for e in entries if e['type']=='overmap_special'for c in e['overmaps']),
       'unresolved_typed_refs':sorted(missing),'schema_fields_deferred':deferred,
+      'entry_path_clearing':'BN remove_all only on non-null terrain glyphs; untouched predecessor forest retained',
       'road_counterpart':{'source_id':'rural_road_forest_ns','target_id':'rural_road_forest_north','reason':'BN rural road is regular rotatable terrain, not LINEAR; north retains the vertical dirt-road orientation'},
       'generated_BN_terrain':{'id':'rural_road_forest_north','source_file':agri,'declaration':road,'parent':parent},
       'shared_utility_aliases':utility_aliases,

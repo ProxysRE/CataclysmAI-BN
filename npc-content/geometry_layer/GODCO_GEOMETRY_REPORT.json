@@ -53,6 +53,7 @@
       "value": "structure"
     }
   ],
+  "entry_path_clearing": "BN remove_all only on non-null terrain glyphs; untouched predecessor forest retained",
   "road_counterpart": {
     "source_id": "rural_road_forest_ns",
     "target_id": "rural_road_forest_north",

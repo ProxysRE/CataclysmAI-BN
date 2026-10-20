@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Full campus geometry added to isolated preview; native eight-case generation validation pending. Verified historical group scope: 10/51 (19.6%).",
+  "stage": "Campus passed all native source and installed geometry suites; initial Godco now prepared as the ninth isolated layout test, pending native validation.",
   "package": "Isolated Road",
-  "native_compilation": "Last successful archive: be7a2c1 / run 39428420703, source+installed 3 geometry cases /159684 assertions. New campus patch must pass a separate source and installed rerun.",
+  "native_compilation": "Successful campus checkpoint 60e5c6b / run 39466430448: source+installed 73 core /11030, 10 optional /2224, 8 geometry /381252; artifact 12289961298. New initial-Godco patch must be revalidated.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -14,8 +14,8 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
-    "run_id": 39428420703,
+    "head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
+    "run_id": 39466430448,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -25,10 +25,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 3,
-    "geometry_assertions": 159684,
-    "installed_geometry_test_cases": 3,
-    "installed_geometry_assertions": 159684
+    "geometry_test_cases": 8,
+    "geometry_assertions": 381252,
+    "installed_geometry_test_cases": 8,
+    "installed_geometry_assertions": 381252
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -769,17 +769,18 @@
       "island_prison",
       "xedra_church",
       "hub_01",
-      "campus"
+      "campus",
+      "godco_base"
     ],
-    "special_cells": 427,
+    "special_cells": 488,
     "natural_occurrences": [
       0,
       0
     ],
     "runtime_validated": false,
-    "status": "campus added; eight native layout cases pending",
+    "status": "initial Godco added; nine-case native source/installed rerun pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "5febdadaa846b355cad79e74643320154b5c05d29e73a535dbbf68b48e20c2e7",
+    "native_patch_sha256": "ed1bc80aab615c308a0deda9e13468e260028174622b0d832a72c85af8f2e5b8",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -794,11 +795,11 @@
       "installed_and_packaging": "not reached"
     },
     "checkpoint_head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
-    "run_id": 39428420703,
-    "artifact_id": 12272298536,
-    "artifact_size": 205609938,
-    "artifact_digest": "sha256:263f2b39b7d17f30b5e8b182bcc03a381865564f1cb5c2d23ac7b219a6dcc73a",
-    "previous_successful_head": "925d3b47883354ecc2e49e529da2be0a30ace155",
+    "run_id": 39466430448,
+    "artifact_id": 12289961298,
+    "artifact_size": 205617356,
+    "artifact_digest": "sha256:c2a6ef4f3de11716004289aaaaf9c7d4641286fabb61e7e644b466a4754c8c2f",
+    "previous_successful_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
@@ -827,7 +828,7 @@
     ]
   },
   "geometry_campus_candidate": {
-    "status": "five native layout cases prepared; source and installed validation pending",
+    "status": "All five source and installed campus layout cases passed; full traversal remains unverified",
     "mapgen_definitions": 26,
     "unique_omt": 112,
     "special_layouts": 5,
@@ -847,34 +848,36 @@
     ],
     "unresolved_typed_refs": 0,
     "native_embedded": true,
-    "runtime_validated": false,
+    "runtime_validated": true,
     "core_id_overlaps": 0,
     "bundled_mod_id_overlaps": 0,
     "report": "geometry_layer/CAMPUS_ADAPTATION_REPORT.json",
     "installation_scope": "namespaced opt-in debug preview; original source IDs remain staged separately"
   },
   "geometry_layer_progress": {
-    "verified_groups": 10,
+    "verified_groups": 11,
     "accepted_groups": 51,
-    "verified_percent": 19.6,
-    "additional_prepared_groups": 1,
+    "verified_percent": 21.6,
+    "additional_prepared_groups": 0,
     "verified_plus_prepared_percent": 21.6,
     "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
     "report": "geometry_layer/PROGRESS.json"
   },
   "geometry_godco_candidate": {
-    "status": "initial site terrain layer extracted and typed closure checked; quest construction separately audited",
+    "status": "Initial site only in isolated optional preview; native generation pending",
     "world_maps": 5,
     "structural_nested_maps": 2,
     "own_omt": 22,
     "placed_cells": 61,
     "constraint_records": 1,
     "unresolved_typed_refs": 0,
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
     "construction_update_definitions": 18,
     "construction_nested_definitions": 20,
     "construction_cross_z_roof_blockers": 3,
-    "report": "geometry_layer/GODCO_GEOMETRY_REPORT.json"
+    "report": "geometry_layer/GODCO_GEOMETRY_REPORT.json",
+    "installation_scope": "separate debug preview identities; quest construction excluded",
+    "predecessor_forest": "Source road mask uses native removal; untouched forest loot excluded from empty-geometry assertion"
   }
 }

@@ -18,7 +18,7 @@
 #include <utility>
 
 namespace {
-struct site_cell { int x; int y; int z; const char *terrain; };
+struct site_cell { int x; int y; int z; const char *terrain; const char *loot_mask = nullptr; };
 struct geometry_point { int omt_x; int omt_y; int x; int y; int z; const char *terrain; };
 void generate_site( int base, std::initializer_list<site_cell> cells,
                     std::initializer_list<geometry_point> geometry = {} )
@@ -49,7 +49,9 @@ void generate_site( int base, std::initializer_list<site_cell> cells,
                     for( int y = 0; y < 24; ++y ) {
                         const tripoint_bub_ms p( x, y, cell.z );
                         CHECK( generated.ter( p ) != ter_id( "t_null" ) );
-                        CHECK( generated.i_at( p ).empty() );
+                        if( cell.loot_mask == nullptr || cell.loot_mask[y * 24 + x] == '1' ) {
+                            CHECK( generated.i_at( p ).empty() );
+                        }
                     }
                 }
             }
@@ -776,5 +778,72 @@ TEST_CASE( "dda_geo_campus_health_all_floors_without_loot", "[dda_geometry]" )
         { 0, 0, 3, "dda_geo_campus_admin_0_0_3_north" },
         { 0, 1, 3, "dda_geo_campus_admin_0_1_3_north" },
         { 0, 2, 3, "dda_geo_campus_admin_0_2_3_north" },
+    } );
+}
+
+TEST_CASE( "dda_geo_new_england_church_retreat_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 5000, {
+        { -4, 1, 0, "forest" },
+        { -3, 1, 0, "forest" },
+        { -2, 1, 0, "forest" },
+        { -1, 1, 0, "rural_road_forest_north" },
+        { 0, 1, 0, "forest" },
+        { 1, 1, 0, "forest" },
+        { 2, 1, 0, "forest" },
+        { -4, 2, 0, "forest" },
+        { -3, 2, 0, "forest_thick" },
+        { -2, 2, 0, "forest_thick" },
+        { -1, 2, 0, "dda_geo_godco_enter_north", "000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000011111111100000000000000011111111100000000000000011111111000000000000000011111111000000000000000011111111000000000000000011111111000000000000000011111111000000000000000011111111000000000000000011111111000000000000000011111111100000000000000011111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000000000001111111100000000" },
+        { 0, 2, 0, "forest_thick" },
+        { 1, 2, 0, "forest_thick" },
+        { 2, 2, 0, "forest" },
+        { -2, 3, 0, "dda_geo_godco_3_north" },
+        { -3, 3, 0, "forest_thick" },
+        { -4, 3, 0, "forest_thick" },
+        { -1, 3, 0, "dda_geo_godco_2_north" },
+        { 0, 3, 0, "dda_geo_godco_1_north" },
+        { 1, 3, 0, "forest_thick" },
+        { 2, 3, 0, "forest_thick" },
+        { -2, 4, 0, "dda_geo_godco_6_north" },
+        { -3, 4, 0, "forest_thick" },
+        { -4, 4, 0, "forest_thick" },
+        { -1, 4, 0, "dda_geo_godco_5_north" },
+        { 0, 4, 0, "dda_geo_godco_4_north" },
+        { 1, 4, 0, "forest_thick" },
+        { 2, 4, 0, "forest_thick" },
+        { -2, 5, 0, "dda_geo_godco_9_north" },
+        { -3, 5, 0, "forest_thick" },
+        { -4, 5, 0, "forest_thick" },
+        { -1, 5, 0, "dda_geo_godco_8_north" },
+        { 0, 5, 0, "dda_geo_godco_7_north" },
+        { 1, 5, 0, "forest_thick" },
+        { 2, 5, 0, "forest_thick" },
+        { -2, 6, 0, "forest" },
+        { -3, 6, 0, "forest_thick" },
+        { -4, 6, 0, "forest_thick" },
+        { -1, 6, 0, "forest_thick" },
+        { 0, 6, 0, "forest_thick" },
+        { 1, 6, 0, "forest_thick" },
+        { 2, 6, 0, "forest" },
+        { -2, 7, 0, "forest" },
+        { -3, 7, 0, "forest" },
+        { -4, 7, 0, "forest_thick" },
+        { -1, 7, 0, "forest_thick" },
+        { 0, 7, 0, "forest_thick" },
+        { 1, 7, 0, "forest" },
+        { 2, 7, 0, "forest" },
+        { -2, 3, 1, "dda_geo_godco_3_1_north" },
+        { -1, 3, 1, "dda_geo_godco_2_1_north" },
+        { 0, 3, 1, "dda_geo_godco_1_1_north" },
+        { -2, 4, 1, "dda_geo_godco_6_1_north" },
+        { -1, 4, 1, "dda_geo_godco_5_1_north" },
+        { 0, 4, 1, "dda_geo_godco_4_1_north" },
+        { -2, 5, 1, "dda_geo_godco_9_1_north" },
+        { -1, 5, 1, "dda_geo_godco_8_1_north" },
+        { 0, 5, 1, "dda_geo_godco_7_1_north" },
+        { -1, 3, 2, "dda_geo_godco_2_2_north" },
+        { 0, 3, 2, "dda_geo_godco_1_2_north" },
+        { 0, 3, 3, "dda_geo_godco_1_3_north" },
     } );
 }

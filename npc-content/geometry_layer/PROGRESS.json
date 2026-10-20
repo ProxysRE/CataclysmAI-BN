@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 10,
-  "verified_percent": 19.6,
-  "additional_prepared_groups": 1,
+  "verified_groups": 11,
+  "verified_percent": 21.6,
+  "additional_prepared_groups": 0,
   "verified_plus_prepared_percent": 21.6,
   "evidence_checkpoint": {
-    "head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
-    "run_id": 39428420703,
+    "head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
+    "run_id": 39466430448,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 3,
-    "geometry_assertions": 159684,
-    "installed_geometry_test_cases": 3,
-    "installed_geometry_assertions": 159684
+    "geometry_test_cases": 8,
+    "geometry_assertions": 381252,
+    "installed_geometry_test_cases": 8,
+    "installed_geometry_assertions": 381252
   },
   "rows": [
     {
@@ -42,9 +42,9 @@
         "overmap_special:campus_media",
         "overmap_special:campus_health"
       ],
-      "state": "prepared_pending_native_generation",
-      "evidence": "geometry_layer/CAMPUS_ADAPTATION_REPORT.json",
-      "scope": "All 26 first-layer maps; awaiting five native layout tests"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All five campus layout cases passed source and installed generation"
     },
     {
       "name": "Церковный ретрит Godco",

@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'overmap_special:campus':('native/dda_geometry_preview.json','All five campus layout cases passed source and installed generation'),
  'overmap_special:Militia Lodge':('native/dda_grey_moose_lodge.json','Complete lodge floors and roof'),
  'overmap_special:Island prison':('native/dda_geometry_preview.json','Namespaced shell preview; all special cells'),
  'overmap_special:church_rural':('native/dda_rural_church.json','Ordinary church plus XEDRA shell preview'),
