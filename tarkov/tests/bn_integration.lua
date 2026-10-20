@@ -11,8 +11,23 @@ local payload = ItypeId.new("trkv_test_payload")
 
 ---@param x integer
 ---@param y integer
-local function local_pos(x, y)
-  return gapi.get_map():abs_to_bub(TripointAbsMs.new(16 * 24 + x, 16 * 24 + y, 0))
+local function local_pos(x, y, z)
+  return gapi.get_map():abs_to_bub(TripointAbsMs.new(16 * 24 + x, 16 * 24 + y, z or 0))
+end
+
+local function check_boundary()
+  local map = gapi.get_map()
+  local border = TerId.new("t_pd_border"):int_id()
+  local floor = TerId.new("t_floor"):int_id()
+  -- Six faces of the bounded space, including above and below the playable floor.
+  -- Try the actual setter, not a mock: outside geometry must not become floor.
+  for _, xyz in ipairs({{-1, 12, 0}, {24, 12, 0}, {12, -1, 0},
+      {12, 24, 0}, {12, 12, -1}, {12, 12, 1}}) do
+    local pos = local_pos(xyz[1], xyz[2], xyz[3])
+    assert(map:get_ter_at(pos) == border, "Space boundary has unexpected terrain")
+    assert(not map:set_ter_at(pos, floor), "Map setter changed terrain outside space bounds")
+    assert(map:get_ter_at(pos) == border, "Space boundary was replaced")
+  end
 end
 
 local function take_payload()
@@ -72,6 +87,7 @@ if test_data.stage == "home" then
   assert(api.at_home() and state.phase == "home")
 elseif test_data.stage == "control_loaded" then
   assert(api.at_home() and state.phase == "home" and state.sequence == 0)
+  check_boundary()
   -- Equip only after BN's no-travel normalization reload, before the C++
   -- baseline snapshots. Subsequent JSON comparisons still include every field.
   assert(player:wield(fixture("rifle")))
@@ -82,6 +98,7 @@ elseif test_data.stage == "enter" then
   assert(api.at_home())
   assert(raid.start(state, api, 1800))
   assert(api.at_raid())
+  check_boundary()
   check_equipped()
   take_payload()
   assert(player:has_item_with_id(payload, false))
@@ -93,6 +110,7 @@ elseif test_data.stage == "before_restore" then
 elseif test_data.stage == "restore" then
   assert(state ~= test_data.old_state, "BN must replace the nested save table")
   assert(state.phase == "active" and api.at_raid())
+  check_boundary()
   check_equipped()
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_wall"):int_id())
   -- Exercise the registered callbacks, including BN's repeated load notification.
@@ -108,12 +126,14 @@ elseif test_data.stage == "loaded_cleanup" then
   assert(api.at_home() and state.phase == "cleanup" and state.wins == 0)
 elseif test_data.stage == "recovered_cleanup" then
   assert(api.at_home() and state.phase == "home" and state.wins == 1)
+  check_boundary()
   assert(player:has_item_with_id(payload, false))
   check_equipped()
   store_payload()
 elseif test_data.stage == "continue" then
   check_stash()
   assert(raid.start(state, api, 1800))
+  check_boundary()
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload() -- fixed map loot must regenerate after reset
   assert(raid.finish(state, api, "defeated"))
