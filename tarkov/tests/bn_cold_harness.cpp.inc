@@ -1,9 +1,11 @@
 // Test-only cold restart probes, appended to BN's catalua_test.cpp.
 #include <cstdlib>
+#include <cstdio>
 #include <filesystem>
 #include <fstream>
 #include "dimension_info.h"
 #include "path_info.h"
+#include "worldfactory.h"
 
 static auto trkv_cold_env(const char* name) -> std::string {
     const auto* value = std::getenv(name);
@@ -49,10 +51,18 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
     const auto destination = std::filesystem::path(PATH_INFO::savedir()) / "TRKV_COLD_FIXTURE";
     REQUIRE(std::filesystem::is_directory(source));
     REQUIRE_FALSE(std::filesystem::exists(destination));
+    std::fprintf(stderr, "Tarkov cold: copying closed fixture\n");
     std::filesystem::copy(source, destination, std::filesystem::copy_options::recursive);
+    std::fprintf(stderr, "Tarkov cold: fixture copied\n");
     const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
     disable_mapgen = false;
+    // test_main initialized a scratch world. Detach it before init() replaces
+    // WORLDINFO entries, or options_manager keeps a dangling WORLD_OPTIONS pointer.
+    clear_all_state();
+    world_generator->set_active_world(nullptr);
+    std::fprintf(stderr, "Tarkov cold: loading world from menu state\n");
     REQUIRE(g->load(std::string("TRKV_COLD_FIXTURE")));
+    std::fprintf(stderr, "Tarkov cold: world loaded\n");
     const auto* info = g->get_current_dimension_info();
     REQUIRE(info != nullptr);
     CHECK(info->world_type.str() == "trkv_raid_space");
