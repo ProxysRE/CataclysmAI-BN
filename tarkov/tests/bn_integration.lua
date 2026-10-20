@@ -27,6 +27,34 @@ local function take_payload()
   error("Generated raid did not contain its test payload")
 end
 
+-- Keep only a plain marker across travel. Never retain a Map/Item reference
+-- while BN unloads the refuge and loads another dimension.
+local stash_marker = "trkv_extracted_package_1"
+local function check_stash()
+  assert(api.at_home())
+  local items = gapi.get_map():get_items_at(local_pos(8, 10)):items()
+  assert(#items == 1, "Refuge locker must keep exactly one stored package")
+  assert(items[1]:get_type():str() == "trkv_test_payload")
+  assert(items[1]:get_var_str("trkv_stash", "") == stash_marker,
+    "Refuge locker lost or replaced the extracted package")
+end
+
+local function store_payload()
+  assert(api.at_home())
+  for _, item in ipairs(player:all_items(false)) do
+    if item:get_type():str() == "trkv_test_payload" then
+      item:set_var_str("trkv_stash", stash_marker)
+      local detached = player:remove_item(item)
+      assert(gapi.get_map():add_item(local_pos(8, 10), detached) == nil,
+        "Could not place the extracted package in the refuge locker")
+      assert(not player:has_item_with_id(payload, false))
+      check_stash()
+      return
+    end
+  end
+  error("No extracted package to store in the refuge")
+end
+
 if test_data.stage == "home" then
   game.mod_runtime["trkv_raid_core"].started()
   assert(api.at_home() and state.phase == "home")
@@ -61,17 +89,21 @@ elseif test_data.stage == "loaded_cleanup" then
 elseif test_data.stage == "recovered_cleanup" then
   assert(api.at_home() and state.phase == "home" and state.wins == 1)
   assert(player:has_item_with_id(payload, false))
+  store_payload()
 elseif test_data.stage == "continue" then
+  check_stash()
   assert(raid.start(state, api, 1800))
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload() -- fixed map loot must regenerate after reset
   assert(raid.finish(state, api, "defeated"))
   assert(api.at_home() and state.losses == 1 and state.wins == 1)
   assert(not player:has_item_with_id(payload, false))
+  check_stash()
   assert(raid.start(state, api, 1800))
   state.deadline = api.now()
   assert(raid.recover(state, api))
   assert(api.at_home() and state.losses == 2)
+  check_stash()
   test_data.passed = true
 elseif test_data.stage == "prepare_death" then
   assert(raid.start(state, api, 1800))
@@ -79,6 +111,7 @@ elseif test_data.stage == "prepare_death" then
 elseif test_data.stage == "verify_death" then
   assert(api.at_home() and state.phase == "home" and state.losses == 3)
   assert(not player:has_item_with_id(payload, false))
+  check_stash()
 elseif test_data.stage == "prepare_write_failure" then
   assert(raid.start(state, api, 1800))
   take_payload()
@@ -93,6 +126,7 @@ elseif test_data.stage == "retry_return" then
   assert(state.wins == 2 and state.losses == 3)
   assert(player:has_item_with_id(payload, false))
   assert(not raid.finish(state, api, "extracted"))
+  check_stash()
 else
   error("Unknown integration stage")
 end
