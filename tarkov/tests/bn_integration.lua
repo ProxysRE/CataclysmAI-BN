@@ -1,4 +1,5 @@
 -- Runs INSIDE BN's real Lua state, with the actual map, avatar and SQLite world.
+print("Tarkov runtime stage: " .. tostring(test_data.stage))
 local raid = require("data.mods.trkv_raid_core.trkv_lifecycle")
 local api = require("data.mods.trkv_raid_core.trkv_bn")
 local root = game.mod_storage["trkv_raid_core"]

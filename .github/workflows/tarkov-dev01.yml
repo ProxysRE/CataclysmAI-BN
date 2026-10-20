@@ -86,12 +86,14 @@ jobs:
           path: bn/build
           key: ${{ steps.native-cache.outputs.cache-primary-key }}
       - name: Validate mod through the game executable
+        timeout-minutes: 5
         working-directory: bn
         env:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
         run: ./build/bin/cataclysm-bn --check-mods trkv_raid_core
       - name: Run actual BN lifecycle and persistence test
+        timeout-minutes: 15
         working-directory: bn
         env:
           SDL_VIDEODRIVER: offscreen
