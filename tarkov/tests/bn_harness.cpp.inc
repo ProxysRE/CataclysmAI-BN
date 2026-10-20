@@ -2,6 +2,8 @@
 TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]") {
     clear_all_state();
     initialize_dimension_test_storage();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
+    disable_mapgen = false;
     const auto cleanup = dimension_test_cleanup({
         dimension_id("trkv_dev01_home"), dimension_id("trkv_dev01_raid")
     });
