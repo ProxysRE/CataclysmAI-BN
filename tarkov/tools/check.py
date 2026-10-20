@@ -30,7 +30,7 @@ def main() -> None:
                 if cell in "DEL":
                     assert (x, y) in visited, (definition["om_terrain"], cell)
     runtime = LuaRuntime(unpack_returned_tuples=True)
-    for path in MOD.glob("*.lua"):
+    for path in [*MOD.glob("*.lua"), *(ROOT / "tarkov/tests").glob("*.lua")]:
         runtime.execute("assert(load(...))", path.read_text())
     # The tests use repository-relative dofile paths.
     import os

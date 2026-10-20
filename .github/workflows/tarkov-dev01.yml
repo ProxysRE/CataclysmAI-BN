@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: tarkov-dev01-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   fast-checks:

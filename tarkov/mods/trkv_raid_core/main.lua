@@ -50,7 +50,8 @@ mod.death = function(params)
 end
 
 local function tick()
-  if state.phase == "active" and api.now() >= state.deadline then
+  local waiting_to_extract = state.phase == "returning" and state.outcome == "extracted"
+  if (state.phase == "active" or waiting_to_extract) and api.now() >= state.deadline then
     raid.finish(state, api, "timeout")
     report()
   end

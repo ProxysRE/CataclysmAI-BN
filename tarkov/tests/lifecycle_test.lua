@@ -145,6 +145,38 @@ test("dimension mismatch does not delete or penalize unrelated world", function(
   assert(w.penalties == 0 and w.resets == 0)
 end)
 
+test("stale return cannot teleport player out of unrelated dimension", function()
+  local s, a, w = fixture()
+  raid.start(s, a, 1800)
+  w.fail_return = true
+  assert(not raid.finish(s, a, "extracted"))
+  w.fail_return = false
+  w.where = "unrelated"
+  assert(not raid.recover(s, a))
+  assert(w.where == "unrelated" and w.penalties == 0 and w.resets == 0)
+end)
+
+test("death during failed extraction becomes defeat", function()
+  local s, a, w = fixture()
+  raid.start(s, a, 1800)
+  w.fail_return = true
+  assert(not raid.finish(s, a, "extracted"))
+  w.fail_return = false
+  assert(raid.finish(s, a, "defeated"))
+  assert(s.outcome == "defeated" and s.losses == 1 and s.wins == 0 and w.penalties == 1)
+end)
+
+test("failed extraction expires before retry", function()
+  local s, a, w = fixture()
+  raid.start(s, a, 1800)
+  w.fail_return = true
+  assert(not raid.finish(s, a, "extracted"))
+  w.fail_return = false
+  w.clock = s.deadline
+  assert(raid.recover(s, a))
+  assert(s.outcome == "timeout" and s.losses == 1 and s.wins == 0 and w.penalties == 1)
+end)
+
 test("unknown schema and phase fail closed", function()
   assert(not pcall(raid.initialize, { schema = 99 }))
   local s, a = fixture()

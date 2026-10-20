@@ -41,6 +41,7 @@ elseif test_data.stage == "restore" then
   assert(api.at_home() and state.wins == 1 and state.phase == "home")
   assert(player:has_item_with_id(payload, false))
   assert(not raid.finish(state, api, "extracted"))
+elseif test_data.stage == "continue" then
   assert(raid.start(state, api, 1800))
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload() -- fixed map loot must regenerate after reset

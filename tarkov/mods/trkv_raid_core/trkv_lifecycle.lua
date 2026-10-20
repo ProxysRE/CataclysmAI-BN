@@ -71,6 +71,18 @@ function raid.finish(state, api, outcome)
   elseif state.phase ~= "returning" then
     return false
   end
+  if not api.at_raid() and not api.at_home() then
+    state.last_error = "Return dimension mismatch; automatic changes stopped."
+    return false
+  end
+  -- Requesting extraction is not success until the player actually reaches home.
+  if api.at_raid() and state.outcome == "extracted" then
+    if outcome == "defeated" then
+      state.outcome = "defeated"
+    elseif api.now() >= state.deadline then
+      state.outcome = "timeout"
+    end
+  end
   -- A failed return may be retried, but must not repeat the inventory penalty.
   if state.outcome ~= "extracted" and not state.penalty_applied then
     if not api.at_raid() then return false end
