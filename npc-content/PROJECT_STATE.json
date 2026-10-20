@@ -794,7 +794,7 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "be7a2c112f88c7d4eb24a265afda8274c084ae27",
+    "checkpoint_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "run_id": 39466430448,
     "artifact_id": 12289961298,
     "artifact_size": 205617356,
@@ -803,8 +803,18 @@
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
-      "Campus and container yards excluded"
-    ]
+      "Container yards excluded; initial Godco generation pending"
+    ],
+    "pending_run_id": 39485820362,
+    "pending_head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
+    "validated_packages": [
+      "island_prison",
+      "xedra_church",
+      "hub_01",
+      "campus"
+    ],
+    "validated_geometry_cases": 8,
+    "validated_geometry_placements": 427
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
