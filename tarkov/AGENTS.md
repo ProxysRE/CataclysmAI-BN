@@ -16,3 +16,5 @@
 - BN deserialization replaces nested storage tables. Resolve `storage.raid` inside
   each callback; never capture its pre-load identity. Test registered callbacks as
   well as the engine-independent controller.
+- `game::load` blocks saving during load hooks. Defer recovery that travels or
+  resets dimensions until a post-load game tick; both operations save internally.

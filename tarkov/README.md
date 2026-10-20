@@ -54,6 +54,7 @@ Workflow `.github/workflows/tarkov-dev01.yml` собирает BN и его те
 - `docs/ARCHITECTURE.md` — состояния и зависимости.
 - `docs/ROADMAP.md` — этапы и условия завершения.
 - `docs/VERIFICATION.md` — уровни проверки и ограничения.
+- `docs/NPC_SPIKE.md` — средства BN и порядок первого эксперимента со стрелком.
 - `docs/SOURCE_AUDIT.md` — что используем из BN и чему научил Sky Island.
 
 Пока не добавлять этот мод в существующие игровые сохранения и не включать одновременно

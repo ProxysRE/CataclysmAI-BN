@@ -40,10 +40,11 @@ mod.started = function()
   gapi.add_msg("Tarkov DEV0.1: examine the departure terminal. Use a NEW, disposable world.")
 end
 
+local pending_load_recovery = false
 mod.loaded = function()
-  local state = current_state()
-  raid.recover(state, api)
-  report(state)
+  -- game::load blocks saves while invoking its load hooks. Dimension travel and
+  -- reset both save internally, so recover on the first post-load game tick.
+  pending_load_recovery = true
 end
 
 ---@param params table
@@ -63,6 +64,11 @@ end
 
 local function tick()
   local state = current_state()
+  if pending_load_recovery then
+    pending_load_recovery = false
+    raid.recover(state, api)
+    report(state)
+  end
   local waiting_to_extract = state.phase == "returning" and state.outcome == "extracted"
   if (state.phase == "active" or waiting_to_extract) and api.now() >= state.deadline then
     raid.finish(state, api, "timeout")

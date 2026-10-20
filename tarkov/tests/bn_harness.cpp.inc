@@ -1,5 +1,6 @@
 // TRKV_DEV01_TEST_BEGIN
 #include "item.h"
+#include "action_time_scale.h"
 
 TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]") {
     clear_all_state();
@@ -43,13 +44,15 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     const auto pack_before = snapshot(carried_pack);
     REQUIRE(g->save(false));
 
-    // Use BN's actual load function: it REPLACES nested storage tables and runs
-    // the registered load callbacks. Poison the old table to expose stale captures.
+    // Reload the actual character, map and Lua storage using game::load. It
+    // replaces nested Lua tables and invokes load hooks twice in this baseline.
+    // Poison the old table to expose stale captures by registered callbacks.
     test_data["stage"] = "before_restore";
     run_lua_test_script(lua, "trkv_integration_test.lua");
-    auto* const active_world = g->get_active_world();
-    REQUIRE(active_world != nullptr);
-    REQUIRE(cata::load_world_lua_state(active_world, "lua_state.json"));
+    const auto saved_character = save_t::from_save_id(get_avatar().get_save_id());
+    REQUIRE(g->load(saved_character));
+    const auto tick_scope = action_time_scale::scoped_calendar_turns_this_tick(1);
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     test_data["stage"] = "restore";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     auto found_rifle = false;
@@ -66,6 +69,15 @@ TEST_CASE("tarkov raid lifecycle uses real BN maps and save storage", "[tarkov]"
     }
     REQUIRE(found_rifle);
     REQUIRE(found_pack);
+    // reset_dimension saved a home/cleanup checkpoint before it cleared the map.
+    // Load that checkpoint through the real game, then let the registered timer
+    // recover it only after game::load has re-enabled saves.
+    REQUIRE(g->load(saved_character));
+    test_data["stage"] = "loaded_cleanup";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    test_data["stage"] = "recovered_cleanup";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
     test_data["stage"] = "continue";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     CHECK(test_data["passed"].get<bool>());
