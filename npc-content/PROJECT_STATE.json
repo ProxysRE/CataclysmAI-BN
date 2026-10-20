@@ -861,5 +861,20 @@
     "verified_plus_prepared_percent": 21.6,
     "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
     "report": "geometry_layer/PROGRESS.json"
+  },
+  "geometry_godco_candidate": {
+    "status": "initial site terrain layer extracted and typed closure checked; quest construction separately audited",
+    "world_maps": 5,
+    "structural_nested_maps": 2,
+    "own_omt": 22,
+    "placed_cells": 61,
+    "constraint_records": 1,
+    "unresolved_typed_refs": 0,
+    "native_embedded": false,
+    "runtime_validated": false,
+    "construction_update_definitions": 18,
+    "construction_nested_definitions": 20,
+    "construction_cross_z_roof_blockers": 3,
+    "report": "geometry_layer/GODCO_GEOMETRY_REPORT.json"
   }
 }

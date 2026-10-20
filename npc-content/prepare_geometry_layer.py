@@ -79,7 +79,31 @@ def raw_sources():
                 e=copy.deepcopy(e);e['object']=expand(e['object'],palettes);campus.append(e)
     campus+=json.loads(bundle['dda/data/json/overmap/overmap_special/campus.json'])
     campus+=json.loads(bundle['dda/data/json/overmap/overmap_terrain/overmap_terrain_campus.json'])
-    return {'island_prison':prison,'xedra_church':church,'container_yards':yard,'hub_01':hub,'campus':campus}
+    gd=OUT/'godco_sources'
+    manifest=json.loads((gd/'SOURCE_MANIFEST.json').read_text())
+    assert manifest['pin']=='c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'
+    for path,digest in manifest['files'].items():
+        raw=(gd/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==digest
+        for e in json.loads(raw):
+            if e['type']=='palette':palettes[e['id']]=e
+    godco=[]
+    for e in json.loads(bundle['dda/data/json/mapgen/godco/church_retreat.json']):
+        e=copy.deepcopy(e);e['object']=expand(e['object'],palettes);godco.append(e)
+    for path,entries in shared.items():
+        if path.startswith('dda/'):
+            for e in entries:
+                if e.get('nested_mapgen_id')in ('roof_4x4_utility','roof_4x4_utility_1'):godco.append(copy.deepcopy(e))
+    own_names={n for e in godco for n in flatten(e.get('om_terrain',[]))}
+    catalog,_=read_sources()
+    for path,text in catalog.items():
+        if not path.startswith('dda/'):continue
+        for e in json.loads(text):
+            if e.get('type')=='overmap_special' and e.get('id')=='New England Church Retreat':godco.append(copy.deepcopy(e))
+            if e.get('type')!='overmap_terrain' or 'id'not in e:continue
+            names=e['id'] if isinstance(e['id'],list) else [e['id']]
+            selected=[n for n in names if n in own_names]
+            if selected:e=copy.deepcopy(e);e['id']=selected;godco.append(e)
+    return {'island_prison':prison,'xedra_church':church,'container_yards':yard,'hub_01':hub,'campus':campus,'godco_base':godco}
 
 
 def glyphs(rows):
@@ -91,7 +115,7 @@ def glyphs(rows):
     return set(result)
 
 
-def extract(entries):
+def extract(entries,structural_nested=('shipping_container','containers_roof')):
     result=[];deferred=[];issues=[]
     for original in entries:
         e=copy.deepcopy(original);t=e['type']
@@ -111,11 +135,11 @@ def extract(entries):
                     if keep:out[k]=keep
                     later[k]={c:x for c,x in v.items() if c not in keep}
                 elif k=='nested':
-                    keep={c:x for c,x in v.items() if c in used and any(n in str(x) for n in ('shipping_container','containers_roof'))}
+                    keep={c:x for c,x in v.items() if c in used and any(n in str(x) for n in structural_nested)}
                     if keep:out[k]=keep
                     later[k]={c:x for c,x in v.items() if c not in keep}
                 elif k=='place_nested':
-                    keep=[x for x in v if any(n in str(x) for n in ('shipping_container','containers_roof'))]
+                    keep=[x for x in v if any(n in str(x) for n in structural_nested)]
                     if keep:out[k]=keep
                     later[k]=[x for x in v if x not in keep]
                     for x in keep:
@@ -138,8 +162,11 @@ def extract(entries):
             # Make that exact underlying terrain explicit after deferring furniture/loot.
             bound=set(out.get('terrain',{}))|set(out.get('furniture',{}))|set(out.get('nested',{}))
             for c in sorted(used-bound-{' ','.'}):
-                assert 'fill_ter' in out,('Undefined geometry glyph without source fill',c,e.get('om_terrain'))
-                out.setdefault('terrain',{})[c]=copy.deepcopy(out['fill_ter'])
+                if 'fill_ter' in out:
+                    out.setdefault('terrain',{})[c]=copy.deepcopy(out['fill_ter'])
+                else:
+                    assert 'nested_mapgen_id'in e and c in o.get('furniture',{}),('Undefined overlay glyph',c,e.get('nested_mapgen_id'))
+                    out.setdefault('furniture',{})[c]='f_null' # Preserve underlying terrain; no furniture in this layer.
             out={k:v for k,v in out.items() if v not in ({},[])}
             assert out.get('rows')==o.get('rows')
             e['object']=out;e['method']='json'
@@ -181,7 +208,8 @@ def prepare(check=False):
     batches={};later={};reports={}
     walls=[e for e in support_data() if e['type']=='terrain']
     for name,original in raw_sources().items():
-        entries,deferred,issues=extract(original)
+        structural=('shipping_container','containers_roof','roof_4x4_utility','roof_4x4_utility_1') if name=='godco_base' else ('shipping_container','containers_roof')
+        entries,deferred,issues=extract(original,structural)
         support=walls if name=='container_yards' else []
         own=index_entries(entries+support)
         mapped_omt={n for e in entries if e['type']=='mapgen' for n in flatten(e.get('om_terrain',[]))}

@@ -26,7 +26,7 @@ for name,source in raw_sources().items():
         for k,v in archive['later_fields'].items():
             if k not in b:assert v==a[k],(name,k,'lost source data')
         assert not ({'items','item','place_items','place_item','place_loot','place_monsters','monsters','monster','place_npcs','npcs','vehicles','place_vehicles','computers'}&set(b))
-        assert all(NAV_FURNITURE.search(str(v)) for v in b.get('furniture',{}).values())
+        assert all(v=='f_null' or NAV_FURNITURE.search(str(v)) for v in b.get('furniture',{}).values())
         assert all(p['type']=='ter_str_id' for p in b.get('parameters',{}).values())
     specials=[e for e in shells[name] if e['type']=='overmap_special']
     oldspecials=[e for e in source if e['type']=='overmap_special']
@@ -34,7 +34,7 @@ for name,source in raw_sources().items():
         assert [(c['point'],c.get('overmap')) for c in a['overmaps']]==[(c['point'],c.get('overmap')) for c in b['overmaps']]
         assert all('terrain' not in c and c.get('connection') for c in b.get('connections',[]))
         assert len({tuple(c['point']) for c in b['overmaps']})==len(b['overmaps'])
-    if name!='hub_01':assert not report['packages'][name]['unresolved_typed_refs']
+    if name not in ('hub_01','godco_base'):assert not report['packages'][name]['unresolved_typed_refs']
     assert not report['packages'][name]['declared_omt_without_mapgen']
     counts[name]={'mapgen_definitions':len(maps),'special_cells':sum(len(s['overmaps']) for s in specials)}
 assert not report['packages']['island_prison']['geometry_issues']
@@ -55,3 +55,9 @@ print('Geometry candidates: conservation/content separation checks passed; typed
 probe['object']['rows']=['XC'];probe['object']['fill_ter']='t_floor';probe['object']['furniture']['C']='f_chair'
 s,d,i=extract([probe]);assert s[0]['object']['terrain']['C']=='t_floor'
 assert d[0]['later_fields']['furniture']['C']=='f_chair'
+
+# Nested geometry overlays retain structural terrain without inventing a floor for deferred furniture.
+probe={'type':'mapgen','nested_mapgen_id':'geometry_overlay_probe','object':{'mapgensize':[2,1],'rows':['Xa'],'terrain':{'X':'t_chainfence'},'furniture':{'a':'f_chair'}}}
+s,d,i=extract([probe]);assert s[0]['object']['terrain']==probe['object']['terrain']
+assert s[0]['object']['furniture']=={'a':'f_null'}
+assert d[0]['later_fields']['furniture']==probe['object']['furniture']

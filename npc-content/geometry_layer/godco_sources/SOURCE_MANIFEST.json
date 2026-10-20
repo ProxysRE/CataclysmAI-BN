@@ -1,0 +1,9 @@
+{
+  "repository": "CleverRaven/Cataclysm-DDA",
+  "pin": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen_palettes/church_retreat.json": "78986257cf553b7db5edcfb2d2fd3e5d9d09a63693f1780dec9a4b90a2696000",
+    "data/json/mapgen_palettes/farm_horse.json": "0e18d3bf8dabd1dccd72ef06ebc672dd1d9166995986e14ffafee0018268bc08",
+    "data/json/mapgen_palettes/farm_lots.json": "80ac9107da22588167fc67652d33407729864cc18daaa60a3d719b903e95680b"
+  }
+}

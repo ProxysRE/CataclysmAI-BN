@@ -721,6 +721,48 @@
       "rows_preserved": true,
       "core_overlaps_before_preview_namespacing": [],
       "bundled_mod_overlaps_before_preview_namespacing": []
+    },
+    "godco_base": {
+      "status": "geometry_candidate_not_native_validated",
+      "native_embedded": false,
+      "runtime_validated": false,
+      "declared_omt_without_mapgen": [],
+      "unique_mapped_omt": 22,
+      "constraint_only_cells": 1,
+      "definitions": {
+        "mapgen": 7,
+        "overmap_special": 1,
+        "overmap_terrain": 3
+      },
+      "special_cells": {
+        "New England Church Retreat": 62
+      },
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unresolved_typed_refs": [
+        [
+          "overmap_terrain",
+          "rural_road_forest_ns"
+        ]
+      ],
+      "geometry_issues": [],
+      "deferred_records": 12,
+      "rows_preserved": true,
+      "core_overlaps_before_preview_namespacing": [
+        [
+          "nested_mapgen",
+          "roof_4x4_utility"
+        ],
+        [
+          "nested_mapgen",
+          "roof_4x4_utility_1"
+        ]
+      ],
+      "bundled_mod_overlaps_before_preview_namespacing": []
     }
   },
   "limits": [

@@ -1,0 +1,644 @@
+{
+  "status": "initial_geometry_candidate_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 7,
+    "overmap_special": 1,
+    "overmap_terrain": 3
+  },
+  "world_maps": 5,
+  "structural_nested_maps": 2,
+  "own_omt": 22,
+  "placed_cells": 61,
+  "constraint_records": 1,
+  "unresolved_typed_refs": [],
+  "schema_fields_deferred": [
+    {
+      "id": "New England Church Retreat",
+      "field": "priority",
+      "value": 1
+    },
+    {
+      "ids": [
+        "godco_1",
+        "godco_2",
+        "godco_3",
+        "godco_4",
+        "godco_5",
+        "godco_6",
+        "godco_7",
+        "godco_8",
+        "godco_9"
+      ],
+      "field": "travel_cost_type",
+      "value": "structure"
+    },
+    {
+      "ids": [
+        "godco_1_1",
+        "godco_2_1",
+        "godco_3_1",
+        "godco_4_1",
+        "godco_5_1",
+        "godco_6_1",
+        "godco_7_1",
+        "godco_8_1",
+        "godco_9_1",
+        "godco_1_2",
+        "godco_2_2",
+        "godco_1_3"
+      ],
+      "field": "travel_cost_type",
+      "value": "structure"
+    }
+  ],
+  "road_counterpart": {
+    "source_id": "rural_road_forest_ns",
+    "target_id": "rural_road_forest_north",
+    "reason": "BN rural road is regular rotatable terrain, not LINEAR; north retains the vertical dirt-road orientation"
+  },
+  "generated_BN_terrain": {
+    "id": "rural_road_forest_north",
+    "source_file": "bn/data/json/overmap/overmap_terrain/overmap_terrain_agricultural.json",
+    "declaration": {
+      "type": "overmap_terrain",
+      "id": "rural_road_forest",
+      "copy-from": "generic_rural_road",
+      "sym": "\u2502"
+    },
+    "parent": {
+      "type": "overmap_terrain",
+      "abstract": "generic_rural_road",
+      "name": "rural road",
+      "color": "brown",
+      "see_cost": 5,
+      "mondensity": 2
+    }
+  },
+  "shared_utility_aliases": {
+    "roof_4x4_utility": "dda_geo_godco_roof_4x4_utility",
+    "roof_4x4_utility_1": "dda_geo_godco_roof_4x4_utility_1"
+  },
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "construction_scope": {
+    "update_definitions": 18,
+    "updates": [
+      {
+        "id": "darryl_place_coop",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "darryl_coop"
+            ],
+            "x": 10,
+            "y": 10
+          }
+        ]
+      },
+      {
+        "id": "place_solar_farm",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "solar_farm_spawn"
+            ],
+            "x": 22,
+            "y": 6
+          }
+        ]
+      },
+      {
+        "id": "place_herb_garden",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "kostas_herb_garden"
+            ],
+            "x": 0,
+            "y": 9
+          }
+        ]
+      },
+      {
+        "id": "olwen_radio_adapter",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "olwen_radio_adapter"
+            ],
+            "x": 1,
+            "y": 18
+          }
+        ]
+      },
+      {
+        "id": "place_left_corner_wall",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_left_corner"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_right_corner_wall",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_right_corner"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_right_corner_wall_bottom",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_right_corner_bottom"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_left_corner_wall_bottom",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_left_corner_bottom"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_straight_up_wall_left",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_up_straight_left"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_straight_up_wall_right",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_up_straight_right"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_straight_bottom_wall",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_bottom_straight"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_straight_top_wall",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_top_straight"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_gate_wall",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_wall_gate"
+            ],
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "id": "place_food_warehouse",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "eddie_food_storage"
+            ],
+            "x": 6,
+            "y": 6
+          }
+        ]
+      },
+      {
+        "id": "helena_planer",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "spawn_planer"
+            ],
+            "x": 6,
+            "y": 11
+          },
+          {
+            "chunks": [
+              "spawn_planer"
+            ],
+            "x": 11,
+            "y": 11
+          }
+        ]
+      },
+      {
+        "id": "theresa_remove",
+        "source_fields": [
+          "remove_npcs"
+        ],
+        "nested_placements": []
+      },
+      {
+        "id": "godco_permanent_trader_change",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_permanent_trader_predatory_remove"
+            ],
+            "x": 1,
+            "y": 8
+          }
+        ]
+      },
+      {
+        "id": "godco_permanent_trader_predatory_add",
+        "source_fields": [
+          "place_nested"
+        ],
+        "nested_placements": [
+          {
+            "chunks": [
+              "godco_permanent_trader_predatory"
+            ],
+            "x": 1,
+            "y": 8
+          }
+        ]
+      }
+    ],
+    "nested_definitions": 20,
+    "nested_review": [
+      {
+        "id": "solar_farm_spawn",
+        "has_explicit_terrain_geometry": false,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "faction_owner",
+          "place_furniture"
+        ]
+      },
+      {
+        "id": "olwen_radio_adapter",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "flags",
+          "terrain"
+        ]
+      },
+      {
+        "id": "spawn_planer",
+        "has_explicit_terrain_geometry": false,
+        "furniture_requires_separate_review": {
+          ".": "f_planer"
+        },
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "flags",
+          "furniture"
+        ]
+      },
+      {
+        "id": "darryl_coop_roof",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rotation",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "darryl_coop",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rotation",
+          "rows",
+          "flags",
+          "palettes",
+          "terrain",
+          "place_monster",
+          "place_nested"
+        ]
+      },
+      {
+        "id": "eddie_food_storage_roof",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rotation",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "eddie_food_storage",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {
+          ";": "f_warehouse_shelf"
+        },
+        "source_fields": [
+          "mapgensize",
+          "rotation",
+          "rows",
+          "flags",
+          "palettes",
+          "furniture",
+          "terrain",
+          "place_nested"
+        ]
+      },
+      {
+        "id": "kostas_herb_garden",
+        "has_explicit_terrain_geometry": false,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "flags",
+          "terrain",
+          "sealed_item"
+        ]
+      },
+      {
+        "id": "godco_wall_left_corner",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_right_corner",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_right_corner_bottom",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_left_corner_bottom",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_up_straight_left",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_up_straight_right",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_bottom_straight",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_top_straight",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_wall_gate",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_permanent_trader_predatory_roof",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "faction_owner",
+          "rows",
+          "terrain"
+        ]
+      },
+      {
+        "id": "godco_permanent_trader_predatory",
+        "has_explicit_terrain_geometry": true,
+        "furniture_requires_separate_review": {
+          "C": "f_crate_o",
+          "b": "f_chair",
+          "#": "f_canvas_wall",
+          "+": "f_large_canvas_door"
+        },
+        "source_fields": [
+          "mapgensize",
+          "faction_owner",
+          "rows",
+          "flags",
+          "place_npcs",
+          "place_zones",
+          "furniture",
+          "terrain",
+          "place_nested"
+        ]
+      },
+      {
+        "id": "godco_permanent_trader_predatory_remove",
+        "has_explicit_terrain_geometry": false,
+        "furniture_requires_separate_review": {},
+        "source_fields": [
+          "mapgensize",
+          "remove_npcs",
+          "place_npcs"
+        ]
+      }
+    ],
+    "cross_z_blockers": [
+      {
+        "source": "darryl_coop",
+        "placement": {
+          "chunks": [
+            "darryl_coop_roof"
+          ],
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "status": "blocked_by_BN_2D_nested_placement"
+      },
+      {
+        "source": "eddie_food_storage",
+        "placement": {
+          "chunks": [
+            "eddie_food_storage_roof"
+          ],
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "status": "blocked_by_BN_2D_nested_placement"
+      },
+      {
+        "source": "godco_permanent_trader_predatory",
+        "placement": {
+          "chunks": [
+            "godco_permanent_trader_predatory_roof"
+          ],
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "status": "blocked_by_BN_2D_nested_placement"
+      }
+    ],
+    "all_updates_and_nested_retained_in_authenticated_bundle": true
+  },
+  "remaining": [
+    "Native initial-site loading and generation",
+    "Separate terrain geometry from structural furniture in construction chunks",
+    "Adapt all three cross-z roofs before enabling related quest updates",
+    "Later-layer population/loot/furniture/quest mechanics remain deferred"
+  ],
+  "limits": [
+    "Initial site only; not all later quest-built structures",
+    "Two shared roof utility terrain layouts are retained; overlay furniture glyphs become f_null while preserving underlying roof terrain and source rows",
+    "No existing BN or bundled mod location overwritten"
+  ]
+}
