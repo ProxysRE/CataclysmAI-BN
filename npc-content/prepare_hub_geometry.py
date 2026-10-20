@@ -30,6 +30,17 @@ def prepare(check=False):
         if isinstance(v,dict):return {k:walk(x) for k,x in v.items()}
         return v
     entries=walk(entries)
+    deferred_flags=[]
+    deferred_schema=[]
+    for e in entries:
+        if e['type']=='overmap_special' and 'priority' in e:
+            deferred_schema.append({'id':e['id'],'field':'priority','source_value':e.pop('priority')})
+        if e['type']=='overmap_terrain' and isinstance(e.get('name'),dict):
+            deferred_schema.append({'ids':e['id'],'field':'name','source_value':e['name']})
+            e['name']=e['name']['str']
+        if e['type']=='overmap_terrain' and 'SHOULD_NOT_SPAWN' in e.get('flags',[]):
+            deferred_flags.append({'ids':e['id'],'flag':'SHOULD_NOT_SPAWN'})
+            e['flags'].remove('SHOULD_NOT_SPAWN')
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
     own=index_entries(entries)
     project_entries=json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text())
@@ -74,6 +85,7 @@ def prepare(check=False):
     assert bn['t_secretdoor_metal_c']['open']=='t_secretdoor_metal_o' and bn['t_secretdoor_metal_o']['close']=='t_secretdoor_metal_c'
     report={'status':'adapted_geometry_candidate_not_installed','native_embedded':False,'runtime_validated':False,
       'counterparts':ALIASES,'differences':['Crosswalk uses BN yellow road markings, not DDA zebra artwork','Overhead light retains intensity 120; floor destruction, roof and local lighting follow BN thick-concrete floor','Secret passage retains BN closed/open door mechanics; appearance/material/drops are metal instead of DDA concrete'],
+      'unsupported_omt_flags_preserved_in_source':deferred_flags,'schema_adaptations':deferred_schema,
       'road_inheritance':{'source':source_path,'source_abstract':road,'source_parent':parent,'applied_fields':['color','looks_like'],'not_ported':['travel_cost_type','land_use_code','vision_levels']},
       'generated_external_omt':{n:p for (t,n),p in sorted(generated.items())},
       'existing_project_terrain':sorted(n for t,n in refs&project if t=='terrain'),

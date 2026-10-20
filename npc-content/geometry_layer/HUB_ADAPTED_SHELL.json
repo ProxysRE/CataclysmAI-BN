@@ -1182,17 +1182,13 @@
       "robofachq_rock",
       "robofachq_roof_e"
     ],
-    "name": {
-      "str": "A buggy non-place",
-      "//~": "NO_I18N"
-    },
+    "name": "A buggy non-place",
     "looks_like": "empty_rock",
     "sym": "%",
     "color": "dark_gray",
     "see_cost": 5,
     "flags": [
-      "NO_ROTATE",
-      "SHOULD_NOT_SPAWN"
+      "NO_ROTATE"
     ]
   },
   {
@@ -2165,7 +2161,6 @@
       33,
       100
     ],
-    "priority": 1,
     "rotate": false,
     "flags": [
       "SAFE_AT_WORLDGEN",

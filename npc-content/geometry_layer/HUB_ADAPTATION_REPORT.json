@@ -12,6 +12,33 @@
     "Overhead light retains intensity 120; floor destruction, roof and local lighting follow BN thick-concrete floor",
     "Secret passage retains BN closed/open door mechanics; appearance/material/drops are metal instead of DDA concrete"
   ],
+  "unsupported_omt_flags_preserved_in_source": [
+    {
+      "ids": [
+        "robofachq_rock",
+        "robofachq_roof_e"
+      ],
+      "flag": "SHOULD_NOT_SPAWN"
+    }
+  ],
+  "schema_adaptations": [
+    {
+      "ids": [
+        "robofachq_rock",
+        "robofachq_roof_e"
+      ],
+      "field": "name",
+      "source_value": {
+        "str": "A buggy non-place",
+        "//~": "NO_I18N"
+      }
+    },
+    {
+      "id": "hub_01",
+      "field": "priority",
+      "source_value": 1
+    }
+  ],
   "road_inheritance": {
     "source": "dda/data/json/overmap/overmap_terrain/overmap_terrain_transportation.json",
     "source_abstract": {

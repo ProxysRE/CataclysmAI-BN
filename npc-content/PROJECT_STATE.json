@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Successful geometry preview checkpoint 925d3b4 recorded; Hub first-layer candidate now has typed dependency closure, native generation still pending.",
+  "stage": "Expanded Hub geometry embedded only in namespaced optional preview; three-case native source/installed rerun pending.",
   "package": "Isolated Road",
-  "native_compilation": "Windows run 39403524594 succeeded on 925d3b4: 73 core /11030 assertions, 10 optional /2224, 2 geometry /63630, repeated on installed portable data; packaging succeeded. Current native patch matches this checkpoint.",
+  "native_compilation": "Last successful Windows archive: 925d3b4 / run 39403524594 (prison/church preview). New Hub test/payload changes require a native rerun; prior success does not validate Hub.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -767,17 +767,18 @@
     "mod": "dda_geometry_preview",
     "packages": [
       "island_prison",
-      "xedra_church"
+      "xedra_church",
+      "hub_01"
     ],
-    "special_cells": 135,
+    "special_cells": 235,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "source_and_installed_native_tests_passed",
+    "runtime_validated": false,
+    "status": "Hub added; native rerun pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "33f7c7dc602250dd302360d18914b76621581ccf328362085cfbf74d3483f3ac",
+    "native_patch_sha256": "0f6d13bc3cac206fce79a3f49e2351d1a98605696050f1a9e701993dbcc7d190",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -795,7 +796,8 @@
     "run_id": 39403524594,
     "artifact_id": 12257794350,
     "artifact_size": 205601696,
-    "artifact_digest": "sha256:28c59db1f2c9c12b2dc396ebe69fbe4240cffcb18d6a99999d0e3d0071cf9e92"
+    "artifact_digest": "sha256:28c59db1f2c9c12b2dc396ebe69fbe4240cffcb18d6a99999d0e3d0071cf9e92",
+    "previous_successful_head": "925d3b47883354ecc2e49e529da2be0a30ace155"
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -803,10 +805,14 @@
     "special_records": 102,
     "constraint_only_records": 2,
     "raw_reference_obligations": 17,
-    "native_embedded": false,
+    "native_embedded": true,
     "note": "Raw obligations include generated directional/linear OMT and existing project elevator terrain; not all are missing BN content.",
     "adapted_unresolved_typed_refs": 0,
-    "status": "adapted_shell_closed_against_core_generated_ids_and_project_provider",
-    "report": "geometry_layer/HUB_ADAPTATION_REPORT.json"
+    "status": "pending all-floor generation with source-derived navigation terrain expectations",
+    "report": "geometry_layer/HUB_ADAPTATION_REPORT.json",
+    "installation_scope": "namespaced optional debug preview only; stock Hub untouched",
+    "runtime_validated": false,
+    "navigation_expectations": 238,
+    "coordinate_reconciliation": "No BN-only special coordinates; map content equality not asserted"
   }
 }
