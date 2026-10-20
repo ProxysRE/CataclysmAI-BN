@@ -25,6 +25,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install lupa==2.6
       - run: python tarkov/tools/check.py
+      - run: python -m py_compile tarkov/tools/install_into_bn.py tarkov/tools/run_cold_restart.py
       - uses: actions/upload-artifact@v4
         with:
           name: Tarkov_DEV0.1_mod_source
@@ -65,7 +66,7 @@ jobs:
         id: native-cache
         with:
           path: bn/build
-          key: trkv-native-v1-${{ runner.os }}-${{ hashFiles('tarkov/baseline.json', 'tarkov/tests/bn_harness.cpp.inc', 'tarkov/tools/install_into_bn.py', 'tarkov/tools/stabilize_build_inputs.py', '.github/workflows/tarkov-dev01.yml') }}
+          key: trkv-native-v1-${{ runner.os }}-${{ hashFiles('tarkov/baseline.json', 'tarkov/tests/bn_harness.cpp.inc', 'tarkov/tests/bn_cold_harness.cpp.inc', 'tarkov/tools/install_into_bn.py', 'tarkov/tools/stabilize_build_inputs.py', '.github/workflows/tarkov-dev01.yml') }}
       - name: Configure BN
         run: >-
           cmake -S bn -B bn/build -G Ninja
@@ -101,10 +102,16 @@ jobs:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
         run: ./build/bin/cata_test --mods=trkv_raid_core '[tarkov]' --rng-seed 20261020 --reporter junit --out ../tarkov-runtime.xml
+      - name: Run BN cold restart across three processes
+        timeout-minutes: 50
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: python3 tarkov/tools/run_cold_restart.py bn
       - name: Print runtime diagnostics
         if: always()
         run: |
-          for log in bn/config/debug.log bn/user/config/debug.log tarkov-runtime.xml; do
+          for log in bn/config/debug.log bn/user/config/debug.log tarkov-runtime.xml tarkov-cold-*.xml; do
             if [ -f "$log" ]; then
               echo "Log: $log"
               tail -n 180 "$log"
@@ -116,6 +123,8 @@ jobs:
           name: Tarkov_DEV0.1_runtime_logs
           path: |
             tarkov-runtime.xml
+            tarkov-cold-*.xml
+            tarkov-cold-*.log
             bn/build/CMakeFiles/CMakeConfigureLog.yaml
             bn/config/debug.log
             bn/user/config/debug.log

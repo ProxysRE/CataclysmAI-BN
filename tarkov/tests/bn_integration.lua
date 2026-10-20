@@ -189,6 +189,43 @@ elseif test_data.stage == "retry_return" then
   assert(player:has_item_with_id(payload, false))
   assert(not raid.finish(state, api, "extracted"))
   check_stash()
+elseif test_data.stage == "cold_write" then
+  assert(api.at_home() and state.phase == "home")
+  player:add_item_with_id(payload, -1)
+  store_payload()
+  assert(raid.start(state, api, 1800))
+  take_payload()
+  assert(gapi.get_map():set_ter_at(local_pos(15, 15), TerId.new("t_wall"):int_id()))
+  root.cold_expected = { deadline = state.deadline, sequence = state.sequence }
+elseif test_data.stage == "cold_read_active_loaded" then
+  assert(api.at_raid() and state.phase == "active")
+  assert(state.deadline == root.cold_expected.deadline and state.sequence == root.cold_expected.sequence)
+  assert(state.wins == 0 and state.losses == 0)
+  assert(player:has_item_with_id(payload, false))
+  assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_wall"):int_id())
+  check_boundary()
+elseif test_data.stage == "cold_read_active" then
+  assert(state.deadline == root.cold_expected.deadline)
+  game.mod_runtime["trkv_raid_core"].extract()
+  assert(api.at_home() and state.phase == "home" and state.wins == 1)
+  assert(player:has_item_with_id(payload, false))
+  check_stash()
+  -- reset_dimension saved cleanup before clearing; do not overwrite that checkpoint.
+elseif test_data.stage == "cold_read_cleanup_loaded" then
+  assert(api.at_home() and state.phase == "cleanup" and state.wins == 0)
+  assert(state.sequence == root.cold_expected.sequence)
+  check_stash()
+elseif test_data.stage == "cold_read_cleanup" then
+  assert(api.at_home() and state.phase == "home" and state.wins == 1)
+  check_stash()
+  assert(raid.start(state, api, 1800))
+  assert(state.sequence == root.cold_expected.sequence + 1)
+  assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
+  take_payload()
+  assert(raid.finish(state, api, "defeated"))
+  assert(api.at_home() and state.losses == 1 and state.wins == 1)
+  assert(not player:has_item_with_id(payload, false))
+  check_stash()
 else
   error("Unknown integration stage")
 end

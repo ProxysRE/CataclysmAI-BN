@@ -21,8 +21,28 @@ def install(bn: Path, tests: bool) -> None:
         content = harness.read_text()
         if "TRKV_DEV01_TEST_BEGIN" in content:
             raise SystemExit("Test overlay is already installed")
-        harness.write_text(content + "\n" + (ROOT / "tests/bn_harness.cpp.inc").read_text())
+        harness.write_text(content + "\n" + (ROOT / "tests/bn_harness.cpp.inc").read_text()
+                           + "\n" + (ROOT / "tests/bn_cold_harness.cpp.inc").read_text())
         shutil.copyfile(ROOT / "tests/bn_integration.lua", bn / "tests/lua/trkv_integration_test.lua")
+
+        # Preserve only explicitly requested test worlds; production game is untouched.
+        driver = bn / "tests/test_main.cpp"
+        source = driver.read_text()
+        replacements = [
+            ('const bool dont_save = check_remove_flags(arg_vec, {"-D", "--drop-world"});',
+             'const bool dont_save = check_remove_flags(arg_vec, {"-D", "--drop-world"});\n'
+             '    const bool trkv_keep_world = check_remove_flags(arg_vec, {"--trkv-keep-world"});'),
+            ('    clear_all_state();\n\n    auto world_name = world_generator->active_world->info->world_name;',
+             '    if (!trkv_keep_world) { clear_all_state(); }\n\n'
+             '    auto world_name = world_generator->active_world->info->world_name;'),
+            ('    if (result == 0 || dont_save) {',
+             '    if (!trkv_keep_world && (result == 0 || dont_save)) {'),
+        ]
+        for before, after in replacements:
+            if source.count(before) != 1:
+                raise SystemExit("Pinned cold-restart driver anchor changed")
+            source = source.replace(before, after)
+        driver.write_text(source)
     print(f"Installed Tarkov DEV0.1 into {bn}")
 
 
