@@ -1,0 +1,107 @@
+# Russian translation for the raid prototype.
+msgid ""
+msgstr "Project-Id-Version: Tarkov DEV0.1\nLanguage: ru\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#, lua-format
+msgid "[Tarkov DEV0.1] %s | raids: %d | extracted: %d | lost: %d"
+msgstr "[Tarkov DEV0.1] %s | рейдов: %d | эвакуаций: %d | поражений: %d"
+
+msgid "At refuge"
+msgstr "В убежище"
+
+msgid "Entering raid"
+msgstr "Вход в рейд"
+
+msgid "Raid in progress"
+msgstr "Рейд идёт"
+
+msgid "Returning to refuge"
+msgstr "Возвращение в убежище"
+
+msgid "Resetting raid area"
+msgstr "Сброс рейдовой территории"
+
+msgid "Tarkov DEV0.1: departure terminal"
+msgstr "Tarkov DEV0.1: терминал отправления"
+
+msgid "Retry pending raid entry"
+msgstr "Повторить незавершённый вход в рейд"
+
+msgid "Enter test raid (30 game minutes)"
+msgstr "Войти в тестовый рейд (30 игровых минут)"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Tarkov DEV0.1: examine the departure terminal. Use a NEW, disposable world."
+msgstr "Tarkov DEV0.1: осмотрите терминал отправления. Используйте НОВЫЙ мир для тестирования."
+
+#, lua-format
+msgid "[Tarkov DEV0.1] Raid time remaining: %d:%02d. Reach extraction."
+msgstr "[Tarkov DEV0.1] До конца рейда: %d:%02d. Доберитесь до точки эвакуации."
+
+msgid "Raid cleanup failed; retry from the departure terminal."
+msgstr "Не удалось очистить рейдовую территорию. Повторите попытку через терминал отправления."
+
+msgid "Return dimension mismatch; automatic changes stopped."
+msgstr "При возвращении обнаружено неверное измерение. Автоматические изменения остановлены."
+
+msgid "Return failed; use the exit terminal to retry."
+msgstr "Не удалось вернуться в убежище. Повторите попытку через точку эвакуации."
+
+msgid "Entry failed; use the departure terminal to retry this raid."
+msgstr "Не удалось войти в рейд. Повторите вход через терминал отправления."
+
+msgid "Entry pending; use the departure terminal to retry this raid."
+msgstr "Вход в рейд не завершён. Повторите вход через терминал отправления."
+
+msgid "Entry dimension mismatch; automatic changes stopped."
+msgstr "При входе обнаружено неверное измерение. Автоматические изменения остановлены."
+
+msgid "Active raid dimension mismatch; automatic changes stopped."
+msgstr "Активный рейд находится в неверном измерении. Автоматические изменения остановлены."
+
+msgid "Unknown raid phase; automatic changes stopped."
+msgstr "Неизвестное состояние рейда. Автоматические изменения остановлены."
+
+msgid "departure terminal"
+msgstr "терминал отправления"
+
+msgid "extraction marker"
+msgstr "точка эвакуации"
+
+msgid "Tarkov DEV0.1 test station. Examine to operate."
+msgstr "Тестовая станция Tarkov DEV0.1. Осмотрите её для взаимодействия."
+
+msgid "test area lamp"
+msgstr "лампа тестовой зоны"
+
+msgid "Permanent lighting for the technical test arena."
+msgstr "Постоянное освещение технической тестовой площадки."
+
+msgid "A numbered-looking test package used to verify extraction and map reset. No cash value yet."
+msgstr "Тестовый пакет с маркировкой для проверки эвакуации и сброса карты. Пока не имеет денежной ценности."
+
+msgid "Tarkov Project: DEV0.1 raid foundation"
+msgstr "Проект Tarkov: DEV0.1 — основа рейдов"
+
+msgid "Technical prototype: persistent refuge, disposable raid, extraction and defeat. New test worlds only."
+msgstr "Технический прототип: постоянное убежище, обновляемый рейд, эвакуация и поражение. Только для новых тестовых миров."
+
+msgid "test refuge"
+msgstr "тестовое убежище"
+
+msgid "test raid yard"
+msgstr "тестовая рейдовая площадка"
+
+msgid "Tarkov test space"
+msgstr "тестовое пространство Tarkov"
+
+msgid "Bounded refuge and raid spaces for the technical prototype."
+msgstr "Ограниченные пространства убежища и рейда для технического прототипа."
+
+msgid "sealed raid test package"
+msgid_plural "sealed raid test packages"
+msgstr[0] "запечатанный тестовый пакет рейда"
+msgstr[1] "запечатанных тестовых пакета рейда"
+msgstr[2] "запечатанных тестовых пакетов рейда"

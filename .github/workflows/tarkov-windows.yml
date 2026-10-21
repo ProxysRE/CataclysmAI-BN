@@ -126,10 +126,10 @@ jobs:
             "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/bn/build-scripts/MSVC.cmake" `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=OFF `
             -DCURSES=OFF -DTILES=ON -DSOUND=ON -DTESTS=OFF -DRELEASE=ON `
-            -DLOCALIZE=OFF -DLANGUAGES=none -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF `
+            -DLANGUAGES=ru -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF `
             -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF -DLUA_DOCS_ON_BUILD=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
       - name: Build Windows game
-        run: cmake --build bn/build-windows --target cataclysm-bn-tiles --parallel 2
+        run: cmake --build bn/build-windows --target cataclysm-bn-tiles translations --parallel 2
       - name: Install portable game
         run: |
           New-Item -ItemType Directory -Force bn/lang/mo

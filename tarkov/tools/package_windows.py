@@ -1,5 +1,6 @@
 """Validate an installed Windows build, smoke-test it and create a portable ZIP."""
 import argparse
+import gettext
 import hashlib
 import json
 import os
@@ -38,6 +39,17 @@ def package(bn: Path, dist: Path, output: Path) -> None:
             installed = dist / "data/mods/trkv_raid_core" / source.relative_to(source_mod)
             if not installed.is_file() or digest(source) != digest(installed):
                 raise SystemExit(f"Missing or stale installed mod file: {installed}")
+    # Require real, readable catalogs; an empty lang/mo directory is insufficient.
+    for catalog, minimum in ((dist / "lang/mo/ru/LC_MESSAGES/cataclysm-bn.mo", 1000),
+                             (dist / "data/mods/trkv_raid_core/lang/ru.mo", 30)):
+        with catalog.open("rb") as stream:
+            translation = gettext.GNUTranslations(stream)
+        translated = [value for value in translation._catalog.values()
+                      if isinstance(value, str) and any("а" <= c.lower() <= "я" for c in value)]
+        if len(translated) < minimum:
+            raise SystemExit(f"Russian catalog is empty or incomplete: {catalog}")
+    if translation.gettext("Enter test raid (30 game minutes)") != "Войти в тестовый рейд (30 игровых минут)":
+        raise SystemExit("Russian raid menu translation is missing")
     shader_names = [p.stem for p in (bn / "src/shaders").glob("*.hlsl")]
     if not shader_names:
         raise SystemExit("No shader sources found in pinned BN")
@@ -77,6 +89,7 @@ def package(bn: Path, dist: Path, output: Path) -> None:
         "patches": {p.name: digest(p) for p in sorted((ROOT / "patches").glob("*.patch"))},
         "automated_checks": ["installed --version", "installed --check-mods trkv_raid_core"],
         "windows_ui_verified": False,
+        "languages": ["en", "ru"],
     }
     (dist / "TARKOV_BUILD.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     archive_base = output / f"Tarkov_DEV01_Windows_x64_{project_sha[:8]}"

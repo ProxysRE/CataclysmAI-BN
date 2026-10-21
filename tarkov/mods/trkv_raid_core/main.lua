@@ -1,3 +1,4 @@
+local _ = locale.gettext
 local mod = game.mod_runtime[game.current_mod]
 local storage = game.mod_storage[game.current_mod]
 local raid = require("trkv_lifecycle")
@@ -13,9 +14,13 @@ end
 
 ---@param state table
 local function report(state)
-  gapi.add_msg(string.format("[Tarkov DEV0.1] %s | raids: %d | extracted: %d | lost: %d",
-    state.phase, state.sequence, state.wins, state.losses))
-  if state.last_error ~= "" then gapi.add_msg(state.last_error) end
+  local phases = {
+    home = _("At refuge"), entering = _("Entering raid"), active = _("Raid in progress"),
+    returning = _("Returning to refuge"), cleanup = _("Resetting raid area"),
+  }
+  gapi.add_msg(string.format(_("[Tarkov DEV0.1] %s | raids: %d | extracted: %d | lost: %d"),
+    phases[state.phase] or state.phase, state.sequence, state.wins, state.losses))
+  if state.last_error ~= "" then gapi.add_msg(_(state.last_error)) end
 end
 
 mod.start = function()
@@ -23,9 +28,9 @@ mod.start = function()
   raid.recover(state, api)
   if (state.phase ~= "home" and state.phase ~= "entering") or not api.at_home() then report(state); return end
   local menu = UiList.new()
-  menu:title("Tarkov DEV0.1: departure terminal")
-  menu:add(1, state.phase == "entering" and "Retry pending raid entry" or "Enter test raid (30 game minutes)")
-  menu:add(2, "Cancel")
+  menu:title(_("Tarkov DEV0.1: departure terminal"))
+  menu:add(1, state.phase == "entering" and _("Retry pending raid entry") or _("Enter test raid (30 game minutes)"))
+  menu:add(2, _("Cancel"))
   if menu:query() == 1 then raid.start(state, api, 30 * 60); report(state) end
 end
 
@@ -37,7 +42,7 @@ end
 
 mod.started = function()
   if not api.return_home() then error("Could not initialize Tarkov test refuge") end
-  gapi.add_msg("Tarkov DEV0.1: examine the departure terminal. Use a NEW, disposable world.")
+  gapi.add_msg(_("Tarkov DEV0.1: examine the departure terminal. Use a NEW, disposable world."))
 end
 
 local pending_load_recovery = false
@@ -79,7 +84,7 @@ local function tick()
       local level = remaining <= 60 and 2 or (remaining <= 300 and 1 or 0)
       if level > state.time_warning then
         state.time_warning = level
-        gapi.add_msg(string.format("[Tarkov DEV0.1] Raid time remaining: %d:%02d. Reach extraction.",
+        gapi.add_msg(string.format(_("[Tarkov DEV0.1] Raid time remaining: %d:%02d. Reach extraction."),
           math.floor(remaining / 60), remaining % 60))
       end
     end

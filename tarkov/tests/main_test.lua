@@ -1,4 +1,5 @@
 -- Callback regression: BN deserialization replaces nested mod_storage tables.
+locale = { gettext = function(text) return text end }
 local raid = dofile("tarkov/mods/trkv_raid_core/trkv_lifecycle.lua")
 local root, mod = {}, {}
 local where, clock, penalties, tick = "home", 100, 0, nil
