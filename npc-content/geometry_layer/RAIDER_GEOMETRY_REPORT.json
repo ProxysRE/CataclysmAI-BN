@@ -1,0 +1,36 @@
+{
+  "status": "raider_geometry_staging_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 17,
+    "overmap_special": 4,
+    "overmap_terrain": 4
+  },
+  "world_maps": 15,
+  "unique_omt": 24,
+  "special_cells": {
+    "deserter_city": 10,
+    "bandit_drug_lab": 2,
+    "bandit_work_camp": 11,
+    "drug_lab": 2
+  },
+  "source_rows_preserved": true,
+  "source_city_registration": "deserter_city is preserved as city_building in archived source; shell registration is an isolated zero-occurrence special candidate only",
+  "inline_mapping_projection": [],
+  "unresolved_typed_refs": [
+    [
+      "terrain",
+      "t_embrasure_wood"
+    ]
+  ],
+  "geometry_issues": [],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "Not in native preview; generation and schema validation pending",
+    "Later-layer furnishings, loot, inhabitants, camp fields and quests retained separately",
+    "Existing BN external cells retain stock generation",
+    "No completion credit before native tests"
+  ]
+}

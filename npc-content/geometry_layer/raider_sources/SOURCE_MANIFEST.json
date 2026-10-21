@@ -1,0 +1,16 @@
+{
+  "repository": "CleverRaven/Cataclysm-DDA",
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/deserter_city/deserter_city_gate.json": "590bdf7415d74efadc0865bb311f0b6d522d6f3406d45476d3c8b007fa798558",
+    "data/json/mapgen/deserter_city/deserter_city_office.json": "76d4c3e9c464057526d3c8f9764d2fa73540a475d546401fa2f77e4f37b1c589",
+    "data/json/mapgen/deserter_city/deserter_city_park.json": "2098fbd4e09587156e19a1cda445e66097f711a56bcc00eebfc822f44d011e43",
+    "data/json/mapgen/drug_lab.json": "97f93b2205dd79edf6dbcc7262146393c5b06a8d21679cb1a32e946bcd497732",
+    "data/json/mapgen/hells_raiders/bandit_drug_lab.json": "552c99f23d7e5c9279c31998e70d79c31099bc6dcb41cad9d377ce72768ed907",
+    "data/json/mapgen/hells_raiders/bandit_work_camp.json": "57398c7a266ddb2f5c52a936920050951424c0a07fafa5d52af65d4dac383d5f",
+    "data/json/mapgen/moonshine_camp.json": "c1bb50fc06c90f782728ccfd61a514a12c96e29a01ad25fa28adc02ba023d2af",
+    "data/json/mapgen_palettes/deserter_city.json": "f60ae8502db508f5fdd317525a90e66adc9ffeb01ef83aae7ddd366f80d0d5ab",
+    "data/json/mapgen_palettes/farm.json": "14f6b47132da33da7033872f7a518d4ac705f3a7fd3c798d6d5096dc586339a8",
+    "data/json/mapgen_palettes/park_palette.json": "bd51050ee0cfbff6eea720e75a3885402742d82ce8b322282fa44fd90eb291ed"
+  }
+}

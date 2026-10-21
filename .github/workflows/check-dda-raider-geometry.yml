@@ -1,0 +1,25 @@
+name: Check staged DDA raider geometry
+on:
+  push:
+    branches: [port/dda-npc-locations]
+    paths:
+      - 'npc-content/prepare_raider_geometry.py'
+      - 'npc-content/geometry_layer/RAIDER_*.json'
+      - 'npc-content/geometry_layer/raider_sources/**'
+      - '.github/workflows/check-dda-raider-geometry.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  staged-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source hashes, rows, typed references and BN overlaps
+        run: python npc-content/prepare_raider_geometry.py --check
