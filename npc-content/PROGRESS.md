@@ -61,3 +61,9 @@ Staged Isolated Road, gun show, Balthazar bunker and limnological station togeth
 Resolved all four raw terrain obligations in a separate adaptation. Canvas roof retains the source definition with an isolated ID. The secret door reuses the previously reviewed BN metal counterpart (material/destruction differ from DDA concrete). Artisan reader and Balthazar intercom inherit stock BN panel geometry with source descriptions and no examine action: faction access/NPC behavior belongs to later layers, and ordinary science-card/intercom interactions must not be substituted. Three extra pinned source files authenticate those decisions.
 
 All four specials are now in the opt-in geometry preview: total 16 cases /613 placements. Generated native assertions add 1167 deterministic navigation, panel, secret-door and canvas-roof terrain expectations, in addition to all-cell non-null/empty-loot checks. Source/installed Windows validation is pending for the new patch; 12/51 (23.5%) remains the confirmed group metric.
+
+## Fix frontier panel terrain loading
+
+Run 39590006274 compiled successfully and passed 73 core /11030 assertions and 10 optional /2224 assertions. Geometry initialization stopped at the artisan panel: the BN terrain loader required symbol despite copy-from. Installed tests and packaging did not run.
+
+Both reader and intercom now copy the complete authenticated BN terrain definition rather than relying on JSON inheritance. Physical fields, flags, roof, bash and drops remain exactly stock; source identity/text and no-op preview examination are explicit overrides. Added concrete-terrain guards and regression probes rejecting both the old inheritance-only object and a missing-symbol object. All four custom preview terrains are checked before compilation. Native source and installed validation remain pending for the corrected patch; confirmed progress stays 23.5%.

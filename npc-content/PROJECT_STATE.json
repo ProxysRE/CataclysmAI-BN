@@ -780,9 +780,9 @@
       0
     ],
     "runtime_validated": false,
-    "status": "Four frontier sites added; sixteen-case source/installed generation pending",
+    "status": "Panel terrain concretized after BN JSON loading failure; sixteen-case rerun pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "7cb5a34191b42f2e66713297dd15c9351140ef1e88e0c96ae080eb1ca056ae34",
+    "native_patch_sha256": "1482589a1a1adf230d9d762fa217d2450fa98b8fcd601f0fbec259bb1ce77098",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -817,7 +817,17 @@
       "exodii"
     ],
     "validated_geometry_cases": 12,
-    "validated_geometry_placements": 576
+    "validated_geometry_placements": 576,
+    "latest_failed_attempt": {
+      "head": "c63fb5d7d8e123295551407826450ae7fe2eecc6",
+      "run_id": 39590006274,
+      "compile": "success",
+      "source_core": "73 cases /11030 assertions passed",
+      "source_optional": "10 cases /2224 assertions passed",
+      "geometry": "Loading stopped: missing required symbol on copy-from terrain panel",
+      "installed_and_package": "not reached",
+      "fix": "Concrete BN panel definitions with exact physical-field conservation and precompile missing-field checks"
+    }
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -914,7 +924,7 @@
     "validation_checkpoint": 39519170435
   },
   "geometry_frontier_candidate": {
-    "status": "Adapted and embedded in isolated optional geometry preview; native generation pending",
+    "status": "Two panel definitions concretized; source/installed generation rerun pending",
     "native_embedded": true,
     "runtime_validated": false,
     "world_maps": 20,

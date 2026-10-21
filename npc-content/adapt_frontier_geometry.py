@@ -37,8 +37,12 @@ def prepare(check=False):
         dda=source['dda',src];bn=source['bn',parent]
         assert dda['move_cost']==bn['move_cost']==0
         assert dda['symbol']==bn['symbol']and dda['color']==bn['color']
-        entries.append({'type':'terrain','id':ALIASES[src],'copy-from':parent,'name':dda['name'],'description':dda['description'],'examine_action':'none'})
-        panels.append({'source':src,'BN_geometry_parent':parent,'preview':ALIASES[src],'source_examine_action':dda['examine_action'],'preview_examine_action':'none','reason':'Physical panel only in first layer; faction reader and NPC communication deferred, no substitute science-card or unrelated intercom behavior enabled'})
+        assert 'copy-from'not in bn
+        panel=copy.deepcopy(bn)
+        panel.update(id=ALIASES[src],name=dda['name'],description=dda['description'],examine_action='none')
+        assert {'symbol','color','move_cost','name','description'}<=panel.keys()
+        entries.append(panel)
+        panels.append({'source':src,'BN_geometry_source':parent,'source_fields_expanded':True,'preview':ALIASES[src],'source_examine_action':dda['examine_action'],'preview_examine_action':'none','reason':'Physical panel only in first layer; faction reader and NPC communication deferred, no substitute science-card or unrelated intercom behavior enabled'})
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
     own=index_entries(entries);mods={(r['type'],r['id'])for r in mod_cache()['records']}
     assert not(own-BUILTIN_IDS)&(core|mods)

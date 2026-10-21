@@ -61,7 +61,10 @@ def payloads():
                 e['occurrences']=[0,0] # Debug placement only; never populate normal worlds with empty shells.
                 for c in e['overmaps']:
                     if 'overmap' in c:c['overmap']=rename(c['overmap'])
-            elif e['type']=='terrain':assert e['id'].startswith(('dda_geo_exodii_','dda_geo_frontier_'))
+            elif e['type']=='terrain':
+                assert e['id'].startswith(('dda_geo_exodii_','dda_geo_frontier_'))
+                assert 'copy-from'not in e,('BN preview terrain requires a complete definition',e['id'])
+                assert {'symbol','color','move_cost','name','description'}<=e.keys(),e['id']
             else:raise AssertionError(e['type'])
         result+=entries
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))

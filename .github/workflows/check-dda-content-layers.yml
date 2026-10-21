@@ -57,6 +57,7 @@ jobs:
           python npc-content/prepare_campus_geometry.py --check
           python npc-content/prepare_frontier_geometry.py --check
           python npc-content/adapt_frontier_geometry.py --check
+          python npc-content/check_geometry_terrain_schema.py
           python npc-content/prepare_exodii_geometry.py --check
           python npc-content/adapt_exodii_geometry.py --check
           python npc-content/report_geometry_progress.py --check

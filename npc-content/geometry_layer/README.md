@@ -105,3 +105,7 @@ Scope is 20 world maps /29 own OMT /37 placed cells, including eight reused BN l
 `adapt_frontier_geometry.py --check` verifies three additional pinned files, resolves the four raw terrain obligations and keeps the staged source separate. Two panels inherit BN physical geometry with source names/descriptions and `examine_action: none`; their faction reader and NPC intercom functions are deferred. Canvas roof is a direct source terrain with an isolated identity. The concrete secret door uses the previously reviewed Hub metal counterpart; material parity is not claimed.
 
 All four specials are included in the optional debug preview, with no natural placement. The generated fixture has 16 cases /613 placements and adds 1167 projected navigation/panel/roof checks. Source and installed Windows generation remain pending; actual traversal and interaction acceptance are separate.
+
+### BN panel loading correction
+
+The initial frontier run failed geometry initialization because the inherited reader object lacked a required symbol. Panel output now expands the complete authenticated BN definition, preserving every physical field. `check_geometry_terrain_schema.py` verifies all four preview terrain objects and rejects the old copy-from/missing-symbol forms. The preview generator also refuses nonconcrete custom terrain before building the engine patch. Native generation must be repeated; no completion credit follows from these static checks alone.

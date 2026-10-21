@@ -9,7 +9,8 @@
   "panel_adaptations": [
     {
       "source": "t_card_artisans",
-      "BN_geometry_parent": "t_card_science",
+      "BN_geometry_source": "t_card_science",
+      "source_fields_expanded": true,
       "preview": "dda_geo_frontier_artisan_reader",
       "source_examine_action": {
         "type": "cardreader",
@@ -28,7 +29,8 @@
     },
     {
       "source": "t_intercom_balthazar",
-      "BN_geometry_parent": "t_intercom",
+      "BN_geometry_source": "t_intercom",
+      "source_fields_expanded": true,
       "preview": "dda_geo_frontier_balthazar_intercom",
       "source_examine_action": "intercom_balthazar",
       "preview_examine_action": "none",
