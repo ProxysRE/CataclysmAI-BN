@@ -1,0 +1,5917 @@
+{
+  "status": "adapted_geometry_not_runtime_validated",
+  "counterparts": {
+    "t_canvas_roof": "dda_geo_frontier_canvas_roof",
+    "t_card_artisans": "dda_geo_frontier_artisan_reader",
+    "t_intercom_balthazar": "dda_geo_frontier_balthazar_intercom",
+    "t_secretdoor_concrete_c": "t_secretdoor_metal_c"
+  },
+  "panel_adaptations": [
+    {
+      "source": "t_card_artisans",
+      "BN_geometry_parent": "t_card_science",
+      "preview": "dda_geo_frontier_artisan_reader",
+      "source_examine_action": {
+        "type": "cardreader",
+        "flags": [
+          "COOP_CARD"
+        ],
+        "terrain_changes": {
+          "t_door_metal_locked": "t_door_metal_c"
+        },
+        "query_msg": "Swipe your ID card?",
+        "success_msg": "You insert your ID card.\n<color_light_green>The nearby doors unlock.</color>",
+        "redundant_msg": "The nearby doors are already opened."
+      },
+      "preview_examine_action": "none",
+      "reason": "Physical panel only in first layer; faction reader and NPC communication deferred, no substitute science-card or unrelated intercom behavior enabled"
+    },
+    {
+      "source": "t_intercom_balthazar",
+      "BN_geometry_parent": "t_intercom",
+      "preview": "dda_geo_frontier_balthazar_intercom",
+      "source_examine_action": "intercom_balthazar",
+      "preview_examine_action": "none",
+      "reason": "Physical panel only in first layer; faction reader and NPC communication deferred, no substitute science-card or unrelated intercom behavior enabled"
+    }
+  ],
+  "new_roof": "Exact DDA canvas terrain definition with isolated preview identity; source movement, flags and bash retained",
+  "secret_door_difference": "Reuse previously reviewed BN closed/open metal secret-door pair as in Hub; material/appearance/destruction are BN metal, not concrete",
+  "unresolved_typed_refs": [],
+  "navigation": {
+    "balthazar_bunker_01": [
+      {
+        "x": 20,
+        "y": 11,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 16,
+        "y": 12,
+        "terrain": "dda_geo_frontier_balthazar_intercom"
+      }
+    ],
+    "balthazar_bunker_01_-1": [
+      {
+        "x": 20,
+        "y": 11,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "balthazar_bunker_03_-1": [
+      {
+        "x": 4,
+        "y": 5,
+        "terrain": "t_secretdoor_metal_c"
+      }
+    ],
+    "balthazar_bunker_02_-1": [
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "balthazar_bunker_02_-2": [
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "isolated_house_farm_blacksmith": [
+      {
+        "x": 10,
+        "y": 12,
+        "terrain": "dda_geo_frontier_artisan_reader"
+      }
+    ],
+    "gunshow_0_roof": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      }
+    ],
+    "gunshow_1_roof": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 1,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 2,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 3,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 4,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 5,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 6,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 7,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 8,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 12,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 13,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 14,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 15,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 16,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 17,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 20,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 21,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 22,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 1,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 2,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 3,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 7,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 8,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 9,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 10,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 11,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 12,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 13,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 14,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 15,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 16,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 20,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 22,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_frontier_canvas_roof"
+      }
+    ],
+    "dls_small_surface": [
+      {
+        "x": 9,
+        "y": 12,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dls_small_roof": [
+      {
+        "x": 9,
+        "y": 12,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dls_small_-1": [
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "dls_small_-2": [
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "dls_small_-3": [
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dls_small_-4": [
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "t_ladder_up"
+      }
+    ]
+  },
+  "navigation_points": 1167,
+  "remaining": [
+    "Source and installed native generation",
+    "Full traversal and door/ladder operation",
+    "Later-layer faction cardreader and Balthazar NPC intercom behavior"
+  ],
+  "limits": [
+    "Preview has no natural placement",
+    "First layer does not provide working faction access controls or NPC intercom",
+    "No claim of concrete secret-door material parity"
+  ]
+}

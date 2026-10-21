@@ -99,3 +99,9 @@ The optional preview includes all three Exodii specials, adding 88 placements an
 `prepare_frontier_geometry.py --check` stages Isolated Road, gun show, Balthazar bunker and limnological station as one reproducible batch. It verifies seven pinned files under `frontier_sources`, expands authenticated shared roof palettes, projects inline mapping terrain, retains source rows, and archives later-layer fields and complete specials separately. Outputs: `FRONTIER_SHELLS.json`, `FRONTIER_LATER_LAYERS.json`, `FRONTIER_GEOMETRY_REPORT.json`.
 
 Scope is 20 world maps /29 own OMT /37 placed cells, including eight reused BN lake cells. Structural roof utility terrain is isolated; late rooftop devices are deferred. Four typed terrain obligations remain. This batch is not embedded or native-validated and receives no completion credit.
+
+### Frontier BN adaptation and native preview
+
+`adapt_frontier_geometry.py --check` verifies three additional pinned files, resolves the four raw terrain obligations and keeps the staged source separate. Two panels inherit BN physical geometry with source names/descriptions and `examine_action: none`; their faction reader and NPC intercom functions are deferred. Canvas roof is a direct source terrain with an isolated identity. The concrete secret door uses the previously reviewed Hub metal counterpart; material parity is not claimed.
+
+All four specials are included in the optional debug preview, with no natural placement. The generated fixture has 16 cases /613 placements and adds 1167 projected navigation/panel/roof checks. Source and installed Windows generation remain pending; actual traversal and interaction acceptance are separate.

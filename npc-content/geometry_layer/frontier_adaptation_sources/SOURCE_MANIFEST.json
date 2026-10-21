@@ -1,0 +1,11 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "files": {
+    "bn/data/json/furniture_and_terrain/terrain-mechanisms.json": "0730b558a877b87f534d281c9ab7ab8350722cb0e8d46bf561e3689e56b37aa7",
+    "dda/data/json/furniture_and_terrain/terrain-mechanisms.json": "fdecf757032145ccb8ee240b0b25e4adb5cbbd1b36dacc11da3397ed562332bd",
+    "dda/data/json/furniture_and_terrain/terrain-roofs.json": "b4951674cec91ddbe43ea8caf2fcea53da66a5db6fe7f359ce3b5d2616240b98"
+  }
+}

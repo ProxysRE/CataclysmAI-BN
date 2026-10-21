@@ -771,17 +771,18 @@
       "hub_01",
       "campus",
       "godco_base",
-      "exodii"
+      "exodii",
+      "frontier"
     ],
-    "special_cells": 576,
+    "special_cells": 613,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "Twelve source and installed geometry cases passed including all three Exodii sites",
+    "runtime_validated": false,
+    "status": "Four frontier sites added; sixteen-case source/installed generation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "a6490be8879ba91ce01641ca46762d823c29189f8e7940e158269897519749aa",
+    "native_patch_sha256": "7cb5a34191b42f2e66713297dd15c9351140ef1e88e0c96ae080eb1ca056ae34",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -804,7 +805,8 @@
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
-      "Container yards, frontier batch and later Godco quest construction excluded"
+      "Container yards and later Godco quest construction excluded",
+      "Frontier source/installed generation pending; panels are geometry only"
     ],
     "validated_packages": [
       "island_prison",
@@ -912,8 +914,8 @@
     "validation_checkpoint": 39519170435
   },
   "geometry_frontier_candidate": {
-    "status": "four_location_geometry_staging_not_installed",
-    "native_embedded": false,
+    "status": "Adapted and embedded in isolated optional geometry preview; native generation pending",
+    "native_embedded": true,
     "runtime_validated": false,
     "world_maps": 20,
     "unique_omt": 29,
@@ -942,6 +944,10 @@
       ]
     ],
     "geometry_issues": [],
-    "report": "geometry_layer/FRONTIER_GEOMETRY_REPORT.json"
+    "report": "geometry_layer/FRONTIER_GEOMETRY_REPORT.json",
+    "adapted_unresolved_typed_refs": [],
+    "adaptation_report": "geometry_layer/FRONTIER_ADAPTATION_REPORT.json",
+    "navigation_and_roof_expectations": 1167,
+    "preview_interactions": "Faction reader and Balthazar intercom deliberately have none examine action in geometry layer"
   }
 }
