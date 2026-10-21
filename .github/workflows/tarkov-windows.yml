@@ -1,0 +1,158 @@
+name: Tarkov DEV0.1 Windows package
+
+on:
+  push:
+    branches: [ project/tarkov-dev01 ]
+    paths:
+      - '.github/workflows/tarkov-windows.yml'
+      - 'tarkov/tools/package_windows.py'
+      - 'tarkov/tools/install_into_bn.py'
+      - 'tarkov/baseline.json'
+      - 'tarkov/mods/**'
+      - 'tarkov/patches/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tarkov-windows-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install lupa==2.6
+      - run: python tarkov/tools/check.py
+      - run: python -m py_compile tarkov/tools/package_windows.py tarkov/tools/install_into_bn.py
+
+  shaders:
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: 554950f3635f50ddd1d32c6e1b6e2bdee9842bd6
+      - uses: actions/cache@v4
+        id: shaders
+        with:
+          path: data/shaders
+          key: trkv-windows-shaders-554950f3635f-v1
+      - name: Build host shader compiler
+        if: steps.shaders.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool libltdl-dev
+          cmake -S build-scripts/shadercross -B "$RUNNER_TEMP/shadercross" -DCMAKE_BUILD_TYPE=Release
+          cmake --build "$RUNNER_TEMP/shadercross" --target shadercross --parallel 2
+      - name: Generate all shader formats
+        if: steps.shaders.outputs.cache-hit != 'true'
+        env:
+          SHADERCROSS: ${{ runner.temp }}/shadercross/bin/shadercross
+        run: bash build-scripts/generate-shaders.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Tarkov_pinned_shaders
+          path: data/shaders/
+          if-no-files-found: error
+
+  windows:
+    needs: [ validate, shaders ]
+    runs-on: windows-2022
+    timeout-minutes: 180
+    env:
+      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+      VCPKG_INSTALLATION_ROOT: ${{ github.workspace }}/vcpkg
+      VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}/bn/.github/vcpkg_triplets
+      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkg-binary-cache,readwrite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: 554950f3635f50ddd1d32c6e1b6e2bdee9842bd6
+          path: bn
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: Tarkov_pinned_shaders
+          path: bn/data/shaders
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - uses: lukka/get-cmake@v3.31.6
+      - name: Create dependency cache directory
+        run: New-Item -ItemType Directory -Force vcpkg-binary-cache
+      - uses: actions/cache@v4
+        with:
+          path: vcpkg-binary-cache
+          key: trkv-win-deps-a8f78d257ade-554950f-x64-static-v1
+      - uses: lukka/run-vcpkg@main
+        with:
+          vcpkgDirectory: ${{ github.workspace }}/vcpkg
+          vcpkgGitCommitId: a8f78d257ade3c2e7999c1129a6d29971ae32006
+          vcpkgJsonGlob: 'bn/msvc-full-features/vcpkg.json'
+          runVcpkgInstall: false
+      - uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: trkv-windows-bn554950f-msvc-v1
+          max-size: 3G
+      - name: Configure ccache
+        run: |
+          "CCACHE_BASEDIR=${{ github.workspace }}" >> $env:GITHUB_ENV
+          "CCACHE_SLOPPINESS=include_file_ctime,include_file_mtime,time_macros,pch_defines" >> $env:GITHUB_ENV
+          "CCACHE_NOHASHDIR=1" >> $env:GITHUB_ENV
+          "CCACHE_COMPILERCHECK=content" >> $env:GITHUB_ENV
+      - name: Install mod and production engine patch
+        run: python tarkov/tools/install_into_bn.py bn
+      - name: Configure Windows game
+        run: |
+          cmake -G Ninja -S bn -B bn/build-windows `
+            -DCMAKE_BUILD_TYPE=Release `
+            "-DCMAKE_PROJECT_INCLUDE_BEFORE=${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" `
+            "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/bn/build-scripts/MSVC.cmake" `
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=OFF `
+            -DCURSES=OFF -DTILES=ON -DSOUND=ON -DTESTS=OFF -DRELEASE=ON `
+            -DLOCALIZE=OFF -DLANGUAGES=none -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF `
+            -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF -DLUA_DOCS_ON_BUILD=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
+      - name: Build Windows game
+        run: cmake --build bn/build-windows --target cataclysm-bn-tiles --parallel 2
+      - name: Install portable game
+        run: |
+          New-Item -ItemType Directory -Force bn/lang/mo
+          cmake --install bn/build-windows --prefix "${{ github.workspace }}/dist/Tarkov_DEV01_Windows_x64" --config Release
+      - name: Verify static SDL runtime
+        run: |
+          $deps = dumpbin /DEPENDENTS dist/Tarkov_DEV01_Windows_x64/cataclysm-bn-tiles.exe
+          if ($LASTEXITCODE -ne 0) { throw "Cannot inspect Windows executable dependencies" }
+          $deps
+          if ($deps -match "SDL3") { throw "Expected statically linked SDL, found an SDL DLL dependency" }
+      - name: Check installed game and create archive
+        timeout-minutes: 20
+        run: python tarkov/tools/package_windows.py bn dist/Tarkov_DEV01_Windows_x64 releases
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Tarkov_DEV01_Windows_x64
+          path: |
+            releases/*.zip
+            releases/*.zip.sha256
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Tarkov_Windows_build_logs
+          path: |
+            releases/*.log
+            bn/build-windows/CMakeFiles/CMakeConfigureLog.yaml
+            bn/build-windows/vcpkg-manifest-install.log
+            dist/Tarkov_DEV01_Windows_x64/config/debug.log
+            dist/Tarkov_DEV01_Windows_x64/debug.log
