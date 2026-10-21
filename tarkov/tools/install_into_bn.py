@@ -8,6 +8,19 @@ PIN = "554950f3635f50ddd1d32c6e1b6e2bdee9842bd6"
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def apply_engine_patch(bn: Path, patch: Path) -> None:
+    # BN and this repository can have different checkout EOL rules on Windows.
+    # Use bytes so subprocess stdin does not translate LF back to CRLF.
+    source = bn / "src/savegame.cpp"
+    original = source.read_bytes()
+    normalized = original.replace(b"\r\n", b"\n")
+    if normalized != original:
+        source.write_bytes(normalized)
+    data = patch.read_bytes().replace(b"\r\n", b"\n")
+    subprocess.run(["git", "-C", str(bn), "apply", "--check", "-"], input=data, check=True)
+    subprocess.run(["git", "-C", str(bn), "apply", "-"], input=data, check=True)
+
+
 def install(bn: Path, tests: bool) -> None:
     actual = subprocess.check_output(["git", "-C", str(bn), "rev-parse", "HEAD"], text=True).strip()
     if actual != PIN:
@@ -16,8 +29,7 @@ def install(bn: Path, tests: bool) -> None:
     if dest.exists():
         raise SystemExit(f"Destination already exists: {dest}; refusing to overwrite it.")
     patch = ROOT / "patches/0001-restore-bounds-to-target-dimension.patch"
-    subprocess.run(["git", "-C", str(bn), "apply", "--check", str(patch)], check=True)
-    subprocess.run(["git", "-C", str(bn), "apply", str(patch)], check=True)
+    apply_engine_patch(bn, patch)
     shutil.copytree(ROOT / "mods/trkv_raid_core", dest)
     if tests:
         harness = bn / "tests/catalua_test.cpp"

@@ -30,6 +30,7 @@ jobs:
       - run: python -m pip install lupa==2.6
       - run: python tarkov/tools/check.py
       - run: python -m py_compile tarkov/tools/package_windows.py tarkov/tools/install_into_bn.py
+      - run: python tarkov/tests/installer_patch_test.py
 
   shaders:
     needs: validate
@@ -113,7 +114,10 @@ jobs:
           "CCACHE_NOHASHDIR=1" >> $env:GITHUB_ENV
           "CCACHE_COMPILERCHECK=content" >> $env:GITHUB_ENV
       - name: Install mod and production engine patch
-        run: python tarkov/tools/install_into_bn.py bn
+        run: |
+          python tarkov/tests/installer_patch_test.py
+          if ($LASTEXITCODE -ne 0) { throw "Windows patch checkout tests failed" }
+          python tarkov/tools/install_into_bn.py bn
       - name: Configure Windows game
         run: |
           cmake -G Ninja -S bn -B bn/build-windows `

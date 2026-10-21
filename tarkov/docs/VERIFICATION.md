@@ -142,6 +142,14 @@ UI и cold restart на Windows этим не засчитываются. Пер
 В baseline.json исправлена декларация engine_changes на true: production-патч
 границ уже обязателен. SHA основы и игровой код не изменены.
 
+Первый Windows workflow 39587577518 успешно выполнил validate и shaders. Windows
+остановился до компиляции: git apply не принимал контекст патча из-за разных LF/CRLF.
+Обычный git apply локально воспроизводит отказ, если EOL исходника и патча различны.
+Installer теперь нормализует целевой src/savegame.cpp и передаваемые Git bytes в LF.
+installer_patch_test.py проходит восемь сочетаний source/patch EOL и core.autocrlf;
+он использует реальный Git, без подмены subprocess. Этот тест добавлен в fast checks
+и запускается также на Windows перед установкой. Исправление требует повторного CI.
+
 ## Холодная загрузка: подтверждено в трёх процессах
 
 В прогоне [39511333415](https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39511333415) выполнены:
