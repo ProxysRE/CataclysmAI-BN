@@ -57,7 +57,7 @@ def package(bn: Path, dist: Path, output: Path) -> None:
                 log = output / f"windows-{name}.log"
                 try:
                     with log.open("w", encoding="utf-8") as stream:
-                        subprocess.run([str(executable), *args, "--userdir", scratch],
+                        subprocess.run([str(executable), "--userdir", scratch, *args],
                                        cwd=dist, env=env, stdout=stream,
                                        stderr=subprocess.STDOUT, check=True, timeout=timeout)
                 finally:
