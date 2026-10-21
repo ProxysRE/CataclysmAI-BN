@@ -1,0 +1,8 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/ponds.json": "77321fd16d746af31d2f1904fbe05985fe3c15d22d74814493775e3336b6bdf3",
+    "data/json/mapgen/riverside/potters_cottage.json": "15f41e3aefa081a6538f18bb469b27a0345eb84c93a2b0d5fdd62b03e3a514f8",
+    "data/json/mapgen/sunken_helicopter_mapgen.json": "35959ec81a1d67fbff3fa1d1a69f8bdb5758c1a322b3ecf53ce0a19d80e90cb9"
+  }
+}

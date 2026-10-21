@@ -89,3 +89,9 @@ Police department, textile museum and supermarket retain 66 own OMT, 14 world ma
 ## Urban geometry preview integration
 
 Added department, textile museum and supermarket to the opt-in preview: 23 layout cases /704 placements. Their 120 projected navigation and marking points now have native terrain assertions, with coordinate rotation for southern police cells. All seven concrete preview terrains pass required-field checks. Only the two preview JSON sections and geometry C++ test section changed in the checksummed engine patch; other sections are preserved. Source and installed Windows generation remain pending. Verified progress stays 18/51 (35.3%).
+
+## Urban Windows checkpoint and waterside staging
+
+Run 39686560752 on 45a077a passed 73 core cases /11030 assertions, 10 optional cases /2224 assertions and 23 geometry cases /648216 assertions, repeated on installed data. Portable artifact 12389029662 (205652350 bytes, sha256:856ddbfd9d1ceb01309c3b06b35bd8e4cc865c9d906d9e800d2b5237d5d087f2). The department, textile museum and supermarket add three confirmed groups: 21/51 =41.2%, without full player-traversal or later-layer certification.
+
+Staged hot springs, pottery cottage and sunken helicopter: eight mapgen definitions, eleven own OMT and nineteen special placements (including stock surrounding river/lake cells). Source geometry and later content are separated. Neutral item-only glyphs on predecessor maps now preserve their underlying terrain; the extractor also accepts authenticated white linoleum fallback alongside gray. Existing preview output remains reproducible. Missing thermal-water and helicopter terrain definitions remain explicit; no native installation or completion credit for this batch.

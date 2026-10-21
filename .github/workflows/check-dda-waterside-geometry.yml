@@ -1,0 +1,21 @@
+name: Check DDA waterside geometry staging
+on:
+  workflow_dispatch:
+  push:
+    branches: [port/dda-npc-locations]
+    paths:
+      - npc-content/prepare_waterside_geometry.py
+      - npc-content/prepare_geometry_layer.py
+      - npc-content/geometry_layer/WATERSIDE_*
+      - npc-content/geometry_layer/waterside_sources/**
+      - .github/workflows/check-dda-waterside-geometry.yml
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/prepare_waterside_geometry.py --check
+      - run: python npc-content/prepare_geometry_preview.py --check

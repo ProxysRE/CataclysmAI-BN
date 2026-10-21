@@ -1,0 +1,173 @@
+{
+  "status": "waterside_geometry_staging_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 8,
+    "overmap_special": 3,
+    "overmap_terrain": 7
+  },
+  "unique_omt": 11,
+  "special_cells": {
+    "Pottery Cottage": 8,
+    "Hot Springs": 1,
+    "sunken_helicopter": 10
+  },
+  "source_rows_preserved": true,
+  "deferred_nested_requires_geometry_review": [
+    "firepit_5x5_2"
+  ],
+  "neutral_predecessor_glyphs": [
+    {
+      "map": [
+        [
+          "sunken_helicopter"
+        ]
+      ],
+      "glyph": "#"
+    },
+    {
+      "map": [
+        [
+          "sunken_helicopter"
+        ]
+      ],
+      "glyph": ";"
+    },
+    {
+      "map": [
+        [
+          "sunken_helicopter"
+        ]
+      ],
+      "glyph": "s"
+    }
+  ],
+  "unresolved_typed_refs": [
+    [
+      "overmap_terrain",
+      "river_north"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_w"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_floor"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_floor_rotator"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_frame"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_quarterpanel_n_left"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_quarterpanel_n_middle"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_quarterpanel_n_right"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_roof"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_rotor"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_e"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_ne"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_nw"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_s"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_se"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_sw"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_wall_w"
+    ],
+    [
+      "terrain",
+      "t_sunkenhelicopter_windshield_n"
+    ],
+    [
+      "terrain",
+      "t_wall_black"
+    ],
+    [
+      "terrain",
+      "t_wall_brown"
+    ],
+    [
+      "terrain",
+      "t_wall_cyan"
+    ],
+    [
+      "terrain",
+      "t_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_wall_orange"
+    ],
+    [
+      "terrain",
+      "t_water_hot"
+    ]
+  ],
+  "geometry_issues": [],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "No native integration or completion credit",
+    "Thermal-water behavior and helicopter materials require BN comparison",
+    "Source registrations and later content retained separately",
+    "Shared domestic palette definitions authenticated through urban_sources manifest"
+  ]
+}

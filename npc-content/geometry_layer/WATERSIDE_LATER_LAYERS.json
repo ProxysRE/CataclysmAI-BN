@@ -1,0 +1,2565 @@
+[
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "hot_springs"
+      ]
+    },
+    "later_fields": {
+      "flags": [
+        "ERASE_ALL_BEFORE_PLACING_TERRAIN"
+      ],
+      "furniture": {
+        "]": [
+          [
+            "f_null",
+            60
+          ],
+          [
+            "f_rubble_volc",
+            5
+          ],
+          [
+            "f_boulder_small_volc",
+            2
+          ],
+          [
+            "f_boulder_medium_volc",
+            1
+          ],
+          [
+            "f_boulder_large_volc",
+            1
+          ]
+        ],
+        "?": [
+          [
+            "f_null",
+            30
+          ],
+          [
+            "f_rubble_volc",
+            5
+          ],
+          [
+            "f_boulder_small_volc",
+            2
+          ],
+          [
+            "f_boulder_medium_volc",
+            1
+          ],
+          [
+            "f_boulder_large_volc",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "pottery_cottage_field"
+        ],
+        [
+          "pottery_cottage"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "shelter_graffiti",
+              1
+            ],
+            [
+              "general_graffiti",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        },
+        "R": {
+          "chunks": [
+            [
+              "domestic_bookcase_nest_fiction",
+              1750
+            ],
+            [
+              "domestic_bookcase_nest_fiction_and_nonfiction",
+              850
+            ],
+            [
+              "domestic_bookcase_nest_plant",
+              850
+            ],
+            [
+              "domestic_bookcase_nest_literature_enthusiast",
+              500
+            ],
+            [
+              "domestic_bookcase_nest_table_book",
+              500
+            ],
+            [
+              "domestic_bookcase_nest_cookbooks",
+              350
+            ],
+            [
+              "domestic_bookcase_nest_manga",
+              100
+            ],
+            [
+              "domestic_bookcase_nest_tailoring",
+              100
+            ],
+            [
+              "domestic_bookcase_nest_computers",
+              100
+            ],
+            [
+              "domestic_bookcase_nest_electronics",
+              50
+            ],
+            [
+              "domestic_bookcase_nest_board_games",
+              50
+            ],
+            [
+              "domestic_bookcase_nest_eclectic",
+              50
+            ],
+            [
+              "domestic_bookcase_nest_martial_arts",
+              25
+            ],
+            [
+              "domestic_bookcase_nest_medical",
+              25
+            ],
+            [
+              "domestic_bookcase_nest_esoterica",
+              25
+            ],
+            [
+              "domestic_bookcase_nest_judaica",
+              10
+            ],
+            [
+              "domestic_bookcase_nest_european_comics",
+              10
+            ]
+          ]
+        },
+        "\u00e9": {
+          "chunks": [
+            [
+              "domestic_freezer_nest",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        }
+      },
+      "toilets": {
+        "t": {}
+      },
+      "furniture": {
+        "a": "f_fireplace",
+        "b": "f_bigmirror",
+        "c": "f_statue",
+        "d": "f_dresser",
+        "e": "f_pool_table",
+        "f": "f_table",
+        "g": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "h": "f_chair",
+        "i": "f_bench",
+        "j": "f_bench",
+        "k": "f_woodstove",
+        "l": "f_coffee_table",
+        "m": "f_glass_fridge",
+        "n": "f_dishwasher",
+        "p": "f_mailbox",
+        "q": "f_rack",
+        "r": "f_desk",
+        "s": "f_table",
+        "u": "f_rotary_clothesline",
+        "v": [
+          "f_gun_safe_el",
+          "f_safe_l"
+        ],
+        "w": "f_rack_wood",
+        "x": "f_entertainment_center",
+        "y": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "z": "f_cardboard_box",
+        "A": "f_stool",
+        "B": "f_bathtub",
+        "C": "f_cupboard",
+        "D": "f_wardrobe",
+        "E": "f_armchair",
+        "F": "f_fridge",
+        "G": "f_camp_chair",
+        "H": "f_sofa",
+        "I": "f_desk",
+        "J": "f_counter",
+        "K": "f_tourist_table",
+        "L": "f_rack_coat",
+        "M": "f_displaycase",
+        "N": "f_workbench",
+        "O": [
+          "f_oven",
+          "f_gas_oven_microwave_combo"
+        ],
+        "P": "f_filing_cabinet",
+        "Q": "f_rack_wood",
+        "S": "f_sink",
+        "T": "f_floor_lamp",
+        "U": "f_utility_shelf",
+        "V": "f_glass_cabinet",
+        "W": "f_washer",
+        "X": "f_birdbath",
+        "Y": "f_trashcan",
+        "Z": "f_dryer",
+        "1": "f_cupboard",
+        "2": "f_cupboard",
+        "3": "f_cupboard",
+        "4": "f_cupboard",
+        "5": "f_sink",
+        "6": "f_rack_wood",
+        "7": "f_cupboard",
+        "8": "f_counter",
+        "9": "f_shower",
+        "@": "f_bed",
+        "\u00a4": "f_table",
+        "\u20b8": "f_deckchair",
+        "\u221e": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "\u2260": "f_chest",
+        "\u00d8": "f_pinball_machine",
+        "\u00c6": "f_arcade_machine",
+        "\u02ad": "f_ladder",
+        "\u0271": "f_console_broken",
+        "!": [
+          [
+            "f_region_flower",
+            4
+          ],
+          "f_region_weed"
+        ],
+        "\u00d4": "f_region_weed",
+        "0": "f_water_mill",
+        "\u2666": "f_kiln_empty",
+        "\u2663": "f_clay_kiln",
+        "]": "f_rack_wood"
+      },
+      "liquids": {
+        "g": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "items": {
+        "a": {
+          "item": "fireplace_fill",
+          "chance": 30,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        "d": [
+          {
+            "item": {
+              "subtype": "distribution",
+              "entries": [
+                {
+                  "group": "SUS_dresser_mens",
+                  "prob": 50
+                },
+                {
+                  "group": "SUS_dresser_womens",
+                  "prob": 50
+                }
+              ]
+            }
+          }
+        ],
+        "e": {
+          "item": "pool_table",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "f": [
+          {
+            "item": "dishes_dining",
+            "chance": 30
+          },
+          {
+            "item": "tea_dishes",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "baked_goods",
+            "chance": 5
+          },
+          {
+            "item": "groce_condiment",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "dining",
+            "chance": 10
+          }
+        ],
+        "k": {
+          "item": "stash_wood",
+          "chance": 30,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        "l": [
+          {
+            "item": "elecsto_persele",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          },
+          {
+            "item": "livingroom",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          }
+        ],
+        "s": [
+          {
+            "item": "consumer_electronics",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          },
+          {
+            "item": "livingroom",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          }
+        ],
+        "m": {
+          "item": "SUS_fridge",
+          "chance": 80
+        },
+        "n": {
+          "item": "SUS_dishwasher",
+          "chance": 70
+        },
+        "p": {
+          "item": "mail",
+          "chance": 30,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        "q": [
+          {
+            "item": "tools_home",
+            "chance": 40
+          },
+          {
+            "item": "cleaning",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "mechanics",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "camping",
+            "chance": 10
+          },
+          {
+            "item": "tools_survival",
+            "chance": 5,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "r": [
+          {
+            "item": "SUS_office_desk",
+            "chance": 25
+          }
+        ],
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "v": [
+          {
+            "item": "art",
+            "chance": 5
+          },
+          {
+            "item": "art_all",
+            "chance": 10
+          },
+          {
+            "item": "home_display_case",
+            "chance": 30
+          },
+          {
+            "item": "harddrugs_residential",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "maps",
+            "chance": 2
+          },
+          {
+            "item": "guns_pistol_common",
+            "chance": 25
+          },
+          {
+            "item": "gemstones",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "w": [
+          {
+            "item": "shower",
+            "chance": 20
+          },
+          {
+            "item": "cleaning",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "bed",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "x": {
+          "item": "consumer_electronics",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "B": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "D": [
+          {
+            "item": {
+              "subtype": "distribution",
+              "entries": [
+                {
+                  "group": "SUS_wardrobe_mens",
+                  "prob": 50
+                },
+                {
+                  "group": "SUS_wardrobe_womens",
+                  "prob": 50
+                }
+              ]
+            }
+          }
+        ],
+        "F": {
+          "item": "SUS_fridge",
+          "chance": 100
+        },
+        "I": [
+          {
+            "item": "SUS_desks_bedroom_unisex",
+            "chance": 5
+          },
+          {
+            "item": "SUS_office_desk",
+            "chance": 25
+          }
+        ],
+        "J": {
+          "item": "kitchen_counters",
+          "chance": 5
+        },
+        "L": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "M": {
+          "item": "home_display_case",
+          "chance": 70
+        },
+        "N": [
+          {
+            "item": "tools_common",
+            "chance": 20,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "hardware",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "cleaning",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "O": {
+          "item": "SUS_oven",
+          "chance": 100
+        },
+        "P": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 100
+        },
+        "Q": [
+          {
+            "item": "shower",
+            "chance": 20
+          },
+          {
+            "item": "cleaning",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "bed",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "S": [
+          {
+            "item": "SUS_bathroom_sink",
+            "chance": 80
+          },
+          {
+            "item": "SUS_bathroom_medicine",
+            "chance": 60
+          }
+        ],
+        "U": [
+          {
+            "item": "home_hw",
+            "chance": 20,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "cleaning",
+            "chance": 40,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "camping",
+            "chance": 5,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "V": {
+          "item": "home_display_case",
+          "chance": 50
+        },
+        "Y": {
+          "item": "SUS_trash_trashcan",
+          "chance": 30
+        },
+        "1": [
+          {
+            "item": "SUS_dishes",
+            "chance": 100
+          },
+          {
+            "item": "SUS_silverware",
+            "chance": 100
+          }
+        ],
+        "2": {
+          "item": "SUS_cookware",
+          "chance": 100
+        },
+        "3": [
+          {
+            "item": "SUS_utensils",
+            "chance": 50
+          },
+          {
+            "item": "SUS_knife_drawer",
+            "chance": 50
+          }
+        ],
+        "4": {
+          "item": "SUS_junk_drawer",
+          "chance": 100
+        },
+        "5": {
+          "item": "SUS_kitchen_sink",
+          "chance": 100
+        },
+        "6": [
+          {
+            "item": "SUS_pantry",
+            "chance": 80
+          },
+          {
+            "item": "cannedfood",
+            "chance": 20,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "7": [
+          {
+            "item": "SUS_breakfast_cupboard",
+            "chance": 30
+          },
+          {
+            "item": "SUS_coffee_cupboard",
+            "chance": 50
+          },
+          {
+            "item": "SUS_spice_collection",
+            "chance": 100
+          }
+        ],
+        "8": [
+          {
+            "item": "SUS_hair_drawer",
+            "chance": 30
+          },
+          {
+            "item": "SUS_bathroom_cabinet",
+            "chance": 30,
+            "repeat": [
+              1,
+              4
+            ]
+          },
+          {
+            "item": "SUS_bathroom_medicine",
+            "chance": 40
+          },
+          {
+            "item": "harddrugs_residential",
+            "chance": 2
+          }
+        ],
+        "9": {
+          "item": "shower",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "@": {
+          "item": "bed",
+          "chance": 50
+        },
+        "\u00a4": {
+          "item": "nightstand",
+          "chance": 30
+        },
+        "Z": {
+          "item": "laundry",
+          "chance": 100
+        },
+        "W": {
+          "item": "laundry",
+          "chance": 50
+        },
+        "z": [
+          {
+            "item": "allsporting",
+            "chance": 40,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "chem_home",
+            "chance": 50,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "child_items",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "stash_drugs",
+            "chance": 1
+          },
+          {
+            "item": "maps",
+            "chance": 4
+          }
+        ],
+        "\u2260": [
+          {
+            "item": "toy_box",
+            "chance": 70,
+            "repeat": [
+              2,
+              4
+            ]
+          },
+          {
+            "item": "games",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "allsporting",
+            "chance": 5
+          }
+        ],
+        "]": [
+          {
+            "item": "pottery",
+            "chance": 50,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "ceramics_workroom",
+            "chance": 50,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "mapping": {
+        "\u00f7": {
+          "item": {
+            "item": "doormat",
+            "chance": 55
+          }
+        }
+      },
+      "place_vehicles": [
+        {
+          "vehicle": "boats_narrow",
+          "x": 6,
+          "y": 32,
+          "rotation": 90
+        }
+      ],
+      "sealed_item": {
+        "=": {
+          "items": {
+            "item": "farming_seeds",
+            "chance": 100
+          },
+          "furniture": "f_plant_harvest"
+        }
+      },
+      "place_loot": [
+        {
+          "item": "stereo",
+          "x": 22,
+          "y": 44,
+          "chance": 15
+        },
+        {
+          "item": "television",
+          "x": 22,
+          "y": 43,
+          "chance": 75
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_BEACH",
+          "x": [
+            1,
+            22
+          ],
+          "y": [
+            1,
+            22
+          ],
+          "density": 0.1
+        }
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            [
+              "firepit_5x5_2",
+              100
+            ]
+          ],
+          "x": 7,
+          "y": 5
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        [
+          "pottery_cottage_field_2nd"
+        ],
+        [
+          "pottery_cottage_2nd"
+        ]
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "shelter_graffiti",
+              1
+            ],
+            [
+              "general_graffiti",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        },
+        "R": {
+          "chunks": [
+            [
+              "domestic_bookcase_nest_fiction",
+              1750
+            ],
+            [
+              "domestic_bookcase_nest_fiction_and_nonfiction",
+              850
+            ],
+            [
+              "domestic_bookcase_nest_plant",
+              850
+            ],
+            [
+              "domestic_bookcase_nest_literature_enthusiast",
+              500
+            ],
+            [
+              "domestic_bookcase_nest_table_book",
+              500
+            ],
+            [
+              "domestic_bookcase_nest_cookbooks",
+              350
+            ],
+            [
+              "domestic_bookcase_nest_manga",
+              100
+            ],
+            [
+              "domestic_bookcase_nest_tailoring",
+              100
+            ],
+            [
+              "domestic_bookcase_nest_computers",
+              100
+            ],
+            [
+              "domestic_bookcase_nest_electronics",
+              50
+            ],
+            [
+              "domestic_bookcase_nest_board_games",
+              50
+            ],
+            [
+              "domestic_bookcase_nest_eclectic",
+              50
+            ],
+            [
+              "domestic_bookcase_nest_martial_arts",
+              25
+            ],
+            [
+              "domestic_bookcase_nest_medical",
+              25
+            ],
+            [
+              "domestic_bookcase_nest_esoterica",
+              25
+            ],
+            [
+              "domestic_bookcase_nest_judaica",
+              10
+            ],
+            [
+              "domestic_bookcase_nest_european_comics",
+              10
+            ]
+          ]
+        },
+        "\u00e9": {
+          "chunks": [
+            [
+              "domestic_freezer_nest",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        }
+      },
+      "toilets": {
+        "t": {}
+      },
+      "furniture": {
+        "a": "f_fireplace",
+        "b": "f_bigmirror",
+        "c": "f_statue",
+        "d": "f_dresser",
+        "e": "f_pool_table",
+        "f": "f_table",
+        "g": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "h": "f_chair",
+        "i": "f_bench",
+        "j": "f_bench",
+        "k": "f_woodstove",
+        "l": "f_coffee_table",
+        "m": "f_glass_fridge",
+        "n": "f_dishwasher",
+        "p": "f_mailbox",
+        "q": "f_rack",
+        "r": "f_desk",
+        "s": "f_table",
+        "u": "f_rotary_clothesline",
+        "v": [
+          "f_gun_safe_el",
+          "f_safe_l"
+        ],
+        "w": "f_rack_wood",
+        "x": "f_entertainment_center",
+        "y": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "z": "f_cardboard_box",
+        "A": "f_stool",
+        "B": "f_bathtub",
+        "C": "f_cupboard",
+        "D": "f_wardrobe",
+        "E": "f_armchair",
+        "F": "f_fridge",
+        "G": "f_camp_chair",
+        "H": "f_sofa",
+        "I": "f_desk",
+        "J": "f_counter",
+        "K": "f_tourist_table",
+        "L": "f_rack_coat",
+        "M": "f_displaycase",
+        "N": "f_workbench",
+        "O": [
+          "f_oven",
+          "f_gas_oven_microwave_combo"
+        ],
+        "P": "f_filing_cabinet",
+        "Q": "f_rack_wood",
+        "S": "f_sink",
+        "T": "f_floor_lamp",
+        "U": "f_utility_shelf",
+        "V": "f_glass_cabinet",
+        "W": "f_washer",
+        "X": "f_birdbath",
+        "Y": "f_trashcan",
+        "Z": "f_dryer",
+        "1": "f_cupboard",
+        "2": "f_cupboard",
+        "3": "f_cupboard",
+        "4": "f_cupboard",
+        "5": "f_sink",
+        "6": "f_rack_wood",
+        "7": "f_cupboard",
+        "8": "f_counter",
+        "9": "f_shower",
+        "@": "f_bed",
+        "\u00a4": "f_table",
+        "\u20b8": "f_deckchair",
+        "\u221e": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "\u2260": "f_chest",
+        "\u00d8": "f_pinball_machine",
+        "\u00c6": "f_arcade_machine",
+        "\u02ad": "f_ladder",
+        "\u0271": "f_console_broken",
+        "!": "f_rack_wood"
+      },
+      "liquids": {
+        "g": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "items": {
+        "a": {
+          "item": "fireplace_fill",
+          "chance": 30,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        "d": [
+          {
+            "item": {
+              "subtype": "distribution",
+              "entries": [
+                {
+                  "group": "SUS_dresser_mens",
+                  "prob": 50
+                },
+                {
+                  "group": "SUS_dresser_womens",
+                  "prob": 50
+                }
+              ]
+            }
+          }
+        ],
+        "e": {
+          "item": "pool_table",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "f": [
+          {
+            "item": "dishes_dining",
+            "chance": 30
+          },
+          {
+            "item": "tea_dishes",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "baked_goods",
+            "chance": 5
+          },
+          {
+            "item": "groce_condiment",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "dining",
+            "chance": 10
+          }
+        ],
+        "k": {
+          "item": "stash_wood",
+          "chance": 30,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        "l": [
+          {
+            "item": "elecsto_persele",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          },
+          {
+            "item": "livingroom",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          }
+        ],
+        "s": [
+          {
+            "item": "consumer_electronics",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          },
+          {
+            "item": "livingroom",
+            "chance": 10,
+            "repeat": [
+              1,
+              3
+            ]
+          }
+        ],
+        "m": {
+          "item": "SUS_fridge",
+          "chance": 80
+        },
+        "n": {
+          "item": "SUS_dishwasher",
+          "chance": 70
+        },
+        "p": {
+          "item": "mail",
+          "chance": 30,
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        "q": [
+          {
+            "item": "tools_home",
+            "chance": 40
+          },
+          {
+            "item": "cleaning",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "mechanics",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "camping",
+            "chance": 10
+          },
+          {
+            "item": "tools_survival",
+            "chance": 5,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "r": [
+          {
+            "item": "SUS_office_desk",
+            "chance": 25
+          }
+        ],
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "v": [
+          {
+            "item": "art",
+            "chance": 5
+          },
+          {
+            "item": "art_all",
+            "chance": 10
+          },
+          {
+            "item": "home_display_case",
+            "chance": 30
+          },
+          {
+            "item": "harddrugs_residential",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "maps",
+            "chance": 2
+          },
+          {
+            "item": "guns_pistol_common",
+            "chance": 25
+          },
+          {
+            "item": "gemstones",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "w": [
+          {
+            "item": "shower",
+            "chance": 20
+          },
+          {
+            "item": "cleaning",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "bed",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "x": {
+          "item": "consumer_electronics",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "B": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "D": [
+          {
+            "item": {
+              "subtype": "distribution",
+              "entries": [
+                {
+                  "group": "SUS_wardrobe_mens",
+                  "prob": 50
+                },
+                {
+                  "group": "SUS_wardrobe_womens",
+                  "prob": 50
+                }
+              ]
+            }
+          }
+        ],
+        "F": {
+          "item": "SUS_fridge",
+          "chance": 100
+        },
+        "I": [
+          {
+            "item": "SUS_desks_bedroom_unisex",
+            "chance": 5
+          },
+          {
+            "item": "SUS_office_desk",
+            "chance": 25
+          }
+        ],
+        "J": {
+          "item": "kitchen_counters",
+          "chance": 5
+        },
+        "L": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "M": {
+          "item": "home_display_case",
+          "chance": 70
+        },
+        "N": [
+          {
+            "item": "tools_common",
+            "chance": 20,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "hardware",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "cleaning",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "O": {
+          "item": "SUS_oven",
+          "chance": 100
+        },
+        "P": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 100
+        },
+        "Q": [
+          {
+            "item": "shower",
+            "chance": 20
+          },
+          {
+            "item": "cleaning",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "bed",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "S": [
+          {
+            "item": "SUS_bathroom_sink",
+            "chance": 80
+          },
+          {
+            "item": "SUS_bathroom_medicine",
+            "chance": 60
+          }
+        ],
+        "U": [
+          {
+            "item": "home_hw",
+            "chance": 20,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "cleaning",
+            "chance": 40,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "camping",
+            "chance": 5,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "V": {
+          "item": "home_display_case",
+          "chance": 50
+        },
+        "Y": {
+          "item": "SUS_trash_trashcan",
+          "chance": 30
+        },
+        "1": [
+          {
+            "item": "SUS_dishes",
+            "chance": 100
+          },
+          {
+            "item": "SUS_silverware",
+            "chance": 100
+          }
+        ],
+        "2": {
+          "item": "SUS_cookware",
+          "chance": 100
+        },
+        "3": [
+          {
+            "item": "SUS_utensils",
+            "chance": 50
+          },
+          {
+            "item": "SUS_knife_drawer",
+            "chance": 50
+          }
+        ],
+        "4": {
+          "item": "SUS_junk_drawer",
+          "chance": 100
+        },
+        "5": {
+          "item": "SUS_kitchen_sink",
+          "chance": 100
+        },
+        "6": [
+          {
+            "item": "SUS_pantry",
+            "chance": 80
+          },
+          {
+            "item": "cannedfood",
+            "chance": 20,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "7": [
+          {
+            "item": "SUS_breakfast_cupboard",
+            "chance": 30
+          },
+          {
+            "item": "SUS_coffee_cupboard",
+            "chance": 50
+          },
+          {
+            "item": "SUS_spice_collection",
+            "chance": 100
+          }
+        ],
+        "8": [
+          {
+            "item": "SUS_hair_drawer",
+            "chance": 30
+          },
+          {
+            "item": "SUS_bathroom_cabinet",
+            "chance": 30,
+            "repeat": [
+              1,
+              4
+            ]
+          },
+          {
+            "item": "SUS_bathroom_medicine",
+            "chance": 40
+          },
+          {
+            "item": "harddrugs_residential",
+            "chance": 2
+          }
+        ],
+        "9": {
+          "item": "shower",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "@": {
+          "item": "bed",
+          "chance": 50
+        },
+        "\u00a4": {
+          "item": "nightstand",
+          "chance": 30
+        },
+        "Z": {
+          "item": "laundry",
+          "chance": 100
+        },
+        "W": {
+          "item": "laundry",
+          "chance": 50
+        },
+        "z": [
+          {
+            "item": "allsporting",
+            "chance": 40,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "chem_home",
+            "chance": 50,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "child_items",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "stash_drugs",
+            "chance": 1
+          },
+          {
+            "item": "maps",
+            "chance": 4
+          }
+        ],
+        "\u2260": [
+          {
+            "item": "toy_box",
+            "chance": 70,
+            "repeat": [
+              2,
+              4
+            ]
+          },
+          {
+            "item": "games",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "allsporting",
+            "chance": 5
+          }
+        ],
+        "\u221e": {
+          "item": "homeguns",
+          "chance": 60,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "!": [
+          {
+            "item": "pottery",
+            "chance": 50,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "ceramics_workroom",
+            "chance": 50,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "mapping": {
+        "\u00f7": {
+          "item": {
+            "item": "doormat",
+            "chance": 55
+          }
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "pottery_cottage_field_roof"
+        ],
+        [
+          "pottery_cottage_roof"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "1": {
+          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
+          "chunks": [
+            [
+              "residential_6kW_solar",
+              31
+            ],
+            [
+              "residential_7kW_solar",
+              63
+            ],
+            [
+              "residential_8kW_solar",
+              31
+            ],
+            [
+              "null",
+              873
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "industrial_1x1_solar",
+              4
+            ],
+            [
+              "industrial_1x1_solar_v2",
+              1
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "null",
+              15
+            ],
+            [
+              "roof_2x2_utilities",
+              50
+            ],
+            [
+              "roof_2x2_utilities_b",
+              15
+            ],
+            [
+              "roof_2x2_utilities_c",
+              15
+            ],
+            [
+              "roof_2x2_utilities_d",
+              15
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "roof_1x1_birdnest",
+              10
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_4x4_utility",
+              5
+            ],
+            [
+              "roof_4x4_utility_1",
+              5
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_2x2_infrastructure",
+              15
+            ],
+            [
+              "roof_2x2_infrastructure_1",
+              5
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              40
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "null",
+              50
+            ],
+            [
+              "roof_4x4_survivor",
+              20
+            ],
+            [
+              "roof_4x4_party",
+              10
+            ],
+            [
+              "roof_2x2_golf",
+              7
+            ],
+            [
+              "roof_4x4_holdout",
+              3
+            ],
+            [
+              "roof_3x3_wine",
+              10
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "null",
+              120
+            ],
+            [
+              "roof_6x6_greenhouse_1",
+              25
+            ],
+            [
+              "roof_6x6_greenhouse_2",
+              25
+            ],
+            [
+              "roof_6x6_garden_1",
+              25
+            ],
+            [
+              "roof_6x6_garden_2",
+              25
+            ],
+            [
+              "roof_6x6_survivor",
+              20
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "roof_1x1_birdnest",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "pottery_cottage_basement"
+    },
+    "later_fields": {
+      "furniture": {
+        "!": "f_locker",
+        "\u00e2": "f_home_furnace",
+        "c": "f_rack_wood",
+        "u": [
+          "f_ergometer",
+          "f_ergometer_mechanical"
+        ],
+        "\u00c2": [
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "\u00d6": [
+          [
+            "f_crate_c",
+            2
+          ],
+          [
+            "f_crate_o",
+            3
+          ]
+        ],
+        "X": "f_wood_keg",
+        "a": "f_rack_wood",
+        "A": "f_stool",
+        "J": "f_counter",
+        "S": "f_sink",
+        "U": "f_utility_shelf",
+        "W": "f_wood_keg",
+        "Z": "f_dryer",
+        "8": "f_counter",
+        "9": "f_shower",
+        "g": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "r": "f_rack_wood",
+        "l": "f_rack_wood",
+        "e": "f_rack_wood",
+        "H": "f_fvat_empty",
+        "b": "f_bench"
+      },
+      "place_vehicles": [
+        {
+          "vehicle": "bikeshop",
+          "x": 22,
+          "y": 19,
+          "rotation": 90
+        }
+      ],
+      "liquids": {
+        "X": {
+          "liquid": "hb_beer",
+          "amount": [
+            100,
+            500
+          ]
+        },
+        "W": {
+          "liquid": "dandelion_wine",
+          "amount": [
+            100,
+            500
+          ]
+        }
+      },
+      "items": {
+        "a": {
+          "item": "dry_goods",
+          "chance": 50,
+          "repeat": [
+            2,
+            8
+          ]
+        },
+        "r": {
+          "item": "preserved_food",
+          "chance": 50,
+          "repeat": [
+            2,
+            8
+          ]
+        },
+        "c": {
+          "item": "condiments",
+          "chance": 50,
+          "repeat": [
+            2,
+            8
+          ]
+        },
+        "e": {
+          "item": "pantry_liquids",
+          "chance": 50,
+          "repeat": [
+            2,
+            8
+          ]
+        },
+        "l": {
+          "item": "farming_seeds",
+          "chance": 50,
+          "repeat": [
+            2,
+            8
+          ]
+        },
+        "b": [
+          {
+            "item": "supplies_farming",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "tools_earthworking",
+            "chance": 40,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "sunken_helicopter"
+        ]
+      ]
+    },
+    "later_fields": {
+      "item": {
+        "s": {
+          "item": "rope_6"
+        },
+        "#": {
+          "item": "scrap"
+        },
+        ";": {
+          "item": "2x4"
+        }
+      },
+      "furniture": {
+        "C": "f_metal_crate_c",
+        "o": "f_metal_crate_o",
+        "h": "f_sunkenhelicopter_seat_rotating",
+        "#": "f_null",
+        ";": "f_null",
+        "s": "f_null"
+      },
+      "place_items": [
+        {
+          "x": 15,
+          "y": 17,
+          "item": "combat_exoskeleton_medium_damaged",
+          "chance": 66,
+          "repeat": 2
+        },
+        {
+          "x": 15,
+          "y": 18,
+          "item": "combat_exoskeleton_light_damaged",
+          "chance": 66,
+          "repeat": 3
+        },
+        {
+          "x": 17,
+          "y": 16,
+          "item": "combat_exoskeleton_heavy_damaged",
+          "chance": 66,
+          "repeat": 6
+        },
+        {
+          "x": 16,
+          "y": 18,
+          "item": "combat_exoskeleton_armor_set_damaged",
+          "chance": 66,
+          "repeat": 5
+        },
+        {
+          "x": 15,
+          "y": 19,
+          "item": "combat_exoskeleton_armor_set_damaged",
+          "chance": 66,
+          "repeat": 6
+        }
+      ],
+      "place_monster": [
+        {
+          "monster": "mon_nether_cucumber",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 80,
+          "repeat": 8
+        }
+      ],
+      "flags": [
+        "ERASE_ALL_BEFORE_PLACING_TERRAIN"
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "sunken_heli_roof"
+        ]
+      ]
+    },
+    "later_fields": {}
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "nether_cucumber_lake_bed"
+        ]
+      ]
+    },
+    "later_fields": {
+      "place_monster": [
+        {
+          "monster": "mon_nether_cucumber",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "chance": 80,
+          "repeat": 5
+        }
+      ]
+    }
+  },
+  {
+    "source": [
+      "hot_springs"
+    ],
+    "field": "vision_levels",
+    "value": "single_water"
+  },
+  {
+    "source": [
+      "hot_springs"
+    ],
+    "field": "mondensity",
+    "value": 1
+  },
+  {
+    "source": [
+      "pottery_cottage_basement"
+    ],
+    "field": "spawns",
+    "value": {
+      "group": "GROUP_BASEMENT_HOUSE",
+      "population": [
+        1,
+        1
+      ],
+      "chance": 80
+    }
+  },
+  {
+    "source": [
+      "hot_springs"
+    ],
+    "field": "travel_cost_type",
+    "value": "swamp"
+  },
+  {
+    "source_registrations": [
+      {
+        "type": "overmap_special",
+        "id": "Pottery Cottage",
+        "overmaps": [
+          {
+            "point": [
+              0,
+              -1,
+              0
+            ],
+            "overmap": "pottery_cottage_field_north",
+            "locations": [
+              "land"
+            ]
+          },
+          {
+            "point": [
+              0,
+              0,
+              0
+            ],
+            "overmap": "pottery_cottage_north",
+            "locations": [
+              "land"
+            ]
+          },
+          {
+            "point": [
+              0,
+              1,
+              0
+            ],
+            "overmap": "river_north",
+            "locations": [
+              "water"
+            ]
+          },
+          {
+            "point": [
+              0,
+              0,
+              -1
+            ],
+            "overmap": "pottery_cottage_basement_north",
+            "locations": [
+              "subterranean_empty"
+            ]
+          },
+          {
+            "point": [
+              0,
+              -1,
+              1
+            ],
+            "overmap": "pottery_cottage_field_2nd_north",
+            "locations": [
+              "open_air"
+            ]
+          },
+          {
+            "point": [
+              0,
+              0,
+              1
+            ],
+            "overmap": "pottery_cottage_2nd_north",
+            "locations": [
+              "open_air"
+            ]
+          },
+          {
+            "point": [
+              0,
+              -1,
+              2
+            ],
+            "overmap": "pottery_cottage_field_roof_north",
+            "locations": [
+              "open_air"
+            ]
+          },
+          {
+            "point": [
+              0,
+              0,
+              2
+            ],
+            "overmap": "pottery_cottage_roof_north",
+            "locations": [
+              "open_air"
+            ]
+          }
+        ],
+        "city_distance": [
+          -1,
+          25
+        ],
+        "occurrences": [
+          0,
+          2
+        ],
+        "flags": [
+          "CLASSIC",
+          "WILDERNESS",
+          "MAN_MADE"
+        ]
+      },
+      {
+        "type": "overmap_special",
+        "id": "Hot Springs",
+        "overmaps": [
+          {
+            "point": [
+              0,
+              0,
+              0
+            ],
+            "overmap": "hot_springs_north"
+          }
+        ],
+        "locations": [
+          "field"
+        ],
+        "city_distance": [
+          15,
+          -1
+        ],
+        "occurrences": [
+          5,
+          100
+        ],
+        "flags": [
+          "CLASSIC",
+          "WILDERNESS",
+          "OVERMAP_UNIQUE"
+        ]
+      },
+      {
+        "type": "overmap_special",
+        "id": "sunken_helicopter",
+        "overmaps": [
+          {
+            "point": [
+              0,
+              0,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              0,
+              1,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              0,
+              2,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              1,
+              0,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              1,
+              1,
+              0
+            ],
+            "locations": [
+              "lake_surface"
+            ]
+          },
+          {
+            "point": [
+              1,
+              1,
+              -1
+            ],
+            "locations": [
+              "lake_water_cube"
+            ]
+          },
+          {
+            "point": [
+              1,
+              1,
+              -2
+            ],
+            "locations": [
+              "lake_water_cube"
+            ]
+          },
+          {
+            "point": [
+              1,
+              1,
+              -3
+            ],
+            "locations": [
+              "lake_water_cube"
+            ]
+          },
+          {
+            "point": [
+              1,
+              1,
+              -4
+            ],
+            "overmap": "sunken_heli_roof",
+            "locations": [
+              "lake_water_cube"
+            ]
+          },
+          {
+            "point": [
+              1,
+              1,
+              -5
+            ],
+            "overmap": "sunken_helicopter"
+          },
+          {
+            "point": [
+              1,
+              2,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              2,
+              0,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              2,
+              1,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          },
+          {
+            "point": [
+              2,
+              2,
+              -5
+            ],
+            "overmap": "nether_cucumber_lake_bed"
+          }
+        ],
+        "locations": [
+          "lake_bed"
+        ],
+        "occurrences": [
+          80,
+          100
+        ],
+        "flags": [
+          "CLASSIC",
+          "LAKE",
+          "MAN_MADE",
+          "OVERMAP_UNIQUE",
+          "WILDERNESS"
+        ]
+      }
+    ]
+  }
+]

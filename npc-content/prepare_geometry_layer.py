@@ -165,7 +165,7 @@ def extract(entries,structural_nested=('shipping_container','containers_roof')):
                 if 'fill_ter' in out:
                     out.setdefault('terrain',{})[c]=copy.deepcopy(out['fill_ter'])
                 else:
-                    assert 'nested_mapgen_id'in e and c in o.get('furniture',{}),('Undefined overlay glyph',c,e.get('nested_mapgen_id'))
+                    assert ('nested_mapgen_id'in e or 'predecessor_mapgen'in o) and c in o.get('furniture',{}),('Undefined overlay glyph',c,e.get('nested_mapgen_id'))
                     out.setdefault('furniture',{})[c]='f_null' # Preserve underlying terrain; no furniture in this layer.
             out={k:v for k,v in out.items() if v not in ({},[])}
             assert out.get('rows')==o.get('rows')
@@ -195,7 +195,7 @@ def extract(entries,structural_nested=('shipping_container','containers_roof')):
         if isinstance(v,list):return [walk(x) for x in v]
         if isinstance(v,dict):
             if v.get('param')=='linoleum_color':
-                assert v.get('fallback')=='t_linoleum_gray',v
+                assert v.get('fallback')in ('t_linoleum_gray','t_linoleum_white'),v
                 return v['fallback']
             return {k:walk(x) for k,x in v.items()}
         return v

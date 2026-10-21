@@ -1,0 +1,1267 @@
+[
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "hot_springs"
+    ],
+    "object": {
+      "rotation": [
+        0,
+        3
+      ],
+      "predecessor_mapgen": "forest",
+      "rows": [
+        "                        ",
+        "           ..           ",
+        "       ....??....       ",
+        "    ...??????????...    ",
+        "   .????????????????.   ",
+        "   .????]]]]]]]]????.   ",
+        "   .??]]]]]]]]]]]]??.   ",
+        "  .???]]]]]]]]]]]]???.  ",
+        "  .??]]]]]****]]]]]??.  ",
+        "  .??]]]]******]]]]??.  ",
+        "  .??]]]********]]]??.  ",
+        " .???]]]********]]]???. ",
+        " .???]]]********]]]???. ",
+        "  .??]]]********]]]??.  ",
+        "  .??]]]]******]]]]??.  ",
+        "  .??]]]]]****]]]]]??.  ",
+        "  .???]]]]]]]]]]]]???.  ",
+        "   .??]]]]]]]]]]]]??.   ",
+        "   .????]]]]]]]]????.   ",
+        "   .????????????????.   ",
+        "    ...??????????...    ",
+        "       ....??....       ",
+        "           ..           ",
+        "                        "
+      ],
+      "terrain": {
+        "*": "t_water_hot",
+        "]": [
+          [
+            "t_water_hot",
+            12
+          ],
+          "t_railroad_rubble",
+          "t_rock_floor_no_roof"
+        ],
+        "?": [
+          [
+            "t_water_hot",
+            2
+          ],
+          [
+            "t_railroad_rubble",
+            10
+          ],
+          [
+            "t_rock_floor_no_roof",
+            10
+          ]
+        ],
+        ".": [
+          "t_railroad_rubble",
+          "t_rock_floor_no_roof",
+          [
+            "t_region_groundcover",
+            5
+          ]
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "pottery_cottage_field"
+      ],
+      [
+        "pottery_cottage"
+      ]
+    ],
+    "object": {
+      "parameters": {
+        "interior_wall_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_wall_b",
+                5
+              ],
+              [
+                "t_wall_g",
+                5
+              ],
+              [
+                "t_wall_p",
+                1
+              ],
+              [
+                "t_wall_P",
+                1
+              ],
+              [
+                "t_wall_r",
+                3
+              ],
+              [
+                "t_wall_w",
+                15
+              ],
+              [
+                "t_wall_y",
+                3
+              ],
+              [
+                "t_wall_gray",
+                3
+              ],
+              [
+                "t_wall_brown",
+                3
+              ],
+              [
+                "t_wall_cyan",
+                1
+              ],
+              [
+                "t_wall_black",
+                3
+              ],
+              [
+                "t_wall_orange",
+                3
+              ],
+              [
+                "t_brick_wall",
+                2
+              ]
+            ]
+          }
+        },
+        "exterior_wall_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_brick_wall",
+                4
+              ],
+              [
+                "t_wall_wood",
+                2
+              ],
+              [
+                "t_wall_w",
+                4
+              ],
+              [
+                "t_wall_gray",
+                2
+              ],
+              [
+                "t_concrete_wall",
+                2
+              ],
+              [
+                "t_concrete_wall_w",
+                4
+              ],
+              [
+                "t_concrete_wall_gray",
+                2
+              ],
+              [
+                "t_strconc_wall",
+                1
+              ],
+              [
+                "t_strconc_wall_w",
+                2
+              ],
+              [
+                "t_strconc_wall_gray",
+                1
+              ],
+              [
+                "t_sconc_wall",
+                1
+              ],
+              [
+                "t_sconc_wall_w",
+                2
+              ],
+              [
+                "t_sconc_wall_gray",
+                1
+              ]
+            ]
+          }
+        },
+        "house_fence_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_splitrail_fence",
+                3
+              ],
+              [
+                "t_chainfence",
+                2
+              ],
+              [
+                "t_fence",
+                2
+              ],
+              [
+                "t_privacy_fence",
+                1
+              ],
+              [
+                "t_drystone_wall_half",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "terrain": {
+        "#": "t_wall_log",
+        "u": "t_region_groundcover_urban",
+        "X": "t_region_groundcover_urban",
+        ".": "t_region_groundcover_urban",
+        "+": [
+          [
+            "t_door_c",
+            5
+          ],
+          [
+            "t_door_o",
+            5
+          ],
+          [
+            "t_door_locked_interior",
+            1
+          ]
+        ],
+        "^": "t_gutter_downspout",
+        "o": [
+          [
+            "t_window_domestic",
+            10
+          ],
+          "t_window_no_curtains",
+          "t_window_open",
+          "t_window_no_curtains_open",
+          [
+            "t_curtains",
+            5
+          ]
+        ],
+        "<": "t_wood_stairs_up",
+        "%": [
+          "t_region_shrub",
+          "t_region_shrub_fruit",
+          "t_region_shrub_decorative"
+        ],
+        "[": [
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          "t_region_tree_shade"
+        ],
+        "!": "t_region_groundcover_urban",
+        "_": "t_dirtfloor",
+        "`": "t_region_soil",
+        "\u00b1": "t_ramp_down_low",
+        "~": "t_water_moving_sh",
+        "0": "t_water_moving_sh",
+        "\u2660": "t_clay",
+        ",": "t_water_dp",
+        ";": "t_water_sh",
+        "=": "t_dirtmound",
+        "?": "t_dock",
+        "}": "t_screened_porch_wall",
+        "{": "t_screen_door_c",
+        ")": "t_chickenwire_fence",
+        "(": "t_chickenwire_gate_c",
+        "\u2663": "t_dirtfloor",
+        "\u2666": "t_dirtfloor",
+        "]": "t_dirtfloor",
+        "q": "t_dirtfloor",
+        "1": "t_floor",
+        "2": "t_floor",
+        "3": "t_floor",
+        "4": "t_floor",
+        "5": "t_floor",
+        "A": "t_floor",
+        "E": "t_floor",
+        "F": "t_floor",
+        "G": "t_floor",
+        "H": "t_floor",
+        "J": "t_floor",
+        "L": "t_floor",
+        "O": "t_floor",
+        "T": "t_floor",
+        "Y": "t_floor",
+        "i": "t_floor",
+        "k": "t_floor",
+        "l": "t_floor",
+        "x": "t_floor",
+        "y": "t_floor"
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "........................",
+        "..[......[...........[..",
+        "........................",
+        "...........[...[........",
+        ".....[.............[....",
+        "........................",
+        "............[......;;...",
+        "[....[.........[;;;,,;..",
+        "..............\u2660.;;,,,;;.",
+        ".............\u2660.\u2660\u2660;;,,,;.",
+        "..........[....\u2660;;,,,;..",
+        "......[.......\u2660;;,,,;...",
+        ".............\u2660.;;,,,;...",
+        "..............\u2660,,,,,;...",
+        "..[.......~~~;;;,,,;;...",
+        "........~~~~;;,,,,;,,;..",
+        "...[...~~~...;;,,,,,;;..",
+        ".....~~~..[...\u2660;;,?,;;..",
+        "....~~........;;,,?;;...",
+        "..~~~.........\u2660;;;?;....",
+        "~~~######...[....``..[..",
+        "~~~#]\u2666\u2663]#``......`......",
+        "~~0?____+.````.``.......",
+        "~~~###q_##``....))))))).",
+        ".~~~~#q_]#``....)=`=`=).",
+        "[.~~~#<_]#.`.[..)=`=`=)[",
+        "...~~##o##.`...[)=`=`=).",
+        "...~~~~~...`````(=`=`=).",
+        "..[~~~~~....``..)`````).",
+        "....~~~..[..`!.!)))())).",
+        ".[.~~~......``.!!%%`%%..",
+        "...~~~.......`!....`...[",
+        "..~~~...[....``.[!.`.u..",
+        "..~~~.......``!...`.....",
+        ".~~~\u2660......``....!`..[..",
+        "~~~.\u2660.......``!..`......",
+        "~~~\u2660..[.....````!``````.",
+        "~~~\u2660\u2660......`...``.%%%#\u00b1#",
+        "~~~\u2660.......`..#}{##oo###",
+        ".~~~.\u2660....[`.%}  #F2531#",
+        ".~~~.......`.%}  +    O#",
+        "..~~~.....``.%} G#Y JJ4#",
+        ".~~~~~.[..`..#####  AA #",
+        ".~~~......`!!#<ii  H  x#",
+        "~~~.......```+     Hl xo",
+        "~~~..X..``..%#Ly   TE k#",
+        "~~~....``..[.###oo##oo##",
+        "~~~~..``.......%%%.^%%%."
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "om_terrain": [
+      [
+        "pottery_cottage_field_2nd"
+      ],
+      [
+        "pottery_cottage_2nd"
+      ]
+    ],
+    "type": "mapgen",
+    "object": {
+      "parameters": {
+        "linoleum_color": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_linoleum_gray",
+                1
+              ],
+              [
+                "t_linoleum_white",
+                1
+              ]
+            ]
+          }
+        },
+        "interior_wall_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_wall_b",
+                5
+              ],
+              [
+                "t_wall_g",
+                5
+              ],
+              [
+                "t_wall_p",
+                1
+              ],
+              [
+                "t_wall_P",
+                1
+              ],
+              [
+                "t_wall_r",
+                3
+              ],
+              [
+                "t_wall_w",
+                15
+              ],
+              [
+                "t_wall_y",
+                3
+              ],
+              [
+                "t_wall_gray",
+                3
+              ],
+              [
+                "t_wall_brown",
+                3
+              ],
+              [
+                "t_wall_cyan",
+                1
+              ],
+              [
+                "t_wall_black",
+                3
+              ],
+              [
+                "t_wall_orange",
+                3
+              ],
+              [
+                "t_brick_wall",
+                2
+              ]
+            ]
+          }
+        },
+        "exterior_wall_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_brick_wall",
+                4
+              ],
+              [
+                "t_wall_wood",
+                2
+              ],
+              [
+                "t_wall_w",
+                4
+              ],
+              [
+                "t_wall_gray",
+                2
+              ],
+              [
+                "t_concrete_wall",
+                2
+              ],
+              [
+                "t_concrete_wall_w",
+                4
+              ],
+              [
+                "t_concrete_wall_gray",
+                2
+              ],
+              [
+                "t_strconc_wall",
+                1
+              ],
+              [
+                "t_strconc_wall_w",
+                2
+              ],
+              [
+                "t_strconc_wall_gray",
+                1
+              ],
+              [
+                "t_sconc_wall",
+                1
+              ],
+              [
+                "t_sconc_wall_w",
+                2
+              ],
+              [
+                "t_sconc_wall_gray",
+                1
+              ]
+            ]
+          }
+        },
+        "house_fence_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_splitrail_fence",
+                3
+              ],
+              [
+                "t_chainfence",
+                2
+              ],
+              [
+                "t_fence",
+                2
+              ],
+              [
+                "t_privacy_fence",
+                1
+              ],
+              [
+                "t_drystone_wall_half",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "terrain": {
+        "~": "t_open_air",
+        "#": "t_wall_log",
+        "+": [
+          [
+            "t_door_c",
+            5
+          ],
+          [
+            "t_door_o",
+            5
+          ],
+          [
+            "t_door_locked_interior",
+            1
+          ]
+        ],
+        "^": "t_gutter_downspout",
+        "-": "t_linoleum_white",
+        "o": [
+          [
+            "t_window_domestic",
+            10
+          ],
+          "t_window_no_curtains",
+          "t_window_open",
+          "t_window_no_curtains_open",
+          [
+            "t_curtains",
+            5
+          ]
+        ],
+        ">": "t_wood_stairs_down",
+        "=": "t_shingle_flat_roof",
+        "B": "t_linoleum_white",
+        "w": "t_linoleum_white",
+        "S": "t_linoleum_white",
+        "t": "t_linoleum_white",
+        "8": "t_linoleum_white",
+        "!": "t_floor",
+        "@": "t_floor",
+        "A": "t_floor",
+        "D": "t_floor",
+        "H": "t_floor",
+        "I": "t_floor",
+        "N": "t_floor",
+        "R": "t_floor",
+        "b": "t_floor",
+        "d": "t_floor",
+        "k": "t_floor",
+        "y": "t_floor",
+        "\u221e": "t_floor"
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~##oo##~~~~~~~~~~~~~~~",
+        "~~~#NN !#~~~~~~~~~~~~~~~",
+        "~~~o A !#~~~~~~~~~~~~~~~",
+        "~~~### !##~~~~~~~~~~~~~~",
+        "~~~~~#  !#~~~~~~~~~~~~~~",
+        "~~~~~#> \u221eo~~~~~~~~~~~~~~",
+        "~~~~~#####~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~===",
+        "~~~~~~~~~~~~~~===#######",
+        "~~~~~~~~~~~~~~===oBw8S8#",
+        "~~~~~~~~~~~~~~===oB---t#",
+        "~~~~~~~~~~~~~~==^###+###",
+        "~~~~~~~~~~~~~#####b  dD#",
+        "~~~~~~~~~~~~~#>        #",
+        "~~~~~~~~~~~~~#y HR  @@ o",
+        "~~~~~~~~~~~~~#k HR I@@I#",
+        "~~~~~~~~~~~~~##oo###oo##",
+        "~~~~~~~~~~~~~~~~~~^~~~~~"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "pottery_cottage_field_roof"
+      ],
+      [
+        "pottery_cottage_roof"
+      ]
+    ],
+    "object": {
+      "terrain": {
+        ".": "t_shingle_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop",
+        "&": "t_null",
+        ":": "t_null",
+        "N": "t_shingle_flat_roof"
+      },
+      "fill_ter": "t_shingle_flat_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "   ......               ",
+        "   ......               ",
+        "   ......               ",
+        "   .......              ",
+        "     .....              ",
+        "     .....              ",
+        "     .....              ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                 -------",
+        "                 -.....-",
+        "                 -.....-",
+        "                 -..N..-",
+        "             ----5...&.-",
+        "             -.........-",
+        "             -..:......-",
+        "             -.........-",
+        "             -----5-----",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "pottery_cottage_basement",
+    "object": {
+      "terrain": {
+        " ": "t_dirt",
+        "|": "t_wall_log",
+        ".": "t_dirtfloor",
+        "c": "t_thconc_floor",
+        "X": "t_thconc_floor",
+        "a": "t_thconc_floor",
+        "b": "t_thconc_floor",
+        "e": "t_thconc_floor",
+        "g": "t_thconc_floor",
+        "l": "t_thconc_floor",
+        "r": "t_thconc_floor",
+        "H": "t_thconc_floor",
+        "W": "t_thconc_floor",
+        "\u0394": "t_ramp_up_high"
+      },
+      "fill_ter": "t_dirtfloor",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                     |||",
+        "                     |\u0394|",
+        "                 |||||.|",
+        "                 |g.a..|",
+        "                 |W.a..|",
+        "                 |X.a..|",
+        "             |||||l....|",
+        "             |rrrH..e..|",
+        "             |r.....e..|",
+        "             |ccabbbell|",
+        "             |||||||||||",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "sunken_helicopter"
+      ]
+    ],
+    "object": {
+      "predecessor_mapgen": "lake_bed",
+      "rows": [
+        "                        ",
+        "        #qwe            ",
+        "        qWWxe           ",
+        "        .h.hx#          ",
+        "        42.26           ",
+        "       #x...x #         ",
+        "      # xh,h.           ",
+        "        4h,h6           ",
+        "        4h,h6           ",
+        "        19.73           ",
+        "         xx3s           ",
+        "        ##  ss          ",
+        "       #     s          ",
+        "         #   ss         ",
+        "        w     ss        ",
+        "        w      s        ",
+        "       qwe     s C;     ",
+        "               C o ;    ",
+        "             o;CC       ",
+        "            ;  C        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "terrain": {
+        "W": "t_sunkenhelicopter_windshield_n",
+        "1": "t_sunkenhelicopter_wall_sw",
+        "2": "t_sunkenhelicopter_wall_s",
+        "3": "t_sunkenhelicopter_wall_se",
+        "4": "t_sunkenhelicopter_wall_w",
+        "6": "t_sunkenhelicopter_wall_e",
+        "7": "t_sunkenhelicopter_wall_nw",
+        "9": "t_sunkenhelicopter_wall_ne",
+        "q": "t_sunkenhelicopter_quarterpanel_n_left",
+        "w": "t_sunkenhelicopter_quarterpanel_n_middle",
+        "e": "t_sunkenhelicopter_quarterpanel_n_right",
+        ".": "t_sunkenhelicopter_floor",
+        "h": "t_sunkenhelicopter_floor",
+        ",": "t_sunkenhelicopter_floor_rotator",
+        "x": "t_sunkenhelicopter_frame"
+      },
+      "furniture": {
+        "#": "f_null",
+        ";": "f_null",
+        "C": "f_null",
+        "o": "f_null",
+        "s": "f_null"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "sunken_heli_roof"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_water_cube",
+      "rows": [
+        "                        ",
+        "                        ",
+        "         OOx            ",
+        "        OOOOx           ",
+        "        OOOOO           ",
+        "        xOOOx           ",
+        "        xOXOO           ",
+        "        OOOOO           ",
+        "        OOOOO           ",
+        "        OOOOO           ",
+        "         xxO            ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "terrain": {
+        "O": "t_sunkenhelicopter_roof",
+        "X": "t_sunkenhelicopter_rotor",
+        "x": "t_sunkenhelicopter_frame"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "nether_cucumber_lake_bed"
+      ]
+    ],
+    "object": {
+      "predecessor_mapgen": "lake_bed"
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_special",
+    "id": "Pottery Cottage",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "overmap": "pottery_cottage_field_north",
+        "locations": [
+          "land"
+        ]
+      },
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "pottery_cottage_north",
+        "locations": [
+          "land"
+        ]
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "river_north",
+        "locations": [
+          "water"
+        ]
+      },
+      {
+        "point": [
+          0,
+          0,
+          -1
+        ],
+        "overmap": "pottery_cottage_basement_north",
+        "locations": [
+          "subterranean_empty"
+        ]
+      },
+      {
+        "point": [
+          0,
+          -1,
+          1
+        ],
+        "overmap": "pottery_cottage_field_2nd_north",
+        "locations": [
+          "open_air"
+        ]
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "pottery_cottage_2nd_north",
+        "locations": [
+          "open_air"
+        ]
+      },
+      {
+        "point": [
+          0,
+          -1,
+          2
+        ],
+        "overmap": "pottery_cottage_field_roof_north",
+        "locations": [
+          "open_air"
+        ]
+      },
+      {
+        "point": [
+          0,
+          0,
+          2
+        ],
+        "overmap": "pottery_cottage_roof_north",
+        "locations": [
+          "open_air"
+        ]
+      }
+    ],
+    "city_distance": [
+      -1,
+      25
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "Hot Springs",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "hot_springs_north"
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      15,
+      -1
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "sunken_helicopter",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          0,
+          1,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          0,
+          2,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          1,
+          0,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "locations": [
+          "lake_surface"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -1
+        ],
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -2
+        ],
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -3
+        ],
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -4
+        ],
+        "overmap": "sunken_heli_roof",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -5
+        ],
+        "overmap": "sunken_helicopter"
+      },
+      {
+        "point": [
+          1,
+          2,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          2,
+          0,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          2,
+          1,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      },
+      {
+        "point": [
+          2,
+          2,
+          -5
+        ],
+        "overmap": "nether_cucumber_lake_bed"
+      }
+    ],
+    "locations": [
+      "lake_bed"
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "LAKE",
+      "MAN_MADE",
+      "UNIQUE",
+      "WILDERNESS"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "hot_springs"
+    ],
+    "name": "hot spring",
+    "sym": ".",
+    "color": "light_blue",
+    "see_cost": 0,
+    "flags": [
+      "WATER"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "pottery_cottage",
+      "pottery_cottage_2nd",
+      "pottery_cottage_roof"
+    ],
+    "copy-from": "generic_rural_building",
+    "name": "potters cottage",
+    "color": "yellow"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "pottery_cottage_basement"
+    ],
+    "copy-from": "generic_city_house_basement",
+    "delete": {
+      "post_process_generators": [
+        "riot_damage"
+      ]
+    }
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "pottery_cottage_field",
+      "pottery_cottage_field_2nd",
+      "pottery_cottage_field_roof"
+    ],
+    "copy-from": "generic_rural_building",
+    "sym": ".",
+    "color": "green"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "sunken_helicopter"
+    ],
+    "name": "sunken heli",
+    "sym": "~",
+    "color": "light_blue",
+    "flags": [
+      "NO_ROTATE",
+      "LAKE"
+    ],
+    "see_cost": 0
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "sunken_heli_roof"
+    ],
+    "name": "sunken heli roof",
+    "sym": "~",
+    "color": "light_blue",
+    "flags": [
+      "NO_ROTATE",
+      "LAKE"
+    ],
+    "see_cost": 0
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "nether_cucumber_lake_bed"
+    ],
+    "name": "nether cucumber lake bed",
+    "sym": "~",
+    "color": "light_blue",
+    "flags": [
+      "NO_ROTATE",
+      "LAKE"
+    ],
+    "see_cost": 0
+  }
+]

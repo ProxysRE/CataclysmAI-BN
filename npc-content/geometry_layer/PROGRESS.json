@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 18,
-  "verified_percent": 35.3,
+  "verified_groups": 21,
+  "verified_percent": 41.2,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 35.3,
+  "verified_plus_prepared_percent": 41.2,
   "evidence_checkpoint": {
-    "head": "d75ca47d876a76d87193f946cdf18de6330f92c2",
-    "run_id": 39647265421,
+    "head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
+    "run_id": 39686560752,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 20,
-    "geometry_assertions": 571932,
-    "installed_geometry_test_cases": 20,
-    "installed_geometry_assertions": 571932
+    "geometry_test_cases": 23,
+    "geometry_assertions": 648216,
+    "installed_geometry_test_cases": 23,
+    "installed_geometry_assertions": 648216
   },
   "rows": [
     {
@@ -199,14 +199,18 @@
       "source_identities": [
         "city_building:textile_mill_museum"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 18 textile museum cells passed source and installed generation"
     },
     {
       "name": "Большой полицейский департамент",
       "source_identities": [
         "city_building:police_dept"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 30 police department cells, including rotated southern wing, passed source and installed generation"
     },
     {
       "name": "Большой футбольный стадион",
@@ -238,7 +242,9 @@
       "source_identities": [
         "overmap_special:supermarket"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 18 supermarket cells passed source and installed generation"
     },
     {
       "name": "Магазины сельхозснабжения",
