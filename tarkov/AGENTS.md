@@ -33,3 +33,9 @@
 - Failed first entry stays entering and waits for an explicit terminal retry. Never
   reset a dimension that may not exist or turn reset failure into fake success.
   A checkpoint already at the raid destination must retain its original deadline.
+
+- Cold readers must detach the scratch active world before load(world_name): init()
+  replaces WORLDINFO and must not leave options_manager pointing to freed options.
+- clear_all_state disables mapgen. Enable mapgen AFTER it for generated-map probes.
+- The production bounds patch is mandatory with or without --tests. Include patches
+  in the native cache key; do not infer cold-load safety from same-process reload.

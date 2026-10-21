@@ -9,5 +9,6 @@ six boundary faces before continuing the raid and cleanup.
 
 install_into_bn.py applies this production patch with and without --tests. Rebuild
 the game after installation. The test-driver changes remain test-only. Save format
-is unchanged. Patch application is checked against the exact pinned source; runtime
-validation is pending. A passing same-process reload does not cover this defect.
+is unchanged. Patch application is checked against the exact pinned source. Linux runtime
+validation passed in run 39511333415 at project commit
+da9189db992697e2f45349420c1512a59a8f1e9c; Windows UI validation is pending. A passing same-process reload does not cover this defect.
