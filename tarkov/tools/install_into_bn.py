@@ -37,8 +37,11 @@ def install(bn: Path, tests: bool) -> None:
         if "TRKV_DEV01_TEST_BEGIN" in content:
             raise SystemExit("Test overlay is already installed")
         harness.write_text(content + "\n" + (ROOT / "tests/bn_harness.cpp.inc").read_text()
-                           + "\n" + (ROOT / "tests/bn_cold_harness.cpp.inc").read_text())
+                           + "\n" + (ROOT / "tests/bn_cold_harness.cpp.inc").read_text()
+                           + "\n" + (ROOT / "tests/bn_npc_harness.cpp.inc").read_text())
         shutil.copyfile(ROOT / "tests/bn_integration.lua", bn / "tests/lua/trkv_integration_test.lua")
+
+        shutil.copyfile(ROOT / "tests/bn_npc_probe.lua", bn / "tests/lua/trkv_npc_probe.lua")
 
         # Preserve only explicitly requested test worlds in the test driver.
         driver = bn / "tests/test_main.cpp"
