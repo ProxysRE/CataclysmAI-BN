@@ -21,4 +21,19 @@ function patrol.step(state, context, api)
   return true, "patrol"
 end
 
+-- Called during npc_class.lua_ai, after BN has regenerated this actor's AI cache.
+-- These references live only for this decision and never enter saved state.
+function patrol.step_actor(state, context, actor, map)
+  local function pos(point)
+    return map:abs_to_bub(TripointAbsMs.new(point.x, point.y, point.z))
+  end
+  return patrol.step(state, context, {
+    has_target = function() return actor:current_target() ~= nil end,
+    danger = function() return actor:danger_assessment() end,
+    at = function(point) return actor:get_pos_ms() == pos(point) end,
+    moves = function() return actor:get_moves() end,
+    move_to = function(point) actor:move_to(pos(point), true) end,
+  })
+end
+
 return patrol

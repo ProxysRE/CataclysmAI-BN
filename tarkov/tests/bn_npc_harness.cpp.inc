@@ -1,4 +1,5 @@
 #include "npc_class.h"
+#include "map_helpers.h"
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
 TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
@@ -97,6 +98,58 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(guard->abs_pos() == start_abs);
         CHECK(guard->get_moves() < 1000);
         probe("npc_patrol_resumed");
+    }
+    {
+        auto* guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        auto& player = get_avatar();
+        // The persistence assertions above used the original damaged rifle.
+        // Use a serviceable rifle and a competent shooter for this separate probe.
+        guard->primary_weapon().set_damage(0);
+        guard->set_skill_level(skill_id("gun"), 8);
+        guard->set_skill_level(skill_id("rifle"), 8);
+        guard->personality.bravery = 10;
+        auto rifle = item::spawn("ar15");
+        auto magazine = item::spawn("stanag30");
+        magazine->ammo_set(itype_id("223"), 30);
+        rifle->put_in(std::move(magazine));
+        auto& carried = player.i_add(std::move(rifle));
+        REQUIRE(player.wield(carried));
+        guard->set_attitude(NPCATT_KILL);
+        player.setpos(abs_to_bub(tripoint_abs_ms(16 * 24 + 3, 16 * 24 + 8, 0)));
+        set_time(calendar::turn); // Rebuild light/visibility caches without aging the raid.
+        REQUIRE_FALSE(guard->sees(player));
+        guard->set_moves(1000);
+        guard->move();
+        REQUIRE(data["patrol_reason"].get<std::string>() == "patrol");
+        REQUIRE_FALSE(data["patrol_target"].get<bool>());
+        CHECK(guard->abs_pos() == moved_abs);
+        REQUIRE(guard->primary_weapon().ammo_remaining() == 17);
+
+        // Expose a genuine hostile target. No target or danger is injected into AI cache.
+        player.setpos(abs_to_bub(tripoint_abs_ms(16 * 24 + 18, 16 * 24 + 6, 0)));
+        set_time(calendar::turn);
+        REQUIRE(guard->sees(player));
+        const auto initial_ammo = guard->primary_weapon().ammo_remaining();
+        auto fired = false;
+        for (auto decision = 0; decision < 20; ++decision) {
+            INFO("Combat decision " << decision);
+            player.set_all_parts_hp_to_max();
+            guard->set_moves(100);
+            guard->move(); // BN decides whether to aim, reposition or fire.
+            REQUIRE(guard->current_target() == static_cast<Creature*>(&player));
+            probe("npc_combat_handoff");
+            REQUIRE(guard->get_moves() < 100);
+            REQUIRE(guard->primary_weapon().get_var("trkv_npc_probe") == "rifle");
+            REQUIRE(guard->primary_weapon().typeId().str() == "ar15");
+            if (guard->primary_weapon().ammo_remaining() < initial_ammo) {
+                fired = true;
+                break;
+            }
+        }
+        CHECK(fired); // A false Lua return alone is not evidence of actual gunfire.
+        player.set_all_parts_hp_to_max();
+        player.clear_effects();
     }
     probe("npc_extract");
     CHECK(g->find_npc(first_id) == nullptr);

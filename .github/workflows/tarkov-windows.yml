@@ -9,6 +9,7 @@ on:
       - 'tarkov/tools/install_into_bn.py'
       - 'tarkov/tools/install_translations.py'
       - 'tarkov/tools/run_native_checks.py'
+      - 'tarkov/tools/run_npc_probe.py'
       - 'tarkov/tools/run_cold_restart.py'
       - 'tarkov/tests/**'
       - 'tarkov/baseline.json'
@@ -152,6 +153,14 @@ jobs:
           python tarkov/tools/run_native_checks.py bn
           --executable bn/build-windows/bin/cata_test-tiles.exe
           --game-executable bn/build-windows/bin/cataclysm-bn-tiles.exe
+          --output releases/windows-runtime
+      - name: Run Windows NPC lifecycle, patrol and combat probe
+        timeout-minutes: 15
+        env:
+          PYTHONIOENCODING: utf-8
+        run: >-
+          python tarkov/tools/run_npc_probe.py bn
+          --executable bn/build-windows/bin/cata_test-tiles.exe
           --output releases/windows-runtime
       - name: Install portable game
         run: |

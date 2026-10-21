@@ -18,18 +18,13 @@ elseif test_data.stage == "npc_patrol_setup" then
   game.npc_ai_functions["TRKV_PATROL_PROBE"] = function(actor)
     test_data.dispatches = test_data.dispatches + 1
     local current = game.mod_storage.trkv_raid_core
-    local function pos(point)
-      return gapi.get_map():abs_to_bub(TripointAbsMs.new(point.x, point.y, point.z))
-    end
-    local handled, reason = package.loaded.trkv_patrol.step(current.patrol_probe, {
+    test_data.patrol_target = actor:current_target() ~= nil
+    test_data.patrol_moves_before = actor:get_moves()
+    local handled, reason = package.loaded.trkv_patrol.step_actor(current.patrol_probe, {
       phase = current.raid.phase, sequence = current.raid.sequence, at_raid = api.at_raid(),
-    }, {
-      has_target = function() return actor:current_target() ~= nil end,
-      danger = function() return actor:danger_assessment() end,
-      at = function(point) return actor:get_pos_ms() == pos(point) end,
-      moves = function() return actor:get_moves() end,
-      move_to = function(point) actor:move_to(pos(point), true) end,
-    })
+    }, actor, gapi.get_map())
+    test_data.patrol_moves_after = actor:get_moves()
+    test_data.patrol_handled = handled
     test_data.patrol_reason = reason
     return handled
   end
@@ -39,6 +34,13 @@ elseif test_data.stage == "npc_patrol_restored" then
   assert(saved.route[2].y == 393)
 elseif test_data.stage == "npc_patrol_resumed" then
   assert(game.mod_storage.trkv_raid_core.patrol_probe.index == 1)
+elseif test_data.stage == "npc_combat_handoff" then
+  assert(test_data.patrol_target and not test_data.patrol_handled)
+  assert(test_data.patrol_reason == "threat")
+  assert(test_data.patrol_moves_after == test_data.patrol_moves_before,
+    "Patrol spent combat actions before handing off to BN")
+  assert(game.mod_storage.trkv_raid_core.patrol_probe.index == 2,
+    "Patrol advanced its waypoint while the actor was fighting")
 elseif test_data.stage == "npc_step" then
   local actor = assert(test_data.actor)
   local before = actor:get_moves()
