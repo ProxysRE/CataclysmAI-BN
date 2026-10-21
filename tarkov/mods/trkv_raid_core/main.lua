@@ -3,6 +3,8 @@ local mod = game.mod_runtime[game.current_mod]
 local storage = game.mod_storage[game.current_mod]
 local raid = require("trkv_lifecycle")
 local api = require("trkv_bn")
+-- Load while BN still provides package.path; no NPC registration/spawning yet.
+require("trkv_patrol")
 api.check_capabilities()
 storage.raid = storage.raid or {}
 raid.initialize(storage.raid)

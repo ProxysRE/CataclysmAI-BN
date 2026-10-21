@@ -49,7 +49,7 @@ def main() -> None:
     # The tests use repository-relative dofile paths.
     import os
     os.chdir(ROOT)
-    for suite in ("lifecycle_test.lua", "main_test.lua"):
+    for suite in ("lifecycle_test.lua", "main_test.lua", "patrol_test.lua"):
         LuaRuntime(unpack_returned_tuples=True).execute((ROOT / "tarkov/tests" / suite).read_text())
     import runpy
     runpy.run_path(str(ROOT / "tarkov/tests/localization_test.py"), run_name="__main__")

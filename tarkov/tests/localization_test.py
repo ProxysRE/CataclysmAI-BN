@@ -71,6 +71,7 @@ def main():
         end
     ''')
     lua.globals().package.loaded.trkv_lifecycle = lua.execute((MOD / "trkv_lifecycle.lua").read_text())
+    lua.globals().package.loaded.trkv_patrol = lua.execute((MOD / "trkv_patrol.lua").read_text())
     lua.execute(source)
     lua.execute('game.mod_runtime.trkv_raid_core.start()')
     assert lua.globals().entries[1] == ru.gettext("Enter test raid (30 game minutes)")

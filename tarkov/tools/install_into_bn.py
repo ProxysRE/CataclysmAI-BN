@@ -43,6 +43,9 @@ def install(bn: Path, tests: bool) -> None:
 
         shutil.copyfile(ROOT / "tests/bn_npc_probe.lua", bn / "tests/lua/trkv_npc_probe.lua")
 
+        shutil.copyfile(ROOT / "tests/npc_patrol_class.json",
+                        bn / "data/mods/TEST_DATA/trkv_npc_patrol.json")
+
         # Preserve only explicitly requested test worlds in the test driver.
         driver = bn / "tests/test_main.cpp"
         source = driver.read_text()

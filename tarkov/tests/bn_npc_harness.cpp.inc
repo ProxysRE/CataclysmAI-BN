@@ -1,3 +1,5 @@
+#include "npc_class.h"
+
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
 TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
     clear_all_state();
@@ -35,6 +37,21 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         gun->set_var("trkv_npc_probe", "rifle");
         auto& carried = guard.i_add(std::move(gun));
         REQUIRE(guard.wield(carried));
+        guard.myclass = npc_class_id("TRKV_PATROL_PROBE");
+        guard.set_attitude(NPCATT_NULL);
+        probe("npc_patrol_setup");
+        // Use BN's real dispatch, including regen_ai_cache before lua_ai.
+        for (auto step = 0; step < 3; ++step) {
+            guard.set_moves(1000);
+            guard.move();
+            REQUIRE(data["patrol_reason"].get<std::string>() == "patrol");
+            REQUIRE(guard.get_moves() < 1000);
+            REQUIRE(guard.abs_pos() == (step % 2 == 0 ? moved_abs : start_abs));
+        }
+        REQUIRE(data["dispatches"].get<int>() == 3);
+        guard.set_attitude(NPCATT_KILL);
+        // Keep the existing bound-object movement assertion too.
+        guard.setpos(abs_to_bub(start_abs));
         guard.set_moves(1000);
         data["actor"] = &guard;
         data["destination"] = abs_to_bub(moved_abs);
@@ -51,6 +68,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE(g->load(saved_character));
     const auto tick_scope = action_time_scale::scoped_calendar_turns_this_tick(1);
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_patrol_restored");
     {
         const auto* guard = g->find_npc(first_id);
         REQUIRE(guard != nullptr);
@@ -68,6 +86,17 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             CHECK(guard->is_wielding(*value));
         }
         CHECK(rifles == 1);
+    }
+    {
+        auto* guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        guard->set_attitude(NPCATT_NULL);
+        guard->set_moves(1000);
+        guard->move();
+        REQUIRE(data["patrol_reason"].get<std::string>() == "patrol");
+        CHECK(guard->abs_pos() == start_abs);
+        CHECK(guard->get_moves() < 1000);
+        probe("npc_patrol_resumed");
     }
     probe("npc_extract");
     CHECK(g->find_npc(first_id) == nullptr);

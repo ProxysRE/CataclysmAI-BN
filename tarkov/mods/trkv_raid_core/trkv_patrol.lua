@@ -1,0 +1,24 @@
+-- Experimental controller. State contains only saveable values; actors stay in adapters.
+local patrol = {}
+
+function patrol.step(state, context, api)
+  if context.phase ~= "active" or not context.at_raid or
+      state.sequence ~= context.sequence then return false, "inactive" end
+  -- Observations come from BN's freshly regenerated NPC cache, never avatar coordinates.
+  if api.has_target() or api.danger() > 0 then return false, "threat" end
+  if #state.route < 2 then return false, "no_route" end
+  local index = state.index or 1
+  local target = state.route[index]
+  if not target then return false, "invalid_route" end
+  if api.at(target) then
+    index = index % #state.route + 1
+    target = state.route[index]
+    state.index = index
+  end
+  local before = api.moves()
+  api.move_to(target)
+  if api.moves() >= before then return false, "blocked" end
+  return true, "patrol"
+end
+
+return patrol

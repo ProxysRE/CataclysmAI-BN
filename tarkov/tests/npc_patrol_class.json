@@ -1,0 +1,10 @@
+[
+  {
+    "type": "npc_class",
+    "id": "TRKV_PATROL_PROBE",
+    "name": { "str": "Patrol test actor" },
+    "job_description": "Test fixture only.",
+    "common": false,
+    "lua_ai": "TRKV_PATROL_PROBE"
+  }
+]
