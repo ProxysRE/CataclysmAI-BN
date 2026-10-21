@@ -1,0 +1,19 @@
+name: Check DDA urban geometry staging
+on:
+  workflow_dispatch:
+  push:
+    branches: [port/dda-npc-locations]
+    paths:
+      - npc-content/prepare_urban_geometry.py
+      - npc-content/geometry_layer/URBAN_*
+      - npc-content/geometry_layer/urban_sources/**
+      - .github/workflows/check-dda-urban-geometry.yml
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/prepare_urban_geometry.py --check

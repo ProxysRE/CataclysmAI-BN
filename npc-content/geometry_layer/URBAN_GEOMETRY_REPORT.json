@@ -1,0 +1,122 @@
+{
+  "status": "urban_geometry_staging_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 17,
+    "overmap_special": 3,
+    "overmap_terrain": 6
+  },
+  "world_maps": 14,
+  "unique_omt": 66,
+  "special_cells": {
+    "police_dept": 30,
+    "textile_mill_museum": 18,
+    "supermarket": 18
+  },
+  "source_rows_preserved": true,
+  "source_city_registration": "Police department and museum retain verbatim city_building registrations in the later-layer archive; shell registrations are zero-occurrence special candidates only",
+  "inline_mapping_projection": [],
+  "unresolved_typed_refs": [
+    [
+      "terrain",
+      "t_concrete_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_w"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_P"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_b"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_black"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_brown"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_cyan"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_g"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_orange"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_p"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_r"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_y"
+    ],
+    [
+      "terrain",
+      "t_wall_black"
+    ],
+    [
+      "terrain",
+      "t_wall_brown"
+    ],
+    [
+      "terrain",
+      "t_wall_cyan"
+    ],
+    [
+      "terrain",
+      "t_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_wall_orange"
+    ],
+    [
+      "terrain",
+      "t_zebra"
+    ]
+  ],
+  "geometry_issues": [],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "deferred_structural_nested": [
+    "11x11_gym_open: carpet terrain and palette dependencies retained in authenticated basement_nested.json; resolve before native embedding"
+  ],
+  "limits": [
+    "Not in native preview; generation and schema validation pending",
+    "Later-layer furnishings, loot, inhabitants, camp fields and quests retained separately",
+    "Existing BN external cells retain stock generation",
+    "No completion credit before native tests"
+  ]
+}
