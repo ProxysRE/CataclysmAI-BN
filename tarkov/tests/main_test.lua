@@ -38,8 +38,9 @@ local function restored_raid()
   local replacement = {}
   raid.initialize(replacement)
   where = "home"
+  -- Loading a different fixture replaces both nested save tables.
+  root.raid, root.participants = replacement, {}
   assert(raid.start(replacement, api, 1800))
-  root.raid = replacement -- matches BN's replacement of a nested Lua table
   return replacement
 end
 
@@ -80,7 +81,7 @@ raid.initialize(cleanup_checkpoint)
 cleanup_checkpoint.phase = "cleanup"
 cleanup_checkpoint.sequence = 1
 cleanup_checkpoint.outcome = "extracted"
-root.raid = cleanup_checkpoint
+root.raid, root.participants = cleanup_checkpoint, {}
 loading = true
 mod.loaded()
 mod.loaded()

@@ -5,7 +5,7 @@ local raid = require("trkv_lifecycle")
 local api = require("trkv_bn")
 -- Load while BN still provides package.path; no NPC registration/spawning yet.
 require("trkv_patrol")
-require("trkv_participants")
+local participants = require("trkv_participants")
 api.check_capabilities()
 storage.raid = storage.raid or {}
 raid.initialize(storage.raid)
@@ -13,6 +13,40 @@ raid.initialize(storage.raid)
 -- callback instead of capturing the table created before a save is loaded.
 local function current_state()
   return storage.raid
+end
+
+local function current_participants()
+  storage.participants = storage.participants or {}
+  participants.initialize(storage.participants)
+  return storage.participants
+end
+
+local function prepare_participants()
+  local state, members = current_state(), current_participants()
+  if state.phase == "home" then
+    if members.sequence <= state.settled then participants.finish(members, members.sequence) end
+    return true
+  end
+  if state.phase == "entering" or state.phase == "active" or
+      state.phase == "returning" or state.phase == "cleanup" then
+    return participants.begin(members, state.sequence)
+  end
+  return false
+end
+prepare_participants()
+
+-- Keep bookkeeping in the same path as engine travel/reset, including recovery.
+-- Resolve both nested tables afresh: BN replaces them during deserialization.
+local engine_enter, engine_cleanup = api.enter, api.cleanup
+api.enter = function()
+  if not prepare_participants() then return false end
+  return engine_enter()
+end
+api.cleanup = function()
+  -- Refuse to drop bookkeeping if the registry belongs to another raid.
+  if not prepare_participants() then return false end
+  if not engine_cleanup() then return false end
+  return participants.finish(current_participants(), current_state().sequence)
 end
 
 ---@param state table
@@ -74,6 +108,7 @@ local function tick()
   local state = current_state()
   if pending_load_recovery then
     pending_load_recovery = false
+    prepare_participants()
     raid.recover(state, api)
     report(state)
   end
