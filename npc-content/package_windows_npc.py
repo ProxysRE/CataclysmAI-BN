@@ -163,7 +163,7 @@ def package(folder, output, source_head):
         'Includes normal/looted farm supply stores with roofs, ladders and BN-packaged materials and food.\n'
         'Karting cash registers use stock BN money; no DDA denominations are installed.\n'
         'Includes the separate small island lighthouse, six above-ground levels; native/manual validation pending.\n'
-        'Optional DDA geometry preview: unfinished terrain-only prison, XEDRA church, expanded Hub 01, campus, initial Godco retreat, Exodii sites, frontier and raider locations; enable explicitly in a test world and place through debug. No natural spawning, loot, inhabitants or quests.\n'
+        'Optional DDA geometry preview: unfinished terrain-only prison, XEDRA church, expanded Hub 01, campus, initial Godco retreat, Exodii sites, frontier, raider and urban locations; enable explicitly in a test world and place through debug. No natural spawning, loot, inhabitants or quests.\n'
         'Both complete eldercare sites and their population tables are included with the optional Civilians mod; complete native generation and manual traversal validation are pending.\n'
         'Hub restricted elevator handlers and credential are included; the expanded Hub maps are not installed yet.\n'
         'Other staged DDA communities and the separate highway branch are not included.\n'

@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Raider source and installed geometry checkpoint passed; urban department, museum and supermarket adapted with zero typed obligations, pending native integration.",
+  "stage": "Urban geometry embedded in optional preview; new Windows source and installed generation pending.",
   "package": "Isolated Road",
   "native_compilation": "Successful Windows run 39647265421: source+installed 73 core /11030, 10 optional /2224, 20 geometry /571932; portable artifact 12371454521.",
   "remaining": [
@@ -783,17 +783,18 @@
       "godco_base",
       "exodii",
       "frontier",
-      "raider"
+      "raider",
+      "urban"
     ],
-    "special_cells": 638,
+    "special_cells": 704,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "All twenty isolated geometry cases passed source and installed tests",
+    "runtime_validated": false,
+    "status": "Twenty-three isolated geometry cases embedded; urban generation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "dfb175428082c836fdc8923094ec5c59e4ece7fe2085e2f1117ae82de3cd7138",
+    "native_patch_sha256": "7a4c3290d46188158259c21a3200c68f0bc4ac28f885cf38b00461f0bccab9c9",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -993,13 +994,14 @@
     "navigation_and_terrain_expectations": 841
   },
   "geometry_urban_candidate": {
-    "status": "Adapted static shells; not native installed",
+    "status": "Three urban specials embedded; native loading and generation pending",
     "world_maps": 14,
     "structural_nested_maps": 4,
     "own_omt": 66,
     "unresolved_typed_refs": [],
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
-    "report": "geometry_layer/URBAN_ADAPTATION_REPORT.json"
+    "report": "geometry_layer/URBAN_ADAPTATION_REPORT.json",
+    "navigation_and_marking_expectations": 120
   }
 }

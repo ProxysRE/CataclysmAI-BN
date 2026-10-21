@@ -6,7 +6,7 @@
     "authors": [
       "ProxysRE"
     ],
-    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites and deserter settlement. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum and supermarket. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
     "category": "buildings",
     "dependencies": [
       "bn"
