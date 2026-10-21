@@ -13,7 +13,7 @@ from audit_bn_mod_content import read_cache as mod_cache
 SOURCE=OUT/'urban_sources'
 PIN='c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'
 TARGETS={'police_dept','textile_mill_museum','supermarket'}
-UTILITIES=('roof_4x4_utility','roof_4x4_utility_1','roof_6x6_utility')
+UTILITIES=('roof_4x4_utility','roof_4x4_utility_1','roof_6x6_utility','11x11_gym_open')
 
 
 def prepare(check=False):
@@ -22,7 +22,7 @@ def prepare(check=False):
     for name,digest in manifest['files'].items():
         raw=(SOURCE/name).read_bytes();assert hashlib.sha256(raw).hexdigest()==digest,name
         files[name]=json.loads(raw)
-    assert len(files)==7
+    assert len(files)==8
     shared=shared_sources()
     palettes={e['id']:e for name,es in shared.items()if name.startswith('dda/')for e in es if e.get('type')=='palette'}
     palettes.update({e['id']:e for name,es in files.items()for e in es if e.get('type')=='palette'})
@@ -46,6 +46,10 @@ def prepare(check=False):
     for es in shared.values():
         for e in es:
             if e.get('nested_mapgen_id')in UTILITIES:original.append(copy.deepcopy(e))
+    gym=next(copy.deepcopy(e)for es in files.values()for e in es if e.get('nested_mapgen_id')=='11x11_gym_open')
+    gym['object']=expand(gym['object'],palettes)
+    assert not gym['object'].get('palettes')
+    original.append(gym)
     registrations={}
     catalog,_=read_sources()
     for path,text in catalog.items():
@@ -88,12 +92,34 @@ def prepare(check=False):
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
     mods={(r['type'],r['id'])for r in mod_cache()['records']};own=index_entries(entries)
     missing=sorted(required(entries)-own-core)
+    # Reuse BN's wall of the same construction. Only unavailable paint variants
+    # collapse; reinforced concrete must never become a domestic wall.
+    wall_aliases={}
+    for kind,name in missing:
+        if kind!='terrain':continue
+        for base in ('t_strconc_wall','t_sconc_wall','t_concrete_wall','t_wall'):
+            if name.startswith(base+'_') and ('terrain',base)in core:
+                wall_aliases[name]=base;break
+    conversions=Counter()
+    def adapt(value):
+        if isinstance(value,str):
+            if value in wall_aliases:conversions[value]+=1
+            return wall_aliases.get(value,value)
+        if isinstance(value,list):return [adapt(x)for x in value]
+        if isinstance(value,dict):return {k:adapt(v)for k,v in value.items()}
+        return value
+    entries=adapt(entries)
+    remaining=sorted(required(entries)-own-core)
+    assert remaining==[('terrain','t_zebra')],remaining
+    assert not issues,issues
+    assert len(mapped)==66
+    assert any(e.get('nested_mapgen_id')=='dda_geo_urban_11x11_gym_open'for e in entries)
     report={'status':'urban_geometry_staging_not_installed','native_embedded':False,'runtime_validated':False,
       'definitions':dict(Counter(e['type']for e in entries)),'world_maps':sum('om_terrain'in e for e in entries),'unique_omt':len(mapped),
       'special_cells':{e['id']:sum('overmap'in c for c in e['overmaps'])for e in entries if e['type']=='overmap_special'},
-      'source_rows_preserved':True,'source_city_registration':'Police department and museum retain verbatim city_building registrations in the later-layer archive; shell registrations are zero-occurrence special candidates only','inline_mapping_projection':mapping_projection,'unresolved_typed_refs':missing,'geometry_issues':issues,
+      'source_rows_preserved':True,'source_city_registration':'Police department and museum retain verbatim city_building registrations in the later-layer archive; shell registrations are zero-occurrence special candidates only','inline_mapping_projection':mapping_projection,'raw_unresolved_typed_refs':missing,'unresolved_typed_refs':remaining,'wall_adaptations':[{'source':n,'bn':wall_aliases[n],'references':conversions[n],'difference':'Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply'}for n in sorted(wall_aliases)],'geometry_issues':issues,
       'core_id_overlaps':sorted((own-BUILTIN_IDS)&core),'bundled_mod_id_overlaps':sorted((own-BUILTIN_IDS)&mods),
-      'deferred_structural_nested':['11x11_gym_open: carpet terrain and palette dependencies retained in authenticated basement_nested.json; resolve before native embedding'],
+      'structural_nested_preserved':list(UTILITIES),
       'limits':['Not in native preview; generation and schema validation pending','Later-layer furnishings, loot, inhabitants, camp fields and quests retained separately','Existing BN external cells retain stock generation','No completion credit before native tests']}
     for name,value in [('URBAN_SHELLS.json',entries),('URBAN_LATER_LAYERS.json',later),('URBAN_GEOMETRY_REPORT.json',report)]:
         text=json.dumps(value,indent=2,ensure_ascii=True)+'\n';p=OUT/name

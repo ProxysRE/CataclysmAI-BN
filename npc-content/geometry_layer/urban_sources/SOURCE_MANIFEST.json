@@ -8,6 +8,7 @@
     "data/json/mapgen_palettes/common_parameters.json": "abb3e250be1920840155264e84890f3c4aa12e9ec169f2e535add993905137e6",
     "data/json/mapgen_palettes/police_dept_palette.json": "a9d191f369caabef05253154d16756280875f352ae1f95b8c9c3b27b2f295015",
     "data/json/mapgen_palettes/textile_mill_museum.json": "dcdedaf6d99d92e3804281ff6529d4c03f9a17acb6ffc49db9378695c3be32c1",
-    "data/json/mapgen/nested/basement_nested.json": "4d9caa5826e57f1349d83154eda75a51aaf7395142ce78b4b78da23c294c2fb2"
+    "data/json/mapgen/nested/basement_nested.json": "4d9caa5826e57f1349d83154eda75a51aaf7395142ce78b4b78da23c294c2fb2",
+    "data/json/mapgen_palettes/house_general_palette.json": "a352160e785435f7bee5c59fb901f9e98bad5d456205d6bbaeb494774b75a423"
   }
 }

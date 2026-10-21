@@ -22,51 +22,51 @@
                 1
               ],
               [
-                "t_strconc_wall_b",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_g",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_r",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 10
               ],
               [
-                "t_strconc_wall_p",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_P",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_y",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_orange",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_brown",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_cyan",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_black",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -81,11 +81,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 3
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -265,51 +265,51 @@
                 1
               ],
               [
-                "t_strconc_wall_b",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_g",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_r",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 10
               ],
               [
-                "t_strconc_wall_p",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_P",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_y",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_orange",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_brown",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_cyan",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_black",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -324,11 +324,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 3
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -457,6 +457,15 @@
         "          6~~~~~~~~~~~~~~6                      ",
         "          6~~~~~~~~~~~~~~6                      ",
         "          6666666666666666                      "
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            "dda_geo_urban_11x11_gym_open"
+          ],
+          "x": 1,
+          "y": 29
+        }
       ]
     },
     "method": "json"
@@ -579,51 +588,51 @@
                 1
               ],
               [
-                "t_strconc_wall_b",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_g",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_r",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 10
               ],
               [
-                "t_strconc_wall_p",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_P",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_y",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_orange",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_brown",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_cyan",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_black",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -638,11 +647,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 3
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -771,51 +780,51 @@
                 1
               ],
               [
-                "t_strconc_wall_b",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_g",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_r",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 10
               ],
               [
-                "t_strconc_wall_p",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_P",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_y",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_orange",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_brown",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_cyan",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_black",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -830,11 +839,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 3
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -1017,51 +1026,51 @@
                 1
               ],
               [
-                "t_strconc_wall_b",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_g",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_r",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 10
               ],
               [
-                "t_strconc_wall_p",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_P",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_y",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_orange",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_brown",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_cyan",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_black",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -1076,11 +1085,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 3
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -1342,51 +1351,51 @@
                 1
               ],
               [
-                "t_strconc_wall_b",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_g",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_r",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 10
               ],
               [
-                "t_strconc_wall_p",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_P",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_y",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_orange",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_brown",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_cyan",
+                "t_strconc_wall",
                 1
               ],
               [
-                "t_strconc_wall_black",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -1401,11 +1410,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 3
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ]
             ]
@@ -1548,23 +1557,23 @@
                 3
               ],
               [
-                "t_wall_gray",
+                "t_wall",
                 3
               ],
               [
-                "t_wall_brown",
+                "t_wall",
                 3
               ],
               [
-                "t_wall_cyan",
+                "t_wall",
                 1
               ],
               [
-                "t_wall_black",
+                "t_wall",
                 3
               ],
               [
-                "t_wall_orange",
+                "t_wall",
                 3
               ],
               [
@@ -1591,7 +1600,7 @@
                 4
               ],
               [
-                "t_wall_gray",
+                "t_wall",
                 2
               ],
               [
@@ -1599,11 +1608,11 @@
                 2
               ],
               [
-                "t_concrete_wall_w",
+                "t_concrete_wall",
                 4
               ],
               [
-                "t_concrete_wall_gray",
+                "t_concrete_wall",
                 2
               ],
               [
@@ -1611,11 +1620,11 @@
                 1
               ],
               [
-                "t_strconc_wall_w",
+                "t_strconc_wall",
                 2
               ],
               [
-                "t_strconc_wall_gray",
+                "t_strconc_wall",
                 1
               ],
               [
@@ -1623,11 +1632,11 @@
                 1
               ],
               [
-                "t_sconc_wall_w",
+                "t_sconc_wall",
                 2
               ],
               [
-                "t_sconc_wall_gray",
+                "t_sconc_wall",
                 1
               ]
             ]
@@ -2359,6 +2368,217 @@
         "A": "f_null",
         "a": "f_null",
         "o": "f_null"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_urban_11x11_gym_open",
+    "object": {
+      "parameters": {
+        "interior_wall_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_wall_b",
+                5
+              ],
+              [
+                "t_wall_g",
+                5
+              ],
+              [
+                "t_wall_p",
+                1
+              ],
+              [
+                "t_wall_P",
+                1
+              ],
+              [
+                "t_wall_r",
+                3
+              ],
+              [
+                "t_wall_w",
+                15
+              ],
+              [
+                "t_wall_y",
+                3
+              ],
+              [
+                "t_wall",
+                3
+              ],
+              [
+                "t_wall",
+                3
+              ],
+              [
+                "t_wall",
+                1
+              ],
+              [
+                "t_wall",
+                3
+              ],
+              [
+                "t_wall",
+                3
+              ],
+              [
+                "t_brick_wall",
+                2
+              ]
+            ]
+          }
+        },
+        "exterior_wall_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_brick_wall",
+                4
+              ],
+              [
+                "t_wall_wood",
+                2
+              ],
+              [
+                "t_wall_w",
+                4
+              ],
+              [
+                "t_wall",
+                2
+              ],
+              [
+                "t_concrete_wall",
+                2
+              ],
+              [
+                "t_concrete_wall",
+                4
+              ],
+              [
+                "t_concrete_wall",
+                2
+              ],
+              [
+                "t_strconc_wall",
+                1
+              ],
+              [
+                "t_strconc_wall",
+                2
+              ],
+              [
+                "t_strconc_wall",
+                1
+              ],
+              [
+                "t_sconc_wall",
+                1
+              ],
+              [
+                "t_sconc_wall",
+                2
+              ],
+              [
+                "t_sconc_wall",
+                1
+              ]
+            ]
+          }
+        },
+        "house_fence_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_splitrail_fence",
+                3
+              ],
+              [
+                "t_chainfence",
+                2
+              ],
+              [
+                "t_fence",
+                2
+              ],
+              [
+                "t_privacy_fence",
+                1
+              ],
+              [
+                "t_drystone_wall_half",
+                1
+              ]
+            ]
+          }
+        },
+        "carpet_color_type": {
+          "type": "ter_str_id",
+          "scope": "nest",
+          "default": {
+            "distribution": [
+              [
+                "t_carpet_red",
+                1
+              ],
+              [
+                "t_carpet_green",
+                1
+              ],
+              [
+                "t_carpet_purple",
+                1
+              ],
+              [
+                "t_carpet_yellow",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "terrain": {
+        "=": {
+          "param": "carpet_color_type",
+          "fallback": "t_carpet_red"
+        },
+        "%": {
+          "param": "carpet_color_type",
+          "fallback": "t_carpet_green"
+        }
+      },
+      "mapgensize": [
+        11,
+        11
+      ],
+      "rows": [
+        "           ",
+        "           ",
+        "      $ $  ",
+        "     i$ $  ",
+        "     i!!!  ",
+        "     i$ $  ",
+        "      $ $  ",
+        "      ===  ",
+        "   &  =%=  ",
+        " &&&  ===  ",
+        "           "
+      ],
+      "furniture": {
+        "!": "f_null",
+        "$": "f_null",
+        "&": "f_null",
+        "i": "f_null"
       }
     },
     "method": "json"

@@ -3,7 +3,7 @@
   "native_embedded": false,
   "runtime_validated": false,
   "definitions": {
-    "mapgen": 17,
+    "mapgen": 18,
     "overmap_special": 3,
     "overmap_terrain": 6
   },
@@ -17,7 +17,7 @@
   "source_rows_preserved": true,
   "source_city_registration": "Police department and museum retain verbatim city_building registrations in the later-layer archive; shell registrations are zero-occurrence special candidates only",
   "inline_mapping_projection": [],
-  "unresolved_typed_refs": [
+  "raw_unresolved_typed_refs": [
     [
       "terrain",
       "t_concrete_wall_gray"
@@ -107,11 +107,148 @@
       "t_zebra"
     ]
   ],
+  "unresolved_typed_refs": [
+    [
+      "terrain",
+      "t_zebra"
+    ]
+  ],
+  "wall_adaptations": [
+    {
+      "source": "t_concrete_wall_gray",
+      "bn": "t_concrete_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_concrete_wall_w",
+      "bn": "t_concrete_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_sconc_wall_gray",
+      "bn": "t_sconc_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_sconc_wall_w",
+      "bn": "t_sconc_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_P",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_b",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_black",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_brown",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_cyan",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_g",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_gray",
+      "bn": "t_strconc_wall",
+      "references": 14,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_orange",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_p",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_r",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_w",
+      "bn": "t_strconc_wall",
+      "references": 14,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_strconc_wall_y",
+      "bn": "t_strconc_wall",
+      "references": 6,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_wall_black",
+      "bn": "t_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_wall_brown",
+      "bn": "t_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_wall_cyan",
+      "bn": "t_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_wall_gray",
+      "bn": "t_wall",
+      "references": 4,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    },
+    {
+      "source": "t_wall_orange",
+      "bn": "t_wall",
+      "references": 2,
+      "difference": "Unavailable paint color uses BN wall of the same construction; BN wall mechanics apply"
+    }
+  ],
   "geometry_issues": [],
   "core_id_overlaps": [],
   "bundled_mod_id_overlaps": [],
-  "deferred_structural_nested": [
-    "11x11_gym_open: carpet terrain and palette dependencies retained in authenticated basement_nested.json; resolve before native embedding"
+  "structural_nested_preserved": [
+    "roof_4x4_utility",
+    "roof_4x4_utility_1",
+    "roof_6x6_utility",
+    "11x11_gym_open"
   ],
   "limits": [
     "Not in native preview; generation and schema validation pending",
