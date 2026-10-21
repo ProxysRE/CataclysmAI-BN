@@ -40,7 +40,7 @@ def package(bn: Path, dist: Path, output: Path) -> None:
             if not installed.is_file() or digest(source) != digest(installed):
                 raise SystemExit(f"Missing or stale installed mod file: {installed}")
     # Require real, readable catalogs; an empty lang/mo directory is insufficient.
-    for catalog, minimum in ((dist / "lang/mo/ru/LC_MESSAGES/cataclysm-bn.mo", 1000),
+    for catalog, minimum in ((dist / "lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo", 1000),
                              (dist / "data/mods/trkv_raid_core/lang/ru.mo", 30)):
         with catalog.open("rb") as stream:
             translation = gettext.GNUTranslations(stream)
@@ -89,7 +89,8 @@ def package(bn: Path, dist: Path, output: Path) -> None:
         "patches": {p.name: digest(p) for p in sorted((ROOT / "patches").glob("*.patch"))},
         "automated_checks": ["installed --version", "installed --check-mods trkv_raid_core"],
         "windows_ui_verified": False,
-        "languages": ["en", "ru"],
+        "languages": ["en", "ru_RU"],
+        "bn_translation_source": json.loads((dist / "lang/mo/ru_RU/SOURCE.json").read_text(encoding="utf-8")),
     }
     (dist / "TARKOV_BUILD.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     archive_base = output / f"Tarkov_DEV01_Windows_x64_{project_sha[:8]}"

@@ -10,7 +10,12 @@ MOD = ROOT / "tarkov/mods/trkv_raid_core"
 
 def main() -> None:
     for path in MOD.glob("*.json"):
-        assert isinstance(json.loads(path.read_text()), list), path
+        entries = json.loads(path.read_text())
+        assert isinstance(entries, list), path
+        for entry in entries:
+            name = entry.get("name")
+            if isinstance(name, dict) and "str_pl" in name:
+                assert name["str_pl"] != name.get("str", "") + "s", (path, "BN rejects redundant str_pl")
     for definition in json.loads((MOD / "mapgen.json").read_text()):
         obj = definition["object"]
         rows = obj["rows"]

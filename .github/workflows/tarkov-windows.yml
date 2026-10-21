@@ -7,6 +7,7 @@ on:
       - '.github/workflows/tarkov-windows.yml'
       - 'tarkov/tools/package_windows.py'
       - 'tarkov/tools/install_into_bn.py'
+      - 'tarkov/tools/install_translations.py'
       - 'tarkov/baseline.json'
       - 'tarkov/mods/**'
       - 'tarkov/patches/**'
@@ -118,6 +119,14 @@ jobs:
           python tarkov/tests/installer_patch_test.py
           if ($LASTEXITCODE -ne 0) { throw "Windows patch checkout tests failed" }
           python tarkov/tools/install_into_bn.py bn
+      - uses: actions/cache@v4
+        id: russian-catalog
+        with:
+          path: bn/lang/mo/ru_RU
+          key: trkv-ru-release-20261019-1fbbc50783f4-v1
+      - name: Install official Russian translation catalog
+        if: steps.russian-catalog.outputs.cache-hit != 'true'
+        run: python tarkov/tools/install_translations.py bn
       - name: Configure Windows game
         run: |
           cmake -G Ninja -S bn -B bn/build-windows `
@@ -126,10 +135,10 @@ jobs:
             "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/bn/build-scripts/MSVC.cmake" `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=OFF `
             -DCURSES=OFF -DTILES=ON -DSOUND=ON -DTESTS=OFF -DRELEASE=ON `
-            -DLANGUAGES=ru -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF `
+            -DLANGUAGES=none -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF `
             -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF -DLUA_DOCS_ON_BUILD=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
       - name: Build Windows game
-        run: cmake --build bn/build-windows --target cataclysm-bn-tiles translations --parallel 2
+        run: cmake --build bn/build-windows --target cataclysm-bn-tiles --parallel 2
       - name: Install portable game
         run: |
           New-Item -ItemType Directory -Force bn/lang/mo

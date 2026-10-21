@@ -32,6 +32,8 @@
   {
     "type": "furniture",
     "id": "f_trkv_test_lamp",
+    "//": "Legacy save compatibility only; new maps use vanilla f_olight_nogrid.",
+    "looks_like": "f_olight_nogrid",
     "name": "test area lamp",
     "description": "Permanent lighting for the technical test arena.",
     "symbol": "*",
