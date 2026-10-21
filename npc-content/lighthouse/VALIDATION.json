@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "a8f22c287b277a9d8af9d1aa1f20a524492e6092",
-    "run_id": 39620442620,
+    "head": "d75ca47d876a76d87193f946cdf18de6330f92c2",
+    "run_id": 39647265421,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 16,
-    "geometry_assertions": 542715,
-    "installed_geometry_test_cases": 16,
-    "installed_geometry_assertions": 542715
+    "geometry_test_cases": 20,
+    "geometry_assertions": 571932,
+    "installed_geometry_test_cases": 20,
+    "installed_geometry_assertions": 571932
   },
-  "native_patch_sha256": "1482589a1a1adf230d9d762fa217d2450fa98b8fcd601f0fbec259bb1ce77098",
+  "native_patch_sha256": "dfb175428082c836fdc8923094ec5c59e4ece7fe2085e2f1117ae82de3cd7138",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -46,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Corrected concrete panel terrain passed initialization and all sixteen geometry cases on source and installed Windows data. Natural placement, player traversal and functional faction panels remain uncertified.",
+  "note": "Checkpoint validates source and installed optional geometry including raider sites; no combat or full player traversal certification.",
   "portable_package": {
-    "run_id": 39620442620,
+    "run_id": 39647265421,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,14 +57,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12359175270,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39620442620/artifacts/12359175270",
+    "artifact_id": 12371454521,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39647265421/artifacts/12371454521",
     "installed_geometry_tests": {
-      "cases": 16,
-      "assertions": 542715
+      "cases": 20,
+      "assertions": 571932
     },
-    "size": 205637996,
-    "digest": "sha256:368683894734aa3627095994fb395643f2300a3a4f3d5a431f957ebe8a6bcba1"
+    "size": 205642479,
+    "digest": "sha256:eacbb84e844a349d23576ee276d28f4faba84e295e1b08a9063b92a96af67b11"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -75,16 +75,18 @@
       "campus",
       "godco_base",
       "exodii",
-      "frontier"
+      "frontier",
+      "raider"
     ],
-    "source_and_installed": "All eight geometry cases passed without initialization errors",
-    "placed_cells": 613,
+    "source_and_installed": "All twenty geometry cases passed without initialization errors",
+    "placed_cells": 638,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
       "Faction reader and Balthazar intercom are physical panels with deferred interactions",
-      "Raider sites, container yards and later Godco quest construction excluded"
-    ]
+      "Container yards and later Godco quest construction excluded"
+    ],
+    "raider_navigation_and_terrain_expectations": 841
   }
 }

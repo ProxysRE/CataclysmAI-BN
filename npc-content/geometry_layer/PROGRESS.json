@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 16,
-  "verified_percent": 31.4,
+  "verified_groups": 18,
+  "verified_percent": 35.3,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 31.4,
+  "verified_plus_prepared_percent": 35.3,
   "evidence_checkpoint": {
-    "head": "a8f22c287b277a9d8af9d1aa1f20a524492e6092",
-    "run_id": 39620442620,
+    "head": "d75ca47d876a76d87193f946cdf18de6330f92c2",
+    "run_id": 39647265421,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 16,
-    "geometry_assertions": 542715,
-    "installed_geometry_test_cases": 16,
-    "installed_geometry_assertions": 542715
+    "geometry_test_cases": 20,
+    "geometry_assertions": 571932,
+    "installed_geometry_test_cases": 20,
+    "installed_geometry_assertions": 571932
   },
   "rows": [
     {
@@ -105,7 +105,9 @@
       "source_identities": [
         "city_building:deserter_city"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All deserter settlement cells passed source and installed isolated geometry generation"
     },
     {
       "name": "Островная тюрьма",
@@ -180,7 +182,9 @@
         "overmap_special:bandit_drug_lab",
         "overmap_special:bandit_work_camp"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Drug lab, bandit drug lab and work camp passed source and installed all-floor generation"
     },
     {
       "name": "Контейнерная площадка и её бандитская версия",

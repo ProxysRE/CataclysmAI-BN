@@ -22,3 +22,7 @@ The police gym overlay is now expanded from authenticated domestic/carpet palett
 This is source staging, not a playable completion claim. Not embedded in the native preview or current Windows patch. Schema/loading, generation, stairs and access checks remain required. No first-layer percentage credit is added.
 
 Run `python npc-content/prepare_urban_geometry.py --check` to verify source hashes, row dimensions, exact declarations and reproducible extraction.
+
+## Adapted crossing
+
+`adapt_urban_geometry.py` now produces a separate adapted shell with zero unresolved typed references. The isolated white pedestrian crossing copies the complete authenticated BN pavement definition and source DDA presentation. BN pavement connections and dirt after destruction replace DDA zebra grouping and null destruction terrain. Source files and differences are recorded in `urban_adaptation_sources` and `URBAN_ADAPTATION_REPORT.json`. Run the adapter with `--check`. Native preview embedding, parameter loading and generation remain pending.

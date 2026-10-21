@@ -1,0 +1,674 @@
+{
+  "status": "urban_geometry_adapted_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "aliases": {
+    "t_zebra": "dda_geo_urban_zebra"
+  },
+  "new_terrain_definitions": 1,
+  "unresolved_typed_refs": [],
+  "navigation_and_marking_expectations": {
+    "police_dept_u110": [
+      {
+        "x": 21,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "police_dept_u010": [
+      {
+        "x": 19,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "police_dept_u011": [
+      {
+        "x": 20,
+        "y": 2,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 19,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "police_dept_u111": [
+      {
+        "x": 21,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "police_dept_u012": [
+      {
+        "x": 20,
+        "y": 2,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "police_dept_b10": [
+      {
+        "x": 13,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 14,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 11,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "police_dept_d100": [
+      {
+        "x": 13,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "police_dept_d110": [
+      {
+        "x": 19,
+        "y": 6,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 21,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 21,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "police_dept_d001": [
+      {
+        "x": 4,
+        "y": 12,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "police_dept_d101": [
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "police_dept_d111": [
+      {
+        "x": 19,
+        "y": 6,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 21,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 21,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "police_dept_d002": [
+      {
+        "x": 4,
+        "y": 12,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "supermarket_x0_y2_z0": [
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 21,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 21,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 23,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 23,
+        "terrain": "dda_geo_urban_zebra"
+      }
+    ],
+    "supermarket_x1_y2_z0": [
+      {
+        "x": 8,
+        "y": 1,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 1,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 7,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 11,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 13,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 13,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 15,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 15,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 17,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 17,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 4,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 6,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 2,
+        "y": 20,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 4,
+        "y": 20,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 6,
+        "y": 20,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 20,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "dda_geo_urban_zebra"
+      }
+    ],
+    "supermarket_x2_y1_z0": [
+      {
+        "x": 10,
+        "y": 1,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 2,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 11,
+        "y": 2,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 4,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 6,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 11,
+        "y": 6,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 6,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 13,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 15,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 17,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 19,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 21,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 6,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 13,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 15,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 17,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 19,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      }
+    ],
+    "supermarket_x2_y0_z0": [
+      {
+        "x": 6,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 12,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 14,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 16,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 18,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 20,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 22,
+        "y": 8,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 6,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 14,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 16,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 18,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 20,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "dda_geo_urban_zebra"
+      }
+    ],
+    "textile_mill_museum_0a1": [
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "t_wood_stairs_up"
+      },
+      {
+        "x": 23,
+        "y": 22,
+        "terrain": "t_wood_stairs_up"
+      }
+    ],
+    "textile_mill_museum_0a2": [
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "t_wood_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 22,
+        "terrain": "t_wood_stairs_up"
+      }
+    ],
+    "textile_mill_museum_1a1": [
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "t_wood_stairs_down"
+      },
+      {
+        "x": 23,
+        "y": 22,
+        "terrain": "t_wood_stairs_down"
+      }
+    ],
+    "textile_mill_museum_1a2": [
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "t_wood_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 22,
+        "terrain": "t_wood_stairs_down"
+      }
+    ]
+  },
+  "expectation_count": 120,
+  "preserved": [
+    "All staged rows and 66 own OMT",
+    "Police gym carpet overlay and placement",
+    "DDA crossing name, description, white symbol and movement cost"
+  ],
+  "adaptations": [
+    "Concrete BN pavement definition supplies physical and destruction mechanics",
+    "BN PAVEMENT connection replaces DDA PAVEMENT_ZEBRA grouping",
+    "Destruction leaves BN dirt instead of DDA null terrain",
+    "Unavailable wall paint variants already use BN walls of the same construction"
+  ],
+  "remaining": [
+    "Native BN parameter and mapgen schema loading",
+    "All-floor source and installed generation",
+    "Player traversal and stair continuity",
+    "Tileset-specific crosswalk appearance"
+  ],
+  "limits": [
+    "Typed closure is not native validation",
+    "No native patch changes or completion credit"
+  ]
+}

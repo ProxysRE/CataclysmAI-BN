@@ -1,0 +1,10 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "files": {
+    "bn/data/json/furniture_and_terrain/terrain-floors-outdoors.json": "5bb8b4c3f2d185ec5865db3fd070623095bb90fedb715b2a0d911122280dd860",
+    "dda/data/json/furniture_and_terrain/terrain-floors-outdoors.json": "6eb7eb3805738a6337e528a590b78ae904941e1f2576f2778b5b4a635e158e08"
+  }
+}

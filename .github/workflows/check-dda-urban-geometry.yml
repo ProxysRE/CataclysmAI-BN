@@ -5,6 +5,8 @@ on:
     branches: [port/dda-npc-locations]
     paths:
       - npc-content/prepare_urban_geometry.py
+      - npc-content/adapt_urban_geometry.py
+      - npc-content/geometry_layer/urban_adaptation_sources/**
       - npc-content/geometry_layer/URBAN_*
       - npc-content/geometry_layer/urban_sources/**
       - .github/workflows/check-dda-urban-geometry.yml
@@ -17,3 +19,4 @@ jobs:
         with:
           python-version: '3.12'
       - run: python npc-content/prepare_urban_geometry.py --check
+      - run: python npc-content/adapt_urban_geometry.py --check

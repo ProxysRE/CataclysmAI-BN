@@ -5,6 +5,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'city_building:deserter_city':('native/dda_geometry_preview.json','All deserter settlement cells passed source and installed isolated geometry generation'),
+ 'overmap_special:drug_lab':('native/dda_geometry_preview.json','Drug lab, bandit drug lab and work camp passed source and installed all-floor generation'),
  'overmap_special:isolated_road':('native/dda_geometry_preview.json','All seven Isolated Road cells passed source and installed geometry generation'),
  'overmap_special:gun_show':('native/dda_geometry_preview.json','Both hall cells and both roof cells passed source and installed geometry generation'),
  'overmap_special:balthazar_bunker':('native/dda_geometry_preview.json','All eleven bunker cells and deterministic navigation terrain passed source and installed tests'),
@@ -31,7 +33,7 @@ def prepare(check=False):
     validation=json.loads((ROOT/'lighthouse/VALIDATION.json').read_text())
     checkpoint=validation['checkpoint']
     assert checkpoint['status']=='success' and checkpoint['geometry_test_cases']>=3
-    assert {'hub_01','campus','exodii','frontier'}<=set(validation['geometry_preview']['packages'])
+    assert {'hub_01','campus','exodii','frontier','raider'}<=set(validation['geometry_preview']['packages'])
     rows=[];seen=set()
     for g in groups:
         found=set(g['source_identities'])&VERIFIED.keys()
