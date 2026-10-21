@@ -27,6 +27,7 @@ jobs:
       - run: python tarkov/tools/check.py
       - run: python -m py_compile tarkov/tools/install_into_bn.py tarkov/tools/run_cold_restart.py
       - run: python tarkov/tests/installer_patch_test.py
+      - run: python tarkov/tests/native_runner_test.py
       - uses: actions/upload-artifact@v4
         with:
           name: Tarkov_DEV0.1_mod_source

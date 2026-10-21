@@ -7,8 +7,11 @@ import tempfile
 import xml.etree.ElementTree as ET
 
 
-def run(bn: Path, output: Path) -> None:
-    executable = bn / "build/bin/cata_test"
+def run(bn: Path, output: Path, executable: Path | None = None) -> None:
+    executable = executable or bn / "build/bin/cata_test"
+    if not executable.is_file():
+        raise FileNotFoundError(executable)
+    output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="trkv-cold-", dir=output) as scratch:
         root = Path(scratch).resolve()
         source = None
@@ -35,19 +38,19 @@ def run(bn: Path, output: Path) -> None:
                 command.append("--trkv-keep-world")
             print("Tarkov cold process: " + name, flush=True)
             try:
-                with log.open("w") as stream:
+                with log.open("w", encoding="utf-8") as stream:
                     subprocess.run(command, cwd=bn, env=env, stdout=stream,
                                    stderr=subprocess.STDOUT, timeout=900, check=True)
             finally:
                 if log.exists():
-                    print(log.read_text(errors="replace")[-16000:], flush=True)
+                    print(log.read_text(encoding="utf-8", errors="replace")[-16000:], flush=True)
             document = ET.parse(report)
             if len(document.findall(".//testcase")) != 1:
                 raise RuntimeError("Expected exactly one cold testcase: " + name)
-            if document.findall(".//failure") or document.findall(".//error"):
+            if any(document.findall(".//" + tag) for tag in ("failure", "error", "skipped")):
                 raise RuntimeError("Cold testcase failed: " + name)
             if keep:
-                source = Path(manifest.read_text().strip()).resolve()
+                source = Path(manifest.read_text(encoding="utf-8").strip()).resolve()
                 if not source.is_relative_to(root) or not source.is_dir():
                     raise RuntimeError("Exported world is not a disposable fixture")
         print("PASS cold active load, cold cleanup replay, stash, equipment and next raid", flush=True)
@@ -56,5 +59,8 @@ def run(bn: Path, output: Path) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("bn", type=Path)
+    parser.add_argument("--executable", type=Path, help="Explicit native test executable (including .exe)")
+    parser.add_argument("--output", type=Path, help="Directory for reports and temporary test worlds")
     args = parser.parse_args()
-    run(args.bn.resolve(), args.bn.resolve().parent)
+    run(args.bn.resolve(), (args.output or args.bn.resolve().parent).resolve(),
+        args.executable.resolve() if args.executable else None)

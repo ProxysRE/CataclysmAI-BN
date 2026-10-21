@@ -39,6 +39,23 @@ def package(bn: Path, dist: Path, output: Path) -> None:
             installed = dist / "data/mods/trkv_raid_core" / source.relative_to(source_mod)
             if not installed.is_file() or digest(source) != digest(installed):
                 raise SystemExit(f"Missing or stale installed mod file: {installed}")
+    # LANGUAGES=none skips lang/CMakeLists.txt's install rules, so copy the
+    # verified prebuilt catalog explicitly instead of relying on cmake --install.
+    shutil.copytree(bn / "lang/mo/ru_RU", dist / "lang/mo/ru_RU", dirs_exist_ok=True)
+    provenance = json.loads((dist / "lang/mo/ru_RU/SOURCE.json").read_text(encoding="utf-8"))
+    if digest(dist / "lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo") != provenance["catalog_sha256"]:
+        raise SystemExit("Installed Russian catalog does not match its verified source")
+    checks_dir = output / "windows-runtime"
+    checks = json.loads((checks_dir / "native-checks.json").read_text(encoding="utf-8"))
+    expected_reports = {"tarkov-runtime.xml", "tarkov-cold-write.xml", "tarkov-cold-active.xml", "tarkov-cold-cleanup.xml"}
+    if (checks.get("schema") != 1 or checks.get("passed") is not True or checks.get("platform") != "nt"
+            or checks.get("project_sha") != project_sha or checks.get("bn_sha") != bn_sha
+            or checks.get("game_sha256") != digest(executable)
+            or set(checks.get("reports", {})) != expected_reports):
+        raise SystemExit("Windows runtime verification is missing or belongs to another build")
+    for name, expected in checks["reports"].items():
+        if digest(checks_dir / name) != expected:
+            raise SystemExit(f"Windows runtime report has changed: {name}")
     # Require real, readable catalogs; an empty lang/mo directory is insufficient.
     for catalog, minimum in ((dist / "lang/mo/ru_RU/LC_MESSAGES/cataclysm-bn.mo", 1000),
                              (dist / "data/mods/trkv_raid_core/lang/ru.mo", 30)):
@@ -80,6 +97,7 @@ def package(bn: Path, dist: Path, output: Path) -> None:
                 shutil.copyfile(debug, output / "windows-debug.log")
     shutil.copytree(ROOT, dist / "project-source/tarkov",
                     ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    shutil.copyfile(checks_dir / "native-checks.json", dist / "WINDOWS_NATIVE_CHECKS.json")
     shutil.copyfile(ROOT / "README.md", dist / "TARKOV_README.md")
     shutil.copyfile(ROOT / "docs/WINDOWS_VALIDATION.md", dist / "WINDOWS_VALIDATION.md")
     metadata = {
@@ -89,6 +107,7 @@ def package(bn: Path, dist: Path, output: Path) -> None:
         "patches": {p.name: digest(p) for p in sorted((ROOT / "patches").glob("*.patch"))},
         "automated_checks": ["installed --version", "installed --check-mods trkv_raid_core"],
         "windows_ui_verified": False,
+        "windows_native_checks": checks,
         "languages": ["en", "ru_RU"],
         "bn_translation_source": json.loads((dist / "lang/mo/ru_RU/SOURCE.json").read_text(encoding="utf-8")),
     }

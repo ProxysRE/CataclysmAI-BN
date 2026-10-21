@@ -8,6 +8,9 @@ on:
       - 'tarkov/tools/package_windows.py'
       - 'tarkov/tools/install_into_bn.py'
       - 'tarkov/tools/install_translations.py'
+      - 'tarkov/tools/run_native_checks.py'
+      - 'tarkov/tools/run_cold_restart.py'
+      - 'tarkov/tests/**'
       - 'tarkov/baseline.json'
       - 'tarkov/mods/**'
       - 'tarkov/patches/**'
@@ -32,6 +35,7 @@ jobs:
       - run: python tarkov/tools/check.py
       - run: python -m py_compile tarkov/tools/package_windows.py tarkov/tools/install_into_bn.py
       - run: python tarkov/tests/installer_patch_test.py
+      - run: python tarkov/tests/native_runner_test.py
 
   shaders:
     needs: validate
@@ -118,7 +122,7 @@ jobs:
         run: |
           python tarkov/tests/installer_patch_test.py
           if ($LASTEXITCODE -ne 0) { throw "Windows patch checkout tests failed" }
-          python tarkov/tools/install_into_bn.py bn
+          python tarkov/tools/install_into_bn.py bn --tests
       - uses: actions/cache@v4
         id: russian-catalog
         with:
@@ -131,14 +135,24 @@ jobs:
         run: |
           cmake -G Ninja -S bn -B bn/build-windows `
             -DCMAKE_BUILD_TYPE=Release `
+            "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${{ github.workspace }}/bn/build-windows/bin" `
             "-DCMAKE_PROJECT_INCLUDE_BEFORE=${{ github.workspace }}/bn/build-scripts/windows-tiles-sounds-x64-msvc.cmake" `
             "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/bn/build-scripts/MSVC.cmake" `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static -DDYNAMIC_LINKING=OFF `
-            -DCURSES=OFF -DTILES=ON -DSOUND=ON -DTESTS=OFF -DRELEASE=ON `
+            -DCURSES=OFF -DTILES=ON -DSOUND=ON -DTESTS=ON -DRELEASE=ON `
             -DLANGUAGES=none -DJSON_FORMAT=OFF -DCATA_FORMAT_TARGETS=OFF `
             -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF -DLUA_DOCS_ON_BUILD=OFF -DCMAKE_INSTALL_MESSAGE=NEVER
       - name: Build Windows game
-        run: cmake --build bn/build-windows --target cataclysm-bn-tiles --parallel 2
+        run: cmake --build bn/build-windows --target cataclysm-bn-tiles cata_test-tiles --parallel 2
+      - name: Run Windows raid lifecycle and cold restart
+        timeout-minutes: 65
+        env:
+          PYTHONIOENCODING: utf-8
+        run: >-
+          python tarkov/tools/run_native_checks.py bn
+          --executable bn/build-windows/bin/cata_test-tiles.exe
+          --game-executable bn/build-windows/bin/cataclysm-bn-tiles.exe
+          --output releases/windows-runtime
       - name: Install portable game
         run: |
           New-Item -ItemType Directory -Force bn/lang/mo
@@ -165,6 +179,7 @@ jobs:
           name: Tarkov_Windows_build_logs
           path: |
             releases/*.log
+            releases/windows-runtime/**
             bn/build-windows/CMakeFiles/CMakeConfigureLog.yaml
             bn/build-windows/vcpkg-manifest-install.log
             dist/Tarkov_DEV01_Windows_x64/config/debug.log
