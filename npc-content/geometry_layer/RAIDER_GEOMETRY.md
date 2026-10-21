@@ -13,3 +13,7 @@ The only unresolved typed terrain is `t_embrasure_wood`; it must be compared to 
 `adapt_raider_geometry.py --check` now closes the raw terrain obligation using two complete, isolated source definitions: the intact wood embrasure and its widened opening. Coverage 90/60, movement 0/4, material flags, source bash thresholds and item quantities are retained. BN wall connectivity flags replace source connection groups; BN flat roof substitutes for the source wood roof, and dust/splinter hit/destruction field emission is deferred explicitly. Typed references close against the pinned core and bundled-mod inventories.
 
 The adaptation is not embedded. Native schema/generation, combat cover, mounted shooting, reach attacks, fire and traversal after damage remain unverified. No completion credit is added.
+
+## Isolated native preview
+
+The four staged sites are now embedded in the explicit optional geometry preview. Their original OMT and special identities are namespaced; natural occurrences remain zero. The common fixture has 20 cases /638 placements. Raider navigation and embrasure positions have exact terrain expectations, while every own cell is checked for non-null terrain and absence of content loot. The widened wall state loads as a support terrain but requires separate damage/traversal/combat testing. Source and installed Windows generation are pending.

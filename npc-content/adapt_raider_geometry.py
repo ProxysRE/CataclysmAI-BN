@@ -3,7 +3,7 @@
 import argparse,copy,hashlib,json
 from prepare_geometry_layer import ROOT,OUT
 from prepare_raider_geometry import prepare as stage
-from prepare_regional_locations import index_entries,BUILTIN_IDS
+from prepare_regional_locations import flatten,index_entries,BUILTIN_IDS
 from prepare_container_yards import required
 from export_bn_ids import read_cache
 from audit_bn_mod_content import read_cache as mod_cache
@@ -47,7 +47,16 @@ def prepare(check=False):
         assert ('terrain',e['bash']['ter_set'])in core|own
         for item in e['bash']['items']:assert ('item',item['item'])in core
     missing=required(entries)-own-core;assert not missing,sorted(missing)
-    report={'status':'raider_geometry_adapted_not_installed','native_embedded':False,'runtime_validated':False,
+    navigation={}
+    for e in entries:
+        if 'om_terrain'not in e:continue
+        omt=e['om_terrain'];matrix=[[omt]]if isinstance(omt,str)else [omt]if isinstance(omt[0],str)else omt
+        for y,row in enumerate(e['object']['rows']):
+            for x,glyph in enumerate(row):
+                terrain=e['object'].get('terrain',{}).get(glyph)
+                if isinstance(terrain,str)and(terrain in ALIASES.values()or any(n in terrain for n in ('stairs','ladder','elevator'))):
+                    navigation.setdefault(matrix[y//24][x//24],[]).append({'x':x%24,'y':y%24,'terrain':terrain})
+    report={'navigation':navigation,'navigation_points':sum(map(len,navigation.values())),'status':'raider_geometry_adapted_not_installed','native_embedded':False,'runtime_validated':False,
       'aliases':ALIASES,'new_terrain_definitions':2,'unresolved_typed_refs':sorted(missing),'deferred_bash_fields':deferred,
       'preserved':['Original world-map rows and placements','Wooden material flags, coverage 90/60 and movement 0/4','Two-stage source bash thresholds and item quantities'],
       'adaptations':['BN CONNECT_TO_WALL replaces source wall connectivity groups','Existing BN flat roof replaces source wooden roof; roof material is not identical','Source hit/destroyed dust and splinter field emission is deferred'],

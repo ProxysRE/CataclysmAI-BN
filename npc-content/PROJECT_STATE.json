@@ -772,17 +772,18 @@
       "campus",
       "godco_base",
       "exodii",
-      "frontier"
+      "frontier",
+      "raider"
     ],
-    "special_cells": 613,
+    "special_cells": 638,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "Corrected terrain passed sixteen source and installed geometry cases",
+    "runtime_validated": false,
+    "status": "Raider and deserter sites embedded; twenty-case source/installed generation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "1482589a1a1adf230d9d762fa217d2450fa98b8fcd601f0fbec259bb1ce77098",
+    "native_patch_sha256": "dfb175428082c836fdc8923094ec5c59e4ece7fe2085e2f1117ae82de3cd7138",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -806,7 +807,8 @@
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
       "Faction reader and Balthazar intercom are physical panels with deferred interactions",
-      "Raider sites, container yards and later Godco quest construction excluded"
+      "Container yards and later Godco quest construction excluded",
+      "Raider and deserter source/installed generation pending"
     ],
     "validated_packages": [
       "island_prison",
@@ -968,8 +970,8 @@
     "validation_checkpoint": 39620442620
   },
   "geometry_raider_candidate": {
-    "status": "Wooden embrasure and widened-opening geometry adapted; native integration pending",
-    "native_embedded": false,
+    "status": "Four isolated geometry specials embedded; native generation and combat checks pending",
+    "native_embedded": true,
     "runtime_validated": false,
     "world_maps": 15,
     "own_omt": 24,

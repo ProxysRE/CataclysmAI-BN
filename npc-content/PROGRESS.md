@@ -73,3 +73,9 @@ Both reader and intercom now copy the complete authenticated BN terrain definiti
 Run 39620442620 on a8f22c2 passed 73 core /11030 assertions, 10 optional /2224 assertions and 16 geometry /542715 assertions, repeated successfully on installed data. Portable artifact 12359175270 was produced. The four frontier groups now have demonstrated generation scope: 16/51 =31.4%. Concrete panel loading is verified; full traversal and faction/intercom interactions remain outside this claim.
 
 Prepared the raider wooden embrasure and widened damaged opening from authenticated DDA terrain definitions. Two complete concrete terrain objects retain coverage, movement, source bash thresholds and wood items; source roof and field-emission differences are documented. The new adaptation has closed typed references but is not embedded or native/combat tested.
+
+## Raider geometry preview integration
+
+Added drug lab, bandit drug lab, work camp and deserter settlement to the isolated optional preview. All 15 world maps and 25 placements are included, bringing the fixture to 20 cases /638 placements. Native tests project source navigation and wooden-embrasure terrain expectations into their global-map cells. The complete source city registration remains archived; the debug-only special does not replace BN city generation.
+
+Six custom terrain definitions passed concrete-field preflight. Only the two preview JSON files and geometry C++ test sections changed in the native patch; their generated new-file diffs apply and reproduce source bytes. All other patch sections remain byte-identical to the successful Windows checkpoint. Native source/installed generation and embrasure combat/fire/bash acceptance remain pending. Confirmed progress remains 16/51 (31.4%).
