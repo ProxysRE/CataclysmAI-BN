@@ -1,0 +1,1030 @@
+{
+  "status": "adapted_exodii_geometry_native_validation_pending",
+  "aliases": {
+    "luliya_base": "dda_geo_exodii_luliya_base",
+    "rubik_store_base": "dda_geo_exodii_rubik_store_base",
+    "t_glassed_sand": "dda_geo_exodii_t_glassed_sand",
+    "weaponmaster_workshop_base": "dda_geo_exodii_weaponmaster_workshop_base"
+  },
+  "schema_adaptations": [
+    {
+      "ids": [
+        "exo_safehouse_stone_0"
+      ],
+      "field": "see_cost",
+      "source": "high",
+      "BN": 5
+    },
+    {
+      "ids": [
+        "exo_warehouse_1"
+      ],
+      "field": "see_cost",
+      "source": "high",
+      "BN": 5
+    },
+    {
+      "ids": [
+        "exodii_base_x0y0z0"
+      ],
+      "field": "see_cost",
+      "source": "full_high",
+      "BN": 5
+    },
+    {
+      "ids": [
+        "exodii_base_x0y3z0"
+      ],
+      "field": "see_cost",
+      "source": "full_high",
+      "BN": 5
+    },
+    {
+      "ids": [
+        "exodii_base_x0y0z1"
+      ],
+      "field": "see_cost",
+      "source": "full_high",
+      "BN": 5
+    },
+    {
+      "ids": [
+        "exo_base_safehouse_stone_0"
+      ],
+      "field": "see_cost",
+      "source": "high",
+      "BN": 5
+    }
+  ],
+  "unresolved_typed_refs": [],
+  "own_omt": 88,
+  "structural_nested_maps": 3,
+  "navigation": {
+    "exo_safehouse_stone_0": [
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "exo_safehouse_stone_1": [
+      {
+        "x": 7,
+        "y": 7,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "exo_safehouse_stone_2": [
+      {
+        "x": 7,
+        "y": 7,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "exo_warehouse_1": [
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "exo_warehouse_2": [
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "exodii_base_x1y0z0": [
+      {
+        "x": 2,
+        "y": 18,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y1z0": [
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "exodii_base_x1y2z0": [
+      {
+        "x": 15,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "t_elevator_control"
+      }
+    ],
+    "exodii_base_x2y2z0": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y3z0": [
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y0z1": [
+      {
+        "x": 1,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 18,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 4,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x3y1z1": [
+      {
+        "x": 5,
+        "y": 6,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y1z1": [
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 16,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "exodii_base_x2y1z1": [
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y2z1": [
+      {
+        "x": 15,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 1,
+        "terrain": "t_elevator_control"
+      }
+    ],
+    "exodii_base_x2y2z1": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x1y3z1": [
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x1y0z2": [
+      {
+        "x": 1,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 18,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 4,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x0y0z2": [
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x3y1z2": [
+      {
+        "x": 5,
+        "y": 6,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y1z2": [
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 16,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "exodii_base_x2y1z2": [
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x1y2z2": [
+      {
+        "x": 15,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 1,
+        "terrain": "t_elevator_control"
+      }
+    ],
+    "exodii_base_x2y2z2": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x0y2z2": [
+      {
+        "x": 15,
+        "y": 17,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y0z3": [
+      {
+        "x": 2,
+        "y": 18,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x0y0z3": [
+      {
+        "x": 19,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x3y1z3": [
+      {
+        "x": 6,
+        "y": 6,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x1y1z3": [
+      {
+        "x": 18,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 21,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 16,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "exodii_base_x2y1z3": [
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x1y2z3": [
+      {
+        "x": 15,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 1,
+        "terrain": "t_elevator_control"
+      }
+    ],
+    "exodii_base_x2y2z3": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x0y2z3": [
+      {
+        "x": 15,
+        "y": 16,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 16,
+        "y": 16,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "exodii_base_x0y0z4": [
+      {
+        "x": 19,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x1y1z4": [
+      {
+        "x": 15,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 16,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x2y1z4": [
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exodii_base_x0y2z4": [
+      {
+        "x": 16,
+        "y": 16,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "exo_base_safehouse_stone_0": [
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "exo_base_safehouse_stone_1": [
+      {
+        "x": 7,
+        "y": 7,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 7,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "exo_base_safehouse_stone_2": [
+      {
+        "x": 7,
+        "y": 7,
+        "terrain": "t_ladder_down"
+      }
+    ]
+  },
+  "navigation_points": 176,
+  "limits": [
+    "Source and installed native generation pending",
+    "No actual character stair/elevator traversal certification",
+    "Natural preview placement disabled; later layers remain staged"
+  ]
+}

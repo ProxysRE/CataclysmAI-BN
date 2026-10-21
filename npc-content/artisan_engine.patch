@@ -4461,7 +4461,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_geometry_preview_test.cpp
-@@ -0,0 +1,849 @@
+@@ -0,0 +1,1134 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "cata_utility.h"
@@ -5309,6 +5309,291 @@
 +        { -1, 3, 2, "dda_geo_godco_2_2_north" },
 +        { 0, 3, 2, "dda_geo_godco_1_2_north" },
 +        { 0, 3, 3, "dda_geo_godco_1_3_north" },
++    } );
++}
++
++TEST_CASE( "dda_geo_out-of-place_stone_barn_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 5100, {
++        { 0, 0, 0, "dda_geo_exo_safehouse_stone_0_north" },
++        { 0, 0, 1, "dda_geo_exo_safehouse_stone_1_north" },
++        { 0, 0, 2, "dda_geo_exo_safehouse_stone_2_north" },
++    }, {
++        { 0, 0, 7, 10, 0, "t_ladder_up" },
++        { 0, 0, 7, 7, 1, "t_ladder_up" },
++        { 0, 0, 7, 10, 1, "t_ladder_down" },
++        { 0, 0, 7, 7, 2, "t_ladder_down" },
++    } );
++}
++
++TEST_CASE( "dda_geo_strange_warehouse_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 5200, {
++        { 0, 0, 0, "dda_geo_exo_warehouse_1_north" },
++        { 0, 0, 1, "dda_geo_exo_warehouse_2_north" },
++    }, {
++        { 0, 0, 7, 10, 0, "t_ladder_up" },
++        { 0, 0, 7, 10, 1, "t_ladder_down" },
++    } );
++}
++
++TEST_CASE( "dda_geo_exodii_base_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 5300, {
++        { 0, 0, 0, "dda_geo_exodii_base_x0y0z0_north" },
++        { 1, 0, 0, "dda_geo_exodii_base_x1y0z0_north" },
++        { 2, 0, 0, "dda_geo_exodii_base_x2y0z0_north" },
++        { 3, 0, 0, "dda_geo_exodii_base_x3y0z0_north" },
++        { 0, 1, 0, "dda_geo_exodii_base_x0y1z0_north" },
++        { 1, 1, 0, "dda_geo_exodii_base_x1y1z0_north" },
++        { 2, 1, 0, "dda_geo_exodii_base_x2y1z0_north" },
++        { 3, 1, 0, "dda_geo_exodii_base_x3y1z0_north" },
++        { 0, 2, 0, "dda_geo_exodii_base_x0y2z0_north" },
++        { 1, 2, 0, "dda_geo_exodii_base_x1y2z0_north" },
++        { 2, 2, 0, "dda_geo_exodii_base_x2y2z0_north" },
++        { 3, 2, 0, "dda_geo_exodii_base_x3y2z0_north" },
++        { 0, 3, 0, "dda_geo_exodii_base_x0y3z0_north" },
++        { 1, 3, 0, "dda_geo_exodii_base_x1y3z0_north" },
++        { 2, 3, 0, "dda_geo_exodii_base_x2y3z0_north" },
++        { 3, 3, 0, "dda_geo_exodii_base_x3y3z0_north" },
++        { 0, 0, 1, "dda_geo_exodii_base_x0y0z1_north" },
++        { 1, 0, 1, "dda_geo_exodii_base_x1y0z1_north" },
++        { 2, 0, 1, "dda_geo_exodii_base_x2y0z1_north" },
++        { 3, 0, 1, "dda_geo_exodii_base_x3y0z1_north" },
++        { 0, 1, 1, "dda_geo_exodii_base_x0y1z1_north" },
++        { 1, 1, 1, "dda_geo_exodii_base_x1y1z1_north" },
++        { 2, 1, 1, "dda_geo_exodii_base_x2y1z1_north" },
++        { 3, 1, 1, "dda_geo_exodii_base_x3y1z1_north" },
++        { 0, 2, 1, "dda_geo_exodii_base_x0y2z1_north" },
++        { 1, 2, 1, "dda_geo_exodii_base_x1y2z1_north" },
++        { 2, 2, 1, "dda_geo_exodii_base_x2y2z1_north" },
++        { 3, 2, 1, "dda_geo_exodii_base_x3y2z1_north" },
++        { 0, 3, 1, "dda_geo_exodii_base_x0y3z1_north" },
++        { 1, 3, 1, "dda_geo_exodii_base_x1y3z1_north" },
++        { 2, 3, 1, "dda_geo_exodii_base_x2y3z1_north" },
++        { 3, 3, 1, "dda_geo_exodii_base_x3y3z1_north" },
++        { 0, 0, 2, "dda_geo_exodii_base_x0y0z2_north" },
++        { 1, 0, 2, "dda_geo_exodii_base_x1y0z2_north" },
++        { 2, 0, 2, "dda_geo_exodii_base_x2y0z2_north" },
++        { 3, 0, 2, "dda_geo_exodii_base_x3y0z2_north" },
++        { 0, 1, 2, "dda_geo_exodii_base_x0y1z2_north" },
++        { 1, 1, 2, "dda_geo_exodii_base_x1y1z2_north" },
++        { 2, 1, 2, "dda_geo_exodii_base_x2y1z2_north" },
++        { 3, 1, 2, "dda_geo_exodii_base_x3y1z2_north" },
++        { 0, 2, 2, "dda_geo_exodii_base_x0y2z2_north" },
++        { 1, 2, 2, "dda_geo_exodii_base_x1y2z2_north" },
++        { 2, 2, 2, "dda_geo_exodii_base_x2y2z2_north" },
++        { 3, 2, 2, "dda_geo_exodii_base_x3y2z2_north" },
++        { 0, 3, 2, "dda_geo_exodii_base_x0y3z2_north" },
++        { 1, 3, 2, "dda_geo_exodii_base_x1y3z2_north" },
++        { 2, 3, 2, "dda_geo_exodii_base_x2y3z2_north" },
++        { 3, 3, 2, "dda_geo_exodii_base_x3y3z2_north" },
++        { 0, 0, 3, "dda_geo_exodii_base_x0y0z3_north" },
++        { 1, 0, 3, "dda_geo_exodii_base_x1y0z3_north" },
++        { 2, 0, 3, "dda_geo_exodii_base_x2y0z3_north" },
++        { 3, 0, 3, "dda_geo_exodii_base_x3y0z3_north" },
++        { 0, 1, 3, "dda_geo_exodii_base_x0y1z3_north" },
++        { 1, 1, 3, "dda_geo_exodii_base_x1y1z3_north" },
++        { 2, 1, 3, "dda_geo_exodii_base_x2y1z3_north" },
++        { 3, 1, 3, "dda_geo_exodii_base_x3y1z3_north" },
++        { 0, 2, 3, "dda_geo_exodii_base_x0y2z3_north" },
++        { 1, 2, 3, "dda_geo_exodii_base_x1y2z3_north" },
++        { 2, 2, 3, "dda_geo_exodii_base_x2y2z3_north" },
++        { 3, 2, 3, "dda_geo_exodii_base_x3y2z3_north" },
++        { 0, 3, 3, "dda_geo_exodii_base_x0y3z3_north" },
++        { 1, 3, 3, "dda_geo_exodii_base_x1y3z3_north" },
++        { 2, 3, 3, "dda_geo_exodii_base_x2y3z3_north" },
++        { 3, 3, 3, "dda_geo_exodii_base_x3y3z3_north" },
++        { 0, 0, 4, "dda_geo_exodii_base_x0y0z4_north" },
++        { 1, 0, 4, "dda_geo_exodii_base_x1y0z4_north" },
++        { 2, 0, 4, "dda_geo_exodii_base_x2y0z4_north" },
++        { 3, 0, 4, "dda_geo_exodii_base_x3y0z4_north" },
++        { 0, 1, 4, "dda_geo_exodii_base_x0y1z4_north" },
++        { 1, 1, 4, "dda_geo_exodii_base_x1y1z4_north" },
++        { 2, 1, 4, "dda_geo_exodii_base_x2y1z4_north" },
++        { 3, 1, 4, "dda_geo_exodii_base_x3y1z4_north" },
++        { 0, 2, 4, "dda_geo_exodii_base_x0y2z4_north" },
++        { 1, 2, 4, "dda_geo_exodii_base_x1y2z4_north" },
++        { 2, 2, 4, "dda_geo_exodii_base_x2y2z4_north" },
++        { 3, 2, 4, "dda_geo_exodii_base_x3y2z4_north" },
++        { 0, 3, 4, "dda_geo_exodii_base_x0y3z4_north" },
++        { 1, 3, 4, "dda_geo_exodii_base_x1y3z4_north" },
++        { 2, 3, 4, "dda_geo_exodii_base_x2y3z4_north" },
++        { 3, 3, 4, "dda_geo_exodii_base_x3y3z4_north" },
++        { -2, 2, 0, "dda_geo_exo_base_safehouse_stone_0_north" },
++        { -2, 2, 1, "dda_geo_exo_base_safehouse_stone_1_north" },
++        { -2, 2, 2, "dda_geo_exo_base_safehouse_stone_2_north" },
++    }, {
++        { 1, 0, 2, 18, 0, "t_stairs_up" },
++        { 1, 0, 2, 19, 0, "t_stairs_up" },
++        { 1, 1, 18, 20, 0, "t_elevator" },
++        { 1, 1, 19, 20, 0, "t_elevator" },
++        { 1, 1, 20, 20, 0, "t_elevator" },
++        { 1, 1, 21, 20, 0, "t_elevator" },
++        { 1, 1, 22, 20, 0, "t_elevator" },
++        { 1, 1, 18, 21, 0, "t_elevator" },
++        { 1, 1, 19, 21, 0, "t_elevator" },
++        { 1, 1, 20, 21, 0, "t_elevator" },
++        { 1, 1, 21, 21, 0, "t_elevator" },
++        { 1, 1, 22, 21, 0, "t_elevator" },
++        { 1, 1, 18, 22, 0, "t_elevator" },
++        { 1, 1, 19, 22, 0, "t_elevator" },
++        { 1, 1, 20, 22, 0, "t_elevator" },
++        { 1, 1, 21, 22, 0, "t_elevator" },
++        { 1, 1, 22, 22, 0, "t_elevator" },
++        { 1, 1, 18, 23, 0, "t_elevator" },
++        { 1, 1, 19, 23, 0, "t_elevator" },
++        { 1, 1, 20, 23, 0, "t_elevator" },
++        { 1, 1, 21, 23, 0, "t_elevator" },
++        { 1, 1, 22, 23, 0, "t_elevator" },
++        { 1, 2, 15, 0, 0, "t_stairs_up" },
++        { 1, 2, 16, 0, 0, "t_stairs_up" },
++        { 1, 2, 18, 0, 0, "t_elevator" },
++        { 1, 2, 19, 0, 0, "t_elevator" },
++        { 1, 2, 20, 0, 0, "t_elevator" },
++        { 1, 2, 21, 0, 0, "t_elevator" },
++        { 1, 2, 22, 0, 0, "t_elevator" },
++        { 1, 2, 18, 1, 0, "t_elevator_control" },
++        { 2, 2, 0, 0, 0, "t_stairs_up" },
++        { 2, 2, 1, 0, 0, "t_stairs_up" },
++        { 1, 3, 11, 4, 0, "t_stairs_up" },
++        { 1, 0, 1, 14, 1, "t_stairs_up" },
++        { 1, 0, 1, 15, 1, "t_stairs_up" },
++        { 1, 0, 2, 18, 1, "t_stairs_down" },
++        { 1, 0, 2, 19, 1, "t_stairs_down" },
++        { 1, 0, 3, 20, 1, "t_stairs_up" },
++        { 1, 0, 4, 20, 1, "t_stairs_up" },
++        { 1, 1, 18, 20, 1, "t_elevator" },
++        { 1, 1, 19, 20, 1, "t_elevator" },
++        { 1, 1, 20, 20, 1, "t_elevator" },
++        { 1, 1, 21, 20, 1, "t_elevator" },
++        { 1, 1, 22, 20, 1, "t_elevator" },
++        { 1, 1, 18, 21, 1, "t_elevator" },
++        { 1, 1, 19, 21, 1, "t_elevator" },
++        { 1, 1, 20, 21, 1, "t_elevator" },
++        { 1, 1, 21, 21, 1, "t_elevator" },
++        { 1, 1, 22, 21, 1, "t_elevator" },
++        { 1, 1, 18, 22, 1, "t_elevator" },
++        { 1, 1, 19, 22, 1, "t_elevator" },
++        { 1, 1, 20, 22, 1, "t_elevator" },
++        { 1, 1, 21, 22, 1, "t_elevator" },
++        { 1, 1, 22, 22, 1, "t_elevator" },
++        { 1, 1, 15, 23, 1, "t_stairs_up" },
++        { 1, 1, 16, 23, 1, "t_stairs_up" },
++        { 1, 1, 18, 23, 1, "t_elevator" },
++        { 1, 1, 19, 23, 1, "t_elevator" },
++        { 1, 1, 20, 23, 1, "t_elevator" },
++        { 1, 1, 21, 23, 1, "t_elevator" },
++        { 1, 1, 22, 23, 1, "t_elevator" },
++        { 2, 1, 0, 23, 1, "t_stairs_up" },
++        { 2, 1, 1, 23, 1, "t_stairs_up" },
++        { 3, 1, 5, 6, 1, "t_stairs_up" },
++        { 1, 2, 15, 0, 1, "t_stairs_down" },
++        { 1, 2, 16, 0, 1, "t_stairs_down" },
++        { 1, 2, 18, 0, 1, "t_elevator" },
++        { 1, 2, 19, 0, 1, "t_elevator" },
++        { 1, 2, 20, 0, 1, "t_elevator" },
++        { 1, 2, 21, 0, 1, "t_elevator" },
++        { 1, 2, 22, 0, 1, "t_elevator" },
++        { 1, 2, 19, 1, 1, "t_elevator_control" },
++        { 2, 2, 0, 0, 1, "t_stairs_down" },
++        { 2, 2, 1, 0, 1, "t_stairs_down" },
++        { 1, 3, 11, 4, 1, "t_stairs_down" },
++        { 0, 0, 18, 20, 2, "t_stairs_up" },
++        { 1, 0, 1, 14, 2, "t_stairs_down" },
++        { 1, 0, 1, 15, 2, "t_stairs_down" },
++        { 1, 0, 2, 18, 2, "t_stairs_up" },
++        { 1, 0, 2, 19, 2, "t_stairs_up" },
++        { 1, 0, 3, 20, 2, "t_stairs_down" },
++        { 1, 0, 4, 20, 2, "t_stairs_down" },
++        { 1, 1, 18, 20, 2, "t_elevator" },
++        { 1, 1, 19, 20, 2, "t_elevator" },
++        { 1, 1, 20, 20, 2, "t_elevator" },
++        { 1, 1, 21, 20, 2, "t_elevator" },
++        { 1, 1, 22, 20, 2, "t_elevator" },
++        { 1, 1, 18, 21, 2, "t_elevator" },
++        { 1, 1, 19, 21, 2, "t_elevator" },
++        { 1, 1, 20, 21, 2, "t_elevator" },
++        { 1, 1, 21, 21, 2, "t_elevator" },
++        { 1, 1, 22, 21, 2, "t_elevator" },
++        { 1, 1, 18, 22, 2, "t_elevator" },
++        { 1, 1, 19, 22, 2, "t_elevator" },
++        { 1, 1, 20, 22, 2, "t_elevator" },
++        { 1, 1, 21, 22, 2, "t_elevator" },
++        { 1, 1, 22, 22, 2, "t_elevator" },
++        { 1, 1, 15, 23, 2, "t_stairs_down" },
++        { 1, 1, 16, 23, 2, "t_stairs_down" },
++        { 1, 1, 18, 23, 2, "t_elevator" },
++        { 1, 1, 19, 23, 2, "t_elevator" },
++        { 1, 1, 20, 23, 2, "t_elevator" },
++        { 1, 1, 21, 23, 2, "t_elevator" },
++        { 1, 1, 22, 23, 2, "t_elevator" },
++        { 2, 1, 0, 23, 2, "t_stairs_down" },
++        { 2, 1, 1, 23, 2, "t_stairs_down" },
++        { 3, 1, 5, 6, 2, "t_stairs_down" },
++        { 3, 1, 6, 6, 2, "t_stairs_up" },
++        { 0, 2, 15, 17, 2, "t_stairs_up" },
++        { 1, 2, 15, 0, 2, "t_stairs_up" },
++        { 1, 2, 16, 0, 2, "t_stairs_up" },
++        { 1, 2, 18, 0, 2, "t_elevator" },
++        { 1, 2, 19, 0, 2, "t_elevator" },
++        { 1, 2, 20, 0, 2, "t_elevator" },
++        { 1, 2, 21, 0, 2, "t_elevator" },
++        { 1, 2, 22, 0, 2, "t_elevator" },
++        { 1, 2, 19, 1, 2, "t_elevator_control" },
++        { 2, 2, 0, 0, 2, "t_stairs_up" },
++        { 2, 2, 1, 0, 2, "t_stairs_up" },
++        { 0, 0, 19, 19, 3, "t_stairs_down" },
++        { 0, 0, 18, 20, 3, "t_stairs_up" },
++        { 1, 0, 2, 18, 3, "t_stairs_down" },
++        { 1, 0, 2, 19, 3, "t_stairs_down" },
++        { 1, 1, 18, 20, 3, "t_elevator" },
++        { 1, 1, 19, 20, 3, "t_elevator" },
++        { 1, 1, 20, 20, 3, "t_elevator" },
++        { 1, 1, 21, 20, 3, "t_elevator" },
++        { 1, 1, 22, 20, 3, "t_elevator" },
++        { 1, 1, 18, 21, 3, "t_elevator" },
++        { 1, 1, 19, 21, 3, "t_elevator" },
++        { 1, 1, 20, 21, 3, "t_elevator" },
++        { 1, 1, 21, 21, 3, "t_elevator" },
++        { 1, 1, 22, 21, 3, "t_elevator" },
++        { 1, 1, 18, 22, 3, "t_elevator" },
++        { 1, 1, 19, 22, 3, "t_elevator" },
++        { 1, 1, 20, 22, 3, "t_elevator" },
++        { 1, 1, 21, 22, 3, "t_elevator" },
++        { 1, 1, 22, 22, 3, "t_elevator" },
++        { 1, 1, 15, 23, 3, "t_stairs_up" },
++        { 1, 1, 16, 23, 3, "t_stairs_up" },
++        { 1, 1, 18, 23, 3, "t_elevator" },
++        { 1, 1, 19, 23, 3, "t_elevator" },
++        { 1, 1, 20, 23, 3, "t_elevator" },
++        { 1, 1, 21, 23, 3, "t_elevator" },
++        { 1, 1, 22, 23, 3, "t_elevator" },
++        { 2, 1, 0, 23, 3, "t_stairs_up" },
++        { 2, 1, 1, 23, 3, "t_stairs_up" },
++        { 3, 1, 6, 6, 3, "t_stairs_down" },
++        { 0, 2, 15, 16, 3, "t_stairs_down" },
++        { 0, 2, 16, 16, 3, "t_stairs_up" },
++        { 1, 2, 15, 0, 3, "t_stairs_down" },
++        { 1, 2, 16, 0, 3, "t_stairs_down" },
++        { 1, 2, 18, 0, 3, "t_elevator" },
++        { 1, 2, 19, 0, 3, "t_elevator" },
++        { 1, 2, 20, 0, 3, "t_elevator" },
++        { 1, 2, 21, 0, 3, "t_elevator" },
++        { 1, 2, 22, 0, 3, "t_elevator" },
++        { 1, 2, 19, 1, 3, "t_elevator_control" },
++        { 2, 2, 0, 0, 3, "t_stairs_down" },
++        { 2, 2, 1, 0, 3, "t_stairs_down" },
++        { 0, 0, 19, 19, 4, "t_stairs_down" },
++        { 1, 1, 15, 23, 4, "t_stairs_down" },
++        { 1, 1, 16, 23, 4, "t_stairs_down" },
++        { 2, 1, 0, 23, 4, "t_stairs_down" },
++        { 2, 1, 1, 23, 4, "t_stairs_down" },
++        { 0, 2, 16, 16, 4, "t_stairs_down" },
++        { -2, 2, 7, 10, 0, "t_ladder_up" },
++        { -2, 2, 7, 7, 1, "t_ladder_up" },
++        { -2, 2, 7, 10, 1, "t_ladder_down" },
++        { -2, 2, 7, 7, 2, "t_ladder_down" },
 +    } );
 +}
 --- /dev/null
@@ -65289,7 +65574,7 @@
 +    "authors": [
 +      "ProxysRE"
 +    ],
-+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus and initial Godco retreat. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
++    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat and Exodii sites. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
 +    "category": "buildings",
 +    "dependencies": [
 +      "bn"
@@ -65298,7 +65583,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,10053 @@
+@@ -0,0 +1,12586 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -75350,5 +75635,2538 @@
 +    "name": "dirt road",
 +    "sym": "\u2502",
 +    "copy-from": "generic_rural_road"
++  },
++  {
++    "om_terrain": "dda_geo_exo_safehouse_stone_0",
++    "//": "A medieval stone barn from the Exodii's most recently visited world, converted to a safehouse for their scouts to hole up in, and transported to our world during the portal storms.",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "        .........       ",
++        "     ....,,,,,,,....    ",
++        "   ....,,,,,,,,,,,,,..  ",
++        "  ..,,,,,,;;;;;,,,,,..  ",
++        "  .,,,;;;;;;;;;;;;;,,.. ",
++        " ..,,;x;;;;;;;;;x;,,,.. ",
++        " .,,;x###########x;,,.. ",
++        "..,,;;#|ccc|ccc|#;;,,,..",
++        ".,,,;;#_3____{{g#;;;,,..",
++        ".,,;;;#_|__|{{||#;;;,,..",
++        ".,,;;;#<---I----#;;;,,..",
++        ".,,;;;#|------1|#;;;,,..",
++        ".,,;;;#C--------#;;;,,..",
++        ".,,;;;#C-----3--#;;;,,..",
++        ".,,;;;#C--------#;;;,,..",
++        "..,,;;#||-----||#;;;,,..",
++        "..,,;;#1-------1#;;,,,..",
++        " .,,;x####MMM####x;,,.. ",
++        " .,,;;x;;;;;;;;;x;,,,.. ",
++        " ..,,;x;;;;;;;;;x;,,,.. ",
++        "  ..,,xxxxx;;xxxx;,,..  ",
++        "  ...,,,S,,,,,,,,,,...  ",
++        "    ....,,,,,,,,....    ",
++        "       ..........       "
++      ],
++      "fill_ter": "t_dirtfloor",
++      "terrain": {
++        " ": [
++          [
++            "t_region_groundcover",
++            500
++          ],
++          "t_region_tree"
++        ],
++        ".": "dda_geo_exodii_t_glassed_sand",
++        ",": [
++          [
++            "dda_geo_exodii_t_glassed_sand",
++            3
++          ],
++          "t_sandmound",
++          "t_sand"
++        ],
++        ";": "t_sand",
++        "#": "t_rock_wall",
++        "_": "t_dirtfloor",
++        "-": "t_dirt",
++        "<": "t_ladder_up",
++        "|": "t_junk_wall",
++        "M": "t_door_metal_c",
++        "S": "t_sand",
++        "x": "t_rock_wall_half",
++        "1": "t_dirtfloor",
++        "3": "t_dirtfloor",
++        "C": "t_dirtfloor",
++        "I": "t_dirtfloor",
++        "c": "t_dirtfloor",
++        "g": "t_dirtfloor",
++        "{": "t_dirtfloor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_safehouse_stone_1",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvv###########vvvvvvv",
++        "vvvvvv#<{{{I{{{g#vvvvvvv",
++        "vvvvvv#'''''{'''#vvvvvvv",
++        "vvvvvv#'|1'|{1|C#vvvvvvv",
++        "vvvvvv#>vvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv###########vvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv"
++      ],
++      "fill_ter": "t_junk_floor",
++      "terrain": {
++        "#": "t_rock_wall",
++        "'": "t_junk_floor",
++        "<": "t_ladder_up",
++        ">": "t_ladder_down",
++        "|": "t_junk_wall",
++        "v": "t_open_air",
++        "1": "t_junk_floor",
++        "C": "t_junk_floor",
++        "I": "t_junk_floor",
++        "g": "t_junk_floor",
++        "{": "t_junk_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_safehouse_stone_2",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvv^^^^^^^^^^^vvvvvvv",
++        "vvvvvv^>{Y^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^I^^^^^^^^vvvvvvv",
++        "vvvvvv^^^^^^^^^^^vvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv"
++      ],
++      "fill_ter": "t_tile_flat_roof",
++      "terrain": {
++        ">": "t_ladder_down",
++        "^": "t_tile_flat_roof",
++        "v": "t_open_air",
++        "I": "t_tile_flat_roof",
++        "Y": "t_tile_flat_roof",
++        "{": "t_tile_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_warehouse_1",
++    "//": "A lost Exodii's warehouse, transported to our world during the portal storms.",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "        .........       ",
++        "     ....,,,,,,,....    ",
++        "   ....,,,,,,,,,,,,,..  ",
++        "  ..,,,,,,;;;;;,,,,,..  ",
++        "  .,,,;;;;;;;;;;;;;,,.. ",
++        " ..,###############,,.. ",
++        " .,,#c-|---|---|--#,,.. ",
++        "..,,#c--c-c--cc---#,,,..",
++        ".,,,#c-_3___------#;,,..",
++        ".,,;#c-_-__-------#;,,..",
++        ".,,;#c-<---cc-----#;,,..",
++        ".,,;#-|----cc-|---#;,,..",
++        ".,,;#{{C{{{I------#;,,..",
++        ".,,;#{-C---cc-cc--#;,,..",
++        ".,,;#{-C---cc-cc--#;,,..",
++        "..,,#{-||--cc-||--#;,,..",
++        "..,,#{cc---cc-cc--#,,,..",
++        " .,,#g------------#,,.. ",
++        " .,,######MMM######,,.. ",
++        " ..,,,,,;;;;;;;,,,,,,.. ",
++        "  ..,,,,,,,,,,,,,,,,..  ",
++        "  ...,,,,,,,,,,,,,,...  ",
++        "    ....,,,,,,,,....    ",
++        "       ..........       "
++      ],
++      "fill_ter": "t_dirtfloor",
++      "terrain": {
++        " ": [
++          [
++            "t_region_groundcover",
++            500
++          ],
++          "t_region_tree"
++        ],
++        ".": "dda_geo_exodii_t_glassed_sand",
++        ",": [
++          [
++            "dda_geo_exodii_t_glassed_sand",
++            3
++          ],
++          "t_sandmound",
++          "t_sand"
++        ],
++        ";": "t_sand",
++        "#": "t_rock_wall",
++        "_": "t_dirtfloor",
++        "-": "t_dirt",
++        "<": "t_ladder_up",
++        "|": "t_junk_wall",
++        "M": "t_door_metal_c",
++        "3": "t_dirtfloor",
++        "C": "t_dirtfloor",
++        "I": "t_dirtfloor",
++        "c": "t_dirtfloor",
++        "g": "t_dirtfloor",
++        "{": "t_dirtfloor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_warehouse_2",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^>^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^Z^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvv^^^^^^^^^^^^^^^vvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv"
++      ],
++      "fill_ter": "t_tile_flat_roof",
++      "terrain": {
++        ">": "t_ladder_down",
++        "^": "t_tile_flat_roof",
++        "v": "t_open_air",
++        "Z": "t_tile_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "//": "ground level",
++    "om_terrain": [
++      [
++        "dda_geo_exodii_base_x0y0z0",
++        "dda_geo_exodii_base_x1y0z0",
++        "dda_geo_exodii_base_x2y0z0",
++        "dda_geo_exodii_base_x3y0z0"
++      ],
++      [
++        "dda_geo_exodii_base_x0y1z0",
++        "dda_geo_exodii_base_x1y1z0",
++        "dda_geo_exodii_base_x2y1z0",
++        "dda_geo_exodii_base_x3y1z0"
++      ],
++      [
++        "dda_geo_exodii_base_x0y2z0",
++        "dda_geo_exodii_base_x1y2z0",
++        "dda_geo_exodii_base_x2y2z0",
++        "dda_geo_exodii_base_x3y2z0"
++      ],
++      [
++        "dda_geo_exodii_base_x0y3z0",
++        "dda_geo_exodii_base_x1y3z0",
++        "dda_geo_exodii_base_x2y3z0",
++        "dda_geo_exodii_base_x3y3z0"
++      ]
++    ],
++    "object": {
++      "rows": [
++        "  ,              ,           ,                  ,                ,                              ",
++        "                        ,      ,      ,                ,                    ,                   ",
++        "          ,    ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,    ,            ,    ,      ",
++        "            ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,  ,                 ",
++        "     ,     ,,,,,,......................................,,,,,,,,,,,,,,,,,,,,,,,,,,     , ,       ",
++        "         ,,,,...................................s...............,,,,,,,,,,,,,,,,,,              ",
++        "       ,,,....######...##......................##....................,,,,,,,,,,,,,,,,           ",
++        "  ,    ,,..################...................####......................,,,,,,,,,,,,,,   ,      ",
++        "      ,,..#####################........##################..................,,,,,,,,,,,,         ",
++        "     ,,,.###################################################..........###......,,,,,,,,,     ,  ",
++        "     ,,..##################xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx##........####........,,,,,,,,       ",
++        ",  ,,,,.#########xxxxx#####x##########x||||||||||#||||||||x#####...#######.........,,,,,,,,     ",
++        "    ,,..#########x|||x#####x#~~~###\u011e##x|L\u1e6a\u01a4\u1e6a\u1e6a\u1e6a\u01a5\u1e6a|#|LUUUUL|x####################.....,,,,,,,     ",
++        "    ,,.########xxx|O|xxx##xx#~\u011c~##_/##x|c_/___/_|#|U____U|x######################......,,,,     ",
++        "    ,,.#######xx|||o|||xxxx##_/_##//c#x|c_/////c|#|U____U|x#########################.....,,,    ",
++        "    ,,.#######x||\u03df_/_\u03df||#|||L//_##/_c#x|c__/___c|#|LU__UL|x############################...,,    ",
++        "   ,,,.######xx|///////|||L||/__#L/_c||||__/UUU|||||U__U||x##############################..,,   ",
++        "    ,,..#####x||\u03df_\u03df_\u03df_\u03df||///||M||||M||\u0271\u0271|mm|||||L|L||mm|||x###############################..,   ",
++        "   ,,...#####x|L/_/_/_/_m_<_m___________________________T|x################################.,,  ",
++        ",  ,,...#####x|L/_/_/_/_m_<_m___________________________T|xx###############################.,,  ",
++        "   ,,..######x||\u03df_\u03df_\u03df_\u03df||///||M|L\u0271|M|||L|||||m|||m|||||||||x###############################.,,  ",
++        "   ,,..######xx|///////|||L||L_||||_/_|||R____R|\u048e_\u048e\u0414\u0414\u0414\u0414\u048e_\u048e|x###############################..,, ",
++        "  ,,,..#######x||\u03df_\u03df_\u03df||#|||/___###L/_##|R_RR_R|\u0414________\u0414|x################################.., ",
++        "   ,,..#######xx|||||||xxx#c//__####//##|R_RR_R|\u0414_\u048e\u0414\u0414\u0414\u0414\u048e_\u0414|x#################################., ",
++        "   ,,...#######xxxxxxxxx#x#c_/_####__/~#|R_RR_R|\u0414________\u0414|x#################################., ",
++        "   ,,....################x##|\u0120|####c~\u0122~#|R_RR_R||\u048e\u0414\u0414\u0414\u0414\u0414\u0414\u048e||x################################.., ",
++        "   ,,,....###############xx#|||####~~~~#|R____R|||||||||||xx##############################...., ",
++        "   ,,,....################xxxxxxxx######|LRRRRL|xxxxxxxxxxx################################..., ",
++        " , ,,,.....######################xxxxxxx||||||||x##########################################..., ",
++        "   ,,,.....############################xxxxxxxxx###########################################..., ",
++        "   ,,,.....################################################################################..., ",
++        "   ,,,......###############################################################################..., ",
++        "  ,,,,......############################################################################......, ",
++        "   ,,,......#############################################################################....., ",
++        "   ,,,......##############################################################################...., ",
++        ",  ,,,......###############################################################################..., ",
++        "   ,,,.......##############################################################################...,,",
++        "   ,,,.......##############################################################################...,,",
++        "   ,,,.......##############################################################################...,,",
++        "   ,,,.......##############################################################################...,,",
++        "   ,,,.......#############################################################################....,,",
++        "  ,,,,.......#############################################################################.....,",
++        "   ,,,.......###########################xxxxxxxxx#########################################.....,",
++        "   ,,,.......###########################x|||||||x#########################################.....,",
++        "   ,,,......############################x|\u00ea\u00ea\u00ea\u00ea\u00ea|x##########################################....,",
++        "   ,,,......############################x|\u00ea\u00ea\u00ea\u00ea\u00ea|x##########################################....,",
++        "   ,,,......#########################xxxx|\u00ea\u00ea\u00ea\u00ea\u00ea|xxxxxxxxxxxxxxxxx###########################...,",
++        " , ,,,.....###############xxxxxxxxxxxx||||\u00ea\u00ea\u00ea\u00ea\u00ea||||##|||||||||||x############################..,",
++        "   ,,,.....###############x||||||||||||<<|\u00ea\u00ea\u00ea\u00ea\u00ea|<<||||ccccccccL|x#############################.,",
++        "   ,,,.....###############x|L||||||||L|mm|@mmm||mm|L||c_______c|x#############################.,",
++        "   ,,,,....###############x|_______M_________________M________c|x#############################.,",
++        "   ,,,,....###############x|_______M_________________M___UUU__c|x############################..,",
++        "   ,,,,....###############x|R_____c|__|MM|_____|MM|__|c__UUU__c|x############################..,",
++        "   ,,,,...################x|R_____c|__|TT|_____|TT|__|c_______c|x###########################..,,",
++        "   ,,,,,..################x|R_____c|__|]]|mmmmm|]]|__|c_______c|x###########################..,,",
++        "   ,,,,,..################x|R_____c|__|___________|__|ccccccccL|x##########################..., ",
++        "   ,,,,,..################x|R_____c|__|___________|__|||||||||||xx#########################..., ",
++        " , ,,,,,...###############x|R_____c|__|\u0271_________\u0271|__||||||||||||x########################...,, ",
++        ",  ,,,,,,...##############x|R_____c|__|\u0271_________\u0271|__L||||_____L|x########################...,, ",
++        "    ,,,,,....#############x|R_____c|__|\u0271_________\u0271|______m_____||x########################...,, ",
++        "    ,,,,,..........#######x|R_____c|__|\u0271_________\u0271|______m_____||x########################..,,, ",
++        "  , ,,,,,........#########x|R_____c|__|\u03df_________\u0271|__L||||_____L|x########################..,,, ",
++        "    ,,,,,......###########x|R_____c|__|\u1e6a\u1e6a_______\u1e6a\u1e6a|__||||||||||||x#######################...,,, ",
++        "    ,,,,,.....############x|R_____c|__|\u0271_________\u0271|__L||||_____L|x#######################...,,, ",
++        "   ,,,,,,....#############x|R_____c|__|\u0271_________\u0271|______m_____||x#######################...,,, ",
++        "    ,,,,,....#############x|R_____c|__|\u0271_________\u0271|______m_____||x######################....,,, ",
++        "    ,,,,,...##############x|R_____c|__|\u03df_________\u03df|__L||||_____L|x######################....,,, ",
++        "    ,,,,,...##############x|R_____c|__|\u03df_________\u03df|__||||||||||||x######################....,,  ",
++        "  , ,,,,,...##############x|R_____c|__|___________|mm|||||_____L|x#####################.....,,, ",
++        "     ,,,,...##############x|______c|__|___________|______m_____||x#####################.....,,  ",
++        "     ,,,,...##############x|L|||||||__|L_________L|______m_____||x####################......,,, ",
++        "    ,,,,,...##############x||||||||L__|||MMMMMM|||||M|||||_____L|x####################......,,  ",
++        ",    ,,,,,..##############xxxxxxxx|___|#|______^^]t__|xxx||||||||x###################.......,,  ",
++        "     ,,,,,,....##################x|M|M|||______^^]t__|x#xxxxxxxxxx###################.......,,  ",
++        "   , ,,,,,,,,.....###############x|T|__#|______^^]t__|x##############################.......,, ,",
++        "     ,,,,,,,,,,,.....############x|]|__c|______^^]t__|x##############################......,,   ",
++        "     ,,,,,,,,,,,,.....###########x|<|__c|______^^]t__|x#############################.......,, , ",
++        " ,    ,,,,,,,,,,,.....###########x|_|__#|______^^]t__|x#############################......,,,   ",
++        "       ,,,,,,,,,,,.....#########xx|_|__#|______^^]t__|x###########################.......,,,, , ",
++        "       ,,,,,,,,,,,,....##xxxxxxxx||_||M||______^^]t__|x########################..........,,,,   ",
++        "    ,   ,,,,,,,,,,,,....#|||||||||L_||__|MMMMMM||||__|x#######################...........,,,,   ",
++        "         ,,,,,,,,,,,,..#||__________^]T_|[[[[[[|||___|x#######################...........,,,, , ",
++        "  ,       ,,,,,,,,,,,...m___________^]T_|[[[[[[^]t___|x######################...........,,,,    ",
++        "        ,   ,,,,,,,,,,..|||||^^^^^^^^]T_|[[[[[[^]t__c|x#####################...........,,,,     ",
++        "     ,   ,    ,,,,,,,,,..#xx|]|]|]|]||__|[[[[[[^]t__c|x##################.............,,,,  ,   ",
++        "        ,       ,,,,,,,,.##x|T#T#T#T____|[[[[[[^]t__c|x##############.................,,,,      ",
++        "    ,             ,,......#x|_________cc|[[[[[[^]t_cc|x############..................,,,,, ,  , ",
++        "             ,  ,   ,,,,,.#x|||||||||||||[[[[[[|||||||x###########.................,,,,,,       ",
++        "         ,  ,     ,  ,,,,,#xxxxxxxxxx###|MMMMMM|#xxxxxx###########...............,,,,,,,,  , ,  ",
++        "                 ,    ,,,,############^^^;;;;;;^#################...............,,,,,,,,        ",
++        "          ,            ,,,,,#####........;;;;;;.##.##############............,,,,,,,,,    ,     ",
++        "    ,               ,    ,,,,##,.........;;;,;;.....############............,,,,,,,,  ,         ",
++        "            ,      ,       ,,,,,,,,,,....,;,;,;.........######............,,,,,,,,, ,     ,     ",
++        "          ,               , ,,,,,,,,,,,,,,,,;;,,..................,,,,,,,,,,,,,,            ,   ",
++        "                               ,,,,,,,,,,,;,,,,,,,,,,,,,,,,,,,,,,,,,,,             ,    ,       ",
++        "                             ,           , ,,,   ,       ,     ,    ,      ,                    "
++      ],
++      "fill_ter": "t_scrap_floor",
++      "terrain": {
++        "|": "t_scrap_wall",
++        "]": "t_bars",
++        "~": "t_water_pool",
++        "M": "t_door_metal_locked",
++        "m": "t_door_metal_c",
++        "x": "t_wall_resin",
++        "@": "t_elevator_control",
++        "\u00ea": "t_elevator",
++        "_": "t_scrap_floor",
++        "<": "t_stairs_up",
++        "#": "t_rock",
++        " ": [
++          [
++            "t_region_groundcover",
++            50
++          ],
++          [
++            "t_region_groundcover_barren",
++            10
++          ],
++          "t_sand"
++        ],
++        ",": [
++          [
++            "t_region_groundcover_barren",
++            2
++          ],
++          "t_region_groundcover",
++          "t_sand"
++        ],
++        ".": "t_sand",
++        ";": [
++          [
++            "t_rock_floor_no_roof",
++            10
++          ],
++          "t_sand"
++        ],
++        "^": "t_pit_spiked",
++        "[": "t_metal_floor_no_roof",
++        "o": "t_scrap_floor",
++        "O": "t_scrap_floor",
++        "/": "t_scrap_floor",
++        "L": "t_scrap_floor",
++        "R": "t_scrap_floor",
++        "T": "t_scrap_floor",
++        "U": "t_scrap_floor",
++        "c": "t_scrap_floor",
++        "s": "t_scrap_floor",
++        "t": "t_scrap_floor",
++        "\u011c": "t_scrap_floor",
++        "\u011e": "t_scrap_floor",
++        "\u0120": "t_scrap_floor",
++        "\u0122": "t_scrap_floor",
++        "\u01a4": "t_scrap_floor",
++        "\u01a5": "t_scrap_floor",
++        "\u0271": "t_scrap_floor",
++        "\u03df": "t_scrap_floor",
++        "\u0414": "t_scrap_floor",
++        "\u048e": "t_scrap_floor",
++        "\u1e6a": "t_scrap_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "//": "z1 level",
++    "om_terrain": [
++      [
++        "dda_geo_exodii_base_x0y0z1",
++        "dda_geo_exodii_base_x1y0z1",
++        "dda_geo_exodii_base_x2y0z1",
++        "dda_geo_exodii_base_x3y0z1"
++      ],
++      [
++        "dda_geo_exodii_base_x0y1z1",
++        "dda_geo_exodii_base_x1y1z1",
++        "dda_geo_exodii_base_x2y1z1",
++        "dda_geo_exodii_base_x3y1z1"
++      ],
++      [
++        "dda_geo_exodii_base_x0y2z1",
++        "dda_geo_exodii_base_x1y2z1",
++        "dda_geo_exodii_base_x2y2z1",
++        "dda_geo_exodii_base_x3y2z1"
++      ],
++      [
++        "dda_geo_exodii_base_x0y3z1",
++        "dda_geo_exodii_base_x1y3z1",
++        "dda_geo_exodii_base_x2y3z1",
++        "dda_geo_exodii_base_x3y3z1"
++      ]
++    ],
++    "object": {
++      "rows": [
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "..............|]]]]|...##.....................|]]|..............................................",
++        "...........!!!|s__s||!!####...................]_s]..............................................",
++        "..........!!,,|_____|jjl###|]]|........|::||]]|__|!!!!!!!.......................................",
++        ".........!!,,,||||M||kj####__s|]]|::|::|____s____M;;;;;;!!!!..........|]|.......................",
++        ".........!,,,,m_____|j####|______________________M;;;;;;;; !!........!|s].......................",
++        "........!!,,,,|_____|j###||_____________________||||||||;;; !!!!...!!!|M|!......................",
++        "........!,,,,,|__|m||  #|||||||||||||||||||||||||||||||||;;    !!!!!     !!!!!!.................",
++        ".......||||||||__|__|  |||B1LB2|B1LB4|B1LB6|B1LB8|B1LB0||;;                   !!!...............",
++        ".......]s__M_____|__|  ||<_____W_______________________||;;   !!!!!             !!!!............",
++        ".......]___|_____|__|  ||<____________________W________||;;   !cCc!               ||]]|.........",
++        ".......||__||::::|__|  |||B1|B3LB1|B1LB5|B1LB7|B1LB9|mm||;;   !CccM               |__s|]|.......",
++        "........]___:~~~~:__|   |||||||||||||||||||||||||||||__||;;   !ccC!              L|____s||......",
++        "........]___:~~~::__|   ||>__m_________________________||;;   !!!!!     |;;;;;;;;;M______||.....",
++        "........]___:~~::___|  #||>__m___________________]]]___||;;    |;;;;;;;;;;;;;;;;;;M______s].....",
++        ".......||__||:::___|| ##|||<<|___________________]TM__|||;;;;;;;;;;;;;;;;;        |_______].....",
++        ".......]s__|W_____||  ###|||||||||||mm||||||||mmm|||||||L;;;;;;;;|      ;;        ###_____|.....",
++        ".......]___M_____||   ####|DDd__F_m___L|||||||___||||||#l;;              ;;         ###_####....",
++        ".......||||||||mm|   #####|_____F||__|||####||___||###lj ;;         ]]]]  ;;         ########...",
++        "........!!    L;;    #####|\u1e6a___d||__||D|####||mmm||jjjj ;;;         ]TT]   ;;         #######...",
++        ".........!!    ;;    #####|\u1e6a\u00df_DD|__||_D|###lj|;;;|j    ;;;      n   |__|L   ;;           ###....",
++        "..........!     ;;   #####|\u00df____|_||L_d|###j;;;;;;;;;;;;;jjl ljjjj  |M|||||||;;          !......",
++        "..........!!    ;;    ####|___DD|_|\u1e6a__y:j;;;;~[[[~jj~;;;;~~jjjjjjjjjjl|E___\u0271| ;;       ||||.....",
++        "...........!    ;;     jl#|L___d|_|\u1e6a\u00df_f|;;~~~~[[[~~~~[[[[~~~~~~~~~~~jj|c___R|  ;;;;    |__].....",
++        "...........!     ;;     jl||____|_|FFF||;~~|::|m|::|.|mm||::|||::||~~j|C___L||| ;;;;;;;M__].....",
++        "...........!!    ;;      jL||yyy|_m__||;;~||yyf__dL|||__|L\u1e6a\u1e6afff\u1e6a\u1e6a_||~l|c____m<|L  ;;;;;M_s].....",
++        "............!    ;;         |:::|m||||;;;~|DD_____DD|___|__\u00df___\u00df__L|~l||mm||||||||m||;;|]]|.....",
++        "............!    ;;;;;;;;;;;;;;;;;;;;;;[[~:d_______f|_|||_________y:~j|W__c|\u0414\u048e|\u0271\u0271\u0271_c|;;!........",
++        "............!    ;;;||||||||||||||iL;~~[[~:y___\u1e6a\u00df_|||_|_F_________y:~j|___c|__|\u0414___C|;;!!.......",
++        "............!    ;;||__\u00df\u00df\u00df\u00df\u00df\u00df\u00df\u00df_L|ii;~~,,~:y__\u00df\u1e6a__F_m_m_F__D__D__D_|~l|___C|__|\u0414___c|;; !!......",
++        "............!||| ;;|___\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a__:i;;~~,,~:_______F_|_|_F__Dd_Dd_Dd|~l|\u1e6a__c|__|\u0414__\u1e6a\u1e6a|;;  !!.....",
++        ".............]s||;;|___\u00df\u00df\u00df\u00df\u00df\u00df\u00df\u00df__:i;i~~,,~|dD_____F_|m||||||||||||||~j|\u1e6a___m__|P___R|;;   !.....",
++        ".............]__|;;|_____________|i;i~~,,~||D_____F||___L__|_F___ff|~j|____m__m____R|;;   !.....",
++        ".............|__m;;||L_\u00df\u00df\u00df\u00df\u00df\u00df\u00df\u00df__:i;~~~,,~~||_\u00df__f||_______m_F_____:~n|\u0271__\u0271|__|\u03df\u03df__L|;;   !.....",
++        ".............]s_|i;;||_\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a\u1e6a__:;;~~i,,i~~||\u1e6a\u1e6aL||__||m||||_F__?=_:~j|L\u1e6a\u1e6a\u0271|__|||::|| ;; !!.....",
++        ".............]__|ii;;|_\u00df\u00df\u00df\u00df\u00df\u00df\u00df\u00df__|;~~~i,,ii~~|::||__||__FdD|FF__-+_:~l||::||_______c| ;; !......",
++        ".............|__|Lii;||||||||||mm|;~~ii,,ii~~~~~:__||FFFF_D|___L___:~l|__________W_C| ;; !......",
++        ".............]__m;;;;;;;;;;;;;;;;;;[[,,,,ii~~~~||_||L_____L|_______|~j|_\u00df\u1e6a\u1e6a\u00df_______c| ;; !......",
++        ".............]_||    S   ;;;;;;;;;;[[,,,,|||||||L_|\u1e6a\u00df____f|||::|::||~j|_\u00df\u1e6a\u1e6a\u00df___W___U| ;; !......",
++        "............!|||  |||||||||||||mm|i~~ii,,|\u00ea\u00ea\u00ea\u00ea\u00ea|__|\u1e6a___Dd||L~~~~~~~~~j|_\u00df\u1e6a\u1e6a\u00df_______L| ;;|||.....",
++        "............!j w  |UUUUUU_CCc____|i~~~i,,|\u00ea\u00ea\u00ea\u00ea\u00ea|__|f___D||~~~~~~~~~~lj|L___________|| ;;M_].....",
++        "............!nj   |________Ccc___|ii~~|mm|\u00ea\u00ea\u00ea\u00ea\u00ea|mm|Lyyy||~~~~~~~~~~lj |||||||||||mm|L ;;|_||....",
++        "...........##jjlnj|UUUUUUc__C___c|ii~~:<<|\u00ea\u00ea\u00ea\u00ea\u00ea|<<|::::|~~~~~~~~~jjS       w     ;;   ;;|__||...",
++        "...........######j|UUUUUUC______C|ii~~:>>|\u00ea\u00ea\u00ea\u00ea\u00ea|>>:~~~~~~~~~~~ljjn               ;;   ;;||__||..",
++        "...........#######|____________W||~~~~|__||@mmm|mm|~~~~~!!!!!!!!!!!!!! ||||||    ;;;  ;;;M__s]..",
++        "...........#######|UUUUUUCC___|||~~~~~|mm||[[[[|[[|~~~~!!rrrrrrrrrrrr!||E\u03dfRR||    ;;; ;; ||_||..",
++        "...........######||||||||||mm||~~~~~~~~[[~|[[[[|[[|~~jl!r;;;;;;;;;;;;r|\u03df/___\u0271|     ;;;;  L|s]...",
++        "...........######|CccCCC_____|~~~~ii~~~[[~|[[[[|[[|jlnj!;;rr;rr;rr;r;r|\u03df_||_\u0271|       ;;   |||...",
++        "..........#######|CCcCC_____||~~~iiiiii;;i|]mmm|mm||||||mm|||||||||||||\u03df_||_\u0271|       ;;    !....",
++        "..........#######|cCcc__W__||~~~iiiiiii;;i|L_______________\u0271RRRRRRRRR\u0271_/____\u0271|       ;;   !!....",
++        "..........#######|||||]]|mm|~~~~iiiiiii;;i|_______W____________________/__UU||       ;;   !.....",
++        "..........######lj       ;;j~~~iikiiiii;;n|G__________________________//_||||        ;;  !!.....",
++        "...........###jjjw     ~~;;~~~iiiiiiiii;;i|________________\u0271RRRRRRRRR\u0271/__\u048e|c         ;;  !......",
++        "............#!lj     ~~~~[[~~iikiiikiii;;i|___________________/////___/__\u048e|C      S  ;;  !......",
++        ".............!!!!!!|[~~~~[[~iiiiiiiiiii;;i|____________W__/////___/////__\u00f6|C         ;;  !......",
++        "...................][~~~~;;iiikiiiiikii;;i||______________/LcCCccCcCc\u0271___\u00f6|c         ;;  !......",
++        ".................!!|[~~~~;;iiiiiiiiiiii;;iL|||||||M______//______________\u00df|C         ;; !!......",
++        "...............|]|jjl~~~  ;;iiikiiikii;;iii    ]T_|\u03df_____/_______________\u03df|c        ;;| !.......",
++        "..............||_||]jj     ;;iiiiiiiii;;ini    ]_T|\u03df_____///\u01a5\u1e6a\u1e6a\u1e6a\u01a5\u1e6a\u1e6a\u1e6aUL___|||]]      ;;  !.......",
++        ".............||__MT]j    w  ;;iiikiii;;ii  #   |]]|\u03df__////_______________M__T]      ;; !!.......",
++        ".............]___||]         ;;iiiii;;ii ###S     |\u03df///__////____________|__T]     ;;  !........",
++        "............||____M;;;;;;;;;;;;;iii;;ii ######   w|\u03df_____/_L\u01a4\u1e6a\u1e6a\u1e6acCUUUR___|||]]     ;;  !........",
++        "............]_s___|||||||    L;;;;;;;ii #######   |\u03df_____//______________|        ;;  |!........",
++        "............]_____|Z    m;;;;;;|MM|;;;;########   |\u03df______/______________|       ;;   !.........",
++        "............|_s___|     |    ;||__|  ``#######    |\u03df_____//cccCCCccCcc___|      ;;   !!.........",
++        "............]_____|     ]    ;]TT|| ##``######    |\u03df_____/_______________|      ;;   !..........",
++        "............]_s___|     ]    ;]]]|  ###`# ####    |\u03df_____////____________|    ;;;||||!..........",
++        "............|]]|__|||||||    ;     ####;;   #     |\u03df_______L\u01a4\u1e6a\u1e6a\u1e6a\u01a4\u1e6a\u1e6a\u1e6a\u01a4L___|    ;|M|_s]...........",
++        "...............|]]|         ;;;  S####jj;;        |\u03df_____________________|   ;;M____]...........",
++        "..................!!!!S    ;; ;  #####ljj;        |\u03df_____W______________R|   ;||____]...........",
++        ".....................!!   ;;S ; L#|||##lj;  w     ||mm|mm|||||||||||||||||   ;|____||...........",
++        "......................!  ;; #|m|##|>|##lj;        L];;!;;rrrrrrrrrrrrrr!     ;|___s]............",
++        "......................!! ; ##|_|##|_|##;;;;;;;;;;  ];;!;;;;;;;;;;;;;;rr!     ;|_s|]|............",
++        ".......................||M||#|_|##|_|#j;|m||||||;  ];;!r;;;r;;r;;r;;r!!!    ;;|]]|..............",
++        ".......................]s__|#|_||||_|#j;|__cCcC|;;;;;;!!r;;;;;;;;;;;r!      ;!!.................",
++        ".......................]___|#|_L||L_|#j;|__WcC_|;;;;;; !rrrrrrrrrrrr!!     ;;!..................",
++        ".......................]s__|#|______|l;;|____cC|iiii;; !!!!!!!!!!!!!!   ;;;;!!..................",
++        ".......................||__|||______|l;j|]]]]]]|ikii;;              ;;;;;  !!...................",
++        "........................||__#|______|j;j!......!iiii;;;;;;;;;;;;;;;;;   !!!!....................",
++        ".........................]s_#|]]]]]]|j;n!......!ii;;;;;           |s|!!!!.......................",
++        ".........................||##|TTTTTT|;;||......|||M|]]]        w  |]|...........................",
++        "..........................!##|______M;__|......]s__|_T]          !!.............................",
++        "..........................###||||||||#_s|......]___M_c|          !..............................",
++        "...........................###########]]|......]s_s||||  w      !!..............................",
++        "................................######.........|]]]|            !...............................",
++        "...................................................!!          !!...............................",
++        "....................................................!!!!!    !!!................................",
++        "........................................................!!!!!!..................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................"
++      ],
++      "fill_ter": "t_scrap_floor",
++      "terrain": {
++        "!": "t_junk_palisade",
++        "|": "t_scrap_wall",
++        "]": "t_bars",
++        "~": "t_water_sh",
++        ":": "t_ballistic_glass",
++        "i": [
++          [
++            "t_grass_dead",
++            8
++          ],
++          [
++            "t_dirt",
++            2
++          ]
++        ],
++        "j": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_moss"
++        ],
++        "k": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_moss"
++        ],
++        "l": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_fern"
++        ],
++        "n": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_moss"
++        ],
++        "M": "t_door_metal_locked",
++        "m": "t_door_metal_c",
++        "@": "t_elevator_control",
++        "\u00ea": "t_elevator",
++        "_": "t_scrap_floor",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up",
++        "#": "t_rock",
++        " ": "t_rock_floor_no_roof",
++        ";": "t_metal_floor_no_roof",
++        ",": "t_dirt",
++        ".": "t_open_air",
++        "`": "t_rock_floor",
++        "[": "t_water_sh",
++        "r": "t_metal_floor_no_roof",
++        "s": "t_scrap_floor",
++        "S": "t_rock_floor_no_roof",
++        "w": "t_rock_floor_no_roof",
++        "W": "t_scrap_floor",
++        "?": "t_scrap_floor",
++        "-": "t_scrap_floor",
++        "+": "t_scrap_floor",
++        "/": "t_scrap_floor",
++        "0": "t_scrap_floor",
++        "1": "t_scrap_floor",
++        "2": "t_scrap_floor",
++        "3": "t_scrap_floor",
++        "4": "t_scrap_floor",
++        "5": "t_scrap_floor",
++        "6": "t_scrap_floor",
++        "7": "t_scrap_floor",
++        "8": "t_scrap_floor",
++        "9": "t_scrap_floor",
++        "=": "t_scrap_floor",
++        "B": "t_scrap_floor",
++        "C": "t_scrap_floor",
++        "D": "t_scrap_floor",
++        "E": "t_scrap_floor",
++        "F": "t_scrap_floor",
++        "L": "t_scrap_floor",
++        "P": "t_scrap_floor",
++        "R": "t_scrap_floor",
++        "T": "t_scrap_floor",
++        "U": "t_scrap_floor",
++        "c": "t_scrap_floor",
++        "d": "t_scrap_floor",
++        "f": "t_scrap_floor",
++        "y": "t_scrap_floor",
++        "\u00df": "t_scrap_floor",
++        "\u00f6": "t_scrap_floor",
++        "\u01a4": "t_scrap_floor",
++        "\u01a5": "t_scrap_floor",
++        "\u0271": "t_scrap_floor",
++        "\u03df": "t_scrap_floor",
++        "\u0414": "t_scrap_floor",
++        "\u048e": "t_scrap_floor",
++        "\u1e6a": "t_scrap_floor"
++      },
++      "nested": {
++        "Z": {
++          "chunks": [
++            "dda_geo_exodii_rubik_store_base"
++          ]
++        },
++        "G": {
++          "chunks": [
++            "dda_geo_exodii_weaponmaster_workshop_base"
++          ]
++        }
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "//": "z2 level",
++    "om_terrain": [
++      [
++        "dda_geo_exodii_base_x0y0z2",
++        "dda_geo_exodii_base_x1y0z2",
++        "dda_geo_exodii_base_x2y0z2",
++        "dda_geo_exodii_base_x3y0z2"
++      ],
++      [
++        "dda_geo_exodii_base_x0y1z2",
++        "dda_geo_exodii_base_x1y1z2",
++        "dda_geo_exodii_base_x2y1z2",
++        "dda_geo_exodii_base_x3y1z2"
++      ],
++      [
++        "dda_geo_exodii_base_x0y2z2",
++        "dda_geo_exodii_base_x1y2z2",
++        "dda_geo_exodii_base_x2y2z2",
++        "dda_geo_exodii_base_x3y2z2"
++      ],
++      [
++        "dda_geo_exodii_base_x0y3z2",
++        "dda_geo_exodii_base_x1y3z2",
++        "dda_geo_exodii_base_x2y3z2",
++        "dda_geo_exodii_base_x3y3z2"
++      ]
++    ],
++    "object": {
++      "rows": [
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "..............|]]]]|...ll.....................|]]|..............................................",
++        "..............]s__s||..jnjj...................]_s]..............................................",
++        "..............]_____|...jnn|]]|........|::||]]|__|..............................................",
++        "..............||||M||..,ljjm_s|]]|::|::|____s____M[[[[[[..............]]].......................",
++        "..............]T____m[jjkj||_____________________M[[[[[[[[............]T].......................",
++        "..............]_____m[jlj||_____________________||||||||[[[...........]M].......................",
++        "..............|__|m||..l|||||||||||||||||||||||||||||||||[[............[........................",
++        ".......|]]]||||__|__|..|||B1LB2|B1LB4|B1LB6|B1LB8|B1LB0||[[............[........................",
++        ".......]s__M_____|__|..||>_____W_______________________||[[............[........................",
++        ".......]___|_____|__|..||>____________________W________||[[............[..........||]]|.........",
++        ".......||__||::::|__|..|||B1|B3LB1|B1LB5|B1LB7|B1LB9|mm||[[............[..........|__s|]|.......",
++        "........]___:....:__|...|||||||||||||||||||||||||||||__||[[............[..........|____s||......",
++        "........]___:...::__|...||<__m_________________________||[[............[|[[[[[[[[[M______||.....",
++        "........]___:..::___|..i||<__m___________________]]]___||[[....|[[[[[[[[[[[[[[[[[[M______s].....",
++        ".......||__||:::__<||.ii|||>>|___________________]TM__|||[[[[[[[[[[[[[[[[[........|m||____].....",
++        ".......]s__|W_____||..iii|||||||||||mm||||||||mmm|||||||L[[[[[[[[|......[[........iii|]]]]|.....",
++        ".......]___M_____||...iiii|DD___F_m___L|||||||___||||||i.[[.............[[[.........iii_ii!!....",
++        ".......||||||||mm|...iiiii:y____F||__|||XXX\u00df||___||llj...[[.........]]]][.[[.........iiii\u00a4\u00a4! ...",
++        "...............[[!...iiiii|d____||__||D|X\u00a4X\u00df||mmm||.....[[[.........]TT][..[[.........\u00b6ii\u00a4\u00a4! ...",
++        "...............[[!!..iiiii:y__DD|__||_D:X\u00a4X..|[[[|.....[[[..........|__M[...[[...........!!!....",
++        "................[[!..iiiii|d____|_||L_d|XXX.[[[[[[[[[[[[[...........|||||||||[[.................",
++        "................[[!...iiii:y__DD|_|\u1e6a__y:.[[[[.[[[....[[[[.............|E___\u0271|.[[.......||||.....",
++        "................[[!!.....i|d____|_|\u1e6a\u00df_f|[[....[[[....[[[[.............|c___R|..[[[[....|__].....",
++        ".................[[!......||L\u00df\u1e6a\u00df|_|FFF||[..|::|m|::|.|mm||::|||::||...|C___L||||[[[[[[[M__].....",
++        ".................[[!.......||\u00df\u1e6a\u00df|_m__||.[.||yyf__dL|||__|L\u1e6a\u1e6afff\u1e6a\u1e6a_||..|c____m><|..[[[[[M_s].....",
++        ".................[[!........|:::|m||||..[.|DD_____DD|___|__\u00df___\u00df__L|..||mm||||||||m||[[|]]|.....",
++        ".................[[[[[[[[[[[[[[[[[[[[[[[[.:d_______f|_|||_________y:..|W__c|\u0414\u048e|\u0271\u0271\u0271_c|[[.........",
++        ".................[[[||||||||||||||..[.....:y___\u1e6a\u00df_|||_|_F_________y:..|___c|__|\u0414___C|[[.........",
++        ".................[[||B1FB2|B1FB2||..[.....:y__\u00df\u1e6a__F_m_m_F__D__D__D_|..|___C|__|\u0414___c|[[.........",
++        ".............|||.[[|L____________|.[[.....:_______F_|_|_F__Dd_Dd_Dd|..|\u1e6a__c|__|\u0414__\u1e6a\u1e6a|[[.........",
++        ".............]s||[[|B1FB2|B1FB2__|.[......|dD_____F_|m||||||||||||||..|\u1e6a___m__|P___R|[[.........",
++        ".............]__|[[||||||||||||L_|.[......||D_____F||___L__|_FDdLdD|..|____m__m____R|[[.........",
++        ".............|__m[[|B1FB2|B1FB2__|.[.......||_\u00df__f||_______m_FD___D:..|\u0271__\u0271|__|\u03df\u03df__L|[[.........",
++        ".............]s_|.[|||___________|[[........||\u1e6a\u1e6aL||__||m||||_F_____:..|L\u1e6a\u1e6a\u0271|__|||::||.[[........",
++        ".............]__|..[[|B1|B3FB1|__|[..........|::||__||__FdD|FF____y:..||::||_______c|.[[........",
++        ".............|__|...[||||||||||mm|[.............:__||FFFF_D|____\u00df__:..|__________W_C|.[[........",
++        ".............]__m[[[[[[[[[....[[[[[............||_||L_____L|_yyL\u1e6a\u1e6a_|..|_\u00df\u1e6a\u1e6a\u00df_______c|.[[........",
++        ".............]_||........[[[[[[[[[[......|||||||L_|\u1e6a\u00df____f|||::|::||..|_\u00df\u1e6a\u1e6a\u00df___W___U|.[[........",
++        ".............|||..||||||||:||||mm|.......|\u00ea\u00ea\u00ea\u00ea\u00ea|__|\u1e6a___Dd||...........|_\u00df\u1e6a\u1e6a\u00df_______L|.[[|||.....",
++        "..................|dDdDdD_y_DD|__|.......|\u00ea\u00ea\u00ea\u00ea\u00ea|__|f___D||............|L___________||.[[M_].....",
++        "..................:_D_D_D____d|__:....|mm|\u00ea\u00ea\u00ea\u00ea\u00ea|mm|Lyyy||.............|||mm|||||||||..[[|_||....",
++        "...........  .....:y\u00df_____FFF||__|....:>>|\u00ea\u00ea\u00ea\u00ea\u00ea|>>|::::|.................[[...........[[|__||...",
++        "...........!!!!!!.:y\u1e6a\u1e6a\u00df___F_||___|....:<<|\u00ea\u00ea\u00ea\u00ea\u00ea|<<:......................[[...........[[||__||..",
++        "...........!\u00a4\u00a4\u00a4\u00a4ii:y_\u00df____|m|__W||....|__||@mmm|mm|....................||mm||.........[[[M__s]..",
++        "...........!\u00a4ii\u00a4ii|_fff_fL|___|||.....|mm||[[[[|[[|...................||E__R||........[[[||_||..",
++        "...........!\u00a4ii\u00a4i||||||||||mm||........[[.|[[[[|[[|...................|\u03df/___\u0271|.........[[[|s]...",
++        "...........!\u00a4ii\u00a4i:y____F_m___|.........[[.|[[[[|[[|...................|\u03df_||_\u0271|.........[[[|||...",
++        "..........||\u00a4ii\u00a4i:y____F||_W||.........[[.|]mmm|mm|||||||||||||||||||||\u03df_||_\u0271|..........[[......",
++        "..........] \u00a4\u00a4\u00a4\u00a4i|DDd_\u00df\u1e6a|__||..........[[.|L_______________\u0271RRRRRRRRR\u0271_/____\u0271|..........[[......",
++        "..........]siiiii|||:::|||||...........[[.|_______W___________________//__UU||..........[[......",
++        "..........||iiii.......................[[.|___\u00df\u1e6a\u1e6a\u00df______CC__CC__CC____/_\u03df||||...........[[......",
++        "...........!!![[.......................[[.|___\u00df\u1e6a\u1e6a\u00df______CC__CC__CC____//\u03df|..............[[......",
++        "...........!!![[.......................[[.|___\u00df\u1e6a\u1e6a\u00df______CC__CC__CC____//\u03df|..............[[......",
++        "............ ..[[......................[[.|\u0414__\u00df\u1e6a\u1e6a\u00df_____________/////__/_\u03df|..............[[......",
++        "................[[.....................[[.|P___________W__//////__/////_C|..............[[......",
++        ".................[[....................[[.||CCcc__________/________/____C|..............[[......",
++        "..................[[...................[[..|||||||M______//_RR__RR______C|.............[[[......",
++        "...............|]|.[[.................[[.......]T_|\u1e6a_____/__RR__RR______C|.............[[.......",
++        "..............||_|.[[.................[[.......]_T|\u1e6a_____///____________C|||..........|[[.......",
++        ".............||<_].[[................[[....l...|]]|\u1e6a__////_______________M_M[[[[[[[[[[[[[.......",
++        ".............]___||[[...............[[...jlj......|\u03df///__////L__\u1e6a________M_M[[[[[[[[[[[[[.......",
++        "............||____M[[[[[[[[[[[[[...[[...j\u00a4\u00a4\u00a4\u00a4j....|\u1e6a__\u00ff    __\u1e6a__\u1e6a__\u1e6a__\u1e6a__|||..........|[[.......",
++        "............]_s__C|..........[[[[[[[[...j\u00a4jn\u00a4jn...|\u1e6a__     __\u1e6a__\u1e6a__\u1e6a__\u1e6a__|.............[[.......",
++        "............]____C|..........[[|MM|[[[[jj\u00a4jl\u00a4jj...|\u1e6a__     ______________|.............[[.......",
++        "............|_s___[..........[||__|..[[jj\u00a4\u00a4\u00a4\u00a4j....|\u1e6a__     __\u1e6a__\u1e6a__\u1e6a__\u1e6a__|.........[[[[[........",
++        "............]_____[..........[]TT||.nj[[jjnjjj....|\u1e6a__     __\u1e6a__\u1e6a__\u1e6a__\u1e6a__|.....[[[[[[[[[........",
++        "............]_s___[..........[]]]|..jjj[l.jjkj....|\u1e6a_____________________|....[[[||||...........",
++        "............|]]|T_|..........[.....jjlj[[...j.....|\u1e6a_________\u1e6a__\u1e6a__\u1e6a__\u1e6a__|....[|M|_s]...........",
++        "...............|]]|.........[[....ljkj..[[........|\u1e6a_________\u1e6a__\u1e6a__\u1e6a__\u1e6a__|...[[M____]...........",
++        "...........................[[....jjjjj...[........|\u1e6a__cccWcc____________R|...[||____]...........",
++        "..........................[[.....jjjjjl..[........||mm||||||||||||||||||||...[|____||...........",
++        ".........................[[.liiiljjjjjj..[.........][[.......................[|___s]............",
++        ".........................[ ljiiinjjjjjn[[[[[[[[[[..][[.......................[|_s|]|............",
++        ".......................||M||jiiijljjjl.[|m||||||[..][[......................[[|]]|..............",
++        ".......................]s__|liiijjjjjl.[|__CccC|[[[[[[......................[...................",
++        ".......................]___|jiiiiijjjj.[|__CccC|[[[[[[.....................[[...................",
++        ".......................]s__|l|||MM|||.[[|_W__cC|....[[..................[[[[....................",
++        ".......................||__|||B____B|.[.|]]]]]]|....[[..............[[[[[.......................",
++        "........................||__ |L____L|.[.............[[[[[[[[[[[[[[[[[...........................",
++        ".........................]s_ |B____B|.[...........[[[[[...........a&E...........................",
++        ".........................||  m_____B|[[||......|||M|]]]...........!!!...........................",
++        "..........................]sn|B_____M[__M[[[[[[M___|_T].........................................",
++        "..........................]]t|______  _s|......]___M_c|.........................................",
++        "...........................|]]]||t  t|]]|......]s_s||||.........................................",
++        "................................|]]]]].........|]]]|............................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................"
++      ],
++      "fill_ter": "t_scrap_floor",
++      "terrain": {
++        "!": "t_junk_palisade",
++        "&": "t_radio_tower",
++        "|": "t_scrap_wall",
++        "]": "t_bars",
++        ":": "t_ballistic_glass",
++        "a": "t_metal_flat_roof",
++        "i": [
++          [
++            "t_grass_dead",
++            8
++          ],
++          [
++            "t_dirt",
++            2
++          ]
++        ],
++        "j": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_moss"
++        ],
++        "k": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_moss"
++        ],
++        "l": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_fern"
++        ],
++        "n": [
++          [
++            "t_mud",
++            5
++          ],
++          "t_moss"
++        ],
++        "M": "t_door_metal_locked",
++        "m": "t_door_metal_c",
++        "X": "t_sandbox",
++        "\u00a4": "t_water_pool_shallow",
++        "@": "t_elevator_control",
++        "\u00ea": "t_elevator",
++        "_": "t_scrap_floor",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up",
++        "\u00b6": "t_metal_flat_roof",
++        " ": "t_rock_floor_no_roof",
++        ",": "t_dirt",
++        ".": "t_open_air",
++        "[": "t_grate",
++        "s": "t_scrap_floor",
++        "W": "t_scrap_floor",
++        "/": "t_scrap_floor",
++        "0": "t_scrap_floor",
++        "1": "t_scrap_floor",
++        "2": "t_scrap_floor",
++        "3": "t_scrap_floor",
++        "4": "t_scrap_floor",
++        "5": "t_scrap_floor",
++        "6": "t_scrap_floor",
++        "7": "t_scrap_floor",
++        "8": "t_scrap_floor",
++        "9": "t_scrap_floor",
++        "B": "t_scrap_floor",
++        "C": "t_scrap_floor",
++        "D": "t_scrap_floor",
++        "E": "t_scrap_floor",
++        "F": "t_scrap_floor",
++        "L": "t_scrap_floor",
++        "P": "t_scrap_floor",
++        "R": "t_scrap_floor",
++        "T": "t_scrap_floor",
++        "U": "t_scrap_floor",
++        "c": "t_scrap_floor",
++        "d": "t_scrap_floor",
++        "f": "t_scrap_floor",
++        "t": "t_scrap_floor",
++        "y": "t_scrap_floor",
++        "\u00df": "t_scrap_floor",
++        "\u0271": "t_scrap_floor",
++        "\u03df": "t_scrap_floor",
++        "\u0414": "t_scrap_floor",
++        "\u048e": "t_scrap_floor",
++        "\u1e6a": "t_scrap_floor"
++      },
++      "nested": {
++        "\u00ff": {
++          "chunks": [
++            "dda_geo_exodii_luliya_base"
++          ]
++        }
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "//": "z3 level",
++    "om_terrain": [
++      [
++        "dda_geo_exodii_base_x0y0z3",
++        "dda_geo_exodii_base_x1y0z3",
++        "dda_geo_exodii_base_x2y0z3",
++        "dda_geo_exodii_base_x3y0z3"
++      ],
++      [
++        "dda_geo_exodii_base_x0y1z3",
++        "dda_geo_exodii_base_x1y1z3",
++        "dda_geo_exodii_base_x2y1z3",
++        "dda_geo_exodii_base_x3y1z3"
++      ],
++      [
++        "dda_geo_exodii_base_x0y2z3",
++        "dda_geo_exodii_base_x1y2z3",
++        "dda_geo_exodii_base_x2y2z3",
++        "dda_geo_exodii_base_x3y2z3"
++      ],
++      [
++        "dda_geo_exodii_base_x0y3z3",
++        "dda_geo_exodii_base_x1y3z3",
++        "dda_geo_exodii_base_x2y3z3",
++        "dda_geo_exodii_base_x3y3z3"
++      ]
++    ],
++    "object": {
++      "rows": [
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "..............|]]]]|..........................|]]|..............................................",
++        "..............|s__s||.........................]_s]..............................................",
++        "..............|_____|......|]]|........|::||]]|__|..............................................",
++        "..............||||M||......|_s|]]|::|::|____s____M[[[[[[..............&*&.......................",
++        "..............|_____|.....||_____________________M[[[[[[[[............***.......................",
++        "..............|_____|....||_____________________||||||||[[[...........&*&.......................",
++        "..............|__|m||...|||||||||||||||||||||||||||||||||[[.....................................",
++        ".......||||||||__|__|..|||B1LB2|B1LB4|B1LB6|B1LB8|B1LB0||[[.....................................",
++        ".......]s__M_____|__|..||______W_______________________||[[.....................................",
++        ".......]___|_____|__|..||_____________________W________||[[.......................a&}}*.........",
++        ".......||__||::::|__|..|||B1|B3LB1|B1LB5|B1LB7|B1LB9|mm||[[.......................***}***.......",
++        "........]___:....:__|...|||||||||||||||||||||||||||||__||[[.......................***}&\u00b6**......",
++        "........]___:...::__|...||>__m_________________________||[[.......................***}*&***.....",
++        "........]___:..::__>|...||>__m___________________]]]___||[[.......................***}*****.....",
++        ".......||__||:::__<||...|||__|___________________]TM__|||[[[[[[[[[[[[[[[[[[[[[[[[[***}*****.....",
++        ".......]s__|W_____||.....|||||||||||mm||||||||mmm|||||||.[[[[[[[[.......[[...........}}}}}e.....",
++        ".......]___M_____||.......|DD___F_m___L|||||||___||||||..[[..............[[............e........",
++        ".......||||||||mm|........:y____F||__|||....||___||......[[.........]]]]..[[....................",
++        "..............][[]........|d____||__||D|....||mmm||.....[[[.........]TT]...[[...................",
++        "..............]]]]........:y__DD|__||_D:.....|[[[|.....[[[..........|__|....[[..................",
++        "..........................|d____|_||L_d|....[[[[[[[[[[[[[...........|M|||||||[[.................",
++        "..........................:y__DD|_|\u1e6a__y:.[[[[.[[[....[[[[.............|E___\u0271|.[[.......e&**.....",
++        "..........................|d____|_|\u1e6a\u00df_f|[[....[[[....[[[[.............|c___R|..[[[[....}}}*.....",
++        "..........................||L\u00df\u1e6a\u00df|_|FFF||[..|::|m|::|.|mm||::|||::||...|C___L||||[[[[[..**}*.....",
++        "...........................||\u00df\u1e6a\u00df|_m__||.[.||yyf__dL|||__|L\u1e6a\u1e6afff\u1e6a\u1e6a_||..|c____m_>|..[[[[[**\u00b6*.....",
++        "............................|:::|m||||..[.|DD______f|___|__\u00df___\u00df__L|..||mm||||||||m||[.**&*.....",
++        "................................[[[[[[[[[.:d______DD|_|||_________y:..|W__c|\u0414\u048e|\u0271\u0271\u0271_c|[..........",
++        "....................||||||||||||||..[.....:y___\u1e6a\u00df_|||_|_F_________y:..|___c|__|\u0414___C|[..........",
++        "...................||B1FB2|B1FB2||..[.....:y__\u00df\u1e6a__F_m_m_F__D__D__D_|..|___C|__|\u0414___c|[[.........",
++        ".............***...|L____________|.[[.....:_______F_|_|_F__Dd_Dd_Dd|..|\u1e6a__c|__|\u0414__\u1e6a\u1e6a|.[.........",
++        ".............*\u00b6}}..|B1FB2|B1FB2__|.[......|dD_____F_|m||||||||||||||..|\u1e6a___m__|P___R|.[.........",
++        ".............&**}..||||||||||||L_|.[......||D_____F||___L__|_FDdLdD|..|____m__m____R|.[.........",
++        ".............a*}}..|B1FB2|B1FB2__|.[.......||_\u00df__f||_______m_FD___D:..|\u0271__\u0271|__|\u03df\u03df__L|.[.........",
++        ".............e}}*..|||___________|[[........||\u1e6a\u1e6aL||__||m||||_F_____:..|L\u1e6a\u1e6a\u0271|__|||::||.[.........",
++        ".............&***....|B1|B3FB1|__|[..........|::||__||__FdD|FF____y:..||::||_______c|.[.........",
++        ".............}***....||||||||||mm|[.............:__||FFFF_D|____\u00df__:..|__________W_C|.[.........",
++        ".............}***[[[[[[[[[[[[[[[[[[............||_||L_____L|_yyL\u1e6a\u1e6a_|..|_\u00df\u1e6a\u1e6a\u00df_______c|.[.........",
++        ".............&e**.............[[[[[......|||||||L_|\u1e6a\u00df____f|||::|::||..|_\u00df\u1e6a\u1e6a\u00df___W___U|.[.........",
++        ".............***..||||||||:||||mm|.......|\u00ea\u00ea\u00ea\u00ea\u00ea|__|\u1e6a___Dd||...........|_\u00df\u1e6a\u1e6a\u00df_______L|.[.**a.....",
++        "..................|dDdDdD_y_DD|__|.......|\u00ea\u00ea\u00ea\u00ea\u00ea|__|f___D||............|L___________||.[.**}.....",
++        "..................|_D_D_D____d|__:....|mm|\u00ea\u00ea\u00ea\u00ea\u00ea|mm|Lyyy||.............|||||||||||mm|..[.**}}....",
++        "..................:y\u00df_____FFF||__|....:<<|\u00ea\u00ea\u00ea\u00ea\u00ea|<<|::::|........................[[[[[[[[***}}...",
++        "..................:y\u1e6a\u1e6a\u00df___F_||___|....:>>|\u00ea\u00ea\u00ea\u00ea\u00ea|>>:.....................................****}a..",
++        "..................:y_\u00df____|m|__W||....|__||@mmm|mm|....................||||||............***}*..",
++        "..................|_fffLf_|___|||.....|mm||[[[[|[[|...................||E\u03dfRR||...........***\u00b6&..",
++        ".................||||||||||mm||........[[.|[[[[|[[|...................|\u03df}___\u0271|............**&...",
++        ".................|\u1e6a\u00df___F_m___|.........[[.|[[[[|[[|...................|\u03df_||_\u0271|............e**...",
++        ".................|D____F||_W||.........[[.|]mmm|mm|||||||||||||||||||||\u03df_||_\u0271|..................",
++        ".................|Dd_yyf|__||..........[[.|L_______________\u0271RRRRRRRRR\u0271_/____\u0271|..................",
++        ".................|||:::||mm|...........[[.|\u00b6______W____________________/__UU||..................",
++        ".........................[[............[[.|\u00b6______CC__________________//_||||...................",
++        ".........................[[............[[.|\u00b6______CC_______\u0271RRRRRRRRR\u0271/__|......................",
++        ".........................[[............[[.|\u00b6__________________/////___/__|......................",
++        ".........................[[............[[.|\u00b6____W______W__/////___/////__|......................",
++        ".........................[[............[[.||______________/LcCCccCcCc\u0271___|......................",
++        ".........................[[............[[.L|||||||M______//______________|......................",
++        "...............|]|........[[..........[[.......]T_|\u03df_____/_______________|......................",
++        "..............||_|.........[[.........[[.......]_T|\u03df///__/__C\u1e6a\u1e6a\u1e6aC\u1e6a\u1e6a\u1e6aUL___|****..................",
++        ".............||><]*.........[[.......[[........|]]|\u03df__//////C\u1e6a\u1e6a\u1e6ac\u1e6a\u1e6a\u1e6acC___|!!!!..................",
++        ".............]___||..........[[.....[[............|\u03df///__/_/_____________M***!..................",
++        "............||____|..........[[[...[[.............|\u03df____//_L\u01a4\u1e6a\u1e6a\u1e6acCUUUR___|!!M!..................",
++        "............]_s___|..........[[[[[[[[.............|f____/______________W_|..[[..................",
++        "............]_____|..........[[|MM|[[[[...........|f____/________________|...[..................",
++        "............|_s___|..........[||__|..[[...........|f____L!!!!!!!!!!!!!!_!|...[..................",
++        "............]_____|..........[]TT||...[[..........|f_____bbbbbbbbbbbbbb_L|...[..................",
++        "............]_s___|..........[]]]|.....[..........|f__W__________________|...[...a&&a...........",
++        "............|]]|__|....................[[.........|f_____bbbbbbbbbbbbbb__|...[.**}***...........",
++        "...............|]]|.....................[[........|f_____________________|...[**}}***...........",
++        ".........................................[........|f__L__bbbbbbbbbbbbbb_L|....**}****...........",
++        ".........................................[........||mm||||||||||||||||||||....**}****...........",
++        ".........................................[.........][[........................}}}}\u00b6*............",
++        ".......................................[[[[[[[[[[..][[........................}*****............",
++        ".......................e}}**...........[|m||||||[..][[........................e&&e..............",
++        ".......................**}**...........[|____cc|[[[[[[..........................................",
++        ".......................*}}**........[[[[|__CccC|...[............................................",
++        ".......................*}***.********...|_w___C|...[............................................",
++        ".......................&\u00b6************...|]]]]]]|...[............................................",
++        "........................&***.********..............[............................................",
++        ".........................***.**e&e***..............[............................................",
++        ".........................**..a**}****..**......********.........................................",
++        ".............................}*}}}}\u00b6*.&*&......a*******.........................................",
++        ".............................}}}*****.***......&*******.........................................",
++        "......................................&*&......&*}}\u00b6***.........................................",
++        "...............................................e}}**............................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................"
++      ],
++      "fill_ter": "t_scrap_floor",
++      "terrain": {
++        "!": "t_junk_palisade",
++        "&": "t_radio_tower",
++        "|": "t_scrap_wall",
++        "]": "t_bars",
++        ":": "t_ballistic_glass",
++        "a": "t_metal_flat_roof",
++        "e": "t_metal_flat_roof",
++        "M": "t_door_metal_locked",
++        "m": "t_door_metal_c",
++        "@": "t_elevator_control",
++        "}": "t_metal_flat_roof",
++        "\u00ea": "t_elevator",
++        "_": "t_scrap_floor",
++        ">": "t_stairs_down",
++        "<": "t_stairs_up",
++        "*": "t_metal_flat_roof",
++        "\u00b6": "t_metal_flat_roof",
++        ".": "t_open_air",
++        "[": "t_grate",
++        "s": "t_scrap_floor",
++        "w": "t_rock_floor_no_roof",
++        "W": "t_scrap_floor",
++        "/": "t_scrap_floor",
++        "0": "t_scrap_floor",
++        "1": "t_scrap_floor",
++        "2": "t_scrap_floor",
++        "3": "t_scrap_floor",
++        "4": "t_scrap_floor",
++        "5": "t_scrap_floor",
++        "6": "t_scrap_floor",
++        "7": "t_scrap_floor",
++        "8": "t_scrap_floor",
++        "9": "t_scrap_floor",
++        "B": "t_scrap_floor",
++        "C": "t_scrap_floor",
++        "D": "t_scrap_floor",
++        "E": "t_scrap_floor",
++        "F": "t_scrap_floor",
++        "L": "t_scrap_floor",
++        "P": "t_scrap_floor",
++        "R": "t_scrap_floor",
++        "T": "t_scrap_floor",
++        "U": "t_scrap_floor",
++        "b": "t_scrap_floor",
++        "c": "t_scrap_floor",
++        "d": "t_scrap_floor",
++        "f": "t_scrap_floor",
++        "y": "t_scrap_floor",
++        "\u00df": "t_scrap_floor",
++        "\u01a4": "t_scrap_floor",
++        "\u0271": "t_scrap_floor",
++        "\u03df": "t_scrap_floor",
++        "\u0414": "t_scrap_floor",
++        "\u048e": "t_scrap_floor",
++        "\u1e6a": "t_scrap_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "//": "z4 level",
++    "om_terrain": [
++      [
++        "dda_geo_exodii_base_x0y0z4",
++        "dda_geo_exodii_base_x1y0z4",
++        "dda_geo_exodii_base_x2y0z4",
++        "dda_geo_exodii_base_x3y0z4"
++      ],
++      [
++        "dda_geo_exodii_base_x0y1z4",
++        "dda_geo_exodii_base_x1y1z4",
++        "dda_geo_exodii_base_x2y1z4",
++        "dda_geo_exodii_base_x3y1z4"
++      ],
++      [
++        "dda_geo_exodii_base_x0y2z4",
++        "dda_geo_exodii_base_x1y2z4",
++        "dda_geo_exodii_base_x2y2z4",
++        "dda_geo_exodii_base_x3y2z4"
++      ],
++      [
++        "dda_geo_exodii_base_x0y3z4",
++        "dda_geo_exodii_base_x1y3z4",
++        "dda_geo_exodii_base_x2y3z4",
++        "dda_geo_exodii_base_x3y3z4"
++      ]
++    ],
++    "object": {
++      "rows": [
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "..............******..........................****..............................................",
++        "..............*e&&e**.........................****..............................................",
++        "..............*}*****......****........***********..............................................",
++        "..............*}*****......*\u00b6&&e}}}}}}}}}}}}}}}\u00b6**..............................................",
++        "..............*}*****.....**}*********************..............................................",
++        "..............*}*****....***}***************************........................................",
++        "..............*}*****...****}****************************.......................................",
++        ".......********}*****..**a}}}}***************************.......................................",
++        ".......*\u00b6}}}e}}}}}}}*..**&***}************************&**.......................................",
++        ".......***}********}*..******}}}*****************}}}}}}a*.......................................",
++        ".......***}********}*..********}********}}}}}}}}}}**}*&}*.......................................",
++        "........**}**....**a*...*******}}}}}}}}}}***}*******}**}*.......................................",
++        "........**}**...*****...*******}************}*******}**}*.......................................",
++        "........**}**..****>*[[[*******}}***********}*******}**\u00b6&.......................................",
++        ".......***}**********...********}***********}}******}**&*.......................................",
++        ".......***}*********.....*******}************}******e***........................................",
++        ".......*\u00b6&a********.......******}}***********}*********.........................................",
++        ".......***********........*******}******....*}}}}}*.................****........................",
++        "..........................*******}******....*}***}*.................*\u00b6e*........................",
++        "..........................*******}******.....\u00b6.[.\u00b6..................**}}........................",
++        "..........................*******}******.......[....................***}*****...................",
++        "..........................*****}}}}*****.......[......................*}*****...................",
++        "..........................***}}}**}*****.......[......................*}*****...................",
++        "..........................***}****}*****...*********.**************...*}}******.................",
++        "...........................**\u00b6&ae&\u00b6****...*\u00b6**********************\u00b6*..**}******.................",
++        "............................**********....**************************..**}************...........",
++        "...............................[[[........**************************..**}}}}}}}}}}}\u00b6*...........",
++        "....................**************........**************************..***********}***...........",
++        "...................*\u00b6}}}}}}}***&e*........**************************..***********}***...........",
++        "...................****}***}}}**}*........**************************[[***********}***...........",
++        "...................***}}*****}}}}*........**************************[[*********a*}***...........",
++        "...................***}********}**........**************************[[********&&}}}**...........",
++        "...................*\u00b6}}********}}*.........*************************..*********e**}**...........",
++        "....................************}*..........************************..************}**...........",
++        ".....................**********&a*...........***********************..************}**...........",
++        ".....................*************..............********************..************}}*...........",
++        "...............................................*******************\u00b6*..*************}*...........",
++        ".........................................***************************..****}}}}}}}}}}*...........",
++        "..................****************.......******************...........****}********}*...........",
++        "..................*\u00b6**************.......*****************............*a&&e********\u00b6*...........",
++        "..................*}**************....*******************.............**************............",
++        "..................*}**************[[[[*>>*******>>******........................................",
++        "..................*e&*************[[[[*************.............................................",
++        "..................*a&*************....*\u00b6***********....................******...................",
++        "..................*}*************.....*****...........................*\u00b6****\u00b6*..................",
++        ".................*}}***********.......................................**&**&**..................",
++        ".................*}***********........................................\u00b6**ae**\u00b6..................",
++        ".................*}***********............****************************\u00b6**ea**\u00b6..................",
++        ".................*\u00b6**********.............******************************&**&**..................",
++        ".................***********..............**\u00b6**************************\u00b6****\u00b6*..................",
++        "..........................................***********************************...................",
++        "..........................................********************************......................",
++        "..........................................********************************......................",
++        "..........................................**\u00b6*****************************......................",
++        "..........................................****************e****e**********......................",
++        "..........................................***************a&&**&&a*********......................",
++        "...............***.............................***********&&**&&**********......................",
++        "..............****.............................***************************......................",
++        ".............***>*.............................***************************......................",
++        ".............*****................................********&&**&&**********......................",
++        "............*\u00b6}}***...............................*******a&&**&&a*********......................",
++        "............***}***...............................********e****e**********......................",
++        "............**}}}**............****...............************************......................",
++        "............*}}*}}*[[[[[[[[[[[*&&**[[[[[[[[[[[[[[[************************......................",
++        "............*}***}*[[[[[[[[[[[*\u00b6\u00b6**[[[[[[[[[[[[[[[************************......................",
++        "............*e*&*a*...........****................************************......................",
++        "............*******...............................************************......................",
++        "...............****...............................**\u00b6******************\u00b6**......................",
++        "................................................[[************************......................",
++        "................................................[[************************......................",
++        "................................................[[..............................................",
++        "................................................[[..............................................",
++        "........................................********[[..............................................",
++        "........................................********[[..............................................",
++        "........................................******a*................................................",
++        "........................................&\u00b6}}}}e*................................................",
++        "........................................*&******................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................",
++        "................................................................................................"
++      ],
++      "fill_ter": "t_metal_flat_roof",
++      "terrain": {
++        "&": "t_radio_tower",
++        "a": "t_metal_flat_roof",
++        "e": "t_metal_flat_roof",
++        "}": "t_metal_flat_roof",
++        ">": "t_stairs_down",
++        "*": "t_metal_flat_roof",
++        "\u00b6": "t_metal_flat_roof",
++        ".": "t_open_air",
++        "[": "t_bridge"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_base_safehouse_stone_0",
++    "//": "A medieval stone barn from the Exodii's most recently visited world.  Turns into Free Merchants safehouse if negotiated.",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "        .........       ",
++        "     ....,,,,,,,....    ",
++        "   ....,,,,,,,,,,,,,..  ",
++        "  ..,,,,,,;;;;;,,,,,..  ",
++        "  .,,,;;;;;;;;;;;;;,,.. ",
++        " ..,,;x;;;;;;;;;x;,,,.. ",
++        " .,,;x###########x;,,.. ",
++        "..,,;;#|ccc|ccc|#;;,,,..",
++        ".,,,;;#_3____{{g#;;;,,..",
++        ".,,;;;#_|__|{{||#;;;,,..",
++        ".,,;;;#<---I----#;;;,,..",
++        ".,,;;;#|------1|#;;;,,..",
++        ".,,;;;#C--------#;;;,,..",
++        ".,,;;;#C-----3--#;;;,,..",
++        ".,,;;;#C--------#;;;,,..",
++        "..,,;;#||-----||#;;;,,..",
++        "..,,;;#1-------1#;;,,,..",
++        " .,,;x####MMM####x;,,.. ",
++        " .,,;;x;;;;;;;;;x;,,,.. ",
++        " ..,,;x;;;;;;;;;x;,,,.. ",
++        "  ..,,xxxxx;;xxxx;,,..  ",
++        "  ...,,,,,,,,,,,,,,...  ",
++        "    ....,,,,,,,,....    ",
++        "       ..........       "
++      ],
++      "fill_ter": "t_dirtfloor",
++      "terrain": {
++        " ": [
++          [
++            "t_region_groundcover",
++            500
++          ],
++          "t_region_tree"
++        ],
++        ".": "dda_geo_exodii_t_glassed_sand",
++        ",": [
++          [
++            "dda_geo_exodii_t_glassed_sand",
++            3
++          ],
++          "t_sandmound",
++          "t_sand"
++        ],
++        ";": "t_sand",
++        "#": "t_rock_wall",
++        "_": "t_dirtfloor",
++        "-": "t_dirt",
++        "<": "t_ladder_up",
++        "|": "t_junk_wall",
++        "M": "t_door_metal_c",
++        "x": "t_rock_wall_half",
++        "1": "t_dirtfloor",
++        "3": "t_dirtfloor",
++        "C": "t_dirtfloor",
++        "I": "t_dirtfloor",
++        "c": "t_dirtfloor",
++        "g": "t_dirtfloor",
++        "{": "t_dirtfloor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_base_safehouse_stone_1",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvv###########vvvvvvv",
++        "vvvvvv#<{{{I{{{g#vvvvvvv",
++        "vvvvvv#'''''{'''#vvvvvvv",
++        "vvvvvv#'|1'|{1|C#vvvvvvv",
++        "vvvvvv#>vvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv#vvvvvvvvv#vvvvvvv",
++        "vvvvvv###########vvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv"
++      ],
++      "fill_ter": "t_junk_floor",
++      "terrain": {
++        "#": "t_rock_wall",
++        "'": "t_junk_floor",
++        "<": "t_ladder_up",
++        ">": "t_ladder_down",
++        "|": "t_junk_wall",
++        "v": "t_open_air",
++        "1": "t_junk_floor",
++        "C": "t_junk_floor",
++        "I": "t_junk_floor",
++        "g": "t_junk_floor",
++        "{": "t_junk_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "om_terrain": "dda_geo_exo_base_safehouse_stone_2",
++    "type": "mapgen",
++    "object": {
++      "rows": [
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvv^^^^^^^^^^^vvvvvvv",
++        "vvvvvv^>{Y^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^{^^^^^^^^vvvvvvv",
++        "vvvvvv^^I^^^^^^^^vvvvvvv",
++        "vvvvvv^^^^^^^^^^^vvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv",
++        "vvvvvvvvvvvvvvvvvvvvvvvv"
++      ],
++      "fill_ter": "t_tile_flat_roof",
++      "terrain": {
++        ">": "t_ladder_down",
++        "^": "t_tile_flat_roof",
++        "v": "t_open_air",
++        "I": "t_tile_flat_roof",
++        "Y": "t_tile_flat_roof",
++        "{": "t_tile_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_exodii_rubik_store_base",
++    "//": "Rubik's store in the Exodii main base",
++    "object": {
++      "rows": [
++        "T__c_",
++        "1__cc",
++        "L____",
++        "1111T",
++        "     "
++      ],
++      "mapgensize": [
++        5,
++        5
++      ],
++      "terrain": {
++        "_": "t_metal_floor",
++        "T": "t_metal_floor",
++        "1": "t_metal_floor",
++        "c": "t_metal_floor",
++        "L": "t_metal_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_exodii_luliya_base",
++    "//": "Luliya's area in the Exodii main base",
++    "object": {
++      "rows": [
++        "T_1__",
++        "1___c",
++        "L____",
++        "_____",
++        "_____"
++      ],
++      "mapgensize": [
++        5,
++        5
++      ],
++      "terrain": {
++        "_": "t_metal_floor",
++        "T": "t_metal_floor",
++        "1": "t_metal_floor",
++        "c": "t_metal_floor",
++        "L": "t_metal_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_exodii_weaponmaster_workshop_base",
++    "object": {
++      "rows": [
++        "b_L__",
++        "S_C_c",
++        "S_C@c",
++        "S_Cbc",
++        "|_Lcc"
++      ],
++      "mapgensize": [
++        5,
++        5
++      ],
++      "terrain": {
++        "|": "t_scrap_wall",
++        "_": "t_scrap_floor",
++        "S": "t_scrap_floor",
++        "C": "t_scrap_floor",
++        "c": "t_scrap_floor",
++        "L": "t_scrap_floor",
++        "b": "t_scrap_floor",
++        "@": "t_scrap_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_out-of-place_stone_barn",
++    "//": "Exodii safehouse built in a medieval stone barn",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_exo_safehouse_stone_0_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_exo_safehouse_stone_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_exo_safehouse_stone_2_north"
++      }
++    ],
++    "locations": [
++      "forest_without_trail",
++      "land",
++      "wilderness"
++    ],
++    "city_distance": [
++      0,
++      30
++    ],
++    "city_sizes": [
++      0,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "EXODII",
++      "CBM",
++      "UNIQUE"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_strange_warehouse",
++    "//": "Exodii warehouse whose localisation was lost during the jump.",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_exo_warehouse_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_exo_warehouse_2_north"
++      }
++    ],
++    "locations": [
++      "forest_without_trail",
++      "land",
++      "wilderness"
++    ],
++    "city_distance": [
++      40,
++      90
++    ],
++    "city_sizes": [
++      0,
++      16
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "EXODII",
++      "CBM",
++      "GLOBALLY_UNIQUE",
++      "SAFE_AT_WORLDGEN"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_exodii_base",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x0y0z0_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x1y0z0_north"
++      },
++      {
++        "point": [
++          2,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x2y0z0_north"
++      },
++      {
++        "point": [
++          3,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x3y0z0_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x0y1z0_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x1y1z0_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x2y1z0_north"
++      },
++      {
++        "point": [
++          3,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x3y1z0_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x0y2z0_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x1y2z0_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x2y2z0_north"
++      },
++      {
++        "point": [
++          3,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x3y2z0_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x0y3z0_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x1y3z0_north"
++      },
++      {
++        "point": [
++          2,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x2y3z0_north"
++      },
++      {
++        "point": [
++          3,
++          3,
++          0
++        ],
++        "overmap": "dda_geo_exodii_base_x3y3z0_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x0y0z1_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x1y0z1_north"
++      },
++      {
++        "point": [
++          2,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x2y0z1_north"
++      },
++      {
++        "point": [
++          3,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x3y0z1_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x0y1z1_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x1y1z1_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x2y1z1_north"
++      },
++      {
++        "point": [
++          3,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x3y1z1_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x0y2z1_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x1y2z1_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x2y2z1_north"
++      },
++      {
++        "point": [
++          3,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x3y2z1_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x0y3z1_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x1y3z1_north"
++      },
++      {
++        "point": [
++          2,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x2y3z1_north"
++      },
++      {
++        "point": [
++          3,
++          3,
++          1
++        ],
++        "overmap": "dda_geo_exodii_base_x3y3z1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x0y0z2_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x1y0z2_north"
++      },
++      {
++        "point": [
++          2,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x2y0z2_north"
++      },
++      {
++        "point": [
++          3,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x3y0z2_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x0y1z2_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x1y1z2_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x2y1z2_north"
++      },
++      {
++        "point": [
++          3,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x3y1z2_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x0y2z2_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x1y2z2_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x2y2z2_north"
++      },
++      {
++        "point": [
++          3,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x3y2z2_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x0y3z2_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x1y3z2_north"
++      },
++      {
++        "point": [
++          2,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x2y3z2_north"
++      },
++      {
++        "point": [
++          3,
++          3,
++          2
++        ],
++        "overmap": "dda_geo_exodii_base_x3y3z2_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x0y0z3_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x1y0z3_north"
++      },
++      {
++        "point": [
++          2,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x2y0z3_north"
++      },
++      {
++        "point": [
++          3,
++          0,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x3y0z3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x0y1z3_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x1y1z3_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x2y1z3_north"
++      },
++      {
++        "point": [
++          3,
++          1,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x3y1z3_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x0y2z3_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x1y2z3_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x2y2z3_north"
++      },
++      {
++        "point": [
++          3,
++          2,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x3y2z3_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x0y3z3_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x1y3z3_north"
++      },
++      {
++        "point": [
++          2,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x2y3z3_north"
++      },
++      {
++        "point": [
++          3,
++          3,
++          3
++        ],
++        "overmap": "dda_geo_exodii_base_x3y3z3_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x0y0z4_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x1y0z4_north"
++      },
++      {
++        "point": [
++          2,
++          0,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x2y0z4_north"
++      },
++      {
++        "point": [
++          3,
++          0,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x3y0z4_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x0y1z4_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x1y1z4_north"
++      },
++      {
++        "point": [
++          2,
++          1,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x2y1z4_north"
++      },
++      {
++        "point": [
++          3,
++          1,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x3y1z4_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x0y2z4_north"
++      },
++      {
++        "point": [
++          1,
++          2,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x1y2z4_north"
++      },
++      {
++        "point": [
++          2,
++          2,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x2y2z4_north"
++      },
++      {
++        "point": [
++          3,
++          2,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x3y2z4_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x0y3z4_north"
++      },
++      {
++        "point": [
++          1,
++          3,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x1y3z4_north"
++      },
++      {
++        "point": [
++          2,
++          3,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x2y3z4_north"
++      },
++      {
++        "point": [
++          3,
++          3,
++          4
++        ],
++        "overmap": "dda_geo_exodii_base_x3y3z4_north"
++      },
++      {
++        "point": [
++          -2,
++          2,
++          0
++        ],
++        "overmap": "dda_geo_exo_base_safehouse_stone_0_north"
++      },
++      {
++        "point": [
++          -2,
++          2,
++          1
++        ],
++        "overmap": "dda_geo_exo_base_safehouse_stone_1_north"
++      },
++      {
++        "point": [
++          -2,
++          2,
++          2
++        ],
++        "overmap": "dda_geo_exo_base_safehouse_stone_2_north"
++      }
++    ],
++    "locations": [
++      "land",
++      "swamp",
++      "forest"
++    ],
++    "city_distance": [
++      2,
++      120
++    ],
++    "city_sizes": [
++      1,
++      12
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "GLOBALLY_UNIQUE",
++      "EXODII",
++      "SAFE_AT_WORLDGEN"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_safehouse_stone_0"
++    ],
++    "name": "unusual stone barn",
++    "sym": "^",
++    "color": "brown",
++    "see_cost": 5,
++    "flags": [
++      "KNOWN_UP"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_safehouse_stone_1"
++    ],
++    "copy-from": "dda_geo_exo_safehouse_stone_0",
++    "flags": [
++      "KNOWN_UP",
++      "KNOWN_DOWN"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_safehouse_stone_2"
++    ],
++    "name": "unusual stone barn roof",
++    "copy-from": "dda_geo_exo_safehouse_stone_0",
++    "flags": [
++      "KNOWN_DOWN"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_warehouse_1"
++    ],
++    "name": "strange warehouse",
++    "sym": "#",
++    "color": "light_gray",
++    "see_cost": 5,
++    "flags": [
++      "KNOWN_UP"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_warehouse_2"
++    ],
++    "copy-from": "dda_geo_exo_warehouse_1",
++    "flags": [
++      "KNOWN_DOWN"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exodii_base_x0y0z0"
++    ],
++    "name": "rocky butte",
++    "sym": "%",
++    "color": "light_gray",
++    "see_cost": 5
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exodii_base_x0y3z0"
++    ],
++    "name": "ground-level entrance",
++    "sym": "?",
++    "color": "white",
++    "see_cost": 5
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exodii_base_x1y0z0",
++      "dda_geo_exodii_base_x2y0z0",
++      "dda_geo_exodii_base_x3y0z0",
++      "dda_geo_exodii_base_x0y1z0",
++      "dda_geo_exodii_base_x1y1z0",
++      "dda_geo_exodii_base_x2y1z0",
++      "dda_geo_exodii_base_x3y1z0",
++      "dda_geo_exodii_base_x0y2z0",
++      "dda_geo_exodii_base_x1y2z0",
++      "dda_geo_exodii_base_x2y2z0",
++      "dda_geo_exodii_base_x3y2z0",
++      "dda_geo_exodii_base_x1y3z0",
++      "dda_geo_exodii_base_x2y3z0",
++      "dda_geo_exodii_base_x3y3z0"
++    ],
++    "copy-from": "dda_geo_exodii_base_x0y0z0"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exodii_base_x0y0z1"
++    ],
++    "name": "scrap metal encampment",
++    "sym": "%",
++    "color": "light_gray",
++    "see_cost": 5
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exodii_base_x1y0z1",
++      "dda_geo_exodii_base_x2y0z1",
++      "dda_geo_exodii_base_x3y0z1",
++      "dda_geo_exodii_base_x0y1z1",
++      "dda_geo_exodii_base_x1y1z1",
++      "dda_geo_exodii_base_x2y1z1",
++      "dda_geo_exodii_base_x3y1z1",
++      "dda_geo_exodii_base_x0y2z1",
++      "dda_geo_exodii_base_x1y2z1",
++      "dda_geo_exodii_base_x2y2z1",
++      "dda_geo_exodii_base_x3y2z1",
++      "dda_geo_exodii_base_x0y3z1",
++      "dda_geo_exodii_base_x1y3z1",
++      "dda_geo_exodii_base_x2y3z1",
++      "dda_geo_exodii_base_x3y3z1",
++      "dda_geo_exodii_base_x0y0z2",
++      "dda_geo_exodii_base_x1y0z2",
++      "dda_geo_exodii_base_x2y0z2",
++      "dda_geo_exodii_base_x3y0z2",
++      "dda_geo_exodii_base_x0y1z2",
++      "dda_geo_exodii_base_x1y1z2",
++      "dda_geo_exodii_base_x2y1z2",
++      "dda_geo_exodii_base_x3y1z2",
++      "dda_geo_exodii_base_x0y2z2",
++      "dda_geo_exodii_base_x1y2z2",
++      "dda_geo_exodii_base_x2y2z2",
++      "dda_geo_exodii_base_x3y2z2",
++      "dda_geo_exodii_base_x0y3z2",
++      "dda_geo_exodii_base_x1y3z2",
++      "dda_geo_exodii_base_x2y3z2",
++      "dda_geo_exodii_base_x3y3z2",
++      "dda_geo_exodii_base_x0y0z3",
++      "dda_geo_exodii_base_x1y0z3",
++      "dda_geo_exodii_base_x2y0z3",
++      "dda_geo_exodii_base_x3y0z3",
++      "dda_geo_exodii_base_x0y1z3",
++      "dda_geo_exodii_base_x1y1z3",
++      "dda_geo_exodii_base_x2y1z3",
++      "dda_geo_exodii_base_x3y1z3",
++      "dda_geo_exodii_base_x0y2z3",
++      "dda_geo_exodii_base_x1y2z3",
++      "dda_geo_exodii_base_x2y2z3",
++      "dda_geo_exodii_base_x3y2z3",
++      "dda_geo_exodii_base_x0y3z3",
++      "dda_geo_exodii_base_x1y3z3",
++      "dda_geo_exodii_base_x2y3z3",
++      "dda_geo_exodii_base_x3y3z3",
++      "dda_geo_exodii_base_x0y0z4",
++      "dda_geo_exodii_base_x1y0z4",
++      "dda_geo_exodii_base_x2y0z4",
++      "dda_geo_exodii_base_x3y0z4",
++      "dda_geo_exodii_base_x0y1z4",
++      "dda_geo_exodii_base_x1y1z4",
++      "dda_geo_exodii_base_x2y1z4",
++      "dda_geo_exodii_base_x3y1z4",
++      "dda_geo_exodii_base_x0y2z4",
++      "dda_geo_exodii_base_x1y2z4",
++      "dda_geo_exodii_base_x2y2z4",
++      "dda_geo_exodii_base_x3y2z4",
++      "dda_geo_exodii_base_x0y3z4",
++      "dda_geo_exodii_base_x1y3z4",
++      "dda_geo_exodii_base_x2y3z4",
++      "dda_geo_exodii_base_x3y3z4"
++    ],
++    "copy-from": "dda_geo_exodii_base_x0y0z1"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_base_safehouse_stone_0"
++    ],
++    "name": "unusual stone barn",
++    "sym": "^",
++    "color": "brown",
++    "see_cost": 5,
++    "flags": [
++      "KNOWN_UP"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_base_safehouse_stone_1"
++    ],
++    "copy-from": "dda_geo_exo_safehouse_stone_0",
++    "flags": [
++      "KNOWN_UP",
++      "KNOWN_DOWN"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_exo_base_safehouse_stone_2"
++    ],
++    "name": "unusual stone barn roof",
++    "copy-from": "dda_geo_exo_safehouse_stone_0",
++    "flags": [
++      "KNOWN_DOWN"
++    ]
++  },
++  {
++    "type": "terrain",
++    "id": "dda_geo_exodii_t_glassed_sand",
++    "name": "glassed sand",
++    "description": "A patch of sand with a crust of natural glass atop it from exposure to intense heat.",
++    "looks_like": "t_sand",
++    "symbol": "~",
++    "color": "brown",
++    "move_cost": 3,
++    "flags": [
++      "TRANSPARENT",
++      "DIGGABLE",
++      "FLAT"
++    ],
++    "bash": {
++      "sound": "crunch",
++      "ter_set": "t_sand",
++      "str_min": 25,
++      "str_max": 100,
++      "str_min_supported": 100,
++      "bash_below": true
++    }
 +  }
 +]

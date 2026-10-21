@@ -6,7 +6,7 @@
     "authors": [
       "ProxysRE"
     ],
-    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus and initial Godco retreat. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat and Exodii sites. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
     "category": "buildings",
     "dependencies": [
       "bn"

@@ -43,3 +43,9 @@ Campus checkpoint 60e5c6b / run 39466430448 succeeded: core 73/11030, optional 1
 Godco initial geometry passed run 39485820362: source and installed suites each passed 73 core cases / 11030 assertions, 10 optional-mod cases / 2224 assertions, and 9 geometry cases / 406338 assertions. Portable artifact 12296363792 was produced. This validates the initial site, not future quest construction or full player traversal. The group-based meter remains 11/51 (21.6%).
 
 Staged all 13 Exodii world map definitions and three structural nested layouts, with 88 OMT across the base, stone barn and warehouse. Nine official pinned files are checksummed. Expanded palette and inline mapping terrain is retained; original source and expanded later-layer fields are archived. No BN/core or bundled-mod identifier collisions. One absent terrain, t_glassed_sand, retains source movement/bash properties; SANDGLASS visual connections are deferred. The staged sites have zero occurrences, are not embedded, and receive no completion credit pending schema/generation checks.
+
+## Exodii isolated native geometry preview
+
+Added the base, stone barn and warehouse to the optional namespaced geometry mod: 88 extra placements, twelve total generation cases /576 placements. Three nested layouts and glassed-sand terrain use isolated identifiers. BN integer visibility costs replace source named levels; source geometry and concrete OMT inheritance remain intact. The generated native tests add 176 deterministic navigation-terrain expectations, including ladders, stairs, elevator tiles and controls.
+
+Source/installed native validation is pending for this new patch; the successful Godco checkpoint remains historical evidence. No natural site spawning or late-layer content is enabled. Full player movement/elevator operation is not certified. The completion meter remains 11/51 pending native evidence.

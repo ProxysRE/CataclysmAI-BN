@@ -11,7 +11,7 @@ MOD='dda_geometry_preview'
 BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
-PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base')
+PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii')
 
 
 def payloads():
@@ -19,9 +19,15 @@ def payloads():
     report=json.loads((OUT/'REPORT.json').read_text())
     result=[]
     for name in PACKAGES:
-        p=report['packages'][name]
-        assert not p['geometry_issues'],name
-        if name=='godco_base':
+        if name=='exodii':
+            adapted=json.loads((OUT/'EXODII_ADAPTATION_REPORT.json').read_text())
+            assert not adapted['unresolved_typed_refs']
+            entries=json.loads((OUT/'EXODII_ADAPTED_SHELL.json').read_text())
+        else:
+            p=report['packages'][name]
+            assert not p['geometry_issues'],name
+        if name=='exodii':pass
+        elif name=='godco_base':
             adapted=json.loads((OUT/'GODCO_GEOMETRY_REPORT.json').read_text())
             assert not adapted['unresolved_typed_refs']
             entries=json.loads((OUT/'GODCO_ADAPTED_BASE.json').read_text())
@@ -48,12 +54,13 @@ def payloads():
                 if e.get('copy-from') in omt:e['copy-from']=rename(e['copy-from'])
             elif e['type']=='mapgen':
                 if 'om_terrain'in e:e['om_terrain']=rename(e['om_terrain'])
-                else:assert e['nested_mapgen_id'].startswith('dda_geo_godco_')
+                else:assert e['nested_mapgen_id'].startswith(('dda_geo_godco_','dda_geo_exodii_'))
             elif e['type']=='overmap_special':
                 e['id']='dda_geo_'+e['id'].replace(' ','_').lower()
                 e['occurrences']=[0,0] # Debug placement only; never populate normal worlds with empty shells.
                 for c in e['overmaps']:
                     if 'overmap' in c:c['overmap']=rename(c['overmap'])
+            elif e['type']=='terrain':assert e['id'].startswith('dda_geo_exodii_')
             else:raise AssertionError(e['type'])
         result+=entries
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
@@ -66,7 +73,7 @@ def payloads():
     generated.add(('overmap_terrain',godco['generated_BN_terrain']['id']))
     project=index_entries(json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text()))
     assert not required(result)-core-own-generated-project,sorted(required(result)-core-own-generated-project)
-    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus and initial Godco retreat. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
+    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat and Exodii sites. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
 
 
 def native_test():
@@ -114,6 +121,14 @@ def native_test():
                 bits=''.join('1' if o['terrain'].get(g,'t_null')!='t_null' else '0' for row in o['rows']for g in row)
                 mask=', '+json.dumps(bits)
             text+=f'        {{ {x}, {y}, {z}, {json.dumps(name)}{mask} }},\n'
+        if special['id'] in ('dda_geo_exodii_base','dda_geo_out-of-place_stone_barn','dda_geo_strange_warehouse'):
+            text+='    }, {\n'
+            nav=json.loads((OUT/'EXODII_ADAPTATION_REPORT.json').read_text())['navigation']
+            for cell in special['overmaps']:
+                name=cell.get('overmap','').removeprefix('dda_geo_').removesuffix('_north')
+                x,y,z=cell['point']
+                for e in nav.get(name,[]):
+                    text+=f'        {{ {x}, {y}, {e["x"]}, {e["y"]}, {z}, {json.dumps(e["terrain"])} }},\n'
         if special['id']=='dda_geo_hub_01':
             text+='    }, {\n'
             nav=json.loads((OUT/'HUB_ACCESS_GEOMETRY.json').read_text())['navigation']
@@ -132,13 +147,15 @@ def prepare(check=False):
     check_campus(check=True)
     from prepare_godco_geometry import prepare as check_godco
     check_godco(check=True)
+    from adapt_exodii_geometry import prepare as check_exodii
+    check_exodii(check=True)
     texts={p:json.dumps(v,indent=2,ensure_ascii=True)+'\n' for p,v in payloads().items()}
     texts['native/'+TEST]=native_test()
     for p,text in texts.items():
         path=ROOT/p
         if check:assert path.read_text()==text,path
         else:path.write_text(text)
-    print('Geometry preview: five isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
+    print('Geometry preview: six isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');prepare(parser.parse_args().check)

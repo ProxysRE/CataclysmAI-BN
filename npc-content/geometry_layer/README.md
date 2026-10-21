@@ -87,3 +87,9 @@ Run 39466430448 на 60e5c6b полностью успешен: основные
 `prepare_exodii_geometry.py --check` verifies nine pinned official source files, preserves all world-map rows and typed terrain bindings from palettes and inline mappings, and produces `EXODII_SHELLS.json`, `EXODII_LATER_LAYERS.json` and `EXODII_GEOMETRY_REPORT.json`. Scope: 13 world maps, three structural nested layouts, 88 OMT; base (83 cells), barn (3), warehouse (2). Full source remains in `exodii_sources`.
 
 Only missing terrain is introduced: source glassed sand, with visual SANDGLASS connections deferred. Core and bundled-mod identifier intersections are empty. These are staging artifacts, excluded from the native patch and completion meter; geometry schema, natural placement and native generation have not been certified.
+
+### Exodii isolated preview integration
+
+`adapt_exodii_geometry.py` retains staged sources and emits a separate BN adaptation. Concrete own OMT inheritance closes locally; named source visibility costs become BN integer 5. Structural nested IDs and glassed sand have an isolated `dda_geo_exodii_` prefix. Geometry-only objects remain equal to the staged objects apart from these references.
+
+The optional preview includes all three Exodii specials, adding 88 placements and 176 projected navigation-terrain assertions to source and installed suites. The combined fixture covers 12 specials and 576 placements. Native generation is pending; the static adaptation is not proof of character traversal.
