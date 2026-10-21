@@ -1,0 +1,1365 @@
+[
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_gate",
+    "object": {
+      "terrain": {
+        "'": "t_pavement",
+        "r": "t_pavement_y",
+        "s": "t_sidewalk",
+        "|": "t_palisade",
+        "e": "t_palisade_pulley",
+        "A": "t_palisade_gate",
+        "O": "t_pavement",
+        "p": "t_pavement",
+        "t": "t_pavement"
+      },
+      "fill_ter": "t_pavement",
+      "rows": [
+        "ssss'''''''rr''e''''ssss",
+        "s||||||||AAAAAA|||||||||",
+        "s|ss'ttt'''rr''e'pp'ssss",
+        "s|ss''''''''''''''''ssss",
+        "s|'''''''''''''''''''''s",
+        "s|'''''''''''''''''''''s",
+        "s|'''''''''''''''''''''s",
+        "s|'''''''''''''''''''''s",
+        "s|''''rrrrrssrrrrr'''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|''''rrrrrssrrrrr'''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|''''rrrrrssrrrrr'''''s",
+        "s|'''''''''ss''''''''''s",
+        "s|'''O'''''ss''''''''''s",
+        "s|O''''''''ss'''''''''Os",
+        "s|O''''''''ss''''''''pOs",
+        "s|ssssssssssssssssssssss"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_1f",
+    "object": {
+      "terrain": {
+        "~": "t_water_pool_shallow",
+        "#": "t_concrete_wall",
+        "<": "t_stairs_up",
+        "_": "t_thconc_floor",
+        ".": "t_linoleum_gray",
+        "i": "t_linoleum_white",
+        "S": "t_linoleum_white",
+        "T": "t_linoleum_white",
+        "C": "t_linoleum_white",
+        "y": "t_linoleum_white",
+        "+": "t_door_c",
+        "=": "t_rdoor_boarded",
+        "-": "t_door_metal_c",
+        "E": "t_elevator",
+        "G": "t_door_glass_c",
+        "s": "t_sidewalk",
+        "V": "t_wall_glass",
+        "|": "t_palisade",
+        "H": "t_elevator_control_off",
+        "4": "t_gutter_downspout",
+        "?": "t_linoleum_gray",
+        "D": "t_linoleum_gray",
+        "F": "t_linoleum_gray",
+        "O": "t_linoleum_gray",
+        "Y": "t_linoleum_gray",
+        "^": "t_linoleum_gray",
+        "a": "t_linoleum_gray",
+        "c": "t_linoleum_gray",
+        "h": "t_linoleum_gray",
+        "n": "t_linoleum_gray"
+      },
+      "fill_ter": "t_linoleum_gray",
+      "rows": [
+        "s|ssssssssssssssssssssss",
+        "4######VGGVGGVGGV#######",
+        "s#n???..............caY#",
+        "s#?.................c..#",
+        "s#?.n..sssss.sssss..c..#",
+        "s#?.n.s~~~~ss~~~~s..c..#",
+        "s#?...s~~~~ss~~~~s..cc.#",
+        "s#....s~~~~ss~~~~s.....#",
+        "s#h...s~~~~ss~~~~s.....#",
+        "s#^..Osssss.sssss......#",
+        "s#h....................#",
+        "s#...OO....DaF^........#",
+        "s#######..#####VGGVVVVV#",
+        "s#T#T#T#..#___#.........",
+        "s#+#+#+#..#___-.........",
+        "s#iiiii+..#___#.........",
+        "s#CSCSC#..#####.........",
+        "s#######..+iyi#.........",
+        "s#CSCSC#..#####.........",
+        "s#iiiii+..#EEE#........#",
+        "s#+#+#+#..#EEE-....#####",
+        "s#T#T#T#.^#EEH#....+..<#",
+        "4#######=###############",
+        "ssssssssssssssssssssssss"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_2f",
+    "object": {
+      "terrain": {
+        "/": "t_open_air",
+        "Z": "t_open_air_rooved",
+        "#": "t_concrete_wall",
+        ">": "t_stairs_down",
+        ".": "t_linoleum_gray",
+        "i": "t_linoleum_white",
+        "S": "t_linoleum_white",
+        "T": "t_linoleum_white",
+        "C": "t_linoleum_white",
+        "y": "t_linoleum_white",
+        "+": "t_door_c",
+        "-": "t_door_metal_c",
+        "E": "t_elevator",
+        "G": "t_door_glass_c",
+        "V": "t_wall_glass",
+        "w": "t_window",
+        "H": "t_elevator_control_off",
+        "4": "t_gutter_downspout",
+        "5": "t_gutter_drop",
+        "g": "t_gutter",
+        "`": "t_flat_roof",
+        ":": "t_door_b",
+        ",": "t_linoleum_gray",
+        ";": "t_linoleum_gray",
+        "?": "t_linoleum_gray",
+        "^": "t_linoleum_gray",
+        "a": "t_linoleum_gray",
+        "c": "t_linoleum_gray",
+        "d": "t_linoleum_gray",
+        "f": "t_linoleum_gray",
+        "h": "t_linoleum_gray",
+        "n": "t_linoleum_gray",
+        "t": "t_linoleum_gray"
+      },
+      "fill_ter": "t_linoleum_gray",
+      "rows": [
+        "////////////////////////",
+        "/5gggg#####ww###wwww###`",
+        "/g````#...G..V.......f#`",
+        "/g````#hd.V..V..htth.fw`",
+        "/g````waf^V..V..htth..w`",
+        "/g````#####..G..htth..w`",
+        "/g````#...G..Va......^#`",
+        "/g````#hd.V..##########`",
+        "/g````waf.V..#.......a#`",
+        "/##########..#.ccccccc#`",
+        "/#;;f#^......+........#`",
+        "/#...+.......#.....???#`",
+        "/########+#####VGGVVVV#`",
+        "/#T#T#T#yi#EEE#.......#`",
+        "/#+#+#+####EEE-......?w`",
+        "/#iiiii+..#EEH#......?#`",
+        "/#CSCSC#..#####......nw`",
+        "/#######.............?#`",
+        "/#CSCSC#..#####......?w`",
+        "/#iiiii+..#ZZZ#.......#`",
+        "/#+#+#+#..#ZZZ-..,##:##`",
+        "/#T#T#T#..#ZZZ#...#,.>#`",
+        "4#######ww#####ww,,#,##`",
+        "////////////////////////"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_3f",
+    "object": {
+      "terrain": {
+        "/": "t_open_air",
+        "Z": "t_open_air_rooved",
+        "#": "t_concrete_wall",
+        "'": "t_floor",
+        ".": "t_linoleum_gray",
+        "i": "t_linoleum_white",
+        "S": "t_linoleum_white",
+        "T": "t_linoleum_white",
+        "+": "t_door_c",
+        "-": "t_door_metal_c",
+        "G": "t_door_glass_c",
+        "R": "t_glass_railing",
+        "s": "t_sidewalk",
+        "w": "t_window",
+        "o": "t_floor",
+        "4": "t_gutter_downspout",
+        "h": "t_floor",
+        "d": "t_floor",
+        "f": "t_floor",
+        "a": "t_floor",
+        ":": "t_door_metal_interior_locked",
+        "*": "t_ballistic_glass",
+        ",": "t_linoleum_gray",
+        ";": "t_linoleum_gray",
+        "M": "t_linoleum_gray",
+        "c": "t_linoleum_gray",
+        "m": "t_linoleum_gray",
+        "x": "t_linoleum_gray"
+      },
+      "fill_ter": "t_linoleum_gray",
+      "rows": [
+        "////////////////////////",
+        "//////#################/",
+        "//////#ccccccccccccccc#/",
+        "//////#f.............x#/",
+        "//////#f.............x#/",
+        "//////#f..f..f..f....x#/",
+        "//////#f..f..f..f.....#/",
+        "//////#f..f..f..f....;#/",
+        "//////#f..f..f..f....;#/",
+        "/RRRRR#f..f..f..f....;#/",
+        "/Rssss#...............#/",
+        "/Rssss-...mmMM........#/",
+        "/*****############:####/",
+        "/*''''h''a#ZZZ#'''''''#/",
+        "/*'''ddo'f#ZZZ-'''''''w/",
+        "/*'''''''f#ZZZ#'''''''#/",
+        "/*''''''''#####'''''''w/",
+        "/*''''''''G'''G'''''''#/",
+        "/###''''''#####'''''''w/",
+        "/#S#''''''#ZZZ#'''''''#/",
+        "/#i+''''''#ZZZ-''Z##+##/",
+        "/#T#''''''#ZZZ#'',,Z''#/",
+        "4#######ww#####ww#Z#Z##/",
+        "////////////////////////"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_roof",
+    "object": {
+      "terrain": {
+        ".": "t_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop",
+        "&": "t_null",
+        "X": "t_null",
+        "A": "t_null"
+      },
+      "fill_ter": "t_flat_roof",
+      "rows": [
+        "                        ",
+        "      ----------------- ",
+        "      -...............- ",
+        "      -...............- ",
+        "      -.......AA......- ",
+        "      -...............- ",
+        "      -...............- ",
+        "      -...............- ",
+        "      -...............- ",
+        "      -...............- ",
+        "      -...............- ",
+        "      -...............- ",
+        " ------...............- ",
+        " -....................- ",
+        " -.X..................- ",
+        " -....................- ",
+        " -....................- ",
+        " -....................- ",
+        " -....................- ",
+        " -................&...- ",
+        " -....................- ",
+        " -....................- ",
+        " 5--------------------- ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_1fb",
+    "object": {
+      "terrain": {
+        "#": "t_concrete_wall",
+        ".": "t_linoleum_gray",
+        "+": "t_door_c",
+        "s": "t_sidewalk",
+        "w": "t_window",
+        "o": "t_window_enhanced",
+        "|": "t_palisade",
+        "4": "t_gutter_downspout",
+        ",": "t_linoleum_gray",
+        "^": "t_linoleum_gray",
+        "d": "t_linoleum_gray",
+        "f": "t_linoleum_gray",
+        "h": "t_linoleum_gray",
+        "n": "t_linoleum_gray"
+      },
+      "fill_ter": "t_linoleum_gray",
+      "rows": [
+        "ssssssssssssssssssssss|s",
+        "#######ww#####ww#######s",
+        "..hd^dh........hd^dh..#s",
+        "..........nn..........#s",
+        "..hd^dh...nn...hd^dh..#s",
+        "..........nn..........#s",
+        "..hd^dh........hd^dh..#s",
+        "..........nn..........os",
+        "..hd^dh...nn...hd^dh..os",
+        "..........nn..........#s",
+        "..hd^dh........hd^dh..#s",
+        "......................#s",
+        "......................#s",
+        "......................#s",
+        "......................os",
+        "......................os",
+        "......................#s",
+        "......................#s",
+        "......................#s",
+        "###...................#s",
+        "f.+...................#s",
+        "f.#.....^ff^ff^ff^...,#s",
+        "#######oo#####oo#######4",
+        "ssssssssssssssssssssssss"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_2fb",
+    "object": {
+      "terrain": {
+        "/": "t_open_air",
+        "Z": "t_open_air_rooved",
+        "#": "t_concrete_wall",
+        "<": "t_stairs_up",
+        ".": "t_linoleum_gray",
+        "i": "t_linoleum_white",
+        "S": "t_linoleum_white",
+        "T": "t_linoleum_white",
+        "C": "t_linoleum_white",
+        "+": "t_door_c",
+        "G": "t_door_glass_c",
+        "V": "t_wall_glass",
+        "w": "t_window",
+        "4": "t_gutter_downspout",
+        "^": "t_linoleum_gray",
+        "a": "t_linoleum_gray",
+        "d": "t_linoleum_gray",
+        "f": "t_linoleum_gray",
+        "h": "t_linoleum_gray"
+      },
+      "fill_ter": "t_linoleum_gray",
+      "rows": [
+        "////////////////////////",
+        "#######ww#####ww#######/",
+        "#^da^da^da^da^da..G...#/",
+        "#.h..h..h..h..h...V.dhw/",
+        "w.................V^da#/",
+        "w.................#####/",
+        "#f................G...#/",
+        "#f................V.dhw/",
+        "w.................V^da#/",
+        "w.................#####/",
+        "#.h..h............G...#/",
+        "#^da^da...........V.dhw/",
+        "#######...........V^da#/",
+        "#T#T#T#...........#####/",
+        "#+#+#+#...........G...#/",
+        "#iiiii+...........V.dhw/",
+        "#CSCSC#...........V^da#/",
+        "#######...........VVVV#/",
+        "#CSCSC#...............#/",
+        "#iiiii+...............w/",
+        "#+#+#+#...............#/",
+        "#T#T#T#............<.Z#/",
+        "#######ww#####ww#######4",
+        "////////////////////////"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_3fb",
+    "object": {
+      "terrain": {
+        "/": "t_open_air",
+        "Z": "t_open_air_rooved",
+        "#": "t_concrete_wall",
+        ">": "t_stairs_down",
+        ".": "t_linoleum_gray",
+        "+": "t_door_c",
+        "G": "t_door_glass_c",
+        "R": "t_glass_railing",
+        "V": "t_wall_glass",
+        "w": "t_window",
+        "4": "t_gutter_downspout",
+        "^": "t_linoleum_gray",
+        "d": "t_linoleum_gray",
+        "f": "t_linoleum_gray",
+        "h": "t_linoleum_gray",
+        "n": "t_linoleum_gray"
+      },
+      "fill_ter": "t_linoleum_gray",
+      "rows": [
+        "////////////////////////",
+        "########ww#####ww######/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....w/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....w/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....#/",
+        "#ZZZZZZZZZZZZZZZR.....w/",
+        "#wwwww#ZZZZZZZZZR.....#/",
+        "#^.h.^wZZZZZZZZZR.....#/",
+        "w..dd.wZZZZZZZZZR.....#/",
+        "#.....wZZZZZZZZZR.....w/",
+        "w.h.h.#RRRRRRRRRR.....#/",
+        "#.....V^.............h#/",
+        "w.....V..............n#/",
+        "#.....G..............hw/",
+        "w.....V...........##+##/",
+        "#fff..V^...hnh...^#>..#/",
+        "########ww#####ww######4",
+        "////////////////////////"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_office_roofb",
+    "object": {
+      "terrain": {
+        ".": "t_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop",
+        "&": "t_null",
+        "X": "t_null",
+        "A": "t_null"
+      },
+      "fill_ter": "t_flat_roof",
+      "rows": [
+        "                        ",
+        "----------------------- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-............X........- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....................- ",
+        "-.....&...............- ",
+        "-.................AA..- ",
+        "-.....................- ",
+        "----------------------5 ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "deserter_city_park",
+    "object": {
+      "terrain": {
+        "s": "t_sidewalk",
+        " ": "t_region_groundcover_urban",
+        "z": "t_region_groundcover_urban",
+        "t": "t_region_tree_shade",
+        "4": "t_region_tree_evergreen",
+        "e": "t_water_pump",
+        "~": "t_water_pool_shallow",
+        "|": "t_palisade",
+        "b": "t_region_groundcover_urban"
+      },
+      "fill_ter": "t_region_groundcover_urban",
+      "rows": [
+        "                        ",
+        "||||||||||||||||||||||| ",
+        "      4   zssz        | ",
+        "       t  bssb   t 4  | ",
+        "    t     bssb        | ",
+        "          bssb      t | ",
+        "       t  zssz    t   | ",
+        "    4      ss         | ",
+        "          zssz      4 | ",
+        "         ssssse       | ",
+        "z zbbbz zs~~~~sz zbbbz| ",
+        "ssssssssss~~~~ssssssss| ",
+        "ssssssssss~~~~ssssssss| ",
+        "z zbbbz zs~~~~sz zbbbz| ",
+        "         ssssss  4    | ",
+        "  t       zssz        | ",
+        "           ss       t | ",
+        "     4    zssz  t     | ",
+        "          bssb        | ",
+        "  t       bssb   4    | ",
+        "      t   bssb        | ",
+        "   t      zssz       4| ",
+        "      4    ss  t      | ",
+        "          zssz        | "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "drug_lab",
+    "object": {
+      "terrain": {
+        "d": "t_dirtfloor",
+        "+": "t_dirtfloor",
+        "O": "t_dirtfloor",
+        "a": "t_region_groundcover_barren",
+        "c": "t_region_groundcover_barren",
+        "_": "t_region_groundcover_barren",
+        "|": "t_wall_wood",
+        "t": "t_dirtfloor",
+        "b": "t_dirtfloor"
+      },
+      "fill_ter": "t_region_groundcover",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "              ___       ",
+        "             _c___      ",
+        "             ___c_      ",
+        "             _a___      ",
+        "            _____       ",
+        "           ________     ",
+        "           |++|++|____  ",
+        "           |ddddd|_____ ",
+        "           |ddOdd|_____ ",
+        "           |ddOdd|   _  ",
+        "           |tdddt|      ",
+        "           |tbdbt|      ",
+        "           |ttttt|      ",
+        "           |||||||      ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "drug_lab_roof",
+    "object": {
+      "fill_ter": "t_thatch_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "           .......      ",
+        "           .......      ",
+        "           .......      ",
+        "           .......      ",
+        "           .......      ",
+        "           .......      ",
+        "           .......      ",
+        "           .......      ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "terrain": {
+        ".": "t_thatch_roof",
+        " ": "t_open_air"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "om_terrain": "bandit_drug_lab",
+    "type": "mapgen",
+    "object": {
+      "terrain": {
+        "d": "t_dirtfloor",
+        "+": "t_dirtfloor",
+        "O": "t_dirtfloor",
+        "a": "t_region_groundcover_barren",
+        "c": "t_region_groundcover_barren",
+        "_": "t_region_groundcover_barren",
+        "|": "t_wall_wood",
+        "t": "t_dirtfloor",
+        "b": "t_dirtfloor"
+      },
+      "predecessor_mapgen": "forest",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "              ___       ",
+        "             _c___      ",
+        "             ___c_      ",
+        "             _a___      ",
+        "            _____       ",
+        "           ________     ",
+        "           |++|++|____  ",
+        "           |ddddd|_____ ",
+        "           |ddOdd|_____ ",
+        "           |ddOdd|   _  ",
+        "           |tdddt|      ",
+        "           |tbdbt|      ",
+        "           |ttttt|      ",
+        "           |||||||      ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "bandit_farm_3",
+        "bandit_farm_2",
+        "bandit_farm_1"
+      ],
+      [
+        "bandit_farm_6",
+        "bandit_farm_5",
+        "bandit_farm_4"
+      ],
+      [
+        "bandit_farm_9",
+        "bandit_farm_8",
+        "bandit_farm_7"
+      ]
+    ],
+    "//": "Supposed to be ramshackle, made-from-scratch.  Recently constructed.",
+    "object": {
+      "terrain": {
+        " ": "t_region_groundcover_urban",
+        "#": "t_wall_wood",
+        "_": "t_dirtfloor",
+        "|": "t_pit_spiked",
+        "D": "t_dirtmound",
+        "F": "t_dirtfloor",
+        "M": "t_palisade_gate",
+        "O": "t_palisade_pulley",
+        "Q": "t_region_groundcover_urban",
+        "W": "dda_geo_raider_embrasure_wood",
+        "y": "t_dirtfloor",
+        "8": "t_dirtfloor",
+        "^": "t_palisade",
+        "*": "t_dirtfloor",
+        "/": "t_dirtfloor",
+        "5": "t_dirtfloor",
+        "6": "t_dirtfloor",
+        "a": "t_dirtfloor",
+        "b": "t_dirtfloor",
+        "\u00c1": "t_dirtfloor",
+        "\u00c9": "t_dirtfloor"
+      },
+      "fill_ter": "t_dirtfloor",
+      "rows": [
+        "||||             |||||||||||||||||||||||||||||||||||||||||||||||||||||||",
+        "||                                                                    ||",
+        "||                                                  DDDDDDDDDDDDDDDD  ||",
+        "||              O        \u00c9               \u00c9                            ||",
+        "||#####MMMMMMMMM^#W##     ///             ///       DDDDDDDDDDDDDDDD  ||",
+        "||#yyy__________O*_*#     ///             ///                         ||",
+        "||Wyyy___________*_*W     ///             ///       DDDDDDDDDDDDDDDD  ||",
+        "||#yyy___________*_*#                                                 ||",
+        "||#_________________#          \u00c9                    DDDDDDDDDDDDDDDD  ||",
+        "||W_________________W           ///      \u00c9                            ||",
+        "||#_____________6__5#           ///       ///       DDDDDDDDDDDDDDDD  ||",
+        "||#_____________6a_5#    \u00c1      ///       ///                         ||",
+        "||#____yyy______6__5#     ///             ///       DDDDDDDDDDDDDDDD  ||",
+        "||Wb_b_yyy_________5#     ///                                         ||",
+        "||#b_b_yyy__________#     ///    \u00c1                  DDDDDDDDDDDDDDDD  ||",
+        "||#____________aa___#             ///                                 ||",
+        "||Wb_b_b______a88a_FW             ///               DDDDDDDDDDDDDDDD  ||",
+        "||#b_b_b______a88a_F#             ///                                 ||",
+        "||#___________a88a_F#                               DDDDDDDDDDDDDDDD  ||",
+        "||Wb_b_b_______aa__FW                                                 ||",
+        "||#b_b_b________O___#                               DDDDDDDDDDDDDDDD  ||",
+        "||##W##MMMMMMMMM^#W##                                                 ||",
+        "||              O                                   DDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "||                                                                    ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDD        DDDDDDDDDDDDDDDDQ       DDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                 Q                                  ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||          Q                                                         ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDD        DDDDDDDDDDDDDDDD        DDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "||                                                                    ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDD        DDDDDDDDDDDDDDDD        DDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                 Q                                  ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                          Q         ||",
+        "|| DDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDDDDD  DDDDDDDDDDDDDDDDDDD  ||",
+        "||                                                                    ||",
+        "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||",
+        "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "bandit_farm_3_roof",
+        "bandit_farm_2_roof"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "  ###################                           ",
+        "                                                ",
+        "                                                "
+      ],
+      "terrain": {
+        "#": "t_tar_flat_roof"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_raider_roof_4x4_utility",
+    "object": {
+      "mapgensize": [
+        4,
+        4
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        " xxx",
+        "  ax",
+        " xxx",
+        "  ox"
+      ],
+      "terrain": {
+        "x": "t_sewage_pipe"
+      },
+      "furniture": {
+        "a": "f_null",
+        "o": "f_null"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_raider_roof_4x4_utility_1",
+    "object": {
+      "mapgensize": [
+        4,
+        4
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "UUUU",
+        "UAaU",
+        "c oU",
+        "UUUU"
+      ],
+      "terrain": {
+        "c": "t_chaingate_l",
+        "U": "t_chainfence"
+      },
+      "furniture": {
+        "A": "f_null",
+        "a": "f_null",
+        "o": "f_null"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_special",
+    "id": "deserter_city",
+    "locations": [
+      "land"
+    ],
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "deserter_city_gate_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "deserter_city_park_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "deserter_city_office_1f_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          1
+        ],
+        "overmap": "deserter_city_office_2f_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          2
+        ],
+        "overmap": "deserter_city_office_3f_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          3
+        ],
+        "overmap": "deserter_city_office_roof_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "deserter_city_office_1fb_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "deserter_city_office_2fb_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          2
+        ],
+        "overmap": "deserter_city_office_3fb_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          3
+        ],
+        "overmap": "deserter_city_office_roofb_north"
+      }
+    ],
+    "flags": [
+      "GLOBALLY_UNIQUE",
+      "SAFE_AT_WORLDGEN"
+    ],
+    "occurrences": [
+      0,
+      0
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "bandit_drug_lab",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "bandit_drug_lab_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "drug_lab_roof_north"
+      }
+    ],
+    "locations": [
+      "forest"
+    ],
+    "city_distance": [
+      20,
+      -1
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "SAFE_AT_WORLDGEN",
+      "UNIQUE",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "bandit_work_camp",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "bandit_farm_5_north"
+      },
+      {
+        "point": [
+          -1,
+          0,
+          0
+        ],
+        "overmap": "bandit_farm_6_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "bandit_farm_4_north"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "overmap": "bandit_farm_2_north"
+      },
+      {
+        "point": [
+          -1,
+          -1,
+          0
+        ],
+        "overmap": "bandit_farm_3_north"
+      },
+      {
+        "point": [
+          1,
+          -1,
+          0
+        ],
+        "overmap": "bandit_farm_1_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "bandit_farm_8_north"
+      },
+      {
+        "point": [
+          -1,
+          1,
+          0
+        ],
+        "overmap": "bandit_farm_9_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "bandit_farm_7_north"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          1
+        ],
+        "overmap": "bandit_farm_2_roof_north"
+      },
+      {
+        "point": [
+          -1,
+          -1,
+          1
+        ],
+        "overmap": "bandit_farm_3_roof_north"
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      20,
+      -1
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "UNIQUE",
+      "SAFE_AT_WORLDGEN",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "drug_lab",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "drug_lab_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "drug_lab_roof_north"
+      }
+    ],
+    "locations": [
+      "forest"
+    ],
+    "city_distance": [
+      20,
+      60
+    ],
+    "city_sizes": [
+      8,
+      -1
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "UNIQUE",
+      "CLASSIC",
+      "WILDERNESS",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "bandit_farm_3",
+      "bandit_farm_3_roof",
+      "bandit_farm_2",
+      "bandit_farm_2_roof",
+      "bandit_farm_1",
+      "bandit_farm_6",
+      "bandit_farm_5",
+      "bandit_farm_4",
+      "bandit_farm_9",
+      "bandit_farm_8",
+      "bandit_farm_7"
+    ],
+    "name": "farm",
+    "sym": "#",
+    "color": "brown",
+    "see_cost": 5,
+    "//": "RISK_LOW due to risk and safety being based on NPCs perception of what the area may contain",
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "drug_lab",
+      "bandit_drug_lab"
+    ],
+    "name": "drug lab",
+    "sym": "^",
+    "color": "brown",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "drug_lab_roof"
+    ],
+    "name": "drug lab roof",
+    "sym": "^",
+    "color": "brown",
+    "see_cost": 0
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "deserter_city_gate",
+      "deserter_city_park",
+      "deserter_city_office_1f",
+      "deserter_city_office_2f",
+      "deserter_city_office_3f",
+      "deserter_city_office_roof",
+      "deserter_city_office_1fb",
+      "deserter_city_office_2fb",
+      "deserter_city_office_3fb",
+      "deserter_city_office_roofb"
+    ],
+    "name": "deserter outpost",
+    "sym": "D",
+    "color": "brown",
+    "see_cost": 5,
+    "flags": [
+      "SIDEWALK"
+    ]
+  },
+  {
+    "type": "terrain",
+    "id": "dda_geo_raider_embrasure_wood",
+    "name": "wooden wall with embrasure",
+    "description": "This wooden wall has a hole that lets you shoot and use reach weapons against enemies on the other side.  Highly flammable.",
+    "symbol": "o",
+    "color": "light_red",
+    "move_cost": 0,
+    "coverage": 90,
+    "roof": "t_flat_roof",
+    "flags": [
+      "FLAMMABLE",
+      "NOITEM",
+      "SUPPORTS_ROOF",
+      "WALL",
+      "AUTO_WALL_SYMBOL",
+      "MOUNTABLE",
+      "PERMEABLE",
+      "TRANSPARENT",
+      "THIN_OBSTACLE",
+      "CONNECT_TO_WALL"
+    ],
+    "bash": {
+      "str_min": 10,
+      "str_max": 75,
+      "sound": "crunch!",
+      "sound_fail": "whump!",
+      "ter_set": "dda_geo_raider_wall_wood_widened",
+      "items": [
+        {
+          "item": "2x4",
+          "count": [
+            1,
+            5
+          ]
+        },
+        {
+          "item": "wood_panel",
+          "count": [
+            0,
+            3
+          ]
+        },
+        {
+          "item": "nail",
+          "charges": [
+            2,
+            6
+          ]
+        },
+        {
+          "item": "splinter",
+          "count": [
+            1,
+            6
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "terrain",
+    "id": "dda_geo_raider_wall_wood_widened",
+    "name": "wooden wall with a wide opening",
+    "description": "This wooden wall previously had an embrasure, but the hole has been smashed wide enough that you can climb through it, rendering it kind of pointless.  Highly flammable.",
+    "looks_like": "dda_geo_raider_embrasure_wood",
+    "symbol": "o",
+    "color": "light_red",
+    "move_cost": 4,
+    "coverage": 60,
+    "roof": "t_flat_roof",
+    "flags": [
+      "FLAMMABLE",
+      "NOITEM",
+      "SUPPORTS_ROOF",
+      "WALL",
+      "AUTO_WALL_SYMBOL",
+      "PERMEABLE",
+      "SMALL_PASSAGE",
+      "TRANSPARENT",
+      "THIN_OBSTACLE",
+      "CONNECT_TO_WALL"
+    ],
+    "bash": {
+      "str_min": 12,
+      "str_max": 90,
+      "sound": "crunch!",
+      "sound_fail": "whump!",
+      "ter_set": "t_null",
+      "items": [
+        {
+          "item": "2x4",
+          "count": [
+            2,
+            7
+          ]
+        },
+        {
+          "item": "wood_panel",
+          "count": [
+            0,
+            3
+          ]
+        },
+        {
+          "item": "nail",
+          "charges": [
+            4,
+            12
+          ]
+        },
+        {
+          "item": "splinter",
+          "count": [
+            2,
+            7
+          ]
+        }
+      ]
+    }
+  }
+]

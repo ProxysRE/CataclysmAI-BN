@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 12,
-  "verified_percent": 23.5,
+  "verified_groups": 16,
+  "verified_percent": 31.4,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 23.5,
+  "verified_plus_prepared_percent": 31.4,
   "evidence_checkpoint": {
-    "head": "ada9d93a85d33ac402741f7843c6ab3cad23723d",
-    "run_id": 39519170435,
+    "head": "a8f22c287b277a9d8af9d1aa1f20a524492e6092",
+    "run_id": 39620442620,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 12,
-    "geometry_assertions": 508066,
-    "installed_geometry_test_cases": 12,
-    "installed_geometry_assertions": 508066
+    "geometry_test_cases": 16,
+    "geometry_assertions": 542715,
+    "installed_geometry_test_cases": 16,
+    "installed_geometry_assertions": 542715
   },
   "rows": [
     {
@@ -69,28 +69,36 @@
       "source_identities": [
         "overmap_special:isolated_road"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All seven Isolated Road cells passed source and installed geometry generation"
     },
     {
       "name": "Оружейная выставка",
       "source_identities": [
         "overmap_special:gun_show"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Both hall cells and both roof cells passed source and installed geometry generation"
     },
     {
       "name": "Бункер Бальтазара",
       "source_identities": [
         "overmap_special:balthazar_bunker"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All eleven bunker cells and deterministic navigation terrain passed source and installed tests"
     },
     {
       "name": "Лимнологическая станция",
       "source_identities": [
         "overmap_special:limnological_station"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Roof, surface and all five underwater levels passed source and installed geometry tests"
     },
     {
       "name": "Поселение дезертиров",

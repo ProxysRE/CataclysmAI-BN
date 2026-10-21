@@ -1,0 +1,65 @@
+{
+  "status": "raider_geometry_adapted_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "aliases": {
+    "t_embrasure_wood": "dda_geo_raider_embrasure_wood",
+    "t_wall_wood_widened": "dda_geo_raider_wall_wood_widened",
+    "t_wood_roof": "t_flat_roof"
+  },
+  "new_terrain_definitions": 2,
+  "unresolved_typed_refs": [],
+  "deferred_bash_fields": [
+    {
+      "source": "t_embrasure_wood",
+      "bash_field": "hit_field",
+      "value": [
+        "fd_dust",
+        2
+      ]
+    },
+    {
+      "source": "t_embrasure_wood",
+      "bash_field": "destroyed_field",
+      "value": [
+        "fd_splinters",
+        1
+      ]
+    },
+    {
+      "source": "t_wall_wood_widened",
+      "bash_field": "hit_field",
+      "value": [
+        "fd_dust",
+        2
+      ]
+    },
+    {
+      "source": "t_wall_wood_widened",
+      "bash_field": "destroyed_field",
+      "value": [
+        "fd_splinters",
+        1
+      ]
+    }
+  ],
+  "preserved": [
+    "Original world-map rows and placements",
+    "Wooden material flags, coverage 90/60 and movement 0/4",
+    "Two-stage source bash thresholds and item quantities"
+  ],
+  "adaptations": [
+    "BN CONNECT_TO_WALL replaces source wall connectivity groups",
+    "Existing BN flat roof replaces source wooden roof; roof material is not identical",
+    "Source hit/destroyed dust and splinter field emission is deferred"
+  ],
+  "remaining": [
+    "Native schema and all-floor generation",
+    "Combat cover, mounted shooting and reach-attack behavior",
+    "Bash, fire and widened-opening traversal tests"
+  ],
+  "limits": [
+    "No native patch changes or percentage credit",
+    "Typed closure and static flags do not certify combat parity"
+  ]
+}

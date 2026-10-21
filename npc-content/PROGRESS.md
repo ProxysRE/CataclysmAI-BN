@@ -67,3 +67,9 @@ All four specials are now in the opt-in geometry preview: total 16 cases /613 pl
 Run 39590006274 compiled successfully and passed 73 core /11030 assertions and 10 optional /2224 assertions. Geometry initialization stopped at the artisan panel: the BN terrain loader required symbol despite copy-from. Installed tests and packaging did not run.
 
 Both reader and intercom now copy the complete authenticated BN terrain definition rather than relying on JSON inheritance. Physical fields, flags, roof, bash and drops remain exactly stock; source identity/text and no-op preview examination are explicit overrides. Added concrete-terrain guards and regression probes rejecting both the old inheritance-only object and a missing-symbol object. All four custom preview terrains are checked before compilation. Native source and installed validation remain pending for the corrected patch; confirmed progress stays 23.5%.
+
+## Corrected frontier Windows checkpoint and raider embrasure preparation
+
+Run 39620442620 on a8f22c2 passed 73 core /11030 assertions, 10 optional /2224 assertions and 16 geometry /542715 assertions, repeated successfully on installed data. Portable artifact 12359175270 was produced. The four frontier groups now have demonstrated generation scope: 16/51 =31.4%. Concrete panel loading is verified; full traversal and faction/intercom interactions remain outside this claim.
+
+Prepared the raider wooden embrasure and widened damaged opening from authenticated DDA terrain definitions. Two complete concrete terrain objects retain coverage, movement, source bash thresholds and wood items; source roof and field-emission differences are documented. The new adaptation has closed typed references but is not embedded or native/combat tested.

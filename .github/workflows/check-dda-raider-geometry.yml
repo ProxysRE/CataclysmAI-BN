@@ -4,6 +4,8 @@ on:
     branches: [port/dda-npc-locations]
     paths:
       - 'npc-content/prepare_raider_geometry.py'
+      - 'npc-content/adapt_raider_geometry.py'
+      - 'npc-content/geometry_layer/raider_adaptation_sources/**'
       - 'npc-content/geometry_layer/RAIDER_*.json'
       - 'npc-content/geometry_layer/raider_sources/**'
       - '.github/workflows/check-dda-raider-geometry.yml'
@@ -22,4 +24,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify source hashes, rows, typed references and BN overlaps
-        run: python npc-content/prepare_raider_geometry.py --check
+        run: |
+          python npc-content/prepare_raider_geometry.py --check
+          python npc-content/adapt_raider_geometry.py --check

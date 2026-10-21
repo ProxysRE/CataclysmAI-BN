@@ -5,6 +5,10 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'overmap_special:isolated_road':('native/dda_geometry_preview.json','All seven Isolated Road cells passed source and installed geometry generation'),
+ 'overmap_special:gun_show':('native/dda_geometry_preview.json','Both hall cells and both roof cells passed source and installed geometry generation'),
+ 'overmap_special:balthazar_bunker':('native/dda_geometry_preview.json','All eleven bunker cells and deterministic navigation terrain passed source and installed tests'),
+ 'overmap_special:limnological_station':('native/dda_geometry_preview.json','Roof, surface and all five underwater levels passed source and installed geometry tests'),
  'overmap_special:exodii_base':('native/dda_geometry_preview.json','Base, stone barn and warehouse; all source cells and projected navigation terrain'),
  'overmap_special:campus':('native/dda_geometry_preview.json','All five campus layout cases passed source and installed generation'),
  'overmap_special:Militia Lodge':('native/dda_grey_moose_lodge.json','Complete lodge floors and roof'),
@@ -27,7 +31,7 @@ def prepare(check=False):
     validation=json.loads((ROOT/'lighthouse/VALIDATION.json').read_text())
     checkpoint=validation['checkpoint']
     assert checkpoint['status']=='success' and checkpoint['geometry_test_cases']>=3
-    assert {'hub_01','campus','exodii'}<=set(validation['geometry_preview']['packages'])
+    assert {'hub_01','campus','exodii','frontier'}<=set(validation['geometry_preview']['packages'])
     rows=[];seen=set()
     for g in groups:
         found=set(g['source_identities'])&VERIFIED.keys()

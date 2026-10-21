@@ -779,8 +779,8 @@
       0,
       0
     ],
-    "runtime_validated": false,
-    "status": "Panel terrain concretized after BN JSON loading failure; sixteen-case rerun pending",
+    "runtime_validated": true,
+    "status": "Corrected terrain passed sixteen source and installed geometry cases",
     "container_yards": "not embedded; cross-z nested roof blocker",
     "native_patch_sha256": "1482589a1a1adf230d9d762fa217d2450fa98b8fcd601f0fbec259bb1ce77098",
     "previous_attempt": {
@@ -796,17 +796,17 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "ada9d93a85d33ac402741f7843c6ab3cad23723d",
-    "run_id": 39519170435,
-    "artifact_id": 12313885149,
-    "artifact_size": 205632491,
-    "artifact_digest": "sha256:0abe6a71ff6be6244927dd7045139a4f4a54a243adda70484b9c4893189871d0",
+    "checkpoint_head": "a8f22c287b277a9d8af9d1aa1f20a524492e6092",
+    "run_id": 39620442620,
+    "artifact_id": 12359175270,
+    "artifact_size": 205637996,
+    "artifact_digest": "sha256:368683894734aa3627095994fb395643f2300a3a4f3d5a431f957ebe8a6bcba1",
     "previous_successful_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
-      "Container yards and later Godco quest construction excluded",
-      "Frontier source/installed generation pending; panels are geometry only"
+      "Faction reader and Balthazar intercom are physical panels with deferred interactions",
+      "Raider sites, container yards and later Godco quest construction excluded"
     ],
     "validated_packages": [
       "island_prison",
@@ -814,10 +814,11 @@
       "hub_01",
       "campus",
       "godco_base",
-      "exodii"
+      "exodii",
+      "frontier"
     ],
-    "validated_geometry_cases": 12,
-    "validated_geometry_placements": 576,
+    "validated_geometry_cases": 16,
+    "validated_geometry_placements": 613,
     "latest_failed_attempt": {
       "head": "c63fb5d7d8e123295551407826450ae7fe2eecc6",
       "run_id": 39590006274,
@@ -826,7 +827,12 @@
       "source_optional": "10 cases /2224 assertions passed",
       "geometry": "Loading stopped: missing required symbol on copy-from terrain panel",
       "installed_and_package": "not reached",
-      "fix": "Concrete BN panel definitions with exact physical-field conservation and precompile missing-field checks"
+      "fix": "Concrete BN panel definitions with exact physical-field conservation and precompile missing-field checks",
+      "resolved_by": {
+        "head": "a8f22c287b277a9d8af9d1aa1f20a524492e6092",
+        "run_id": 39620442620,
+        "status": "success"
+      }
     }
   },
   "geometry_hub_candidate": {
@@ -878,11 +884,11 @@
     "installation_scope": "namespaced opt-in debug preview; original source IDs remain staged separately"
   },
   "geometry_layer_progress": {
-    "verified_groups": 12,
+    "verified_groups": 16,
     "accepted_groups": 51,
-    "verified_percent": 23.5,
+    "verified_percent": 31.4,
     "additional_prepared_groups": 0,
-    "verified_plus_prepared_percent": 23.5,
+    "verified_plus_prepared_percent": 31.4,
     "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
     "report": "geometry_layer/PROGRESS.json"
   },
@@ -924,9 +930,9 @@
     "validation_checkpoint": 39519170435
   },
   "geometry_frontier_candidate": {
-    "status": "Two panel definitions concretized; source/installed generation rerun pending",
+    "status": "Four sites passed source and installed native geometry generation",
     "native_embedded": true,
-    "runtime_validated": false,
+    "runtime_validated": true,
     "world_maps": 20,
     "unique_omt": 29,
     "special_cells": {
@@ -958,6 +964,17 @@
     "adapted_unresolved_typed_refs": [],
     "adaptation_report": "geometry_layer/FRONTIER_ADAPTATION_REPORT.json",
     "navigation_and_roof_expectations": 1167,
-    "preview_interactions": "Faction reader and Balthazar intercom deliberately have none examine action in geometry layer"
+    "preview_interactions": "Faction reader and Balthazar intercom deliberately have none examine action in geometry layer",
+    "validation_checkpoint": 39620442620
+  },
+  "geometry_raider_candidate": {
+    "status": "Wooden embrasure and widened-opening geometry adapted; native integration pending",
+    "native_embedded": false,
+    "runtime_validated": false,
+    "world_maps": 15,
+    "own_omt": 24,
+    "placed_cells": 25,
+    "adapted_unresolved_typed_refs": [],
+    "report": "geometry_layer/RAIDER_ADAPTATION_REPORT.json"
   }
 }

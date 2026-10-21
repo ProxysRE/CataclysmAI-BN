@@ -1,0 +1,11 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "files": {
+    "bn/data/json/furniture_and_terrain/terrain-walls.json": "886e13973131a1cefa4b3d9e22e58deebeca76db9de79dd4893dbc6a94a04370",
+    "bn/src/map/mapdata.h": "44e1e1509814c7092ff70005f2e81f321cb4b58e29cdc0ab2e760720f4eb2833",
+    "dda/data/json/furniture_and_terrain/terrain-embrasures.json": "55e978dd24911a2a6def96e553eeb28f7c3b57d2515d1cc3663549f65e7c8555"
+  }
+}
