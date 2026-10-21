@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 11,
-  "verified_percent": 21.6,
+  "verified_groups": 12,
+  "verified_percent": 23.5,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 21.6,
+  "verified_plus_prepared_percent": 23.5,
   "evidence_checkpoint": {
-    "head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
-    "run_id": 39485820362,
+    "head": "ada9d93a85d33ac402741f7843c6ab3cad23723d",
+    "run_id": 39519170435,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 9,
-    "geometry_assertions": 406338,
-    "installed_geometry_test_cases": 9,
-    "installed_geometry_assertions": 406338
+    "geometry_test_cases": 12,
+    "geometry_assertions": 508066,
+    "installed_geometry_test_cases": 12,
+    "installed_geometry_assertions": 508066
   },
   "rows": [
     {
@@ -31,7 +31,9 @@
         "overmap_special:Out-of-place Stone Barn",
         "overmap_special:Strange warehouse"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Base, stone barn and warehouse; all source cells and projected navigation terrain"
     },
     {
       "name": "Университетский кампус",

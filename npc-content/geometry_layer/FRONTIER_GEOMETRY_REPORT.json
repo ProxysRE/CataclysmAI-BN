@@ -1,0 +1,47 @@
+{
+  "status": "four_location_geometry_staging_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 22,
+    "overmap_special": 4,
+    "overmap_terrain": 9
+  },
+  "world_maps": 20,
+  "unique_omt": 29,
+  "special_cells": {
+    "limnological_station": 15,
+    "balthazar_bunker": 11,
+    "isolated_road": 7,
+    "gun_show": 4
+  },
+  "source_rows_preserved": true,
+  "inline_mapping_projection": [],
+  "unresolved_typed_refs": [
+    [
+      "terrain",
+      "t_canvas_roof"
+    ],
+    [
+      "terrain",
+      "t_card_artisans"
+    ],
+    [
+      "terrain",
+      "t_intercom_balthazar"
+    ],
+    [
+      "terrain",
+      "t_secretdoor_concrete_c"
+    ]
+  ],
+  "geometry_issues": [],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "Not in native preview; generation and schema validation pending",
+    "Later-layer furnishings, loot, inhabitants, camp fields and quests retained separately",
+    "Existing BN external cells retain stock generation",
+    "No completion credit before native tests"
+  ]
+}

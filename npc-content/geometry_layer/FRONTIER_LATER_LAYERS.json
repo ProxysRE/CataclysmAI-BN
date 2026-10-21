@@ -1,0 +1,3758 @@
+[
+  {
+    "source": {
+      "om_terrain": [
+        [
+          "balthazar_bunker_00",
+          "balthazar_bunker_01"
+        ],
+        [
+          "balthazar_bunker_02",
+          "balthazar_bunker_03"
+        ]
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "toilets": {
+        "&": {}
+      },
+      "furniture": {
+        "d": "f_desk",
+        "h": "f_chair",
+        "l": "f_locker",
+        "t": "f_table",
+        "y": "f_trashcan",
+        "D": "f_filing_cabinet",
+        "F": "f_fridge",
+        "P": [
+          [
+            "f_solar_unit",
+            3
+          ],
+          [
+            "f_wreckage",
+            1
+          ]
+        ],
+        "S": "f_metal_detector",
+        "1": "f_counter",
+        "2": "f_counter",
+        "3": "f_counter",
+        "\u00e0": "f_warehouse_shelf"
+      },
+      "items": {
+        ".": {
+          "item": "corpses_verydead_no_items",
+          "chance": 1
+        },
+        " ": {
+          "item": "corpses_verydead_no_items",
+          "chance": 1
+        },
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 33
+        },
+        "D": {
+          "item": "SUS_office_filing_cabinet"
+        }
+      },
+      "monster": {
+        "r": {
+          "monster": "mon_secubot_balthazar"
+        },
+        "B": {
+          "monster": "mon_secubot_balthazar"
+        },
+        "T": {
+          "monster": "mon_turret_rifle_balthazar"
+        }
+      },
+      "npcs": {
+        "Q": {
+          "class": "balthazar_intercom"
+        }
+      },
+      "nested": {
+        "\u00a7": {
+          "chunks": [
+            "fire_extinguisher"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        [
+          "balthazar_bunker_00_-1",
+          "balthazar_bunker_01_-1"
+        ],
+        [
+          "balthazar_bunker_02_-1",
+          "balthazar_bunker_03_-1"
+        ]
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "furniture": {
+        "d": "f_desk",
+        "h": "f_chair",
+        "t": "f_table",
+        "y": "f_trashcan",
+        "B": "f_balthazar_server",
+        "D": "f_filing_cabinet",
+        "F": "f_fridge",
+        "S": "f_machinery_electronic",
+        "1": "f_counter",
+        "2": "f_counter",
+        "3": "f_counter",
+        "4": "f_counter"
+      },
+      "items": {
+        " ": {
+          "item": "corpses_verydead_no_items",
+          "chance": 1
+        },
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 33
+        },
+        "D": {
+          "item": "SUS_office_filing_cabinet"
+        }
+      },
+      "nested": {
+        "\u00a7": {
+          "chunks": [
+            "fire_extinguisher"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "om_terrain": "balthazar_bunker_02_-2",
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "monster": {
+        "r": {
+          "monster": "mon_secubot_balthazar"
+        },
+        "T": {
+          "monster": "mon_turret_rifle_balthazar"
+        }
+      },
+      "nested": {
+        "\u00a7": {
+          "chunks": [
+            "fire_extinguisher"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        "balthazar_bunker_01_1"
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "1": {
+          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
+          "chunks": [
+            [
+              "residential_6kW_solar",
+              31
+            ],
+            [
+              "residential_7kW_solar",
+              63
+            ],
+            [
+              "residential_8kW_solar",
+              31
+            ],
+            [
+              "null",
+              873
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "industrial_1x1_solar",
+              4
+            ],
+            [
+              "industrial_1x1_solar_v2",
+              1
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "null",
+              15
+            ],
+            [
+              "roof_2x2_utilities",
+              50
+            ],
+            [
+              "roof_2x2_utilities_b",
+              15
+            ],
+            [
+              "roof_2x2_utilities_c",
+              15
+            ],
+            [
+              "roof_2x2_utilities_d",
+              15
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "roof_1x1_birdnest",
+              10
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_4x4_utility",
+              5
+            ],
+            [
+              "roof_4x4_utility_1",
+              5
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_2x2_infrastructure",
+              15
+            ],
+            [
+              "roof_2x2_infrastructure_1",
+              5
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              40
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "null",
+              50
+            ],
+            [
+              "roof_4x4_survivor",
+              20
+            ],
+            [
+              "roof_4x4_party",
+              10
+            ],
+            [
+              "roof_2x2_golf",
+              7
+            ],
+            [
+              "roof_4x4_holdout",
+              3
+            ],
+            [
+              "roof_3x3_wine",
+              10
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "null",
+              120
+            ],
+            [
+              "roof_6x6_greenhouse_1",
+              25
+            ],
+            [
+              "roof_6x6_greenhouse_2",
+              25
+            ],
+            [
+              "roof_6x6_garden_1",
+              25
+            ],
+            [
+              "roof_6x6_garden_2",
+              25
+            ],
+            [
+              "roof_6x6_survivor",
+              20
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "roof_1x1_birdnest",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        "balthazar_bunker_01_2"
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "1": {
+          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
+          "chunks": [
+            [
+              "residential_6kW_solar",
+              31
+            ],
+            [
+              "residential_7kW_solar",
+              63
+            ],
+            [
+              "residential_8kW_solar",
+              31
+            ],
+            [
+              "null",
+              873
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "industrial_1x1_solar",
+              4
+            ],
+            [
+              "industrial_1x1_solar_v2",
+              1
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "null",
+              15
+            ],
+            [
+              "roof_2x2_utilities",
+              50
+            ],
+            [
+              "roof_2x2_utilities_b",
+              15
+            ],
+            [
+              "roof_2x2_utilities_c",
+              15
+            ],
+            [
+              "roof_2x2_utilities_d",
+              15
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "roof_1x1_birdnest",
+              10
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_4x4_utility",
+              5
+            ],
+            [
+              "roof_4x4_utility_1",
+              5
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_2x2_infrastructure",
+              15
+            ],
+            [
+              "roof_2x2_infrastructure_1",
+              5
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              40
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "null",
+              50
+            ],
+            [
+              "roof_4x4_survivor",
+              20
+            ],
+            [
+              "roof_4x4_party",
+              10
+            ],
+            [
+              "roof_2x2_golf",
+              7
+            ],
+            [
+              "roof_4x4_holdout",
+              3
+            ],
+            [
+              "roof_3x3_wine",
+              10
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "null",
+              120
+            ],
+            [
+              "roof_6x6_greenhouse_1",
+              25
+            ],
+            [
+              "roof_6x6_greenhouse_2",
+              25
+            ],
+            [
+              "roof_6x6_garden_1",
+              25
+            ],
+            [
+              "roof_6x6_garden_2",
+              25
+            ],
+            [
+              "roof_6x6_survivor",
+              20
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "roof_1x1_birdnest",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "isolated_house_farm_gunsmith"
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "@": "f_bed",
+        "B": "f_bathtub",
+        "D": "f_trashcan",
+        "L": "f_locker",
+        "o": "f_oven",
+        "S": "f_sink",
+        "Y": "f_sofa",
+        "c": "f_counter",
+        "u": "f_cupboard",
+        "z": "f_dresser",
+        "f": "f_fridge",
+        "h": "f_chair",
+        "k": "f_desk",
+        "n": "f_table",
+        "T": "f_table",
+        "r": "f_rack",
+        "t": "f_toilet",
+        "1": "f_armchair",
+        "8": "f_bookcase",
+        "7": "f_bench",
+        "3": "f_bench",
+        "a": "f_rack_coat",
+        "g": "f_floor_lamp",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "b": "f_rotary_clothesline",
+        "q": "f_birdbath",
+        "!": [
+          [
+            "f_generator_broken",
+            25
+          ],
+          [
+            "f_diesel_generator",
+            5
+          ],
+          [
+            "f_military_generator",
+            5
+          ],
+          [
+            "f_12000_gasoline_generator",
+            5
+          ]
+        ],
+        "*": "f_console",
+        "X": "f_curtain",
+        "V": "f_forge_artisan_0",
+        "C": "f_forge_artisan_1",
+        "I": "f_anvil_heavy",
+        "N": "f_kiln_empty",
+        "M": "f_arcfurnace_empty",
+        "9": "f_beverly_shear",
+        "J": "f_drill_press",
+        "K": "f_tablesaw",
+        "(": "f_heavy_lathe",
+        "d": "f_utility_shelf",
+        "m": "f_metal_crate_o"
+      },
+      "items": {
+        "k": {
+          "item": "SUS_office_desk",
+          "chance": 25
+        },
+        "f": {
+          "item": "SUS_fridge",
+          "chance": 45,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "o": {
+          "item": "SUS_oven",
+          "chance": 40
+        },
+        "8": {
+          "item": "homebooks",
+          "chance": 45,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "r": {
+          "item": "restaur_kitchen",
+          "chance": 45,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "c": {
+          "item": "kitchen_counters",
+          "chance": 30
+        },
+        "u": [
+          {
+            "item": "kitchen_counters",
+            "chance": 30
+          },
+          {
+            "item": "restaur_kitchen",
+            "chance": 50,
+            "repeat": [
+              2,
+              4
+            ]
+          }
+        ],
+        "D": {
+          "item": "SUS_trash_trashcan",
+          "chance": 20
+        },
+        "m": [
+          {
+            "item": "supplies_metal",
+            "chance": 40,
+            "repeat": [
+              2,
+              15
+            ]
+          },
+          {
+            "item": "supplies_woodcrafts",
+            "chance": 40,
+            "repeat": [
+              2,
+              10
+            ]
+          },
+          {
+            "item": "mechanics",
+            "chance": 30,
+            "repeat": [
+              2,
+              6
+            ]
+          },
+          {
+            "item": "supplies_metal_precious",
+            "chance": 20,
+            "repeat": [
+              2,
+              6
+            ]
+          }
+        ],
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "t": {}
+      },
+      "place_monster": [
+        {
+          "monster": "mon_turret_artisans",
+          "x": 8,
+          "y": 13,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 4,
+          "y": 13,
+          "chance": 100
+        }
+      ],
+      "place_zones": [
+        {
+          "type": "LOOT_ITEM_GROUP",
+          "faction": "isolated_artisans",
+          "x": [
+            2,
+            2
+          ],
+          "y": [
+            7,
+            7
+          ],
+          "filter": "ammo_common_boxed"
+        },
+        {
+          "type": "LOOT_ITEM_GROUP",
+          "faction": "isolated_artisans",
+          "x": [
+            2,
+            2
+          ],
+          "y": [
+            7,
+            7
+          ],
+          "filter": "guns_rifle_milspec"
+        },
+        {
+          "type": "LOOT_ITEM_GROUP",
+          "faction": "isolated_artisans",
+          "x": [
+            3,
+            3
+          ],
+          "y": [
+            10,
+            10
+          ],
+          "filter": "gunsmith_basic_ammo"
+        },
+        {
+          "type": "LOOT_ITEM_GROUP",
+          "faction": "isolated_artisans",
+          "x": [
+            5,
+            7
+          ],
+          "y": [
+            10,
+            10
+          ],
+          "filter": "gunsmith_basic_ammo"
+        },
+        {
+          "type": "LOOT_ITEM_GROUP",
+          "faction": "isolated_artisans",
+          "x": [
+            3,
+            3
+          ],
+          "y": [
+            12,
+            12
+          ],
+          "filter": "gunsmith_repack_ammo"
+        },
+        {
+          "type": "LOOT_ITEM_GROUP",
+          "faction": "isolated_artisans",
+          "x": [
+            9,
+            9
+          ],
+          "y": [
+            11,
+            12
+          ],
+          "filter": "gunsmith_repack_ammo"
+        },
+        {
+          "type": "LOOT_AMMO",
+          "faction": "isolated_artisans",
+          "x": [
+            5,
+            7
+          ],
+          "y": [
+            10,
+            10
+          ]
+        },
+        {
+          "type": "LOOT_UNSORTED",
+          "faction": "isolated_artisans",
+          "x": [
+            9,
+            9
+          ],
+          "y": [
+            11,
+            12
+          ]
+        }
+      ],
+      "place_npcs": [
+        {
+          "class": "jay_ruckers",
+          "x": 6,
+          "y": 13
+        }
+      ],
+      "faction_owner": [
+        {
+          "id": "isolated_artisans",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "isolated_house_farm_blacksmith"
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "@": "f_bed",
+        "B": "f_bathtub",
+        "D": "f_trashcan",
+        "L": "f_locker",
+        "o": "f_oven",
+        "S": "f_sink",
+        "Y": "f_sofa",
+        "c": "f_counter",
+        "u": "f_cupboard",
+        "z": "f_dresser",
+        "f": "f_fridge",
+        "h": "f_chair",
+        "k": "f_desk",
+        "n": "f_table",
+        "T": "f_table",
+        "r": "f_rack",
+        "t": "f_toilet",
+        "1": "f_armchair",
+        "8": "f_bookcase",
+        "7": "f_bench",
+        "3": "f_bench",
+        "a": "f_rack_coat",
+        "g": "f_floor_lamp",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "b": "f_rotary_clothesline",
+        "q": "f_birdbath",
+        "!": [
+          [
+            "f_generator_broken",
+            25
+          ],
+          [
+            "f_diesel_generator",
+            5
+          ],
+          [
+            "f_military_generator",
+            5
+          ],
+          [
+            "f_12000_gasoline_generator",
+            5
+          ]
+        ],
+        "*": "f_console",
+        "X": "f_curtain",
+        "V": "f_forge_artisan_0",
+        "C": "f_forge_artisan_1",
+        "I": "f_anvil_heavy",
+        "N": "f_kiln_empty",
+        "M": "f_arcfurnace_empty",
+        "9": "f_beverly_shear",
+        "J": "f_drill_press",
+        "K": "f_tablesaw",
+        "(": "f_heavy_lathe",
+        "d": "f_utility_shelf",
+        "m": "f_metal_crate_o"
+      },
+      "items": {
+        "k": {
+          "item": "SUS_office_desk",
+          "chance": 25
+        },
+        "f": {
+          "item": "SUS_fridge",
+          "chance": 45,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "o": {
+          "item": "SUS_oven",
+          "chance": 40
+        },
+        "8": {
+          "item": "homebooks",
+          "chance": 45,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "r": {
+          "item": "restaur_kitchen",
+          "chance": 45,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "c": {
+          "item": "kitchen_counters",
+          "chance": 30
+        },
+        "u": [
+          {
+            "item": "kitchen_counters",
+            "chance": 30
+          },
+          {
+            "item": "restaur_kitchen",
+            "chance": 50,
+            "repeat": [
+              2,
+              4
+            ]
+          }
+        ],
+        "D": {
+          "item": "SUS_trash_trashcan",
+          "chance": 20
+        },
+        "m": [
+          {
+            "item": "supplies_metal",
+            "chance": 40,
+            "repeat": [
+              2,
+              15
+            ]
+          },
+          {
+            "item": "supplies_woodcrafts",
+            "chance": 40,
+            "repeat": [
+              2,
+              10
+            ]
+          },
+          {
+            "item": "mechanics",
+            "chance": 30,
+            "repeat": [
+              2,
+              6
+            ]
+          },
+          {
+            "item": "supplies_metal_precious",
+            "chance": 20,
+            "repeat": [
+              2,
+              6
+            ]
+          }
+        ],
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "t": {}
+      },
+      "place_monster": [
+        {
+          "monster": "mon_turret_artisans",
+          "x": 17,
+          "y": 10,
+          "chance": 100
+        }
+      ],
+      "place_zones": [
+        {
+          "type": "LOOT_ARMOR",
+          "faction": "isolated_artisans",
+          "x": [
+            12,
+            12
+          ],
+          "y": [
+            8,
+            8
+          ]
+        },
+        {
+          "type": "LOOT_CLOTHING",
+          "faction": "isolated_artisans",
+          "x": [
+            12,
+            12
+          ],
+          "y": [
+            9,
+            9
+          ]
+        },
+        {
+          "type": "LOOT_WEAPONS",
+          "faction": "isolated_artisans",
+          "x": [
+            12,
+            12
+          ],
+          "y": [
+            10,
+            10
+          ]
+        },
+        {
+          "type": "LOOT_GUNS",
+          "faction": "isolated_artisans",
+          "x": [
+            12,
+            12
+          ],
+          "y": [
+            11,
+            11
+          ]
+        },
+        {
+          "type": "LOOT_UNSORTED",
+          "faction": "isolated_artisans",
+          "x": [
+            12,
+            12
+          ],
+          "y": [
+            8,
+            11
+          ]
+        }
+      ],
+      "place_item": [
+        {
+          "item": "blacksmith_prototypes",
+          "chance": 100,
+          "x": 17,
+          "y": 7
+        }
+      ],
+      "place_npcs": [
+        {
+          "class": "cody_miller",
+          "x": 16,
+          "y": 7
+        }
+      ],
+      "faction_owner": [
+        {
+          "id": "isolated_artisans",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "isolated_road_field_0"
+      ]
+    },
+    "later_fields": {
+      "place_vehicles": [
+        {
+          "vehicle": "pickup",
+          "fuel": 50,
+          "rotation": 180,
+          "status": 0,
+          "x": 4,
+          "y": 10
+        }
+      ],
+      "place_monster": [
+        {
+          "monster": "mon_turret_artisans",
+          "x": 8,
+          "y": 1,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 16,
+          "y": 1,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 20,
+          "y": 23,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 2,
+          "y": 23,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 23,
+          "y": 2,
+          "chance": 100
+        }
+      ],
+      "furniture": {
+        "\u03df": "f_bulletin"
+      },
+      "faction_owner": [
+        {
+          "id": "isolated_artisans",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "isolated_road_field_1"
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "O": "f_standing_tank",
+        "H": "f_standing_tank",
+        "P": "f_sign",
+        "t": "f_table"
+      },
+      "liquids": {
+        "O": {
+          "liquid": "water",
+          "amount": [
+            0,
+            100
+          ]
+        },
+        "H": {
+          "liquid": "fertilizer_liquid",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "sealed_item": {
+        "D": {
+          "items": {
+            "item": "farming_seeds",
+            "chance": 100
+          },
+          "furniture": "f_plant_seedling",
+          "chance": 70
+        }
+      },
+      "place_items": [
+        {
+          "chance": 35,
+          "repeat": 2,
+          "item": "supplies_farming",
+          "x": 6,
+          "y": 4
+        },
+        {
+          "chance": 35,
+          "repeat": 2,
+          "item": "garden_shed",
+          "x": 7,
+          "y": 4
+        },
+        {
+          "chance": 40,
+          "repeat": 2,
+          "item": "garden_shed",
+          "x": 5,
+          "y": 4
+        }
+      ],
+      "place_monster": [
+        {
+          "monster": "mon_turret_artisans",
+          "x": 1,
+          "y": 21,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 21,
+          "y": 1,
+          "chance": 100
+        },
+        {
+          "monster": "mon_turret_artisans",
+          "x": 21,
+          "y": 21,
+          "chance": 100
+        }
+      ],
+      "faction_owner": [
+        {
+          "id": "isolated_artisans",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "isolated_house_farm_roof_blacksmith",
+          "isolated_road_field_1_roof"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": "f_chimney",
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "1": {
+          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
+          "chunks": [
+            [
+              "residential_6kW_solar",
+              31
+            ],
+            [
+              "residential_7kW_solar",
+              63
+            ],
+            [
+              "residential_8kW_solar",
+              31
+            ],
+            [
+              "null",
+              873
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "industrial_1x1_solar",
+              4
+            ],
+            [
+              "industrial_1x1_solar_v2",
+              1
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "null",
+              15
+            ],
+            [
+              "roof_2x2_utilities",
+              50
+            ],
+            [
+              "roof_2x2_utilities_b",
+              15
+            ],
+            [
+              "roof_2x2_utilities_c",
+              15
+            ],
+            [
+              "roof_2x2_utilities_d",
+              15
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "roof_1x1_birdnest",
+              10
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_4x4_utility",
+              5
+            ],
+            [
+              "roof_4x4_utility_1",
+              5
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_2x2_infrastructure",
+              15
+            ],
+            [
+              "roof_2x2_infrastructure_1",
+              5
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              40
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "null",
+              50
+            ],
+            [
+              "roof_4x4_survivor",
+              20
+            ],
+            [
+              "roof_4x4_party",
+              10
+            ],
+            [
+              "roof_2x2_golf",
+              7
+            ],
+            [
+              "roof_4x4_holdout",
+              3
+            ],
+            [
+              "roof_3x3_wine",
+              10
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "null",
+              120
+            ],
+            [
+              "roof_6x6_greenhouse_1",
+              25
+            ],
+            [
+              "roof_6x6_greenhouse_2",
+              25
+            ],
+            [
+              "roof_6x6_garden_1",
+              25
+            ],
+            [
+              "roof_6x6_garden_2",
+              25
+            ],
+            [
+              "roof_6x6_survivor",
+              20
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "roof_1x1_birdnest",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "faction_owner": [
+        {
+          "id": "isolated_artisans",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "isolated_house_farm_roof_gunsmith"
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "1": {
+          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
+          "chunks": [
+            [
+              "residential_6kW_solar",
+              31
+            ],
+            [
+              "residential_7kW_solar",
+              63
+            ],
+            [
+              "residential_8kW_solar",
+              31
+            ],
+            [
+              "null",
+              873
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "industrial_1x1_solar",
+              4
+            ],
+            [
+              "industrial_1x1_solar_v2",
+              1
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "null",
+              15
+            ],
+            [
+              "roof_2x2_utilities",
+              50
+            ],
+            [
+              "roof_2x2_utilities_b",
+              15
+            ],
+            [
+              "roof_2x2_utilities_c",
+              15
+            ],
+            [
+              "roof_2x2_utilities_d",
+              15
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "roof_1x1_birdnest",
+              10
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_4x4_utility",
+              5
+            ],
+            [
+              "roof_4x4_utility_1",
+              5
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_2x2_infrastructure",
+              15
+            ],
+            [
+              "roof_2x2_infrastructure_1",
+              5
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              40
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "null",
+              50
+            ],
+            [
+              "roof_4x4_survivor",
+              20
+            ],
+            [
+              "roof_4x4_party",
+              10
+            ],
+            [
+              "roof_2x2_golf",
+              7
+            ],
+            [
+              "roof_4x4_holdout",
+              3
+            ],
+            [
+              "roof_3x3_wine",
+              10
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "null",
+              120
+            ],
+            [
+              "roof_6x6_greenhouse_1",
+              25
+            ],
+            [
+              "roof_6x6_greenhouse_2",
+              25
+            ],
+            [
+              "roof_6x6_garden_1",
+              25
+            ],
+            [
+              "roof_6x6_garden_2",
+              25
+            ],
+            [
+              "roof_6x6_survivor",
+              20
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "roof_1x1_birdnest",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "faction_owner": [
+        {
+          "id": "isolated_artisans",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "gunshow_0",
+          "gunshow_1"
+        ]
+      ]
+    },
+    "later_fields": {
+      "place_monster": [
+        {
+          "monster": "mon_secubot_america",
+          "x": 8,
+          "y": [
+            3,
+            22
+          ],
+          "chance": 100
+        },
+        {
+          "monster": "mon_secubot_america",
+          "x": 35,
+          "y": [
+            3,
+            22
+          ],
+          "chance": 100
+        },
+        {
+          "monster": "mon_secubot",
+          "x": 14,
+          "y": [
+            3,
+            22
+          ],
+          "chance": 100
+        },
+        {
+          "monster": "mon_secubot",
+          "x": 22,
+          "y": [
+            3,
+            22
+          ],
+          "chance": 100
+        }
+      ],
+      "place_loot": [
+        {
+          "group": "kitted_kord",
+          "chance": 100,
+          "x": 15,
+          "y": 23
+        },
+        {
+          "group": "corpse_male",
+          "chance": 100,
+          "x": [
+            2,
+            23
+          ],
+          "y": [
+            2,
+            22
+          ],
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        {
+          "group": "corpse_male",
+          "chance": 100,
+          "x": [
+            24,
+            46
+          ],
+          "y": [
+            2,
+            22
+          ],
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      ],
+      "furniture": {
+        "|": "f_large_canvas_wall"
+      },
+      "nested": {
+        "c": {
+          "chunks": [
+            [
+              "gunshow_table_0",
+              20
+            ],
+            [
+              "gunshow_table_1",
+              20
+            ],
+            [
+              "gunshow_table_2",
+              20
+            ],
+            [
+              "gunshow_table_3",
+              20
+            ],
+            [
+              "gunshow_table_4",
+              20
+            ],
+            [
+              "gunshow_table_5",
+              20
+            ],
+            [
+              "null",
+              4
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "gunshow_0_roof",
+          "gunshow_1_roof"
+        ]
+      ]
+    },
+    "later_fields": {}
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_surface"
+    },
+    "later_fields": {
+      "furniture": {
+        "1": "f_control_station",
+        "2": "f_machinery_electronic",
+        "A": "f_air_compressor",
+        "B": "f_sample_freezer",
+        "C": "f_workbench",
+        "E": "f_shaker",
+        "G": "f_stool",
+        "H": "f_counter",
+        "I": "f_IV_pole",
+        "J": "f_curtain",
+        "K": "f_fridge",
+        "S": "f_sink",
+        "Q": "f_rack",
+        "U": "f_shower",
+        "W": "f_water_purifier",
+        "b": "f_bench",
+        "c": "f_cupboard",
+        "f": "f_tourist_table",
+        "h": "f_camp_chair",
+        "l": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "@": "f_bed",
+        "&": "f_cleat"
+      },
+      "toilets": {
+        "t": {}
+      },
+      "gaspumps": {
+        "!": {}
+      },
+      "items": {
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "I": [
+          {
+            "item": "saline_bottle_random",
+            "chance": 100
+          }
+        ],
+        "#": {
+          "item": "fishing_items",
+          "chance": 10
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink"
+        },
+        "F": {
+          "item_group": "vending_food"
+        }
+      },
+      "place_furniture": [
+        {
+          "furn": "f_diesel_generator",
+          "x": 11,
+          "y": 13
+        }
+      ],
+      "place_loot": [
+        {
+          "item": "rope_30",
+          "x": 9,
+          "y": [
+            7,
+            9
+          ],
+          "chance": 30
+        },
+        {
+          "item": "rope_30",
+          "x": 14,
+          "y": [
+            7,
+            9
+          ],
+          "chance": 30
+        },
+        {
+          "item": "rope_30",
+          "x": 9,
+          "y": [
+            13,
+            15
+          ],
+          "chance": 30
+        },
+        {
+          "item": "rope_30",
+          "x": 14,
+          "y": [
+            13,
+            15
+          ],
+          "chance": 70
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_DIVING",
+          "x": [
+            1,
+            22
+          ],
+          "y": [
+            1,
+            22
+          ],
+          "density": 0.2
+        }
+      ],
+      "place_vehicles": [
+        {
+          "vehicle": "boat_motor_single",
+          "x": 11,
+          "y": 9,
+          "rotation": 270,
+          "chance": 70
+        },
+        {
+          "vehicle": "lake",
+          "x": 15,
+          "y": 1,
+          "rotation": 0,
+          "chance": 30
+        },
+        {
+          "vehicle": "lake",
+          "x": 8,
+          "y": 22,
+          "rotation": 180,
+          "chance": 30
+        },
+        {
+          "vehicle": "lake",
+          "x": 2,
+          "y": 10,
+          "rotation": 270,
+          "chance": 30
+        },
+        {
+          "vehicle": "lake",
+          "x": 17,
+          "y": 10,
+          "rotation": 270,
+          "chance": 30
+        },
+        {
+          "vehicle": "lake",
+          "x": 6,
+          "y": 15,
+          "rotation": 90,
+          "chance": 30
+        },
+        {
+          "vehicle": "lake",
+          "x": 21,
+          "y": 15,
+          "rotation": 90,
+          "chance": 30
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_roof"
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "1": {
+          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
+          "chunks": [
+            [
+              "residential_6kW_solar",
+              31
+            ],
+            [
+              "residential_7kW_solar",
+              63
+            ],
+            [
+              "residential_8kW_solar",
+              31
+            ],
+            [
+              "null",
+              873
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "industrial_1x1_solar",
+              4
+            ],
+            [
+              "industrial_1x1_solar_v2",
+              1
+            ]
+          ]
+        },
+        "3": {
+          "chunks": [
+            [
+              "null",
+              15
+            ],
+            [
+              "roof_2x2_utilities",
+              50
+            ],
+            [
+              "roof_2x2_utilities_b",
+              15
+            ],
+            [
+              "roof_2x2_utilities_c",
+              15
+            ],
+            [
+              "roof_2x2_utilities_d",
+              15
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "roof_1x1_birdnest",
+              10
+            ]
+          ]
+        },
+        "6": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_4x4_utility",
+              5
+            ],
+            [
+              "roof_4x4_utility_1",
+              5
+            ]
+          ]
+        },
+        "7": {
+          "chunks": [
+            [
+              "null",
+              20
+            ],
+            [
+              "roof_2x2_infrastructure",
+              15
+            ],
+            [
+              "roof_2x2_infrastructure_1",
+              5
+            ],
+            [
+              "roof_2x2_infrastructure_2",
+              40
+            ]
+          ]
+        },
+        "8": {
+          "chunks": [
+            [
+              "null",
+              50
+            ],
+            [
+              "roof_4x4_survivor",
+              20
+            ],
+            [
+              "roof_4x4_party",
+              10
+            ],
+            [
+              "roof_2x2_golf",
+              7
+            ],
+            [
+              "roof_4x4_holdout",
+              3
+            ],
+            [
+              "roof_3x3_wine",
+              10
+            ]
+          ]
+        },
+        "9": {
+          "chunks": [
+            [
+              "null",
+              120
+            ],
+            [
+              "roof_6x6_greenhouse_1",
+              25
+            ],
+            [
+              "roof_6x6_greenhouse_2",
+              25
+            ],
+            [
+              "roof_6x6_garden_1",
+              25
+            ],
+            [
+              "roof_6x6_garden_2",
+              25
+            ],
+            [
+              "roof_6x6_survivor",
+              20
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "roof_1x1_birdnest",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_-1"
+    },
+    "later_fields": {
+      "furniture": {
+        "1": "f_control_station",
+        "2": "f_machinery_electronic",
+        "A": "f_air_compressor",
+        "B": "f_sample_freezer",
+        "C": "f_workbench",
+        "E": "f_shaker",
+        "G": "f_stool",
+        "H": "f_counter",
+        "I": "f_IV_pole",
+        "J": "f_curtain",
+        "K": "f_fridge",
+        "S": "f_sink",
+        "Q": "f_rack",
+        "U": "f_shower",
+        "W": "f_water_purifier",
+        "b": "f_bench",
+        "c": "f_cupboard",
+        "f": "f_tourist_table",
+        "h": "f_camp_chair",
+        "l": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "@": "f_bed",
+        "&": "f_cleat"
+      },
+      "toilets": {
+        "t": {}
+      },
+      "gaspumps": {
+        "!": {}
+      },
+      "items": {
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "I": [
+          {
+            "item": "saline_bottle_random",
+            "chance": 100
+          }
+        ]
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink"
+        },
+        "F": {
+          "item_group": "vending_food"
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_-2"
+    },
+    "later_fields": {
+      "furniture": {
+        "1": "f_control_station",
+        "2": "f_machinery_electronic",
+        "A": "f_air_compressor",
+        "B": "f_sample_freezer",
+        "C": "f_workbench",
+        "E": "f_shaker",
+        "G": "f_stool",
+        "H": "f_counter",
+        "I": "f_IV_pole",
+        "J": "f_curtain",
+        "K": "f_fridge",
+        "S": "f_sink",
+        "Q": "f_rack",
+        "U": "f_shower",
+        "W": "f_water_purifier",
+        "b": "f_bench",
+        "c": "f_cupboard",
+        "f": "f_tourist_table",
+        "h": "f_camp_chair",
+        "l": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "@": "f_bed",
+        "&": "f_cleat"
+      },
+      "toilets": {
+        "t": {}
+      },
+      "gaspumps": {
+        "!": {}
+      },
+      "items": {
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "I": [
+          {
+            "item": "saline_bottle_random",
+            "chance": 100
+          }
+        ]
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink"
+        },
+        "F": {
+          "item_group": "vending_food"
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_-3"
+    },
+    "later_fields": {
+      "furniture": {
+        "1": "f_control_station",
+        "2": "f_machinery_electronic",
+        "A": "f_air_compressor",
+        "B": "f_sample_freezer",
+        "C": "f_workbench",
+        "E": "f_shaker",
+        "G": "f_stool",
+        "H": "f_counter",
+        "I": "f_IV_pole",
+        "J": "f_curtain",
+        "K": "f_fridge",
+        "S": "f_sink",
+        "Q": "f_rack",
+        "U": "f_shower",
+        "W": "f_water_purifier",
+        "b": "f_bench",
+        "c": "f_cupboard",
+        "f": "f_tourist_table",
+        "h": "f_camp_chair",
+        "l": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "@": "f_bed",
+        "&": "f_cleat"
+      },
+      "toilets": {
+        "t": {}
+      },
+      "gaspumps": {
+        "!": {}
+      },
+      "items": {
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 10
+        },
+        "I": [
+          {
+            "item": "saline_bottle_random",
+            "chance": 100
+          }
+        ],
+        "S": [
+          {
+            "item": "SUS_bathroom_sink",
+            "chance": 40
+          },
+          {
+            "item": "SUS_bathroom_medicine",
+            "chance": 50
+          }
+        ],
+        "f": [
+          {
+            "item": "dishes_dining",
+            "chance": 30
+          },
+          {
+            "item": "tea_dishes",
+            "chance": 10
+          },
+          {
+            "item": "baked_goods",
+            "chance": 5
+          },
+          {
+            "item": "groce_condiment",
+            "chance": 10
+          },
+          {
+            "item": "dining",
+            "chance": 10
+          }
+        ],
+        "b": {
+          "item": "homebooks",
+          "chance": 30
+        },
+        "K": {
+          "item": "SUS_fridge",
+          "chance": 60
+        },
+        "q": [
+          {
+            "item": "SUS_pantry",
+            "chance": 10
+          },
+          {
+            "item": "SUS_breakfast_cupboard",
+            "chance": 30
+          },
+          {
+            "item": "SUS_coffee_cupboard",
+            "chance": 30
+          },
+          {
+            "item": "cannedfood",
+            "chance": 30,
+            "repeat": [
+              1,
+              2
+            ]
+          }
+        ],
+        "@": {
+          "item": "bed",
+          "chance": 70
+        },
+        "C": [
+          {
+            "item": "tools_science",
+            "chance": 20
+          },
+          {
+            "item": "tools_common",
+            "chance": 60
+          }
+        ],
+        "c": [
+          {
+            "item": "SUS_utensils",
+            "chance": 40
+          },
+          {
+            "item": "SUS_cookware",
+            "chance": 40
+          },
+          {
+            "item": "SUS_knife_drawer",
+            "chance": 30
+          }
+        ],
+        "l": [
+          {
+            "item": "SUS_dresser_mens",
+            "chance": 30
+          },
+          {
+            "item": "SUS_dresser_womens",
+            "chance": 30
+          }
+        ]
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink"
+        },
+        "F": {
+          "item_group": "vending_food"
+        }
+      },
+      "place_loot": [
+        {
+          "item": "microwave",
+          "x": 10,
+          "y": 19,
+          "chance": 100
+        },
+        {
+          "item": "toaster",
+          "x": 11,
+          "y": 19,
+          "chance": 70
+        },
+        {
+          "item": "hotplate",
+          "x": 12,
+          "y": 19,
+          "chance": 100
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_DIVING",
+          "x": [
+            9,
+            15
+          ],
+          "y": [
+            7,
+            18
+          ],
+          "density": 0.2
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_-4"
+    },
+    "later_fields": {
+      "furniture": {
+        "1": "f_control_station",
+        "2": "f_machinery_electronic",
+        "A": "f_air_compressor",
+        "B": "f_sample_freezer",
+        "C": "f_workbench",
+        "E": "f_shaker",
+        "G": "f_stool",
+        "H": "f_counter",
+        "I": "f_IV_pole",
+        "J": "f_curtain",
+        "K": "f_fridge",
+        "S": "f_sink",
+        "Q": "f_rack",
+        "U": "f_shower",
+        "W": "f_water_purifier",
+        "b": "f_bench",
+        "c": "f_cupboard",
+        "f": "f_tourist_table",
+        "h": "f_camp_chair",
+        "l": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "@": "f_bed",
+        "&": "f_cleat"
+      },
+      "toilets": {
+        "t": {}
+      },
+      "gaspumps": {
+        "!": {}
+      },
+      "items": {
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "I": [
+          {
+            "item": "saline_bottle_random",
+            "chance": 100
+          }
+        ],
+        "Q": {
+          "item": "SUS_scuba_gear",
+          "chance": 60
+        },
+        "f": {
+          "item": "dissection",
+          "chance": 30
+        },
+        "B": [
+          {
+            "item": "prepared_teas",
+            "chance": 20
+          },
+          {
+            "item": "snacks",
+            "chance": 10,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "pizza_beer",
+            "chance": 30,
+            "repeat": [
+              1,
+              12
+            ]
+          }
+        ],
+        "b": {
+          "item": "fishing_items",
+          "chance": 10
+        },
+        "H": {
+          "item": "fishing_items",
+          "chance": 50
+        },
+        "C": {
+          "item": "tools_science",
+          "chance": 70
+        },
+        "U": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink"
+        },
+        "F": {
+          "item_group": "vending_food"
+        }
+      },
+      "place_loot": [
+        {
+          "item": "shark_suit",
+          "x": [
+            9,
+            10
+          ],
+          "y": 12,
+          "chance": 20
+        },
+        {
+          "item": "fish",
+          "x": 13,
+          "y": 12,
+          "chance": 100,
+          "repeat": [
+            2,
+            6
+          ]
+        },
+        {
+          "item": "fish_bait",
+          "x": 13,
+          "y": 12,
+          "chance": 100,
+          "repeat": [
+            2,
+            6
+          ]
+        },
+        {
+          "item": "xedra_mobile_weather_station",
+          "x": 9,
+          "y": 8,
+          "chance": 100
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_DIVING",
+          "x": [
+            8,
+            18
+          ],
+          "y": [
+            12,
+            18
+          ],
+          "density": 0.2
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": "dls_small_-5"
+    },
+    "later_fields": {
+      "furniture": {
+        "1": "f_control_station",
+        "2": "f_machinery_electronic",
+        "A": "f_air_compressor",
+        "B": "f_sample_freezer",
+        "C": "f_workbench",
+        "E": "f_shaker",
+        "G": "f_stool",
+        "H": "f_counter",
+        "I": "f_IV_pole",
+        "J": "f_curtain",
+        "K": "f_fridge",
+        "S": "f_sink",
+        "Q": "f_rack",
+        "U": "f_shower",
+        "W": "f_water_purifier",
+        "b": "f_bench",
+        "c": "f_cupboard",
+        "f": "f_tourist_table",
+        "h": "f_camp_chair",
+        "l": [
+          "f_foot_locker",
+          "f_foot_locker_aluminum"
+        ],
+        "@": "f_bed",
+        "&": "f_cleat"
+      },
+      "toilets": {
+        "t": {}
+      },
+      "gaspumps": {
+        "!": {}
+      },
+      "items": {
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "I": [
+          {
+            "item": "saline_bottle_random",
+            "chance": 100
+          }
+        ]
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink"
+        },
+        "F": {
+          "item_group": "vending_food"
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "roof_4x4_utility"
+    },
+    "later_fields": {
+      "flags": [
+        "ERASE_ALL_BEFORE_PLACING_TERRAIN"
+      ],
+      "furniture": {
+        "o": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "a": "f_air_conditioner"
+      },
+      "liquids": {
+        "o": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "roof_4x4_utility_1"
+    },
+    "later_fields": {
+      "flags": [
+        "ERASE_ALL_BEFORE_PLACING_TERRAIN"
+      ],
+      "furniture": {
+        "o": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "a": "f_water_purifier",
+        "A": "f_standing_tank"
+      },
+      "liquids": {
+        "o": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": "balthazar_bunker",
+    "connection_point": [
+      -1,
+      0,
+      0
+    ],
+    "field": "deprecated_connection_terrain",
+    "value": "road"
+  },
+  {
+    "source": "balthazar_bunker",
+    "point": [
+      1,
+      0,
+      0
+    ],
+    "field": "camp",
+    "value": "balthazar_fac"
+  },
+  {
+    "source": "balthazar_bunker",
+    "point": [
+      1,
+      0,
+      0
+    ],
+    "field": "camp_name",
+    "value": "<balthazar_camp>"
+  },
+  {
+    "source": "isolated_road",
+    "connection_point": [
+      0,
+      -1,
+      0
+    ],
+    "field": "deprecated_connection_terrain",
+    "value": "road"
+  },
+  {
+    "source": "isolated_road",
+    "point": [
+      1,
+      0,
+      0
+    ],
+    "field": "camp",
+    "value": "isolated_artisans"
+  },
+  {
+    "source": "isolated_road",
+    "point": [
+      1,
+      0,
+      0
+    ],
+    "field": "camp_name",
+    "value": "Cody & Jay"
+  },
+  {
+    "source": "gun_show",
+    "connection_point": [
+      0,
+      5,
+      0
+    ],
+    "field": "deprecated_connection_terrain",
+    "value": "road"
+  },
+  {
+    "source": [
+      "balthazar_bunker_00",
+      "balthazar_bunker_01"
+    ],
+    "field": "vision_levels",
+    "value": "isolated_building"
+  },
+  {
+    "source": [
+      "balthazar_bunker_02",
+      "balthazar_bunker_03"
+    ],
+    "field": "vision_levels",
+    "value": "isolated_electronics"
+  },
+  {
+    "source": [
+      "balthazar_bunker_01_1",
+      "balthazar_bunker_01_2"
+    ],
+    "field": "vision_levels",
+    "value": "roof_or_air"
+  },
+  {
+    "source": [
+      "balthazar_bunker_00_-1",
+      "balthazar_bunker_01_-1",
+      "balthazar_bunker_02_-1",
+      "balthazar_bunker_03_-1",
+      "balthazar_bunker_02_-2"
+    ],
+    "field": "vision_levels",
+    "value": "underground_dirt"
+  },
+  {
+    "source": [
+      "dls_small_roof",
+      "dls_small_surface",
+      "dls_small_-1",
+      "dls_small_-2",
+      "dls_small_-3",
+      "dls_small_-4",
+      "dls_small_-5"
+    ],
+    "field": "vision_levels",
+    "value": "large_structure"
+  },
+  {
+    "source": [
+      "isolated_road_field_0",
+      "isolated_road_field_1",
+      "isolated_road_field_1_roof"
+    ],
+    "field": "vision_levels",
+    "value": "open_land"
+  },
+  {
+    "source": [
+      "isolated_house_farm_gunsmith",
+      "isolated_house_farm_roof_gunsmith"
+    ],
+    "field": "vision_levels",
+    "value": "isolated_building"
+  },
+  {
+    "source": [
+      "isolated_house_farm_blacksmith",
+      "isolated_house_farm_roof_blacksmith"
+    ],
+    "field": "vision_levels",
+    "value": "isolated_building"
+  },
+  {
+    "source": [
+      "gunshow_0",
+      "gunshow_1",
+      "gunshow_0_roof",
+      "gunshow_1_roof"
+    ],
+    "field": "vision_levels",
+    "value": "blends_till_details"
+  },
+  {
+    "source_special": {
+      "type": "overmap_special",
+      "id": "limnological_station",
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "dls_small_roof_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "dls_small_surface_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            -1
+          ],
+          "overmap": "dls_small_-1_north",
+          "locations": [
+            "lake_water_cube"
+          ]
+        },
+        {
+          "point": [
+            1,
+            1,
+            -2
+          ],
+          "overmap": "dls_small_-2_north",
+          "locations": [
+            "lake_water_cube"
+          ]
+        },
+        {
+          "point": [
+            1,
+            1,
+            -3
+          ],
+          "overmap": "dls_small_-3_north",
+          "locations": [
+            "lake_water_cube"
+          ]
+        },
+        {
+          "point": [
+            1,
+            1,
+            -4
+          ],
+          "overmap": "dls_small_-4_north",
+          "locations": [
+            "lake_water_cube"
+          ]
+        },
+        {
+          "point": [
+            1,
+            1,
+            -5
+          ],
+          "overmap": "dls_small_-5_north",
+          "locations": [
+            "lake_bed"
+          ]
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            0,
+            2,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            1,
+            2,
+            0
+          ],
+          "overmap": "lake_surface"
+        },
+        {
+          "point": [
+            2,
+            2,
+            0
+          ],
+          "overmap": "lake_surface"
+        }
+      ],
+      "locations": [
+        "lake_surface"
+      ],
+      "city_sizes": [
+        1,
+        20
+      ],
+      "occurrences": [
+        0,
+        1
+      ],
+      "flags": [
+        "CLASSIC",
+        "LAKE",
+        "MAN_MADE",
+        "OVERMAP_UNIQUE"
+      ]
+    }
+  },
+  {
+    "source_special": {
+      "type": "overmap_special",
+      "id": "balthazar_bunker",
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "balthazar_bunker_00_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "balthazar_bunker_01_north",
+          "camp": "balthazar_fac",
+          "camp_name": "<balthazar_camp>"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "balthazar_bunker_02_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "balthazar_bunker_03_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            1
+          ],
+          "overmap": "balthazar_bunker_01_1_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            2
+          ],
+          "overmap": "balthazar_bunker_01_2_north"
+        },
+        {
+          "point": [
+            0,
+            0,
+            -1
+          ],
+          "overmap": "balthazar_bunker_00_-1_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            -1
+          ],
+          "overmap": "balthazar_bunker_01_-1_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            -1
+          ],
+          "overmap": "balthazar_bunker_02_-1_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            -1
+          ],
+          "overmap": "balthazar_bunker_03_-1_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            -2
+          ],
+          "overmap": "balthazar_bunker_02_-2_north"
+        }
+      ],
+      "connections": [
+        {
+          "point": [
+            -1,
+            0,
+            0
+          ],
+          "terrain": "road",
+          "connection": "local_road",
+          "from": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "locations": [
+        "field",
+        "forest_without_trail"
+      ],
+      "city_distance": [
+        8,
+        -1
+      ],
+      "city_sizes": [
+        1,
+        16
+      ],
+      "occurrences": [
+        33,
+        100
+      ],
+      "priority": 1,
+      "flags": [
+        "SAFE_AT_WORLDGEN",
+        "MAN_MADE",
+        "GLOBALLY_UNIQUE"
+      ]
+    }
+  },
+  {
+    "source": "balthazar_bunker",
+    "field": "priority",
+    "value": 1
+  },
+  {
+    "source_special": {
+      "type": "overmap_special",
+      "id": "isolated_road",
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "isolated_road_field_0"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "isolated_house_farm_gunsmith",
+          "camp": "isolated_artisans",
+          "camp_name": "Cody & Jay"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "isolated_house_farm_blacksmith"
+        },
+        {
+          "point": [
+            1,
+            0,
+            1
+          ],
+          "overmap": "isolated_house_farm_roof_gunsmith"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "isolated_house_farm_roof_blacksmith"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "isolated_road_field_1"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "isolated_road_field_1_roof"
+        },
+        {
+          "point": [
+            0,
+            -1,
+            0
+          ],
+          "locations": [
+            "land",
+            "road"
+          ]
+        }
+      ],
+      "connections": [
+        {
+          "point": [
+            0,
+            -1,
+            0
+          ],
+          "terrain": "road",
+          "connection": "local_road",
+          "from": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "locations": [
+        "field"
+      ],
+      "city_distance": [
+        3,
+        -1
+      ],
+      "city_sizes": [
+        1,
+        16
+      ],
+      "occurrences": [
+        33,
+        100
+      ],
+      "priority": 1,
+      "rotate": false,
+      "flags": [
+        "SAFE_AT_WORLDGEN",
+        "MAN_MADE",
+        "GLOBALLY_UNIQUE"
+      ]
+    }
+  },
+  {
+    "source": "isolated_road",
+    "field": "priority",
+    "value": 1
+  },
+  {
+    "source_special": {
+      "type": "overmap_special",
+      "id": "gun_show",
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "gunshow_0_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "gunshow_1_north"
+        },
+        {
+          "point": [
+            0,
+            0,
+            1
+          ],
+          "overmap": "gunshow_0_roof_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            1
+          ],
+          "overmap": "gunshow_1_roof_north"
+        }
+      ],
+      "locations": [
+        "field"
+      ],
+      "connections": [
+        {
+          "point": [
+            0,
+            5,
+            0
+          ],
+          "terrain": "road",
+          "connection": "local_road"
+        }
+      ],
+      "city_distance": [
+        3,
+        -1
+      ],
+      "city_sizes": [
+        1,
+        16
+      ],
+      "occurrences": [
+        33,
+        100
+      ],
+      "priority": -1,
+      "flags": [
+        "SAFE_AT_WORLDGEN",
+        "MAN_MADE",
+        "GLOBALLY_UNIQUE"
+      ]
+    }
+  },
+  {
+    "source": "gun_show",
+    "field": "priority",
+    "value": -1
+  },
+  {
+    "source": [
+      "balthazar_bunker_00",
+      "balthazar_bunker_01"
+    ],
+    "field": "travel_cost_type",
+    "value": "impassable"
+  },
+  {
+    "source": [
+      "balthazar_bunker_02",
+      "balthazar_bunker_03"
+    ],
+    "field": "travel_cost_type",
+    "value": "impassable"
+  },
+  {
+    "source": [
+      "balthazar_bunker_01_1",
+      "balthazar_bunker_01_2"
+    ],
+    "field": "travel_cost_type",
+    "value": "impassable"
+  },
+  {
+    "source": [
+      "balthazar_bunker_00_-1",
+      "balthazar_bunker_01_-1",
+      "balthazar_bunker_02_-1",
+      "balthazar_bunker_03_-1",
+      "balthazar_bunker_02_-2"
+    ],
+    "field": "travel_cost_type",
+    "value": "impassable"
+  }
+]

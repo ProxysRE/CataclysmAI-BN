@@ -1,0 +1,13 @@
+{
+  "repository": "CleverRaven/Cataclysm-DDA",
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/balthazar_fac/balthazar_bunker.json": "8c850e3a4372bce49cf76aa8d018211d1fff58fd2b0198d811069536778ce460",
+    "data/json/mapgen/balthazar_fac/nested/solar_panel_rows.json": "cecb75bf03ef982c8318695d15256c96f48dd382441cbccee0b7d248f8beac9f",
+    "data/json/mapgen/isolated_road/isolated_road_home_chunks.json": "36f3bf63150a784e5ae39c9d6419c3857174dc2fbbfdd0464a92fe72dacbc935",
+    "data/json/mapgen/isolated_road/isolated_road_mission_1.json": "fd1ab78a49cac901ab6d1e24a190f9e3f35baebe28657c392958d756e06c1e6e",
+    "data/json/mapgen/robofac_quest_dls.json": "55ed1d81c1d7cceb490593129cccec4ba1df1bd14e080b37295f004ec16c5913",
+    "data/json/mapgen_palettes/isolated_artisans.json": "651f8f0913c0799d4c3b84d66acc37d4d54726bb0ae028d8a822f2647e17a2bb",
+    "data/json/mapgen_palettes/underwater_structures_palette.json": "26706d8112a58dee76d95fb6fd8c91274b16aec9e6429285bc8e50ead7d47ab3"
+  }
+}

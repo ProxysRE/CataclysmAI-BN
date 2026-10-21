@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'overmap_special:exodii_base':('native/dda_geometry_preview.json','Base, stone barn and warehouse; all source cells and projected navigation terrain'),
  'overmap_special:campus':('native/dda_geometry_preview.json','All five campus layout cases passed source and installed generation'),
  'overmap_special:Militia Lodge':('native/dda_grey_moose_lodge.json','Complete lodge floors and roof'),
  'overmap_special:Island prison':('native/dda_geometry_preview.json','Namespaced shell preview; all special cells'),
@@ -26,7 +27,7 @@ def prepare(check=False):
     validation=json.loads((ROOT/'lighthouse/VALIDATION.json').read_text())
     checkpoint=validation['checkpoint']
     assert checkpoint['status']=='success' and checkpoint['geometry_test_cases']>=3
-    assert 'hub_01'in validation['geometry_preview']['packages']
+    assert {'hub_01','campus','exodii'}<=set(validation['geometry_preview']['packages'])
     rows=[];seen=set()
     for g in groups:
         found=set(g['source_identities'])&VERIFIED.keys()

@@ -93,3 +93,9 @@ Only missing terrain is introduced: source glassed sand, with visual SANDGLASS c
 `adapt_exodii_geometry.py` retains staged sources and emits a separate BN adaptation. Concrete own OMT inheritance closes locally; named source visibility costs become BN integer 5. Structural nested IDs and glassed sand have an isolated `dda_geo_exodii_` prefix. Geometry-only objects remain equal to the staged objects apart from these references.
 
 The optional preview includes all three Exodii specials, adding 88 placements and 176 projected navigation-terrain assertions to source and installed suites. The combined fixture covers 12 specials and 576 placements. Native generation is pending; the static adaptation is not proof of character traversal.
+
+### Frontier batch
+
+`prepare_frontier_geometry.py --check` stages Isolated Road, gun show, Balthazar bunker and limnological station as one reproducible batch. It verifies seven pinned files under `frontier_sources`, expands authenticated shared roof palettes, projects inline mapping terrain, retains source rows, and archives later-layer fields and complete specials separately. Outputs: `FRONTIER_SHELLS.json`, `FRONTIER_LATER_LAYERS.json`, `FRONTIER_GEOMETRY_REPORT.json`.
+
+Scope is 20 world maps /29 own OMT /37 placed cells, including eight reused BN lake cells. Structural roof utility terrain is isolated; late rooftop devices are deferred. Four typed terrain obligations remain. This batch is not embedded or native-validated and receives no completion credit.

@@ -1,0 +1,1794 @@
+[
+  {
+    "om_terrain": [
+      [
+        "balthazar_bunker_00",
+        "balthazar_bunker_01"
+      ],
+      [
+        "balthazar_bunker_02",
+        "balthazar_bunker_03"
+      ]
+    ],
+    "type": "mapgen",
+    "object": {
+      "fill_ter": "t_thconc_floor",
+      "rows": [
+        ",,----------------------------------------------",
+        ",,-............................................-",
+        ",,-...___________________.###############......-",
+        ",,-...___________________.#F     +    T #......-",
+        ",,-...___________________.#1     |      #.RRR..-",
+        ",,-...___________________.#2  Lth|D     #.RRR..-",
+        ",,-...___________________.o3   th|D   L #.RRR..-",
+        "__G______________________.#y\u00a7  h |D  B  #......-",
+        "__G______________________.#||||||||+||  #######-",
+        "__G______________________.o  B  T|D y|  #  ####-",
+        "__G______________________.#   L  od \u00a7|L # L####-",
+        "__G______________________.+      odhL|  *  *>##-",
+        "__G______________________.+      od  |  I L####-",
+        "__G______________________.#   L  odhD|  #  #Q\u00e0#-",
+        "__G______________________.o     T|ddD|L #######-",
+        "__G______________________.#+||||||o|o|  +&#....-",
+        "__G______________________.#    T   | \u00a7  ###....-",
+        ",,-...___________________.o        |    #......-",
+        ",,-...___________________.# L    L S  L #......-",
+        ",,-...___________________.#        |    #..RR..-",
+        ",,-...___________________.#T tttttt|lllT#..RR..-",
+        ",,-...___________________.###############......-",
+        ",,-............................................-",
+        ",,-............................................-",
+        ",,-............................................-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PPr...PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP...rPP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-..PP....PP....PP....PP....PP....PP....PP....-",
+        ",,-............................................-",
+        ",,----------------------------------------------"
+      ],
+      "terrain": {
+        ",": "t_region_groundcover",
+        ".": "t_concrete",
+        "-": "t_chainfence",
+        "_": "t_pavement",
+        "#": "t_strconc_wall",
+        "|": "t_concrete_wall",
+        "o": "t_reinforced_glass_shutter_open",
+        "r": "t_concrete",
+        "G": "t_chaingate_c",
+        "I": "t_intercom_balthazar",
+        "L": "t_thconc_floor_olight",
+        "P": "t_concrete",
+        "R": "t_radio_tower",
+        ">": "t_ladder_down",
+        "+": [
+          [
+            "t_door_metal_c",
+            4
+          ],
+          [
+            "t_door_metal_o",
+            1
+          ]
+        ],
+        "*": "t_door_metal_locked",
+        "&": "t_thconc_floor",
+        "1": "t_thconc_floor",
+        "2": "t_thconc_floor",
+        "3": "t_thconc_floor",
+        "B": "t_thconc_floor",
+        "D": "t_thconc_floor",
+        "F": "t_thconc_floor",
+        "Q": "t_thconc_floor",
+        "S": "t_thconc_floor",
+        "T": "t_thconc_floor",
+        "d": "t_thconc_floor",
+        "h": "t_thconc_floor",
+        "l": "t_thconc_floor",
+        "t": "t_thconc_floor",
+        "y": "t_thconc_floor",
+        "\u00a7": "t_thconc_floor",
+        "\u00e0": "t_thconc_floor"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "om_terrain": [
+      [
+        "balthazar_bunker_00_-1",
+        "balthazar_bunker_01_-1"
+      ],
+      [
+        "balthazar_bunker_02_-1",
+        "balthazar_bunker_03_-1"
+      ]
+    ],
+    "type": "mapgen",
+    "object": {
+      "fill_ter": "t_thconc_floor",
+      "rows": [
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "...................##########################...",
+        "...................#           \u00a7|   |       ##..",
+        "...................# L      L   * L *   L   <#..",
+        "...................#            |   |      \u00a7##..",
+        "...................#   |||||||||||o||########...",
+        "...................#   |F1234\u00a7 y|dddD#..........",
+        "...................#   |        | h D#..........",
+        "...................# L |    L   |    #..........",
+        "...................#   |   htth +   y#..........",
+        "...................#   +    hh D|#####..........",
+        "...................#   ||||||||||#..............",
+        "...................#   |D L   L D#..............",
+        "...................# L |  h   h  #..............",
+        "...................#   | ddd ddd #..............",
+        "...................#   |         #..............",
+        "...................#   +        \u00a7#..............",
+        "...................#   |         #..............",
+        "...................# L | ddd ddd #..............",
+        "...................#   |  h   h  #..............",
+        "...................#   |  L   L  #..............",
+        "...............#####   |||||\u00b0||||##.............",
+        "..............##   |   |          #.............",
+        "..............#> L * L | SS    SS #.............",
+        "..............##   | \u00a7 | SS    SS #.............",
+        "...............#########    BB    #.............",
+        ".......................#    BB    #.............",
+        ".......................# SS    SS #.............",
+        ".......................# SS    SS #.............",
+        ".......................#          #.............",
+        ".......................############.............",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................",
+        "................................................"
+      ],
+      "terrain": {
+        ".": "t_dirt",
+        "|": "t_concrete_wall",
+        "#": "t_strconc_wall",
+        "o": "t_reinforced_glass_shutter_open",
+        "L": "t_thconc_floor_olight",
+        ">": "t_ladder_down",
+        "<": "t_ladder_up",
+        "+": [
+          [
+            "t_door_metal_c",
+            4
+          ],
+          [
+            "t_door_metal_o",
+            1
+          ]
+        ],
+        "*": "t_door_metal_locked",
+        "\u00b0": "t_secretdoor_concrete_c",
+        "1": "t_thconc_floor",
+        "2": "t_thconc_floor",
+        "3": "t_thconc_floor",
+        "4": "t_thconc_floor",
+        "B": "t_thconc_floor",
+        "D": "t_thconc_floor",
+        "F": "t_thconc_floor",
+        "S": "t_thconc_floor",
+        "d": "t_thconc_floor",
+        "h": "t_thconc_floor",
+        "t": "t_thconc_floor",
+        "y": "t_thconc_floor",
+        "\u00a7": "t_thconc_floor"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "om_terrain": "balthazar_bunker_02_-2",
+    "type": "mapgen",
+    "object": {
+      "fill_ter": "t_thconc_floor",
+      "rows": [
+        "........................",
+        ".........#############..",
+        ".........#T    T    T#..",
+        ".........# L       L #..",
+        ".........#r         r#..",
+        ".........#   #***#   #..",
+        ".........#\u00a7  *   *  \u00a7#..",
+        ".........#T  * < *  T#..",
+        ".........#   *   *   #..",
+        ".........#r  #***#  r#..",
+        ".........#           #..",
+        ".........# L       L #..",
+        ".........#T    T    T#..",
+        ".........#############..",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................"
+      ],
+      "terrain": {
+        ".": "t_rock",
+        "#": "t_strconc_wall",
+        "L": "t_thconc_floor_olight",
+        "<": "t_ladder_up",
+        "*": "t_door_metal_locked",
+        "T": "t_thconc_floor",
+        "r": "t_thconc_floor",
+        "\u00a7": "t_thconc_floor"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "om_terrain": [
+      "balthazar_bunker_01_1"
+    ],
+    "type": "mapgen",
+    "object": {
+      "terrain": {
+        ".": "t_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "R": "t_radio_tower"
+      },
+      "rows": [
+        "                        ",
+        "                        ",
+        "  ---------------       ",
+        "  -.............-       ",
+        "  -.............- RRR   ",
+        "  -.............- RRR   ",
+        "  -.............- RRR   ",
+        "  -.............-       ",
+        "  -.............------- ",
+        "  -...................- ",
+        "  -...................- ",
+        "  -...................- ",
+        "  -...................- ",
+        "  -...................- ",
+        "  -...............----- ",
+        "  -...............-     ",
+        "  -.............---     ",
+        "  -.............-       ",
+        "  -.............-       ",
+        "  -.............-  RR   ",
+        "  -.............-  RR   ",
+        "  ---------------       ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "om_terrain": [
+      "balthazar_bunker_01_2"
+    ],
+    "type": "mapgen",
+    "object": {
+      "terrain": {
+        " ": "t_open_air",
+        "R": "t_radio_tower"
+      },
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                   R    ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "isolated_house_farm_gunsmith"
+    ],
+    "object": {
+      "terrain": {
+        " ": "t_floor",
+        "%": "t_splitrail_fence",
+        "H": "t_splitrail_fencegate_c",
+        "+": "t_door_c",
+        ".": "t_region_groundcover",
+        ",": [
+          [
+            "t_railroad_rubble",
+            20
+          ],
+          [
+            "t_region_groundcover",
+            2
+          ],
+          [
+            "t_region_groundcover_barren",
+            3
+          ]
+        ],
+        "b": "t_region_groundcover_barren",
+        "v": [
+          "t_window_domestic",
+          "t_curtains"
+        ],
+        "|": [
+          [
+            "t_wall_log",
+            500
+          ],
+          [
+            "t_wall_log_chipped",
+            4
+          ],
+          [
+            "t_wall_log_broken",
+            1
+          ]
+        ],
+        "4": "t_gutter_downspout",
+        "G": "t_pit_spiked",
+        "Q": "t_floor_olight",
+        "!": "t_floor",
+        "*": "t_floor",
+        "1": "t_floor",
+        "8": "t_floor",
+        "@": "t_floor",
+        "B": "t_floor",
+        "D": "t_floor",
+        "S": "t_floor",
+        "X": "t_floor",
+        "Y": "t_floor",
+        "a": "t_floor",
+        "c": "t_floor",
+        "d": "t_floor",
+        "f": "t_floor",
+        "g": "t_floor",
+        "h": "t_floor",
+        "k": "t_floor",
+        "n": "t_floor",
+        "o": "t_floor",
+        "r": "t_floor",
+        "t": "t_floor",
+        "u": "t_floor",
+        "y": "t_floor"
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "GGGGGGGGGGGGGGGGGGGGGGGG",
+        "%%%%%%%%%%%%%%%%%%%%%%%G",
+        "%..................b..%G",
+        "%..........4|vvv|.....%G",
+        "%%||vv|||||||kkk|||...%G",
+        ".||g   +  +   h  1|...%G",
+        ".vk    |* |@@  Q nv...%G",
+        ".vkhQ  |!!|@@  888|...%G",
+        ".vk    |||||||+||||...%G",
+        ".|||+|||y        nv...%G",
+        "%%|d ddd  ||+||||||...%G",
+        "H,+   Q  d|D S|rrr|...%G",
+        "%,|d     d|B  |r r|...%G",
+        "%,|   h   |B t|r r|...%G",
+        "%,|nn*nnnn||+|||+||...%G",
+        "%,vh      XD  c  u|...%G",
+        "%,vn      X   c  uv...%G",
+        "%,vh  Q   X  Qc  Sv...%G",
+        "%,|       X      o|...%G",
+        "%,|yYa 888X hncfuu|...%G",
+        "%,||v|+||||vvv|||||...%G",
+        "H,,,,,,...............%G",
+        "%%%%%%H%%%%%%%%%%%%%%%%G",
+        "......................%G"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "isolated_house_farm_blacksmith"
+    ],
+    "object": {
+      "terrain": {
+        " ": "t_floor",
+        "#": "t_railing",
+        "%": "t_splitrail_fence",
+        "H": "t_splitrail_fencegate_c",
+        "+": "t_door_c",
+        ".": "t_region_groundcover",
+        ",": [
+          [
+            "t_railroad_rubble",
+            20
+          ],
+          [
+            "t_region_groundcover",
+            2
+          ],
+          [
+            "t_region_groundcover_barren",
+            3
+          ]
+        ],
+        "b": "t_region_groundcover_barren",
+        "q": "t_region_groundcover_barren",
+        "v": [
+          "t_window_domestic",
+          "t_curtains"
+        ],
+        "|": [
+          [
+            "t_wall_log",
+            500
+          ],
+          [
+            "t_wall_log_chipped",
+            4
+          ],
+          [
+            "t_wall_log_broken",
+            1
+          ]
+        ],
+        "4": "t_gutter_downspout",
+        "G": "t_pit_spiked",
+        "Q": "t_floor_olight",
+        "O": "t_thconc_floor_olight",
+        "Z": "t_card_artisans",
+        "-": "t_door_metal_locked",
+        ":": "t_gates_mech_control_lab",
+        "j": "t_thconc_floor",
+        "V": "t_thconc_floor",
+        "I": "t_thconc_floor",
+        "N": "t_thconc_floor",
+        "M": "t_thconc_floor",
+        "9": "t_thconc_floor",
+        "J": "t_thconc_floor",
+        "K": "t_thconc_floor",
+        "(": "t_thconc_floor",
+        "m": "t_thconc_floor",
+        "C": "t_thconc_floor",
+        "_": "t_strconc_wall",
+        "*": "t_floor",
+        "1": "t_floor",
+        "7": "t_floor",
+        "8": "t_floor",
+        "@": "t_floor",
+        "B": "t_floor",
+        "D": "t_floor",
+        "S": "t_floor",
+        "Y": "t_floor",
+        "a": "t_floor",
+        "c": "t_floor",
+        "d": "t_floor",
+        "f": "t_floor",
+        "k": "t_floor",
+        "n": "t_floor",
+        "o": "t_floor",
+        "r": "t_floor",
+        "t": "t_floor",
+        "u": "t_floor",
+        "y": "t_floor",
+        "z": "t_floor"
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "G%%%%%%%%%%%%%%H%%%%%%..",
+        "G%.....q........b....%..",
+        "G%...................H..",
+        "G%...||||||vv|| |####|..",
+        "G%...|rrr|fouu|      #..",
+        "G%...vr  + Q S|      #..",
+        "G%...|rrr|cc u|+|||  #..",
+        "G%._________    1n|7 #..",
+        "G%._:mmVCNM_d     v7 #..",
+        "G%.-jjjjjjj_d     v7 #..",
+        "G%.-jIjOjjm_d  Q  |  #..",
+        "G%.-jjj(jjm_d     v  |,,",
+        "G%.-jjjj_-Z_1     v   ,,",
+        "G%.-K*9J_         |   ,,",
+        "G%.______+||D  y  ||+||.",
+        "G%...|@@  8||+||     7v.",
+        "G%...v@@  8|t D|8    7v.",
+        "G%...|z Q 8|   |8    7v.",
+        "G%...|D  1 |BBS|8YYYa||.",
+        "G%...|||kkk|||||||v|||4.",
+        "G%.....|vvv|.........%..",
+        "G%...................%..",
+        "G%%%%%%%%%%%%%%%%%%%%%%%",
+        "GGGGGGGGGGGGGGGGGGGGGGGG"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "isolated_road_field_0"
+    ],
+    "object": {
+      "fill_ter": "t_region_groundcover",
+      "rows": [
+        "GGGGGGGGGjjjjjjjGGGGGGGG",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "Gddddddddddddddd........",
+        "Gddddddddddddddd........",
+        "Gddddddddddddddd........",
+        "Gddddddddddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd........",
+        "G........ddddddd......\u03df.",
+        "Gddddddddddddddd........",
+        "Gdddddddddddddd.........",
+        "Gddddddddddddd..........",
+        "Gdddddddddddd...........",
+        "G.......................",
+        "G.......................",
+        "G.......................",
+        "G.......................",
+        "G......................."
+      ],
+      "terrain": {
+        "G": "t_pit_spiked",
+        "j": "t_pit_covered",
+        "d": "t_region_soil",
+        "\u03df": "t_region_groundcover"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "isolated_road_field_1"
+    ],
+    "object": {
+      "fill_ter": "t_region_soil",
+      "rows": [
+        "______________________%G",
+        "______________________%G",
+        "__....................%G",
+        "__..-----O............%G",
+        "__..-ttt-O.......###..%G",
+        "__..-ddd-........###..%G",
+        "__...............##...%G",
+        "__....................%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__....................%G",
+        "__....................%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__....................%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__..D.D.D.D..D.D.D.D..%G",
+        "__....................%G",
+        "__....................%G",
+        "%%%%%%%%%%%%%%%%%%%%%%%G",
+        "GGGGGGGGGGGGGGGGGGGGGGGG"
+      ],
+      "terrain": {
+        "#": "t_dirtmound",
+        "%": "t_splitrail_fence",
+        "-": "t_wall_wood",
+        "D": "t_dirtmound",
+        ".": [
+          "t_region_groundcover",
+          "t_region_soil",
+          "t_region_soil"
+        ],
+        "_": "t_region_groundcover_urban",
+        "d": "t_dirtfloor",
+        "t": "t_dirtfloor",
+        "G": "t_pit_spiked",
+        "O": "t_region_soil"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "isolated_house_farm_roof_blacksmith",
+        "isolated_road_field_1_roof"
+      ]
+    ],
+    "object": {
+      "terrain": {
+        ".": "t_shingle_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop",
+        "C": "t_shingle_flat_roof"
+      },
+      "fill_ter": "t_shingle_flat_roof",
+      "rows": [
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "     -----------------      .....               ",
+        "     -...............-      .....               ",
+        "     -...............-      .....               ",
+        "     -...............-                          ",
+        "   ---...............-                          ",
+        "   -...CCC...........-                          ",
+        "   -.................-                          ",
+        "   -.................-                          ",
+        "   -.................-                          ",
+        "   -.................-                          ",
+        "   -.................-                          ",
+        "   --................--                         ",
+        "     -................-                         ",
+        "     -................-                         ",
+        "     -................-                         ",
+        "     -...............5-                         ",
+        "     ---...-----------                          ",
+        "       -----                                    ",
+        "                                                ",
+        "                                                ",
+        "                                                "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "isolated_house_farm_roof_gunsmith",
+    "object": {
+      "terrain": {
+        ".": "t_shingle_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop"
+      },
+      "fill_ter": "t_shingle_flat_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "            -----       ",
+        "  ----------5...---     ",
+        " --...............-     ",
+        " -................-     ",
+        " -................-     ",
+        " -................-     ",
+        " --...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -...............-     ",
+        "  -----------------     ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "gunshow_0",
+        "gunshow_1"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_region_soil",
+      "rows": [
+        "||||||||||||||||||||||||||||||||||||||||||||||||",
+        "|c       c       c       c       c       c     |",
+        "|                                              |",
+        "|                                              |",
+        "|                                              |",
+        "|                                              |",
+        "|                                              |",
+        "         c       c       c       c       c      ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "                                                ",
+        "         c       c       c       c       c      ",
+        "                                                ",
+        "                                                ",
+        "|                                              |",
+        "|                                              |",
+        "|                                              |",
+        "|c       c       c       c       c       c     |",
+        "|                                              |",
+        "|                                              |",
+        "|                                              |",
+        "|                                              |",
+        "||||||||||||||||||||||||||||||||||||||||||||||||"
+      ],
+      "terrain": {
+        " ": "t_region_soil",
+        "c": "t_region_soil",
+        "|": "t_region_soil"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "gunshow_0_roof",
+        "gunshow_1_roof"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
+      ],
+      "terrain": {
+        "r": "t_canvas_roof"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_surface",
+    "object": {
+      "terrain": {
+        "~": "t_water_dp",
+        ".": "t_metal_floor",
+        "#": "t_metal_pontoon_dp",
+        ">": "t_ladder_down",
+        "<": "t_ladder_up",
+        "|": "t_wall_bulkhead",
+        "+": "t_door_metal_bulkhead_c",
+        "o": "t_porthole",
+        "&": "t_metal_pontoon_dp",
+        "Q": "t_metal_pontoon_dp"
+      },
+      "fill_ter": "t_metal_pontoon_dp",
+      "rows": [
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~&~~~~#~~~~~~~~~",
+        "~~~~~~~~~#~~~~#~~~~~~~~~",
+        "~~~~~~~~~#~~~~&~~~~~~~~~",
+        "~~~~~~~~~#~~~~#~~~~~~~~~",
+        "~~~~~~~~########~~~~~~~~",
+        "~~~~~~~~##||o|##~~~~~~~~",
+        "~~~~~~~~#<|>.|##~~~~~~~~",
+        "~~~~~~~~#.+..|##~~~~~~~~",
+        "~~~~~~~~#Q||o|##~~~~~~~~",
+        "~~~~~~~~########~~~~~~~~",
+        "~~~~~~~~~#~~~~#~~~~~~~~~",
+        "~~~~~~~~~&~~~~&~~~~~~~~~",
+        "~~~~~~~~~#~~~~#~~~~~~~~~",
+        "~~~~~~~~~#~~~~#~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~",
+        "~~~~~~~~~~~~~~~~~~~~~~~~"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_roof",
+    "object": {
+      "terrain": {
+        "v": "t_ladder_down",
+        ".": "t_metal_flat_roof",
+        " ": "t_open_air",
+        "#": "t_grate",
+        "&": "t_null",
+        ":": "t_null",
+        "X": "t_null",
+        "=": "t_null",
+        "N": "t_metal_flat_roof"
+      },
+      "fill_ter": "t_metal_flat_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "         #...X          ",
+        "         v...&          ",
+        "         #...=          ",
+        "         #:..N          ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_-1",
+    "object": {
+      "terrain": {
+        "-": "t_water_cube",
+        "\u2277": "t_ladder_up_down",
+        "|": "t_wall_bulkhead"
+      },
+      "fill_ter": "t_bulkhead_floor",
+      "rows": [
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "----------|||-----------",
+        "----------|\u2277|-----------",
+        "----------|||-----------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_-2",
+    "object": {
+      "terrain": {
+        "-": "t_water_cube",
+        "\u2277": "t_ladder_up_down",
+        "|": "t_wall_bulkhead",
+        "`": "t_bulkhead_roof"
+      },
+      "fill_ter": "t_bulkhead_floor",
+      "rows": [
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "---------`````----------",
+        "--------```````---------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------```|||```--------",
+        "-------```|\u2277|```--------",
+        "-------```|||```--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "-------`````````--------",
+        "--------```````---------",
+        "---------`````----------",
+        "------------------------",
+        "------------------------",
+        "------------------------"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_-3",
+    "object": {
+      "terrain": {
+        "-": "t_water_cube",
+        " ": "t_bulkhead_floor",
+        ">": "t_ladder_down",
+        "<": "t_ladder_up",
+        "|": "t_wall_bulkhead",
+        "+": "t_door_metal_bulkhead_c",
+        "o": "t_porthole",
+        "`": "t_bulkhead_roof",
+        "@": "t_bulkhead_floor",
+        "C": "t_bulkhead_floor",
+        "G": "t_bulkhead_floor",
+        "K": "t_bulkhead_floor",
+        "Q": "t_bulkhead_floor",
+        "S": "t_bulkhead_floor",
+        "W": "t_bulkhead_floor",
+        "b": "t_bulkhead_floor",
+        "c": "t_bulkhead_floor",
+        "f": "t_bulkhead_floor",
+        "h": "t_bulkhead_floor",
+        "l": "t_bulkhead_floor",
+        "q": "t_bulkhead_floor",
+        "t": "t_bulkhead_floor"
+      },
+      "fill_ter": "t_bulkhead_floor",
+      "rows": [
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "-------```````````------",
+        "------```||o||`````-----",
+        "-----```||S t||`````----",
+        "----```||||+||||`````---",
+        "----```|@@l   @|`````---",
+        "----```ol     @o`````---",
+        "-----``|@     l|````----",
+        "-------|@   l@@|```-----",
+        "-------||||+||||--------",
+        "-----``|b  <> q|````----",
+        "----```|b QQQqq|`````---",
+        "```````||||+||||`````---",
+        "```````|hh    C|`````---",
+        "```````off   GCo`````---",
+        "----```|hh    C|`````---",
+        "-----``||W   K||````----",
+        "------``||ccc||````-----",
+        "---------||o||----------",
+        "------------------------",
+        "------------------------",
+        "------------------------"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_-4",
+    "object": {
+      "terrain": {
+        "-": "t_water_cube",
+        "*": "t_water_pool",
+        " ": "t_bulkhead_floor",
+        "A": "t_metal_floor",
+        "<": "t_ladder_up",
+        "|": "t_wall_bulkhead",
+        "+": "t_door_metal_bulkhead_c",
+        "o": "t_porthole",
+        "=": "t_door_metal_locked",
+        "1": "t_bulkhead_floor",
+        "2": "t_bulkhead_floor",
+        "B": "t_bulkhead_floor",
+        "C": "t_bulkhead_floor",
+        "G": "t_bulkhead_floor",
+        "H": "t_bulkhead_floor",
+        "I": "t_bulkhead_floor",
+        "J": "t_bulkhead_floor",
+        "Q": "t_bulkhead_floor",
+        "U": "t_bulkhead_floor",
+        "b": "t_bulkhead_floor",
+        "f": "t_bulkhead_floor",
+        "h": "t_bulkhead_floor",
+        "l": "t_bulkhead_floor"
+      },
+      "fill_ter": "t_bulkhead_floor",
+      "rows": [
+        "------------------------",
+        "------------------------",
+        "-------||o||||o|||------",
+        "------||222222122||-----",
+        "-----||2         2||----",
+        "----||C    ***    2||---",
+        "----||C    ***    2||---",
+        "----||C           2||---",
+        "-----||CCCCCCC  22||----",
+        "------|||o||||=||||-----",
+        "-------------|U|--------",
+        "------|||o||||=||||-----",
+        "-----||UJ Q|<   A2||----",
+        "----||JJJ  |    GB2||---",
+        "||o||  ***Q|       H|---",
+        "+   +  ***Q+ hf  G 1o---",
+        "||o||  ***Q|  fh   H|---",
+        "----||A    |l   I 1||---",
+        "-----||bbbI|2CCC12||----",
+        "------|||o||||o||||-----",
+        "------------------------",
+        "------------------------",
+        "------------------------",
+        "------------------------"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dls_small_-5",
+    "object": {
+      "terrain": {
+        "|": "t_wall_bulkhead",
+        "P": "t_concrete_dock_deep_pile",
+        "^": "t_lake_bed_concrete",
+        "y": "t_lake_bed_concrete_yellow",
+        ";": "t_lake_bed"
+      },
+      "fill_ter": "t_metal_floor",
+      "rows": [
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;^^^;;;;;;;^^^;;;;;",
+        ";;;;;;^P^;;;;;;;^P^;;;;;",
+        ";;;;;;^^^;yyyyy;^^^;;;;;",
+        ";;;;;;;;;;y;;;y;;;;;;;;;",
+        ";;;;;;;;;;y;;;y;;;;;;;;;",
+        ";;;;;;^^^;yyyyy;^^^;;;;;",
+        ";;;;;;^P^;;;;;;;^P^|;;;;",
+        ";;;;;;^^^;;;;;;;^^^;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;^^^^^^^^^^^^^^^^^^;;;;",
+        ";;^^^^yyyyy^^^^P^^^^;;;;",
+        ";;^^^^y;;;y^^^^^^^^^;;;;",
+        ";;^^P^y;;;y^^^^^^^P^;;;;",
+        ";;^^^^y;;;y^^^^^^^^^;;;;",
+        ";;^^^^yyyyy^^^^P^^^^;;;;",
+        ";;^^^^^^^^^^^^^^^^^^;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;",
+        ";;;;;;;;;;;;;;;;;;;;;;;;"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_frontier_roof_4x4_utility",
+    "object": {
+      "mapgensize": [
+        4,
+        4
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        " xxx",
+        "  ax",
+        " xxx",
+        "  ox"
+      ],
+      "terrain": {
+        "x": "t_sewage_pipe"
+      },
+      "furniture": {
+        "a": "f_null",
+        "o": "f_null"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_frontier_roof_4x4_utility_1",
+    "object": {
+      "mapgensize": [
+        4,
+        4
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "UUUU",
+        "UAaU",
+        "c oU",
+        "UUUU"
+      ],
+      "terrain": {
+        "c": "t_chaingate_l",
+        "U": "t_chainfence"
+      },
+      "furniture": {
+        "A": "f_null",
+        "a": "f_null",
+        "o": "f_null"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_special",
+    "id": "limnological_station",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          2,
+          0,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "dls_small_roof_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "dls_small_surface_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          -1
+        ],
+        "overmap": "dls_small_-1_north",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -2
+        ],
+        "overmap": "dls_small_-2_north",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -3
+        ],
+        "overmap": "dls_small_-3_north",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -4
+        ],
+        "overmap": "dls_small_-4_north",
+        "locations": [
+          "lake_water_cube"
+        ]
+      },
+      {
+        "point": [
+          1,
+          1,
+          -5
+        ],
+        "overmap": "dls_small_-5_north",
+        "locations": [
+          "lake_bed"
+        ]
+      },
+      {
+        "point": [
+          2,
+          1,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          1,
+          2,
+          0
+        ],
+        "overmap": "lake_surface"
+      },
+      {
+        "point": [
+          2,
+          2,
+          0
+        ],
+        "overmap": "lake_surface"
+      }
+    ],
+    "locations": [
+      "lake_surface"
+    ],
+    "city_sizes": [
+      1,
+      20
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "LAKE",
+      "MAN_MADE",
+      "UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "balthazar_bunker",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "balthazar_bunker_00_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "balthazar_bunker_01_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "balthazar_bunker_02_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "balthazar_bunker_03_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          1
+        ],
+        "overmap": "balthazar_bunker_01_1_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          2
+        ],
+        "overmap": "balthazar_bunker_01_2_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          -1
+        ],
+        "overmap": "balthazar_bunker_00_-1_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          -1
+        ],
+        "overmap": "balthazar_bunker_01_-1_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          -1
+        ],
+        "overmap": "balthazar_bunker_02_-1_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          -1
+        ],
+        "overmap": "balthazar_bunker_03_-1_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          -2
+        ],
+        "overmap": "balthazar_bunker_02_-2_north"
+      }
+    ],
+    "connections": [
+      {
+        "point": [
+          -1,
+          0,
+          0
+        ],
+        "connection": "local_road",
+        "from": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "locations": [
+      "field",
+      "forest_without_trail"
+    ],
+    "city_distance": [
+      8,
+      -1
+    ],
+    "city_sizes": [
+      1,
+      16
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "SAFE_AT_WORLDGEN",
+      "MAN_MADE",
+      "GLOBALLY_UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "isolated_road",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "isolated_road_field_0"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "isolated_house_farm_gunsmith"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "isolated_house_farm_blacksmith"
+      },
+      {
+        "point": [
+          1,
+          0,
+          1
+        ],
+        "overmap": "isolated_house_farm_roof_gunsmith"
+      },
+      {
+        "point": [
+          0,
+          1,
+          1
+        ],
+        "overmap": "isolated_house_farm_roof_blacksmith"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "isolated_road_field_1"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "isolated_road_field_1_roof"
+      },
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      }
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "connection": "local_road",
+        "from": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "city_distance": [
+      3,
+      -1
+    ],
+    "city_sizes": [
+      1,
+      16
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "rotate": false,
+    "flags": [
+      "SAFE_AT_WORLDGEN",
+      "MAN_MADE",
+      "GLOBALLY_UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "gun_show",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "gunshow_0_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "gunshow_1_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "gunshow_0_roof_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          1
+        ],
+        "overmap": "gunshow_1_roof_north"
+      }
+    ],
+    "locations": [
+      "field"
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          5,
+          0
+        ],
+        "connection": "local_road"
+      }
+    ],
+    "city_distance": [
+      3,
+      -1
+    ],
+    "city_sizes": [
+      1,
+      16
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "SAFE_AT_WORLDGEN",
+      "MAN_MADE",
+      "GLOBALLY_UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "balthazar_bunker_00",
+      "balthazar_bunker_01"
+    ],
+    "name": "bunker complex",
+    "sym": "B",
+    "color": "light_red",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "balthazar_bunker_02",
+      "balthazar_bunker_03"
+    ],
+    "name": "bunker solar farm",
+    "sym": "B",
+    "color": "yellow",
+    "see_cost": 2
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "balthazar_bunker_01_1",
+      "balthazar_bunker_01_2"
+    ],
+    "name": "bunker complex roof",
+    "sym": "B",
+    "color": "light_red",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "balthazar_bunker_00_-1",
+      "balthazar_bunker_01_-1",
+      "balthazar_bunker_02_-1",
+      "balthazar_bunker_03_-1",
+      "balthazar_bunker_02_-2"
+    ],
+    "name": "underground bunker complex",
+    "sym": "B",
+    "color": "light_red",
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "dls_small_roof",
+      "dls_small_surface",
+      "dls_small_-1",
+      "dls_small_-2",
+      "dls_small_-3",
+      "dls_small_-4",
+      "dls_small_-5"
+    ],
+    "name": "limnological station",
+    "sym": "~",
+    "color": "red",
+    "see_cost": 0
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "isolated_road_field_0",
+      "isolated_road_field_1",
+      "isolated_road_field_1_roof"
+    ],
+    "see_cost": 0,
+    "name": "yard",
+    "sym": ".",
+    "color": "green",
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "isolated_house_farm_gunsmith",
+      "isolated_house_farm_roof_gunsmith"
+    ],
+    "name": "gunsmith's home",
+    "sym": "v",
+    "color": "red",
+    "flags": [
+      "NO_ROTATE"
+    ],
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "isolated_house_farm_blacksmith",
+      "isolated_house_farm_roof_blacksmith"
+    ],
+    "name": "blacksmith's home",
+    "sym": "^",
+    "color": "cyan",
+    "flags": [
+      "NO_ROTATE"
+    ],
+    "see_cost": 5
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "gunshow_0",
+      "gunshow_1",
+      "gunshow_0_roof",
+      "gunshow_1_roof"
+    ],
+    "name": "gun show",
+    "sym": "G",
+    "color": "red",
+    "see_cost": 5
+  }
+]

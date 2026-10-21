@@ -778,8 +778,8 @@
       0,
       0
     ],
-    "runtime_validated": false,
-    "status": "Exodii added; twelve-case source/installed native generation pending",
+    "runtime_validated": true,
+    "status": "Twelve source and installed geometry cases passed including all three Exodii sites",
     "container_yards": "not embedded; cross-z nested roof blocker",
     "native_patch_sha256": "a6490be8879ba91ce01641ca46762d823c29189f8e7940e158269897519749aa",
     "previous_attempt": {
@@ -795,27 +795,27 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
-    "run_id": 39485820362,
-    "artifact_id": 12296363792,
-    "artifact_size": 205620916,
-    "artifact_digest": "sha256:f7e9fa390933e0da341287d427a5aa872313558b100f6311cf2b3b8dc462bca7",
+    "checkpoint_head": "ada9d93a85d33ac402741f7843c6ab3cad23723d",
+    "run_id": 39519170435,
+    "artifact_id": 12313885149,
+    "artifact_size": 205632491,
+    "artifact_digest": "sha256:0abe6a71ff6be6244927dd7045139a4f4a54a243adda70484b9c4893189871d0",
     "previous_successful_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
-      "Container yards and later Godco quest construction excluded",
-      "Exodii source and installed native generation pending"
+      "Container yards, frontier batch and later Godco quest construction excluded"
     ],
     "validated_packages": [
       "island_prison",
       "xedra_church",
       "hub_01",
       "campus",
-      "godco_base"
+      "godco_base",
+      "exodii"
     ],
-    "validated_geometry_cases": 9,
-    "validated_geometry_placements": 488
+    "validated_geometry_cases": 12,
+    "validated_geometry_placements": 576
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -866,11 +866,11 @@
     "installation_scope": "namespaced opt-in debug preview; original source IDs remain staged separately"
   },
   "geometry_layer_progress": {
-    "verified_groups": 11,
+    "verified_groups": 12,
     "accepted_groups": 51,
-    "verified_percent": 21.6,
+    "verified_percent": 23.5,
     "additional_prepared_groups": 0,
-    "verified_plus_prepared_percent": 21.6,
+    "verified_plus_prepared_percent": 23.5,
     "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
     "report": "geometry_layer/PROGRESS.json"
   },
@@ -893,9 +893,9 @@
     "validation_checkpoint": 39485820362
   },
   "geometry_exodii_candidate": {
-    "status": "Isolated optional preview embedded; native generation pending",
+    "status": "Base, barn and warehouse passed source and installed all-floor generation and 176 navigation expectations",
     "native_embedded": true,
-    "runtime_validated": false,
+    "runtime_validated": true,
     "world_maps": 13,
     "structural_nested_maps": 3,
     "unique_omt": 88,
@@ -908,6 +908,40 @@
     "geometry_issues": [],
     "report": "geometry_layer/EXODII_GEOMETRY_REPORT.json",
     "adaptation_report": "geometry_layer/EXODII_ADAPTATION_REPORT.json",
-    "navigation_expectations": 176
+    "navigation_expectations": 176,
+    "validation_checkpoint": 39519170435
+  },
+  "geometry_frontier_candidate": {
+    "status": "four_location_geometry_staging_not_installed",
+    "native_embedded": false,
+    "runtime_validated": false,
+    "world_maps": 20,
+    "unique_omt": 29,
+    "special_cells": {
+      "limnological_station": 15,
+      "balthazar_bunker": 11,
+      "isolated_road": 7,
+      "gun_show": 4
+    },
+    "unresolved_typed_refs": [
+      [
+        "terrain",
+        "t_canvas_roof"
+      ],
+      [
+        "terrain",
+        "t_card_artisans"
+      ],
+      [
+        "terrain",
+        "t_intercom_balthazar"
+      ],
+      [
+        "terrain",
+        "t_secretdoor_concrete_c"
+      ]
+    ],
+    "geometry_issues": [],
+    "report": "geometry_layer/FRONTIER_GEOMETRY_REPORT.json"
   }
 }

@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "8ca579a47332a80722e78e99e0da1b26d18c1704",
-    "run_id": 39485820362,
+    "head": "ada9d93a85d33ac402741f7843c6ab3cad23723d",
+    "run_id": 39519170435,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 9,
-    "geometry_assertions": 406338,
-    "installed_geometry_test_cases": 9,
-    "installed_geometry_assertions": 406338
+    "geometry_test_cases": 12,
+    "geometry_assertions": 508066,
+    "installed_geometry_test_cases": 12,
+    "installed_geometry_assertions": 508066
   },
-  "native_patch_sha256": "ed1bc80aab615c308a0deda9e13468e260028174622b0d832a72c85af8f2e5b8",
+  "native_patch_sha256": "a6490be8879ba91ce01641ca46762d823c29189f8e7940e158269897519749aa",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -46,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Exact native patch passed source and installed core, optional and nine geometry cases. Initial Godco included; later quest-built structures, full character traversal and campaign/release acceptance remain pending.",
+  "note": "Exact patch passed core, optional mods and twelve geometry cases on source and installed Windows data. Exodii initial site geometry included; full character traversal, functional elevator use and quest acceptance remain pending.",
   "portable_package": {
-    "run_id": 39485820362,
+    "run_id": 39519170435,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,14 +57,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12296363792,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39485820362/artifacts/12296363792",
+    "artifact_id": 12313885149,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39519170435/artifacts/12313885149",
     "installed_geometry_tests": {
-      "cases": 9,
-      "assertions": 406338
+      "cases": 12,
+      "assertions": 508066
     },
-    "size": 205620916,
-    "digest": "sha256:f7e9fa390933e0da341287d427a5aa872313558b100f6311cf2b3b8dc462bca7"
+    "size": 205632491,
+    "digest": "sha256:0abe6a71ff6be6244927dd7045139a4f4a54a243adda70484b9c4893189871d0"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -73,15 +73,16 @@
       "xedra_church",
       "hub_01",
       "campus",
-      "godco_base"
+      "godco_base",
+      "exodii"
     ],
     "source_and_installed": "All eight geometry cases passed without initialization errors",
-    "placed_cells": 488,
+    "placed_cells": 576,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
       "Natural preview placement disabled",
-      "Container yards and later Godco quest construction excluded"
+      "Container yards, frontier batch and later Godco quest construction excluded"
     ]
   }
 }
