@@ -1,5 +1,6 @@
 #include "npc_class.h"
 #include "map_helpers.h"
+#include <vector>
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
 TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
@@ -169,6 +170,90 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     CHECK(g->find_npc(first_id) == nullptr);
     CHECK(g->find_npc(second_id) == nullptr);
+    probe("npc_enter");
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    auto group_spawns = 0;
+    const auto install_group_spawner = [&]() {
+        data["spawn_member"] = [&](const std::string& slot, int x, int y, int sequence) -> int {
+            auto& actor = spawn_npc(abs_to_bub(tripoint_abs_ms(x, y, 0)), "test_talker");
+            actor.myclass = npc_class_id("TRKV_PATROL_PROBE");
+            actor.set_attitude(NPCATT_NULL);
+            actor.set_value("trkv_spawn_slot", slot);
+            actor.set_value("trkv_spawn_sequence", std::to_string(sequence));
+            ++group_spawns;
+            return actor.getID().get_value();
+        };
+    };
+    const auto group_ids = [&]() {
+        std::vector<character_id> result;
+        const sol::table ids = data["group_ids"];
+        REQUIRE(ids.size() == 3);
+        for (auto i = 1; i <= 3; ++i) {
+            result.emplace_back(ids[i].get<int>());
+        }
+        return result;
+    };
+    install_group_spawner();
+    probe("npc_group_deploy");
+    data["spawn_member"] = sol::nil;
+    const auto first_group = group_ids();
+    REQUIRE(group_spawns == 3);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 3);
+    probe("npc_group_deploy"); // Must not call the now-absent spawner again.
+    REQUIRE(group_spawns == 3);
+    for (auto step = 0; step < 3; ++step) {
+        for (const auto id : first_group) {
+            auto* actor = g->find_npc(id);
+            REQUIRE(actor != nullptr);
+            actor->set_moves(1000);
+            actor->move();
+            REQUIRE(data["patrol_reason"].get<std::string>() == "patrol");
+            CHECK(actor->get_moves() < 1000);
+            CHECK(actor->abs_pos().y() == (step % 2 == 0 ? 399 : 398));
+        }
+    }
+    data["expected_index"] = 2;
+    probe("npc_group_routes");
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 3);
+    probe("npc_group_routes");
+    probe("npc_group_recover");
+    REQUIRE(group_ids() == first_group);
+    REQUIRE(group_spawns == 3);
+    const std::vector<int> expected_x = {398, 400, 404};
+    for (auto i = 0; i < 3; ++i) {
+        auto* actor = g->find_npc(first_group[i]);
+        REQUIRE(actor != nullptr);
+        CHECK(actor->abs_pos() == tripoint_abs_ms(expected_x[i], 399, 0));
+        actor->set_moves(1000);
+        actor->move();
+        REQUIRE(data["patrol_reason"].get<std::string>() == "patrol");
+        CHECK(actor->abs_pos() == tripoint_abs_ms(expected_x[i], 398, 0));
+    }
+    data["expected_index"] = 1;
+    probe("npc_group_routes");
+    probe("npc_extract");
+    for (const auto id : first_group) {
+        CHECK(g->find_npc(id) == nullptr);
+        CHECK(get_overmapbuffer(home_dim).find_npc(id) == nullptr);
+    }
+    probe("npc_enter");
+    install_group_spawner();
+    probe("npc_group_deploy");
+    data["spawn_member"] = sol::nil;
+    const auto second_group = group_ids();
+    REQUIRE(group_spawns == 6);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 3);
+    for (const auto id : second_group) {
+        for (const auto old_id : first_group) { CHECK(id != old_id); }
+    }
+    probe("npc_defeat");
+    for (const auto id : second_group) {
+        CHECK(g->find_npc(id) == nullptr);
+        CHECK(get_overmapbuffer(home_dim).find_npc(id) == nullptr);
+    }
     probe("npc_enter");
     CHECK(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
     probe("npc_extract");

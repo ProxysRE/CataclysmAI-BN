@@ -46,6 +46,7 @@ UiList = { new = function() return { title = function() end, add = function() en
 package.loaded.trkv_lifecycle, package.loaded.trkv_bn = raid, api
 package.loaded.trkv_participants = members
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
+package.loaded.trkv_deployment = dofile("tarkov/mods/trkv_raid_core/trkv_deployment.lua")
 dofile("tarkov/mods/trkv_raid_core/main.lua")
 local function context()
   return { phase = root.raid.phase, sequence = root.raid.sequence, at_raid = api.at_raid() }

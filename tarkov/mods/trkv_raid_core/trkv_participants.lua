@@ -15,13 +15,14 @@ function participants.initialize(state)
   state.sequence = state.sequence or 0
   if state.closed == nil then state.closed = true end
   state.actors = state.actors or {}
+  state.slots = state.slots or {}
 end
 
 function participants.begin(state, sequence)
   participants.initialize(state)
   if not integer(sequence) or sequence <= 0 or sequence < state.sequence then return false end
   if sequence == state.sequence then return not state.closed end
-  state.sequence, state.closed, state.actors = sequence, false, {}
+  state.sequence, state.closed, state.actors, state.slots = sequence, false, {}, {}
   return true
 end
 
@@ -55,7 +56,7 @@ end
 -- Call only after successful engine cleanup; a failed return must retain membership.
 function participants.finish(state, sequence)
   if state.schema ~= 1 or state.sequence ~= sequence then return false end
-  state.closed, state.actors = true, {}
+  state.closed, state.actors, state.slots = true, {}, {}
   return true
 end
 

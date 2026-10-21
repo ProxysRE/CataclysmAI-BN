@@ -42,6 +42,46 @@ elseif test_data.stage == "npc_patrol_setup" then
     test_data.patrol_reason = reason
     return handled
   end
+elseif test_data.stage == "npc_group_deploy" or test_data.stage == "npc_group_recover" then
+  local specs = {}
+  for i, x in ipairs({ 14, 16, 20 }) do
+    specs[i] = { slot = "group_" .. i, side = i == 3 and "bear" or "usec", squad = "probe_group",
+      route = { { x = 384 + x, y = 398, z = 0 }, { x = 384 + x, y = 399, z = 0 } } }
+  end
+  if test_data.stage == "npc_group_recover" then
+    -- Replay a partial bookkeeping checkpoint against the uniquely tagged live actor.
+    root.participants.slots.group_2 = { status = "creating" }
+  end
+  local ok, reason = package.loaded.trkv_deployment.ensure(root.participants, context(), specs, {
+    spawn = function(spec, sequence)
+      return test_data.spawn_member(spec.slot, spec.route[1].x, spec.route[1].y, sequence)
+    end,
+    find_slot = function(sequence, slot)
+      local found = {}
+      for _, actor in ipairs(gapi.get_all_npcs()) do
+        if actor:get_value("trkv_spawn_sequence") == string.format("%d", sequence) and
+            actor:get_value("trkv_spawn_slot") == slot then
+          found[#found + 1] = actor:getID():get_value()
+        end
+      end
+      return found
+    end,
+  })
+  assert(ok, tostring(reason))
+  test_data.group_ids = {}
+  for i, spec in ipairs(specs) do
+    local slot = root.participants.slots[spec.slot]
+    local member = assert(participants.find(root.participants, context(), slot.id))
+    assert(member.side == spec.side and member.squad == spec.squad and member.deployment_slot == spec.slot)
+    test_data.group_ids[i] = slot.id
+  end
+elseif test_data.stage == "npc_group_routes" then
+  local count = 0
+  for _, member in pairs(root.participants.actors) do
+    assert(member.patrol.index == test_data.expected_index)
+    count = count + 1
+  end
+  assert(count == 3)
 elseif test_data.stage == "npc_patrol_restored" then
   local member = saved_actor()
   assert(member.id == test_data.actor_id and member.side == test_data.actor_side)
@@ -69,14 +109,14 @@ elseif test_data.stage == "npc_extract" then
   local wins = state.wins
   game.mod_runtime.trkv_raid_core.extract()
   assert(api.at_home() and state.phase == "home" and state.wins == wins + 1)
-  assert(next(root.participants.actors) == nil and root.participants.closed)
+  assert(next(root.participants.actors) == nil and next(root.participants.slots) == nil and root.participants.closed)
   assert(participants.find(root.participants, context(), test_data.actor_id) == nil)
 elseif test_data.stage == "npc_defeat" then
   assert(api.at_raid() and state.phase == "active")
   local losses = state.losses
   assert(raid.finish(state, api, "defeated"))
   assert(api.at_home() and state.phase == "home" and state.losses == losses + 1)
-  assert(next(root.participants.actors) == nil and root.participants.closed)
+  assert(next(root.participants.actors) == nil and next(root.participants.slots) == nil and root.participants.closed)
 else
   error("Unknown NPC probe stage")
 end

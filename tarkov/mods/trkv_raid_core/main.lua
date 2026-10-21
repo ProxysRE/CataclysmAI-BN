@@ -6,6 +6,7 @@ local api = require("trkv_bn")
 -- Load while BN still provides package.path; no NPC registration/spawning yet.
 require("trkv_patrol")
 local participants = require("trkv_participants")
+require("trkv_deployment")
 api.check_capabilities()
 storage.raid = storage.raid or {}
 raid.initialize(storage.raid)

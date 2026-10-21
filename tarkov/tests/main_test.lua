@@ -31,6 +31,7 @@ package.loaded.trkv_lifecycle = raid
 package.loaded.trkv_bn = api
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
 package.loaded.trkv_participants = dofile("tarkov/mods/trkv_raid_core/trkv_participants.lua")
+package.loaded.trkv_deployment = dofile("tarkov/mods/trkv_raid_core/trkv_deployment.lua")
 dofile("tarkov/mods/trkv_raid_core/main.lua")
 local initial = root.raid
 
