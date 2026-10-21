@@ -23,7 +23,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     const auto home_dim = dimension_id("trkv_dev01_home");
     const auto start_abs = tripoint_abs_ms(16 * 24 + 18, 16 * 24 + 8, 0);
     const auto moved_abs = tripoint_abs_ms(16 * 24 + 18, 16 * 24 + 9, 0);
-    const auto spawn_guard = [&]() -> character_id {
+    const auto spawn_guard = [&](const std::string& side) -> character_id {
         // BN's own test template avoids adding experimental NPC definitions to
         // shipped data. The equipment below is deterministic and test-only.
         auto& guard = spawn_npc(abs_to_bub(start_abs), "test_talker");
@@ -40,6 +40,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(guard.wield(carried));
         guard.myclass = npc_class_id("TRKV_PATROL_PROBE");
         guard.set_attitude(NPCATT_NULL);
+        data["actor_id"] = guard.getID().get_value();
+        data["actor_side"] = side;
         probe("npc_patrol_setup");
         // Use BN's real dispatch, including regen_ai_cache before lua_ai.
         for (auto step = 0; step < 3; ++step) {
@@ -62,7 +64,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     };
     probe("npc_enter");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
-    const auto first_id = spawn_guard();
+    const auto first_id = spawn_guard("usec");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 1);
     REQUIRE(g->save(false));
     const auto saved_character = save_t::from_save_id(get_avatar().get_save_id());
@@ -157,7 +159,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_enter");
     CHECK(g->find_npc(first_id) == nullptr);
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
-    const auto second_id = spawn_guard();
+    const auto second_id = spawn_guard("bear");
     CHECK(second_id != first_id);
     probe("npc_defeat");
     CHECK(g->find_npc(second_id) == nullptr);

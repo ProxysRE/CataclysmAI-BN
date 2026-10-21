@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import subprocess
+import os
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from run_native_checks import run, validate_report
@@ -53,6 +54,24 @@ class NativeGateTest(unittest.TestCase):
             with patch("run_npc_probe.subprocess.run", side_effect=fail):
                 with self.assertRaises(subprocess.CalledProcessError):
                     run_npc(root, root / "test", root)
+
+    def test_npc_probe_selects_platform_backend_and_preserves_overrides(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            def success(*args, **kwargs):
+                (root / "tarkov-npc.xml").write_text("<testsuites><testcase/></testsuites>")
+            with patch.dict(os.environ, {}, clear=True):
+                with patch("run_npc_probe.subprocess.run", side_effect=success) as execute:
+                    run_npc(root, root / "test", root)
+                    env = execute.call_args.kwargs["env"]
+                    self.assertEqual(env["SDL_VIDEODRIVER"], "dummy" if os.name == "nt" else "offscreen")
+                    self.assertEqual(env["SDL_AUDIODRIVER"], "dummy")
+            with patch.dict(os.environ, {"SDL_VIDEODRIVER": "chosen", "SDL_AUDIODRIVER": "chosen"}):
+                with patch("run_npc_probe.subprocess.run", side_effect=success) as execute:
+                    run_npc(root, root / "test", root)
+                    env = execute.call_args.kwargs["env"]
+                    self.assertEqual(env["SDL_VIDEODRIVER"], "chosen")
+                    self.assertEqual(env["SDL_AUDIODRIVER"], "chosen")
 
     def test_failed_run_removes_previous_success_receipt(self):
         with tempfile.TemporaryDirectory() as scratch:

@@ -12,7 +12,10 @@ def run(bn: Path, executable: Path, output: Path) -> None:
     report, log = output / "tarkov-npc.xml", output / "tarkov-npc.log"
     report.unlink(missing_ok=True)
     env = os.environ.copy()
-    env.update(SDL_VIDEODRIVER="dummy", SDL_AUDIODRIVER="dummy")
+    # SDL's dummy video driver cannot initialize the Linux Vulkan compute backend.
+    # Preserve explicit runner settings; use the previously verified offscreen backend.
+    env.setdefault("SDL_VIDEODRIVER", "dummy" if os.name == "nt" else "offscreen")
+    env.setdefault("SDL_AUDIODRIVER", "dummy")
     command = [str(executable), "--mods=trkv_raid_core", "[tarkov_npc]", "--rng-seed", "20261020",
                "--reporter", "junit", "--out", str(report)]
     try:
