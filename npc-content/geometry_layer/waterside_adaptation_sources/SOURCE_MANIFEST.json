@@ -1,0 +1,17 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "files": {
+    "bn/data/json/furniture_and_terrain/terrain-floors-indoor.json": "22d7f9bd0c44ddb5b349d5e7747f942b68de019457ed780682ca65f1cf7179a9",
+    "bn/data/json/furniture_and_terrain/terrain-liquids.json": "43cd6abcd584df24c09aabc3afcab9ffcf83056ee84e99f02e6a12532c858d42",
+    "bn/data/json/furniture_and_terrain/terrain-walls.json": "886e13973131a1cefa4b3d9e22e58deebeca76db9de79dd4893dbc6a94a04370",
+    "bn/data/json/furniture_and_terrain/terrain-windows.json": "5cbf84f345d830c9ba46651f525c468d24c845a348a420317c5ff17ea47ae393",
+    "bn/src/map/mapdata.cpp": "f972e99df11e8dfc9f3c58c298331d12f080cfe2bd4ca35b661b6b3d7a969269",
+    "dda/data/json/furniture_and_terrain/special_use/sunken_helicopter_furniture.json": "e0928e61feb1578ec06be6823e44b27dd3e015ee78b049fb91ff4e3e0d059caa",
+    "dda/data/json/furniture_and_terrain/terrain-liquids.json": "29946e8f73ba86fd0670487ded19aed0f65920bc4ad54a455666810a125fedb8",
+    "dda/data/json/mapgen/nested/house_nested.json": "89ceef5bbb9a615ee65734136be050e0b91d86315f795ffeaff8238b2d182d71",
+    "dda/data/json/mapgen_palettes/house_garden_palette.json": "ff7b4be5a2e7330fc7ba6682daa059951125b8e8fbfacba34e01ceb32d3ad6ef"
+  }
+}

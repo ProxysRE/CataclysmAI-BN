@@ -3,7 +3,7 @@
   "native_embedded": false,
   "runtime_validated": false,
   "definitions": {
-    "mapgen": 8,
+    "mapgen": 9,
     "overmap_special": 3,
     "overmap_terrain": 7
   },
@@ -14,7 +14,7 @@
     "sunken_helicopter": 10
   },
   "source_rows_preserved": true,
-  "deferred_nested_requires_geometry_review": [
+  "structural_nested_preserved": [
     "firepit_5x5_2"
   ],
   "neutral_predecessor_glyphs": [

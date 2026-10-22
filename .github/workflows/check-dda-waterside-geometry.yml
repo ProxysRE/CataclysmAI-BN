@@ -5,6 +5,8 @@ on:
     branches: [port/dda-npc-locations]
     paths:
       - npc-content/prepare_waterside_geometry.py
+      - npc-content/adapt_waterside_geometry.py
+      - npc-content/geometry_layer/waterside_adaptation_sources/**
       - npc-content/prepare_geometry_layer.py
       - npc-content/geometry_layer/WATERSIDE_*
       - npc-content/geometry_layer/waterside_sources/**
@@ -19,3 +21,4 @@ jobs:
           python-version: '3.12'
       - run: python npc-content/prepare_waterside_geometry.py --check
       - run: python npc-content/prepare_geometry_preview.py --check
+      - run: python npc-content/adapt_waterside_geometry.py --check

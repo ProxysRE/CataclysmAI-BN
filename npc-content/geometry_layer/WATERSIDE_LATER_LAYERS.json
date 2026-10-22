@@ -911,18 +911,7 @@
           "density": 0.1
         }
       ],
-      "place_nested": [
-        {
-          "chunks": [
-            [
-              "firepit_5x5_2",
-              100
-            ]
-          ],
-          "x": 7,
-          "y": 5
-        }
-      ]
+      "place_nested": []
     }
   },
   {
@@ -2239,6 +2228,110 @@
           ],
           "chance": 80,
           "repeat": 5
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "//": "a nested map for lawns",
+      "nested_mapgen_id": "firepit_5x5_2"
+    },
+    "later_fields": {
+      "remove_all": {
+        "Z": {}
+      },
+      "furniture": {
+        "a": "f_stool",
+        "b": "f_camp_chair",
+        "c": "f_bench",
+        "d": "f_tourist_table",
+        "e": "f_bookcase",
+        "f": "f_statue",
+        "g": [
+          "f_boulder_medium",
+          "f_boulder_large"
+        ],
+        "h": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "i": "f_firering",
+        "j": "f_brazier",
+        "k": [
+          "f_region_water_plant",
+          "f_lotus"
+        ],
+        "l": "f_birdbath",
+        "p": "f_region_flower"
+      },
+      "sealed_item": {
+        "1": {
+          "item": {
+            "item": "seed_rose"
+          },
+          "furniture": "f_planter_seedling"
+        },
+        "2": {
+          "item": {
+            "item": "seed_chamomile"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "3": {
+          "item": {
+            "item": "seed_thyme"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "4": {
+          "item": {
+            "item": "seed_bee_balm"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "5": {
+          "item": {
+            "item": "seed_mugwort"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "6": {
+          "item": {
+            "item": "seed_tomato"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "7": {
+          "item": {
+            "item": "seed_cucumber"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "8": {
+          "item": {
+            "item": "soybean_seed"
+          },
+          "furniture": "f_planter_harvest"
+        },
+        "9": {
+          "item": {
+            "item": "seed_zucchini"
+          },
+          "furniture": "f_planter_harvest"
+        }
+      },
+      "place_items": [
+        {
+          "item": "stash_wood",
+          "x": 2,
+          "y": 1,
+          "chance": 100,
+          "repeat": [
+            2,
+            10
+          ]
         }
       ]
     }

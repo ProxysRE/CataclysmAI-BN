@@ -15,3 +15,13 @@ Eleven own OMT and eight mapgen definitions preserve multilevel layouts. Some sp
 Native schema, generation, player traversal and later content are unvalidated. Occurrences are zero in candidates. Source registrations are preserved verbatim. Run prepare_waterside_geometry.py --check. No percentage credit.
 
 The cottage firepit_5x5_2 nested fragment requires source geometry review before native integration; its placement is retained in the later-layer archive.
+
+## Adaptation prepared
+
+`adapt_waterside_geometry.py` closes all typed terrain references. Sixteen concrete wreck terrain definitions reuse complete BN metal-floor, junk-floor, metal-wall, half-wall and window parents. Source underwater flags and presentation are retained. Quarterpanel bash quantities use BN steel_chunk; source DDA window shoot schema is archived while the stock BN window ranged behavior remains. Same-material BN walls replace unsupported paint colors.
+
+The firepit nested fragment paints tree trunks; it is now expanded from the authenticated garden palette, isolated and retained in geometry. Seating, fire ring and stockpile remain later-layer content.
+
+A seventeenth concrete terrain retains hot-water movement, water flags and heat_radiation=1. BN does not load DDA liquid_source/min_temp. Collection examination is disabled in this geometry candidate and the full source field is archived; implementing temperature-aware collection and verifying scalding remain release gates. This does not certify complete hot-spring gameplay.
+
+The adaptation report includes 148 deterministic underwater/navigation expectations, with random-rotation invariance filtering. river_north is explicitly classified as a generated BN river identity. Zero typed obligations does not imply successful native schema loading or game generation. No native patch was changed in this preparation step. Run the adapter with --check.

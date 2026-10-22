@@ -1,0 +1,872 @@
+{
+  "status": "waterside_geometry_adapted_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "aliases": {
+    "t_sunkenhelicopter_floor": "dda_geo_waterside_sunkenhelicopter_floor",
+    "t_sunkenhelicopter_floor_rotator": "dda_geo_waterside_sunkenhelicopter_floor_rotator",
+    "t_sunkenhelicopter_wall_nw": "dda_geo_waterside_sunkenhelicopter_wall_nw",
+    "t_sunkenhelicopter_wall_ne": "dda_geo_waterside_sunkenhelicopter_wall_ne",
+    "t_sunkenhelicopter_wall_w": "dda_geo_waterside_sunkenhelicopter_wall_w",
+    "t_sunkenhelicopter_wall_e": "dda_geo_waterside_sunkenhelicopter_wall_e",
+    "t_sunkenhelicopter_wall_s": "dda_geo_waterside_sunkenhelicopter_wall_s",
+    "t_sunkenhelicopter_wall_sw": "dda_geo_waterside_sunkenhelicopter_wall_sw",
+    "t_sunkenhelicopter_wall_se": "dda_geo_waterside_sunkenhelicopter_wall_se",
+    "t_sunkenhelicopter_quarterpanel_n_middle": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_middle",
+    "t_sunkenhelicopter_quarterpanel_n_left": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_left",
+    "t_sunkenhelicopter_quarterpanel_n_right": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_right",
+    "t_sunkenhelicopter_windshield_n": "dda_geo_waterside_sunkenhelicopter_windshield_n",
+    "t_sunkenhelicopter_frame": "dda_geo_waterside_sunkenhelicopter_frame",
+    "t_sunkenhelicopter_roof": "dda_geo_waterside_sunkenhelicopter_roof",
+    "t_sunkenhelicopter_rotor": "dda_geo_waterside_sunkenhelicopter_rotor",
+    "t_water_hot": "dda_geo_waterside_water_hot",
+    "t_concrete_wall_gray": "t_concrete_wall",
+    "t_concrete_wall_w": "t_concrete_wall",
+    "t_sconc_wall_gray": "t_sconc_wall",
+    "t_sconc_wall_w": "t_sconc_wall",
+    "t_strconc_wall_gray": "t_strconc_wall",
+    "t_strconc_wall_w": "t_strconc_wall",
+    "t_wall_black": "t_wall",
+    "t_wall_brown": "t_wall",
+    "t_wall_cyan": "t_wall",
+    "t_wall_gray": "t_wall",
+    "t_wall_orange": "t_wall"
+  },
+  "new_terrain_definitions": 17,
+  "unresolved_typed_refs": [],
+  "generated_external_omt": [
+    "river_north"
+  ],
+  "navigation": {
+    "hot_springs": [
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 8,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 8,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 9,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 14,
+        "y": 9,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 8,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 9,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 14,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 15,
+        "y": 10,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 9,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 15,
+        "y": 11,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 8,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 9,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 14,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 15,
+        "y": 12,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 8,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 9,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 14,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 15,
+        "y": 13,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 9,
+        "y": 14,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 14,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 14,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 14,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 14,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 14,
+        "y": 14,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 10,
+        "y": 15,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 11,
+        "y": 15,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 12,
+        "y": 15,
+        "terrain": "dda_geo_waterside_water_hot"
+      },
+      {
+        "x": 13,
+        "y": 15,
+        "terrain": "dda_geo_waterside_water_hot"
+      }
+    ],
+    "pottery_cottage": [
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "t_wood_stairs_up"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "t_wood_stairs_up"
+      }
+    ],
+    "pottery_cottage_2nd": [
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "t_wood_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "t_wood_stairs_down"
+      }
+    ],
+    "sunken_helicopter": [
+      {
+        "x": 9,
+        "y": 1,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_left"
+      },
+      {
+        "x": 10,
+        "y": 1,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_middle"
+      },
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_right"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_left"
+      },
+      {
+        "x": 9,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_windshield_n"
+      },
+      {
+        "x": 10,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_windshield_n"
+      },
+      {
+        "x": 11,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 12,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_right"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 10,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 11,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 12,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_w"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_s"
+      },
+      {
+        "x": 10,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_s"
+      },
+      {
+        "x": 12,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_e"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 10,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 11,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 12,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 9,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 10,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor_rotator"
+      },
+      {
+        "x": 11,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 12,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_w"
+      },
+      {
+        "x": 9,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 10,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor_rotator"
+      },
+      {
+        "x": 11,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 12,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_e"
+      },
+      {
+        "x": 8,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_w"
+      },
+      {
+        "x": 9,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor_rotator"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 12,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_e"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_sw"
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_ne"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_floor"
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_nw"
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_se"
+      },
+      {
+        "x": 9,
+        "y": 10,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 11,
+        "y": 10,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_wall_se"
+      },
+      {
+        "x": 8,
+        "y": 14,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_middle"
+      },
+      {
+        "x": 8,
+        "y": 15,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_middle"
+      },
+      {
+        "x": 7,
+        "y": 16,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_left"
+      },
+      {
+        "x": 8,
+        "y": 16,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_middle"
+      },
+      {
+        "x": 9,
+        "y": 16,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_quarterpanel_n_right"
+      }
+    ],
+    "sunken_heli_roof": [
+      {
+        "x": 9,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 2,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 3,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 4,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 5,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 9,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_rotor"
+      },
+      {
+        "x": 11,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 6,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 9,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 7,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 8,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 9,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 8,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 9,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 10,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 11,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 12,
+        "y": 9,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      },
+      {
+        "x": 9,
+        "y": 10,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_frame"
+      },
+      {
+        "x": 11,
+        "y": 10,
+        "terrain": "dda_geo_waterside_sunkenhelicopter_roof"
+      }
+    ]
+  },
+  "navigation_points": 148,
+  "deferred_source_fields": [
+    {
+      "source": "t_sunkenhelicopter_floor",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "MULCHFLOOR"
+      ]
+    },
+    {
+      "source": "t_sunkenhelicopter_floor_rotator",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "MULCHFLOOR"
+      ]
+    },
+    {
+      "source": "t_sunkenhelicopter_windshield_n",
+      "field": "shoot",
+      "value": {
+        "reduce_damage": [
+          1,
+          4
+        ],
+        "reduce_damage_laser": [
+          0,
+          4
+        ],
+        "destroy_damage": [
+          1,
+          4
+        ],
+        "no_laser_destroy": true
+      },
+      "note": "BN parent window ranged behavior retained; DDA shoot schema not copied"
+    },
+    {
+      "source": "t_water_hot",
+      "field": "liquid_source",
+      "value": {
+        "id": "water_murky",
+        "min_temp": 70
+      }
+    },
+    {
+      "source": "t_water_hot",
+      "field": "connect_groups",
+      "value": "WATER"
+    },
+    {
+      "source": "t_water_hot",
+      "field": "examine_action",
+      "value": "water_source",
+      "note": "Collection disabled in geometry preview until BN source-water and temperature behavior is implemented"
+    }
+  ],
+  "preserved": [
+    "Source map rows, underwater flags and complete stock BN parent fields",
+    "Firepit trunks retained as structural nested geometry",
+    "White linoleum source fallback and same-material BN wall counterparts",
+    "Hot-water movement, water flags and heat radiation"
+  ],
+  "adaptations": [
+    "BN steel_chunk replaces DDA lc_steel_chunk with unchanged quantities",
+    "Complete BN material parents replace DDA parents; BN bash/ranged behavior applies except explicit source quarterpanel bash",
+    "BN wall and water connectivity used; DDA floor connectivity deferred"
+  ],
+  "remaining": [
+    "Native schema loading and source/installed all-floor generation",
+    "Underwater swimming, breath, destruction and window shooting tests",
+    "Hot-water collection at source temperature and scalding behavior",
+    "Player stair and cottage access traversal"
+  ],
+  "limits": [
+    "No native patch changes or completion credit",
+    "Hot-water collection is disabled for this geometry-only candidate",
+    "Thermal geometry is not certified hot-spring gameplay parity"
+  ]
+}

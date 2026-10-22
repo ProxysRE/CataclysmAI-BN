@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Urban source and installed geometry generation passed; waterside sources staged separately with explicit obligations.",
+  "stage": "Urban generation remains verified; waterside terrain adaptation and structural firepit prepared, native loading and thermal gameplay pending.",
   "package": "Isolated Road",
   "native_compilation": "Successful Windows run 39686560752: source+installed 73 core /11030, 10 optional /2224, 23 geometry /648216; portable artifact 12389029662.",
   "remaining": [
@@ -1009,10 +1009,15 @@
   "geometry_waterside_candidate": {
     "native_embedded": false,
     "runtime_validated": false,
-    "mapgen_definitions": 8,
+    "mapgen_definitions": 9,
     "own_omt": 11,
     "total_placements": 19,
     "report": "geometry_layer/WATERSIDE_GEOMETRY_REPORT.json",
-    "status": "Raw geometry staged; custom helicopter terrain and hot-water behavior need BN adaptation"
+    "status": "Typed dependencies closed; 17 concrete terrain definitions and structural firepit prepared; no native integration",
+    "adapted_unresolved_typed_refs": [],
+    "new_terrain_definitions": 17,
+    "navigation_expectations": 148,
+    "adaptation_report": "geometry_layer/WATERSIDE_ADAPTATION_REPORT.json",
+    "thermal_limits": "Heat radiation retained; source-temperature water collection disabled pending BN support"
   }
 }

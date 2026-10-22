@@ -23,6 +23,13 @@ def prepare(check=False):
             raw=(directory/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==digest,path
             for e in json.loads(raw):
                 if e.get('type')=='palette':palettes[e['id']]=e
+    extra=OUT/'waterside_adaptation_sources'
+    manifest=json.loads((extra/'SOURCE_MANIFEST.json').read_text())
+    assert manifest['pins']=={'bn':'c621aaf42fa182473aad10feea2b55647704dcf1','dda':'c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'}
+    for name in ('dda/data/json/mapgen_palettes/house_garden_palette.json','dda/data/json/mapgen/nested/house_nested.json'):
+        raw=(extra/name).read_bytes();assert hashlib.sha256(raw).hexdigest()==manifest['files'][name]
+        for e in json.loads(raw):
+            if e.get('type')=='palette':palettes[e['id']]=e
     original=[];neutral=[]
     for path in json.loads((SOURCE/'SOURCE_MANIFEST.json').read_text())['files']:
         for e in json.loads((SOURCE/path).read_text()):
@@ -34,7 +41,9 @@ def prepare(check=False):
                 for g in sorted(glyphs(o.get('rows',[]))-set(o.get('terrain',{}))-set(o.get('furniture',{}))-set(o.get('nested',{}))-{' ','.'}):
                     o.setdefault('furniture',{})[g]='f_null';neutral.append({'map':e['om_terrain'],'glyph':g})
             original.append(e)
-    mapped={n for e in original for n in flatten(e['om_terrain'])}
+    nested=next(e for e in json.loads((extra/'dda/data/json/mapgen/nested/house_nested.json').read_text())if e.get('nested_mapgen_id')=='firepit_5x5_2')
+    nested=copy.deepcopy(nested);nested['object']=expand(nested['object'],palettes);original.append(nested)
+    mapped={n for e in original for n in flatten(e.get('om_terrain',[]))}
     assert mapped==MAPS,(mapped^MAPS)
     registrations=[]
     for path,text in read_sources()[0].items():
@@ -46,7 +55,13 @@ def prepare(check=False):
                 names=set(flatten(e.get('id',[])))&mapped
                 if names:e=copy.deepcopy(e);e['id']=sorted(names);original.append(e)
     assert {e['id']for e in registrations}==TARGETS
-    entries,later,issues=extract(original,())
+    entries,later,issues=extract(original,('firepit_5x5_2',))
+    def rename(v):
+        if isinstance(v,str):return 'dda_geo_waterside_firepit_5x5_2'if v=='firepit_5x5_2'else v
+        if isinstance(v,list):return [rename(x)for x in v]
+        if isinstance(v,dict):return {k:rename(x)for k,x in v.items()}
+        return v
+    entries=rename(entries)
     for a,b in zip(original,entries):
         if a['type']=='mapgen':assert a['object'].get('rows')==b['object'].get('rows')
     for e in entries:
@@ -54,7 +69,7 @@ def prepare(check=False):
         if e['type']=='overmap_terrain'and 'travel_cost_type'in e:later.append({'source':e['id'],'field':'travel_cost_type','value':e.pop('travel_cost_type')})
     later.append({'source_registrations':registrations})
     for e in entries:
-        if e['type']!='mapgen':continue
+        if e['type']!='mapgen'or 'om_terrain'not in e:continue
         omt=e['om_terrain'];matrix=[[omt]]if isinstance(omt,str)else [omt]if isinstance(omt[0],str)else omt
         if 'rows'not in e['object']:continue
         rows=e['object']['rows'];assert len(rows)==24*len(matrix)and all(len(row)==24*len(matrix[0])for row in rows)
@@ -63,7 +78,7 @@ def prepare(check=False):
     report={'status':'waterside_geometry_staging_not_installed','native_embedded':False,'runtime_validated':False,
       'definitions':dict(Counter(e['type']for e in entries)),'unique_omt':len(mapped),
       'special_cells':{e['id']:sum('overmap'in c for c in e['overmaps'])for e in entries if e['type']=='overmap_special'},
-      'source_rows_preserved':True,'deferred_nested_requires_geometry_review':['firepit_5x5_2'],'neutral_predecessor_glyphs':neutral,'unresolved_typed_refs':sorted(required(entries)-own-core),
+      'source_rows_preserved':True,'structural_nested_preserved':['firepit_5x5_2'],'neutral_predecessor_glyphs':neutral,'unresolved_typed_refs':sorted(required(entries)-own-core),
       'geometry_issues':issues,'core_id_overlaps':sorted((own-BUILTIN_IDS)&core),'bundled_mod_id_overlaps':sorted((own-BUILTIN_IDS)&mods),
       'limits':['No native integration or completion credit','Thermal-water behavior and helicopter materials require BN comparison','Source registrations and later content retained separately','Shared domestic palette definitions authenticated through urban_sources manifest']}
     for name,value in [('WATERSIDE_SHELLS.json',entries),('WATERSIDE_LATER_LAYERS.json',later),('WATERSIDE_GEOMETRY_REPORT.json',report)]:

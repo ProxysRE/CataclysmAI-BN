@@ -370,6 +370,18 @@
         "~~~..X..``..%#Ly   TE k#",
         "~~~....``..[.###oo##oo##",
         "~~~~..``.......%%%.^%%%."
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            [
+              "dda_geo_waterside_firepit_5x5_2",
+              100
+            ]
+          ],
+          "x": 7,
+          "y": 5
+        }
       ]
     },
     "method": "json"
@@ -892,6 +904,35 @@
     ],
     "object": {
       "predecessor_mapgen": "lake_bed"
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "//": "a nested map for lawns",
+    "nested_mapgen_id": "dda_geo_waterside_firepit_5x5_2",
+    "object": {
+      "terrain": {
+        "S": "t_trunk"
+      },
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "     ",
+        "S   S",
+        "S i S",
+        "S    ",
+        "     "
+      ],
+      "furniture": {
+        "i": "f_null"
+      }
     },
     "method": "json"
   },
