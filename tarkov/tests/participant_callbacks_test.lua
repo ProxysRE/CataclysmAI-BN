@@ -248,6 +248,15 @@ for _, variant in ipairs({
   assert(root.participants.slots.combat_1.loadout == variant.id)
 end
 print("PASS recruit variants use own templates and preserve training/equipment selection after load")
+-- The native reload probe forces a field kit and restores the production picker.
+mod.extract(); closed(); actors = {}
+local original_choose = package.loaded.trkv_loadouts.choose
+gapi.rng = function() error("Forced field probe must not roll the catalog") end
+test_data = { stage = "npc_reload_depart" }
+dofile("tarkov/tests/bn_npc_probe.lua")
+assert(test_data.combat_loadout == "rifle_field_v1" and last_template == "trkv_combat_field_tester")
+assert(package.loaded.trkv_loadouts.choose == original_choose)
+print("PASS native reload setup uses production field template and restores the picker")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }

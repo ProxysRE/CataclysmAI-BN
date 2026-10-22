@@ -140,9 +140,18 @@ elseif test_data.stage == "npc_live_path_blocked" then
   assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(394, 392, 0))) == TerId.new("t_wall"):int_id())
 elseif test_data.stage == "npc_live_timeout" then
   state.deadline = api.now()
-elseif test_data.stage == "npc_combat_depart" then
+elseif test_data.stage == "npc_combat_depart" or test_data.stage == "npc_reload_depart" then
   assert(api.at_home() and state.phase == "home")
-  assert(game.mod_runtime.trkv_raid_core.depart("combat"))
+  -- The reload probe needs a field kit regardless of the workflow's seed. Only
+  -- replace the picker; use production departure, spawning, JSON and actual AI.
+  local catalog = assert(package.loaded.trkv_loadouts)
+  local choose = catalog.choose
+  if test_data.stage == "npc_reload_depart" then
+    catalog.choose = function() return "rifle_field_v1" end
+  end
+  local ok, departed = pcall(game.mod_runtime.trkv_raid_core.depart, "combat")
+  catalog.choose = choose
+  assert(ok and departed)
   test_data.combat_id = root.participants.slots.combat_1.id
   test_data.combat_loadout = root.participants.slots.combat_1.loadout
   local definition = assert(package.loaded.trkv_loadouts.describe(test_data.combat_loadout))
