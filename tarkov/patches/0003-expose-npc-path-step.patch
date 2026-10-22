@@ -1,11 +1,11 @@
 diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
 --- a/src/catalua_bindings_creature.cpp
 +++ b/src/catalua_bindings_creature.cpp
-@@ -1637,6 +1637,26 @@
+@@ -1637,6 +1637,36 @@
  
          SET_FX_T( can_move_to, bool( const tripoint_bub_ms &, bool ) const );
  
-+        DOC( "Plans a non-bashing same-floor path and attempts one step, including normal door opening costs. Returns whether moves were spent." );
++        DOC( "Plans a non-bashing same-floor path and attempts one step, including door opening costs; routes around occupied steps or waits without pushing. Returns whether moves were spent." );
 +        luna::set_fx( ut, "move_towards", []( UT_CLASS & npchar, const tripoint_bub_ms & pos ) -> bool {
 +            npchar.path.clear();
 +            if( pos.z() != npchar.bub_pos().z() || !g->m.inbounds( pos ) ||
@@ -13,9 +13,19 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +                return false;
 +            }
 +            if( !npchar.update_path( pos, true, true ) || npchar.path.empty() ) {
-+                return false;
++                // A valid but temporarily unreachable waypoint must not make
++                // the patrol fall back to unrelated vanilla movement.
++                npchar.mod_moves( -100 );
++                return true;
 +            }
 +            const auto next = npchar.path.front();
++            if( g->critter_at( next ) != nullptr ) {
++                // Native pathfinding already avoids creatures except at the
++                // destination. Never invoke recursive friendly-NPC pushing.
++                npchar.path.clear();
++                npchar.mod_moves( -100 );
++                return true;
++            }
 +            if( next.z() != npchar.bub_pos().z() || !npchar.can_move_to( next, true ) ) {
 +                npchar.path.clear();
 +                return false;

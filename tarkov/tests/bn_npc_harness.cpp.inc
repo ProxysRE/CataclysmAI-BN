@@ -340,6 +340,84 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(went_around);
         probe("npc_live_detour_intact");
     }
+    probe("npc_live_wait_setup");
+    {
+        auto* first = g->find_npc(live_group[0]);
+        auto* second = g->find_npc(live_group[1]);
+        REQUIRE(first != nullptr);
+        REQUIRE(second != nullptr);
+        first->setpos(abs_to_bub(tripoint_abs_ms(398, 402, 0)));
+        second->setpos(abs_to_bub(tripoint_abs_ms(399, 402, 0)));
+        set_time(calendar::turn);
+        second->set_moves(777);
+        first->set_moves(1000);
+        first->move();
+        // An occupied waypoint is a paid wait, never a push or vanilla fallback.
+        CHECK(first->abs_pos() == tripoint_abs_ms(398, 402, 0));
+        CHECK(first->get_moves() == 900);
+        CHECK(second->abs_pos() == tripoint_abs_ms(399, 402, 0));
+        CHECK(second->get_moves() == 777);
+    }
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_live_wait_restored");
+    {
+        auto* first = g->find_npc(live_group[0]);
+        auto* second = g->find_npc(live_group[1]);
+        REQUIRE(first != nullptr);
+        REQUIRE(second != nullptr);
+        REQUIRE(first->abs_pos() == tripoint_abs_ms(398, 402, 0));
+        REQUIRE(second->abs_pos() == tripoint_abs_ms(399, 402, 0));
+        first->set_moves(1000);
+        second->set_moves(1000);
+        second->move();
+        CHECK(second->abs_pos() == tripoint_abs_ms(400, 402, 0));
+        CHECK(second->get_moves() < 1000);
+        CHECK(first->get_moves() == 1000);
+        first->move();
+        CHECK(first->abs_pos() == tripoint_abs_ms(399, 402, 0));
+        CHECK(first->get_moves() < 1000);
+    }
+    probe("npc_live_crossing_setup");
+    {
+        auto* first = g->find_npc(live_group[0]);
+        auto* second = g->find_npc(live_group[1]);
+        REQUIRE(first != nullptr);
+        REQUIRE(second != nullptr);
+        first->setpos(abs_to_bub(tripoint_abs_ms(398, 400, 0)));
+        second->setpos(abs_to_bub(tripoint_abs_ms(401, 400, 0)));
+        set_time(calendar::turn);
+        const auto first_goal = tripoint_abs_ms(402, 400, 0);
+        const auto second_goal = tripoint_abs_ms(397, 400, 0);
+        auto detoured = false;
+        for (auto round = 0; round < 16; ++round) {
+            for (auto index = 0; index < 2; ++index) {
+                auto* actor = index == 0 ? first : second;
+                auto* other = index == 0 ? second : first;
+                const auto goal = index == 0 ? first_goal : second_goal;
+                if (actor->abs_pos() == goal) { continue; }
+                const auto before = actor->abs_pos();
+                const auto other_before = other->abs_pos();
+                other->set_moves(777);
+                actor->set_moves(1000);
+                actor->move();
+                const auto after = actor->abs_pos();
+                CHECK(std::abs(after.x() - before.x()) <= 1);
+                CHECK(std::abs(after.y() - before.y()) <= 1);
+                CHECK(after.z() == before.z());
+                REQUIRE(actor->get_moves() < 1000);
+                REQUIRE(other->abs_pos() == other_before);
+                REQUIRE(other->get_moves() == 777);
+                REQUIRE(after != other->abs_pos());
+                detoured = detoured || after.y() != 400;
+            }
+            if (first->abs_pos() == first_goal && second->abs_pos() == second_goal) { break; }
+        }
+        REQUIRE(first->abs_pos() == first_goal);
+        REQUIRE(second->abs_pos() == second_goal);
+        CHECK(detoured);
+    }
     probe("npc_extract");
     for (const auto id : live_group) { CHECK(g->find_npc(id) == nullptr); }
     probe("npc_live_depart");

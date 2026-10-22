@@ -140,6 +140,25 @@ elseif test_data.stage == "npc_live_path_blocked" then
   assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(394, 392, 0))) == TerId.new("t_wall"):int_id())
 elseif test_data.stage == "npc_live_timeout" then
   state.deadline = api.now()
+elseif test_data.stage == "npc_live_wait_restored" then
+  for i = 1, 2 do
+    local member = assert(participants.find(root.participants, context(), test_data.group_ids[i]))
+    assert(member.patrol.index == (i == 1 and 2 or 1))
+    assert(member.patrol.route[2].x == (i == 1 and 399 or 400))
+  end
+elseif test_data.stage == "npc_live_crossing_setup" or test_data.stage == "npc_live_wait_setup" then
+  local crossing = test_data.stage == "npc_live_crossing_setup"
+  local routes = crossing and {
+    { { x = 398, y = 400, z = 0 }, { x = 402, y = 400, z = 0 } },
+    { { x = 401, y = 400, z = 0 }, { x = 397, y = 400, z = 0 } },
+  } or {
+    { { x = 398, y = 402, z = 0 }, { x = 399, y = 402, z = 0 } },
+    { { x = 399, y = 402, z = 0 }, { x = 400, y = 402, z = 0 } },
+  }
+  for i, route in ipairs(routes) do
+    local member = assert(participants.find(root.participants, context(), test_data.group_ids[i]))
+    member.patrol.route, member.patrol.index = route, 1
+  end
 elseif test_data.stage == "npc_live_empty" then
   assert(api.at_home() and state.phase == "home")
   assert(game.mod_runtime.trkv_raid_core.depart("empty"))
