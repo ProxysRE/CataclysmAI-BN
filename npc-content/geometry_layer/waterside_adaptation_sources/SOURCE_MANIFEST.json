@@ -14,6 +14,7 @@
     "dda/data/json/mapgen/nested/house_nested.json": "89ceef5bbb9a615ee65734136be050e0b91d86315f795ffeaff8238b2d182d71",
     "dda/data/json/mapgen_palettes/house_garden_palette.json": "ff7b4be5a2e7330fc7ba6682daa059951125b8e8fbfacba34e01ceb32d3ad6ef",
     "bn/src/map/mapbuffer.cpp": "9997d75d003d6055267d5e7ef76ef0a4cafbf5a51b7c1edf7a40d8db01de719d",
-    "bn/src/overmap/overmap.h": "bed3a081ef41ecdf89677eb92454295d2edd1525a94fce129ba93eee676cc12b"
+    "bn/src/overmap/overmap.h": "bed3a081ef41ecdf89677eb92454295d2edd1525a94fce129ba93eee676cc12b",
+    "bn/data/json/overmap/special_locations.json": "9ca092fa43a03c42d881b936d809d5f868b7b2b98f3c5501ea81e3867fb54bda"
   }
 }

@@ -17,6 +17,23 @@ def validate_omt(e,known):
     assert set(flags)<=known,('Unsupported BN overmap flags',e.get('id'),sorted(set(flags)-known))
 
 
+def validate_locations(entries,stock):
+    from compare_location_catalog import read_sources
+    from prepare_regional_locations import index_entries
+    definitions=[e for e in entries if e['type']=='overmap_location']
+    known={e['id'] for e in stock+definitions}
+    core=index_entries([e for path,text in read_sources()[0].items()
+                        if path.startswith('bn/') for e in json.loads(text)])
+    for e in definitions:
+        assert e['terrains'],e
+        assert all(('overmap_terrain',n) in core for n in e['terrains']),e
+    for e in entries:
+        if e['type']!='overmap_special':continue
+        for cell in [e]+e['overmaps']:
+            missing=set(cell.get('locations',[]))-known
+            assert not missing,('Unsupported BN placement locations',e['id'],cell.get('point'),sorted(missing))
+
+
 def check():
     entries=json.loads((ROOT/'native/dda_geometry_preview.json').read_text())
     terrain=[e for e in entries if e['type']=='terrain']
@@ -31,6 +48,17 @@ def check():
     assert 'LAKE'in known and 'WATER'not in known
     for e in entries:
         if e['type']=='overmap_terrain':validate_omt(e,known)
+    name='bn/data/json/overmap/special_locations.json';raw=(archive/name).read_bytes()
+    assert hashlib.sha256(raw).hexdigest()==manifest['files'][name]
+    stock=json.loads(raw)
+    validate_locations(entries,stock)
+    for point in (None,[0,0,1]):
+        probe={'type':'overmap_special','id':'regression_air','overmaps':[]}
+        if point is None:probe['locations']=['open_air']
+        else:probe['overmaps']=[{'point':point,'locations':['open_air']}]
+        try:validate_locations([probe],stock)
+        except AssertionError:pass
+        else:raise AssertionError('Unknown placement location accepted')
     try:validate_omt({'id':'regression_water','flags':['WATER']},known)
     except AssertionError:pass
     else:raise AssertionError('Unsupported WATER overmap flag accepted')
@@ -48,6 +76,6 @@ def check():
             try:validate(probe)
             except AssertionError:pass
             else:raise AssertionError('Incomplete terrain regression accepted')
-    print('PASS: 24 concrete preview terrain definitions and pinned BN overmap flags; panel physical data preserved; old copy-from and missing-symbol forms rejected')
+    print('PASS: concrete preview terrains, pinned BN overmap flags and placement locations; unsupported WATER/open_air and incomplete panels rejected')
 
 if __name__=='__main__':check()

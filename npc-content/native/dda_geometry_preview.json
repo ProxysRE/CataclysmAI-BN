@@ -20234,7 +20234,7 @@
         ],
         "overmap": "dda_geo_pottery_cottage_field_2nd_north",
         "locations": [
-          "open_air"
+          "dda_geo_open_air"
         ]
       },
       {
@@ -20245,7 +20245,7 @@
         ],
         "overmap": "dda_geo_pottery_cottage_2nd_north",
         "locations": [
-          "open_air"
+          "dda_geo_open_air"
         ]
       },
       {
@@ -20256,7 +20256,7 @@
         ],
         "overmap": "dda_geo_pottery_cottage_field_roof_north",
         "locations": [
-          "open_air"
+          "dda_geo_open_air"
         ]
       },
       {
@@ -20267,7 +20267,7 @@
         ],
         "overmap": "dda_geo_pottery_cottage_roof_north",
         "locations": [
-          "open_air"
+          "dda_geo_open_air"
         ]
       }
     ],
@@ -21223,5 +21223,12 @@
     ],
     "connects_to": "WATER",
     "examine_action": "water_source"
+  },
+  {
+    "type": "overmap_location",
+    "id": "dda_geo_open_air",
+    "terrains": [
+      "open_air"
+    ]
   }
 ]

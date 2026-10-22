@@ -11,6 +11,7 @@ MOD='dda_geometry_preview'
 BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
+AIR_LOCATION='dda_geo_open_air'
 PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside')
 
 
@@ -61,12 +62,17 @@ def payloads():
                 e['occurrences']=[0,0] # Debug placement only; never populate normal worlds with empty shells.
                 for c in e['overmaps']:
                     if 'overmap' in c:c['overmap']=rename(c['overmap'])
+                    if 'locations' in c:
+                        c['locations']=[AIR_LOCATION if n=='open_air' else n for n in c['locations']]
             elif e['type']=='terrain':
                 assert e['id'].startswith(('dda_geo_exodii_','dda_geo_frontier_','dda_geo_raider_','dda_geo_urban_','dda_geo_waterside_'))
                 assert 'copy-from'not in e,('BN preview terrain requires a complete definition',e['id'])
                 assert {'symbol','color','move_cost','name','description'}<=e.keys(),e['id']
             else:raise AssertionError(e['type'])
         result+=entries
+    # BN has open_air terrain but no matching placement predicate. Keep the
+    # source's air-only constraint rather than weakening it to land/anywhere.
+    result.append({'type':'overmap_location','id':AIR_LOCATION,'terrains':['open_air']})
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
     mods={(r['type'],r['id']) for r in mod_cache()['records']}
     own=index_entries(result)

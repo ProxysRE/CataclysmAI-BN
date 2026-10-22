@@ -68108,7 +68108,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,21227 @@
+@@ -0,0 +1,21234 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -88345,7 +88345,7 @@
 +        ],
 +        "overmap": "dda_geo_pottery_cottage_field_2nd_north",
 +        "locations": [
-+          "open_air"
++          "dda_geo_open_air"
 +        ]
 +      },
 +      {
@@ -88356,7 +88356,7 @@
 +        ],
 +        "overmap": "dda_geo_pottery_cottage_2nd_north",
 +        "locations": [
-+          "open_air"
++          "dda_geo_open_air"
 +        ]
 +      },
 +      {
@@ -88367,7 +88367,7 @@
 +        ],
 +        "overmap": "dda_geo_pottery_cottage_field_roof_north",
 +        "locations": [
-+          "open_air"
++          "dda_geo_open_air"
 +        ]
 +      },
 +      {
@@ -88378,7 +88378,7 @@
 +        ],
 +        "overmap": "dda_geo_pottery_cottage_roof_north",
 +        "locations": [
-+          "open_air"
++          "dda_geo_open_air"
 +        ]
 +      }
 +    ],
@@ -89334,5 +89334,12 @@
 +    ],
 +    "connects_to": "WATER",
 +    "examine_action": "water_source"
++  },
++  {
++    "type": "overmap_location",
++    "id": "dda_geo_open_air",
++    "terrains": [
++      "open_air"
++    ]
 +  }
 +]
