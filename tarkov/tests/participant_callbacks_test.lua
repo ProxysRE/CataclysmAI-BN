@@ -175,6 +175,18 @@ test_data.stage = "npc_live_casualty_check"
 dofile("tarkov/tests/bn_npc_probe.lua")
 assert(spawned == 3 and root.participants.slots.patrol_3.id == 103)
 print("PASS casualty checkpoint retains ready slot without respawn or settling player raid")
+-- Execute the new cold-probe bookkeeping branches with plain restored records.
+root.cold_expected = { npc_ids = { 101, 102, 103 } }
+for _, record in pairs(root.participants.actors) do record.patrol.index = 2 end
+ItypeId = { new = function(value) return value end }
+test_data.stage = "cold_npc_saved"
+dofile("tarkov/tests/bn_integration.lua")
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+mod.loaded(); tick()
+test_data.stage = "cold_npc_restored"
+dofile("tarkov/tests/bn_integration.lua")
+assert(spawned == 3)
+print("PASS cold probe checks saved route, side and ready slots after deployment recovery")
 mod.extract(); closed()
 assert(mod.depart("empty") and root.raid.encounter == "empty" and spawned == 3)
 print("PASS selectable patrol encounter, pending mode, production adapter/AI callback and reload without duplicates")

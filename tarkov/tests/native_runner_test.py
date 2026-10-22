@@ -10,6 +10,7 @@ import os
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from run_native_checks import run, validate_report
 from run_npc_probe import run as run_npc
+from run_cold_restart import run as run_cold
 
 
 class NativeGateTest(unittest.TestCase):
@@ -42,6 +43,21 @@ class NativeGateTest(unittest.TestCase):
                     run_npc(root, root / "test", root)
                 command = execute.call_args.args[0]
                 self.assertIn("[tarkov_npc]", command)
+                self.assertTrue(execute.call_args.kwargs["check"])
+            self.assertFalse(report.exists())
+
+    def test_cold_restart_rejects_stale_or_missing_reports(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            executable = root / "test"
+            executable.touch()
+            report = root / "tarkov-cold-write.xml"
+            report.write_text("<testsuites><testcase/></testsuites>")
+            with patch("run_cold_restart.subprocess.run") as execute:
+                with self.assertRaises(FileNotFoundError):
+                    run_cold(root, root, executable)
+                self.assertEqual(execute.call_count, 1)
+                self.assertIn("[tarkov_cold_write]", execute.call_args.args[0])
                 self.assertTrue(execute.call_args.kwargs["check"])
             self.assertFalse(report.exists())
 

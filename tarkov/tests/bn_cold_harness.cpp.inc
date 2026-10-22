@@ -6,6 +6,7 @@
 #include "dimension_info.h"
 #include "path_info.h"
 #include "worldfactory.h"
+#include "npc.h"
 #include "../src/map/mapbuffer_registry.h"
 
 static auto trkv_cold_env(const char* name) -> std::string {
@@ -20,6 +21,46 @@ static auto trkv_cold_manifest() -> void {
     out << std::filesystem::absolute(g->get_active_world()->info->folder_path()).string();
     out.close();
     REQUIRE(out.good());
+}
+static auto trkv_cold_check_npcs(sol::table& data, bool resume) -> void {
+    const sol::table ids = data["cold_npc_ids"];
+    REQUIRE(ids.size() == 3);
+    REQUIRE(get_overmapbuffer(dimension_id("trkv_dev01_raid")).get_overmap_npcs().size() == 2);
+    for (auto i = 1; i <= 3; ++i) {
+        const auto id = character_id(ids[i].get<int>());
+        auto* actor = g->find_npc(id);
+        if (i == 3) {
+            REQUIRE(actor == nullptr);
+            REQUIRE(get_overmapbuffer(dimension_id("trkv_dev01_raid")).find_npc(id) == nullptr);
+            continue;
+        }
+        REQUIRE(actor != nullptr);
+        CHECK(actor->get_dimension() == dimension_id("trkv_dev01_raid"));
+        CHECK(actor->get_attitude() == NPCATT_NULL);
+        REQUIRE(actor->abs_pos() == tripoint_abs_ms(i == 1 ? 398 : 400, 399, 0));
+        if (i == 1) {
+            const auto& gun = actor->primary_weapon();
+            CHECK(gun.get_var("trkv_cold_npc") == "rifle");
+            CHECK(gun.typeId().str() == "ar15");
+            CHECK(gun.ammo_remaining() == 11);
+            CHECK(gun.damage() == 901);
+            if (resume) {
+                actor->set_moves(1000);
+                actor->move(); // Production TRKV_PATROL after a fresh-process load.
+                CHECK(actor->abs_pos() == tripoint_abs_ms(398, 400, 0));
+                CHECK(actor->get_moves() < 1000);
+                CHECK(actor->primary_weapon().ammo_remaining() == 11);
+            }
+        }
+    }
+    auto corpses = 0;
+    auto dropped = 0;
+    for (const auto* value : g->m.i_at(abs_to_bub(tripoint_abs_ms(404, 399, 0)))) {
+        if (value->is_corpse()) { ++corpses; }
+        if (value->get_var("trkv_cold_npc") == "dropped") { ++dropped; }
+    }
+    REQUIRE(corpses == 1);
+    REQUIRE(dropped == 1);
 }
 TEST_CASE("tarkov cold writer saves a live raid", "[tarkov_cold_write]") {
     clear_all_state();
@@ -40,6 +81,37 @@ TEST_CASE("tarkov cold writer saves a live raid", "[tarkov_cold_write]") {
     auto& carried = get_avatar().i_add(std::move(rifle));
     REQUIRE(get_avatar().wield(carried));
     data["stage"] = "cold_write";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
+    {
+        const sol::table ids = data["cold_npc_ids"];
+        REQUIRE(ids.size() == 3);
+        for (auto i = 1; i <= 3; ++i) {
+            auto* actor = g->find_npc(character_id(ids[i].get<int>()));
+            REQUIRE(actor != nullptr);
+            actor->set_moves(1000);
+            actor->move();
+            REQUIRE(actor->get_moves() < 1000);
+            if (i == 1) {
+                actor->remove_primary_weapon();
+                auto gun = item::spawn("ar15");
+                auto mag = item::spawn("stanag30");
+                mag->ammo_set(itype_id("223"), 11);
+                gun->put_in(std::move(mag));
+                gun->set_damage(901);
+                gun->set_var("trkv_cold_npc", "rifle");
+                auto& equipped = actor->i_add(std::move(gun));
+                REQUIRE(actor->wield(equipped));
+            } else if (i == 3) {
+                auto dropped = item::spawn("rock");
+                dropped->set_var("trkv_cold_npc", "dropped");
+                actor->i_add(std::move(dropped));
+                actor->set_all_parts_hp_cur(0);
+            }
+        }
+        g->cleanup_dead();
+    }
+    trkv_cold_check_npcs(data, false);
+    data["stage"] = "cold_npc_saved";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     REQUIRE(g->save(false));
     trkv_cold_manifest();
@@ -84,8 +156,14 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
     data["stage"] = stage + "_loaded";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     std::fprintf(stderr, "Tarkov cold: loaded state checked, invoking first tick\n");
+    if (stage == "cold_read_active") { trkv_cold_check_npcs(data, false); }
     const auto tick_scope = action_time_scale::scoped_calendar_turns_this_tick(1);
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    if (stage == "cold_read_active") {
+        data["stage"] = "cold_npc_restored";
+        run_lua_test_script(lua, "trkv_integration_test.lua");
+        trkv_cold_check_npcs(data, true);
+    }
     std::fprintf(stderr, "Tarkov cold: first tick completed, checking equipment\n");
     bool found = false;
     for (const auto* value : get_avatar().all_items(false)) {
@@ -101,6 +179,15 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
     std::fprintf(stderr, "Tarkov cold: equipment checked, invoking reader scenario\n");
     data["stage"] = stage;
     run_lua_test_script(lua, "trkv_integration_test.lua");
+    {
+        const sol::table ids = data["cold_npc_ids"];
+        for (auto i = 1; i <= 3; ++i) {
+            const auto id = character_id(ids[i].get<int>());
+            CHECK(g->find_npc(id) == nullptr);
+            CHECK(get_overmapbuffer(dimension_id("trkv_dev01_raid")).find_npc(id) == nullptr);
+            CHECK(get_overmapbuffer(dimension_id("trkv_dev01_home")).find_npc(id) == nullptr);
+        }
+    }
     std::fprintf(stderr, "Tarkov cold: reader scenario completed\n");
     trkv_cold_manifest();
 }

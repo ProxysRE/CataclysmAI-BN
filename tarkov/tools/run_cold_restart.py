@@ -24,6 +24,7 @@ def run(bn: Path, output: Path, executable: Path | None = None) -> None:
             manifest = root / (name + ".world")
             report = output / ("tarkov-cold-" + name + ".xml")
             log = output / ("tarkov-cold-" + name + ".log")
+            report.unlink(missing_ok=True)
             env = os.environ.copy()
             for key in ("TRKV_COLD_SOURCE", "TRKV_COLD_STAGE", "TRKV_COLD_MANIFEST"):
                 env.pop(key, None)
@@ -53,7 +54,7 @@ def run(bn: Path, output: Path, executable: Path | None = None) -> None:
                 source = Path(manifest.read_text(encoding="utf-8").strip()).resolve()
                 if not source.is_relative_to(root) or not source.is_dir():
                     raise RuntimeError("Exported world is not a disposable fixture")
-        print("PASS cold active load, cold cleanup replay, stash, equipment and next raid", flush=True)
+        print("PASS cold active load, patrol survivors/casualty, cleanup replay, stash, equipment and next raid", flush=True)
 
 
 if __name__ == "__main__":
