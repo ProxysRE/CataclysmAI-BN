@@ -1247,10 +1247,7 @@
     "name": "hot spring",
     "sym": ".",
     "color": "light_blue",
-    "see_cost": 0,
-    "flags": [
-      "WATER"
-    ]
+    "see_cost": 0
   },
   {
     "type": "overmap_terrain",

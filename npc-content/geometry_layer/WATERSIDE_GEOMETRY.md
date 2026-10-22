@@ -27,3 +27,7 @@ A seventeenth concrete terrain retains hot-water movement, water flags and heat_
 The adaptation report includes 148 deterministic underwater/navigation expectations, with random-rotation invariance filtering. river_north is explicitly classified as a generated BN river identity. Zero typed obligations does not imply successful native schema loading or game generation. No native patch was changed in this preparation step. Run the adapter with --check.
 
 User scope decision (2026-10-22): do not port DDA collected-water temperature. Stock BN water collection is enabled and thermal collection is not a release gate. Waterside input and output use explicit UTF-8; the old Windows cp1252 row-width failure is reproduced and the corrected extractor passes under a simulated cp1252 default.
+
+## BN overmap classification
+
+DDA's generic WATER flag on hot_springs is unavailable in pinned BN. It is archived without a replacement classification; local water terrain and collection are preserved. LAKE and RIVER have distinct BN semantics and are not substituted. The complete preview's overmap flags are checked against the authenticated BN overmap.h registry before compilation.

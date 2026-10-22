@@ -76,6 +76,10 @@ def prepare(check=False):
             # Preserve the untouched predecessor; clear debris only where source
             # geometry paints a terrain tile, as in the verified Godco adapter.
             e['object']['remove_all']={g:{}for g,t in e['object'].get('terrain',{}).items()if t!='t_null'}
+    for e in entries:
+        if e['type']=='overmap_terrain'and e['id']==['hot_springs']:
+            assert e['flags']==['WATER']
+            deferred.append({'source':'hot_springs','field':'flags','value':e.pop('flags'),'note':'BN has no generic WATER overmap flag; local water terrain remains unchanged. No lake or river classification is substituted.'})
     own=index_entries(entries)
     from compare_location_catalog import read_sources
     river=next(e for path,text in read_sources()[0].items()if path=='bn/data/json/overmap/overmap_terrain/overmap_terrain_river.json'for e in json.loads(text)if e.get('id')=='river')

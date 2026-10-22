@@ -127,3 +127,9 @@ Prepared 19 isolated concrete terrain definitions and the flat-space structural 
 Ordinary carpet, metal roofing, concrete roof geometry, regional vegetation, metal wall and road context reuse BN counterparts with documented material/appearance/durability differences. BN wire and steel_chunk replace source component tiers. The source road abstract expands into the compatible generic_transportation base, and BN LINEAR road data justifies road_ns. Reader/ledge EOC actions, shooting objects, emissions, tools and unsupported display groups remain archived; no generic science-card access is added.
 
 Native schema, all-floor generation, source device mechanics, actor traversal and combat are pending. No native patch or confirmed percentage change while the existing waterside build continues: 21/51 (41.2%).
+
+## Waterside overmap-flag loading fix
+
+Run 39786965319 compiled successfully and passed core NPC and optional Civilians/Exotic Ammo tests. Geometry initialization stopped on DDA's generic WATER overmap flag, which pinned BN does not recognize; installed suites and packaging were not reached.
+
+The hot-spring overmap classification is now archived without substituting a lake or river. Its local water terrain, ordinary BN collection and heat radiation are unchanged. Added a checksum-authenticated BN overmap header and a precompile audit of every preview overmap flag, including extend/delete flag sets. A mutation probe rejects WATER and the current preview passes the entire supported-flag audit. Rebuilt the preview patch sections and verified their application reproduces native source bytes. Corrected Windows source/installed validation remains pending; confirmed progress stays 21/51 (41.2%).

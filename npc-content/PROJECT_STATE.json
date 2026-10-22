@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Fix Windows UTF-8 waterside preflight and enable stock BN spring water collection; corrected native run pending.",
+  "stage": "Fix unsupported DDA WATER overmap flag; corrected 26-case Windows validation pending.",
   "package": "Isolated Road",
   "native_compilation": "Successful Windows run 39686560752: source+installed 73 core /11030, 10 optional /2224, 23 geometry /648216; portable artifact 12389029662.",
   "remaining": [
@@ -795,7 +795,7 @@
     "runtime_validated": false,
     "status": "26 isolated geometry cases embedded; waterside validation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "cd0853946bc3a0da0cd31ab2c878bde3407fcb2e6f2f0b0bef9bddfa6fd9f8ae",
+    "native_patch_sha256": "d5b809157222bae50c4d11d107271c83d74421d38e02713afdd8c21dc16886c6",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -836,6 +836,16 @@
     "validated_geometry_cases": 23,
     "validated_geometry_placements": 704,
     "latest_failed_attempt": {
+      "head": "d186031d749fcf61c13874ed7e25ba4c60ec650a",
+      "run_id": 39786965319,
+      "compile": "success",
+      "source_core": "passed",
+      "source_optional": "passed",
+      "geometry": "Initialization failed: unsupported overmap flag WATER on hot_springs",
+      "installed_and_package": "not reached",
+      "fix": "Archive generic WATER classification without imposing LAKE/RIVER; precompile checks cover every preview overmap flag against pinned BN registry"
+    },
+    "encoding_preflight_attempt": {
       "head": "f7546ac577cbde529f111fa7fdbcd13617b62008",
       "run_id": 39776684153,
       "compile": "not reached",

@@ -839,6 +839,14 @@
       "source": "t_water_hot",
       "field": "connect_groups",
       "value": "WATER"
+    },
+    {
+      "source": "hot_springs",
+      "field": "flags",
+      "value": [
+        "WATER"
+      ],
+      "note": "BN has no generic WATER overmap flag; local water terrain remains unchanged. No lake or river classification is substituted."
     }
   ],
   "preserved": [
