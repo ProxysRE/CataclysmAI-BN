@@ -47,6 +47,7 @@ package.loaded.trkv_lifecycle, package.loaded.trkv_bn = raid, api
 package.loaded.trkv_participants = members
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
 package.loaded.trkv_deployment = dofile("tarkov/mods/trkv_raid_core/trkv_deployment.lua")
+package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
 package.loaded.trkv_encounter = dofile("tarkov/mods/trkv_raid_core/trkv_encounter.lua")
 dofile("tarkov/mods/trkv_raid_core/main.lua")
 local function context()
@@ -129,8 +130,10 @@ local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.
 TripointAbsMs = { new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end }
 gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } end
 gapi.get_all_npcs = function() return actors end
+gapi.rng = function(low, high) assert(low == 1 and high == 4); return 1 end
 gapi.spawn_npc_at = function(template, point)
-  assert(where == "raid" and (template == "trkv_patrol_tester" or template == "trkv_combat_tester"))
+  assert(where == "raid" and (template == "trkv_patrol_tester" or template == "trkv_combat_tester" or
+    template == "trkv_combat_field_tester"))
   last_template = template
   spawned = spawned + 1
   local actor = { position = point, moves = 1000, values = {}, id = 100 + spawned }
@@ -202,12 +205,28 @@ mod.start() -- Retry via the existing menu: mode must remain combat.
 assert(last_template == "trkv_combat_tester" and spawned == 4 and #actors == 1)
 local combat_id = root.participants.slots.combat_1.id
 assert(root.participants.actors[tostring(combat_id)].side == "hostile_test")
+assert(root.participants.slots.combat_1.loadout == "rifle_civilian_v1")
+assert(actors[1]:get_value("trkv_loadout") == "rifle_civilian_v1")
 root.raid, root.participants = copy(root.raid), copy(root.participants)
 root.raid.encounter_deployed = false
+gapi.rng = function() error("Load rerolled equipment") end
 mod.loaded(); tick()
 assert(spawned == 4 and root.raid.encounter_deployed and root.raid.encounter == "combat")
 assert(not package.loaded.trkv_encounter.ensure(root.participants, context(), "unknown"))
 print("PASS combat menu, production template, pending retry mode and restored deployment without duplicates")
+mod.extract(); closed(); actors = {}
+gapi.rng = function() return 4 end
+assert(mod.depart("combat") and last_template == "trkv_combat_field_tester" and spawned == 5)
+local field_id = root.participants.slots.combat_1.id
+assert(root.participants.actors[tostring(field_id)].loadout == "rifle_field_v1")
+root.participants.slots.combat_1 = { status = "creating", loadout = "rifle_field_v1" }
+actors[1]:set_value("trkv_loadout", "rifle_civilian_v1")
+local recovered, why = package.loaded.trkv_encounter.ensure(root.participants, context(), "combat")
+assert(not recovered and why == "pending" and spawned == 5)
+actors[1]:set_value("trkv_loadout", "rifle_field_v1")
+assert(package.loaded.trkv_encounter.ensure(root.participants, context(), "combat") and spawned == 5)
+assert(root.participants.slots.combat_1.loadout == "rifle_field_v1")
+print("PASS field preset and reconciliation reject mismatched live loadout without spawning")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }

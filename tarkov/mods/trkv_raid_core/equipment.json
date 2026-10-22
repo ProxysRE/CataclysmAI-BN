@@ -20,5 +20,40 @@
       "tshirt",
       "sneakers"
     ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_field_weapon",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "item": "m4a1",
+        "ammo-item": "223",
+        "charges": 30
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_field_clothes",
+    "subtype": "collection",
+    "items": [
+      "pants_cargo",
+      "hoodie",
+      "sneakers"
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_field_carried",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "stanag30",
+        "ammo-item": "223",
+        "charges": 30,
+        "count": 2
+      }
+    ]
   }
 ]

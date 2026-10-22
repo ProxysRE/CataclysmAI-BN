@@ -74,6 +74,7 @@ def main():
     lua.globals().package.loaded.trkv_patrol = lua.execute((MOD / "trkv_patrol.lua").read_text())
     lua.globals().package.loaded.trkv_participants = lua.execute((MOD / "trkv_participants.lua").read_text())
     lua.globals().package.loaded.trkv_deployment = lua.execute((MOD / "trkv_deployment.lua").read_text())
+    lua.globals().package.loaded.trkv_loadouts = lua.execute((MOD / "trkv_loadouts.lua").read_text())
     lua.globals().package.loaded.trkv_encounter = lua.execute((MOD / "trkv_encounter.lua").read_text())
     lua.execute(source)
     lua.execute('game.mod_runtime.trkv_raid_core.start()')

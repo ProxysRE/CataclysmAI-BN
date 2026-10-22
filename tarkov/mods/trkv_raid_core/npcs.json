@@ -112,5 +112,23 @@
     "mission": 0,
     "chat": "TALK_STRANGER_NEUTRAL",
     "faction": "trkv_combat_test"
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_COMBAT_FIELD",
+    "copy-from": "TRKV_COMBAT_TEST",
+    "weapon_override": "trkv_combat_field_weapon",
+    "worn_override": "trkv_combat_field_clothes",
+    "carry_override": "trkv_combat_field_carried"
+  },
+  {
+    "type": "npc",
+    "id": "trkv_combat_field_tester",
+    "name_suffix": "Combat test rifleman",
+    "class": "TRKV_COMBAT_FIELD",
+    "attitude": 10,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_combat_test"
   }
 ]

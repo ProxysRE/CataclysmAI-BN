@@ -144,6 +144,8 @@ elseif test_data.stage == "npc_combat_depart" then
   assert(api.at_home() and state.phase == "home")
   assert(game.mod_runtime.trkv_raid_core.depart("combat"))
   test_data.combat_id = root.participants.slots.combat_1.id
+  test_data.combat_loadout = root.participants.slots.combat_1.loadout
+  assert(package.loaded.trkv_loadouts.template(test_data.combat_loadout))
   assert(state.encounter == "combat" and state.encounter_deployed)
   assert(#gapi.get_all_npcs() == 1)
 elseif test_data.stage == "npc_combat_checkpoint" then
@@ -151,7 +153,9 @@ elseif test_data.stage == "npc_combat_checkpoint" then
 elseif test_data.stage == "npc_combat_restored" then
   assert(state.encounter == "combat" and state.encounter_deployed and #gapi.get_all_npcs() == 1)
   assert(root.participants.slots.combat_1.id == test_data.combat_id)
-  assert(participants.find(root.participants, context(), test_data.combat_id).side == "hostile_test")
+  assert(root.participants.slots.combat_1.loadout == test_data.combat_loadout)
+  local member = participants.find(root.participants, context(), test_data.combat_id)
+  assert(member.side == "hostile_test" and member.loadout == test_data.combat_loadout)
 elseif test_data.stage == "npc_live_casualty_before" then
   test_data.casualty_id = test_data.group_ids[3]
   test_data.casualty_sequence, test_data.casualty_deadline = state.sequence, state.deadline

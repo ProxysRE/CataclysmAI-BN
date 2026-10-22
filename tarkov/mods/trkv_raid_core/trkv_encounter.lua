@@ -1,5 +1,6 @@
 -- Technical encounters. These actors do not define final PMC diplomacy.
 local deployment = require("trkv_deployment")
+local loadouts = require("trkv_loadouts")
 local encounter = {}
 local specs = {}
 for i, x in ipairs({ 14, 16, 20 }) do
@@ -11,26 +12,34 @@ local combat = { { slot = "combat_1", side = "hostile_test", squad = "combat_tes
 function encounter.ensure(members, context, mode)
   mode = mode or "patrol"
   if mode ~= "patrol" and mode ~= "combat" then return false, "unknown_encounter" end
-  local template = mode == "combat" and "trkv_combat_tester" or "trkv_patrol_tester"
-  return deployment.ensure(members, context, mode == "combat" and combat or specs, {
-    spawn = function(spec, sequence)
+  local adapter = {
+    spawn = function(spec, sequence, choice)
+      local template = "trkv_patrol_tester"
+      if mode == "combat" then template = loadouts.template(choice) end
+      if not template then return nil end
       local point = spec.route[1]
       local actor = gapi.spawn_npc_at(template, TripointAbsMs.new(point.x, point.y, point.z))
       if not actor then return nil end
       actor:set_value("trkv_spawn_slot", spec.slot)
       actor:set_value("trkv_spawn_sequence", string.format("%d", sequence))
+      if choice then actor:set_value("trkv_loadout", choice) end
       return actor:getID():get_value()
     end,
-    find_slot = function(sequence, slot)
+    find_slot = function(sequence, slot, choice)
       local found = {}
       for _, actor in ipairs(gapi.get_all_npcs()) do
         if actor:get_value("trkv_spawn_slot") == slot and
-            actor:get_value("trkv_spawn_sequence") == string.format("%d", sequence) then
+            actor:get_value("trkv_spawn_sequence") == string.format("%d", sequence) and
+            (choice == nil or actor:get_value("trkv_loadout") == choice) then
           found[#found + 1] = actor:getID():get_value()
         end
       end
       return found
     end,
-  })
+  }
+  if mode == "combat" then
+    adapter.select = function() return loadouts.choose(gapi.rng) end
+  end
+  return deployment.ensure(members, context, mode == "combat" and combat or specs, adapter)
 end
 return encounter

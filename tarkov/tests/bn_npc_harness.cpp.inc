@@ -523,13 +523,28 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     // shipped JSON, not from the test's spawn/equipment adapters.
     probe("npc_combat_depart");
     const auto combat_id = character_id(data["combat_id"].get<int>());
+    const std::string selected_loadout = data["combat_loadout"];
+    const auto field_loadout = selected_loadout == "rifle_field_v1";
+    const auto initial_ammo = field_loadout ? 30 : 17;
+    const std::string combat_weapon = field_loadout ? "m4a1" : "ar15";
     const std::map<std::string, int> expected_hp = {
         {"head", 35}, {"torso", 85}, {"arm_l", 60}, {"arm_r", 60}, {"leg_l", 65}, {"leg_r", 65}
     };
     const auto check_combat_actor = [&](int ammo, int barter = 0, int arm_hp = 60) {
         const auto* actor = g->find_npc(combat_id);
         REQUIRE(actor != nullptr);
-        CHECK(actor->myclass == npc_class_id("TRKV_COMBAT_TEST"));
+        CHECK(actor->myclass == npc_class_id(field_loadout ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST"));
+        CHECK(actor->get_value("trkv_loadout") == selected_loadout);
+        CHECK(actor->is_wearing(itype_id(field_loadout ? "pants_cargo" : "jeans")));
+        CHECK(actor->is_wearing(itype_id(field_loadout ? "hoodie" : "tshirt")));
+        auto spare_magazines = 0;
+        for (const auto* value : actor->all_items(false)) {
+            if (value->typeId().str() == "stanag30" && value != actor->primary_weapon().magazine_current()) {
+                ++spare_magazines;
+                CHECK(value->ammo_remaining() == 30);
+            }
+        }
+        CHECK(spare_magazines == (field_loadout ? 2 : 0));
         CHECK(actor->get_attitude() == NPCATT_KILL);
         CHECK(actor->get_str_base() == 10);
         CHECK(actor->get_dex_base() == 10);
@@ -542,7 +557,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(actor->get_skill_level(skill_id("barter")) == barter);
         CHECK(actor->get_skill_level(skill_id("gun")) == 6);
         CHECK(actor->get_skill_level(skill_id("rifle")) == 6);
-        CHECK(actor->primary_weapon().typeId().str() == "ar15");
+        CHECK(actor->primary_weapon().typeId().str() == combat_weapon);
         CHECK(actor->primary_weapon().damage() == 0);
         CHECK(actor->primary_weapon().ammo_remaining() == ammo);
         for (const auto& part : actor->get_all_body_parts()) {
@@ -550,13 +565,13 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
         CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == arm_hp);
     };
-    check_combat_actor(17);
+    check_combat_actor(initial_ammo);
     REQUIRE(g->save(false));
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_combat_restored");
-    check_combat_actor(17);
-    auto remaining_ammo = 17;
+    check_combat_actor(initial_ammo);
+    auto remaining_ammo = initial_ammo;
     {
         auto* actor = g->find_npc(combat_id);
         REQUIRE(actor != nullptr);
@@ -571,7 +586,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         actor->set_moves(1000);
         actor->move(); // Player is still behind the wall: production patrol runs.
         REQUIRE(actor->abs_pos() == tripoint_abs_ms(402, 393, 0));
-        REQUIRE(actor->primary_weapon().ammo_remaining() == 17);
+        REQUIRE(actor->primary_weapon().ammo_remaining() == initial_ammo);
         // Vanilla gun use is gated by perceived danger. Use an armed target,
         // as in the earlier combat probe, without altering the tested NPC.
         auto target_rifle = item::spawn("ar15");
@@ -592,11 +607,11 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
                  << ", ammo " << actor->primary_weapon().ammo_remaining());
             REQUIRE(actor->get_moves() < 100);
             REQUIRE(actor->current_target() == static_cast<Creature*>(&player));
-            REQUIRE(actor->primary_weapon().typeId().str() == "ar15");
+            REQUIRE(actor->primary_weapon().typeId().str() == combat_weapon);
             remaining_ammo = actor->primary_weapon().ammo_remaining();
-            if (remaining_ammo < 17) { break; }
+            if (remaining_ammo < initial_ammo) { break; }
         }
-        REQUIRE(remaining_ammo < 17);
+        REQUIRE(remaining_ammo < initial_ammo);
         actor->set_skill_level(skill_id("barter"), 2); // Saved progress, not a new spawn.
         actor->set_part_hp_cur(bodypart_str_id("arm_l").id(), 17);
         for (auto repeat = 0; repeat < 5; ++repeat) { actor->recalc_hp(); }
@@ -615,7 +630,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     CHECK(get_overmapbuffer(home_dim).find_npc(combat_id) == nullptr);
     for (auto sample_index = 0; sample_index < 8; ++sample_index) {
         npc sample;
-        sample.randomize(npc_class_id("TRKV_COMBAT_TEST"));
+        const auto sample_field = sample_index % 2 != 0;
+        sample.randomize(npc_class_id(sample_field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST"));
         CHECK(sample.get_str_base() == 10);
         CHECK(sample.get_dex_base() == 10);
         CHECK(sample.get_int_base() == 8);
@@ -626,7 +642,17 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(sample.personality.altruism == 0);
         CHECK(sample.get_skill_level(skill_id("barter")) == 0);
         CHECK(sample.get_skill_level(skill_id("gun")) == 6);
-        CHECK(sample.primary_weapon().ammo_remaining() == 17);
+        CHECK(sample.primary_weapon().typeId().str() == (sample_field ? "m4a1" : "ar15"));
+        CHECK(sample.primary_weapon().ammo_remaining() == (sample_field ? 30 : 17));
+        CHECK(sample.is_wearing(itype_id(sample_field ? "hoodie" : "tshirt")));
+        auto spares = 0;
+        for (const auto* value : sample.all_items(false)) {
+            if (value->typeId().str() == "stanag30" && value != sample.primary_weapon().magazine_current()) {
+                ++spares;
+                CHECK(value->ammo_remaining() == 30);
+            }
+        }
+        CHECK(spares == (sample_field ? 2 : 0));
         for (const auto& part : sample.get_all_body_parts()) {
             const auto maximum = expected_hp.at(part->main_part.str());
             CHECK(sample.get_part_hp_max(part) == maximum);

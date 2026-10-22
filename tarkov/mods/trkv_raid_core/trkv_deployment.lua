@@ -33,26 +33,35 @@ function deployment.ensure(state, context, specs, api)
       if slot then
         -- A prior creation may have succeeded before registration was saved.
         -- Reconcile a uniquely tagged engine actor; never blindly spawn a second one.
-        local found = api.find_slot(context.sequence, spec.slot)
+        local found = api.find_slot(context.sequence, spec.slot, slot.loadout)
         if #found ~= 1 then return false, #found == 0 and "pending" or "duplicate_slot" end
         id = found[1]
       else
-        state.slots[spec.slot] = { status = "creating" }
-        local ok, created = pcall(api.spawn, spec, context.sequence)
+        local choice
+        if api.select then
+          local ok, selected = pcall(api.select, spec, context.sequence)
+          if not ok or type(selected) ~= "string" or selected == "" then return false, "selection_failed" end
+          choice = selected
+        end
+        state.slots[spec.slot] = { status = "creating", loadout = choice }
+        local ok, created = pcall(api.spawn, spec, context.sequence, choice)
         if not ok or created == nil then return false, "spawn_failed" end
         id = created
       end
       local member = participants.find(state, context, id)
+      local choice = state.slots[spec.slot].loadout
       if member then
-        if member.deployment_slot ~= spec.slot or member.side ~= spec.side or member.squad ~= spec.squad then
+        if member.deployment_slot ~= spec.slot or member.side ~= spec.side or member.squad ~= spec.squad or
+            (choice ~= nil and member.loadout ~= choice) then
           return false, "registration_conflict"
         end
       else
         member = participants.register(state, context.sequence, id, spec.side, spec.squad, spec.route)
         if not member then return false, "registration_failed" end
         member.deployment_slot = spec.slot
+        member.loadout = choice
       end
-      state.slots[spec.slot] = { status = "ready", id = id }
+      state.slots[spec.slot] = { status = "ready", id = id, loadout = choice }
     end
     -- A ready slot remains consumed even if its actor subsequently dies or disappears.
     -- A load/extra terminal interaction must never respawn a defeated opponent.
