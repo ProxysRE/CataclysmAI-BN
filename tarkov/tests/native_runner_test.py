@@ -6,6 +6,8 @@ import unittest
 from unittest.mock import patch
 import subprocess
 import os
+import io
+from contextlib import redirect_stdout
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from run_native_checks import run, validate_report
@@ -64,12 +66,22 @@ class NativeGateTest(unittest.TestCase):
     def test_npc_probe_propagates_failed_process_with_report(self):
         with tempfile.TemporaryDirectory() as scratch:
             root = Path(scratch)
-            def fail(*args, **kwargs):
-                (root / "tarkov-npc.xml").write_text("<testsuites><testcase/></testsuites>")
-                raise subprocess.CalledProcessError(1, args[0])
-            with patch("run_npc_probe.subprocess.run", side_effect=fail):
-                with self.assertRaises(subprocess.CalledProcessError):
-                    run_npc(root, root / "test", root)
+            for xml, expected in (
+                ('<testsuites><testcase><failure message="ammo mismatch">30 != 60</failure></testcase></testsuites>',
+                 "ammo mismatch"),
+                ("<malformed", "Could not read NPC failure report"),
+            ):
+                with self.subTest(xml=xml):
+                    error = subprocess.CalledProcessError(1, ["native-test"])
+                    def fail(*args, **kwargs):
+                        (root / "tarkov-npc.xml").write_text(xml)
+                        raise error
+                    output = io.StringIO()
+                    with patch("run_npc_probe.subprocess.run", side_effect=fail), redirect_stdout(output):
+                        with self.assertRaises(subprocess.CalledProcessError) as raised:
+                            run_npc(root, root / "test", root)
+                    self.assertIs(raised.exception, error)
+                    self.assertIn(expected, output.getvalue())
 
     def test_npc_probe_selects_platform_backend_and_preserves_overrides(self):
         with tempfile.TemporaryDirectory() as scratch:

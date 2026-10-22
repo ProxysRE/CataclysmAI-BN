@@ -683,12 +683,18 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         const auto* actor = g->find_npc(reload_id);
         REQUIRE(actor != nullptr);
         magazine_state result;
-        for (const auto* value : actor->all_items(false)) {
-            if (value->typeId().str() != "stanag30") { continue; }
+        const auto* installed = actor->primary_weapon().magazine_current();
+        const auto record = [&](const item* value, bool in_weapon) {
+            if (!value || value->typeId().str() != "stanag30") { return; }
             const auto marker = value->get_var("trkv_reload_probe");
             REQUIRE_FALSE(marker.empty());
-            REQUIRE(result.emplace(marker, std::make_pair(value->ammo_remaining(),
-                value == actor->primary_weapon().magazine_current())).second);
+            REQUIRE(result.emplace(marker, std::make_pair(value->ammo_remaining(), in_weapon)).second);
+        };
+        // visit_internal deliberately does not descend into guns or magazines.
+        // all_items covers carried spares; the fitted magazine needs its accessor.
+        record(installed, true);
+        for (const auto* value : actor->all_items(false)) {
+            if (value != installed) { record(value, false); }
         }
         return result;
     };
@@ -709,10 +715,19 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             }
         }
         REQUIRE(spares == 2);
+        const auto before_drain = magazine_snapshot();
+        REQUIRE(before_drain.size() == 3);
+        REQUIRE(before_drain.at("initial").second);
+        auto issued_rounds = 0;
+        for (const auto& entry : before_drain) { issued_rounds += entry.second.first; }
+        REQUIRE(issued_rounds == 90);
         // Drain only the original loaded magazine; no rounds or reload items are
         // supplied by the test. The two original spare magazines remain intact.
         REQUIRE(actor->primary_weapon().ammo_consume(30, actor->bub_pos()) == 30);
         REQUIRE(actor->primary_weapon().ammo_remaining() == 0);
+        auto rounds_after_drain = 0;
+        for (const auto& entry : magazine_snapshot()) { rounds_after_drain += entry.second.first; }
+        REQUIRE(rounds_after_drain == 60);
         auto& player = get_avatar();
         player.set_mutation(trait_id("DEBUG_NODMG"));
         const auto restore_damage = on_out_of_scope([&]() {

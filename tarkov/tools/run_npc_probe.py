@@ -3,6 +3,7 @@ import argparse
 import os
 from pathlib import Path
 import subprocess
+import xml.etree.ElementTree as ET
 
 from run_native_checks import validate_report
 
@@ -22,6 +23,16 @@ def run(bn: Path, executable: Path, output: Path) -> None:
         with log.open("w", encoding="utf-8") as stream:
             subprocess.run(command, cwd=bn, env=env, stdout=stream,
                            stderr=subprocess.STDOUT, timeout=900, check=True)
+    except subprocess.CalledProcessError:
+        # The JUnit reporter writes assertions to XML, not stdout. Surface them
+        # on Windows too, while retaining the original failed process status.
+        if report.exists():
+            try:
+                for failure in ET.parse(report).iter("failure"):
+                    print(ET.tostring(failure, encoding="unicode")[:16000], flush=True)
+            except (ET.ParseError, OSError) as error:
+                print("Could not read NPC failure report: " + str(error), flush=True)
+        raise
     finally:
         print(log.read_text(encoding="utf-8", errors="replace")[-16000:], flush=True)
     validate_report(report)
