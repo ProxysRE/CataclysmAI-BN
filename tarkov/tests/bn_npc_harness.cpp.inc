@@ -518,4 +518,64 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     for (const auto id : timeout_group) { CHECK(g->find_npc(id) == nullptr); }
     probe("npc_live_empty");
     probe("npc_extract");
+    // Player-selectable hostile encounter: equipment and attitude come from
+    // shipped JSON, not from the test's spawn/equipment adapters.
+    probe("npc_combat_depart");
+    const auto combat_id = character_id(data["combat_id"].get<int>());
+    const auto check_combat_actor = [&](int ammo) {
+        const auto* actor = g->find_npc(combat_id);
+        REQUIRE(actor != nullptr);
+        CHECK(actor->myclass == npc_class_id("TRKV_COMBAT_TEST"));
+        CHECK(actor->get_attitude() == NPCATT_KILL);
+        CHECK(actor->get_skill_level(skill_id("gun")) == 6);
+        CHECK(actor->get_skill_level(skill_id("rifle")) == 6);
+        CHECK(actor->primary_weapon().typeId().str() == "ar15");
+        CHECK(actor->primary_weapon().damage() == 0);
+        CHECK(actor->primary_weapon().ammo_remaining() == ammo);
+    };
+    check_combat_actor(17);
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_combat_restored");
+    check_combat_actor(17);
+    auto remaining_ammo = 17;
+    {
+        auto* actor = g->find_npc(combat_id);
+        REQUIRE(actor != nullptr);
+        auto& player = get_avatar();
+        // Keep random critical damage from interrupting this shooting probe.
+        player.set_mutation(trait_id("DEBUG_NODMG"));
+        const auto restore_damage = on_out_of_scope([&]() {
+            player.unset_mutation(trait_id("DEBUG_NODMG"));
+            player.set_all_parts_hp_to_max();
+            player.clear_effects();
+        });
+        actor->set_moves(1000);
+        actor->move(); // Player is still behind the wall: production patrol runs.
+        REQUIRE(actor->abs_pos() == tripoint_abs_ms(402, 393, 0));
+        REQUIRE(actor->primary_weapon().ammo_remaining() == 17);
+        player.setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+        set_time(calendar::turn);
+        REQUIRE(actor->sees(player));
+        for (auto decision = 0; decision < 30; ++decision) {
+            actor->set_moves(100);
+            actor->move();
+            REQUIRE(actor->get_moves() < 100);
+            REQUIRE(actor->current_target() == static_cast<Creature*>(&player));
+            REQUIRE(actor->primary_weapon().typeId().str() == "ar15");
+            remaining_ammo = actor->primary_weapon().ammo_remaining();
+            if (remaining_ammo < 17) { break; }
+        }
+        REQUIRE(remaining_ammo < 17);
+    }
+    probe("npc_combat_checkpoint");
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_combat_restored");
+    check_combat_actor(remaining_ammo);
+    probe("npc_extract");
+    CHECK(g->find_npc(combat_id) == nullptr);
+    CHECK(get_overmapbuffer(home_dim).find_npc(combat_id) == nullptr);
 }

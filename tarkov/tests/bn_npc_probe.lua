@@ -140,6 +140,18 @@ elseif test_data.stage == "npc_live_path_blocked" then
   assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(394, 392, 0))) == TerId.new("t_wall"):int_id())
 elseif test_data.stage == "npc_live_timeout" then
   state.deadline = api.now()
+elseif test_data.stage == "npc_combat_depart" then
+  assert(api.at_home() and state.phase == "home")
+  assert(game.mod_runtime.trkv_raid_core.depart("combat"))
+  test_data.combat_id = root.participants.slots.combat_1.id
+  assert(state.encounter == "combat" and state.encounter_deployed)
+  assert(#gapi.get_all_npcs() == 1)
+elseif test_data.stage == "npc_combat_checkpoint" then
+  state.encounter_deployed = false
+elseif test_data.stage == "npc_combat_restored" then
+  assert(state.encounter == "combat" and state.encounter_deployed and #gapi.get_all_npcs() == 1)
+  assert(root.participants.slots.combat_1.id == test_data.combat_id)
+  assert(participants.find(root.participants, context(), test_data.combat_id).side == "hostile_test")
 elseif test_data.stage == "npc_live_casualty_before" then
   test_data.casualty_id = test_data.group_ids[3]
   test_data.casualty_sequence, test_data.casualty_deadline = state.sequence, state.deadline

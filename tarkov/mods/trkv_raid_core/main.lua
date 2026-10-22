@@ -62,20 +62,21 @@ local function report(state)
   if state.last_error ~= "" then gapi.add_msg(_(state.last_error)) end
 end
 
-local function deploy_patrol()
+local function deploy_encounter()
   local state = current_state()
-  if state.encounter ~= "patrol" or state.encounter_deployed or state.phase ~= "active" or not api.at_raid() then
+  if (state.encounter ~= "patrol" and state.encounter ~= "combat") or state.encounter_deployed or
+      state.phase ~= "active" or not api.at_raid() then
     return
   end
   local ok, reason = encounter.ensure(current_participants(), {
     phase = state.phase, sequence = state.sequence, at_raid = true,
-  })
+  }, state.encounter)
   if ok then
     state.encounter_deployed = true
   elseif not state.deployment_warning then
     state.deployment_warning = true
-    print("Tarkov patrol deployment paused: " .. tostring(reason))
-    gapi.add_msg(_("[Tarkov DEV0.1] Patrol deployment paused; leave the raid and start a new one."))
+    print("Tarkov encounter deployment paused: " .. tostring(reason))
+    gapi.add_msg(_("[Tarkov DEV0.1] Encounter deployment paused; leave the raid and start a new one."))
   end
 end
 
@@ -93,11 +94,11 @@ mod.depart = function(mode)
   local state = current_state()
   if not api.at_home() then return false end
   if state.phase == "home" then
-    if mode ~= "empty" and mode ~= "patrol" then return false end
+    if mode ~= "empty" and mode ~= "patrol" and mode ~= "combat" then return false end
     state.encounter, state.encounter_deployed, state.deployment_warning = mode, false, false
   end
   local entered = raid.start(state, api, 30 * 60)
-  if entered then deploy_patrol() end
+  if entered then deploy_encounter() end
   report(state)
   return entered
 end
@@ -109,11 +110,15 @@ mod.start = function()
   local menu = UiList.new()
   menu:title(_("Tarkov DEV0.1: departure terminal"))
   menu:add(1, state.phase == "entering" and _("Retry pending raid entry") or _("Enter test raid (30 game minutes)"))
-  if state.phase == "home" then menu:add(3, _("Enter patrol test raid (3 neutral NPCs)")) end
+  if state.phase == "home" then
+    menu:add(3, _("Enter patrol test raid (3 neutral NPCs)"))
+    menu:add(4, _("Enter combat test raid (1 hostile rifleman)"))
+  end
   menu:add(2, _("Cancel"))
   local choice = menu:query()
   if choice == 1 then mod.depart("empty")
-  elseif choice == 3 and state.phase == "home" then mod.depart("patrol") end
+  elseif choice == 3 and state.phase == "home" then mod.depart("patrol")
+  elseif choice == 4 and state.phase == "home" then mod.depart("combat") end
 end
 
 mod.extract = function()
@@ -172,7 +177,7 @@ local function tick()
       end
     end
   end
-  deploy_patrol()
+  deploy_encounter()
   return true
 end
 gapi.add_on_every_x_hook(TimeDuration.from_seconds(1), tick)

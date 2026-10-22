@@ -1,0 +1,24 @@
+[
+  {
+    "type": "item_group",
+    "id": "trkv_combat_weapon",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "item": "ar15",
+        "ammo-item": "223",
+        "charges": 17
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_clothes",
+    "subtype": "collection",
+    "items": [
+      "jeans",
+      "tshirt",
+      "sneakers"
+    ]
+  }
+]

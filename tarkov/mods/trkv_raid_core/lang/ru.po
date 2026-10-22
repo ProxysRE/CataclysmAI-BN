@@ -154,3 +154,22 @@ msgstr "Тестовый патрульный"
 
 msgid "Neutral participant in the technical patrol test."
 msgstr "Нейтральный участник технической проверки патрулей."
+
+msgid "Enter combat test raid (1 hostile rifleman)"
+msgstr "Войти в боевой тестовый рейд (1 враждебный стрелок)"
+
+msgid ""
+"[Tarkov DEV0.1] Encounter deployment paused; leave the raid and start a new "
+"one."
+msgstr ""
+"[Tarkov DEV0.1] Создание участников приостановлено; покиньте рейд и начните "
+"новый."
+
+msgid "Combat test opponent"
+msgstr "Противник боевого теста"
+
+msgid "Hostile participant in the technical combat test."
+msgstr "Враждебный участник технической проверки боя."
+
+msgid "Combat test rifleman"
+msgstr "Тестовый стрелок"

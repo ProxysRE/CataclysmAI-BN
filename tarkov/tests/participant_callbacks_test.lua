@@ -124,13 +124,14 @@ print("PASS participant lifecycle: failed return/reset, checkpoint replay, repla
 
 -- Exercise the actual encounter adapter from the player departure callback.
 mod.extract(); closed()
-local spawned, actors = 0, {}
+local spawned, actors, last_template = 0, {}, nil
 local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.z == b.z end }
 TripointAbsMs = { new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end }
 gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } end
 gapi.get_all_npcs = function() return actors end
 gapi.spawn_npc_at = function(template, point)
-  assert(where == "raid" and template == "trkv_patrol_tester")
+  assert(where == "raid" and (template == "trkv_patrol_tester" or template == "trkv_combat_tester"))
+  last_template = template
   spawned = spawned + 1
   local actor = { position = point, moves = 1000, values = {}, id = 100 + spawned }
   function actor:getID() return { get_value = function() return self.id end } end
@@ -190,6 +191,23 @@ print("PASS cold probe checks saved route, side and ready slots after deployment
 mod.extract(); closed()
 assert(mod.depart("empty") and root.raid.encounter == "empty" and spawned == 3)
 print("PASS selectable patrol encounter, pending mode, production adapter/AI callback and reload without duplicates")
+mod.extract(); closed()
+actors = {} -- Simulate engine dimension reset clearing the active actors.
+assert(not mod.depart("unknown") and spawned == 3)
+fail_enter, answer = true, 4
+mod.start()
+assert(root.raid.phase == "entering" and root.raid.encounter == "combat" and spawned == 3)
+fail_enter, answer = false, 1
+mod.start() -- Retry via the existing menu: mode must remain combat.
+assert(last_template == "trkv_combat_tester" and spawned == 4 and #actors == 1)
+local combat_id = root.participants.slots.combat_1.id
+assert(root.participants.actors[tostring(combat_id)].side == "hostile_test")
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+root.raid.encounter_deployed = false
+mod.loaded(); tick()
+assert(spawned == 4 and root.raid.encounter_deployed and root.raid.encounter == "combat")
+assert(not package.loaded.trkv_encounter.ensure(root.participants, context(), "unknown"))
+print("PASS combat menu, production template, pending retry mode and restored deployment without duplicates")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }

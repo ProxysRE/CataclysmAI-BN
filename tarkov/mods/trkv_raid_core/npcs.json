@@ -11,12 +11,19 @@
     "power": 3,
     "food_supply": 0,
     "wealth": 0,
-    "relations": { "trkv_patrol_test": { "watch your back": true, "kill on sight": false } }
+    "relations": {
+      "trkv_patrol_test": {
+        "watch your back": true,
+        "kill on sight": false
+      }
+    }
   },
   {
     "type": "npc_class",
     "id": "TRKV_PATROL",
-    "name": { "str": "Patrol tester" },
+    "name": {
+      "str": "Patrol tester"
+    },
     "job_description": "Neutral participant in the technical patrol test.",
     "common": false,
     "lua_ai": "TRKV_PATROL"
@@ -30,5 +37,58 @@
     "mission": 0,
     "chat": "TALK_STRANGER_NEUTRAL",
     "faction": "trkv_patrol_test"
+  },
+  {
+    "type": "faction",
+    "id": "trkv_combat_test",
+    "name": "Combat test opponent",
+    "description": "Hostile participant in the technical combat test.",
+    "likes_u": -100,
+    "respects_u": 0,
+    "known_by_u": false,
+    "size": 1,
+    "power": 1,
+    "food_supply": 0,
+    "wealth": 0
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_COMBAT_TEST",
+    "name": {
+      "str": "Combat test rifleman"
+    },
+    "job_description": "Hostile participant in the technical combat test.",
+    "common": false,
+    "lua_ai": "TRKV_PATROL",
+    "weapon_override": "trkv_combat_weapon",
+    "worn_override": "trkv_combat_clothes",
+    "carry_override": "EMPTY_GROUP",
+    "skills": [
+      {
+        "skill": "ALL",
+        "level": {
+          "constant": 0
+        }
+      },
+      {
+        "skill": [
+          "gun",
+          "rifle"
+        ],
+        "level": {
+          "constant": 6
+        }
+      }
+    ]
+  },
+  {
+    "type": "npc",
+    "id": "trkv_combat_tester",
+    "name_suffix": "Combat test rifleman",
+    "class": "TRKV_COMBAT_TEST",
+    "attitude": 10,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_combat_test"
   }
 ]
