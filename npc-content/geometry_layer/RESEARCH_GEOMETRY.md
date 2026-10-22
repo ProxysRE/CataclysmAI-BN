@@ -27,3 +27,9 @@ Special device surfaces, shafts, luminous carpet, four reader types and the XEDR
 DDA actions, shooting objects, emissions, cutting tools and unsupported display connections are archived. Reader and ledge examination are disabled in the geometry candidate; scientific-card or ordinary-elevator behavior is not substituted. Existing GOES_DOWN markers do not certify source pseudo-ledge behavior. Component transitions and all source item references are checked, including the three-state destruction cycle.
 
 This closes static references, not native loading, combat or traversal acceptance. No native preview or engine-patch change is included in this preparation step. Run adapt_research_geometry.py --check.
+
+## Opt-in native preview prepared
+
+Morgantown, the three-floor fishing shack and every LIXA source placement are now embedded in DDA_Geometry_Preview. All source natural registrations remain archived; preview occurrences are zero. The fishing-shack upper floors use the same isolated air-only BN placement predicate as the pottery cottage. Predecessor maps remove ambient items only on source terrain-painted cells.
+
+The native fixture includes 2,383 deterministic terrain expectations, with directional coordinate rotation, and all 16 cells of the LIXA structural furniture barrier. The preview totals 29 layout cases and 823 source-special placements (plus four helicopter context cells). A separate audit checks C++ fixture coordinates against payload registrations before compilation. Source/installed native generation is pending. Physical reader/shaft surfaces do not implement passcodes, pseudo-ledge traversal, unfolding or device events. No invented access joins the -4 and -8 regions, and no additional progress percentage is claimed.

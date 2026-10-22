@@ -35,6 +35,10 @@ ROOT = Path(__file__).resolve().parent
 
 
 def check():
+    from check_geometry_terrain_schema import check as check_geometry_schema
+    check_geometry_schema()
+    from check_geometry_preview_layout import check as check_preview_layout
+    check_preview_layout()
     patch = (ROOT / 'artisan_engine.patch').read_text()
     prepare_existing_locations()
     prepare_frontage()

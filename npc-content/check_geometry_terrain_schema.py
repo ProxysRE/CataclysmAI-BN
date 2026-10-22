@@ -37,7 +37,7 @@ def validate_locations(entries,stock):
 def check():
     entries=json.loads((ROOT/'native/dda_geometry_preview.json').read_text())
     terrain=[e for e in entries if e['type']=='terrain']
-    assert len(terrain)==24
+    assert len(terrain)==43
     for e in terrain:validate(e)
     archive=ROOT/'geometry_layer/waterside_adaptation_sources'
     manifest=json.loads((archive/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))

@@ -62,6 +62,9 @@ def prepare(check=False):
             expanded.append(base)
         else:expanded.append(e)
     entries=expanded;own=index_entries(entries)
+    for e in entries:
+        if e['type']=='mapgen' and e['object'].get('predecessor_mapgen') and e['object'].get('rows'):
+            e['object']['remove_all']={g:{} for g,t in e['object'].get('terrain',{}).items() if t!='t_null'}
     # looks_like is optional presentation, not a license to invent field IDs.
     for e in physical:
         key=(e['type'],e.get('looks_like',''))
@@ -82,9 +85,27 @@ def prepare(check=False):
     walls={e['id']:e for e in physical}
     for source,target in [('t_lixa_wall','t_folded_wall'),('t_folded_wall','t_unfolded_wall'),('t_unfolded_wall','t_lixa_wall')]:
         assert walls[aliases[source]]['bash']['ter_set']==aliases[target]
+    navigation={};furniture_points={}
+    for e in entries:
+        if e['type']!='mapgen' or 'om_terrain' not in e:continue
+        omt=e['om_terrain'];matrix=[[omt]] if isinstance(omt,str) else [omt] if isinstance(omt[0],str) else omt
+        obj=e['object'];assert obj.get('rotation',0)==0,(omt,obj.get('rotation'))
+        for y,row in enumerate(obj.get('rows',[])):
+            for x,g in enumerate(row):
+                t=obj.get('terrain',{}).get(g)
+                if isinstance(t,str) and (t.startswith('dda_geo_research_') or 'stairs' in t or 'ladder' in t):
+                    navigation.setdefault(matrix[y//24][x//24],[]).append({'x':x%24,'y':y%24,'terrain':t})
+        for a in obj.get('set',[]):
+            if a.get('line')!='furniture' or not a['id'].startswith('dda_geo_research_'):continue
+            assert a['y']==a['y2'],a
+            for x in range(a['x'],a['x2']+1):
+                y=a['y']
+                furniture_points.setdefault(matrix[y//24][x//24],[]).append({'x':x%24,'y':y%24,'terrain':a['id'],'furniture':True})
     report={'status':'research_geometry_adapted_not_installed','native_embedded':False,'runtime_validated':False,
       'new_physical_definitions':dict(__import__('collections').Counter(e['type']for e in physical)),
       'aliases':aliases,'unresolved_typed_refs':missing,'generated_external_omt':['road_ns'],
+      'navigation':navigation,'navigation_points':sum(map(len,navigation.values())),
+      'structural_furniture_points':furniture_points,
       'deferred_source_fields':deferred,
       'preserved':['Source rows, special placements and ruined tent weights','LIXA wall destruction cycle with source thresholds','Source movement, coverage, flags, light and shaft markers','Source physical barrier line and XEDRA locked door geometry'],
       'adaptations':['BN green carpet replaces industrial concrete-backed carpet','BN metal flat roof replaces source metal roofs; red paint is lost; BN reinforced-concrete floor without roof supplies concrete roof geometry','BN generic metal wall replaces corrugated wall; durability differs','BN regional shrub/tree selectors replace forest-specific selectors','BN straight road replaces source forest road; surroundings differ','Source precision metal component tiers reuse BN wire/steel_chunk','DDA shooting, emissions, tools, EOC actions and unsupported display connections remain archived'],

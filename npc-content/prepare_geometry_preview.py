@@ -12,7 +12,7 @@ BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
 AIR_LOCATION='dda_geo_open_air'
-PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside')
+PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research')
 
 
 def payloads():
@@ -20,7 +20,7 @@ def payloads():
     report=json.loads((OUT/'REPORT.json').read_text())
     result=[]
     for name in PACKAGES:
-        if name in ('exodii','frontier','raider','urban','waterside'):
+        if name in ('exodii','frontier','raider','urban','waterside','research'):
             stem=name.upper()
             adapted=json.loads((OUT/(stem+'_ADAPTATION_REPORT.json')).read_text())
             assert not adapted['unresolved_typed_refs']
@@ -28,7 +28,7 @@ def payloads():
         else:
             p=report['packages'][name]
             assert not p['geometry_issues'],name
-        if name in ('exodii','frontier','raider','urban','waterside'):pass
+        if name in ('exodii','frontier','raider','urban','waterside','research'):pass
         elif name=='godco_base':
             adapted=json.loads((OUT/'GODCO_GEOMETRY_REPORT.json').read_text())
             assert not adapted['unresolved_typed_refs']
@@ -56,7 +56,7 @@ def payloads():
                 if e.get('copy-from') in omt:e['copy-from']=rename(e['copy-from'])
             elif e['type']=='mapgen':
                 if 'om_terrain'in e:e['om_terrain']=rename(e['om_terrain'])
-                else:assert e['nested_mapgen_id'].startswith(('dda_geo_godco_','dda_geo_exodii_','dda_geo_frontier_','dda_geo_raider_','dda_geo_urban_','dda_geo_waterside_'))
+                else:assert e['nested_mapgen_id'].startswith(('dda_geo_godco_','dda_geo_exodii_','dda_geo_frontier_','dda_geo_raider_','dda_geo_urban_','dda_geo_waterside_','dda_geo_research_'))
             elif e['type']=='overmap_special':
                 e['id']='dda_geo_'+e['id'].replace(' ','_').lower()
                 e['occurrences']=[0,0] # Debug placement only; never populate normal worlds with empty shells.
@@ -65,9 +65,12 @@ def payloads():
                     if 'locations' in c:
                         c['locations']=[AIR_LOCATION if n=='open_air' else n for n in c['locations']]
             elif e['type']=='terrain':
-                assert e['id'].startswith(('dda_geo_exodii_','dda_geo_frontier_','dda_geo_raider_','dda_geo_urban_','dda_geo_waterside_'))
+                assert e['id'].startswith(('dda_geo_exodii_','dda_geo_frontier_','dda_geo_raider_','dda_geo_urban_','dda_geo_waterside_','dda_geo_research_'))
                 assert 'copy-from'not in e,('BN preview terrain requires a complete definition',e['id'])
                 assert {'symbol','color','move_cost','name','description'}<=e.keys(),e['id']
+            elif e['type']=='furniture':
+                assert e['id'].startswith('dda_geo_research_')
+                assert {'symbol','color','move_cost_mod','required_str','name','description'}<=e.keys(),e['id']
             else:raise AssertionError(e['type'])
         result+=entries
     # BN has open_air terrain but no matching placement predicate. Keep the
@@ -82,9 +85,10 @@ def payloads():
     godco=json.loads((OUT/'GODCO_GEOMETRY_REPORT.json').read_text())
     generated.add(('overmap_terrain',godco['generated_BN_terrain']['id']))
     generated.update(('overmap_terrain',n)for n in json.loads((OUT/'WATERSIDE_ADAPTATION_REPORT.json').read_text())['generated_external_omt'])
+    generated.update(('overmap_terrain',n)for n in json.loads((OUT/'RESEARCH_ADAPTATION_REPORT.json').read_text())['generated_external_omt'])
     project=index_entries(json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text()))
     assert not required(result)-core-own-generated-project,sorted(required(result)-core-own-generated-project)
-    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs and sunken helicopter. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
+    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack and LIXA. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
 
 
 def native_test():
@@ -93,14 +97,18 @@ def native_test():
     text=reference().split('\nTEST_CASE(',1)[0]
     text=text.replace('const char *terrain; };','const char *terrain; const char *loot_mask = nullptr; };',1)
     text=text.replace('void generate_site( int base, std::initializer_list<site_cell> cells )',
-        'struct geometry_point { int omt_x; int omt_y; int x; int y; int z; const char *terrain; };\n'
+        'struct geometry_point { int omt_x; int omt_y; int x; int y; int z; const char *terrain; bool furniture = false; };\n'
         'void generate_site( int base, std::initializer_list<site_cell> cells,\n'
         '                    std::initializer_list<geometry_point> geometry = {} )')
     text=text.replace('    }\n    clear_all_state();\n}', '''        for( const auto &expected : geometry ) {
             if( expected.omt_x != column.first || expected.omt_y != column.second ) { continue; }
             INFO( "navigation terrain=" << expected.terrain << " z=" << expected.z );
-            CHECK( generated.ter( tripoint_bub_ms( expected.x, expected.y, expected.z ) ) ==
-                   ter_id( expected.terrain ) );
+            const tripoint_bub_ms p( expected.x, expected.y, expected.z );
+            if( expected.furniture ) {
+                CHECK( generated.furn( p ) == furn_id( expected.terrain ) );
+            } else {
+                CHECK( generated.ter( p ) == ter_id( expected.terrain ) );
+            }
         }
     }
     clear_all_state();
@@ -141,9 +149,9 @@ def native_test():
                     rotated=[]
                     for turns in range(rotation[0],rotation[1]+1):
                         variant=[]
-                        for y in range(24):
-                            for x in range(24):
-                                px,py=x,y
+                        for mask_y in range(24):
+                            for mask_x in range(24):
+                                px,py=mask_x,mask_y
                                 for _ in range(turns):px,py=py,23-px
                                 variant.append(bits[py*24+px])
                         rotated.append(variant)
@@ -152,15 +160,24 @@ def native_test():
             text+=f'        {{ {x}, {y}, {z}, {json.dumps(name)}{mask} }},\n'
         frontier_specials={'dda_geo_isolated_road','dda_geo_gun_show','dda_geo_balthazar_bunker','dda_geo_limnological_station'}
         raider_specials={'dda_geo_drug_lab','dda_geo_bandit_drug_lab','dda_geo_bandit_work_camp','dda_geo_deserter_city'}
-        if special['id'] in raider_specials|frontier_specials|{'dda_geo_hot_springs','dda_geo_pottery_cottage','dda_geo_sunken_helicopter'}|{'dda_geo_exodii_base','dda_geo_out-of-place_stone_barn','dda_geo_strange_warehouse'}:
+        research_specials={'dda_geo_xedra_morgantown','dda_geo_xedra_fishing_shack','dda_geo_physics_lab_lixa'}
+        if special['id'] in research_specials|raider_specials|frontier_specials|{'dda_geo_hot_springs','dda_geo_pottery_cottage','dda_geo_sunken_helicopter'}|{'dda_geo_exodii_base','dda_geo_out-of-place_stone_barn','dda_geo_strange_warehouse'}:
             text+='    }, {\n'
-            stem='WATERSIDE'if special['id']in {'dda_geo_hot_springs','dda_geo_pottery_cottage','dda_geo_sunken_helicopter'} else 'RAIDER'if special['id']in raider_specials else 'FRONTIER'if special['id']in frontier_specials else 'EXODII'
+            stem='RESEARCH'if special['id']in research_specials else 'WATERSIDE'if special['id']in {'dda_geo_hot_springs','dda_geo_pottery_cottage','dda_geo_sunken_helicopter'} else 'RAIDER'if special['id']in raider_specials else 'FRONTIER'if special['id']in frontier_specials else 'EXODII'
             nav=json.loads((OUT/(stem+'_ADAPTATION_REPORT.json')).read_text())['navigation']
+            if stem=='RESEARCH':
+                furniture=json.loads((OUT/'RESEARCH_ADAPTATION_REPORT.json').read_text())['structural_furniture_points']
+                nav={k:nav.get(k,[])+furniture.get(k,[]) for k in nav.keys()|furniture.keys()}
             for cell in special['overmaps']:
-                name=cell.get('overmap','').removeprefix('dda_geo_').removesuffix('_north')
+                name=cell.get('overmap','').removeprefix('dda_geo_');turns=0
+                for k,suffix in enumerate(('_north','_east','_south','_west')):
+                    if name.endswith(suffix):name=name[:-len(suffix)];turns=k;break
                 x,y,z=cell['point']
                 for e in nav.get(name,[]):
-                    text+=f'        {{ {x}, {y}, {e["x"]}, {e["y"]}, {z}, {json.dumps(e["terrain"])} }},\n'
+                    px,py=e['x'],e['y']
+                    for _ in range(turns):px,py=23-py,px
+                    furniture_flag=', true' if e.get('furniture') else ''
+                    text+=f'        {{ {x}, {y}, {px}, {py}, {z}, {json.dumps(e["terrain"])}{furniture_flag} }},\n'
         if special['id']in {'dda_geo_police_dept','dda_geo_textile_mill_museum','dda_geo_supermarket'}:
             text+='    }, {\n'
             nav=json.loads((OUT/'URBAN_ADAPTATION_REPORT.json').read_text())['navigation_and_marking_expectations']
@@ -202,13 +219,15 @@ def prepare(check=False):
     check_urban(check=True)
     from adapt_waterside_geometry import prepare as check_waterside
     check_waterside(check=True)
+    from adapt_research_geometry import prepare as check_research
+    check_research(check=True)
     texts={p:json.dumps(v,indent=2,ensure_ascii=True)+'\n' for p,v in payloads().items()}
     texts['native/'+TEST]=native_test()
     for p,text in texts.items():
         path=ROOT/p
         if check:assert path.read_text()==text,path
         else:path.write_text(text)
-    print('Geometry preview: ten isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
+    print('Geometry preview: eleven isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');prepare(parser.parse_args().check)
