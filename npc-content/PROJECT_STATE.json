@@ -1014,7 +1014,7 @@
     "water_collection_policy": "Use stock BN untreated water; DDA source temperature explicitly excluded by user, no mechanism planned"
   },
   "geometry_research_candidate": {
-    "status": "XEDRA and LIXA geometry staged; special terrain and native loading pending",
+    "status": "Physical adaptation prepared with zero typed obligations; source device behavior and native loading pending",
     "world_maps": 26,
     "structural_nested_maps": 1,
     "own_omt": 50,
@@ -1027,6 +1027,10 @@
       "LIXA -8 device access and unfolding deferred",
       "XEDRA passcode interaction preserved separately",
       "No completion credit"
-    ]
+    ],
+    "adapted_unresolved_typed_refs": [],
+    "new_terrain_definitions": 19,
+    "new_structural_furniture_definitions": 1,
+    "adaptation_report": "geometry_layer/RESEARCH_ADAPTATION_REPORT.json"
   }
 }

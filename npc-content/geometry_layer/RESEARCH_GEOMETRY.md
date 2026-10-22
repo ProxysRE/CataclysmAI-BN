@@ -17,3 +17,13 @@ A 27th mapgen definition preserves Morgantown's ruined tent: weighted canvas wal
 The passcode door and source transforms remain intact in the archive; ordinary science cards are not substituted. The -8 device space has no fabricated stair connection to -4: access, unfolding, EOCs, traps and other events must be ported later. Device transformations, spawn updates, graffiti, items, monsters and interactions are kept outside the geometry shell.
 
 Source rows and dimensions, reproducible extraction, hashes and Windows cp1252-default decoding were checked. All text reads/writes are explicit UTF-8. Specials have zero occurrences in staging. No native embedding, generation acceptance, player traversal claim or percentage credit. Run prepare_research_geometry.py --check.
+
+## Physical adaptation prepared
+
+The separate adapter now produces 19 concrete terrains and one structural furniture definition, with zero unresolved typed references. Ordinary ground, regional vegetation and components reuse reviewed BN identifiers. BN metal flat roof retains the metal material; red paint is lost. The source concrete roof uses BN reinforced-concrete flooring without an additional roof. Generic metal wall mechanics replace corrugated metal, and straight BN road context replaces forest-road context. Each change is listed in the adaptation report.
+
+Special device surfaces, shafts, luminous carpet, four reader types and the XEDRA passcode door retain complete source physical definitions under isolated IDs. The three-state wall destruction cycle, thresholds, coverage, movement, roof links and light values are preserved. BN wire/steel_chunk replace DDA metal component tiers in deconstruction. The road abstract is expanded from the authenticated catalog, retaining the compatible BN generic_transportation parent. Generated road_ns is justified by the pinned BN road LINEAR declaration.
+
+DDA actions, shooting objects, emissions, cutting tools and unsupported display connections are archived. Reader and ledge examination are disabled in the geometry candidate; scientific-card or ordinary-elevator behavior is not substituted. Existing GOES_DOWN markers do not certify source pseudo-ledge behavior. Component transitions and all source item references are checked, including the three-state destruction cycle.
+
+This closes static references, not native loading, combat or traversal acceptance. No native preview or engine-patch change is included in this preparation step. Run adapt_research_geometry.py --check.

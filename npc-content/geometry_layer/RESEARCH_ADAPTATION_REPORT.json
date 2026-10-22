@@ -1,0 +1,525 @@
+{
+  "status": "research_geometry_adapted_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "new_physical_definitions": {
+    "terrain": 19,
+    "furniture": 1
+  },
+  "aliases": {
+    "t_carpet_concrete_green_olight": "dda_geo_research_t_carpet_concrete_green_olight",
+    "t_lixa_wall": "dda_geo_research_t_lixa_wall",
+    "t_folded_wall": "dda_geo_research_t_folded_wall",
+    "t_unfolded_wall": "dda_geo_research_t_unfolded_wall",
+    "t_infinite_shaft_rooved": "dda_geo_research_t_infinite_shaft_rooved",
+    "t_infinite_shaft_no_roof": "dda_geo_research_t_infinite_shaft_no_roof",
+    "t_LIXA_tube": "dda_geo_research_t_LIXA_tube",
+    "t_LIXA_portal_pulse": "dda_geo_research_t_LIXA_portal_pulse",
+    "t_LIXA_unfolded_portal_pulse": "dda_geo_research_t_LIXA_unfolded_portal_pulse",
+    "t_LIXA_unfolded_tube": "dda_geo_research_t_LIXA_unfolded_tube",
+    "t_LIXA_unfolded_tube_broken": "dda_geo_research_t_LIXA_unfolded_tube_broken",
+    "t_LIXA_thconc_floor": "dda_geo_research_t_LIXA_thconc_floor",
+    "t_LIXA_strconc_wall": "dda_geo_research_t_LIXA_strconc_wall",
+    "t_card_LIXA": "dda_geo_research_t_card_LIXA",
+    "t_card_LIXA_2": "dda_geo_research_t_card_LIXA_2",
+    "t_card_LIXA_3": "dda_geo_research_t_card_LIXA_3",
+    "t_card_LIXA_mil": "dda_geo_research_t_card_LIXA_mil",
+    "t_LIXA_laser": "dda_geo_research_t_LIXA_laser",
+    "f_LIXA_unfold_barrier": "dda_geo_research_f_LIXA_unfold_barrier",
+    "t_door_metal_elocked_xedra3": "dda_geo_research_t_door_metal_elocked_xedra3",
+    "t_carpet_concrete_green": "t_carpet_green",
+    "t_metal_roof": "t_metal_flat_roof",
+    "t_metal_roof_red": "t_metal_flat_roof",
+    "t_concrete_roof": "t_strconc_floor_no_roof",
+    "t_wall_metal_corrugated": "t_wall_metal",
+    "t_region_shrub_forest": "t_region_shrub",
+    "t_region_tree_forest": "t_region_tree",
+    "rural_road_forest_ns": "road_ns",
+    "lc_wire": "wire",
+    "mc_steel_chunk": "steel_chunk"
+  },
+  "unresolved_typed_refs": [],
+  "generated_external_omt": [
+    "road_ns"
+  ],
+  "deferred_source_fields": [
+    {
+      "source": "t_carpet_concrete_green_olight",
+      "field": "connect_groups",
+      "value": "INDOORFLOOR"
+    },
+    {
+      "source": "t_carpet_concrete_green_olight",
+      "field": "shoot",
+      "value": {
+        "chance_to_hit": 50,
+        "reduce_damage": [
+          0,
+          0
+        ],
+        "reduce_damage_laser": [
+          0,
+          0
+        ],
+        "destroy_damage": [
+          2,
+          8
+        ]
+      }
+    },
+    {
+      "source": "t_lixa_wall",
+      "field": "connect_groups",
+      "value": "WALL"
+    },
+    {
+      "source": "t_folded_wall",
+      "field": "connect_groups",
+      "value": "WALL"
+    },
+    {
+      "source": "t_unfolded_wall",
+      "field": "connect_groups",
+      "value": "WALL"
+    },
+    {
+      "source": "t_infinite_shaft_rooved",
+      "field": "connect_groups",
+      "value": "INDOORFLOOR"
+    },
+    {
+      "source": "t_infinite_shaft_rooved",
+      "field": "examine_action",
+      "value": {
+        "type": "effect_on_condition",
+        "effect_on_conditions": [
+          {
+            "id": "false_ledge",
+            "effect": [
+              {
+                "run_eoc_selector": [
+                  "EOC_PEEK_DOWN_pseudo",
+                  "EOC_CLIMB_DOWN_pseudo",
+                  "EOC_JUMP_ACROSS_pseudo",
+                  "EOC_FALL_DOWN_pseudo"
+                ],
+                "allow_cancel": true,
+                "names": [
+                  "Peek down.",
+                  "Climb down by lowering yourself from the ledge.",
+                  "Can't jump across (need a small gap).",
+                  "Fall down."
+                ],
+                "title": "There is a ledge here.  What do you want to do?",
+                "descriptions": [
+                  "You look down as far as you can see.",
+                  "You hang off the ledge to get closer to a bottom you cannot see.",
+                  "Take a leap of faith.",
+                  "End it all."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "source": "t_infinite_shaft_no_roof",
+      "field": "connect_groups",
+      "value": "INDOORFLOOR"
+    },
+    {
+      "source": "t_LIXA_tube",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "LIXATUBE"
+      ]
+    },
+    {
+      "source": "t_LIXA_tube",
+      "field": "shoot",
+      "value": {
+        "chance_to_hit": 100,
+        "reduce_damage": [
+          0,
+          0
+        ],
+        "reduce_damage_laser": [
+          0,
+          0
+        ],
+        "destroy_damage": [
+          10,
+          15
+        ]
+      }
+    },
+    {
+      "source": "t_LIXA_tube",
+      "field": "connects_to",
+      "value": "LIXATUBE"
+    },
+    {
+      "source": "t_LIXA_portal_pulse",
+      "field": "connect_groups",
+      "value": [
+        "WALL",
+        "INDOORFLOOR"
+      ]
+    },
+    {
+      "source": "t_LIXA_portal_pulse",
+      "field": "shoot",
+      "value": {
+        "chance_to_hit": 100,
+        "reduce_damage": [
+          0,
+          0
+        ],
+        "reduce_damage_laser": [
+          0,
+          0
+        ],
+        "destroy_damage": [
+          20,
+          30
+        ]
+      }
+    },
+    {
+      "source": "t_LIXA_unfolded_portal_pulse",
+      "field": "connect_groups",
+      "value": [
+        "WALL",
+        "INDOORFLOOR"
+      ]
+    },
+    {
+      "source": "t_LIXA_unfolded_portal_pulse",
+      "field": "shoot",
+      "value": {
+        "chance_to_hit": 100,
+        "reduce_damage": [
+          0,
+          0
+        ],
+        "reduce_damage_laser": [
+          0,
+          0
+        ],
+        "destroy_damage": [
+          20,
+          30
+        ]
+      }
+    },
+    {
+      "source": "t_LIXA_unfolded_tube",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "LIXATUBE"
+      ]
+    },
+    {
+      "source": "t_LIXA_unfolded_tube",
+      "field": "shoot",
+      "value": {
+        "chance_to_hit": 100,
+        "reduce_damage": [
+          0,
+          0
+        ],
+        "reduce_damage_laser": [
+          0,
+          0
+        ],
+        "destroy_damage": [
+          10,
+          15
+        ]
+      }
+    },
+    {
+      "source": "t_LIXA_unfolded_tube",
+      "field": "connects_to",
+      "value": "LIXATUBE"
+    },
+    {
+      "source": "t_LIXA_unfolded_tube_broken",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "LIXATUBE"
+      ]
+    },
+    {
+      "source": "t_LIXA_unfolded_tube_broken",
+      "field": "emissions",
+      "value": [
+        "emit_congealed_light"
+      ]
+    },
+    {
+      "source": "t_LIXA_unfolded_tube_broken",
+      "field": "connects_to",
+      "value": "LIXATUBE"
+    },
+    {
+      "source": "t_LIXA_thconc_floor",
+      "field": "connect_groups",
+      "value": [
+        "CONCRETE",
+        "INDOORFLOOR"
+      ]
+    },
+    {
+      "source": "t_LIXA_thconc_floor",
+      "field": "connects_to",
+      "value": "CONCRETE"
+    },
+    {
+      "source": "t_LIXA_strconc_wall",
+      "field": "connect_groups",
+      "value": "WALL"
+    },
+    {
+      "source": "t_card_LIXA",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "WALL"
+      ]
+    },
+    {
+      "source": "t_card_LIXA",
+      "field": "examine_action",
+      "value": {
+        "type": "cardreader",
+        "flags": [
+          "LIXA_SCIENCE_CARD"
+        ],
+        "consume_card": false,
+        "allow_hacking": true,
+        "terrain_changes": {
+          "t_door_metal_locked": "t_door_metal_c"
+        },
+        "query_msg": "Swipe your ID card?",
+        "success_msg": "You insert your ID card.\n<color_light_green>The nearby doors unlock.</color>",
+        "redundant_msg": "The nearby doors are already opened."
+      }
+    },
+    {
+      "source": "t_card_LIXA_2",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "WALL"
+      ]
+    },
+    {
+      "source": "t_card_LIXA_2",
+      "field": "examine_action",
+      "value": {
+        "type": "cardreader",
+        "flags": [
+          "LIXA_SCIENCE_CARD_2"
+        ],
+        "consume_card": false,
+        "allow_hacking": false,
+        "terrain_changes": {
+          "t_door_metal_locked": "t_door_metal_c"
+        },
+        "query_msg": "Swipe your ID card?",
+        "success_msg": "You insert your ID card.\n<color_light_green>The nearby doors unlock.</color>",
+        "redundant_msg": "The nearby doors are already opened."
+      }
+    },
+    {
+      "source": "t_card_LIXA_3",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "WALL"
+      ]
+    },
+    {
+      "source": "t_card_LIXA_3",
+      "field": "examine_action",
+      "value": {
+        "type": "cardreader",
+        "flags": [
+          "LIXA_SCIENCE_CARD_3"
+        ],
+        "consume_card": false,
+        "allow_hacking": false,
+        "terrain_changes": {
+          "t_door_metal_locked": "t_door_metal_c"
+        },
+        "query_msg": "Swipe your ID card?",
+        "success_msg": "You insert your ID card.\n<color_light_green>The nearby doors unlock.</color>",
+        "redundant_msg": "The nearby doors are already opened."
+      }
+    },
+    {
+      "source": "t_card_LIXA_mil",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "WALL"
+      ]
+    },
+    {
+      "source": "t_card_LIXA_mil",
+      "field": "examine_action",
+      "value": {
+        "type": "cardreader",
+        "flags": [
+          "LIXA_MILITARY_CARD"
+        ],
+        "consume_card": false,
+        "allow_hacking": false,
+        "terrain_changes": {
+          "t_door_metal_locked": "t_door_metal_c"
+        },
+        "query_msg": "Swipe your ID card?",
+        "success_msg": "You insert your ID card.\n<color_light_green>The nearby doors unlock.</color>",
+        "redundant_msg": "The nearby doors are already opened."
+      }
+    },
+    {
+      "source": "t_LIXA_laser",
+      "field": "connect_groups",
+      "value": [
+        "INDOORFLOOR",
+        "LIXATUBE"
+      ]
+    },
+    {
+      "source": "t_LIXA_laser",
+      "field": "connects_to",
+      "value": "LIXATUBE"
+    },
+    {
+      "source": "t_door_metal_elocked_xedra3",
+      "field": "connect_groups",
+      "value": "WALL"
+    },
+    {
+      "source": "t_door_metal_elocked_xedra3",
+      "field": "rotates_to",
+      "value": "INDOORFLOOR"
+    },
+    {
+      "source": "t_door_metal_elocked_xedra3",
+      "field": "oxytorch",
+      "value": {
+        "result": "t_mdoor_frame",
+        "duration": "14 seconds",
+        "byproducts": [
+          {
+            "item": "steel_plate",
+            "count": [
+              0,
+              1
+            ]
+          },
+          {
+            "item": "mc_steel_chunk",
+            "count": [
+              3,
+              8
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "source": "t_door_metal_elocked_xedra3",
+      "field": "examine_action",
+      "value": {
+        "type": "effect_on_condition",
+        "effect_on_conditions": [
+          {
+            "id": "eoc_xedra_unlock_elock",
+            "condition": {
+              "compare_string": [
+                "yes",
+                {
+                  "u_val": "knows_xedra_field_station_3_passcode"
+                }
+              ]
+            },
+            "effect": [
+              {
+                "u_transform_radius": 2,
+                "ter_furn_transform": "unlock_elock_xedra3"
+              }
+            ],
+            "false_effect": {
+              "u_message": "You press four random buttons and nothing happens.",
+              "popup": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "source": [
+        "LIXA_road"
+      ],
+      "source_overmap_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": "dda_geo_research_t_LIXA_portal_pulse",
+      "field": "looks_like",
+      "value": "f_machinery_electronic"
+    },
+    {
+      "source": "dda_geo_research_t_LIXA_unfolded_portal_pulse",
+      "field": "looks_like",
+      "value": "f_machinery_electronic"
+    },
+    {
+      "source": "dda_geo_research_f_LIXA_unfold_barrier",
+      "field": "looks_like",
+      "value": "fd_fatigue"
+    }
+  ],
+  "preserved": [
+    "Source rows, special placements and ruined tent weights",
+    "LIXA wall destruction cycle with source thresholds",
+    "Source movement, coverage, flags, light and shaft markers",
+    "Source physical barrier line and XEDRA locked door geometry"
+  ],
+  "adaptations": [
+    "BN green carpet replaces industrial concrete-backed carpet",
+    "BN metal flat roof replaces source metal roofs; red paint is lost; BN reinforced-concrete floor without roof supplies concrete roof geometry",
+    "BN generic metal wall replaces corrugated wall; durability differs",
+    "BN regional shrub/tree selectors replace forest-specific selectors",
+    "BN straight road replaces source forest road; surroundings differ",
+    "Source precision metal component tiers reuse BN wire/steel_chunk",
+    "DDA shooting, emissions, tools, EOC actions and unsupported display connections remain archived"
+  ],
+  "remaining": [
+    "Native schema and source/installed generation",
+    "Special shafts, device access/unfolding and interactions",
+    "Combat, demolition, light and actor traversal acceptance"
+  ],
+  "limits": [
+    "No native embedding or percentage credit",
+    "Shaft GOES_DOWN markers do not certify their source pseudo-ledge behavior",
+    "Reader examination disabled; ordinary science-card behavior not substituted"
+  ]
+}

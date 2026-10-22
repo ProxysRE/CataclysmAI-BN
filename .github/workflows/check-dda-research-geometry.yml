@@ -5,6 +5,7 @@ on:
     branches: [port/dda-npc-locations]
     paths:
       - npc-content/prepare_research_geometry.py
+      - npc-content/adapt_research_geometry.py
       - npc-content/geometry_layer/RESEARCH_*
       - npc-content/geometry_layer/research_sources/**
       - .github/workflows/check-dda-research-geometry.yml
@@ -17,3 +18,4 @@ jobs:
         with:
           python-version: '3.12'
       - run: python npc-content/prepare_research_geometry.py --check
+      - run: python npc-content/adapt_research_geometry.py --check

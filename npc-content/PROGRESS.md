@@ -119,3 +119,11 @@ Run 39776684153 stopped before compilation: Windows cp1252 default decoding spli
 While the corrected waterside Windows run proceeds beyond source preflight, staged Morgantown, the XEDRA fishing shack and physics lab LIXA together. Six authenticated official files provide 26 world-map definitions /50 own OMT /100 source-special placements. A 27th nested definition retains ruined tent walls, floor and door with exact source weights and no invented roof. The flat-space barrier line is also preserved as structural furniture and explicitly included in typed reference scanning.
 
 All source rows and dimensions are preserved. 25 raw typed obligations and no exact core/bundled-mod declaration collisions remain. Full passcode door definitions, terrain transforms, device unfolding, EOCs/updates, graffiti and other later content are retained. No invented stair connects the -4 device to its -8 unfolded region. UTF-8 extraction and simulated Windows cp1252 defaults pass. These packages remain non-installed and add no progress credit; confirmed scope remains 21/51 (41.2%).
+
+## XEDRA/LIXA physical adaptation
+
+Prepared 19 isolated concrete terrain definitions and the flat-space structural barrier. Typed dependencies close against pinned BN, including all bash/deconstruction drops and target transitions. The LIXA wall/folded-wall/unfolded-wall cycle and source thresholds are preserved, with explicit checks for all three edges. Source movement, light, coverage, shaft markers, doors and physical device surfaces remain intact.
+
+Ordinary carpet, metal roofing, concrete roof geometry, regional vegetation, metal wall and road context reuse BN counterparts with documented material/appearance/durability differences. BN wire and steel_chunk replace source component tiers. The source road abstract expands into the compatible generic_transportation base, and BN LINEAR road data justifies road_ns. Reader/ledge EOC actions, shooting objects, emissions, tools and unsupported display groups remain archived; no generic science-card access is added.
+
+Native schema, all-floor generation, source device mechanics, actor traversal and combat are pending. No native patch or confirmed percentage change while the existing waterside build continues: 21/51 (41.2%).
