@@ -79,7 +79,21 @@
           "constant": 6
         }
       }
-    ]
+    ],
+    "attribute_profile": {
+      "stats": {
+        "strength": 10,
+        "dexterity": 10,
+        "intelligence": 8,
+        "perception": 10
+      },
+      "personality": {
+        "aggression": 5,
+        "bravery": 10,
+        "collector": 0,
+        "altruism": 0
+      }
+    }
   },
   {
     "type": "npc",

@@ -2,6 +2,7 @@
 #include "map_helpers.h"
 #include <vector>
 #include <cstdlib>
+#include <sstream>
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
 TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
@@ -522,11 +523,20 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     // shipped JSON, not from the test's spawn/equipment adapters.
     probe("npc_combat_depart");
     const auto combat_id = character_id(data["combat_id"].get<int>());
-    const auto check_combat_actor = [&](int ammo) {
+    const auto check_combat_actor = [&](int ammo, int barter = 0) {
         const auto* actor = g->find_npc(combat_id);
         REQUIRE(actor != nullptr);
         CHECK(actor->myclass == npc_class_id("TRKV_COMBAT_TEST"));
         CHECK(actor->get_attitude() == NPCATT_KILL);
+        CHECK(actor->get_str_base() == 10);
+        CHECK(actor->get_dex_base() == 10);
+        CHECK(actor->get_int_base() == 8);
+        CHECK(actor->get_per_base() == 10);
+        CHECK(actor->personality.aggression == 5);
+        CHECK(actor->personality.bravery == 10);
+        CHECK(actor->personality.collector == 0);
+        CHECK(actor->personality.altruism == 0);
+        CHECK(actor->get_skill_level(skill_id("barter")) == barter);
         CHECK(actor->get_skill_level(skill_id("gun")) == 6);
         CHECK(actor->get_skill_level(skill_id("rifle")) == 6);
         CHECK(actor->primary_weapon().typeId().str() == "ar15");
@@ -580,14 +590,50 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             if (remaining_ammo < 17) { break; }
         }
         REQUIRE(remaining_ammo < 17);
+        actor->set_skill_level(skill_id("barter"), 2); // Saved progress, not a new spawn.
     }
     probe("npc_combat_checkpoint");
     REQUIRE(g->save(false));
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_combat_restored");
-    check_combat_actor(remaining_ammo);
+    check_combat_actor(remaining_ammo, 2);
     probe("npc_extract");
     CHECK(g->find_npc(combat_id) == nullptr);
     CHECK(get_overmapbuffer(home_dim).find_npc(combat_id) == nullptr);
+    for (auto sample_index = 0; sample_index < 8; ++sample_index) {
+        npc sample;
+        sample.randomize(npc_class_id("TRKV_COMBAT_TEST"));
+        CHECK(sample.get_str_base() == 10);
+        CHECK(sample.get_dex_base() == 10);
+        CHECK(sample.get_int_base() == 8);
+        CHECK(sample.get_per_base() == 10);
+        CHECK(sample.personality.aggression == 5);
+        CHECK(sample.personality.bravery == 10);
+        CHECK(sample.personality.collector == 0);
+        CHECK(sample.personality.altruism == 0);
+        CHECK(sample.get_skill_level(skill_id("barter")) == 0);
+        CHECK(sample.get_skill_level(skill_id("gun")) == 6);
+        CHECK(sample.primary_weapon().ammo_remaining() == 17);
+    }
+    const auto load_attributes = [](const std::string& text) {
+        std::istringstream input(text);
+        JsonIn json(input);
+        const JsonObject object = json.get_object();
+        npc_class definition;
+        definition.load(object, "tarkov native profile test");
+    };
+    const std::string profile_json = R"({"name":"Profile test","job_description":"Profile test",
+      "attribute_profile":{"stats":{"strength":10,"dexterity":10,"intelligence":8,"perception":10},
+      "personality":{"aggression":5,"bravery":10,"collector":0,"altruism":0}}})";
+    REQUIRE_NOTHROW(load_attributes(profile_json));
+    auto invalid = profile_json;
+    invalid.replace(invalid.find("\"strength\":10"), std::string("\"strength\":10").size(), "\"strength\":0");
+    REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
+    invalid = profile_json;
+    invalid.replace(invalid.find("\"bravery\":10"), std::string("\"bravery\":10").size(), "\"bravery\":101");
+    REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
+    invalid = profile_json;
+    invalid.erase(invalid.find(",\"perception\":10"), std::string(",\"perception\":10").size());
+    REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
 }

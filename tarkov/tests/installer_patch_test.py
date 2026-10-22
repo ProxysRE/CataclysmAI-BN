@@ -12,19 +12,33 @@ from install_into_bn import apply_engine_patch  # noqa: E402
 
 class PatchCheckoutTest(unittest.TestCase):
     def test_checkout_newlines(self):
-        for filename, target_name, expected in (
-            ("0001-restore-bounds-to-target-dimension.patch", "src/savegame.cpp",
-             "MAPBUFFER_REGISTRY.get( current_dimension_id_ ).set_pocket_info( pocket_info );"),
-            ("0002-expose-active-npc-spawn.patch", "src/catalua_bindings_game_creatures.cpp", '"spawn_npc_at"'),
-            ("0003-expose-npc-path-step.patch", "src/catalua_bindings_creature.cpp", '"move_towards"'),
+        for filename, expected in (
+            ("0001-restore-bounds-to-target-dimension.patch", {"src/savegame.cpp":
+             "MAPBUFFER_REGISTRY.get( current_dimension_id_ ).set_pocket_info( pocket_info );"}),
+            ("0002-expose-active-npc-spawn.patch", {"src/catalua_bindings_game_creatures.cpp": '"spawn_npc_at"'}),
+            ("0003-expose-npc-path-step.patch", {"src/catalua_bindings_creature.cpp": '"move_towards"'}),
+            ("0004-controlled-npc-attributes.patch", {"src/npc_class.h": "npc_attribute_profile",
+             "src/npc_class.cpp": '"attribute_profile"', "src/npc.cpp": "profile->strength"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
-            # The pinned patches contain one hunk; reconstruct its original context.
-            lines = patch.decode().splitlines()
-            self.assertEqual(sum(line.startswith("@@") for line in lines), 1)
-            start = int(lines[3].split()[1][1:].split(",")[0])
-            fragment = [line[1:] for line in lines[4:] if line.startswith((" ", "-"))]
-            source = ("\n" * (start - 1) + "\n".join(fragment) + "\n").encode()
+            # Reconstruct original hunk contexts, including multi-file patches.
+            sources, target_name, cursor = {}, None, None
+            for line in patch.decode().splitlines():
+                if line.startswith("--- a/"):
+                    target_name = line[6:]
+                    sources.setdefault(target_name, [])
+                    cursor = None
+                elif line.startswith("@@"):
+                    cursor = int(line.split()[1][1:].split(",")[0]) - 1
+                elif line.startswith(("diff --git", "+++")):
+                    continue
+                elif cursor is not None and line.startswith((" ", "-")):
+                    source = sources[target_name]
+                    while len(source) <= cursor:
+                        source.append("")
+                    source[cursor] = line[1:]
+                    cursor += 1
+            self.assertEqual(set(sources), set(expected))
             for src_crlf in (False, True):
                 for patch_crlf in (False, True):
                     for autocrlf in ("false", "true"):
@@ -34,12 +48,15 @@ class PatchCheckoutTest(unittest.TestCase):
                                 (bn / "src").mkdir()
                                 subprocess.run(["git", "init", "-q", tmp], check=True)
                                 subprocess.run(["git", "-C", tmp, "config", "core.autocrlf", autocrlf], check=True)
-                                target = bn / target_name
-                                target.write_bytes(source.replace(b"\n", b"\r\n") if src_crlf else source)
+                                for target_name, lines in sources.items():
+                                    source = ("\n".join(lines) + "\n").encode()
+                                    target = bn / target_name
+                                    target.write_bytes(source.replace(b"\n", b"\r\n") if src_crlf else source)
                                 patch_path = bn / "fix.patch"
                                 patch_path.write_bytes(patch.replace(b"\n", b"\r\n") if patch_crlf else patch)
                                 apply_engine_patch(bn, patch_path)
-                                self.assertIn(expected, target.read_text(encoding="utf-8"))
+                                for target_name, marker in expected.items():
+                                    self.assertIn(marker, (bn / target_name).read_text(encoding="utf-8"))
 
 
 

@@ -33,6 +33,8 @@ def package(bn: Path, dist: Path, output: Path) -> None:
         raise SystemExit("The active NPC spawn binding is missing from the built source")
     if '"move_towards"' not in (bn / "src/catalua_bindings_creature.cpp").read_text(encoding="utf-8"):
         raise SystemExit("The NPC path-step binding is missing from the built source")
+    if "profile->strength" not in (bn / "src/npc.cpp").read_text(encoding="utf-8"):
+        raise SystemExit("The controlled NPC attributes patch is missing from the built source")
     executable = dist / "cataclysm-bn-tiles.exe"
     with executable.open("rb") as stream:
         if stream.read(2) != b"MZ":

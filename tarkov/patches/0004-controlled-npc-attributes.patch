@@ -1,0 +1,127 @@
+diff --git a/src/npc_class.h b/src/npc_class.h
+--- a/src/npc_class.h
++++ b/src/npc_class.h
+@@ -44,6 +44,18 @@
+         static distribution one_in( float in );
+ };
+ 
++// Explicit initial attributes. Loaded only at creation; saves own later changes.
++struct npc_attribute_profile {
++    int strength;
++    int dexterity;
++    int intelligence;
++    int perception;
++    int aggression;
++    int bravery;
++    int collector;
++    int altruism;
++};
++
+ class npc_class
+ {
+     private:
+@@ -77,6 +89,7 @@
+         std::map<spell_id, int> _starting_spells;
+         std::map<bionic_id, int> bionic_list;
+         std::optional<std::string> lua_ai;
++        std::optional<npc_attribute_profile> attribute_profile;
+         npc_class();
+ 
+         std::string get_name() const;
+diff --git a/src/npc_class.cpp b/src/npc_class.cpp
+--- a/src/npc_class.cpp
++++ b/src/npc_class.cpp
+@@ -239,6 +239,29 @@
+     optional( jo, was_loaded, "carry_override", carry_override );
+     optional( jo, was_loaded, "weapon_override", weapon_override );
+     assign( jo, "lua_ai", lua_ai );
++    if( jo.has_member( "attribute_profile" ) ) {
++        const JsonObject profile = jo.get_object( "attribute_profile" );
++        const JsonObject stats = profile.get_object( "stats" );
++        const JsonObject character = profile.get_object( "personality" );
++        const auto read_value = []( const JsonObject & obj, const std::string & key,
++        int minimum, int maximum ) {
++            const int value = obj.get_int( key );
++            if( value < minimum || value > maximum ) {
++                obj.throw_error( "Attribute profile value out of range", key );
++            }
++            return value;
++        };
++        attribute_profile = npc_attribute_profile{
++            read_value( stats, "strength", 1, 100 ),
++            read_value( stats, "dexterity", 1, 100 ),
++            read_value( stats, "intelligence", 1, 100 ),
++            read_value( stats, "perception", 1, 100 ),
++            read_value( character, "aggression", -100, 100 ),
++            read_value( character, "bravery", -100, 100 ),
++            read_value( character, "collector", -100, 100 ),
++            read_value( character, "altruism", -100, 100 )
++        };
++    }
+ 
+     if( jo.has_member( "traits" ) ) {
+         traits = trait_group::load_trait_group( jo.get_member( "traits" ), "collection" );
+diff --git a/src/npc.cpp b/src/npc.cpp
+--- a/src/npc.cpp
++++ b/src/npc.cpp
+@@ -357,10 +357,12 @@
+ 
+     remove_primary_weapon( );
+     inv.clear();
+-    personality.aggression = rng( -10, 10 );
+-    personality.bravery    = rng( -3, 10 );
+-    personality.collector  = rng( -1, 10 );
+-    personality.altruism   = rng( -10, 10 );
++    if( !type.is_valid() || !type->attribute_profile ) {
++        personality.aggression = rng( -10, 10 );
++        personality.bravery    = rng( -3, 10 );
++        personality.collector  = rng( -1, 10 );
++        personality.altruism   = rng( -10, 10 );
++    }
+     moves = 100;
+     mission = NPC_MISSION_NULL;
+     male = one_in( 2 );
+@@ -376,10 +378,17 @@
+     }
+ 
+     const auto &the_class = myclass.obj();
+-    str_max = the_class.roll_strength();
+-    dex_max = the_class.roll_dexterity();
+-    int_max = the_class.roll_intelligence();
+-    per_max = the_class.roll_perception();
++    const auto &profile = the_class.attribute_profile;
++    if( profile ) {
++        personality.aggression = profile->aggression;
++        personality.bravery = profile->bravery;
++        personality.collector = profile->collector;
++        personality.altruism = profile->altruism;
++    }
++    str_max = profile ? profile->strength : the_class.roll_strength();
++    dex_max = profile ? profile->dexterity : the_class.roll_dexterity();
++    int_max = profile ? profile->intelligence : the_class.roll_intelligence();
++    per_max = profile ? profile->perception : the_class.roll_perception();
+ 
+     for( auto &skill : Skill::skills ) {
+         int level = myclass->roll_skill( skill.ident() );
+@@ -387,7 +396,9 @@
+         set_skill_level( skill.ident(), level );
+     }
+ 
+-    if( type.is_null() ) { // Untyped; no particular specialization
++    if( profile ) {
++        // Profile attributes must not receive legacy class-specific random bonuses.
++    } else if( type.is_null() ) { // Untyped; no particular specialization
+     } else if( type == NC_EVAC_SHOPKEEP ) {
+         personality.collector += rng( 1, 5 );
+ 
+@@ -447,7 +458,9 @@
+     //A universal barter boost to keep NPCs competitive with players
+     //The int boost from trade wasn't active... now that it is, most
+     //players will vastly outclass npcs in trade without a little help.
+-    mod_skill_level( skill_barter, rng( 2, 4 ) );
++    if( !profile ) {
++        mod_skill_level( skill_barter, rng( 2, 4 ) );
++    }
+ 
+     set_body();
+     recalc_hp();
