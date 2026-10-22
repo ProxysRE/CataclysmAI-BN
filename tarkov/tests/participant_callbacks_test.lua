@@ -164,3 +164,22 @@ assert(spawned == 3 and root.raid.encounter_deployed)
 mod.extract(); closed()
 assert(mod.depart("empty") and root.raid.encounter == "empty" and spawned == 3)
 print("PASS selectable patrol encounter, pending mode, production adapter/AI callback and reload without duplicates")
+-- Regression for the actual native probe's door setup: unchanged terrain is not failure.
+local door_map, set_calls, terrain = {}, 0, "t_door_c"
+TerId = { new = function(value) return { int_id = function() return value end } end }
+function door_map:abs_to_bub(p) return p end
+function door_map:set_ter_at(p, value)
+  assert(p.x == 394 and p.y == 391 and value == "t_door_c")
+  set_calls = set_calls + 1
+  return false -- BN's result when the closed door is already present.
+end
+function door_map:get_ter_at() return terrain end
+gapi.get_map = function() return door_map end
+assert(members.register(root.participants, root.raid.sequence, 1001, "usec", "door_test", {}))
+test_data = { stage = "npc_live_door_setup", door_actor_id = 1001 }
+dofile("tarkov/tests/bn_npc_probe.lua")
+dofile("tarkov/tests/bn_npc_probe.lua")
+assert(set_calls == 2)
+terrain = "t_wall" -- A genuinely failed setup must still fail the same invariant.
+assert(not pcall(dofile, "tarkov/tests/bn_npc_probe.lua"))
+print("PASS native door setup accepts unchanged closed terrain and rejects incorrect terrain")

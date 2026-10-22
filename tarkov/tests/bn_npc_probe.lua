@@ -106,8 +106,12 @@ elseif test_data.stage == "npc_live_door_setup" then
   local member = assert(participants.find(root.participants, context(), test_data.door_actor_id))
   member.patrol.route = { { x = 393, y = 391, z = 0 }, { x = 396, y = 391, z = 0 } }
   member.patrol.index = 1
-  assert(gapi.get_map():set_ter_at(gapi.get_map():abs_to_bub(TripointAbsMs.new(394, 391, 0)),
-    TerId.new("t_door_c"):int_id()))
+  local map = gapi.get_map()
+  local position = map:abs_to_bub(TripointAbsMs.new(394, 391, 0))
+  local closed = TerId.new("t_door_c"):int_id()
+  -- set_ter_at returns false when the desired terrain is already present.
+  map:set_ter_at(position, closed)
+  assert(map:get_ter_at(position) == closed, "Door setup did not leave a closed door")
 elseif test_data.stage == "npc_live_door_open" then
   local member = assert(participants.find(root.participants, context(), test_data.door_actor_id))
   assert(member.patrol.index == 2 and member.patrol.route[2].x == 396)
