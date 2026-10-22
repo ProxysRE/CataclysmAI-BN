@@ -12114,6 +12114,38 @@
       }
     ]
   },
+  "roof_adaptations": [
+    {
+      "source": "dda_geo_research_t_lixa_wall",
+      "old": "t_strconc_floor_no_roof",
+      "bn": "t_flat_roof",
+      "reason": "BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider"
+    },
+    {
+      "source": "dda_geo_research_t_folded_wall",
+      "old": "t_strconc_floor_no_roof",
+      "bn": "t_flat_roof",
+      "reason": "BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider"
+    },
+    {
+      "source": "dda_geo_research_t_unfolded_wall",
+      "old": "t_strconc_floor_no_roof",
+      "bn": "t_flat_roof",
+      "reason": "BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider"
+    },
+    {
+      "source": "dda_geo_research_t_LIXA_thconc_floor",
+      "old": "t_strconc_floor_no_roof",
+      "bn": "t_flat_roof",
+      "reason": "BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider"
+    },
+    {
+      "source": "dda_geo_research_t_LIXA_strconc_wall",
+      "old": "t_strconc_floor_no_roof",
+      "bn": "t_flat_roof",
+      "reason": "BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider"
+    }
+  ],
   "deferred_source_fields": [
     {
       "source": "t_carpet_concrete_green_olight",
@@ -12577,7 +12609,7 @@
   ],
   "adaptations": [
     "BN green carpet replaces industrial concrete-backed carpet",
-    "BN metal flat roof replaces source metal roofs; red paint is lost; BN reinforced-concrete floor without roof supplies concrete roof geometry",
+    "BN metal flat roof replaces source metal roofs; red paint is lost; walkable source concrete-roof terrain uses BN reinforced-concrete flooring, while automatic roof links use the valid BN flat roof with its stock bash behavior",
     "BN generic metal wall replaces corrugated wall; durability differs",
     "BN regional shrub/tree selectors replace forest-specific selectors",
     "BN straight road replaces source forest road; surroundings differ",

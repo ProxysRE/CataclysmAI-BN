@@ -61,6 +61,15 @@ def prepare(check=False):
                 assert base['see_cost']=='none';base['see_cost']=0
             expanded.append(base)
         else:expanded.append(e)
+    roof_adaptations=[]
+    for e in physical:
+        if e.get('roof')=='t_strconc_floor_no_roof':
+            roof_adaptations.append({'source':e['id'],'old':'t_strconc_floor_no_roof','bn':'t_flat_roof',
+                                     'reason':'BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider'})
+            e['roof']='t_flat_roof'
+    assert len(roof_adaptations)==5
+    from check_geometry_terrain_schema import validate_roofs,roof_sources
+    validate_roofs(physical,roof_sources())
     entries=expanded;own=index_entries(entries)
     for e in entries:
         if e['type']=='mapgen' and e['object'].get('predecessor_mapgen') and e['object'].get('rows'):
@@ -106,9 +115,10 @@ def prepare(check=False):
       'aliases':aliases,'unresolved_typed_refs':missing,'generated_external_omt':['road_ns'],
       'navigation':navigation,'navigation_points':sum(map(len,navigation.values())),
       'structural_furniture_points':furniture_points,
+      'roof_adaptations':roof_adaptations,
       'deferred_source_fields':deferred,
       'preserved':['Source rows, special placements and ruined tent weights','LIXA wall destruction cycle with source thresholds','Source movement, coverage, flags, light and shaft markers','Source physical barrier line and XEDRA locked door geometry'],
-      'adaptations':['BN green carpet replaces industrial concrete-backed carpet','BN metal flat roof replaces source metal roofs; red paint is lost; BN reinforced-concrete floor without roof supplies concrete roof geometry','BN generic metal wall replaces corrugated wall; durability differs','BN regional shrub/tree selectors replace forest-specific selectors','BN straight road replaces source forest road; surroundings differ','Source precision metal component tiers reuse BN wire/steel_chunk','DDA shooting, emissions, tools, EOC actions and unsupported display connections remain archived'],
+      'adaptations':['BN green carpet replaces industrial concrete-backed carpet','BN metal flat roof replaces source metal roofs; red paint is lost; walkable source concrete-roof terrain uses BN reinforced-concrete flooring, while automatic roof links use the valid BN flat roof with its stock bash behavior','BN generic metal wall replaces corrugated wall; durability differs','BN regional shrub/tree selectors replace forest-specific selectors','BN straight road replaces source forest road; surroundings differ','Source precision metal component tiers reuse BN wire/steel_chunk','DDA shooting, emissions, tools, EOC actions and unsupported display connections remain archived'],
       'remaining':['Native schema and source/installed generation','Special shafts, device access/unfolding and interactions','Combat, demolition, light and actor traversal acceptance'],
       'limits':['No native embedding or percentage credit','Shaft GOES_DOWN markers do not certify their source pseudo-ledge behavior','Reader examination disabled; ordinary science-card behavior not substituted']}
     for name,value in [('RESEARCH_ADAPTED_SHELL.json',entries),('RESEARCH_ADAPTATION_REPORT.json',report)]:

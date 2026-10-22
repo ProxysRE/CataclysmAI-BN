@@ -27,6 +27,8 @@ def check():
             else:continue
             expected.append((*map(str,cell['point']),terrain))
         assert actual==collections.Counter(expected),(name,'fixture coordinates/terrain mismatch')
+        point_count=len(re.findall(r'^        \{ -?\d+, -?\d+, -?\d+, -?\d+, -?\d+, "',body,re.M))
+        assert point_count<8000,(name,'oversized native initializer risks Windows stack overflow',point_count)
         assert special['occurrences']==[0,0],name
         count+=len(expected)
     assert code.count('TEST_CASE(')==len(specials)

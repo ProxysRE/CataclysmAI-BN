@@ -3067,7 +3067,7 @@
     "color": "light_gray",
     "move_cost": 0,
     "coverage": 100,
-    "roof": "t_strconc_floor_no_roof",
+    "roof": "t_flat_roof",
     "connects_to": "WALL",
     "flags": [
       "NOITEM",
@@ -3096,7 +3096,7 @@
     "color": "yellow_cyan",
     "move_cost": 0,
     "coverage": 100,
-    "roof": "t_strconc_floor_no_roof",
+    "roof": "t_flat_roof",
     "connects_to": "WALL",
     "flags": [
       "NOITEM",
@@ -3125,7 +3125,7 @@
     "color": "cyan_red",
     "move_cost": 0,
     "coverage": 100,
-    "roof": "t_strconc_floor_no_roof",
+    "roof": "t_flat_roof",
     "connects_to": "WALL",
     "flags": [
       "NOITEM",
@@ -3397,7 +3397,7 @@
     "symbol": ".",
     "color": "cyan",
     "move_cost": 2,
-    "roof": "t_strconc_floor_no_roof",
+    "roof": "t_flat_roof",
     "flags": [
       "TRANSPARENT",
       "SUPPORTS_ROOF",
@@ -3416,7 +3416,7 @@
     "color": "light_gray",
     "move_cost": 0,
     "coverage": 100,
-    "roof": "t_strconc_floor_no_roof",
+    "roof": "t_flat_roof",
     "connects_to": "WALL",
     "flags": [
       "NOITEM",

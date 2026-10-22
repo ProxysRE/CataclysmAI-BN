@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 21,
-  "verified_percent": 41.2,
+  "verified_groups": 24,
+  "verified_percent": 47.1,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 41.2,
+  "verified_plus_prepared_percent": 47.1,
   "evidence_checkpoint": {
-    "head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
-    "run_id": 39686560752,
+    "head": "fff46f939510a3c20532759d26187b888f2bd0f2",
+    "run_id": 39828961648,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 23,
-    "geometry_assertions": 648216,
-    "installed_geometry_test_cases": 23,
-    "installed_geometry_assertions": 648216
+    "geometry_test_cases": 26,
+    "geometry_assertions": 663753,
+    "installed_geometry_test_cases": 26,
+    "installed_geometry_assertions": 663753
   },
   "rows": [
     {
@@ -261,7 +261,9 @@
       "source_identities": [
         "overmap_special:Pottery Cottage"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All eight cottage cells including basement and two upper levels passed source and installed generation"
     },
     {
       "name": "Жильё выживальщиков и лесной лагерь",
@@ -287,14 +289,18 @@
       "source_identities": [
         "overmap_special:sunken_helicopter"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All source wreck cells and four lake-water context cells passed source and installed generation"
     },
     {
       "name": "Горячие источники",
       "source_identities": [
         "overmap_special:Hot Springs"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Hot-spring source cells passed source and installed generation with ordinary BN water collection"
     },
     {
       "name": "Кладбище Лакруа",

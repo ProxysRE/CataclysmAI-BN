@@ -7,6 +7,8 @@ on:
       - npc-content/prepare_large_site_geometry.py
       - npc-content/adapt_large_site_geometry.py
       - npc-content/check_large_site_geometry.py
+      - npc-content/prepare_large_site_preview.py
+      - npc-content/check_large_site_preview.py
       - npc-content/geometry_layer/LARGE_SITES_*
       - npc-content/geometry_layer/large_sites_sources/**
       - .github/workflows/check-dda-large-site-geometry.yml
@@ -19,3 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python npc-content/check_large_site_geometry.py
+      - run: python npc-content/check_large_site_preview.py
+      - run: python npc-content/prepare_geometry_preview.py --check
+      - run: python npc-content/check_geometry_terrain_schema.py
+      - run: python npc-content/check_geometry_preview_layout.py

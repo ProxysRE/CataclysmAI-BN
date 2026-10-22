@@ -1,0 +1,5525 @@
+{
+  "status": "large_site_geometry_embedded_pending_windows",
+  "native_embedded": true,
+  "runtime_validated": false,
+  "sites": {
+    "stadium_football": {
+      "world_map_definitions": 13,
+      "nested_identities": [],
+      "nested_definitions": 0
+    },
+    "office_skyscraper": {
+      "world_map_definitions": 8,
+      "nested_identities": [
+        "dda_geo_large_bedroom_4x4_adult_1_N",
+        "dda_geo_large_bedroom_4x4_adult_1_S",
+        "dda_geo_large_bedroom_4x4_adult_1_W",
+        "dda_geo_large_bedroom_4x4_adult_2_E",
+        "dda_geo_large_bedroom_4x4_adult_2_N",
+        "dda_geo_large_bedroom_4x4_adult_2_S",
+        "dda_geo_large_bedroom_4x4_adult_2_W",
+        "dda_geo_large_bedroom_4x4_adult_3_N",
+        "dda_geo_large_bedroom_4x4_adult_3_S",
+        "dda_geo_large_bonus_room_3x3_1",
+        "dda_geo_large_bonus_room_3x3_1A",
+        "dda_geo_large_bonus_room_3x3_E_6",
+        "dda_geo_large_bonus_room_3x3_E_7",
+        "dda_geo_large_bonus_room_3x3_E_8",
+        "dda_geo_large_bonus_room_3x3_S_5",
+        "dda_geo_large_bonus_room_3x3_S_6",
+        "dda_geo_large_bonus_room_3x3_S_7",
+        "dda_geo_large_bonus_room_3x3_S_8",
+        "dda_geo_large_bonus_room_3x3_W_6",
+        "dda_geo_large_bonus_room_3x3_W_8",
+        "dda_geo_large_diningroom_5x5_E_W",
+        "dda_geo_large_diningroom_5x5_N_S",
+        "dda_geo_large_domestic_bookcase_nest_board_games",
+        "dda_geo_large_domestic_bookcase_nest_computers",
+        "dda_geo_large_domestic_bookcase_nest_cookbooks",
+        "dda_geo_large_domestic_bookcase_nest_eclectic",
+        "dda_geo_large_domestic_bookcase_nest_electronics",
+        "dda_geo_large_domestic_bookcase_nest_esoterica",
+        "dda_geo_large_domestic_bookcase_nest_european_comics",
+        "dda_geo_large_domestic_bookcase_nest_fiction",
+        "dda_geo_large_domestic_bookcase_nest_fiction_and_nonfiction",
+        "dda_geo_large_domestic_bookcase_nest_judaica",
+        "dda_geo_large_domestic_bookcase_nest_literature_enthusiast",
+        "dda_geo_large_domestic_bookcase_nest_manga",
+        "dda_geo_large_domestic_bookcase_nest_martial_arts",
+        "dda_geo_large_domestic_bookcase_nest_medical",
+        "dda_geo_large_domestic_bookcase_nest_plant",
+        "dda_geo_large_domestic_bookcase_nest_table_book",
+        "dda_geo_large_domestic_bookcase_nest_tailoring",
+        "dda_geo_large_general_graffiti",
+        "dda_geo_large_kitchen_5x5_N_1A",
+        "dda_geo_large_kitchen_5x5_N_1B",
+        "dda_geo_large_kitchen_5x5_N_1C",
+        "dda_geo_large_livingroom_5x5_E_1",
+        "dda_geo_large_livingroom_5x5_E_2",
+        "dda_geo_large_livingroom_5x5_N_1",
+        "dda_geo_large_livingroom_5x5_N_2",
+        "dda_geo_large_livingroom_5x5_S_2",
+        "dda_geo_large_livingroom_5x5_W_1",
+        "dda_geo_large_livingroom_5x5_W_2",
+        "dda_geo_large_roof_16x16_help",
+        "dda_geo_large_roof_1x1_birdnest",
+        "dda_geo_large_roof_2x2_utilities",
+        "dda_geo_large_roof_2x2_utilities_b",
+        "dda_geo_large_roof_2x2_utilities_c",
+        "dda_geo_large_roof_4x4_utility",
+        "dda_geo_large_roof_4x4_utility_1",
+        "dda_geo_large_shelter_graffiti",
+        "dda_geo_large_skyscraper_4x4_cr1_l",
+        "dda_geo_large_skyscraper_4x4_cr1_r",
+        "dda_geo_large_skyscraper_4x4_cr2_l",
+        "dda_geo_large_skyscraper_4x4_cr2_r",
+        "dda_geo_large_skyscraper_4x4_cr3_l",
+        "dda_geo_large_skyscraper_4x4_cr3_r",
+        "dda_geo_large_skyscraper_5x5_benches_ur",
+        "dda_geo_large_skyscraper_5x5_cleaning1_il",
+        "dda_geo_large_skyscraper_5x5_cleaning1_ir",
+        "dda_geo_large_skyscraper_5x5_cleaning2_il",
+        "dda_geo_large_skyscraper_5x5_cleaning2_ir",
+        "dda_geo_large_skyscraper_5x5_office1_ol",
+        "dda_geo_large_skyscraper_5x5_office2_ol",
+        "dda_geo_large_skyscraper_5x5_office_or",
+        "dda_geo_large_skyscraper_5x5_office_ur",
+        "dda_geo_large_skyscraper_5x5_register_ol",
+        "dda_geo_large_skyscraper_5x5_register_or",
+        "dda_geo_large_skyscraper_5x5_register_ur",
+        "dda_geo_large_skyscraper_5x5_sofa_ur",
+        "dda_geo_large_skyscraper_5x5_sofas_ol",
+        "dda_geo_large_skyscraper_5x5_sofas_or",
+        "dda_geo_large_skyscraper_5x5_storage1_il",
+        "dda_geo_large_skyscraper_5x5_storage1_ir",
+        "dda_geo_large_skyscraper_5x5_storage2_il",
+        "dda_geo_large_skyscraper_5x5_storage2_ir",
+        "dda_geo_large_skyscraper_5x5_storage3_il",
+        "dda_geo_large_skyscraper_5x5_storage3_ir",
+        "dda_geo_large_skyscraper_5x5_toilet_il",
+        "dda_geo_large_skyscraper_5x5_toilet_ir",
+        "dda_geo_large_skyscraper_6x6_computer_ur",
+        "dda_geo_large_skyscraper_6x6_files_ur",
+        "dda_geo_large_skyscraper_6x6_glass_ur",
+        "dda_geo_large_skyscraper_6x6_office_ur",
+        "dda_geo_large_skyscraper_8x8_boss_al",
+        "dda_geo_large_skyscraper_8x8_boss_ar",
+        "dda_geo_large_skyscraper_8x8_eating_al",
+        "dda_geo_large_skyscraper_8x8_files_ar",
+        "dda_geo_large_skyscraper_8x8_meeting_al",
+        "dda_geo_large_skyscraper_8x8_mr1_l",
+        "dda_geo_large_skyscraper_8x8_mr1_r",
+        "dda_geo_large_skyscraper_8x8_mr2_l",
+        "dda_geo_large_skyscraper_8x8_mr2_r",
+        "dda_geo_large_skyscraper_8x8_mr3_l",
+        "dda_geo_large_skyscraper_8x8_mr3_r",
+        "dda_geo_large_skyscraper_8x8_mr4_r",
+        "dda_geo_large_skyscraper_8x8_office_al",
+        "dda_geo_large_skyscraper_8x8_office_ar",
+        "dda_geo_large_skyscraper_8x8_sofas_ar",
+        "dda_geo_large_skyscraper_boss_cafe_dr",
+        "dda_geo_large_skyscraper_crowded_dl",
+        "dda_geo_large_skyscraper_generic_dl",
+        "dda_geo_large_skyscraper_office_al",
+        "dda_geo_large_skyscraper_office_ar",
+        "dda_geo_large_skyscraper_office_crowded_al",
+        "dda_geo_large_skyscraper_office_crowded_ar",
+        "dda_geo_large_skyscraper_office_crowded_dr",
+        "dda_geo_large_skyscraper_office_dr",
+        "dda_geo_large_skyscraper_office_glass_al",
+        "dda_geo_large_skyscraper_office_glass_ar",
+        "dda_geo_large_skyscraper_office_glass_dl",
+        "dda_geo_large_skyscraper_office_glass_dr",
+        "dda_geo_large_skyscraper_office_private_al",
+        "dda_geo_large_skyscraper_office_private_ar",
+        "dda_geo_large_skyscraper_office_private_dr",
+        "dda_geo_large_skyscraper_office_slide_al",
+        "dda_geo_large_skyscraper_office_slide_ar",
+        "dda_geo_large_skyscraper_office_slide_dl",
+        "dda_geo_large_skyscraper_office_slide_dr",
+        "dda_geo_large_skyscraper_private_dl",
+        "dda_geo_large_skyscraper_shopping_0_lr_entrance_store",
+        "dda_geo_large_skyscraper_shopping_0_ml_lower_store_1",
+        "dda_geo_large_skyscraper_shopping_0_ml_upper_store_1",
+        "dda_geo_large_skyscraper_shopping_0_mr_lower_store",
+        "dda_geo_large_skyscraper_shopping_0_mr_upper_store",
+        "dda_geo_large_skyscraper_shopping_0_toilets_7x7_E",
+        "dda_geo_large_skyscraper_shopping_0_toilets_7x7_W",
+        "dda_geo_large_skyscraper_shopping_0_ul_store_1",
+        "dda_geo_large_skyscraper_shopping_0_ur_store_1",
+        "dda_geo_large_skyscraper_small1_ul",
+        "dda_geo_large_skyscraper_small2_ul",
+        "dda_geo_large_skyscraper_small_office_ul",
+        "dda_geo_large_skyscraper_small_sofa_ul"
+      ],
+      "nested_definitions": 222
+    },
+    "oil_platform": {
+      "world_map_definitions": 11,
+      "nested_identities": [],
+      "nested_definitions": 0
+    }
+  },
+  "world_maps": 32,
+  "nested_identities": 140,
+  "nested_definitions": 222,
+  "excluded_nested_identities": [
+    "dda_geo_large_bedroom_4x4_adult_3_E",
+    "dda_geo_large_bedroom_4x4_adult_3_W",
+    "dda_geo_large_bedroom_5x5_adult_W_1",
+    "dda_geo_large_bonus_room_3x3_2",
+    "dda_geo_large_bonus_room_3x3_3",
+    "dda_geo_large_bonus_room_3x3_4",
+    "dda_geo_large_bonus_room_3x3_N_6",
+    "dda_geo_large_bonus_room_3x3_N_8",
+    "dda_geo_large_diningroom_6x6_E_W_1",
+    "dda_geo_large_diningroom_6x6_E_W_1A",
+    "dda_geo_large_diningroom_6x6_E_W_2",
+    "dda_geo_large_diningroom_6x6_E_W_2A",
+    "dda_geo_large_diningroom_6x6_N_S_1A",
+    "dda_geo_large_diningroom_6x6_N_S_1B",
+    "dda_geo_large_diningroom_6x6_N_S_2",
+    "dda_geo_large_diningroom_6x6_N_S_2A",
+    "dda_geo_large_domestic_freezer_nest",
+    "dda_geo_large_industrial_1x1_solar",
+    "dda_geo_large_industrial_1x1_solar_v2",
+    "dda_geo_large_kitchen_5x5_N_1",
+    "dda_geo_large_kitchen_5x5_N_2",
+    "dda_geo_large_kitchen_5x5_N_3",
+    "dda_geo_large_livingroom_4x4_N_1",
+    "dda_geo_large_livingroom_4x4_N_S_1",
+    "dda_geo_large_livingroom_5x5_S_1",
+    "dda_geo_large_residential_6kW_solar",
+    "dda_geo_large_residential_6kW_solar_v1",
+    "dda_geo_large_residential_6kW_solar_v2",
+    "dda_geo_large_residential_7kW_solar",
+    "dda_geo_large_residential_7kW_solar_v1",
+    "dda_geo_large_residential_7kW_solar_v2",
+    "dda_geo_large_residential_8kW_solar",
+    "dda_geo_large_residential_8kW_solar_v1",
+    "dda_geo_large_residential_8kW_solar_v2",
+    "dda_geo_large_roof_2x2_golf",
+    "dda_geo_large_roof_2x2_infrastructure",
+    "dda_geo_large_roof_2x2_infrastructure_1",
+    "dda_geo_large_roof_2x2_infrastructure_2",
+    "dda_geo_large_roof_2x2_utilities_d",
+    "dda_geo_large_roof_3x3_wine",
+    "dda_geo_large_roof_4x4_holdout",
+    "dda_geo_large_roof_4x4_party",
+    "dda_geo_large_roof_4x4_survivor",
+    "dda_geo_large_roof_6x6_garden_1",
+    "dda_geo_large_roof_6x6_garden_2",
+    "dda_geo_large_roof_6x6_greenhouse_1",
+    "dda_geo_large_roof_6x6_greenhouse_2",
+    "dda_geo_large_roof_6x6_greenhouse_roof",
+    "dda_geo_large_roof_6x6_survivor"
+  ],
+  "excluded_vertical_blockers": [
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "roof_6x6_greenhouse_1",
+      "placement": {
+        "chunks": [
+          "roof_6x6_greenhouse_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "roof_6x6_greenhouse_2",
+      "placement": {
+        "chunks": [
+          "roof_6x6_greenhouse_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    }
+  ],
+  "reachable_vertical_blockers": [],
+  "habitat_adaptations": [
+    {
+      "site": "oil_platform",
+      "field": "flags",
+      "source": [
+        "OCEAN"
+      ],
+      "bn": [
+        "LAKE"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": null,
+      "source": [
+        "ocean_surface"
+      ],
+      "bn": [
+        "lake_surface"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -1
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -2
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -3
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -4
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -5
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -6
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -7
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -8
+      ],
+      "source": [
+        "ocean_water_cube"
+      ],
+      "bn": [
+        "lake_water_cube"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        0,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        0,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        0,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        1,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        1,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        1,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        2,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        2,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        2,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        0,
+        3,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        1,
+        3,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    },
+    {
+      "site": "oil_platform",
+      "point": [
+        2,
+        3,
+        -9
+      ],
+      "source": [
+        "ocean_bed"
+      ],
+      "bn": [
+        "lake_bed"
+      ]
+    }
+  ],
+  "unresolved_typed_refs": [],
+  "navigation": {
+    "office_skyscraper_1": [
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_2": [
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_3": [
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 6,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 7,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 8,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 9,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 10,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 13,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 14,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 15,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 16,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 17,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 18,
+        "y": 11,
+        "terrain": "t_ramp_up_low"
+      },
+      {
+        "x": 5,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 6,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 7,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 8,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 9,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 10,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 13,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 14,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 15,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 16,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 17,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      },
+      {
+        "x": 18,
+        "y": 12,
+        "terrain": "t_ramp_up_high"
+      }
+    ],
+    "office_skyscraper_4": [
+      {
+        "x": 4,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_111": [
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_011": [
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_101": [
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_001": [
+      {
+        "x": 4,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_112": [
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_012": [
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_102": [
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_apartments_002": [
+      {
+        "x": 4,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_9": [
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_10": [
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_11": [
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_12": [
+      {
+        "x": 4,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_9b": [
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 18,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 19,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_10b": [
+      {
+        "x": 5,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 4,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 5,
+        "y": 23,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "t_elevator"
+      }
+    ],
+    "office_skyscraper_13": [
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "office_skyscraper_14": [
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_1a_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1b_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1c_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2a_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2b_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_underwater_drill_string"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2c_uw": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_3a_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_3b_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_3c_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4a_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4b_uw": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4c_uw": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1a_z-8": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1b_z-8": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1c_z-8": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2a_z-8": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2c_z-8": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2b_z-8": [
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_underwater_drill_string"
+      }
+    ],
+    "oil_platform_3a_z-8": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_3c_z-8": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4a_z-8": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4c_z-8": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4b_z-8": [
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1a_z-9": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1b_z-9": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1c_z-9": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2a_z-9": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2c_z-9": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_2b_z-9": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_underwater_drill_string"
+      }
+    ],
+    "oil_platform_3a_z-9": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_3c_z-9": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4a_z-9": [
+      {
+        "x": 0,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4c_z-9": [
+      {
+        "x": 23,
+        "y": 0,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_4b_z-9": [
+      {
+        "x": 12,
+        "y": 12,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 0,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      },
+      {
+        "x": 23,
+        "y": 23,
+        "terrain": "dda_geo_large_saltwater_cube"
+      }
+    ],
+    "oil_platform_1a_0": [
+      {
+        "x": 16,
+        "y": 14,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_1c_0": [
+      {
+        "x": 7,
+        "y": 14,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_2b_0": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_string"
+      }
+    ],
+    "oil_platform_4a_0": [
+      {
+        "x": 8,
+        "y": 1,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 16,
+        "y": 9,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_4c_0": [
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 15,
+        "y": 1,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 7,
+        "y": 9,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_1a_1": [
+      {
+        "x": 16,
+        "y": 14,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 8,
+        "y": 22,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_1c_1": [
+      {
+        "x": 7,
+        "y": 14,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 15,
+        "y": 22,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1b_1": [
+      {
+        "x": 11,
+        "y": 23,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 12,
+        "y": 23,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_2b_1": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_string"
+      }
+    ],
+    "oil_platform_2a_1": [
+      {
+        "x": 17,
+        "y": 23,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_2c_1": [
+      {
+        "x": 6,
+        "y": 23,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_3a_1": [
+      {
+        "x": 17,
+        "y": 0,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_3c_1": [
+      {
+        "x": 6,
+        "y": 0,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_4b_1": [
+      {
+        "x": 11,
+        "y": 0,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 12,
+        "y": 0,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_4a_1": [
+      {
+        "x": 8,
+        "y": 1,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 16,
+        "y": 9,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_4c_1": [
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 15,
+        "y": 1,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 7,
+        "y": 9,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1c_2": [
+      {
+        "x": 7,
+        "y": 4,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 7,
+        "y": 22,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1a_2": [
+      {
+        "x": 2,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 16,
+        "y": 22,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1b_2": [
+      {
+        "x": 10,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 11,
+        "y": 23,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 12,
+        "y": 23,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_2a_2": [
+      {
+        "x": 2,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 15,
+        "y": 8,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 23,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 9,
+        "y": 16,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 9,
+        "y": 18,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 17,
+        "y": 21,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 17,
+        "y": 22,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_2c_2": [
+      {
+        "x": 21,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 6,
+        "y": 21,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 6,
+        "y": 22,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_2b_2": [
+      {
+        "x": 23,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_string"
+      },
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_3b_2": [
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 12,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 11,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 10,
+        "y": 21,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 21,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_3a_2": [
+      {
+        "x": 11,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 15,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 10,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 21,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_3c_2": [
+      {
+        "x": 10,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 14,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_4b_2": [
+      {
+        "x": 11,
+        "y": 0,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 12,
+        "y": 0,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_4a_2": [
+      {
+        "x": 16,
+        "y": 1,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 16,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_4c_2": [
+      {
+        "x": 7,
+        "y": 1,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1c_3": [
+      {
+        "x": 7,
+        "y": 4,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 21,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 16,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_1b_3": [
+      {
+        "x": 5,
+        "y": 11,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 10,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_1a_3": [
+      {
+        "x": 2,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 16,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_2a_3": [
+      {
+        "x": 2,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 11,
+        "y": 8,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 15,
+        "y": 8,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 17,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 23,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 7,
+        "y": 16,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 7,
+        "y": 18,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 17,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_2c_3": [
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 8,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_2b_3": [
+      {
+        "x": 23,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_string"
+      },
+      {
+        "x": 23,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_3b_3": [
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 12,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 10,
+        "y": 21,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 21,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 10,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 23,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_3a_3": [
+      {
+        "x": 11,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 15,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 10,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 21,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_3c_3": [
+      {
+        "x": 10,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 21,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_4b_3": [
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 12,
+        "y": 4,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_4a_3": [
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 16,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_1c_4": [
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 21,
+        "y": 16,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_1b_4": [
+      {
+        "x": 5,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 18,
+        "y": 12,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_1a_4": [
+      {
+        "x": 2,
+        "y": 16,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 12,
+        "y": 21,
+        "terrain": "t_ladder_up"
+      }
+    ],
+    "oil_platform_2a_4": [
+      {
+        "x": 2,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 17,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 5,
+        "y": 16,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 5,
+        "y": 18,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 17,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_2c_4": [
+      {
+        "x": 21,
+        "y": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 8,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_2b_4": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_machinery"
+      }
+    ],
+    "oil_platform_3b_4": [
+      {
+        "x": 14,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 10,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_3a_4": [
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_3c_4": [
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 23,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_4b_4": [
+      {
+        "x": 10,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 11,
+        "y": 4,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 12,
+        "y": 4,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_4a_4": [
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_1c_5": [
+      {
+        "x": 8,
+        "y": 9,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_1b_5": [
+      {
+        "x": 18,
+        "y": 12,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_1a_5": [
+      {
+        "x": 12,
+        "y": 21,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_2a_5": [
+      {
+        "x": 3,
+        "y": 16,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 3,
+        "y": 18,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_2b_5": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_machinery"
+      }
+    ],
+    "oil_platform_3a_5": [
+      {
+        "x": 18,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_3c_5": [
+      {
+        "x": 3,
+        "y": 15,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 16,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 17,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "oil_platform_4b_5": [
+      {
+        "x": 10,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_4a_5": [
+      {
+        "x": 13,
+        "y": 6,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "x": 15,
+        "y": 7,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1c_6": [
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_1a_6": [
+      {
+        "x": 12,
+        "y": 21,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_2a_6": [
+      {
+        "x": 1,
+        "y": 16,
+        "terrain": "t_ladder_up_down"
+      },
+      {
+        "x": 1,
+        "y": 18,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_2b_6": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_machinery"
+      }
+    ],
+    "oil_platform_3a_6": [
+      {
+        "x": 18,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_3c_6": [
+      {
+        "x": 3,
+        "y": 15,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 16,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 17,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "oil_platform_4a_6": [
+      {
+        "x": 13,
+        "y": 6,
+        "terrain": "t_ladder_up_down"
+      }
+    ],
+    "oil_platform_1c_7": [
+      {
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_1a_7": [
+      {
+        "x": 11,
+        "y": 21,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_2a_7": [
+      {
+        "x": 1,
+        "y": 16,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "x": 1,
+        "y": 18,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "oil_platform_2b_7": [
+      {
+        "x": 11,
+        "y": 17,
+        "terrain": "dda_geo_large_drill_machinery"
+      }
+    ],
+    "oil_platform_4a_7": [
+      {
+        "x": 13,
+        "y": 6,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "stadium_football_1_1": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_3_1": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_5_1": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_1": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_3": [
+      {
+        "x": 22,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 17,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_1_3": [
+      {
+        "x": 1,
+        "y": 7,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_5": [
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_1_5": [
+      {
+        "x": 1,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_4_5": [
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "t_elevator"
+      }
+    ],
+    "stadium_football_2_5": [
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_3_5": [
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_5_5": [
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_6_5": [
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_1_1_1": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_3_1_1": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_5_1_1": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_1_1": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_1_5_1": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_7_5_1": [
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_4_5_1": [
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "t_elevator"
+      }
+    ],
+    "stadium_football_2_5_1": [
+      {
+        "x": 11,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_3_5_1": [
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_5_5_1": [
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_6_5_1": [
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_1_3_1": [
+      {
+        "x": 1,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 17,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_7_3_1": [
+      {
+        "x": 22,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 7,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 17,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_1_1_2": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_3_1_2": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_5_1_2": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_7_1_2": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_1_5_2": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_5_2": [
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_4_5_2": [
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "t_elevator"
+      }
+    ],
+    "stadium_football_2_5_2": [
+      {
+        "x": 11,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_3_5_2": [
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_5_5_2": [
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_6_5_2": [
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_1_3_2": [
+      {
+        "x": 1,
+        "y": 5,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 1,
+        "y": 17,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 19,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_3_2": [
+      {
+        "x": 22,
+        "y": 5,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 7,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 17,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 19,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_1_1_3": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_3_1_3": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_5_1_3": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_7_1_3": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 20,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_7_5_3": [
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_1_5_3": [
+      {
+        "x": 1,
+        "y": 3,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_4_5_3": [
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "t_elevator"
+      }
+    ],
+    "stadium_football_2_5_3": [
+      {
+        "x": 11,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_3_5_3": [
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_5_5_3": [
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_6_5_3": [
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_7_3_3": [
+      {
+        "x": 22,
+        "y": 5,
+        "terrain": "t_stairs_down_no_roof"
+      },
+      {
+        "x": 22,
+        "y": 17,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_1_3_3": [
+      {
+        "x": 1,
+        "y": 7,
+        "terrain": "t_stairs_down_no_roof"
+      },
+      {
+        "x": 1,
+        "y": 19,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_3_1_4": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_5_1_4": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 22,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "stadium_football_4_5_4": [
+      {
+        "x": 0,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 9,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 10,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 21,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 22,
+        "y": 11,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 23,
+        "y": 11,
+        "terrain": "t_elevator"
+      }
+    ],
+    "stadium_football_2_5_4": [
+      {
+        "x": 11,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_3_5_4": [
+      {
+        "x": 20,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_5_5_4": [
+      {
+        "x": 1,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_6_5_4": [
+      {
+        "x": 10,
+        "y": 22,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "stadium_football_3_1_5": [
+      {
+        "x": 1,
+        "y": 1,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_5_1_5": [
+      {
+        "x": 20,
+        "y": 1,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_2_5_5": [
+      {
+        "x": 13,
+        "y": 22,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_3_5_5": [
+      {
+        "x": 22,
+        "y": 22,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_5_5_5": [
+      {
+        "x": 3,
+        "y": 22,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ],
+    "stadium_football_6_5_5": [
+      {
+        "x": 12,
+        "y": 22,
+        "terrain": "t_stairs_down_no_roof"
+      }
+    ]
+  },
+  "navigation_points": 671,
+  "navigation_points_excluded_for_random_nested_overlap": 58,
+  "ordinary_water_points_omitted_for_sampling": 13025,
+  "limits": [
+    "Only source-reachable nested graph is embedded; full staging and originals retained",
+    "Platform uses BN lake habitat, with source geometry and local salt water; surrounding BN lakes retain stock fresh-water behavior",
+    "Natural placement remains disabled; source lake depth and all-floor traversal require separate acceptance",
+    "No native generation or progress credit yet; unrelated upward-roof nests remain unsupported"
+  ]
+}

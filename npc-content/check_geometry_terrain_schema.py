@@ -17,6 +17,31 @@ def validate_omt(e,known):
     assert set(flags)<=known,('Unsupported BN overmap flags',e.get('id'),sorted(set(flags)-known))
 
 
+def roof_sources():
+    result={}
+    for folder,name,pin_key in (
+        ('research_roof_sources','bn/data/json/furniture_and_terrain/terrain-roofs.json','bn_commit'),
+        ('urban_adaptation_sources','bn/data/json/furniture_and_terrain/terrain-floors-outdoors.json',None)):
+        root=ROOT/'geometry_layer'/folder
+        manifest=json.loads((root/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))
+        pin=manifest[pin_key] if pin_key else manifest['pins']['bn']
+        assert pin=='c621aaf42fa182473aad10feea2b55647704dcf1'
+        raw=(root/name).read_bytes();assert hashlib.sha256(raw).hexdigest()==manifest['files'][name]
+        result.update({e['id']:e for e in json.loads(raw)if e.get('type')=='terrain'})
+    return result
+
+
+def validate_roofs(entries,stock):
+    definitions=dict(stock)
+    definitions.update({e['id']:e for e in entries if e['type']=='terrain'})
+    for e in entries:
+        if e['type']!='terrain'or not e.get('roof'):continue
+        roof=definitions.get(e['roof'])
+        assert roof is not None,('Missing authenticated roof definition',e['id'],e['roof'])
+        assert not roof.get('roof'),('Roof has another roof',e['id'],e['roof'])
+        assert roof.get('bash',{}).get('bash_below',False),('Roof cannot be bashed from below',e['id'],e['roof'])
+
+
 def validate_locations(entries,stock):
     from compare_location_catalog import read_sources
     from prepare_regional_locations import index_entries
@@ -37,8 +62,17 @@ def validate_locations(entries,stock):
 def check():
     entries=json.loads((ROOT/'native/dda_geometry_preview.json').read_text())
     terrain=[e for e in entries if e['type']=='terrain']
-    assert len(terrain)==43
+    assert len(terrain)==47
     for e in terrain:validate(e)
+    stock_roofs=roof_sources()
+    validate_roofs(entries,stock_roofs)
+    for bad_roof in ('t_strconc_floor_no_roof','recursive_roof'):
+        probe={'type':'terrain','id':'regression_roof_user','roof':bad_roof}
+        stock=dict(stock_roofs)
+        stock['recursive_roof']={'roof':'t_flat_roof','bash':{'bash_below':True}}
+        try:validate_roofs([probe],stock)
+        except AssertionError:pass
+        else:raise AssertionError('Invalid automatic roof accepted: '+bad_roof)
     archive=ROOT/'geometry_layer/waterside_adaptation_sources'
     manifest=json.loads((archive/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))
     name='bn/src/overmap/overmap.h';raw=(archive/name).read_bytes()
@@ -76,6 +110,6 @@ def check():
             try:validate(probe)
             except AssertionError:pass
             else:raise AssertionError('Incomplete terrain regression accepted')
-    print('PASS: concrete preview terrains, pinned BN overmap flags and placement locations; unsupported WATER/open_air and incomplete panels rejected')
+    print('PASS: concrete preview terrains, automatic roof invariants, pinned BN overmap flags and placement locations; invalid floors/recursive roofs and incomplete panels rejected')
 
 if __name__=='__main__':check()

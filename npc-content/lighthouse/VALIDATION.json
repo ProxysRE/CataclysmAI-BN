@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
-    "run_id": 39686560752,
+    "head": "fff46f939510a3c20532759d26187b888f2bd0f2",
+    "run_id": 39828961648,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 23,
-    "geometry_assertions": 648216,
-    "installed_geometry_test_cases": 23,
-    "installed_geometry_assertions": 648216
+    "geometry_test_cases": 26,
+    "geometry_assertions": 663753,
+    "installed_geometry_test_cases": 26,
+    "installed_geometry_assertions": 663753
   },
-  "native_patch_sha256": "7a4c3290d46188158259c21a3200c68f0bc4ac28f885cf38b00461f0bccab9c9",
+  "native_patch_sha256": "adb70989e8f3c85adbef00585efd7ae27023c7cee8c37b3beb36b1304f32b24d",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -46,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Urban source and installed geometry generation passed; character traversal and full quests not certified.",
+  "note": "Waterside source and installed geometry generation passed; current research preview awaits its separate Windows run. Full traversal and quests remain uncertified.",
   "portable_package": {
-    "run_id": 39686560752,
+    "run_id": 39828961648,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,14 +57,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12389029662,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39686560752/artifacts/12389029662",
+    "artifact_id": 12452926077,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39828961648/artifacts/12452926077",
     "installed_geometry_tests": {
-      "cases": 23,
-      "assertions": 648216
+      "cases": 26,
+      "assertions": 663753
     },
-    "size": 205652350,
-    "digest": "sha256:856ddbfd9d1ceb01309c3b06b35bd8e4cc865c9d906d9e800d2b5237d5d087f2"
+    "size": 205655665,
+    "digest": "sha256:c04b8a59f71fb560ee31a556bd09f7a3ddd189645501f937cd399a5bdd7b7d63"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -77,10 +77,11 @@
       "exodii",
       "frontier",
       "raider",
-      "urban"
+      "urban",
+      "waterside"
     ],
-    "source_and_installed": "All 23 geometry cases passed without initialization errors",
-    "placed_cells": 704,
+    "source_and_installed": "All 26 geometry cases passed without initialization errors",
+    "placed_cells": 723,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -89,6 +90,7 @@
       "Container yards and later Godco quest construction excluded"
     ],
     "raider_navigation_and_terrain_expectations": 841,
-    "urban_navigation_and_marking_expectations": 120
+    "urban_navigation_and_marking_expectations": 120,
+    "waterside_navigation_and_terrain_expectations": 148
   }
 }

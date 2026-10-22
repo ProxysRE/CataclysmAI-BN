@@ -5,6 +5,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'overmap_special:Hot Springs':('native/dda_geometry_preview.json','Hot-spring source cells passed source and installed generation with ordinary BN water collection'),
+ 'overmap_special:Pottery Cottage':('native/dda_geometry_preview.json','All eight cottage cells including basement and two upper levels passed source and installed generation'),
+ 'overmap_special:sunken_helicopter':('native/dda_geometry_preview.json','All source wreck cells and four lake-water context cells passed source and installed generation'),
  'city_building:police_dept':('native/dda_geometry_preview.json','All 30 police department cells, including rotated southern wing, passed source and installed generation'),
  'city_building:textile_mill_museum':('native/dda_geometry_preview.json','All 18 textile museum cells passed source and installed generation'),
  'overmap_special:supermarket':('native/dda_geometry_preview.json','All 18 supermarket cells passed source and installed generation'),
