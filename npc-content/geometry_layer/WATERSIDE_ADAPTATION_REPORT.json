@@ -849,6 +849,7 @@
   ],
   "preserved": [
     "Source map rows, underwater flags and complete stock BN parent fields",
+    "BN remove_all clears only terrain-painted predecessor glyphs; untouched lake/forest retained",
     "Firepit trunks retained as structural nested geometry",
     "White linoleum source fallback and same-material BN wall counterparts",
     "Hot-water movement, water flags and heat radiation"

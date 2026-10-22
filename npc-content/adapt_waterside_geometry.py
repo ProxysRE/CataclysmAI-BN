@@ -67,7 +67,16 @@ def prepare(check=False):
         assert 'copy-from'not in e and {'symbol','color','move_cost','name','description'}<=e.keys(),e['id']
         for flag in e.get('flags',[]):
             assert flag in known_flags or flag in files['bn/src/map/mapdata.cpp'],(e['id'],flag)
-    entries=rename(raw)+terrain;own=index_entries(entries)
+    entries=rename(raw)+terrain
+    for e in entries:
+        if e['type']=='mapgen'and e['object'].get('predecessor_mapgen')and e['object'].get('rows'):
+            # Preserve the untouched predecessor; clear debris only where source
+            # geometry paints a terrain tile, as in the verified Godco adapter.
+            e['object']['remove_all']={g:{}for g,t in e['object'].get('terrain',{}).items()if t!='t_null'}
+    own=index_entries(entries)
+    from compare_location_catalog import read_sources
+    river=next(e for path,text in read_sources()[0].items()if path=='bn/data/json/overmap/overmap_terrain/overmap_terrain_river.json'for e in json.loads(text)if e.get('id')=='river')
+    assert river['copy-from']=='generic_river_bank'and 'NO_ROTATE'in river['delete']['flags']
     generated={('overmap_terrain','river_north')}
     missing=sorted(required(entries)-own-core-generated);assert not missing,missing
     mods={(e['type'],e['id'])for e in mod_cache()['records']}
@@ -100,7 +109,7 @@ def prepare(check=False):
     report={'status':'waterside_geometry_adapted_not_installed','native_embedded':False,'runtime_validated':False,
       'aliases':aliases,'new_terrain_definitions':len(terrain),'unresolved_typed_refs':missing,'generated_external_omt':['river_north'],
       'navigation':expected,'navigation_points':sum(map(len,expected.values())),'deferred_source_fields':deferred,
-      'preserved':['Source map rows, underwater flags and complete stock BN parent fields','Firepit trunks retained as structural nested geometry','White linoleum source fallback and same-material BN wall counterparts','Hot-water movement, water flags and heat radiation'],
+      'preserved':['Source map rows, underwater flags and complete stock BN parent fields','BN remove_all clears only terrain-painted predecessor glyphs; untouched lake/forest retained','Firepit trunks retained as structural nested geometry','White linoleum source fallback and same-material BN wall counterparts','Hot-water movement, water flags and heat radiation'],
       'adaptations':['BN steel_chunk replaces DDA lc_steel_chunk with unchanged quantities','Complete BN material parents replace DDA parents; BN bash/ranged behavior applies except explicit source quarterpanel bash','BN wall and water connectivity used; DDA floor connectivity deferred'],
       'remaining':['Native schema loading and source/installed all-floor generation','Underwater swimming, breath, destruction and window shooting tests','Hot-water collection at source temperature and scalding behavior','Player stair and cottage access traversal'],
       'limits':['No native patch changes or completion credit','Hot-water collection is disabled for this geometry-only candidate','Thermal geometry is not certified hot-spring gameplay parity']}

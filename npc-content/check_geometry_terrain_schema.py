@@ -14,7 +14,7 @@ def validate(e):
 def check():
     entries=json.loads((ROOT/'native/dda_geometry_preview.json').read_text())
     terrain=[e for e in entries if e['type']=='terrain']
-    assert len(terrain)==7
+    assert len(terrain)==24
     for e in terrain:validate(e)
     bn=json.loads((ROOT/'geometry_layer/frontier_adaptation_sources/bn/data/json/furniture_and_terrain/terrain-mechanisms.json').read_text())
     by_id={e['id']:e for e in bn}
@@ -30,6 +30,6 @@ def check():
             try:validate(probe)
             except AssertionError:pass
             else:raise AssertionError('Incomplete terrain regression accepted')
-    print('PASS: seven concrete preview terrain definitions; panel physical data preserved; old copy-from and missing-symbol forms rejected')
+    print('PASS: 24 concrete preview terrain definitions; panel physical data preserved; old copy-from and missing-symbol forms rejected')
 
 if __name__=='__main__':check()
