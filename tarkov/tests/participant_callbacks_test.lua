@@ -47,6 +47,7 @@ package.loaded.trkv_lifecycle, package.loaded.trkv_bn = raid, api
 package.loaded.trkv_participants = members
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
 package.loaded.trkv_deployment = dofile("tarkov/mods/trkv_raid_core/trkv_deployment.lua")
+package.loaded.trkv_encounter = dofile("tarkov/mods/trkv_raid_core/trkv_encounter.lua")
 dofile("tarkov/mods/trkv_raid_core/main.lua")
 local function context()
   return { phase = root.raid.phase, sequence = root.raid.sequence, at_raid = api.at_raid() }
@@ -120,3 +121,42 @@ mod.loaded(); tick()
 assert(root.participants.sequence == seq and not root.participants.closed)
 assert(next(root.participants.actors) == nil)
 print("PASS participant lifecycle: failed return/reset, checkpoint replay, replaced tables, death, timeout, retry and legacy save")
+
+-- Exercise the actual encounter adapter from the player departure callback.
+mod.extract(); closed()
+local spawned, actors = 0, {}
+local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.z == b.z end }
+TripointAbsMs = { new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end }
+gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } end
+gapi.get_all_npcs = function() return actors end
+gapi.spawn_npc_at = function(template, point)
+  assert(where == "raid" and template == "trkv_patrol_tester")
+  spawned = spawned + 1
+  local actor = { position = point, moves = 1000, values = {}, id = 100 + spawned }
+  function actor:getID() return { get_value = function() return self.id end } end
+  function actor:set_value(k, v) self.values[k] = v end
+  function actor:get_value(k) return self.values[k] or "" end
+  function actor:get_pos_ms() return self.position end
+  function actor:get_moves() return self.moves end
+  function actor:current_target() return nil end
+  function actor:danger_assessment() return -10 end
+  function actor:move_to(p) self.position, self.moves = p, self.moves - 100 end
+  actors[#actors + 1] = actor
+  return actor
+end
+fail_enter = true
+assert(not mod.depart("patrol") and spawned == 0 and root.raid.encounter == "patrol")
+fail_enter = false
+assert(mod.depart("empty")) -- Pending retry must retain the originally chosen patrol mode.
+assert(root.raid.encounter == "patrol" and root.raid.encounter_deployed and spawned == 3)
+assert(game.npc_ai_functions.TRKV_PATROL(actors[1]))
+assert(actors[1].position.y == 399 and actors[1].moves == 900)
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+mod.loaded(); tick()
+assert(spawned == 3 and root.participants.actors["101"].patrol.index == 2)
+root.raid.encounter_deployed = false -- Replay a checkpoint before marking deployment complete.
+tick()
+assert(spawned == 3 and root.raid.encounter_deployed)
+mod.extract(); closed()
+assert(mod.depart("empty") and root.raid.encounter == "empty" and spawned == 3)
+print("PASS selectable patrol encounter, pending mode, production adapter/AI callback and reload without duplicates")

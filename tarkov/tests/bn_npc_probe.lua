@@ -82,6 +82,33 @@ elseif test_data.stage == "npc_group_routes" then
     count = count + 1
   end
   assert(count == 3)
+elseif test_data.stage == "npc_live_depart" then
+  assert(api.at_home() and state.phase == "home")
+  assert(game.mod_runtime.trkv_raid_core.depart("patrol"))
+  assert(state.encounter == "patrol" and state.encounter_deployed)
+  assert(#gapi.get_all_npcs() == 3)
+  local before = #gapi.get_all_npcs()
+  local function pos(x, y) return TripointAbsMs.new(384 + x, 384 + y, 0) end
+  assert(gapi.spawn_npc_at("trkv_missing_template", pos(18, 18)) == nil)
+  assert(gapi.spawn_npc_at("trkv_patrol_tester", pos(10, 8)) == nil) -- wall
+  assert(gapi.spawn_npc_at("trkv_patrol_tester", pos(14, 14)) == nil) -- occupied
+  assert(#gapi.get_all_npcs() == before)
+  test_data.group_ids = {}
+  for i = 1, 3 do test_data.group_ids[i] = root.participants.slots["patrol_" .. i].id end
+elseif test_data.stage == "npc_live_restored" then
+  assert(state.encounter == "patrol" and state.encounter_deployed)
+  assert(#gapi.get_all_npcs() == 3)
+  for i, id in ipairs(test_data.group_ids) do
+    assert(root.participants.slots["patrol_" .. i].id == id)
+    assert(participants.find(root.participants, context(), id).patrol.index == 2)
+  end
+elseif test_data.stage == "npc_live_timeout" then
+  state.deadline = api.now()
+elseif test_data.stage == "npc_live_empty" then
+  assert(api.at_home() and state.phase == "home")
+  assert(game.mod_runtime.trkv_raid_core.depart("empty"))
+  assert(state.encounter == "empty" and #gapi.get_all_npcs() == 0)
+  assert(next(root.participants.slots) == nil)
 elseif test_data.stage == "npc_patrol_restored" then
   local member = saved_actor()
   assert(member.id == test_data.actor_id and member.side == test_data.actor_side)

@@ -13,9 +13,9 @@ def main():
     with (MOD / "lang/ru.mo").open("rb") as stream:
         ru = gettext.GNUTranslations(stream)
     messages = set()
-    for filename in ("furniture.json", "items.json", "modinfo.json", "overmap.json", "world_types.json"):
+    for filename in ("furniture.json", "items.json", "modinfo.json", "overmap.json", "world_types.json", "npcs.json"):
         for entry in json.loads((MOD / filename).read_text(encoding="utf-8")):
-            for key in ("name", "description"):
+            for key in ("name", "description", "job_description", "name_suffix"):
                 if key not in entry:
                     continue
                 value = entry[key]
@@ -74,8 +74,10 @@ def main():
     lua.globals().package.loaded.trkv_patrol = lua.execute((MOD / "trkv_patrol.lua").read_text())
     lua.globals().package.loaded.trkv_participants = lua.execute((MOD / "trkv_participants.lua").read_text())
     lua.globals().package.loaded.trkv_deployment = lua.execute((MOD / "trkv_deployment.lua").read_text())
+    lua.globals().package.loaded.trkv_encounter = lua.execute((MOD / "trkv_encounter.lua").read_text())
     lua.execute(source)
     lua.execute('game.mod_runtime.trkv_raid_core.start()')
+    assert lua.globals().entries[3] == "Войти в тестовый рейд с патрулями (3 нейтральных НПС)"
     assert lua.globals().entries[1] == ru.gettext("Enter test raid (30 game minutes)")
     assert lua.globals().menu_title == ru.gettext("Tarkov DEV0.1: departure terminal")
     lua.eval("pending_entry")()

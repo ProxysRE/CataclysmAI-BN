@@ -1,0 +1,32 @@
+diff --git a/src/catalua_bindings_game_creatures.cpp b/src/catalua_bindings_game_creatures.cpp
+--- a/src/catalua_bindings_game_creatures.cpp
++++ b/src/catalua_bindings_game_creatures.cpp
+@@ -11,12 +11,28 @@
+ #include "game.h"
+ #include "monster.h"
+ #include "npc.h"
++#include "map/map.h"
++#include "coordinates.h"
++#include "catalua_coord.h"
+ 
+ namespace cata::detail
+ {
+ 
+ auto reg_game_api_creature_queries( luna::userlib &lib ) -> void
+ {
++    DOC( "Creates and activates an NPC from a template at an empty, passable absolute map position. Returns nil on invalid placement." );
++    luna::set_fx( lib, "spawn_npc_at", []( const std::string &template_name,
++    const tripoint_abs_ms &position ) -> npc * {
++        const auto id = string_id<npc_template>( template_name );
++        const auto pos = abs_to_bub( position );
++        if( !id.is_valid() || !g->m.inbounds( pos ) || !g->m.passable( pos ) || !g->is_empty( pos ) ) {
++            return nullptr;
++        }
++        const auto spawned_id = g->m.place_npc( pos, id, true );
++        g->load_npcs();
++        return g->find_npc( spawned_id );
++    } );
++
+     DOC( "Returns all active creatures as an array of Creature: the player first, then living NPCs, then living monsters." );
+     luna::set_fx( lib, "get_all_creatures", []( sol::this_state s ) -> sol::table {
+         sol::state_view lua( s );

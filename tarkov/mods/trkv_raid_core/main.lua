@@ -3,10 +3,11 @@ local mod = game.mod_runtime[game.current_mod]
 local storage = game.mod_storage[game.current_mod]
 local raid = require("trkv_lifecycle")
 local api = require("trkv_bn")
--- Load while BN still provides package.path; no NPC registration/spawning yet.
-require("trkv_patrol")
+-- Load while BN still provides package.path.
+local patrol = require("trkv_patrol")
 local participants = require("trkv_participants")
 require("trkv_deployment")
+local encounter = require("trkv_encounter")
 api.check_capabilities()
 storage.raid = storage.raid or {}
 raid.initialize(storage.raid)
@@ -61,6 +62,46 @@ local function report(state)
   if state.last_error ~= "" then gapi.add_msg(_(state.last_error)) end
 end
 
+local function deploy_patrol()
+  local state = current_state()
+  if state.encounter ~= "patrol" or state.encounter_deployed or state.phase ~= "active" or not api.at_raid() then
+    return
+  end
+  local ok, reason = encounter.ensure(current_participants(), {
+    phase = state.phase, sequence = state.sequence, at_raid = true,
+  })
+  if ok then
+    state.encounter_deployed = true
+  elseif not state.deployment_warning then
+    state.deployment_warning = true
+    print("Tarkov patrol deployment paused: " .. tostring(reason))
+    gapi.add_msg(_("[Tarkov DEV0.1] Patrol deployment paused; leave the raid and start a new one."))
+  end
+end
+
+game.npc_ai_functions = game.npc_ai_functions or {}
+game.npc_ai_functions["TRKV_PATROL"] = function(actor)
+  local state = current_state()
+  local context = { phase = state.phase, sequence = state.sequence, at_raid = api.at_raid() }
+  local member = participants.find(current_participants(), context, actor:getID():get_value())
+  if not member then return false end
+  local handled = patrol.step_actor(member.patrol, context, actor, gapi.get_map())
+  return handled
+end
+
+mod.depart = function(mode)
+  local state = current_state()
+  if not api.at_home() then return false end
+  if state.phase == "home" then
+    if mode ~= "empty" and mode ~= "patrol" then return false end
+    state.encounter, state.encounter_deployed, state.deployment_warning = mode, false, false
+  end
+  local entered = raid.start(state, api, 30 * 60)
+  if entered then deploy_patrol() end
+  report(state)
+  return entered
+end
+
 mod.start = function()
   local state = current_state()
   raid.recover(state, api)
@@ -68,8 +109,11 @@ mod.start = function()
   local menu = UiList.new()
   menu:title(_("Tarkov DEV0.1: departure terminal"))
   menu:add(1, state.phase == "entering" and _("Retry pending raid entry") or _("Enter test raid (30 game minutes)"))
+  if state.phase == "home" then menu:add(3, _("Enter patrol test raid (3 neutral NPCs)")) end
   menu:add(2, _("Cancel"))
-  if menu:query() == 1 then raid.start(state, api, 30 * 60); report(state) end
+  local choice = menu:query()
+  if choice == 1 then mod.depart("empty")
+  elseif choice == 3 and state.phase == "home" then mod.depart("patrol") end
 end
 
 mod.extract = function()
@@ -128,6 +172,7 @@ local function tick()
       end
     end
   end
+  deploy_patrol()
   return true
 end
 gapi.add_on_every_x_hook(TimeDuration.from_seconds(1), tick)

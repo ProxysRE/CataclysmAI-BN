@@ -257,4 +257,40 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_enter");
     CHECK(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
     probe("npc_extract");
+    // Actual game encounter: no injected spawner, test templates or test lua_ai.
+    probe("npc_live_depart");
+    const auto live_group = group_ids();
+    for (const auto id : live_group) {
+        auto* actor = g->find_npc(id);
+        REQUIRE(actor != nullptr);
+        REQUIRE(actor->myclass == npc_class_id("TRKV_PATROL"));
+        actor->set_moves(1000);
+        actor->move();
+        CHECK(actor->abs_pos().y() == 399);
+        CHECK(actor->get_moves() < 1000);
+    }
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_live_restored");
+    for (const auto id : live_group) {
+        auto* actor = g->find_npc(id);
+        REQUIRE(actor != nullptr);
+        actor->set_moves(1000);
+        actor->move();
+        CHECK(actor->abs_pos().y() == 398);
+        CHECK(actor->get_moves() < 1000);
+    }
+    probe("npc_extract");
+    for (const auto id : live_group) { CHECK(g->find_npc(id) == nullptr); }
+    probe("npc_live_depart");
+    const auto timeout_group = group_ids();
+    for (const auto id : timeout_group) {
+        for (const auto old_id : live_group) { CHECK(id != old_id); }
+    }
+    probe("npc_live_timeout");
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    for (const auto id : timeout_group) { CHECK(g->find_npc(id) == nullptr); }
+    probe("npc_live_empty");
+    probe("npc_extract");
 }

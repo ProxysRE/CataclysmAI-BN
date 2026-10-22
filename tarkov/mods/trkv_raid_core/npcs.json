@@ -1,0 +1,34 @@
+[
+  {
+    "type": "faction",
+    "id": "trkv_patrol_test",
+    "name": "Patrol test group",
+    "description": "Neutral participants in the technical patrol test.",
+    "likes_u": 0,
+    "respects_u": 0,
+    "known_by_u": false,
+    "size": 3,
+    "power": 3,
+    "food_supply": 0,
+    "wealth": 0,
+    "relations": { "trkv_patrol_test": { "watch your back": true, "kill on sight": false } }
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_PATROL",
+    "name": { "str": "Patrol tester" },
+    "job_description": "Neutral participant in the technical patrol test.",
+    "common": false,
+    "lua_ai": "TRKV_PATROL"
+  },
+  {
+    "type": "npc",
+    "id": "trkv_patrol_tester",
+    "name_suffix": "Patrol tester",
+    "class": "TRKV_PATROL",
+    "attitude": 0,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_patrol_test"
+  }
+]

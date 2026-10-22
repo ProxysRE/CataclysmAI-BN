@@ -29,6 +29,8 @@ def package(bn: Path, dist: Path, output: Path) -> None:
     expected_line = "MAPBUFFER_REGISTRY.get( current_dimension_id_ ).set_pocket_info( pocket_info );"
     if expected_line not in (bn / "src/savegame.cpp").read_text(encoding="utf-8"):
         raise SystemExit("The mandatory bounds patch is missing from the built source")
+    if '"spawn_npc_at"' not in (bn / "src/catalua_bindings_game_creatures.cpp").read_text(encoding="utf-8"):
+        raise SystemExit("The active NPC spawn binding is missing from the built source")
     executable = dist / "cataclysm-bn-tiles.exe"
     with executable.open("rb") as stream:
         if stream.read(2) != b"MZ":

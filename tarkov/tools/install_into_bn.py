@@ -11,12 +11,15 @@ ROOT = Path(__file__).resolve().parents[1]
 def apply_engine_patch(bn: Path, patch: Path) -> None:
     # BN and this repository can have different checkout EOL rules on Windows.
     # Use bytes so subprocess stdin does not translate LF back to CRLF.
-    source = bn / "src/savegame.cpp"
-    original = source.read_bytes()
-    normalized = original.replace(b"\r\n", b"\n")
-    if normalized != original:
-        source.write_bytes(normalized)
     data = patch.read_bytes().replace(b"\r\n", b"\n")
+    for line in data.decode().splitlines():
+        if not line.startswith("--- a/"):
+            continue
+        source = bn / line.removeprefix("--- a/")
+        original = source.read_bytes()
+        normalized = original.replace(b"\r\n", b"\n")
+        if normalized != original:
+            source.write_bytes(normalized)
     subprocess.run(["git", "-C", str(bn), "apply", "--check", "-"], input=data, check=True)
     subprocess.run(["git", "-C", str(bn), "apply", "-"], input=data, check=True)
 
@@ -28,8 +31,8 @@ def install(bn: Path, tests: bool) -> None:
     dest = bn / "data/mods/trkv_raid_core"
     if dest.exists():
         raise SystemExit(f"Destination already exists: {dest}; refusing to overwrite it.")
-    patch = ROOT / "patches/0001-restore-bounds-to-target-dimension.patch"
-    apply_engine_patch(bn, patch)
+    for patch in sorted((ROOT / "patches").glob("*.patch")):
+        apply_engine_patch(bn, patch)
     shutil.copytree(ROOT / "mods/trkv_raid_core", dest)
     if tests:
         harness = bn / "tests/catalua_test.cpp"
