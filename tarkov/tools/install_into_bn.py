@@ -49,6 +49,15 @@ def install(bn: Path, tests: bool) -> None:
         shutil.copyfile(ROOT / "tests/npc_patrol_class.json",
                         bn / "data/mods/TEST_DATA/trkv_npc_patrol.json")
 
+        # Test-only access to the production random-spawn entry point. Keep this
+        # seam out of checkouts installed without --tests.
+        header = bn / "src/game.h"
+        source = header.read_text()
+        anchor = "        friend class editmap;"
+        if source.count(anchor) != 1:
+            raise SystemExit("Pinned NPC spawn probe friend anchor changed")
+        header.write_text(source.replace(anchor, anchor + "\n        friend struct trkv_npc_spawn_probe;", 1))
+
         # Preserve only explicitly requested test worlds in the test driver.
         driver = bn / "tests/test_main.cpp"
         source = driver.read_text()

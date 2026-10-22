@@ -1,3 +1,4 @@
+#include "world_type.h"
 // Test-only cold restart probes, appended to BN's catalua_test.cpp.
 #include <cstdlib>
 #include <cstdio>
@@ -158,6 +159,7 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
     const auto* info = g->get_current_dimension_info();
     REQUIRE(info != nullptr);
     CHECK(info->world_type.str() == "trkv_raid_space");
+    CHECK_FALSE(info->world_type->allow_random_npcs);
     std::fprintf(stderr, "Tarkov cold: dimension info checked\n");
     // setup() replaced Lua: obtain all Lua references only AFTER the world load.
     auto& lua = DynamicDataLoader::get_instance().lua->lua;

@@ -20,6 +20,8 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0004-controlled-npc-attributes.patch", {"src/npc_class.h": "npc_attribute_profile",
              "src/npc_class.cpp": '"attribute_profile"', "src/npc.cpp": "profile->strength",
              "src/character.cpp": "npc_profile_hp_"}),
+            ("0005-dimension-random-npc-policy.patch", {"src/world_type.h": "bool allow_random_npcs = true;",
+             "src/world_type.cpp": '"allow_random_npcs"', "src/game.cpp": "!info->world_type->allow_random_npcs"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

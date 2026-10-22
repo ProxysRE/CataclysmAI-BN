@@ -40,6 +40,7 @@ def main() -> None:
     world_types = {entry["id"]: entry for entry in json.loads((MOD / "world_types.json").read_text())}
     realm = world_types[adapter.world_type_id]
     assert realm["save_prefix"] and not realm["infinite_bounds"]
+    assert realm["allow_random_npcs"] is False
     for dimension in (adapter.home_id, adapter.raid_id):
         assert dimension.startswith(realm["save_prefix"]), (dimension, realm["save_prefix"])
     print("PASS dimension IDs match the persisted world type prefix")

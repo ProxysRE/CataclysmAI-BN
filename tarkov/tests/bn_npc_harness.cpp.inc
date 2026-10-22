@@ -1,9 +1,16 @@
 #include "npc_class.h"
 #include "skill.h"
+#include "world_type.h"
+#include "options_helpers.h"
 #include "map_helpers.h"
 #include <vector>
 #include <cstdlib>
 #include <sstream>
+
+// The installer declares this friend only in --tests checkouts.
+struct trkv_npc_spawn_probe {
+    static void run(game& instance) { instance.perhaps_add_random_npc(); }
+};
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
 TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
@@ -66,8 +73,32 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         data["actor"] = sol::nil; // Never retain a userdata reference across load/travel.
         return guard.getID();
     };
+    const auto check_random_spawn_blocked = [&]() {
+        const auto* info = g->get_current_dimension_info();
+        REQUIRE(info != nullptr);
+        REQUIRE(info->world_type == world_type_id("trkv_raid_space"));
+        REQUIRE_FALSE(info->world_type->allow_random_npcs);
+        REQUIRE(world_types::get_default()->allow_random_npcs);
+        const override_option random_npcs("RANDOM_NPC", "true");
+        const override_option density("NPC_DENSITY", "100.00");
+        REQUIRE(get_option<bool>("RANDOM_NPC"));
+        REQUIRE(get_option<float>("NPC_DENSITY") >= 24.0f);
+        const auto tick = action_time_scale::scoped_calendar_turns_this_tick(1);
+        const auto restore_time = restore_on_out_of_scope<time_point>(calendar::turn);
+        const auto count = get_overmapbuffer(raid_dim).get_overmap_npcs().size();
+        calendar::turn = calendar::turn_zero;
+        for (auto hour = 0; hour < 12; ++hour) {
+            calendar::turn += 1_hours;
+            REQUIRE(action_time_scale::once_every_this_tick(1_hours));
+            // With this density and few NPCs the vanilla probability is exactly 1.
+            // Invoke its actual entry point, without running the raid timer hooks.
+            trkv_npc_spawn_probe::run(*g);
+            CHECK(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == count);
+        }
+    };
     probe("npc_enter");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    check_random_spawn_blocked();
     const auto first_id = spawn_guard("usec");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 1);
     REQUIRE(g->save(false));
@@ -580,6 +611,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_combat_restored");
     check_combat_actor(initial_ammo);
+    check_random_spawn_blocked(); // Policy must also survive save/load.
     auto remaining_ammo = initial_ammo;
     {
         auto* actor = g->find_npc(combat_id);

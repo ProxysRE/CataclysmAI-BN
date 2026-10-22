@@ -1,0 +1,47 @@
+diff --git a/src/world_type.h b/src/world_type.h
+--- a/src/world_type.h
++++ b/src/world_type.h
+@@ -30,7 +30,9 @@
+ 
+         // Generation settings
+         std::string region_settings_id = "default";  // Links to regional_settings
+-        bool generate_overmap = true;                // False for bounded pocket dims
++        // Ambient random NPCs; explicit map/template creation is independent.
++        bool allow_random_npcs = true;
++        bool generate_overmap = true;                // False for bounded pocket dims
+         bool infinite_bounds = true;                 // False for pocket dimensions
+ 
+         // Boundaries (for bounded dimensions)
+diff --git a/src/world_type.cpp b/src/world_type.cpp
+--- a/src/world_type.cpp
++++ b/src/world_type.cpp
+@@ -20,7 +20,8 @@
+ 
+     optional( jo, was_loaded, "description", description );
+     optional( jo, was_loaded, "region_settings", region_settings_id, "default" );
+-    optional( jo, was_loaded, "generate_overmap", generate_overmap, true );
++    optional( jo, was_loaded, "allow_random_npcs", allow_random_npcs, true );
++    optional( jo, was_loaded, "generate_overmap", generate_overmap, true );
+     optional( jo, was_loaded, "infinite_bounds", infinite_bounds, true );
+ 
+     if( jo.has_member( "boundary_terrain" ) ) {
+diff --git a/src/game.cpp b/src/game.cpp
+--- a/src/game.cpp
++++ b/src/game.cpp
+@@ -15925,9 +15925,13 @@
+     return ( 1.0 / 24.0 ) / overcrowding_ratio;
+ }
+ 
+-void game::perhaps_add_random_npc()
+-{
+-    ZoneScoped;
++void game::perhaps_add_random_npc()
++{
++    ZoneScoped;
++    const auto *info = get_current_dimension_info();
++    if( info && info->world_type.is_valid() && !info->world_type->allow_random_npcs ) {
++        return;
++    }
+     static constexpr time_duration spawn_interval = 1_hours;
+     if( !action_time_scale::once_every_this_tick( spawn_interval ) ) {
+         return;
