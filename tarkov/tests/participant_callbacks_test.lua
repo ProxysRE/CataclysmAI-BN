@@ -161,6 +161,20 @@ assert(spawned == 3 and root.participants.actors["101"].patrol.index == 2)
 root.raid.encounter_deployed = false -- Replay a checkpoint before marking deployment complete.
 tick()
 assert(spawned == 3 and root.raid.encounter_deployed)
+-- Replay the actual native probe's casualty checkpoint against replaced storage.
+test_data = { stage = "npc_live_casualty_before", group_ids = { 101, 102, 103 } }
+dofile("tarkov/tests/bn_npc_probe.lua")
+local casualty = table.remove(actors, 3)
+function casualty:is_avatar() return false end
+mod.death({ char = casualty })
+test_data.stage = "npc_live_casualty_checkpoint"
+dofile("tarkov/tests/bn_npc_probe.lua")
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+mod.loaded(); tick()
+test_data.stage = "npc_live_casualty_check"
+dofile("tarkov/tests/bn_npc_probe.lua")
+assert(spawned == 3 and root.participants.slots.patrol_3.id == 103)
+print("PASS casualty checkpoint retains ready slot without respawn or settling player raid")
 mod.extract(); closed()
 assert(mod.depart("empty") and root.raid.encounter == "empty" and spawned == 3)
 print("PASS selectable patrol encounter, pending mode, production adapter/AI callback and reload without duplicates")

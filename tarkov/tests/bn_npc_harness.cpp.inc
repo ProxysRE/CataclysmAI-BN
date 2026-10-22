@@ -418,9 +418,97 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(second->abs_pos() == second_goal);
         CHECK(detoured);
     }
+    // Actual fatal HP -> NPC death hook -> corpse and gear -> engine cleanup.
+    // Keep one dropped item on the map and take another into the refuge.
+    const auto casualty_abs = tripoint_abs_ms(404, 400, 0);
+    probe("npc_live_casualty_before");
+    {
+        auto* victim = g->find_npc(live_group[2]);
+        REQUIRE(victim != nullptr);
+        victim->setpos(abs_to_bub(casualty_abs));
+        victim->remove_primary_weapon();
+        auto rifle = item::spawn("ar15");
+        auto magazine = item::spawn("stanag30");
+        magazine->ammo_set(itype_id("223"), 17);
+        rifle->put_in(std::move(magazine));
+        rifle->set_damage(1375);
+        rifle->set_var("trkv_casualty", "rifle");
+        auto& carried = victim->i_add(std::move(rifle));
+        REQUIRE(victim->wield(carried));
+        auto abandoned = item::spawn("rock");
+        abandoned->set_var("trkv_casualty", "left_behind");
+        victim->i_add(std::move(abandoned));
+        victim->set_all_parts_hp_cur(0);
+        g->cleanup_dead(); // Invalidates victim: do not keep it beyond this block.
+    }
+    REQUIRE(g->find_npc(live_group[2]) == nullptr);
+    REQUIRE(get_overmapbuffer(raid_dim).find_npc(live_group[2]) == nullptr);
+    probe("npc_live_casualty_check");
+    const auto ground_counts = [&]() {
+        auto corpses = 0;
+        auto rifles = 0;
+        auto abandoned = 0;
+        for (const auto* value : g->m.i_at(abs_to_bub(casualty_abs))) {
+            if (value->is_corpse()) { ++corpses; }
+            if (value->get_var("trkv_casualty") == "rifle") {
+                ++rifles;
+                CHECK(value->typeId().str() == "ar15");
+                CHECK(value->ammo_remaining() == 17);
+                CHECK(value->damage() == 1375);
+            }
+            if (value->get_var("trkv_casualty") == "left_behind") { ++abandoned; }
+        }
+        return std::vector<int>{corpses, rifles, abandoned};
+    };
+    const auto check_looted_rifle = [&]() {
+        auto count = 0;
+        for (const auto* value : get_avatar().all_items(false)) {
+            if (value->get_var("trkv_casualty") != "rifle") { continue; }
+            ++count;
+            CHECK(value->typeId().str() == "ar15");
+            CHECK(value->ammo_remaining() == 17);
+            CHECK(value->damage() == 1375);
+            CHECK(get_avatar().is_wielding(*value));
+        }
+        REQUIRE(count == 1);
+    };
+    REQUIRE((ground_counts() == std::vector<int>{1, 1, 1}));
+    probe("npc_live_casualty_checkpoint");
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_live_casualty_check");
+    REQUIRE(g->find_npc(live_group[2]) == nullptr);
+    REQUIRE((ground_counts() == std::vector<int>{1, 1, 1}));
+    {
+        item* rifle = nullptr;
+        for (auto* value : g->m.i_at(abs_to_bub(casualty_abs))) {
+            if (value->get_var("trkv_casualty") == "rifle") { rifle = value; }
+        }
+        REQUIRE(rifle != nullptr);
+        auto taken = g->m.i_rem(abs_to_bub(casualty_abs), rifle);
+        REQUIRE(taken);
+        auto& carried = get_avatar().i_add(std::move(taken));
+        REQUIRE(get_avatar().wield(carried));
+    }
+    REQUIRE((ground_counts() == std::vector<int>{1, 0, 1}));
+    check_looted_rifle();
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_live_casualty_check");
+    REQUIRE((ground_counts() == std::vector<int>{1, 0, 1}));
+    check_looted_rifle();
     probe("npc_extract");
     for (const auto id : live_group) { CHECK(g->find_npc(id) == nullptr); }
+    check_looted_rifle();
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    check_looted_rifle();
     probe("npc_live_depart");
+    REQUIRE((ground_counts() == std::vector<int>{0, 0, 0}));
+    check_looted_rifle();
     const auto timeout_group = group_ids();
     for (const auto id : timeout_group) {
         for (const auto old_id : live_group) { CHECK(id != old_id); }

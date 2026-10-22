@@ -140,6 +140,24 @@ elseif test_data.stage == "npc_live_path_blocked" then
   assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(394, 392, 0))) == TerId.new("t_wall"):int_id())
 elseif test_data.stage == "npc_live_timeout" then
   state.deadline = api.now()
+elseif test_data.stage == "npc_live_casualty_before" then
+  test_data.casualty_id = test_data.group_ids[3]
+  test_data.casualty_sequence, test_data.casualty_deadline = state.sequence, state.deadline
+  test_data.casualty_wins, test_data.casualty_losses = state.wins, state.losses
+elseif test_data.stage == "npc_live_casualty_checkpoint" then
+  -- Simulate the saved interval before deployment was marked complete. Ready
+  -- slots must retain dead members, rather than replacing them on recovery.
+  state.encounter_deployed = false
+elseif test_data.stage == "npc_live_casualty_check" then
+  assert(api.at_raid() and state.phase == "active")
+  assert(state.sequence == test_data.casualty_sequence and state.deadline == test_data.casualty_deadline)
+  assert(state.wins == test_data.casualty_wins and state.losses == test_data.casualty_losses)
+  assert(state.encounter_deployed and #gapi.get_all_npcs() == 2)
+  local slot = root.participants.slots.patrol_3
+  assert(slot.status == "ready" and slot.id == test_data.casualty_id)
+  for _, actor in ipairs(gapi.get_all_npcs()) do
+    assert(actor:getID():get_value() ~= test_data.casualty_id)
+  end
 elseif test_data.stage == "npc_live_wait_restored" then
   for i = 1, 2 do
     local member = assert(participants.find(root.participants, context(), test_data.group_ids[i]))
