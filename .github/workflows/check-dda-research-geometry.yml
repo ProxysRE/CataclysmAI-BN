@@ -1,0 +1,19 @@
+name: Check DDA research geometry staging
+on:
+  workflow_dispatch:
+  push:
+    branches: [port/dda-npc-locations]
+    paths:
+      - npc-content/prepare_research_geometry.py
+      - npc-content/geometry_layer/RESEARCH_*
+      - npc-content/geometry_layer/research_sources/**
+      - .github/workflows/check-dda-research-geometry.yml
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/prepare_research_geometry.py --check

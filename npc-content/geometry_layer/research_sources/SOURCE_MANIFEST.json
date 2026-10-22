@@ -1,0 +1,11 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/furniture_and_terrain/LIXA_furniture_and_terrain.json": "f46c334d00e11fc2cc08fab62791ec133af445c556d3f9784bbdedd485cd5bd0",
+    "data/json/mapgen/LIXA_mapgen.json": "c997f3dd726b05a8030f24a19cef0fb28fc39e16cf2ef47284c6ab6cef706266",
+    "data/json/mapgen/nested/rural_outdoors_nested.json": "143e21b8f03f790ea95fb96721004085fc73e3169d666b0c24c4493f635e0239",
+    "data/json/mapgen/xedra_fishing_shack.json": "2bb69d1f450ac0dbfe58c9fc5ac24cf378871f3c0863482d8ca7856c370b952f",
+    "data/json/mapgen/xedra_morgantown.json": "5df699060aada56570bb55686ab06fa7e7f81230a582022106e46705ad21f9d3",
+    "data/json/mapgen_palettes/LIXA_mapgen_palette.json": "f6ccf664d7a9b6f23b7b31841495014ab23873a1e50cab4f80c9fa09fd268379"
+  }
+}

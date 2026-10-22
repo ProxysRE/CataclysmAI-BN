@@ -1,0 +1,142 @@
+{
+  "status": "research_geometry_staging_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 27,
+    "overmap_special": 3,
+    "overmap_terrain": 12
+  },
+  "world_maps": 26,
+  "unique_omt": 50,
+  "special_cells": {
+    "xedra_morgantown": 53,
+    "xedra_fishing_shack": 6,
+    "physics_lab_LIXA": 41
+  },
+  "source_rows_preserved": true,
+  "structural_tent_weights_preserved": true,
+  "structural_furniture_retained": [
+    "f_LIXA_unfold_barrier"
+  ],
+  "inline_mapping_projection": [],
+  "unresolved_typed_refs": [
+    [
+      "furniture",
+      "f_LIXA_unfold_barrier"
+    ],
+    [
+      "overmap_terrain",
+      "rural_road_forest_ns"
+    ],
+    [
+      "overmap_terrain_abstract",
+      "road_abstract"
+    ],
+    [
+      "terrain",
+      "t_LIXA_laser"
+    ],
+    [
+      "terrain",
+      "t_LIXA_portal_pulse"
+    ],
+    [
+      "terrain",
+      "t_LIXA_strconc_wall"
+    ],
+    [
+      "terrain",
+      "t_LIXA_thconc_floor"
+    ],
+    [
+      "terrain",
+      "t_LIXA_tube"
+    ],
+    [
+      "terrain",
+      "t_LIXA_unfolded_portal_pulse"
+    ],
+    [
+      "terrain",
+      "t_LIXA_unfolded_tube"
+    ],
+    [
+      "terrain",
+      "t_card_LIXA"
+    ],
+    [
+      "terrain",
+      "t_card_LIXA_2"
+    ],
+    [
+      "terrain",
+      "t_card_LIXA_3"
+    ],
+    [
+      "terrain",
+      "t_card_LIXA_mil"
+    ],
+    [
+      "terrain",
+      "t_carpet_concrete_green"
+    ],
+    [
+      "terrain",
+      "t_carpet_concrete_green_olight"
+    ],
+    [
+      "terrain",
+      "t_door_metal_elocked_xedra3"
+    ],
+    [
+      "terrain",
+      "t_infinite_shaft_no_roof"
+    ],
+    [
+      "terrain",
+      "t_infinite_shaft_rooved"
+    ],
+    [
+      "terrain",
+      "t_lixa_wall"
+    ],
+    [
+      "terrain",
+      "t_metal_roof"
+    ],
+    [
+      "terrain",
+      "t_metal_roof_red"
+    ],
+    [
+      "terrain",
+      "t_region_shrub_forest"
+    ],
+    [
+      "terrain",
+      "t_region_tree_forest"
+    ],
+    [
+      "terrain",
+      "t_wall_metal_corrugated"
+    ]
+  ],
+  "set_reference_audit": [
+    [
+      "furniture",
+      "f_LIXA_unfold_barrier"
+    ]
+  ],
+  "geometry_issues": [],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "No native integration or percentage credit",
+    "LIXA z=-8 device region is disconnected by design; its access and unfolding require later mechanisms",
+    "XEDRA passcode door source and transforms are archived; no science-card substitute",
+    "Ruined tent has no source roof; do not invent one",
+    "Exact ID checks do not replace comparison to analogous BN sites",
+    "Native schema, special terrain and all-floor generation pending"
+  ]
+}
