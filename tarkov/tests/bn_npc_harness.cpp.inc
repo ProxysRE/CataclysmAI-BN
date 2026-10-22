@@ -1,4 +1,5 @@
 #include "npc_class.h"
+#include "skill.h"
 #include "map_helpers.h"
 #include <vector>
 #include <cstdlib>
