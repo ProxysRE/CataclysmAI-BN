@@ -130,5 +130,77 @@
     "mission": 0,
     "chat": "TALK_STRANGER_NEUTRAL",
     "faction": "trkv_combat_test"
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_COMBAT_RECRUIT",
+    "copy-from": "TRKV_COMBAT_TEST",
+    "skills": [
+      {
+        "skill": "ALL",
+        "level": {
+          "constant": 0
+        }
+      },
+      {
+        "skill": [
+          "gun",
+          "rifle"
+        ],
+        "level": {
+          "constant": 3
+        }
+      }
+    ],
+    "attribute_profile": {
+      "stats": {
+        "strength": 8,
+        "dexterity": 8,
+        "intelligence": 8,
+        "perception": 8
+      },
+      "personality": {
+        "aggression": 5,
+        "bravery": 10,
+        "collector": 0,
+        "altruism": 0
+      },
+      "hit_points": {
+        "head": 35,
+        "torso": 85,
+        "arm_l": 60,
+        "arm_r": 60,
+        "leg_l": 65,
+        "leg_r": 65
+      }
+    }
+  },
+  {
+    "type": "npc",
+    "id": "trkv_combat_recruit_tester",
+    "name_suffix": "Combat test rifleman",
+    "class": "TRKV_COMBAT_RECRUIT",
+    "attitude": 10,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_combat_test"
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_COMBAT_RECRUIT_FIELD",
+    "copy-from": "TRKV_COMBAT_RECRUIT",
+    "weapon_override": "trkv_combat_field_weapon",
+    "worn_override": "trkv_combat_field_clothes",
+    "carry_override": "trkv_combat_field_carried"
+  },
+  {
+    "type": "npc",
+    "id": "trkv_combat_recruit_field_tester",
+    "name_suffix": "Combat test rifleman",
+    "class": "TRKV_COMBAT_RECRUIT_FIELD",
+    "attitude": 10,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_combat_test"
   }
 ]

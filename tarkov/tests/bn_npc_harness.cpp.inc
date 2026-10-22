@@ -524,16 +524,24 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_combat_depart");
     const auto combat_id = character_id(data["combat_id"].get<int>());
     const std::string selected_loadout = data["combat_loadout"];
-    const auto field_loadout = selected_loadout == "rifle_field_v1";
+    const std::string selected_profile = data["combat_profile"];
+    const std::string selected_equipment = data["combat_equipment"];
+    REQUIRE((selected_profile == "rifle_trained_v1" || selected_profile == "rifle_recruit_v1"));
+    REQUIRE((selected_equipment == "civilian_v1" || selected_equipment == "field_v1"));
+    const auto recruit = selected_profile == "rifle_recruit_v1";
+    const auto field_loadout = selected_equipment == "field_v1";
+    const std::string expected_class = recruit
+        ? (field_loadout ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT")
+        : (field_loadout ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST");
     const auto initial_ammo = field_loadout ? 30 : 17;
     const std::string combat_weapon = field_loadout ? "m4a1" : "ar15";
     const std::map<std::string, int> expected_hp = {
         {"head", 35}, {"torso", 85}, {"arm_l", 60}, {"arm_r", 60}, {"leg_l", 65}, {"leg_r", 65}
     };
-    const auto check_combat_actor = [&](int ammo, int barter = 0, int arm_hp = 60) {
+    const auto check_combat_actor = [&](int ammo, int barter = 0, int arm_hp = 60, int shooting_gain = 0) {
         const auto* actor = g->find_npc(combat_id);
         REQUIRE(actor != nullptr);
-        CHECK(actor->myclass == npc_class_id(field_loadout ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST"));
+        CHECK(actor->myclass == npc_class_id(expected_class));
         CHECK(actor->get_value("trkv_loadout") == selected_loadout);
         CHECK(actor->is_wearing(itype_id(field_loadout ? "pants_cargo" : "jeans")));
         CHECK(actor->is_wearing(itype_id(field_loadout ? "hoodie" : "tshirt")));
@@ -546,17 +554,17 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
         CHECK(spare_magazines == (field_loadout ? 2 : 0));
         CHECK(actor->get_attitude() == NPCATT_KILL);
-        CHECK(actor->get_str_base() == 10);
-        CHECK(actor->get_dex_base() == 10);
+        CHECK(actor->get_str_base() == (recruit ? 8 : 10));
+        CHECK(actor->get_dex_base() == (recruit ? 8 : 10));
         CHECK(actor->get_int_base() == 8);
-        CHECK(actor->get_per_base() == 10);
+        CHECK(actor->get_per_base() == (recruit ? 8 : 10));
         CHECK(actor->personality.aggression == 5);
         CHECK(actor->personality.bravery == 10);
         CHECK(actor->personality.collector == 0);
         CHECK(actor->personality.altruism == 0);
         CHECK(actor->get_skill_level(skill_id("barter")) == barter);
-        CHECK(actor->get_skill_level(skill_id("gun")) == 6);
-        CHECK(actor->get_skill_level(skill_id("rifle")) == 6);
+        CHECK(actor->get_skill_level(skill_id("gun")) == (recruit ? 3 : 6) + shooting_gain);
+        CHECK(actor->get_skill_level(skill_id("rifle")) == (recruit ? 3 : 6) + shooting_gain);
         CHECK(actor->primary_weapon().typeId().str() == combat_weapon);
         CHECK(actor->primary_weapon().damage() == 0);
         CHECK(actor->primary_weapon().ammo_remaining() == ammo);
@@ -613,6 +621,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
         REQUIRE(remaining_ammo < initial_ammo);
         actor->set_skill_level(skill_id("barter"), 2); // Saved progress, not a new spawn.
+        actor->set_skill_level(skill_id("gun"), (recruit ? 3 : 6) + 1);
+        actor->set_skill_level(skill_id("rifle"), (recruit ? 3 : 6) + 1);
         actor->set_part_hp_cur(bodypart_str_id("arm_l").id(), 17);
         for (auto repeat = 0; repeat < 5; ++repeat) { actor->recalc_hp(); }
         CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == 17);
@@ -622,26 +632,33 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_combat_restored");
-    check_combat_actor(remaining_ammo, 2, 17);
+    check_combat_actor(remaining_ammo, 2, 17, 1);
     g->find_npc(combat_id)->recalc_hp();
-    check_combat_actor(remaining_ammo, 2, 17);
+    check_combat_actor(remaining_ammo, 2, 17, 1);
     probe("npc_extract");
     CHECK(g->find_npc(combat_id) == nullptr);
     CHECK(get_overmapbuffer(home_dim).find_npc(combat_id) == nullptr);
-    for (auto sample_index = 0; sample_index < 8; ++sample_index) {
+    for (auto sample_index = 0; sample_index < 12; ++sample_index) {
         npc sample;
         const auto sample_field = sample_index % 2 != 0;
-        sample.randomize(npc_class_id(sample_field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST"));
-        CHECK(sample.get_str_base() == 10);
-        CHECK(sample.get_dex_base() == 10);
+        const auto sample_recruit = sample_index % 4 >= 2;
+        const std::string sample_class = sample_recruit
+            ? (sample_field ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT")
+            : (sample_field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST");
+        sample.randomize(npc_class_id(sample_class));
+        CHECK(sample.get_str_base() == (sample_recruit ? 8 : 10));
+        CHECK(sample.get_dex_base() == (sample_recruit ? 8 : 10));
         CHECK(sample.get_int_base() == 8);
-        CHECK(sample.get_per_base() == 10);
+        CHECK(sample.get_per_base() == (sample_recruit ? 8 : 10));
         CHECK(sample.personality.aggression == 5);
         CHECK(sample.personality.bravery == 10);
         CHECK(sample.personality.collector == 0);
         CHECK(sample.personality.altruism == 0);
         CHECK(sample.get_skill_level(skill_id("barter")) == 0);
-        CHECK(sample.get_skill_level(skill_id("gun")) == 6);
+        for (const auto& skill : Skill::skills) {
+            const auto shooting = skill.ident() == skill_id("gun") || skill.ident() == skill_id("rifle");
+            CHECK(sample.get_skill_level(skill.ident()) == (shooting ? (sample_recruit ? 3 : 6) : 0));
+        }
         CHECK(sample.primary_weapon().typeId().str() == (sample_field ? "m4a1" : "ar15"));
         CHECK(sample.primary_weapon().ammo_remaining() == (sample_field ? 30 : 17));
         CHECK(sample.is_wearing(itype_id(sample_field ? "hoodie" : "tshirt")));

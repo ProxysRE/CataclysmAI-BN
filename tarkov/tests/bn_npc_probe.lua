@@ -145,7 +145,9 @@ elseif test_data.stage == "npc_combat_depart" then
   assert(game.mod_runtime.trkv_raid_core.depart("combat"))
   test_data.combat_id = root.participants.slots.combat_1.id
   test_data.combat_loadout = root.participants.slots.combat_1.loadout
-  assert(package.loaded.trkv_loadouts.template(test_data.combat_loadout))
+  local definition = assert(package.loaded.trkv_loadouts.describe(test_data.combat_loadout))
+  test_data.combat_profile = definition.profile
+  test_data.combat_equipment = definition.equipment
   assert(state.encounter == "combat" and state.encounter_deployed)
   assert(#gapi.get_all_npcs() == 1)
 elseif test_data.stage == "npc_combat_checkpoint" then

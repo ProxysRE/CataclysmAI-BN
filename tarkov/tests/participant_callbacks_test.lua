@@ -130,10 +130,11 @@ local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.
 TripointAbsMs = { new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end }
 gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } end
 gapi.get_all_npcs = function() return actors end
-gapi.rng = function(low, high) assert(low == 1 and high == 4); return 1 end
+gapi.rng = function(low, high) assert(low == 1 and high == 12); return 1 end
 gapi.spawn_npc_at = function(template, point)
   assert(where == "raid" and (template == "trkv_patrol_tester" or template == "trkv_combat_tester" or
-    template == "trkv_combat_field_tester"))
+    template == "trkv_combat_field_tester" or template == "trkv_combat_recruit_tester" or
+    template == "trkv_combat_recruit_field_tester"))
   last_template = template
   spawned = spawned + 1
   local actor = { position = point, moves = 1000, values = {}, id = 100 + spawned }
@@ -227,6 +228,26 @@ actors[1]:set_value("trkv_loadout", "rifle_field_v1")
 assert(package.loaded.trkv_encounter.ensure(root.participants, context(), "combat") and spawned == 5)
 assert(root.participants.slots.combat_1.loadout == "rifle_field_v1")
 print("PASS field preset and reconciliation reject mismatched live loadout without spawning")
+-- Both training profiles can receive either coherent equipment set.
+for _, variant in ipairs({
+  { roll = 5, id = "rifle_recruit_civilian_v1", template = "trkv_combat_recruit_tester" },
+  { roll = 12, id = "rifle_recruit_field_v1", template = "trkv_combat_recruit_field_tester" },
+}) do
+  mod.extract(); closed(); actors = {}
+  gapi.rng = function() return variant.roll end
+  assert(mod.depart("combat") and last_template == variant.template and #actors == 1)
+  local id = root.participants.slots.combat_1.id
+  assert(root.participants.slots.combat_1.loadout == variant.id)
+  assert(root.participants.actors[tostring(id)].loadout == variant.id)
+  root.raid, root.participants = copy(root.raid), copy(root.participants)
+  root.raid.encounter_deployed = false
+  gapi.rng = function() error("Load rerolled training profile") end
+  local before = spawned
+  mod.loaded(); tick()
+  assert(spawned == before and root.raid.encounter_deployed)
+  assert(root.participants.slots.combat_1.loadout == variant.id)
+end
+print("PASS recruit variants use own templates and preserve training/equipment selection after load")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }
