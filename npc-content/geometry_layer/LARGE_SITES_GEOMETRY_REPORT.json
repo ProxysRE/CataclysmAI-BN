@@ -1,0 +1,559 @@
+{
+  "status": "large_sites_geometry_staged_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 323,
+    "overmap_special": 3,
+    "overmap_terrain": 17
+  },
+  "world_maps": 32,
+  "unique_omt": 307,
+  "nested_mapgen_definitions": 291,
+  "nested_identities": 189,
+  "special_cells": {
+    "stadium_football": 145,
+    "office_skyscraper": 44,
+    "oil_platform": 204
+  },
+  "source_z_levels": {
+    "stadium_football": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "office_skyscraper": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "oil_platform": [
+      -9,
+      -8,
+      -7,
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "source_rows_preserved": true,
+  "structural_nested_preserved": [
+    "bedroom_4x4_adult_1_N",
+    "bedroom_4x4_adult_1_S",
+    "bedroom_4x4_adult_1_W",
+    "bedroom_4x4_adult_2_E",
+    "bedroom_4x4_adult_2_N",
+    "bedroom_4x4_adult_2_S",
+    "bedroom_4x4_adult_2_W",
+    "bedroom_4x4_adult_3_E",
+    "bedroom_4x4_adult_3_N",
+    "bedroom_4x4_adult_3_S",
+    "bedroom_4x4_adult_3_W",
+    "bedroom_5x5_adult_W_1",
+    "bonus_room_3x3_1",
+    "bonus_room_3x3_1A",
+    "bonus_room_3x3_2",
+    "bonus_room_3x3_3",
+    "bonus_room_3x3_4",
+    "bonus_room_3x3_E_6",
+    "bonus_room_3x3_E_7",
+    "bonus_room_3x3_E_8",
+    "bonus_room_3x3_N_6",
+    "bonus_room_3x3_N_8",
+    "bonus_room_3x3_S_5",
+    "bonus_room_3x3_S_6",
+    "bonus_room_3x3_S_7",
+    "bonus_room_3x3_S_8",
+    "bonus_room_3x3_W_6",
+    "bonus_room_3x3_W_8",
+    "diningroom_5x5_E_W",
+    "diningroom_5x5_N_S",
+    "diningroom_6x6_E_W_1",
+    "diningroom_6x6_E_W_1A",
+    "diningroom_6x6_E_W_2",
+    "diningroom_6x6_E_W_2A",
+    "diningroom_6x6_N_S_1A",
+    "diningroom_6x6_N_S_1B",
+    "diningroom_6x6_N_S_2",
+    "diningroom_6x6_N_S_2A",
+    "domestic_bookcase_nest_board_games",
+    "domestic_bookcase_nest_computers",
+    "domestic_bookcase_nest_cookbooks",
+    "domestic_bookcase_nest_eclectic",
+    "domestic_bookcase_nest_electronics",
+    "domestic_bookcase_nest_esoterica",
+    "domestic_bookcase_nest_european_comics",
+    "domestic_bookcase_nest_fiction",
+    "domestic_bookcase_nest_fiction_and_nonfiction",
+    "domestic_bookcase_nest_judaica",
+    "domestic_bookcase_nest_literature_enthusiast",
+    "domestic_bookcase_nest_manga",
+    "domestic_bookcase_nest_martial_arts",
+    "domestic_bookcase_nest_medical",
+    "domestic_bookcase_nest_plant",
+    "domestic_bookcase_nest_table_book",
+    "domestic_bookcase_nest_tailoring",
+    "domestic_freezer_nest",
+    "general_graffiti",
+    "industrial_1x1_solar",
+    "industrial_1x1_solar_v2",
+    "kitchen_5x5_N_1",
+    "kitchen_5x5_N_1A",
+    "kitchen_5x5_N_1B",
+    "kitchen_5x5_N_1C",
+    "kitchen_5x5_N_2",
+    "kitchen_5x5_N_3",
+    "livingroom_4x4_N_1",
+    "livingroom_4x4_N_S_1",
+    "livingroom_5x5_E_1",
+    "livingroom_5x5_E_2",
+    "livingroom_5x5_N_1",
+    "livingroom_5x5_N_2",
+    "livingroom_5x5_S_1",
+    "livingroom_5x5_S_2",
+    "livingroom_5x5_W_1",
+    "livingroom_5x5_W_2",
+    "residential_6kW_solar",
+    "residential_6kW_solar_v1",
+    "residential_6kW_solar_v2",
+    "residential_7kW_solar",
+    "residential_7kW_solar_v1",
+    "residential_7kW_solar_v2",
+    "residential_8kW_solar",
+    "residential_8kW_solar_v1",
+    "residential_8kW_solar_v2",
+    "roof_16x16_help",
+    "roof_1x1_birdnest",
+    "roof_2x2_golf",
+    "roof_2x2_infrastructure",
+    "roof_2x2_infrastructure_1",
+    "roof_2x2_infrastructure_2",
+    "roof_2x2_utilities",
+    "roof_2x2_utilities_b",
+    "roof_2x2_utilities_c",
+    "roof_2x2_utilities_d",
+    "roof_3x3_wine",
+    "roof_4x4_holdout",
+    "roof_4x4_party",
+    "roof_4x4_survivor",
+    "roof_4x4_utility",
+    "roof_4x4_utility_1",
+    "roof_6x6_garden_1",
+    "roof_6x6_garden_2",
+    "roof_6x6_greenhouse_1",
+    "roof_6x6_greenhouse_2",
+    "roof_6x6_greenhouse_roof",
+    "roof_6x6_survivor",
+    "shelter_graffiti",
+    "skyscraper_4x4_cr1_l",
+    "skyscraper_4x4_cr1_r",
+    "skyscraper_4x4_cr2_l",
+    "skyscraper_4x4_cr2_r",
+    "skyscraper_4x4_cr3_l",
+    "skyscraper_4x4_cr3_r",
+    "skyscraper_5x5_benches_ur",
+    "skyscraper_5x5_cleaning1_il",
+    "skyscraper_5x5_cleaning1_ir",
+    "skyscraper_5x5_cleaning2_il",
+    "skyscraper_5x5_cleaning2_ir",
+    "skyscraper_5x5_office1_ol",
+    "skyscraper_5x5_office2_ol",
+    "skyscraper_5x5_office_or",
+    "skyscraper_5x5_office_ur",
+    "skyscraper_5x5_register_ol",
+    "skyscraper_5x5_register_or",
+    "skyscraper_5x5_register_ur",
+    "skyscraper_5x5_sofa_ur",
+    "skyscraper_5x5_sofas_ol",
+    "skyscraper_5x5_sofas_or",
+    "skyscraper_5x5_storage1_il",
+    "skyscraper_5x5_storage1_ir",
+    "skyscraper_5x5_storage2_il",
+    "skyscraper_5x5_storage2_ir",
+    "skyscraper_5x5_storage3_il",
+    "skyscraper_5x5_storage3_ir",
+    "skyscraper_5x5_toilet_il",
+    "skyscraper_5x5_toilet_ir",
+    "skyscraper_6x6_computer_ur",
+    "skyscraper_6x6_files_ur",
+    "skyscraper_6x6_glass_ur",
+    "skyscraper_6x6_office_ur",
+    "skyscraper_8x8_boss_al",
+    "skyscraper_8x8_boss_ar",
+    "skyscraper_8x8_eating_al",
+    "skyscraper_8x8_files_ar",
+    "skyscraper_8x8_meeting_al",
+    "skyscraper_8x8_mr1_l",
+    "skyscraper_8x8_mr1_r",
+    "skyscraper_8x8_mr2_l",
+    "skyscraper_8x8_mr2_r",
+    "skyscraper_8x8_mr3_l",
+    "skyscraper_8x8_mr3_r",
+    "skyscraper_8x8_mr4_r",
+    "skyscraper_8x8_office_al",
+    "skyscraper_8x8_office_ar",
+    "skyscraper_8x8_sofas_ar",
+    "skyscraper_boss_cafe_dr",
+    "skyscraper_crowded_dl",
+    "skyscraper_generic_dl",
+    "skyscraper_office_al",
+    "skyscraper_office_ar",
+    "skyscraper_office_crowded_al",
+    "skyscraper_office_crowded_ar",
+    "skyscraper_office_crowded_dr",
+    "skyscraper_office_dr",
+    "skyscraper_office_glass_al",
+    "skyscraper_office_glass_ar",
+    "skyscraper_office_glass_dl",
+    "skyscraper_office_glass_dr",
+    "skyscraper_office_private_al",
+    "skyscraper_office_private_ar",
+    "skyscraper_office_private_dr",
+    "skyscraper_office_slide_al",
+    "skyscraper_office_slide_ar",
+    "skyscraper_office_slide_dl",
+    "skyscraper_office_slide_dr",
+    "skyscraper_private_dl",
+    "skyscraper_shopping_0_lr_entrance_store",
+    "skyscraper_shopping_0_ml_lower_store_1",
+    "skyscraper_shopping_0_ml_upper_store_1",
+    "skyscraper_shopping_0_mr_lower_store",
+    "skyscraper_shopping_0_mr_upper_store",
+    "skyscraper_shopping_0_toilets_7x7_E",
+    "skyscraper_shopping_0_toilets_7x7_W",
+    "skyscraper_shopping_0_ul_store_1",
+    "skyscraper_shopping_0_ur_store_1",
+    "skyscraper_small1_ul",
+    "skyscraper_small2_ul",
+    "skyscraper_small_office_ul",
+    "skyscraper_small_sofa_ul"
+  ],
+  "inline_mapping_projection": [
+    {
+      "source": [
+        [
+          "stadium_football_1_1",
+          "stadium_football_2_1",
+          "stadium_football_3_1",
+          "stadium_football_4_1",
+          "stadium_football_5_1",
+          "stadium_football_6_1",
+          "stadium_football_7_1"
+        ],
+        [
+          "stadium_football_1_2",
+          "stadium_football_2_2",
+          "stadium_football_3_2",
+          "stadium_football_4_2",
+          "stadium_football_5_2",
+          "stadium_football_6_2",
+          "stadium_football_7_2"
+        ],
+        [
+          "stadium_football_1_3",
+          "stadium_football_2_3",
+          "stadium_football_3_3",
+          "stadium_football_4_3",
+          "stadium_football_5_3",
+          "stadium_football_6_3",
+          "stadium_football_7_3"
+        ],
+        [
+          "stadium_football_1_4",
+          "stadium_football_2_4",
+          "stadium_football_3_4",
+          "stadium_football_4_4",
+          "stadium_football_5_4",
+          "stadium_football_6_4",
+          "stadium_football_7_4"
+        ],
+        [
+          "stadium_football_1_5",
+          "stadium_football_2_5",
+          "stadium_football_3_5",
+          "stadium_football_4_5",
+          "stadium_football_5_5",
+          "stadium_football_6_5",
+          "stadium_football_7_5"
+        ]
+      ],
+      "glyph": "\u00f1",
+      "field": "furniture"
+    },
+    {
+      "source": [
+        [
+          "stadium_football_1_1",
+          "stadium_football_2_1",
+          "stadium_football_3_1",
+          "stadium_football_4_1",
+          "stadium_football_5_1",
+          "stadium_football_6_1",
+          "stadium_football_7_1"
+        ],
+        [
+          "stadium_football_1_2",
+          "stadium_football_2_2",
+          "stadium_football_3_2",
+          "stadium_football_4_2",
+          "stadium_football_5_2",
+          "stadium_football_6_2",
+          "stadium_football_7_2"
+        ],
+        [
+          "stadium_football_1_3",
+          "stadium_football_2_3",
+          "stadium_football_3_3",
+          "stadium_football_4_3",
+          "stadium_football_5_3",
+          "stadium_football_6_3",
+          "stadium_football_7_3"
+        ],
+        [
+          "stadium_football_1_4",
+          "stadium_football_2_4",
+          "stadium_football_3_4",
+          "stadium_football_4_4",
+          "stadium_football_5_4",
+          "stadium_football_6_4",
+          "stadium_football_7_4"
+        ],
+        [
+          "stadium_football_1_5",
+          "stadium_football_2_5",
+          "stadium_football_3_5",
+          "stadium_football_4_5",
+          "stadium_football_5_5",
+          "stadium_football_6_5",
+          "stadium_football_7_5"
+        ]
+      ],
+      "glyph": "\u00d1",
+      "field": "furniture"
+    }
+  ],
+  "neutral_overlay_glyphs": [
+    {
+      "source": "skyscraper_shopping_0_ur_store_1",
+      "glyph": "b"
+    },
+    {
+      "source": "skyscraper_shopping_0_ml_upper_store_1",
+      "glyph": "b"
+    },
+    {
+      "source": "skyscraper_shopping_0_ml_upper_store_1",
+      "glyph": "b"
+    },
+    {
+      "source": "skyscraper_shopping_0_ul_store_1",
+      "glyph": "b"
+    },
+    {
+      "source": "skyscraper_8x8_eating_al",
+      "glyph": "8"
+    },
+    {
+      "source": "skyscraper_8x8_eating_al",
+      "glyph": "9"
+    },
+    {
+      "source": "roof_6x6_greenhouse_1",
+      "glyph": "1"
+    },
+    {
+      "source": "roof_6x6_greenhouse_2",
+      "glyph": "1"
+    },
+    {
+      "source": "roof_6x6_garden_1",
+      "glyph": "1"
+    },
+    {
+      "source": "roof_6x6_garden_2",
+      "glyph": "1"
+    }
+  ],
+  "unresolved_typed_refs": [
+    [
+      "overmap_terrain_abstract",
+      "generic_office_skyscraper"
+    ],
+    [
+      "overmap_terrain_abstract",
+      "generic_stadium_park"
+    ],
+    [
+      "terrain",
+      "t_bollard"
+    ],
+    [
+      "terrain",
+      "t_carpet_wood_yellow"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_w"
+    ],
+    [
+      "terrain",
+      "t_drill_machinery"
+    ],
+    [
+      "terrain",
+      "t_drill_string"
+    ],
+    [
+      "terrain",
+      "t_metal_roof"
+    ],
+    [
+      "terrain",
+      "t_saltwater_cube"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_P"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_b"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_black"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_brown"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_cyan"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_g"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_orange"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_p"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_r"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_y"
+    ],
+    [
+      "terrain",
+      "t_truss_pillar"
+    ],
+    [
+      "terrain",
+      "t_underwater_drill_string"
+    ],
+    [
+      "terrain",
+      "t_wall_black"
+    ],
+    [
+      "terrain",
+      "t_wall_brown"
+    ],
+    [
+      "terrain",
+      "t_wall_cyan"
+    ],
+    [
+      "terrain",
+      "t_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_wall_orange"
+    ]
+  ],
+  "geometry_issues": [
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "roof_6x6_greenhouse_1",
+      "placement": {
+        "chunks": [
+          "roof_6x6_greenhouse_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "roof_6x6_greenhouse_2",
+      "placement": {
+        "chunks": [
+          "roof_6x6_greenhouse_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    }
+  ],
+  "core_id_overlaps": [],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "No native integration or completion credit",
+    "All original source, weighted nested alternatives and later-layer content retained",
+    "Oil-platform deep-water access and skyscraper elevators require traversal verification",
+    "Stadium and skyscraper city registrations archived; no replacement of BN city generation"
+  ]
+}

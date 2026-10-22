@@ -1,0 +1,30 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/nested/skyscraper_nested.json": "4c3222366e36a0f22492d7c3a1590db94113785dfc6af8d3a73a3a5fe5b45c02",
+    "data/json/mapgen/office_skyscraper.json": "125642755b1b36a4eb0ed5793f277b3dcf352b1c06515e1d0ef983311272d16c",
+    "data/json/mapgen/oil_platform/oil_platform_uw.json": "172e486b9735ce1b6cee76a7617e5e0c79dbd5b05927e6f54988a291f3b2ae92",
+    "data/json/mapgen/oil_platform/oil_platform_z-8.json": "17bd1108529f33d5ca5445cc73baabf598ee88404311c555dfd0e51cf1d5ed6e",
+    "data/json/mapgen/oil_platform/oil_platform_z-9.json": "859b930b5802460fcb98ab9b2eb4a1be395bf2897354148c7543ec28f67e5438",
+    "data/json/mapgen/oil_platform/oil_platform_z0.json": "ebd9a4b8cb249f5951c225babb463349629741f3165b00e4fc78b9d56e3b6a87",
+    "data/json/mapgen/oil_platform/oil_platform_z1.json": "aef40cd6076258a026da4efc8c36f673e4e8a6df5f46d6c0ca48c0ef7512f127",
+    "data/json/mapgen/oil_platform/oil_platform_z2.json": "d2e7240ed240cb3c6d79828fbfe07ba1de2824fc7a65b8f756be89719156a577",
+    "data/json/mapgen/oil_platform/oil_platform_z3.json": "5781bf9f9d849d3d15aeada13691c65a1ec2c6949da1a1d905faa7c6b9d9e8c2",
+    "data/json/mapgen/oil_platform/oil_platform_z4.json": "8fd18ed01794176099b673b9bd7072980640bebe6126cb9a67b6afa1f74b976a",
+    "data/json/mapgen/oil_platform/oil_platform_z5.json": "673273df1ec6b8e54f696720d5e75dc6f0abad368d67b201f50be381b59ca5bf",
+    "data/json/mapgen/oil_platform/oil_platform_z6.json": "f4a341209cf3dafa170808012efa3655fe006ee3e638a99351c07493dff08bc7",
+    "data/json/mapgen/oil_platform/oil_platform_z7.json": "cb7bb8428aff04b0bc7e907f2696fab8c16bb3373ef841bb1564e49421ce800b",
+    "data/json/mapgen/stadium_football.json": "8f78dbb2fd9193d8f657b68e1f4f645fce0c6ba8a2e5037ddc667a7c5c6ff9f0",
+    "data/json/mapgen_palettes/office_skyscraper.json": "9c51c7d23194e60482104634d24428a04200b529533933f8dee86232bf78b05e",
+    "data/json/mapgen_palettes/oil_platform_palette.json": "feb95277b1cfa48ec81180b08c504cebe4b0af0aa7549321d0993259157a346b",
+    "data/json/mapgen_palettes/stadium_palette.json": "dc25fbd9cdd94d9a36f8eb612e2c8b24608d6c41f63625237b25ade0c86870a2",
+    "data/json/mapgen_palettes/common_parameters.json": "abb3e250be1920840155264e84890f3c4aa12e9ec169f2e535add993905137e6",
+    "data/json/mapgen/nested/aux_nested.json": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6",
+    "data/json/mapgen/nested/shelter_nested.json": "43c3671d16dd354acbf2c0f67c95deecd79bf59249db3e0d9cbf3f362406e5fe",
+    "bn/data/json/furniture_and_terrain/terrain-manufactured.json": "94354a471c01867df2b22db7e0f03434a1151bc579342d02b1484f79f46f3e31",
+    "data/json/furniture_and_terrain/terrain-manufactured.json": "f5a6e6e9db687e1cbff983c667b47f0b9005ee61058ff4a37b3c94f83a370219",
+    "data/json/furniture_and_terrain/terrain-floors-outdoors.json": "6eb7eb3805738a6337e528a590b78ae904941e1f2576f2778b5b4a635e158e08",
+    "data/json/furniture_and_terrain/terrain-liquids.json": "29946e8f73ba86fd0670487ded19aed0f65920bc4ad54a455666810a125fedb8"
+  },
+  "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+}
