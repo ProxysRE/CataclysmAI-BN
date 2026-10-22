@@ -555,12 +555,24 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         actor->move(); // Player is still behind the wall: production patrol runs.
         REQUIRE(actor->abs_pos() == tripoint_abs_ms(402, 393, 0));
         REQUIRE(actor->primary_weapon().ammo_remaining() == 17);
+        // Vanilla gun use is gated by perceived danger. Use an armed target,
+        // as in the earlier combat probe, without altering the tested NPC.
+        auto target_rifle = item::spawn("ar15");
+        auto target_magazine = item::spawn("stanag30");
+        target_magazine->ammo_set(itype_id("223"), 30);
+        target_rifle->put_in(std::move(target_magazine));
+        auto& target_weapon = player.i_add(std::move(target_rifle));
+        REQUIRE(player.wield(target_weapon));
         player.setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
         set_time(calendar::turn);
         REQUIRE(actor->sees(player));
         for (auto decision = 0; decision < 30; ++decision) {
+            INFO("Production combat decision " << decision);
             actor->set_moves(100);
             actor->move();
+            INFO("NPC danger " << actor->danger_assessment() << ", position " << actor->abs_pos().x()
+                 << "," << actor->abs_pos().y() << "," << actor->abs_pos().z() << ", weapon " << actor->primary_weapon().typeId().str()
+                 << ", ammo " << actor->primary_weapon().ammo_remaining());
             REQUIRE(actor->get_moves() < 100);
             REQUIRE(actor->current_target() == static_cast<Creature*>(&player));
             REQUIRE(actor->primary_weapon().typeId().str() == "ar15");
