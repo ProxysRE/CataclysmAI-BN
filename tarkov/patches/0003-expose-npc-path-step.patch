@@ -1,0 +1,30 @@
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -1637,6 +1637,26 @@
+ 
+         SET_FX_T( can_move_to, bool( const tripoint_bub_ms &, bool ) const );
+ 
++        DOC( "Plans a non-bashing same-floor path and attempts one step, including normal door opening costs. Returns whether moves were spent." );
++        luna::set_fx( ut, "move_towards", []( UT_CLASS & npchar, const tripoint_bub_ms & pos ) -> bool {
++            npchar.path.clear();
++            if( pos.z() != npchar.bub_pos().z() || !g->m.inbounds( pos ) ||
++                ( !g->m.passable( pos ) && !npchar.can_open_door( pos, !g->m.is_outside( npchar.bub_pos() ) ) ) ) {
++                return false;
++            }
++            if( !npchar.update_path( pos, true, true ) || npchar.path.empty() ) {
++                return false;
++            }
++            const auto next = npchar.path.front();
++            if( next.z() != npchar.bub_pos().z() || !npchar.can_move_to( next, true ) ) {
++                npchar.path.clear();
++                return false;
++            }
++            const auto before = npchar.get_moves();
++            npchar.move_to( next, true, nullptr );
++            return npchar.get_moves() < before;
++        } );
++
+         DOC( "Attempts to move the NPC to an adjacent map square." );
+         luna::set_fx( ut, "move_to", []( UT_CLASS & npchar, const tripoint_bub_ms & pos,
+         sol::optional<bool> no_bashing ) -> void {

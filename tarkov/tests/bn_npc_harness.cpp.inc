@@ -1,6 +1,7 @@
 #include "npc_class.h"
 #include "map_helpers.h"
 #include <vector>
+#include <cstdlib>
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
 TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
@@ -278,8 +279,66 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(actor != nullptr);
         actor->set_moves(1000);
         actor->move();
-        CHECK(actor->abs_pos().y() == 398);
+        CHECK(actor->abs_pos().y() == 400);
         CHECK(actor->get_moves() < 1000);
+    }
+    data["door_actor_id"] = live_group.front().get_value();
+    probe("npc_live_door_setup");
+    {
+        auto* actor = g->find_npc(live_group.front());
+        REQUIRE(actor != nullptr);
+        const auto before_door = tripoint_abs_ms(393, 391, 0);
+        actor->setpos(abs_to_bub(before_door));
+        set_time(calendar::turn);
+        actor->set_moves(1000);
+        actor->move();
+        CHECK(actor->abs_pos() == before_door); // Opening is an action, not a teleport.
+        CHECK(actor->get_moves() < 1000);
+        probe("npc_live_door_open");
+    }
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_live_door_open");
+    {
+        auto* actor = g->find_npc(live_group.front());
+        REQUIRE(actor != nullptr);
+        const auto destination = tripoint_abs_ms(396, 391, 0);
+        REQUIRE(actor->abs_pos() == tripoint_abs_ms(393, 391, 0));
+        for (auto step = 0; step < 12 && actor->abs_pos() != destination; ++step) {
+            const auto before = actor->abs_pos();
+            actor->set_moves(1000);
+            actor->move();
+            CHECK(std::abs(actor->abs_pos().x() - before.x()) <= 1);
+            CHECK(std::abs(actor->abs_pos().y() - before.y()) <= 1);
+            REQUIRE(actor->get_moves() < 1000);
+        }
+        REQUIRE(actor->abs_pos() == destination);
+        probe("npc_live_path_blocked");
+    }
+    probe("npc_live_detour_setup");
+    {
+        auto* actor = g->find_npc(live_group.front());
+        REQUIRE(actor != nullptr);
+        actor->setpos(abs_to_bub(tripoint_abs_ms(400, 395, 0)));
+        const auto destination = tripoint_abs_ms(400, 397, 0);
+        auto went_around = false;
+        for (auto step = 0; step < 24 && actor->abs_pos() != destination; ++step) {
+            const auto before = actor->abs_pos();
+            actor->set_moves(1000);
+            actor->move();
+            const auto after = actor->abs_pos();
+            CHECK(std::abs(after.x() - before.x()) <= 1);
+            CHECK(std::abs(after.y() - before.y()) <= 1);
+            REQUIRE(actor->get_moves() < 1000);
+            if (after.y() == 396) {
+                REQUIRE((after.x() < 397 || after.x() > 402));
+                went_around = true;
+            }
+        }
+        REQUIRE(actor->abs_pos() == destination);
+        CHECK(went_around);
+        probe("npc_live_detour_intact");
     }
     probe("npc_extract");
     for (const auto id : live_group) { CHECK(g->find_npc(id) == nullptr); }

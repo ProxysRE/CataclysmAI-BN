@@ -44,3 +44,20 @@ assert(patrol.step(state, context, api) and position.y == 2)
 assert(not patrol.step({ sequence = 7, route = {} }, context, api))
 assert(not patrol.step(saved(99), context, api))
 print("PASS patrol loop, action budget, threat handoff, blocked fallback, stale raid and restored route")
+
+-- A distant waypoint stays selected until reached. Opening a door spends actions
+-- without changing position and must still count as a handled patrol decision.
+state = { sequence = 7, index = 1, route = { { x = 1, y = 1, z = 0 }, { x = 1, y = 4, z = 0 } } }
+position, moves = state.route[1], 1000
+local door_closed = true
+api.move_to = function(p)
+  moves = moves - 100
+  if door_closed then door_closed = false; return end
+  position = { x = 1, y = position.y + (p.y > position.y and 1 or -1), z = 0 }
+end
+assert(patrol.step(state, context, api) and state.index == 2 and position.y == 1 and moves == 900)
+for expected = 2, 4 do
+  assert(patrol.step(state, context, api) and state.index == 2 and position.y == expected)
+end
+assert(patrol.step(state, context, api) and state.index == 1 and position.y == 3)
+print("PASS distant waypoints and door action retain target until arrival")

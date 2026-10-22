@@ -4,7 +4,7 @@ local encounter = {}
 local specs = {}
 for i, x in ipairs({ 14, 16, 20 }) do
   specs[i] = { slot = "patrol_" .. i, side = i == 3 and "bear" or "usec", squad = "test_patrol",
-    route = { { x = 384 + x, y = 398, z = 0 }, { x = 384 + x, y = 399, z = 0 } } }
+    route = { { x = 384 + x, y = 398, z = 0 }, { x = 384 + x, y = 402, z = 0 } } }
 end
 function encounter.ensure(members, context)
   return deployment.ensure(members, context, specs, {

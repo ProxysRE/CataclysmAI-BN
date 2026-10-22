@@ -140,7 +140,11 @@ gapi.spawn_npc_at = function(template, point)
   function actor:get_moves() return self.moves end
   function actor:current_target() return nil end
   function actor:danger_assessment() return -10 end
-  function actor:move_to(p) self.position, self.moves = p, self.moves - 100 end
+  function actor:move_towards(p)
+    local step = p.y > self.position.y and 1 or -1
+    self.position, self.moves = TripointAbsMs.new(p.x, self.position.y + step, p.z), self.moves - 100
+    return true
+  end
   actors[#actors + 1] = actor
   return actor
 end

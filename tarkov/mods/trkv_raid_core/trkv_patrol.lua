@@ -32,7 +32,7 @@ function patrol.step_actor(state, context, actor, map)
     danger = function() return actor:danger_assessment() end,
     at = function(point) return actor:get_pos_ms() == pos(point) end,
     moves = function() return actor:get_moves() end,
-    move_to = function(point) actor:move_to(pos(point), true) end,
+    move_to = function(point) actor:move_towards(pos(point)) end,
   })
 end
 

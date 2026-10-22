@@ -16,9 +16,10 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0001-restore-bounds-to-target-dimension.patch", "src/savegame.cpp",
              "MAPBUFFER_REGISTRY.get( current_dimension_id_ ).set_pocket_info( pocket_info );"),
             ("0002-expose-active-npc-spawn.patch", "src/catalua_bindings_game_creatures.cpp", '"spawn_npc_at"'),
+            ("0003-expose-npc-path-step.patch", "src/catalua_bindings_creature.cpp", '"move_towards"'),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
-            # Both pinned patches contain one hunk; reconstruct its original context.
+            # The pinned patches contain one hunk; reconstruct its original context.
             lines = patch.decode().splitlines()
             self.assertEqual(sum(line.startswith("@@") for line in lines), 1)
             start = int(lines[3].split()[1][1:].split(",")[0])

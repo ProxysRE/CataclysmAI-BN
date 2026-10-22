@@ -102,6 +102,38 @@ elseif test_data.stage == "npc_live_restored" then
     assert(root.participants.slots["patrol_" .. i].id == id)
     assert(participants.find(root.participants, context(), id).patrol.index == 2)
   end
+elseif test_data.stage == "npc_live_door_setup" then
+  local member = assert(participants.find(root.participants, context(), test_data.door_actor_id))
+  member.patrol.route = { { x = 393, y = 391, z = 0 }, { x = 396, y = 391, z = 0 } }
+  member.patrol.index = 1
+  assert(gapi.get_map():set_ter_at(gapi.get_map():abs_to_bub(TripointAbsMs.new(394, 391, 0)),
+    TerId.new("t_door_c"):int_id()))
+elseif test_data.stage == "npc_live_door_open" then
+  local member = assert(participants.find(root.participants, context(), test_data.door_actor_id))
+  assert(member.patrol.index == 2 and member.patrol.route[2].x == 396)
+  assert(gapi.get_map():get_ter_at(gapi.get_map():abs_to_bub(TripointAbsMs.new(394, 391, 0))) ==
+    TerId.new("t_door_o"):int_id())
+elseif test_data.stage == "npc_live_detour_setup" then
+  local member = assert(participants.find(root.participants, context(), test_data.door_actor_id))
+  member.patrol.route = { { x = 400, y = 395, z = 0 }, { x = 400, y = 397, z = 0 } }
+  member.patrol.index = 1
+elseif test_data.stage == "npc_live_detour_intact" then
+  local map = gapi.get_map()
+  for x = 397, 402 do
+    assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(x, 396, 0))) == TerId.new("t_wall"):int_id())
+  end
+elseif test_data.stage == "npc_live_path_blocked" then
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.door_actor_id then actor = candidate end
+  end
+  assert(actor)
+  local before, position = actor:get_moves(), actor:get_pos_ms()
+  local map = gapi.get_map()
+  assert(not actor:move_towards(map:abs_to_bub(TripointAbsMs.new(394, 392, 0)))) -- solid wall
+  assert(not actor:move_towards(map:abs_to_bub(TripointAbsMs.new(396, 391, 1)))) -- other floor
+  assert(actor:get_moves() == before and actor:get_pos_ms() == position)
+  assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(394, 392, 0))) == TerId.new("t_wall"):int_id())
 elseif test_data.stage == "npc_live_timeout" then
   state.deadline = api.now()
 elseif test_data.stage == "npc_live_empty" then
