@@ -22,6 +22,8 @@ The cottage firepit_5x5_2 nested fragment requires source geometry review before
 
 The firepit nested fragment paints tree trunks; it is now expanded from the authenticated garden palette, isolated and retained in geometry. Seating, fire ring and stockpile remain later-layer content.
 
-A seventeenth concrete terrain retains hot-water movement, water flags and heat_radiation=1. BN does not load DDA liquid_source/min_temp. Collection examination is disabled in this geometry candidate and the full source field is archived; implementing temperature-aware collection and verifying scalding remain release gates. This does not certify complete hot-spring gameplay.
+A seventeenth concrete terrain retains hot-water movement, water flags and heat_radiation=1. BN does not load DDA liquid_source/min_temp. The source temperature field is archived but intentionally excluded by user decision. The ordinary BN water_source action supplies stock untreated water; no collection-temperature feature is planned.
 
 The adaptation report includes 148 deterministic underwater/navigation expectations, with random-rotation invariance filtering. river_north is explicitly classified as a generated BN river identity. Zero typed obligations does not imply successful native schema loading or game generation. No native patch was changed in this preparation step. Run the adapter with --check.
+
+User scope decision (2026-10-22): do not port DDA collected-water temperature. Stock BN water collection is enabled and thermal collection is not a release gate. Waterside input and output use explicit UTF-8; the old Windows cp1252 row-width failure is reproduced and the corrected extractor passes under a simulated cp1252 default.

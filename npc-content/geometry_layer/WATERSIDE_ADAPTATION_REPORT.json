@@ -839,12 +839,6 @@
       "source": "t_water_hot",
       "field": "connect_groups",
       "value": "WATER"
-    },
-    {
-      "source": "t_water_hot",
-      "field": "examine_action",
-      "value": "water_source",
-      "note": "Collection disabled in geometry preview until BN source-water and temperature behavior is implemented"
     }
   ],
   "preserved": [
@@ -859,15 +853,14 @@
     "Complete BN material parents replace DDA parents; BN bash/ranged behavior applies except explicit source quarterpanel bash",
     "BN wall and water connectivity used; DDA floor connectivity deferred"
   ],
+  "scope_policy": "DDA collection temperature and liquid_source are archival only; no temperature mechanism is planned",
   "remaining": [
     "Native schema loading and source/installed all-floor generation",
     "Underwater swimming, breath, destruction and window shooting tests",
-    "Hot-water collection at source temperature and scalding behavior",
     "Player stair and cottage access traversal"
   ],
   "limits": [
     "No native patch changes or completion credit",
-    "Hot-water collection is disabled for this geometry-only candidate",
-    "Thermal geometry is not certified hot-spring gameplay parity"
+    "Source water temperature is intentionally excluded by user decision; stock BN water collection applies"
   ]
 }

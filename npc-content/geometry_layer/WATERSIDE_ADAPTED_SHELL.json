@@ -2006,6 +2006,6 @@
       "SHALLOW_WATER"
     ],
     "connects_to": "WATER",
-    "examine_action": "none"
+    "examine_action": "water_source"
   }
 ]

@@ -13,7 +13,7 @@ PINS={'bn':'c621aaf42fa182473aad10feea2b55647704dcf1','dda':'c19e95bc96d27d8bef8
 
 def prepare(check=False):
     stage(check=True)
-    m=json.loads((SOURCE/'SOURCE_MANIFEST.json').read_text());assert m['pins']==PINS
+    m=json.loads((SOURCE/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'));assert m['pins']==PINS
     files={}
     for path,digest in m['files'].items():
         raw=(SOURCE/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==digest,path
@@ -23,7 +23,7 @@ def prepare(check=False):
     aliases={n:'dda_geo_waterside_'+n.removeprefix('t_')for n in src}
     aliases['t_water_hot']='dda_geo_waterside_water_hot'
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
-    raw=json.loads((OUT/'WATERSIDE_SHELLS.json').read_text())
+    raw=json.loads((OUT/'WATERSIDE_SHELLS.json').read_text(encoding='utf-8'))
     for kind,name in sorted(required(raw)-core):
         if kind!='terrain':continue
         for base in ('t_strconc_wall','t_sconc_wall','t_concrete_wall','t_wall'):
@@ -57,8 +57,11 @@ def prepare(check=False):
     water=copy.deepcopy(hot)
     for k in ('liquid_source','connect_groups'):
         deferred.append({'source':'t_water_hot','field':k,'value':water.pop(k)})
-    deferred.append({'source':'t_water_hot','field':'examine_action','value':water['examine_action'],'note':'Collection disabled in geometry preview until BN source-water and temperature behavior is implemented'})
-    water.update(id=aliases['t_water_hot'],examine_action='none')
+    water['id']=aliases['t_water_hot']
+    assert water['examine_action']=='water_source'
+    behavior=files['bn/src/map/mapbuffer.cpp']
+    assert 'terrain_id.obj().examine == &iexamine::water_source'in behavior
+    assert 'item::spawn("water", calendar::start_of_cataclysm, item::INFINITE_CHARGES)'in behavior
     assert '"heat_radiation"'in files['bn/src/map/mapdata.cpp']
     assert water['heat_radiation']==1
     terrain.append(water)
@@ -111,13 +114,14 @@ def prepare(check=False):
       'navigation':expected,'navigation_points':sum(map(len,expected.values())),'deferred_source_fields':deferred,
       'preserved':['Source map rows, underwater flags and complete stock BN parent fields','BN remove_all clears only terrain-painted predecessor glyphs; untouched lake/forest retained','Firepit trunks retained as structural nested geometry','White linoleum source fallback and same-material BN wall counterparts','Hot-water movement, water flags and heat radiation'],
       'adaptations':['BN steel_chunk replaces DDA lc_steel_chunk with unchanged quantities','Complete BN material parents replace DDA parents; BN bash/ranged behavior applies except explicit source quarterpanel bash','BN wall and water connectivity used; DDA floor connectivity deferred'],
-      'remaining':['Native schema loading and source/installed all-floor generation','Underwater swimming, breath, destruction and window shooting tests','Hot-water collection at source temperature and scalding behavior','Player stair and cottage access traversal'],
-      'limits':['No native patch changes or completion credit','Hot-water collection is disabled for this geometry-only candidate','Thermal geometry is not certified hot-spring gameplay parity']}
+      'scope_policy':'DDA collection temperature and liquid_source are archival only; no temperature mechanism is planned',
+      'remaining':['Native schema loading and source/installed all-floor generation','Underwater swimming, breath, destruction and window shooting tests','Player stair and cottage access traversal'],
+      'limits':['No native patch changes or completion credit','Source water temperature is intentionally excluded by user decision; stock BN water collection applies']}
     for name,value in [('WATERSIDE_ADAPTED_SHELL.json',entries),('WATERSIDE_ADAPTATION_REPORT.json',report)]:
         text=json.dumps(value,indent=2,ensure_ascii=True)+'\n';p=OUT/name
-        if check:assert p.read_text()==text,p
-        else:p.write_text(text)
-    print('Waterside terrain dependencies closed; native and thermal gameplay acceptance pending')
+        if check:assert p.read_text(encoding='utf-8')==text,p
+        else:p.write_text(text,encoding='utf-8')
+    print('Waterside terrain dependencies closed; native geometry acceptance pending')
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--check',action='store_true');prepare(p.parse_args().check)

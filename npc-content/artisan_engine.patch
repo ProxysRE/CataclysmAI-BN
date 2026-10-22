@@ -68099,7 +68099,7 @@
 +    "authors": [
 +      "ProxysRE"
 +    ],
-+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs and sunken helicopter. Hot-water collection remains disabled in this geometry preview. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
++    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs and sunken helicopter. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.",
 +    "category": "buildings",
 +    "dependencies": [
 +      "bn"
@@ -89336,6 +89336,6 @@
 +      "SHALLOW_WATER"
 +    ],
 +    "connects_to": "WATER",
-+    "examine_action": "none"
++    "examine_action": "water_source"
 +  }
 +]

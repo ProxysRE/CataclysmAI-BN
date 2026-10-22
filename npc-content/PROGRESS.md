@@ -107,3 +107,9 @@ Hot water retains source movement, flags and heat_radiation=1, but BN lacks the 
 Added hot springs, pottery cottage and sunken helicopter to the opt-in preview: 26 layout cases /723 source special placements, plus four lake-water context cells in the helicopter fixture. All 24 concrete custom terrain definitions passed required-field checks. The 148 deterministic navigation/underwater terrain points are native assertions. Predecessor maps without rows retain stock lake-bed generation; random-rotation loot masks check only the intersection of terrain-painted cells. BN remove_all clears only terrain-painted predecessor glyphs. Hot-water collection remains disabled pending source-temperature support.
 
 The two preview JSON sections and geometry C++ test section of the native patch were replaced and independently applied to reproduce source bytes; unaffected patch sections are preserved. Source/installed Windows loading and generation remain pending. Verified progress stays 21/51 (41.2%).
+
+## Scope correction and Windows encoding fix
+
+The user explicitly excluded DDA collected-water temperature on 2026-10-22. It is no longer a planned mechanism or release gate. Springs now use BN water_source and stock untreated-water/contamination behavior, confirmed against pinned mapbuffer::water_from; heat radiation remains an existing supported terrain field. Source liquid_source/min_temp is archival only. This supersedes earlier pending-temperature and disabled-collection notes.
+
+Run 39776684153 stopped before compilation: Windows cp1252 default decoding split UTF-8 cottage glyphs, causing row-width preflight to fail. Both waterside scripts now read/write text explicitly as UTF-8. The complete extractor passes with Path.read_text defaults simulated as cp1252, and source-row dimensions remain unchanged. Native source files and patch are regenerated; corrected Windows validation is pending.

@@ -1,6 +1,6 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Waterside shells embedded in optional preview; 26-case Windows source and installed generation pending.",
+  "stage": "Fix Windows UTF-8 waterside preflight and enable stock BN spring water collection; corrected native run pending.",
   "package": "Isolated Road",
   "native_compilation": "Successful Windows run 39686560752: source+installed 73 core /11030, 10 optional /2224, 23 geometry /648216; portable artifact 12389029662.",
   "remaining": [
@@ -795,7 +795,7 @@
     "runtime_validated": false,
     "status": "26 isolated geometry cases embedded; waterside validation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "a181340cf35140fb1884e47c26843db4f6216b1bf5ce82d4dd26e499a87f941c",
+    "native_patch_sha256": "cd0853946bc3a0da0cd31ab2c878bde3407fcb2e6f2f0b0bef9bddfa6fd9f8ae",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -836,19 +836,11 @@
     "validated_geometry_cases": 23,
     "validated_geometry_placements": 704,
     "latest_failed_attempt": {
-      "head": "c63fb5d7d8e123295551407826450ae7fe2eecc6",
-      "run_id": 39590006274,
-      "compile": "success",
-      "source_core": "73 cases /11030 assertions passed",
-      "source_optional": "10 cases /2224 assertions passed",
-      "geometry": "Loading stopped: missing required symbol on copy-from terrain panel",
-      "installed_and_package": "not reached",
-      "fix": "Concrete BN panel definitions with exact physical-field conservation and precompile missing-field checks",
-      "resolved_by": {
-        "head": "a8f22c287b277a9d8af9d1aa1f20a524492e6092",
-        "run_id": 39620442620,
-        "status": "success"
-      }
+      "head": "f7546ac577cbde529f111fa7fdbcd13617b62008",
+      "run_id": 39776684153,
+      "compile": "not reached",
+      "error": "Windows default cp1252 decoded UTF-8 cottage glyphs into multiple characters; row-width preflight failed",
+      "fix": "Explicit UTF-8 source reads and writes; simulated cp1252-default regression passed"
     }
   },
   "geometry_hub_candidate": {
@@ -1019,6 +1011,6 @@
     "new_terrain_definitions": 17,
     "navigation_expectations": 148,
     "adaptation_report": "geometry_layer/WATERSIDE_ADAPTATION_REPORT.json",
-    "thermal_limits": "Heat radiation retained; source-temperature water collection disabled pending BN support"
+    "water_collection_policy": "Use stock BN untreated water; DDA source temperature explicitly excluded by user, no mechanism planned"
   }
 }

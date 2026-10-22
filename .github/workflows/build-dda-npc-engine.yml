@@ -181,7 +181,7 @@ jobs:
           python "${{ github.workspace }}/package/npc-content/prepare_quest_props.py" --check --bn-source .
           if ($LASTEXITCODE -ne 0) { throw "Quest prop baseline conflict or stale adaptation" }
           $patch = "${{ github.workspace }}/package/npc-content/artisan_engine.patch"
-          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "a181340cf35140fb1884e47c26843db4f6216b1bf5ce82d4dd26e499a87f941c") { throw "NPC engine patch checksum mismatch" }
+          if ((Get-FileHash $patch -Algorithm SHA256).Hash.ToLower() -ne "cd0853946bc3a0da0cd31ab2c878bde3407fcb2e6f2f0b0bef9bddfa6fd9f8ae") { throw "NPC engine patch checksum mismatch" }
           git apply --check $patch
           if ($LASTEXITCODE -ne 0) { throw "NPC engine patch does not apply" }
           git apply $patch

@@ -17,22 +17,22 @@ MAPS={'hot_springs','pottery_cottage_field','pottery_cottage','pottery_cottage_f
 def prepare(check=False):
     palettes={e['id']:e for p,es in shared_sources().items()if p.startswith('dda/')for e in es if e.get('type')=='palette'}
     for directory in (SOURCE,OUT/'urban_sources'):
-        m=json.loads((directory/'SOURCE_MANIFEST.json').read_text())
+        m=json.loads((directory/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))
         assert m['dda_commit']=='c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'
         for path,digest in m['files'].items():
             raw=(directory/path).read_bytes();assert hashlib.sha256(raw).hexdigest()==digest,path
             for e in json.loads(raw):
                 if e.get('type')=='palette':palettes[e['id']]=e
     extra=OUT/'waterside_adaptation_sources'
-    manifest=json.loads((extra/'SOURCE_MANIFEST.json').read_text())
+    manifest=json.loads((extra/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))
     assert manifest['pins']=={'bn':'c621aaf42fa182473aad10feea2b55647704dcf1','dda':'c19e95bc96d27d8bef8e2e246a63cd4cd6f89974'}
     for name in ('dda/data/json/mapgen_palettes/house_garden_palette.json','dda/data/json/mapgen/nested/house_nested.json'):
         raw=(extra/name).read_bytes();assert hashlib.sha256(raw).hexdigest()==manifest['files'][name]
         for e in json.loads(raw):
             if e.get('type')=='palette':palettes[e['id']]=e
     original=[];neutral=[]
-    for path in json.loads((SOURCE/'SOURCE_MANIFEST.json').read_text())['files']:
-        for e in json.loads((SOURCE/path).read_text()):
+    for path in json.loads((SOURCE/'SOURCE_MANIFEST.json').read_text(encoding='utf-8'))['files']:
+        for e in json.loads((SOURCE/path).read_text(encoding='utf-8')):
             if e.get('type')!='mapgen' or not set(flatten(e.get('om_terrain',[])))&MAPS:continue
             e=copy.deepcopy(e);o=e['object']=expand(e['object'],palettes)
             assert not o.get('palettes'),o.get('palettes')
@@ -41,7 +41,7 @@ def prepare(check=False):
                 for g in sorted(glyphs(o.get('rows',[]))-set(o.get('terrain',{}))-set(o.get('furniture',{}))-set(o.get('nested',{}))-{' ','.'}):
                     o.setdefault('furniture',{})[g]='f_null';neutral.append({'map':e['om_terrain'],'glyph':g})
             original.append(e)
-    nested=next(e for e in json.loads((extra/'dda/data/json/mapgen/nested/house_nested.json').read_text())if e.get('nested_mapgen_id')=='firepit_5x5_2')
+    nested=next(e for e in json.loads((extra/'dda/data/json/mapgen/nested/house_nested.json').read_text(encoding='utf-8'))if e.get('nested_mapgen_id')=='firepit_5x5_2')
     nested=copy.deepcopy(nested);nested['object']=expand(nested['object'],palettes);original.append(nested)
     mapped={n for e in original for n in flatten(e.get('om_terrain',[]))}
     assert mapped==MAPS,(mapped^MAPS)
@@ -83,8 +83,8 @@ def prepare(check=False):
       'limits':['No native integration or completion credit','Thermal-water behavior and helicopter materials require BN comparison','Source registrations and later content retained separately','Shared domestic palette definitions authenticated through urban_sources manifest']}
     for name,value in [('WATERSIDE_SHELLS.json',entries),('WATERSIDE_LATER_LAYERS.json',later),('WATERSIDE_GEOMETRY_REPORT.json',report)]:
         text=json.dumps(value,indent=2,ensure_ascii=True)+'\n';p=OUT/name
-        if check:assert p.read_text()==text,p
-        else:p.write_text(text)
+        if check:assert p.read_text(encoding='utf-8')==text,p
+        else:p.write_text(text,encoding='utf-8')
     print(json.dumps(report))
 
 if __name__=='__main__':
