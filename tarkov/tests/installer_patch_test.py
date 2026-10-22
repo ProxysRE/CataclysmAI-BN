@@ -18,7 +18,8 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0002-expose-active-npc-spawn.patch", {"src/catalua_bindings_game_creatures.cpp": '"spawn_npc_at"'}),
             ("0003-expose-npc-path-step.patch", {"src/catalua_bindings_creature.cpp": '"move_towards"'}),
             ("0004-controlled-npc-attributes.patch", {"src/npc_class.h": "npc_attribute_profile",
-             "src/npc_class.cpp": '"attribute_profile"', "src/npc.cpp": "profile->strength"}),
+             "src/npc_class.cpp": '"attribute_profile"', "src/npc.cpp": "profile->strength",
+             "src/character.cpp": "npc_profile_hp_"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

@@ -39,6 +39,12 @@ static auto trkv_cold_check_npcs(sol::table& data, bool resume) -> void {
         CHECK(actor->get_attitude() == NPCATT_NULL);
         REQUIRE(actor->abs_pos() == tripoint_abs_ms(i == 1 ? 398 : 400, 399, 0));
         if (i == 1) {
+            const auto head = bodypart_str_id("head").id();
+            CHECK(actor->get_part_hp_max(head) == 35);
+            CHECK(actor->get_part_hp_cur(head) == 21);
+            actor->recalc_hp();
+            CHECK(actor->get_part_hp_max(head) == 35);
+            CHECK(actor->get_part_hp_cur(head) == 21);
             const auto& gun = actor->primary_weapon();
             CHECK(gun.get_var("trkv_cold_npc") == "rifle");
             CHECK(gun.typeId().str() == "ar15");
@@ -101,6 +107,11 @@ TEST_CASE("tarkov cold writer saves a live raid", "[tarkov_cold_write]") {
                 gun->set_var("trkv_cold_npc", "rifle");
                 auto& equipped = actor->i_add(std::move(gun));
                 REQUIRE(actor->wield(equipped));
+                // Probe saved HP overrides across processes independently of
+                // the combat-class creation test in the NPC harness.
+                actor->set_value("npc_profile_hp_head", "35");
+                actor->recalc_hp();
+                actor->set_part_hp_cur(bodypart_str_id("head").id(), 21);
             } else if (i == 3) {
                 auto dropped = item::spawn("rock");
                 dropped->set_var("trkv_cold_npc", "dropped");

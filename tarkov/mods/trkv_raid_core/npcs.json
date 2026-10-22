@@ -92,6 +92,14 @@
         "bravery": 10,
         "collector": 0,
         "altruism": 0
+      },
+      "hit_points": {
+        "head": 35,
+        "torso": 85,
+        "arm_l": 60,
+        "arm_r": 60,
+        "leg_l": 65,
+        "leg_r": 65
       }
     }
   },

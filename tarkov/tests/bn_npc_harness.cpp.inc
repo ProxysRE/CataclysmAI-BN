@@ -523,7 +523,10 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     // shipped JSON, not from the test's spawn/equipment adapters.
     probe("npc_combat_depart");
     const auto combat_id = character_id(data["combat_id"].get<int>());
-    const auto check_combat_actor = [&](int ammo, int barter = 0) {
+    const std::map<std::string, int> expected_hp = {
+        {"head", 35}, {"torso", 85}, {"arm_l", 60}, {"arm_r", 60}, {"leg_l", 65}, {"leg_r", 65}
+    };
+    const auto check_combat_actor = [&](int ammo, int barter = 0, int arm_hp = 60) {
         const auto* actor = g->find_npc(combat_id);
         REQUIRE(actor != nullptr);
         CHECK(actor->myclass == npc_class_id("TRKV_COMBAT_TEST"));
@@ -542,6 +545,10 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(actor->primary_weapon().typeId().str() == "ar15");
         CHECK(actor->primary_weapon().damage() == 0);
         CHECK(actor->primary_weapon().ammo_remaining() == ammo);
+        for (const auto& part : actor->get_all_body_parts()) {
+            CHECK(actor->get_part_hp_max(part) == expected_hp.at(part->main_part.str()));
+        }
+        CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == arm_hp);
     };
     check_combat_actor(17);
     REQUIRE(g->save(false));
@@ -591,13 +598,18 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
         REQUIRE(remaining_ammo < 17);
         actor->set_skill_level(skill_id("barter"), 2); // Saved progress, not a new spawn.
+        actor->set_part_hp_cur(bodypart_str_id("arm_l").id(), 17);
+        for (auto repeat = 0; repeat < 5; ++repeat) { actor->recalc_hp(); }
+        CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == 17);
     }
     probe("npc_combat_checkpoint");
     REQUIRE(g->save(false));
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_combat_restored");
-    check_combat_actor(remaining_ammo, 2);
+    check_combat_actor(remaining_ammo, 2, 17);
+    g->find_npc(combat_id)->recalc_hp();
+    check_combat_actor(remaining_ammo, 2, 17);
     probe("npc_extract");
     CHECK(g->find_npc(combat_id) == nullptr);
     CHECK(get_overmapbuffer(home_dim).find_npc(combat_id) == nullptr);
@@ -615,6 +627,11 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(sample.get_skill_level(skill_id("barter")) == 0);
         CHECK(sample.get_skill_level(skill_id("gun")) == 6);
         CHECK(sample.primary_weapon().ammo_remaining() == 17);
+        for (const auto& part : sample.get_all_body_parts()) {
+            const auto maximum = expected_hp.at(part->main_part.str());
+            CHECK(sample.get_part_hp_max(part) == maximum);
+            CHECK(sample.get_part_hp_cur(part) == maximum);
+        }
     }
     const auto load_attributes = [](const std::string& text) {
         std::istringstream input(text);
@@ -635,5 +652,16 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
     invalid = profile_json;
     invalid.erase(invalid.find(",\"perception\":10"), std::string(",\"perception\":10").size());
+    REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
+    auto hp_json = profile_json;
+    const auto hp_position = hp_json.find("\"personality\"");
+    const std::string hp_fields = R"("hit_points":{"head":35,"torso":85,"arm_l":60,"arm_r":60,"leg_l":65,"leg_r":65},)";
+    hp_json.insert(hp_position, hp_fields);
+    REQUIRE_NOTHROW(load_attributes(hp_json));
+    invalid = hp_json;
+    invalid.replace(invalid.find("\"head\":35"), std::string("\"head\":35").size(), "\"head\":0");
+    REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
+    invalid = hp_json;
+    invalid.erase(invalid.find(",\"leg_r\":65"), std::string(",\"leg_r\":65").size());
     REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
 }

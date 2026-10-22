@@ -1,9 +1,7 @@
 diff --git a/src/npc_class.h b/src/npc_class.h
 --- a/src/npc_class.h
 +++ b/src/npc_class.h
-@@ -44,6 +44,18 @@
-         static distribution one_in( float in );
- };
+@@ -46,2 +46,15 @@
  
 +// Explicit initial attributes. Loaded only at creation; saves own later changes.
 +struct npc_attribute_profile {
@@ -15,25 +13,18 @@ diff --git a/src/npc_class.h b/src/npc_class.h
 +    int bravery;
 +    int collector;
 +    int altruism;
++    std::map<std::string, int> hit_points;
 +};
 +
  class npc_class
- {
-     private:
-@@ -77,6 +89,7 @@
-         std::map<spell_id, int> _starting_spells;
-         std::map<bionic_id, int> bionic_list;
+@@ -79,2 +92,3 @@
          std::optional<std::string> lua_ai;
 +        std::optional<npc_attribute_profile> attribute_profile;
          npc_class();
- 
-         std::string get_name() const;
 diff --git a/src/npc_class.cpp b/src/npc_class.cpp
 --- a/src/npc_class.cpp
 +++ b/src/npc_class.cpp
-@@ -239,6 +239,29 @@
-     optional( jo, was_loaded, "carry_override", carry_override );
-     optional( jo, was_loaded, "weapon_override", weapon_override );
+@@ -241,2 +241,32 @@
      assign( jo, "lua_ai", lua_ai );
 +    if( jo.has_member( "attribute_profile" ) ) {
 +        const JsonObject profile = jo.get_object( "attribute_profile" );
@@ -55,23 +46,30 @@ diff --git a/src/npc_class.cpp b/src/npc_class.cpp
 +            read_value( character, "aggression", -100, 100 ),
 +            read_value( character, "bravery", -100, 100 ),
 +            read_value( character, "collector", -100, 100 ),
-+            read_value( character, "altruism", -100, 100 )
++            read_value( character, "altruism", -100, 100 ),
++            {}
 +        };
++        if( profile.has_member( "hit_points" ) ) {
++            const JsonObject hp = profile.get_object( "hit_points" );
++            for( const char *part : { "head", "torso", "arm_l", "arm_r", "leg_l", "leg_r" } ) {
++                attribute_profile->hit_points[part] = read_value( hp, part, 1, 10000 );
++            }
++        }
 +    }
  
-     if( jo.has_member( "traits" ) ) {
-         traits = trait_group::load_trait_group( jo.get_member( "traits" ), "collection" );
 diff --git a/src/npc.cpp b/src/npc.cpp
 --- a/src/npc.cpp
 +++ b/src/npc.cpp
-@@ -357,10 +357,12 @@
- 
-     remove_primary_weapon( );
+@@ -359,6 +359,12 @@
      inv.clear();
 -    personality.aggression = rng( -10, 10 );
 -    personality.bravery    = rng( -3, 10 );
 -    personality.collector  = rng( -1, 10 );
 -    personality.altruism   = rng( -10, 10 );
++    // These values belong to this creation, never to a previous randomize.
++    for( const char *part : { "head", "torso", "arm_l", "arm_r", "leg_l", "leg_r" } ) {
++        remove_value( std::string( "npc_profile_hp_" ) + part );
++    }
 +    if( !type.is_valid() || !type->attribute_profile ) {
 +        personality.aggression = rng( -10, 10 );
 +        personality.bravery    = rng( -3, 10 );
@@ -79,11 +77,7 @@ diff --git a/src/npc.cpp b/src/npc.cpp
 +        personality.altruism   = rng( -10, 10 );
 +    }
      moves = 100;
-     mission = NPC_MISSION_NULL;
-     male = one_in( 2 );
-@@ -376,10 +378,17 @@
-     }
- 
+@@ -378,6 +384,13 @@
      const auto &the_class = myclass.obj();
 -    str_max = the_class.roll_strength();
 -    dex_max = the_class.roll_dexterity();
@@ -101,27 +95,56 @@ diff --git a/src/npc.cpp b/src/npc.cpp
 +    int_max = profile ? profile->intelligence : the_class.roll_intelligence();
 +    per_max = profile ? profile->perception : the_class.roll_perception();
  
-     for( auto &skill : Skill::skills ) {
-         int level = myclass->roll_skill( skill.ident() );
-@@ -387,7 +396,9 @@
-         set_skill_level( skill.ident(), level );
-     }
+@@ -389,3 +402,5 @@
  
 -    if( type.is_null() ) { // Untyped; no particular specialization
 +    if( profile ) {
 +        // Profile attributes must not receive legacy class-specific random bonuses.
 +    } else if( type.is_null() ) { // Untyped; no particular specialization
      } else if( type == NC_EVAC_SHOPKEEP ) {
-         personality.collector += rng( 1, 5 );
- 
-@@ -447,7 +458,9 @@
-     //A universal barter boost to keep NPCs competitive with players
-     //The int boost from trade wasn't active... now that it is, most
+@@ -449,3 +464,5 @@
      //players will vastly outclass npcs in trade without a little help.
 -    mod_skill_level( skill_barter, rng( 2, 4 ) );
 +    if( !profile ) {
 +        mod_skill_level( skill_barter, rng( 2, 4 ) );
 +    }
  
-     set_body();
-     recalc_hp();
+@@ -490,2 +507,10 @@
+         }
++    }
++    if( profile && !profile->hit_points.empty() ) {
++        for( const auto &[part, maximum] : profile->hit_points ) {
++            set_value( "npc_profile_hp_" + part, std::to_string( maximum ) );
++        }
++        // Apply after traits/bionics/spells have finished constructing the body.
++        recalc_hp();
++        set_all_parts_hp_to_max();
+     }
+diff --git a/src/character.cpp b/src/character.cpp
+--- a/src/character.cpp
++++ b/src/character.cpp
+@@ -115,2 +115,3 @@
+ #include <algorithm>
++#include <charconv>
+ #include <cctype>
+@@ -2025,2 +2026,20 @@
+         }
++        if( is_npc() ) {
++            const std::string saved_max = get_value( "npc_profile_hp_" + part.first->main_part.str() );
++            if( !saved_max.empty() ) {
++                int explicit_max = 0;
++                const auto parsed = std::from_chars( saved_max.data(), saved_max.data() + saved_max.size(),
++                                                    explicit_max );
++                if( parsed.ec == std::errc{} && parsed.ptr == saved_max.data() + saved_max.size() &&
++                    explicit_max >= 1 && explicit_max <= 10000 ) {
++                    new_max = explicit_max;
++                    // Avoid float/ceil healing a point on an unchanged maximum.
++                    if( new_max == bp.get_hp_max() ) {
++                        continue;
++                    }
++                } else {
++                    debugmsg( "Invalid saved NPC profile HP for %s", part.first.str() );
++                }
++            }
++        }
+         new_max = std::max( new_max, 1 );
