@@ -983,4 +983,47 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(get_overmapbuffer(dimension_id()).remove_npc(control) != nullptr);
     }
 
+    // A registered vanilla follower stays in its original dimension. Exercise
+    // production travel and raid cleanup, including a save/load while away.
+    character_id follower_id;
+    tripoint_abs_ms follower_position;
+    {
+        auto& follower = spawn_npc(abs_to_bub(tripoint_abs_ms(395, 396, 0)), "test_talker");
+        follower.set_fac(faction_id("your_followers"));
+        follower.set_attitude(NPCATT_FOLLOW);
+        g->add_npc_follower(follower.getID());
+        REQUIRE(follower.is_player_ally());
+        REQUIRE(follower.is_following());
+        follower.set_value("trkv_home_follower", "stay_home");
+        follower.set_part_hp_cur(bodypart_str_id("torso").id(), 10);
+        follower_id = follower.getID();
+        follower_position = follower.abs_pos();
+        REQUIRE(follower.get_dimension() == home_dim);
+    }
+    const auto check_home_follower = [&]() {
+        const auto follower = get_overmapbuffer(home_dim).find_npc(follower_id);
+        REQUIRE(follower != nullptr);
+        CHECK(follower->get_dimension() == home_dim);
+        CHECK(follower->abs_pos() == follower_position);
+        CHECK(follower->get_value("trkv_home_follower") == "stay_home");
+        CHECK(follower->get_part_hp_cur(bodypart_str_id("torso").id()) == 10);
+        CHECK(follower->is_following());
+        CHECK(g->get_follower_list().count(follower_id) == 1);
+        CHECK(get_overmapbuffer(raid_dim).find_npc(follower_id) == nullptr);
+    };
+    probe("npc_follower_enter");
+    REQUIRE_FALSE(g->get_current_dimension_info()->world_type->allow_npc_travel);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    check_home_follower();
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    REQUIRE_FALSE(g->get_current_dimension_info()->world_type->allow_npc_travel);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    check_home_follower();
+    probe("npc_extract");
+    check_home_follower();
+    REQUIRE(g->find_npc(follower_id) != nullptr);
+    g->remove_npc_follower(follower_id);
+
 }

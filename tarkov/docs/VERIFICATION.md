@@ -882,3 +882,25 @@ save_prefix. Cold reader проверяет совпадение helper и во�
 а также false нового флага. Windows упаковщик проверяет наличие production-патча
 в построенном дереве. Компиляция, positive control и новые native/cold assertions
 ещё ожидаются; локальное применение патча их не заменяет.
+
+
+## Mapgen подтверждён; изоляция спутника — подготовлена (23.10.2026)
+
+[Windows 39951814554](https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39951814554)
+и [Linux 39951814593](https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39951814593)
+полностью завершились success, включая native/cold, NPC-probe и Windows-пакет.
+Запрет unforced place_npc и положительный контроль основного мира подтверждены.
+
+Аудит закреплённого game::travel_to_dimension: unload_npcs оставляет НПС в реестре
+исходного измерения; load_npcs читает реестр назначения. Переноса списка followers
+в этом переходе нет. allow_npc_travel в world_type.h помечен Transport (future);
+выставление false у проекта фиксирует намерение, но не является новым engine guard.
+
+В конце NPC-probe добавлен штатный test_talker в убежище с фракцией your_followers,
+NPCATT_FOLLOW и регистрацией через add_npc_follower. Production-переход в пустой
+рейд, save/load и post-load tick, затем эвакуация должны сохранить его ID, координаты,
+маркер, рану торса 10 HP и follower membership в убежище; реестр рейда остаётся пуст.
+При возвращении НПС должен снова быть доступен через find_npc. Ссылки на актёра
+не удерживаются через load/travel. Сценарий вынесен после боевых проверок, чтобы
+его случайная генерация не меняла их RNG. Новый native-результат пока ожидается;
+это same-process reload, не отдельный холодный процесс и не проверка всех скриптов.

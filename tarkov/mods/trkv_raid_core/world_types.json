@@ -12,7 +12,7 @@
     "infinite_bounds": false,
     "boundary_terrain": "t_pd_border",
     "save_prefix": "trkv_dev01_",
-    "allow_npc_travel": true,
+    "allow_npc_travel": false,
     "allow_vehicle_travel": false,
     "allow_random_npcs": false,
     "allow_mapgen_npcs": false

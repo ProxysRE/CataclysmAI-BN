@@ -27,7 +27,12 @@ local function record_hostile_group()
   assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == 3)
 end
 
-if test_data.stage == "npc_enter" then
+if test_data.stage == "npc_follower_enter" then
+  assert(api.at_home() and state.phase == "home")
+  assert(game.mod_runtime.trkv_raid_core.depart("empty"))
+  assert(api.at_raid() and state.phase == "active" and state.encounter == "empty")
+  assert(#gapi.get_all_npcs() == 0)
+elseif test_data.stage == "npc_enter" then
   assert(api.at_home() and state.phase == "home")
   local before = state.sequence
   assert(raid.start(state, api, 1800))

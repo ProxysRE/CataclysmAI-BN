@@ -161,6 +161,7 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
     CHECK(info->world_type.str() == "trkv_raid_space");
     CHECK_FALSE(info->world_type->allow_random_npcs);
     CHECK_FALSE(info->world_type->allow_mapgen_npcs);
+    CHECK_FALSE(info->world_type->allow_npc_travel);
     CHECK(world_types::infer_from_dimension(info->id) == info->world_type);
     std::fprintf(stderr, "Tarkov cold: dimension info checked\n");
     // setup() replaced Lua: obtain all Lua references only AFTER the world load.
