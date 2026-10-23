@@ -64,3 +64,29 @@ assert(not ok and reason == "invalid_manifest" and calls == 6)
 invalid = copy(specs); invalid[1].route[1].x = "400"
 assert(not deploy.ensure(state, context, invalid, api) and calls == 6)
 print("PASS encounter deployment: three slots, save/load, no respawn, partial creation recovery and ambiguous/missing fail closed")
+
+
+-- A known no-spawn state can wait; an uncertain creating state cannot respawn.
+local waiting, wait_context = {}, { phase = "active", at_raid = true, sequence = 1 }
+participants.begin(waiting, 1)
+local picks, attempts, free = 0, 0, false
+local wait_api = {
+  select = function() picks = picks + 1; return "saved_variant" end,
+  available = function() return free end,
+  spawn = function() attempts = attempts + 1; return 500 end,
+  find_slot = function() error("Reserved slot must not reconcile an unattempted creation") end,
+}
+local one = { specs[1] }
+local ok, reason = deploy.ensure(waiting, wait_context, one, wait_api)
+assert(not ok and reason == "blocked" and picks == 1 and attempts == 0)
+assert(waiting.slots.guard_1.status == "reserved" and waiting.slots.guard_1.loadout == "saved_variant")
+waiting = copy(waiting)
+assert(not deploy.ensure(waiting, wait_context, one, wait_api) and picks == 1 and attempts == 0)
+wait_api.available = function() error("Read-only placement probe failed") end
+ok, reason = deploy.ensure(waiting, wait_context, one, wait_api)
+assert(not ok and reason == "placement_failed" and waiting.slots.guard_1.status == "reserved" and attempts == 0)
+wait_api.available = function() return true end
+assert(deploy.ensure(waiting, wait_context, one, wait_api) and picks == 1 and attempts == 1)
+waiting.actors["500"] = nil
+assert(deploy.ensure(waiting, wait_context, one, wait_api) and attempts == 1)
+print("PASS reserved occupied slot, save/load without reroll, placement failure retry and no respawn after creation")

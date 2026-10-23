@@ -14,6 +14,19 @@ local function saved_actor()
     context(), test_data.actor_id))
 end
 
+local function record_hostile_group()
+  test_data.hostile_dead_id = nil
+  test_data.hostile_ids, test_data.hostile_choices = {}, {}
+  for i = 1, 3 do
+    local slot = root.participants.slots["hostile_" .. i]
+    assert(slot.status == "ready")
+    local definition = assert(package.loaded.trkv_loadouts.describe(slot.loadout))
+    assert(definition.profile == (i == 1 and "rifle_trained_v1" or "rifle_recruit_v1"))
+    test_data.hostile_ids[i], test_data.hostile_choices[i] = slot.id, slot.loadout
+  end
+  assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == 3)
+end
+
 if test_data.stage == "npc_enter" then
   assert(api.at_home() and state.phase == "home")
   local before = state.sequence
@@ -162,15 +175,24 @@ elseif test_data.stage == "npc_combat_depart" or test_data.stage == "npc_reload_
 elseif test_data.stage == "npc_hostile_group_depart" then
   assert(api.at_home() and state.phase == "home")
   assert(game.mod_runtime.trkv_raid_core.depart("squad"))
-  test_data.hostile_ids, test_data.hostile_choices = {}, {}
-  for i = 1, 3 do
-    local slot = root.participants.slots["hostile_" .. i]
-    assert(slot.status == "ready")
-    local definition = assert(package.loaded.trkv_loadouts.describe(slot.loadout))
-    assert(definition.profile == (i == 1 and "rifle_trained_v1" or "rifle_recruit_v1"))
-    test_data.hostile_ids[i], test_data.hostile_choices[i] = slot.id, slot.loadout
-  end
-  assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == 3)
+  record_hostile_group()
+elseif test_data.stage == "npc_reserved_enter" then
+  assert(api.at_home() and state.phase == "home")
+  assert(game.mod_runtime.trkv_raid_core.depart("empty"))
+  -- Arrange a checkpoint before group deployment; C++ will occupy its first point.
+  state.encounter, state.encounter_deployed = "squad", false
+  test_data.reserved_choice = nil
+elseif test_data.stage == "npc_reserved_check" then
+  assert(state.encounter == "squad" and not state.encounter_deployed)
+  assert(not state.deployment_warning and #gapi.get_all_npcs() == 0)
+  local slot = assert(root.participants.slots.hostile_1)
+  assert(slot.status == "reserved" and root.participants.slots.hostile_2 == nil)
+  assert(package.loaded.trkv_loadouts.contains("technical_trained_rifle_v1", slot.loadout))
+  if test_data.reserved_choice then assert(slot.loadout == test_data.reserved_choice) end
+  test_data.reserved_choice = slot.loadout
+elseif test_data.stage == "npc_reserved_released" then
+  record_hostile_group()
+  assert(test_data.hostile_choices[1] == test_data.reserved_choice)
 elseif test_data.stage == "npc_hostile_group_checkpoint" then
   state.encounter_deployed = false
 elseif test_data.stage == "npc_hostile_group_restored" then

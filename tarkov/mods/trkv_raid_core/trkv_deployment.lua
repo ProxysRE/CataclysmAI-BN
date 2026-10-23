@@ -30,23 +30,34 @@ function deployment.ensure(state, context, specs, api)
     local slot = state.slots[spec.slot]
     if not slot or slot.status ~= "ready" then
       local id
-      if slot then
-        -- A prior creation may have succeeded before registration was saved.
-        -- Reconcile a uniquely tagged engine actor; never blindly spawn a second one.
-        local found = api.find_slot(context.sequence, spec.slot, slot.loadout)
-        if #found ~= 1 then return false, #found == 0 and "pending" or "duplicate_slot" end
-        id = found[1]
-      else
+      if not slot then
         local choice
         if api.select then
           local ok, selected = pcall(api.select, spec, context.sequence)
           if not ok or type(selected) ~= "string" or selected == "" then return false, "selection_failed" end
           choice = selected
         end
-        state.slots[spec.slot] = { status = "creating", loadout = choice }
-        local ok, created = pcall(api.spawn, spec, context.sequence, choice)
+        slot = { status = "reserved", loadout = choice }
+        state.slots[spec.slot] = slot
+      end
+      if slot.status == "reserved" then
+        -- No engine creation has been attempted. Occupancy can be checked again
+        -- after a tick/load without rerolling the reserved variant.
+        if api.available then
+          local ok, available = pcall(api.available, spec, context.sequence, slot.loadout)
+          if not ok or type(available) ~= "boolean" then return false, "placement_failed" end
+          if not available then return false, "blocked" end
+        end
+        slot.status = "creating" -- Mark uncertainty BEFORE calling the engine.
+        local ok, created = pcall(api.spawn, spec, context.sequence, slot.loadout)
         if not ok or created == nil then return false, "spawn_failed" end
         id = created
+      else
+        -- A prior creation may have succeeded before registration was saved.
+        -- Reconcile a uniquely tagged engine actor; never blindly spawn a second one.
+        local found = api.find_slot(context.sequence, spec.slot, slot.loadout)
+        if #found ~= 1 then return false, #found == 0 and "pending" or "duplicate_slot" end
+        id = found[1]
       end
       local member = participants.find(state, context, id)
       local choice = state.slots[spec.slot].loadout

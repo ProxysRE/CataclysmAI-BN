@@ -857,6 +857,34 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(g->find_npc(id) == nullptr);
         CHECK(get_overmapbuffer(home_dim).find_npc(id) == nullptr);
     }
+    // Occupy a fresh group entry with the avatar, including a real saved reload.
+    probe("npc_reserved_enter");
+    get_avatar().setpos(abs_to_bub(tripoint_abs_ms(398, 398, 0)));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_reserved_check");
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_reserved_check");
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    get_avatar().setpos(abs_to_bub(tripoint_abs_ms(387, 387, 0)));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_reserved_released");
+    hostile_ids.clear();
+    hostile_choices.clear();
+    const sol::table released_ids = data["hostile_ids"];
+    const sol::table released_choices = data["hostile_choices"];
+    for (auto i = 1; i <= 3; ++i) {
+        hostile_ids.emplace_back(released_ids[i].get<int>());
+        hostile_choices.emplace_back(released_choices[i].get<std::string>());
+    }
+    check_hostile_group(false, false);
+    probe("npc_extract");
+    for (const auto id : hostile_ids) {
+        CHECK(g->find_npc(id) == nullptr);
+        CHECK(get_overmapbuffer(home_dim).find_npc(id) == nullptr);
+    }
     for (auto sample_index = 0; sample_index < 12; ++sample_index) {
         npc sample;
         const auto sample_field = sample_index % 2 != 0;

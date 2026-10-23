@@ -73,6 +73,8 @@ local function deploy_encounter()
   }, state.encounter)
   if ok then
     state.encounter_deployed = true
+  elseif reason == "blocked" then
+    return -- Occupied entry point: retry on a later tick with the same reserved kit.
   elseif not state.deployment_warning then
     state.deployment_warning = true
     print("Tarkov encounter deployment paused: " .. tostring(reason))
