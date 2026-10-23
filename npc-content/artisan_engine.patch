@@ -4461,7 +4461,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_geometry_preview_test.cpp
-@@ -0,0 +1,10740 @@
+@@ -0,0 +1,10911 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "cata_utility.h"
@@ -15200,6 +15200,177 @@
 +        { 0, 3, 10, 13, 3, "t_ladder_down" },
 +        { 2, 3, 11, 1, 3, "t_stairs_down" },
 +        { 4, 3, 13, 13, 3, "t_ladder_down" },
++    } );
++}
++
++TEST_CASE( "dda_geo_survivor_locked_lmoe_shelter_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 7900, {
++        { 0, 0, 0, "dda_geo_survivor_lmoe_north" },
++        { 0, 0, -1, "dda_geo_survivor_lmoe_under_empty_prepperquest_north" },
++        { 0, 0, 1, "dda_geo_survivor_lmoe_locked_exit_roof_north" },
++    }, {
++        { 0, 0, 9, 17, 0, "t_slope_up" },
++        { 0, 0, 9, 18, 0, "t_slope_up" },
++        { 0, 0, 9, 19, 0, "t_slope_up" },
++        { 0, 0, 9, 20, 0, "t_slope_up" },
++        { 0, 0, 9, 21, 0, "t_slope_up" },
++        { 0, 0, 9, 22, 0, "t_slope_up" },
++        { 0, 0, 10, 17, 0, "t_slope_up" },
++        { 0, 0, 10, 18, 0, "t_dirt" },
++        { 0, 0, 10, 19, 0, "t_dirt" },
++        { 0, 0, 10, 20, 0, "t_dirt" },
++        { 0, 0, 10, 21, 0, "t_dirt" },
++        { 0, 0, 10, 22, 0, "t_slope_up" },
++        { 0, 0, 11, 18, 0, "t_door_metal_locked" },
++        { 0, 0, 11, 19, 0, "t_dirt" },
++        { 0, 0, 11, 20, 0, "t_stairs_down" },
++        { 0, 0, 11, 21, 0, "t_dirt" },
++        { 0, 0, 11, 22, 0, "t_slope_up" },
++        { 0, 0, 12, 17, 0, "t_slope_up" },
++        { 0, 0, 12, 18, 0, "t_dirt" },
++        { 0, 0, 12, 19, 0, "t_dirt" },
++        { 0, 0, 12, 20, 0, "t_stairs_down" },
++        { 0, 0, 12, 21, 0, "t_dirt" },
++        { 0, 0, 12, 22, 0, "t_slope_up" },
++        { 0, 0, 13, 17, 0, "t_slope_up" },
++        { 0, 0, 13, 18, 0, "t_dirt" },
++        { 0, 0, 13, 19, 0, "t_dirt" },
++        { 0, 0, 13, 20, 0, "t_dirt" },
++        { 0, 0, 13, 21, 0, "t_dirt" },
++        { 0, 0, 13, 22, 0, "t_slope_up" },
++        { 0, 0, 14, 17, 0, "t_slope_up" },
++        { 0, 0, 14, 18, 0, "t_slope_up" },
++        { 0, 0, 14, 19, 0, "t_slope_up" },
++        { 0, 0, 14, 20, 0, "t_slope_up" },
++        { 0, 0, 14, 21, 0, "t_slope_up" },
++        { 0, 0, 14, 22, 0, "t_slope_up" },
++        { 0, 0, 8, 7, -1, "t_secretdoor_metal_c" },
++        { 0, 0, 10, 16, -1, "t_door_metal_c" },
++        { 0, 0, 11, 12, -1, "t_door_metal_c" },
++        { 0, 0, 11, 20, -1, "t_stairs_up" },
++        { 0, 0, 12, 12, -1, "t_door_metal_c" },
++        { 0, 0, 12, 20, -1, "t_stairs_up" },
++        { 0, 0, 13, 16, -1, "t_door_metal_c" },
++        { 0, 0, 15, 7, -1, "t_door_metal_c" },
++        { 0, 0, 17, 11, -1, "t_door_metal_c" },
++        { 0, 0, 18, 18, -1, "t_door_metal_c" },
++        { 0, 0, 9, 17, 1, "t_slope_down" },
++        { 0, 0, 9, 18, 1, "t_slope_down" },
++        { 0, 0, 9, 19, 1, "t_slope_down" },
++        { 0, 0, 9, 20, 1, "t_slope_down" },
++        { 0, 0, 9, 21, 1, "t_slope_down" },
++        { 0, 0, 9, 22, 1, "t_slope_down" },
++        { 0, 0, 10, 17, 1, "t_slope_down" },
++        { 0, 0, 10, 22, 1, "t_slope_down" },
++        { 0, 0, 11, 17, 1, "t_open_air" },
++        { 0, 0, 11, 22, 1, "t_slope_down" },
++        { 0, 0, 12, 17, 1, "t_slope_down" },
++        { 0, 0, 12, 22, 1, "t_slope_down" },
++        { 0, 0, 13, 17, 1, "t_slope_down" },
++        { 0, 0, 13, 22, 1, "t_slope_down" },
++        { 0, 0, 14, 17, 1, "t_slope_down" },
++        { 0, 0, 14, 18, 1, "t_slope_down" },
++        { 0, 0, 14, 19, 1, "t_slope_down" },
++        { 0, 0, 14, 20, 1, "t_slope_down" },
++        { 0, 0, 14, 21, 1, "t_slope_down" },
++        { 0, 0, 14, 22, 1, "t_slope_down" },
++    } );
++}
++
++TEST_CASE( "dda_geo_survivor_cabin_prepper_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8000, {
++        { 0, 0, 0, "dda_geo_survivor_cabin_prepper_north" },
++        { 0, 0, 1, "dda_geo_survivor_cabin_roof_1_north" },
++        { 0, 0, -1, "dda_geo_survivor_cabin_prepper_shelter_north" },
++    }, {
++        { 0, 0, 2, 18, 0, "t_railing" },
++        { 0, 0, 2, 19, 0, "t_railing" },
++        { 0, 0, 3, 20, 0, "t_railing" },
++        { 0, 0, 4, 20, 0, "t_railing" },
++        { 0, 0, 5, 20, 0, "t_railing" },
++        { 0, 0, 6, 10, 0, "t_door_locked" },
++        { 0, 0, 6, 20, 0, "t_railing" },
++        { 0, 0, 7, 20, 0, "t_railing" },
++        { 0, 0, 8, 6, 0, "t_stairs_down" },
++        { 0, 0, 8, 20, 0, "t_railing" },
++        { 0, 0, 9, 20, 0, "t_railing" },
++        { 0, 0, 10, 6, 0, "t_door_locked" },
++        { 0, 0, 10, 13, 0, "t_door_locked" },
++        { 0, 0, 11, 3, 0, "t_door_locked" },
++        { 0, 0, 11, 16, 0, "t_door_locked" },
++        { 0, 0, 12, 3, 0, "t_door_locked" },
++        { 0, 0, 12, 16, 0, "t_door_locked" },
++        { 0, 0, 13, 6, 0, "t_door_locked" },
++        { 0, 0, 13, 8, 0, "t_door_locked" },
++        { 0, 0, 13, 13, 0, "t_door_locked" },
++        { 0, 0, 14, 20, 0, "t_railing" },
++        { 0, 0, 15, 20, 0, "t_railing" },
++        { 0, 0, 16, 20, 0, "t_railing" },
++        { 0, 0, 17, 20, 0, "t_railing" },
++        { 0, 0, 18, 20, 0, "t_railing" },
++        { 0, 0, 19, 20, 0, "t_railing" },
++        { 0, 0, 20, 20, 0, "t_railing" },
++        { 0, 0, 21, 18, 0, "t_railing" },
++        { 0, 0, 21, 19, 0, "t_railing" },
++        { 0, 0, 7, 10, -1, "t_door_metal_c" },
++        { 0, 0, 8, 6, -1, "t_stairs_up" },
++        { 0, 0, 9, 13, -1, "t_door_metal_c" },
++        { 0, 0, 10, 11, -1, "t_door_metal_c" },
++        { 0, 0, 15, 10, -1, "t_door_metal_c" },
++        { 0, 0, 15, 17, -1, "t_door_metal_c" },
++        { 0, 0, 16, 16, -1, "t_door_metal_c" },
++        { 0, 0, 17, 8, -1, "t_secretdoor_metal_c" },
++        { 0, 0, 17, 11, -1, "t_door_metal_c" },
++        { 0, 0, 17, 13, -1, "t_door_metal_c" },
++    } );
++}
++
++TEST_CASE( "dda_geo_survivor_cabin_liam_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8100, {
++        { 0, 0, 0, "dda_geo_survivor_cabin_liam_north" },
++        { 0, 0, 1, "dda_geo_survivor_cabin_roof_1_north" },
++        { 0, 1, 0, "rural_road_forest_north" },
++        { 0, 2, 0, "rural_road_forest_north" },
++        { 0, 3, 0, "rural_road_forest_north" },
++    }, {
++        { 0, 0, 2, 18, 0, "t_railing" },
++        { 0, 0, 2, 19, 0, "t_railing" },
++        { 0, 0, 3, 20, 0, "t_railing" },
++        { 0, 0, 4, 20, 0, "t_railing" },
++        { 0, 0, 5, 20, 0, "t_railing" },
++        { 0, 0, 6, 10, 0, "t_door_c" },
++        { 0, 0, 6, 20, 0, "t_railing" },
++        { 0, 0, 7, 20, 0, "t_railing" },
++        { 0, 0, 8, 20, 0, "t_railing" },
++        { 0, 0, 9, 20, 0, "t_railing" },
++        { 0, 0, 10, 6, 0, "t_door_c" },
++        { 0, 0, 10, 13, 0, "t_door_c" },
++        { 0, 0, 11, 3, 0, "t_door_c" },
++        { 0, 0, 11, 16, 0, "t_door_c" },
++        { 0, 0, 12, 3, 0, "t_door_c" },
++        { 0, 0, 12, 16, 0, "t_door_c" },
++        { 0, 0, 13, 6, 0, "t_door_c" },
++        { 0, 0, 13, 8, 0, "t_door_c" },
++        { 0, 0, 13, 13, 0, "t_door_c" },
++        { 0, 0, 13, 17, 0, "t_door_c" },
++    } );
++}
++
++TEST_CASE( "dda_geo_survivor_cemetery_lacroix_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8200, {
++        { 0, 0, 0, "dda_geo_survivor_cemetery_4square_00_lacroix_north" },
++        { 1, 0, 0, "dda_geo_survivor_cemetery_4square_10_lacroix_north" },
++        { 0, 1, 0, "dda_geo_survivor_cemetery_4square_01_lacroix_north" },
++        { 1, 1, 0, "dda_geo_survivor_cemetery_4square_11_lacroix_north" },
++        { 1, 1, 1, "dda_geo_survivor_cemetery_4square_11_roof_north" },
++    }, {
++        { 1, 1, 10, 9, 0, "t_door_c" },
++        { 1, 1, 10, 10, 0, "t_door_c" },
++        { 1, 1, 12, 8, 0, "t_door_c" },
 +    } );
 +}
 --- /dev/null
@@ -75180,7 +75351,7 @@
 +    "authors": [
 +      "ProxysRE"
 +    ],
-+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat and five modular apartment layouts. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.",
++    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof and Lacroix cemetery. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.",
 +    "category": "buildings",
 +    "dependencies": [
 +      "bn"
@@ -75189,7 +75360,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,104569 @@
+@@ -0,0 +1,105783 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -179750,6 +179921,1220 @@
 +      ]
 +    },
 +    "extras": ""
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_survivor_cabin_roof_1",
++    "object": {
++      "terrain": {
++        ".": "t_tar_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "5": "t_gutter_drop",
++        "~": "t_tar_flat_roof"
++      },
++      "fill_ter": "t_tar_flat_roof",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "  -5------------------  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -................~.-  ",
++        "  -..................-  ",
++        "  --------------------  ",
++        "  ....................  ",
++        "  ....................  ",
++        "  ....................  ",
++        "  ....................  ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_cabin_prepper"
++    ],
++    "object": {
++      "terrain": {
++        "#": "t_wall_log",
++        "o": "t_column",
++        "R": "t_floor",
++        "r": "t_floor",
++        "S": "t_floor",
++        "%": "t_gutter_downspout",
++        ".": [
++          [
++            "t_region_groundcover",
++            4
++          ],
++          "t_region_groundcover_forest"
++        ],
++        "*": [
++          [
++            "t_region_groundcover",
++            15
++          ],
++          "t_region_shrub"
++        ],
++        "-": "t_railing",
++        "=": "t_door_locked",
++        ">": "t_stairs_down",
++        "$": "t_window_boarded",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "A": "t_floor",
++        "B": "t_floor",
++        "D": "t_floor",
++        "F": "t_floor",
++        "L": "t_floor",
++        "O": "t_floor",
++        "T": "t_floor",
++        "V": "t_floor",
++        "a": "t_floor",
++        "b": "t_floor",
++        "c": "t_floor",
++        "d": "t_floor",
++        "s": "t_floor",
++        "t": "t_floor",
++        "u": "t_floor"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "........................",
++        "........................",
++        "...%....................",
++        "**######$##==#########**",
++        "**#R  d#sT#  #A DBBD #**",
++        "**#   c#  #  #A  BB  $**",
++        "**$   R#> =  =       $**",
++        "**$   R#  #  #########**",
++        "**#   R####  =  DBBD #**",
++        "**#RR  L##A  #A  BB  $**",
++        "**####=####  #A      $**",
++        "**#ttb  uu#  #########**",
++        "**$ttb   u#  #a OOO  $**",
++        "**$bb     =  =    rrr$**",
++        "**#      u#  #    rSr#**",
++        "**#1F5V234#  #a   rrr#**",
++        "**###$$####==####$$###**",
++        "..o bbbb             o..",
++        "..-                  -..",
++        "..-                  -..",
++        "..o-------o  o-------o..",
++        "........................",
++        "........................",
++        "........................"
++      ]
++    },
++    "weight": 500,
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_cabin_prepper"
++    ],
++    "object": {
++      "terrain": {
++        "#": "t_wall_log",
++        "o": "t_column",
++        "R": "t_floor",
++        "r": "t_floor",
++        "S": "t_floor",
++        "%": "t_gutter_downspout",
++        ".": [
++          [
++            "t_region_groundcover",
++            4
++          ],
++          [
++            "t_region_groundcover_forest",
++            3
++          ],
++          "t_region_shrub"
++        ],
++        "*": [
++          "t_region_shrub",
++          [
++            "t_region_groundcover_forest",
++            2
++          ],
++          [
++            "t_region_groundcover",
++            5
++          ]
++        ],
++        "-": "t_railing",
++        "=": "t_door_locked",
++        ">": "t_stairs_down",
++        "$": "t_window_boarded",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "A": "t_floor",
++        "B": "t_floor",
++        "D": "t_floor",
++        "F": "t_floor",
++        "L": "t_floor",
++        "O": "t_floor",
++        "T": "t_floor",
++        "V": "t_floor",
++        "a": "t_floor",
++        "b": "t_floor",
++        "c": "t_floor",
++        "d": "t_floor",
++        "s": "t_floor",
++        "t": "t_floor",
++        "u": "t_floor"
++      },
++      "parameters": {
++        "cabin_window_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_window_boarded",
++                3
++              ],
++              [
++                "t_window_domestic",
++                1
++              ],
++              [
++                "t_window_no_curtains",
++                2
++              ]
++            ]
++          }
++        }
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "........................",
++        "........................",
++        "...%....................",
++        "**######$##==#########**",
++        "**#R  d#sT#  #A DBBD #**",
++        "**#   c#  #  #A  BB  $**",
++        "**$   R#> =  =       $**",
++        "**$   R#  #  #########**",
++        "**#   R####  =  DBBD #**",
++        "**#RR  L##A  #A  BB  $**",
++        "**####=####  #A      $**",
++        "**#ttb  uu#  #########**",
++        "**$ttb   u#  #a OOO  $**",
++        "**$bb     =  =    rrr$**",
++        "**#      u#  #    rSr#**",
++        "**#1F5V234#  #a   rrr#**",
++        "**###$$####==####$$###**",
++        "..o bbbb             o..",
++        "..-                  -..",
++        "..-                  -..",
++        "..o-------o  o-------o..",
++        "........................",
++        "........................",
++        "........................"
++      ]
++    },
++    "weight": 500,
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_cabin_prepper_shelter"
++    ],
++    "//": "A lmoe shelter replica refitted for the cabin's dug-out basement.",
++    "//2": "This particular 4-bed shelter is definitely homemade, mostly carved out of bare rock, and seems to be incomplete.",
++    "object": {
++      "terrain": {
++        "#": "t_dirt",
++        "*": "t_chaingate_c",
++        "+": "t_door_metal_c",
++        "-": "t_scrap_wall",
++        "<": "t_stairs_up",
++        "=": "t_chainfence",
++        "|": "t_wall_metal",
++        ":": "t_secretdoor_metal_c",
++        "~": "t_water_pump",
++        "t": "t_metal_floor",
++        "\u00e9": "t_metal_floor",
++        "&": "t_dirt_underground",
++        "A": "t_dirt_underground",
++        "B": "t_dirt_underground",
++        "C": "t_dirt_underground",
++        "D": "t_dirt_underground",
++        "F": "t_dirt_underground",
++        "G": "t_dirt_underground",
++        "H": "t_dirt_underground",
++        "K": "t_dirt_underground",
++        "L": "t_dirt_underground",
++        "R": "t_dirt_underground",
++        "S": "t_dirt_underground",
++        "T": "t_dirt_underground",
++        "U": "t_dirt_underground",
++        "V": "t_dirt_underground",
++        "W": "t_dirt_underground",
++        "Y": "t_dirt_underground",
++        "^": "t_dirt_underground",
++        "a": "t_dirt_underground",
++        "c": "t_dirt_underground",
++        "d": "t_dirt_underground",
++        "h": "t_dirt_underground",
++        "l": "t_dirt_underground",
++        "r": "t_dirt_underground",
++        "s": "t_dirt_underground",
++        "u": "t_dirt_underground",
++        "v": "t_dirt_underground",
++        "w": "t_dirt_underground",
++        "{": "t_dirt_underground",
++        "}": "t_dirt_underground"
++      },
++      "fill_ter": "t_dirt_underground",
++      "rows": [
++        "########################",
++        "########################",
++        "#########^^#############",
++        "########^..^############",
++        "########..^^############",
++        "########Y..^^###########",
++        "##G.R###<.|||####||||||#",
++        "##a.l###A.|UUVVvv|{{{{|#",
++        "##=*=###..|U.....:....|#",
++        "##c..ll-..|Uuuu.u||||||#",
++        "##c....+..|||||+||Dh..d#",
++        "##c.h..-r.+......+...BB#",
++        "##c.TTT-r.-r..h..------#",
++        "#######--+-r.hLh.+...BB#",
++        "#######-F.Sr..h..-Dh..d#",
++        "#######-\u00e9.......-------#",
++        "#######-CCKC.uu.+...hD-#",
++        "#######-----.--+-}....-#",
++        "#########W.~.-s.-}.BBS-#",
++        "#########H...-&.-w.BBr-#",
++        "#########l..A-Kt-------#",
++        "#########--------#######",
++        "########################",
++        "########################"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_lmoe"
++    ],
++    "//": "Above ground",
++    "object": {
++      "fill_ter": "t_region_groundcover",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            "dda_geo_survivor_lmoe_exit_prepperquest_n"
++          ],
++          "x": 9,
++          "y": 17
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_lmoe_under_empty_prepperquest"
++    ],
++    "//": "This particular 2-bed shelter is a more professionally done, all metal bomb shelter with kitchen, secret safe room / gun locker, and workshop.",
++    "//2": "This terrain is the destination for the prepper_1 quest.  The front door is locked and can be unlocked by completing the quest.",
++    "object": {
++      "terrain": {
++        "#": "t_dirt",
++        "*": "t_chaingate_c",
++        "+": "t_door_metal_c",
++        "_": "t_metal_floor",
++        ",": "t_carpet_purple",
++        "1": "t_column",
++        "<": "t_stairs_up",
++        "=": "t_chainfence",
++        "|": "t_wall_metal",
++        ":": "t_secretdoor_metal_c",
++        "~": "t_water_pump",
++        "t": "t_metal_floor",
++        "\u00e9": "t_metal_floor",
++        "2": "t_metal_floor",
++        "A": "t_metal_floor",
++        "B": "t_metal_floor",
++        "C": "t_metal_floor",
++        "D": "t_metal_floor",
++        "E": "t_metal_floor",
++        "F": "t_metal_floor",
++        "G": "t_metal_floor",
++        "H": "t_metal_floor",
++        "K": "t_metal_floor",
++        "L": "t_metal_floor",
++        "P": "t_metal_floor",
++        "S": "t_metal_floor",
++        "T": "t_metal_floor",
++        "U": "t_metal_floor",
++        "V": "t_metal_floor",
++        "W": "t_metal_floor",
++        "a": "t_metal_floor",
++        "b": "t_metal_floor",
++        "c": "t_metal_floor",
++        "d": "t_metal_floor",
++        "e": "t_metal_floor",
++        "f": "t_metal_floor",
++        "h": "t_metal_floor",
++        "l": "t_metal_floor",
++        "r": "t_metal_floor",
++        "s": "t_metal_floor",
++        "u": "t_metal_floor",
++        "v": "t_metal_floor",
++        "w": "t_metal_floor",
++        "{": "t_metal_floor",
++        "}": "t_metal_floor"
++      },
++      "fill_ter": "t_metal_floor",
++      "rows": [
++        "########################",
++        "########################",
++        "##||||||||||||||||||||##",
++        "##|{{{{{|UUUUUU|w__BB|##",
++        "##|u____|U____U|d__BB|##",
++        "##|u___h|U_UU_U|A,,,_|##",
++        "##|u___D|=*==*=|_,,,}|##",
++        "##|A____:______+_,,,}|##",
++        "##|||||||_1,,1_|S__h2|##",
++        "##|VVVVV=_e,,P_|||||||##",
++        "##|_____*__,,____|s_K|##",
++        "##|vvvvv=_E,,f___+__t|##",
++        "##|||||||||++|||||||||##",
++        "##|c_bbbbA|,,|CSCCKCC|##",
++        "##|c______|,,|u_____C|##",
++        "##|c_TT___|,,|u_hLh_F|##",
++        "##|c_TTh__+__+______\u00e9|##",
++        "##|c_TT___|__|rrrr__~|##",
++        "##|c______|__|||||+|||##",
++        "##|c______|__*__a|__A|##",
++        "##|ccccccc|<<=G_a|HlW|##",
++        "##||||||||||||||||||||##",
++        "########################",
++        "########################"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_cemetery_4square_11_roof"
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_shingle_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "5": "t_gutter_drop"
++      },
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "          ----5-----    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          -........-    ",
++        "          ----------    ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        " ... ...                ",
++        " ... ...                ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_survivor_cemetery_4square_00_lacroix",
++        "dda_geo_survivor_cemetery_4square_10_lacroix"
++      ],
++      [
++        "dda_geo_survivor_cemetery_4square_01_lacroix",
++        "dda_geo_survivor_cemetery_4square_11_lacroix"
++      ]
++    ],
++    "object": {
++      "fill_ter": "t_region_soil",
++      "rows": [
++        "================================================",
++        "=$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$=",
++        "=$                                            $=",
++        "=$ 7 ^ ^ ^ ^ 7 ^ ^ ^ ^ SS ^ ^ ^ ^ 7 ^ ^ S ^ 7 $=",
++        "=$   X X X X   X X X X    X X X X   X X X X   $=",
++        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ ^ ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ ^ ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ ^ ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ S ^ ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ M x ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ S ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ ^ S ' M ^ ^ ^ '' ^ ^ ^ ^ ' ^ x ^ x ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ S M ' M M ^ ^ '' ^ ^ ^ ^ ' ^ M x x ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ ' ^ ^ M M ' M M ^ S '' ^ ^ ^ ^ ' ^ ^ x M ' $=",
++        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
++        "=$ '        &'         ''         '         ' $=",
++        "=$ ''$$$$$$$$'$$$$$$$$$''$$$$$$$  '&        ' $=",
++        "=$$$ssssssssssssssssssssssssssss''''''''''''' $=",
++        "=$ $ssssssssssssssssssssssssssss              $=",
++        "=$ $ss$$$$$ss$$$$$ss$$$$$$$$$$ss $$$$$4$$$$$$ $=",
++        "=$7$ss$***$ss$***$ss$***  ***$ss $||0|||G|||$ $=",
++        "=$ $ss$*7*$ss$*7*$ss$*7*  *7*$ss $|nn|.....|$ $=",
++        "=$ $ss$***$ss$***$ss$***  ***$ss $G..|.....G$ $=",
++        "=$ $ss$$$$$ss$$$$$ss$        $ss $G..|..n..G$ $=",
++        "=$ $ssssssssssssssss$   MM   $ss S||+|.....|$ $=",
++        "=$7$ssssssssssssssss$   MM   $ssss+....bbb.G$ $=",
++        "=$ $y____y____y____y$        $ssss+........G$ $=",
++        "=$ $y____y____y____y$***  ***$ss S|Y...bbb.|$ $=",
++        "=$ $y____y____y____y$*7*  *7*$ss $G........G$ $=",
++        "=$ $y__\u00c1_y__\u00c1_y__\u00c1_y$***  ***$ss $G....bbb.G$ $=",
++        "=$7$y____y____y____y$$$$$$$$$$ss $|........|$ $=",
++        "=$ $y____y____y____y$sssssssssss $||GG||GG||$ $=",
++        "=$ $________________$sssssssssss $$$$$$$$$$$$ $=",
++        "=$ $________________$ss   s   s               $=",
++        "=$ $________________$ss 7 s 7 s               $=",
++        "=$7$________________$ss   s   s   7    7    7 $=",
++        "=$ $________________$ss $iSi$iSi$             $=",
++        "=$ $________________$ss $|||$|||$             $=",
++        "=$$$_______$$_______$ss$$$$$$$$$$$$$$$$$$$$$$$$=",
++        "====_______Pp_______=oo========================="
++      ],
++      "terrain": {
++        "4": "t_gutter_downspout",
++        " ": "t_region_groundcover_urban",
++        "'": "t_region_soil",
++        "+": "t_door_c",
++        ".": "t_thconc_floor",
++        "b": "t_thconc_floor",
++        "n": "t_thconc_floor",
++        "Y": "t_thconc_floor",
++        "_": "t_pavement",
++        "\u00c1": "t_pavement",
++        "0": "t_window_domestic",
++        "7": "t_region_tree_shade",
++        "y": "t_pavement_y",
++        "=": "t_drystone_wall_half",
++        "G": [
++          "t_window_stained_green",
++          "t_window_stained_red",
++          "t_window_stained_blue"
++        ],
++        "s": "t_concrete",
++        "|": "t_rock_smooth",
++        "i": "t_column",
++        "o": "t_chaingate_c",
++        "X": "t_grave",
++        "$": "t_region_soil",
++        "&": "t_region_soil",
++        "*": "t_region_soil",
++        "M": "t_region_soil",
++        "P": "t_region_soil",
++        "S": "t_region_soil",
++        "^": "t_region_soil",
++        "p": "t_region_soil",
++        "x": "t_region_soil"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_survivor_cabin_liam"
++    ],
++    "object": {
++      "terrain": {
++        "#": "t_wall_log",
++        "o": "t_column",
++        "R": "t_floor",
++        "r": "t_floor",
++        "S": "t_floor",
++        "%": "t_gutter_downspout",
++        ".": [
++          [
++            "t_region_groundcover",
++            4
++          ],
++          "t_region_groundcover_forest"
++        ],
++        "~": [
++          [
++            "t_region_groundcover_barren",
++            3
++          ],
++          [
++            "t_region_groundcover",
++            2
++          ]
++        ],
++        "*": [
++          [
++            "t_region_groundcover",
++            15
++          ],
++          "t_region_shrub"
++        ],
++        "-": "t_railing",
++        "w": "t_window_domestic",
++        "+": "t_door_c",
++        "=": "t_door_c",
++        "\u0194": "t_region_groundcover_barren",
++        "$": "t_floor",
++        "1": "t_floor",
++        "2": "t_floor",
++        "3": "t_floor",
++        "4": "t_floor",
++        "5": "t_floor",
++        "6": "t_floor",
++        "7": "t_floor",
++        "8": "t_floor",
++        "9": "t_floor",
++        "A": "t_floor",
++        "B": "t_floor",
++        "D": "t_floor",
++        "F": "t_floor",
++        "L": "t_floor",
++        "O": "t_floor",
++        "T": "t_floor",
++        "a": "t_floor",
++        "b": "t_floor",
++        "c": "t_floor",
++        "d": "t_floor",
++        "s": "t_floor",
++        "t": "t_floor",
++        "u": "t_floor",
++        "\u0154": "t_floor",
++        "\u0156": "t_floor",
++        "\u0165": "t_floor"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "...........~~...........",
++        "...........~~...........",
++        "...%.......~~...........",
++        "**######w##++#########**",
++        "**#R  d#sT#  #A DBBD #**",
++        "**#R  c#  #  #A  BB  w**",
++        "**wR   #  =  =       w**",
++        "**wR   #  #  #########**",
++        "**#R   ####  =  DBBD #**",
++        "**#\u0156   L##A  #A  BB  w**",
++        "**####=####  #A      w**",
++        "**#ttb  uu#  #########**",
++        "**wttb   u#  #  OOO\u0165 w**",
++        "**wbb     =  =  87rrrw**",
++        "**#      u#  #   6rSr#**",
++        "**#1F5S234#  #a $9rr\u0154#**",
++        "**###ww####++####ww###**",
++        "..o bbbb     =~~~~~~~o..",
++        "..-          #~~~~~~~#..",
++        "..-          #~~~\u0194~~~#..",
++        "..o-------o  o~~~~~~~o..",
++        "...........~~.~~~~~~~...",
++        "...........~~.~~~.~~~...",
++        "...........~~~~~~~~~...."
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_survivor_lmoe_exit_roof_n",
++    "object": {
++      "terrain": {
++        " ": "t_region_groundcover",
++        "v": "t_open_air",
++        "(": "t_slope_down"
++      },
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rows": [
++        "((v(((",
++        "(    (",
++        "(    (",
++        "(    (",
++        "(    (",
++        "(((((("
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_survivor_lmoe_exit_prepperquest_n",
++    "object": {
++      "terrain": {
++        "_": [
++          "t_region_groundcover",
++          [
++            "t_region_groundcover_barren",
++            9
++          ]
++        ],
++        "#": "t_dirt",
++        ".": "t_dirt",
++        ">": "t_stairs_down",
++        ")": "t_slope_up",
++        "X": "t_door_metal_locked"
++      },
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rows": [
++        "))_)))",
++        ")#X##)",
++        ")#..#)",
++        ")#>>#)",
++        ")####)",
++        "))))))"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_survivor_locked_lmoe_shelter",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_survivor_lmoe_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          -1
++        ],
++        "overmap": "dda_geo_survivor_lmoe_under_empty_prepperquest_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_survivor_lmoe_locked_exit_roof_north"
++      }
++    ],
++    "locations": [
++      "forest_without_trail"
++    ],
++    "city_distance": [
++      25,
++      -1
++    ],
++    "city_sizes": [
++      0,
++      12
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "CLASSIC",
++      "MAN_MADE",
++      "GLOBALLY_UNIQUE",
++      "WILDERNESS",
++      "SAFE_AT_WORLDGEN"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_survivor_cabin_prepper",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_survivor_cabin_prepper_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_survivor_cabin_roof_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          -1
++        ],
++        "overmap": "dda_geo_survivor_cabin_prepper_shelter_north"
++      }
++    ],
++    "connections": [
++      {
++        "point": [
++          0,
++          -1,
++          0
++        ],
++        "connection": "forest_trail"
++      }
++    ],
++    "locations": [
++      "forest"
++    ],
++    "city_distance": [
++      25,
++      -1
++    ],
++    "city_sizes": [
++      0,
++      20
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "CLASSIC",
++      "WILDERNESS",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_survivor_cabin_liam",
++    "//": "Meant for starting scenario but anyone can find a similar cabin.",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_survivor_cabin_liam_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_survivor_cabin_roof_1_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "rural_road_forest_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "overmap": "rural_road_forest_north"
++      },
++      {
++        "point": [
++          0,
++          3,
++          0
++        ],
++        "overmap": "rural_road_forest_north"
++      },
++      {
++        "point": [
++          0,
++          4,
++          0
++        ],
++        "locations": [
++          "land",
++          "road"
++        ]
++      }
++    ],
++    "locations": [
++      "forest"
++    ],
++    "city_distance": [
++      10,
++      25
++    ],
++    "city_sizes": [
++      0,
++      20
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "connections": [
++      {
++        "point": [
++          0,
++          4,
++          0
++        ],
++        "connection": "local_road",
++        "from": [
++          0,
++          3,
++          0
++        ]
++      }
++    ],
++    "rotate": false,
++    "flags": [
++      "CLASSIC",
++      "WILDERNESS",
++      "GLOBALLY_UNIQUE",
++      "MAN_MADE",
++      "SAFE_AT_WORLDGEN"
++    ]
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_survivor_cemetery_lacroix",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_survivor_cemetery_4square_00_lacroix_north"
++      },
++      {
++        "point": [
++          1,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_survivor_cemetery_4square_10_lacroix_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_survivor_cemetery_4square_01_lacroix_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_survivor_cemetery_4square_11_lacroix_north"
++      },
++      {
++        "point": [
++          1,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_survivor_cemetery_4square_11_roof_north"
++      },
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "locations": [
++          "land",
++          "road"
++        ]
++      }
++    ],
++    "connections": [
++      {
++        "point": [
++          0,
++          2,
++          0
++        ],
++        "connection": "local_road",
++        "from": [
++          0,
++          1,
++          0
++        ]
++      }
++    ],
++    "locations": [
++      "field",
++      "forest_without_trail"
++    ],
++    "city_distance": [
++      2,
++      5
++    ],
++    "city_sizes": [
++      4,
++      -1
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "CLASSIC",
++      "GLOBALLY_UNIQUE"
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_cabin_prepper"
++    ],
++    "name": "cabin",
++    "sym": "C",
++    "color": "i_green",
++    "see_cost": 5,
++    "flags": [
++      "RISK_LOW",
++      "SOURCE_SAFETY",
++      "SOURCE_FOOD"
++    ],
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_cabin_liam"
++    ],
++    "name": "cabin",
++    "sym": "C",
++    "color": "i_green",
++    "see_cost": 5,
++    "flags": [
++      "RISK_LOW",
++      "SOURCE_SAFETY",
++      "SOURCE_FOOD"
++    ],
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_cabin_roof_1"
++    ],
++    "name": "cabin roof",
++    "sym": "C",
++    "color": "i_green",
++    "see_cost": 0,
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_cemetery_4square_00_lacroix",
++      "dda_geo_survivor_cemetery_4square_01_lacroix",
++      "dda_geo_survivor_cemetery_4square_10_lacroix",
++      "dda_geo_survivor_cemetery_4square_11_lacroix",
++      "dda_geo_survivor_cemetery_4square_11_roof"
++    ],
++    "copy-from": "generic_cemetery",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_lmoe"
++    ],
++    "name": "LMOE shelter",
++    "sym": "+",
++    "color": "red",
++    "see_cost": 5,
++    "flags": [
++      "KNOWN_DOWN",
++      "SOURCE_PEOPLE",
++      "SOURCE_SAFETY",
++      "SOURCE_GUN",
++      "SOURCE_AMMO",
++      "SOURCE_FOOD"
++    ],
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_lmoe_under_empty_prepperquest"
++    ],
++    "name": "LMOE shelter",
++    "sym": "+",
++    "color": "red",
++    "see_cost": 5,
++    "flags": [
++      "KNOWN_UP",
++      "SOURCE_PEOPLE",
++      "SOURCE_SAFETY",
++      "SOURCE_GUN",
++      "SOURCE_AMMO",
++      "SOURCE_FOOD"
++    ],
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_survivor_cabin_prepper_shelter"
++    ],
++    "name": "LMOE shelter",
++    "sym": "+",
++    "color": "red",
++    "see_cost": 5,
++    "flags": [
++      "KNOWN_DOWN",
++      "RISK_HIGH",
++      "SOURCE_GUN",
++      "SOURCE_AMMO",
++      "SOURCE_FOOD"
++    ],
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "dda_geo_survivor_lmoe_locked_exit_roof",
++    "name": "LMOE shelter roof",
++    "sym": "+",
++    "color": "red",
++    "see_cost": 0,
++    "extras": ""
++  },
++  {
++    "type": "mapgen",
++    "method": "json",
++    "om_terrain": "dda_geo_survivor_lmoe_locked_exit_roof",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ],
++      "terrain": {
++        " ": "t_open_air"
++      },
++      "place_nested": [
++        {
++          "chunks": [
++            "dda_geo_survivor_lmoe_exit_roof_n"
++          ],
++          "x": 9,
++          "y": 17
++        }
++      ]
++    }
 +  },
 +  {
 +    "type": "overmap_location",

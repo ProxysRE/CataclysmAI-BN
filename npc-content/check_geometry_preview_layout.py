@@ -53,7 +53,20 @@ def check():
         assert actual==expected,(special,'apartment navigation/conditional stair fixture mismatch')
         apartment_count+=len(points)
     assert apartment_count==284
-    print(f'PASS: {len(specials)} native layouts / {count} fixture cells match embedded special coordinates; LIXA barrier has 16 furniture assertions; apartments have {apartment_count} navigation/conditional assertions')
+    from check_survivor_preview import validate_vertical
+    validate_vertical(entries)
+    survivor=json.loads((ROOT/'geometry_layer/SURVIVOR_PREVIEW_REPORT.json').read_text())
+    survivor_count=0
+    for special,points in survivor['fixture_checks'].items():
+        marker='TEST_CASE( "'+special+'_all_floors_without_loot"'
+        body=code.split(marker,1)[1].split('\nTEST_CASE(',1)[0]
+        actual=collections.Counter(re.findall(
+            r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^"]+)"',body,re.M))
+        expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
+        assert actual==expected,(special,'survivor access/LMOE stamp fixture mismatch')
+        survivor_count+=len(points)
+    assert survivor_count==127
+    print(f'PASS: {len(specials)} native layouts / {count} fixture cells match embedded special coordinates; LIXA barrier has 16 furniture assertions; apartments have {apartment_count} navigation/conditional assertions; survivor sites have {survivor_count} access/roof assertions')
 
 
 if __name__=='__main__':check()

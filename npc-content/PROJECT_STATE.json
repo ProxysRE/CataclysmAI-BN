@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "37-case source and installed Windows geometry validation passed; adapt survivor housing and Lacroix next.",
+  "stage": "Four survivor/Lacroix sites embedded in 41-case preview; new Windows validation pending.",
   "package": "Layer-first DDA locations",
-  "native_compilation": "Successful Windows run 39962621096: source+installed 73 core /11030, 10 optional /2224, 37 geometry /1601080; portable artifact 12510420047.",
+  "native_compilation": "Previous run 39962621096 passed source and installed suites (37 geometry cases); expanded 41-case candidate awaits its own Windows run.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -803,17 +803,18 @@
       "waterside",
       "research",
       "large",
-      "apartment"
+      "apartment",
+      "survivor"
     ],
-    "special_cells": 1542,
+    "special_cells": 1558,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "All 37 isolated geometry cases passed source and installed Windows validation",
+    "runtime_validated": false,
+    "status": "41-case preview embedded; four new sites pending source and installed validation",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "0f20157691a2caabf874cd8bcbefdf32d1dab36abc38305f2d4fb6155391d4bf",
+    "native_patch_sha256": "548c8a83cc15bb21b297bbb35c3e89317c0d49edd441366f62c44c6c60ad9e96",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -874,7 +875,8 @@
       "error": "Windows default cp1252 decoded UTF-8 cottage glyphs into multiple characters; row-width preflight failed",
       "fix": "Explicit UTF-8 source reads and writes; simulated cp1252-default regression passed"
     },
-    "source_special_placements": 1538
+    "source_special_placements": 1553,
+    "additional_derived_roof_cells": 1
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -1093,10 +1095,11 @@
     "report": "geometry_layer/APARTMENT_PREVIEW_REPORT.json"
   },
   "geometry_survivor_candidate": {
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
-    "status": "Physical counterpart references close; three vertical placements, fallback forest and dynamic weight pending",
+    "status": "Prepper cabin, Liam cabin, locked LMOE and Lacroix embedded; forest camp and tent variants remain staged",
     "special_placements": 16,
-    "report": "geometry_layer/SURVIVOR_ADAPTATION_REPORT.json"
+    "report": "geometry_layer/SURVIVOR_PREVIEW_REPORT.json",
+    "navigation_and_roof_expectations": 127
   }
 }

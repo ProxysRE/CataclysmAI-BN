@@ -1,0 +1,1156 @@
+{
+  "status": "four_site_preview_embedded_pending_windows_generation",
+  "native_embedded": true,
+  "runtime_validated": false,
+  "aliases": {
+    "cabin_liam": "dda_geo_survivor_cabin_liam",
+    "cabin_prepper": "dda_geo_survivor_cabin_prepper",
+    "cabin_prepper_shelter": "dda_geo_survivor_cabin_prepper_shelter",
+    "cabin_roof_1": "dda_geo_survivor_cabin_roof_1",
+    "cemetery_4square_00_lacroix": "dda_geo_survivor_cemetery_4square_00_lacroix",
+    "cemetery_4square_01_lacroix": "dda_geo_survivor_cemetery_4square_01_lacroix",
+    "cemetery_4square_10_lacroix": "dda_geo_survivor_cemetery_4square_10_lacroix",
+    "cemetery_4square_11_lacroix": "dda_geo_survivor_cemetery_4square_11_lacroix",
+    "cemetery_4square_11_roof": "dda_geo_survivor_cemetery_4square_11_roof",
+    "lmoe": "dda_geo_survivor_lmoe",
+    "lmoe_exit_prepperquest_n": "dda_geo_survivor_lmoe_exit_prepperquest_n",
+    "lmoe_exit_roof_n": "dda_geo_survivor_lmoe_exit_roof_n",
+    "lmoe_locked_exit_roof": "dda_geo_survivor_lmoe_locked_exit_roof",
+    "lmoe_under_empty_prepperquest": "dda_geo_survivor_lmoe_under_empty_prepperquest",
+    "cabin_liam_north": "dda_geo_survivor_cabin_liam_north",
+    "cabin_liam_east": "dda_geo_survivor_cabin_liam_east",
+    "cabin_liam_south": "dda_geo_survivor_cabin_liam_south",
+    "cabin_liam_west": "dda_geo_survivor_cabin_liam_west",
+    "cabin_prepper_north": "dda_geo_survivor_cabin_prepper_north",
+    "cabin_prepper_east": "dda_geo_survivor_cabin_prepper_east",
+    "cabin_prepper_south": "dda_geo_survivor_cabin_prepper_south",
+    "cabin_prepper_west": "dda_geo_survivor_cabin_prepper_west",
+    "cabin_prepper_shelter_north": "dda_geo_survivor_cabin_prepper_shelter_north",
+    "cabin_prepper_shelter_east": "dda_geo_survivor_cabin_prepper_shelter_east",
+    "cabin_prepper_shelter_south": "dda_geo_survivor_cabin_prepper_shelter_south",
+    "cabin_prepper_shelter_west": "dda_geo_survivor_cabin_prepper_shelter_west",
+    "cabin_roof_1_north": "dda_geo_survivor_cabin_roof_1_north",
+    "cabin_roof_1_east": "dda_geo_survivor_cabin_roof_1_east",
+    "cabin_roof_1_south": "dda_geo_survivor_cabin_roof_1_south",
+    "cabin_roof_1_west": "dda_geo_survivor_cabin_roof_1_west",
+    "cemetery_4square_00_lacroix_north": "dda_geo_survivor_cemetery_4square_00_lacroix_north",
+    "cemetery_4square_00_lacroix_east": "dda_geo_survivor_cemetery_4square_00_lacroix_east",
+    "cemetery_4square_00_lacroix_south": "dda_geo_survivor_cemetery_4square_00_lacroix_south",
+    "cemetery_4square_00_lacroix_west": "dda_geo_survivor_cemetery_4square_00_lacroix_west",
+    "cemetery_4square_01_lacroix_north": "dda_geo_survivor_cemetery_4square_01_lacroix_north",
+    "cemetery_4square_01_lacroix_east": "dda_geo_survivor_cemetery_4square_01_lacroix_east",
+    "cemetery_4square_01_lacroix_south": "dda_geo_survivor_cemetery_4square_01_lacroix_south",
+    "cemetery_4square_01_lacroix_west": "dda_geo_survivor_cemetery_4square_01_lacroix_west",
+    "cemetery_4square_10_lacroix_north": "dda_geo_survivor_cemetery_4square_10_lacroix_north",
+    "cemetery_4square_10_lacroix_east": "dda_geo_survivor_cemetery_4square_10_lacroix_east",
+    "cemetery_4square_10_lacroix_south": "dda_geo_survivor_cemetery_4square_10_lacroix_south",
+    "cemetery_4square_10_lacroix_west": "dda_geo_survivor_cemetery_4square_10_lacroix_west",
+    "cemetery_4square_11_lacroix_north": "dda_geo_survivor_cemetery_4square_11_lacroix_north",
+    "cemetery_4square_11_lacroix_east": "dda_geo_survivor_cemetery_4square_11_lacroix_east",
+    "cemetery_4square_11_lacroix_south": "dda_geo_survivor_cemetery_4square_11_lacroix_south",
+    "cemetery_4square_11_lacroix_west": "dda_geo_survivor_cemetery_4square_11_lacroix_west",
+    "cemetery_4square_11_roof_north": "dda_geo_survivor_cemetery_4square_11_roof_north",
+    "cemetery_4square_11_roof_east": "dda_geo_survivor_cemetery_4square_11_roof_east",
+    "cemetery_4square_11_roof_south": "dda_geo_survivor_cemetery_4square_11_roof_south",
+    "cemetery_4square_11_roof_west": "dda_geo_survivor_cemetery_4square_11_roof_west",
+    "lmoe_north": "dda_geo_survivor_lmoe_north",
+    "lmoe_east": "dda_geo_survivor_lmoe_east",
+    "lmoe_south": "dda_geo_survivor_lmoe_south",
+    "lmoe_west": "dda_geo_survivor_lmoe_west",
+    "lmoe_locked_exit_roof_north": "dda_geo_survivor_lmoe_locked_exit_roof_north",
+    "lmoe_locked_exit_roof_east": "dda_geo_survivor_lmoe_locked_exit_roof_east",
+    "lmoe_locked_exit_roof_south": "dda_geo_survivor_lmoe_locked_exit_roof_south",
+    "lmoe_locked_exit_roof_west": "dda_geo_survivor_lmoe_locked_exit_roof_west",
+    "lmoe_under_empty_prepperquest_north": "dda_geo_survivor_lmoe_under_empty_prepperquest_north",
+    "lmoe_under_empty_prepperquest_east": "dda_geo_survivor_lmoe_under_empty_prepperquest_east",
+    "lmoe_under_empty_prepperquest_south": "dda_geo_survivor_lmoe_under_empty_prepperquest_south",
+    "lmoe_under_empty_prepperquest_west": "dda_geo_survivor_lmoe_under_empty_prepperquest_west",
+    "Cabin_prepper": "dda_geo_survivor_cabin_prepper",
+    "Locked LMOE Shelter": "dda_geo_survivor_locked_lmoe_shelter",
+    "cemetery_lacroix": "dda_geo_survivor_cemetery_lacroix"
+  },
+  "unresolved_typed_refs": [],
+  "special_cells": {
+    "dda_geo_survivor_locked_lmoe_shelter": 3,
+    "dda_geo_survivor_cabin_prepper": 3,
+    "dda_geo_survivor_cabin_liam": 5,
+    "dda_geo_survivor_cemetery_lacroix": 5
+  },
+  "world_maps": 10,
+  "nested_maps": 2,
+  "LMOE_vertical_relocation": [
+    {
+      "from_z": -1,
+      "to_z": 0,
+      "x": 9,
+      "y": 17,
+      "nested": "dda_geo_survivor_lmoe_exit_prepperquest_n"
+    },
+    {
+      "from_z": 0,
+      "to_z": 1,
+      "x": 9,
+      "y": 17,
+      "nested": "dda_geo_survivor_lmoe_exit_roof_n"
+    }
+  ],
+  "fixture_checks": {
+    "dda_geo_survivor_locked_lmoe_shelter": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_dirt"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_slope_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 7,
+        "z": -1,
+        "terrain": "t_secretdoor_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 16,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 12,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 20,
+        "z": -1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 12,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 20,
+        "z": -1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 16,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 15,
+        "y": 7,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 11,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 18,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 19,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 20,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 21,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 22,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 22,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 22,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 22,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 22,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 19,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 20,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 21,
+        "z": 1,
+        "terrain": "t_slope_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 22,
+        "z": 1,
+        "terrain": "t_slope_down"
+      }
+    ],
+    "dda_geo_survivor_cabin_prepper": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 3,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 4,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 5,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 10,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 13,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 16,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 16,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 13,
+        "z": 0,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 15,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 19,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 20,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 21,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 21,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 10,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 6,
+        "z": -1,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 13,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 11,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 15,
+        "y": 10,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 15,
+        "y": 17,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 16,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 8,
+        "z": -1,
+        "terrain": "t_secretdoor_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 11,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 13,
+        "z": -1,
+        "terrain": "t_door_metal_c"
+      }
+    ],
+    "dda_geo_survivor_cabin_liam": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 3,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 4,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 5,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 10,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_railing"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 13,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 16,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 16,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 13,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 13,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_door_c"
+      }
+    ],
+    "dda_geo_survivor_cemetery_lacroix": [
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "x": 10,
+        "y": 9,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "x": 10,
+        "y": 10,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "x": 12,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_door_c"
+      }
+    ]
+  },
+  "fixture_point_count": 127,
+  "generated_external_omt": [
+    "rural_road_forest_north"
+  ],
+  "deferred_registration_fields": [
+    {
+      "source": [
+        "cabin_prepper"
+      ],
+      "field": "travel_cost_type",
+      "value": "structure"
+    },
+    {
+      "source": [
+        "cabin_liam"
+      ],
+      "field": "travel_cost_type",
+      "value": "structure"
+    },
+    {
+      "source": [
+        "cabin_roof_1"
+      ],
+      "field": "travel_cost_type",
+      "value": "roof"
+    }
+  ],
+  "limits": [
+    "Forest camp and all tent variants remain in full staging, excluded from this preview",
+    "LMOE roof is an explicit additional OMT derived from source z=1 nesting; no invented geometry",
+    "LMOE quest sign and door-unlocking quest remain in later layers",
+    "No natural placement, full traversal or new completion credit before native generation"
+  ]
+}
