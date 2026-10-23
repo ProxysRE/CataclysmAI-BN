@@ -1,0 +1,37 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/cabin.json": {
+      "sha256": "7d505535c6390c9c6303c52f70116c8ad673feddfacbf5654862378fdbd778d1",
+      "blob_sha": "6eeb284d700a04a3eeb087ebf51ee3190e3007e4"
+    },
+    "data/json/mapgen/lmoe.json": {
+      "sha256": "4e2bb7c9ea6a26b9ffe57bf99689ee65795c6196dea31a05ae8d7b158239a828",
+      "blob_sha": "48dae39ff7f53f7e3dd23cc5e544ef00c88265b9"
+    },
+    "data/json/mapgen/survivor_forest_camp.json": {
+      "sha256": "07fae1d764ce6642b086eefd05a21e6df10fb3398c6a81f8ead207516076e4bf",
+      "blob_sha": "65607ac2fe2e370d91285e62817e0fa7634f53b7"
+    },
+    "data/json/mapgen/cemetery_4square.json": {
+      "sha256": "49e4fb3c28f1e5dd2908be8d6714ac3d611582b73a9616cc2569c07e97cc8a3b",
+      "blob_sha": "69c56526125cd87c2e389e062f472466bc1ff5e0"
+    },
+    "data/json/mapgen/scenario/cabin_liam.json": {
+      "sha256": "126adc24e7b42463400886eddee15ebba01284d7545ba9e235e67ce102272599",
+      "blob_sha": "e5528676798d334b086e776627587fb66d586852"
+    },
+    "data/json/mapgen_palettes/cabin.json": {
+      "sha256": "5a944201338ade69ba61f76fe8de6ef2b8e836bd60914b4865206b396196ba6d",
+      "blob_sha": "49d2121057521db1ab480d865b093d11ec902172"
+    },
+    "data/json/mapgen_palettes/lmoe.json": {
+      "sha256": "2766b7e63fc34a87a77e65532a72dae42e57c0d7ac76e9b1b923782801f01438",
+      "blob_sha": "44f775175e1bac7da034589b6400ae95253c93cd"
+    },
+    "data/json/mapgen/nested/lmoe_nested.json": {
+      "sha256": "22cfddf8375fee2ba8588a724a069baace753efafca515db31455baa9e717406",
+      "blob_sha": "33edcf90d4f2332f404cd5a438898c716be0e8ff"
+    }
+  }
+}

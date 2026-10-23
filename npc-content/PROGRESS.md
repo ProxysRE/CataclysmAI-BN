@@ -205,3 +205,11 @@ The affected OMT inherit BN generic_city_building, whose parent generic_city_bui
 Integrated all five prepared apartment layouts into the optional native preview: 37 layout cases /1542 fixture cells, including four helicopter context cells. All 322 apartment source placements and 284 prepared navigation/stair expectations are embedded, including three positive and nine negative conditional checks. A fixture audit compares every apartment C++ expectation with its prepared source-derived record and verifies that above-neighbor types are namespaced. The candidate retains all 83 reachable nested alternatives without adding a general nested-mapgen z-offset feature.
 
 Only the canonical three geometry patch sections were regenerated, preserving unrelated engine sections. Source/installed Windows generation, player traversal and later-layer content remain pending. No additional geometry-generation credit is claimed: 24/51 (47.1%).
+
+## Survivor housing and Lacroix source staging (2026-10-23)
+
+Windows run 39962621096 on 58601a4 passed compilation, source core dialogue and optional Civilians+Exotic Ammo suites. Geometry is still running; installed suites and packaging have not yet completed. Confirmed geometry credit remains 24/51.
+
+Prepared five further source specials in one staging batch: prepper cabin, Liam cabin, survivor forest camp, locked LMOE shelter and Lacroix cemetery. Eight full official files match pinned Git blobs and SHA-256; authenticated shared roof and rural nested sources are reused. The staged shell retains 16 special placements, 12 OMT identities, 11 world-map alternatives and six structural nests. Two whole-palette cabin choices retain their original correlation as two weight-500 alternatives. Exact source rows, rotations, special coordinates and weights are checked, including the camp's dynamic source weight. Full late-layer data and unused source objects are preserved.
+
+Three upward structural placements remain explicit blockers: LMOE surface exit, its roof and intact leather-tent roof. Two fallback forest predecessors and the time-dependent camp weight also require BN adaptation. The ruined tents intentionally have no source roof. No vertical geometry was silently discarded. This batch is not embedded and receives no completion credit; a separate CI check validates its reproducibility and conservation.

@@ -1,0 +1,341 @@
+{
+  "status": "survivor_and_lacroix_staged_with_vertical_blockers",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 17,
+    "overmap_special": 5,
+    "overmap_terrain": 8
+  },
+  "world_maps": 11,
+  "unique_omt": 12,
+  "structural_nested_ids": [
+    "leather_tent_5x5_S",
+    "leather_tent_b_5x5_N",
+    "leather_tent_b_5x5_S",
+    "lmoe_exit_prepperquest_n",
+    "lmoe_exit_roof_n",
+    "tent_5x5_roof"
+  ],
+  "special_cells": {
+    "Locked LMOE Shelter": 2,
+    "Cabin_prepper": 3,
+    "cabin_liam": 5,
+    "survivor_forest_camp": 1,
+    "cemetery_lacroix": 5
+  },
+  "source_z_levels": {
+    "Locked LMOE Shelter": [
+      -1,
+      0
+    ],
+    "Cabin_prepper": [
+      -1,
+      0,
+      1
+    ],
+    "cabin_liam": [
+      0,
+      1
+    ],
+    "survivor_forest_camp": [
+      0
+    ],
+    "cemetery_lacroix": [
+      0,
+      1
+    ]
+  },
+  "palette_variants": [
+    {
+      "source": "cabin_roof_1",
+      "palettes": [
+        "roof_palette"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": [
+        "cabin_prepper"
+      ],
+      "palettes": [
+        "cabin_palette"
+      ],
+      "weight": 500
+    },
+    {
+      "source": [
+        "cabin_prepper"
+      ],
+      "palettes": [
+        "cabin_palette_abandoned"
+      ],
+      "weight": 500
+    },
+    {
+      "source": [
+        "cabin_prepper_shelter"
+      ],
+      "palettes": [
+        "bunker",
+        "empty_bunker_items"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": [
+        "lmoe"
+      ],
+      "palettes": [],
+      "weight": 1000
+    },
+    {
+      "source": [
+        "lmoe_under_empty_prepperquest"
+      ],
+      "palettes": [
+        "bunker",
+        "empty_prepperquest_bunker_items"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "palettes": [],
+      "weight": 1000
+    },
+    {
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "palettes": [],
+      "weight": {
+        "math": [
+          "clamp( ( time_since('cataclysm', 'unit':'days') + 100 ),100,250)"
+        ]
+      }
+    },
+    {
+      "source": [
+        "cemetery_4square_11_roof"
+      ],
+      "palettes": [
+        "roof_palette"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": [
+        [
+          "cemetery_4square_00_lacroix",
+          "cemetery_4square_10_lacroix"
+        ],
+        [
+          "cemetery_4square_01_lacroix",
+          "cemetery_4square_11_lacroix"
+        ]
+      ],
+      "palettes": [],
+      "weight": 1000
+    },
+    {
+      "source": [
+        "cabin_liam"
+      ],
+      "palettes": [
+        "cabin_palette",
+        "cabin_palette_common"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": "lmoe_exit_roof_n",
+      "palettes": [
+        "bunker_ext"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": "lmoe_exit_prepperquest_n",
+      "palettes": [
+        "bunker_ext"
+      ],
+      "weight": 1000
+    },
+    {
+      "source": "tent_5x5_roof",
+      "palettes": [],
+      "weight": 1000
+    },
+    {
+      "source": "leather_tent_5x5_S",
+      "palettes": [],
+      "weight": 1000
+    },
+    {
+      "source": "leather_tent_b_5x5_S",
+      "palettes": [],
+      "weight": 1000
+    },
+    {
+      "source": "leather_tent_b_5x5_N",
+      "palettes": [],
+      "weight": 1000
+    }
+  ],
+  "reused_source": {
+    "archive": "research_sources",
+    "path": "data/json/mapgen/nested/rural_outdoors_nested.json",
+    "sha256": "143e21b8f03f790ea95fb96721004085fc73e3169d666b0c24c4493f635e0239"
+  },
+  "unresolved_typed_refs": [
+    [
+      "furniture",
+      "f_large_skin_door"
+    ],
+    [
+      "furniture",
+      "f_large_skin_groundsheet"
+    ],
+    [
+      "furniture",
+      "f_large_skin_wall"
+    ],
+    [
+      "furniture",
+      "f_skin_center_groundsheet"
+    ],
+    [
+      "overmap_terrain",
+      "rural_road_forest_ns"
+    ],
+    [
+      "terrain",
+      "t_canvas_roof"
+    ],
+    [
+      "terrain",
+      "t_carpet_metal_purple"
+    ],
+    [
+      "terrain",
+      "t_tree_very_dead"
+    ]
+  ],
+  "core_identity_intersections": [
+    [
+      "furniture",
+      "f_null"
+    ],
+    [
+      "item",
+      "null"
+    ],
+    [
+      "mapgen",
+      "cabin_roof_1"
+    ],
+    [
+      "mapgen",
+      "lmoe"
+    ],
+    [
+      "nested_mapgen",
+      "leather_tent_5x5_S"
+    ],
+    [
+      "overmap_terrain",
+      "cabin_roof_1"
+    ],
+    [
+      "overmap_terrain",
+      "lmoe"
+    ],
+    [
+      "terrain",
+      "t_null"
+    ]
+  ],
+  "bundled_mod_identity_intersections": [
+    [
+      "overmap_terrain",
+      "lmoe"
+    ]
+  ],
+  "geometry_issues": [
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": [
+        "lmoe_under_empty_prepperquest"
+      ],
+      "placement": {
+        "chunks": [
+          "lmoe_exit_prepperquest_n"
+        ],
+        "x": 9,
+        "y": 17,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "lmoe_exit_prepperquest_n",
+      "placement": {
+        "chunks": [
+          "lmoe_exit_roof_n"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "leather_tent_5x5_S",
+      "placement": {
+        "chunks": [
+          "tent_5x5_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "fallback_predecessor_needs_BN_adaptation",
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "value": "forest_thick"
+    },
+    {
+      "type": "dynamic_mapgen_weight_needs_BN_adaptation",
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "weight": {
+        "math": [
+          "clamp( ( time_since('cataclysm', 'unit':'days') + 100 ),100,250)"
+        ]
+      }
+    },
+    {
+      "type": "fallback_predecessor_needs_BN_adaptation",
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "value": "forest_thick"
+    }
+  ],
+  "source_rows_preserved": true,
+  "limits": [
+    "Not installed or embedded; no completion credit",
+    "Original identifiers can overlap BN: isolate missing variants or extend existing sites before installation",
+    "Upward LMOE exit and roof placements must be adapted explicitly; never discard them",
+    "Intact leather tent roof uses unsupported nested z=1; ruined tent variants intentionally have no roof",
+    "Parameter terrain, regional groundcover and fallback predecessors need BN adaptation",
+    "Furniture, loot, actors and quest signs remain archived for later layers"
+  ]
+}
