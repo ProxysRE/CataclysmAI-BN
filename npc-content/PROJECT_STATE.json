@@ -1116,5 +1116,19 @@
     "fixture_expectations": 90,
     "report": "geometry_layer/SURVIVOR_CAMP_PREVIEW_REPORT.json",
     "natural_time_weighting": "Archived source expression; not implemented by separate debug variants"
+  },
+  "geometry_city_additions_candidate": {
+    "native_embedded": false,
+    "runtime_validated": false,
+    "source_sites": 7,
+    "source_placements": 25,
+    "debug_cases": 8,
+    "debug_placements": 37,
+    "world_maps": 19,
+    "nested_definitions": 18,
+    "damage_transforms": 5,
+    "unresolved_typed_refs": [],
+    "status": "Seven city sites staged with correlated library variants and BN terrain-damage transforms; native masks and generation pending",
+    "report": "geometry_layer/CITY_ADDITIONS_GEOMETRY_REPORT.json"
   }
 }

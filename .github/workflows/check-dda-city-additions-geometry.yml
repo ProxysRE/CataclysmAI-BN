@@ -1,0 +1,19 @@
+name: Check seven DDA city additions
+on:
+  push:
+    paths:
+      - 'npc-content/prepare_city_additions_geometry.py'
+      - 'npc-content/check_city_additions_geometry.py'
+      - 'npc-content/geometry_layer/CITY_ADDITIONS_*'
+      - 'npc-content/geometry_layer/city_additions_sources/**'
+      - '.github/workflows/check-dda-city-additions-geometry.yml'
+  workflow_dispatch:
+jobs:
+  geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/check_city_additions_geometry.py

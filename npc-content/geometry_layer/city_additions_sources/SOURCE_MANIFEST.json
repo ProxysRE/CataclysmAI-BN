@@ -1,0 +1,54 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/synagogue.json": {
+      "sha256": "32a471eae785708db6efe60aa12d4124c99bd5fc80e70ecd3152f381d798794f",
+      "blob_sha": "7b15ea5be3cf2cb2f0bacdb4eb8a24e1b95d986c"
+    },
+    "data/json/mapgen/urban_library.json": {
+      "sha256": "34fcd49f9b9c7fbe85a2e2fe2421563589515e30f19d88a07e85563253627617",
+      "blob_sha": "31d5752642ea35d563c11d46bb8c31aab8da6c55"
+    },
+    "data/json/mapgen/library.json": {
+      "sha256": "5bf82c0fe71aba8df1ae8725234741cd96b140108335f1d397a40443f841d7c7",
+      "blob_sha": "922a14bd6ac1f084b5108057022a63f4a958ff70"
+    },
+    "data/json/mapgen/kindergarten.json": {
+      "sha256": "57bc7a54882734e6f7649ad07054b9750ee748cedd66ba08600562f539dca9a2",
+      "blob_sha": "82edc30fd5fb954410f5c8c5689fea9010cb912f"
+    },
+    "data/json/mapgen/office_dentist.json": {
+      "sha256": "5a17d110a235833973d926bd86da88ee4c31f7069fb8af94e5c66e2f5df5ff23",
+      "blob_sha": "0b2209129829a5b720d748fe429a9eab048027ef"
+    },
+    "data/json/mapgen/office_warehouse_anduril.json": {
+      "sha256": "d6da1137a45d5b2ab2011b9d392c576fe9626aeb7ac00b7e234410c88682cde9",
+      "blob_sha": "7dacebe3c9b6c62d728ea9eab6f218e0551380ad"
+    },
+    "data/json/mapgen/store/s_airsoft.json": {
+      "sha256": "1bd90cc5fe9f05a74b3753475aa4525a39c8effea88a5f218d581ab5c2d5a805",
+      "blob_sha": "161eef38a8f17fb8b564767b8c514927278ee70f"
+    },
+    "data/json/mapgen_palettes/library_palette.json": {
+      "sha256": "591755213ca10e1a8c383be834440a2b165624f2f8190dfc48b982d9d3b6a6c1",
+      "blob_sha": "dcedabf1d34910dc6442479f3646da8c6f86b571"
+    },
+    "data/json/mapgen_palettes/building.json": {
+      "sha256": "ec7d67c59a12e1c5ed4377e28a5b38a47101ef410aee5e92893567eb5d8b301e",
+      "blob_sha": "13afad390a61bd938f02e8cbd31e1e7ba9ce350b"
+    },
+    "bn/src/magic/magic_ter_fur_transform.cpp": {
+      "sha256": "0a4e85e37eb5ec32925692279b4a212cbfcb4a52d0d1886741d34c43a94f14aa",
+      "blob_sha": "cea44828c5ea6db6732b2337f7e182922edf641f"
+    },
+    "data/json/furniture_and_terrain/terrain-doors.json": {
+      "sha256": "3d20b02d030a03775fe7d478e8d0d43318351c9a13ab05a30b973965313ee059",
+      "blob_sha": "05e3b60698c6483bdbdb631a748aa55471d4c492"
+    },
+    "data/json/furniture_and_terrain/terrain-windows.json": {
+      "sha256": "754d05a7cf0a7dd0ae1e4d7d060b36451f1a998e4157e17cf4994256844fd07a",
+      "blob_sha": "9c0369e85d8e315b6e6949ad4d65cc7e3282c686"
+    }
+  },
+  "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1"
+}
