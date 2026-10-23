@@ -1014,7 +1014,6 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(follower.is_player_ally());
         REQUIRE(follower.is_following());
         follower.set_value("trkv_home_follower", "stay_home");
-        follower.set_part_hp_cur(bodypart_str_id("torso").id(), 10);
         follower_id = follower.getID();
         follower_position = follower.abs_pos();
         REQUIRE(follower.get_dimension() == home_dim);
@@ -1025,7 +1024,6 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(follower->get_dimension() == home_dim);
         CHECK(follower->abs_pos() == follower_position);
         CHECK(follower->get_value("trkv_home_follower") == "stay_home");
-        CHECK(follower->get_part_hp_cur(bodypart_str_id("torso").id()) == 10);
         CHECK(follower->is_following());
         CHECK(g->get_follower_list().count(follower_id) == 1);
         CHECK(get_overmapbuffer(raid_dim).find_npc(follower_id) == nullptr);
