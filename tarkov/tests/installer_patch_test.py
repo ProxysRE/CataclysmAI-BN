@@ -22,6 +22,9 @@ class PatchCheckoutTest(unittest.TestCase):
              "src/character.cpp": "npc_profile_hp_"}),
             ("0005-dimension-random-npc-policy.patch", {"src/world_type.h": "bool allow_random_npcs = true;",
              "src/world_type.cpp": '"allow_random_npcs"', "src/game.cpp": "!info->world_type->allow_random_npcs"}),
+            ("0006-dimension-mapgen-npc-policy.patch", {"src/world_type.h": "bool allow_mapgen_npcs = true;",
+             "src/world_type.cpp": '"allow_mapgen_npcs"', "src/game.cpp": "world_types::infer_from_dimension( current_dimension_id_ )",
+             "src/mapgen/mapgen.cpp": "!world->allow_mapgen_npcs"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.
@@ -54,6 +57,7 @@ class PatchCheckoutTest(unittest.TestCase):
                                 for target_name, lines in sources.items():
                                     source = ("\n".join(lines) + "\n").encode()
                                     target = bn / target_name
+                                    target.parent.mkdir(parents=True, exist_ok=True)
                                     target.write_bytes(source.replace(b"\n", b"\r\n") if src_crlf else source)
                                 patch_path = bn / "fix.patch"
                                 patch_path.write_bytes(patch.replace(b"\n", b"\r\n") if patch_crlf else patch)

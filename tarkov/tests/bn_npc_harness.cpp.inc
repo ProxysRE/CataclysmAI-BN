@@ -101,6 +101,19 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_enter");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
     check_random_spawn_blocked();
+    const auto check_mapgen_npcs_blocked = [&]() {
+        const override_option static_npcs("STATIC_NPC", "true");
+        REQUIRE(get_option<bool>("STATIC_NPC"));
+        REQUIRE(world_types::infer_from_dimension(raid_dim) == world_type_id("trkv_raid_space"));
+        REQUIRE_FALSE(world_types::infer_from_dimension(raid_dim)->allow_mapgen_npcs);
+        REQUIRE(world_types::infer_from_dimension(dimension_id()) == world_types::get_default());
+        REQUIRE(world_types::get_default()->allow_mapgen_npcs);
+        const auto count = get_overmapbuffer(raid_dim).get_overmap_npcs().size();
+        const auto placed = g->m.place_npc(abs_to_bub(start_abs), string_id<npc_template>("trkv_combat_tester"));
+        CHECK(placed == character_id());
+        CHECK(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == count);
+    };
+    check_mapgen_npcs_blocked();
     const auto first_id = spawn_guard("usec");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 1);
     REQUIRE(g->save(false));
@@ -614,6 +627,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_combat_restored");
     check_combat_actor(initial_ammo);
     check_random_spawn_blocked(); // Policy must also survive save/load.
+    check_mapgen_npcs_blocked();
     auto remaining_ammo = initial_ammo;
     {
         auto* actor = g->find_npc(combat_id);
@@ -954,4 +968,19 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     invalid = hp_json;
     invalid.erase(invalid.find(",\"leg_r\":65"), std::string(",\"leg_r\":65").size());
     REQUIRE_THROWS_AS(load_attributes(invalid), JsonError);
+    // An independent map bound to the primary world must retain ordinary
+    // template creation while the player is in the restricted project space.
+    {
+        const override_option static_npcs("STATIC_NPC", "true");
+        REQUIRE(g->get_current_dimension_info() != nullptr);
+        REQUIRE_FALSE(g->get_current_dimension_info()->world_type->allow_mapgen_npcs);
+        map elsewhere;
+        elsewhere.bind_dimension(dimension_id());
+        const auto control = elsewhere.place_npc(tripoint_bub_ms(10, 10, 0),
+            string_id<npc_template>("trkv_combat_tester"));
+        REQUIRE(control != character_id());
+        REQUIRE(get_overmapbuffer(dimension_id()).find_npc(control) != nullptr);
+        REQUIRE(get_overmapbuffer(dimension_id()).remove_npc(control) != nullptr);
+    }
+
 }

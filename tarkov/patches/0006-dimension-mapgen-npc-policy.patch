@@ -1,0 +1,110 @@
+diff --git a/src/world_type.h b/src/world_type.h
+--- a/src/world_type.h
++++ b/src/world_type.h
+@@ -32,7 +32,8 @@
+         std::string region_settings_id = "default";  // Links to regional_settings
+         // Ambient random NPCs; explicit map/template creation is independent.
+         bool allow_random_npcs = true;
+-        bool generate_overmap = true;                // False for bounded pocket dims
++        bool allow_mapgen_npcs = true;
++        bool generate_overmap = true;                // False for bounded pocket dims
+         bool infinite_bounds = true;                 // False for pocket dimensions
+ 
+         // Boundaries (for bounded dimensions)
+@@ -85,5 +86,7 @@
+ void check_consistency();
+ 
+ /** Get the default world type (base reality) */
+-const world_type_id &get_default();
++const world_type_id &get_default();
++/** Infer a dimension type by save_prefix, as used by cold load; safe for mapgen workers. */
++world_type_id infer_from_dimension( const dimension_id &dim );
+ } // namespace world_types
+diff --git a/src/world_type.cpp b/src/world_type.cpp
+--- a/src/world_type.cpp
++++ b/src/world_type.cpp
+@@ -21,7 +21,8 @@
+     optional( jo, was_loaded, "description", description );
+     optional( jo, was_loaded, "region_settings", region_settings_id, "default" );
+     optional( jo, was_loaded, "allow_random_npcs", allow_random_npcs, true );
+-    optional( jo, was_loaded, "generate_overmap", generate_overmap, true );
++    optional( jo, was_loaded, "allow_mapgen_npcs", allow_mapgen_npcs, true );
++    optional( jo, was_loaded, "generate_overmap", generate_overmap, true );
+     optional( jo, was_loaded, "infinite_bounds", infinite_bounds, true );
+ 
+     if( jo.has_member( "boundary_terrain" ) ) {
+@@ -107,7 +108,20 @@
+     world_type_factory.load( jo, src );
+ }
+ 
+-const world_type_id &world_types::get_default()
+-{
+-    return default_world_type_id;
+-}
++const world_type_id &world_types::get_default()
++{
++    return default_world_type_id;
++}
++
++world_type_id world_types::infer_from_dimension( const dimension_id &dim )
++{
++    auto result = get_default();
++    if( !dim.is_empty() ) {
++        for( const auto &type : get_all() ) {
++            if( !type.save_prefix.empty() && dim.str().starts_with( type.save_prefix ) ) {
++                result = type.id;
++            }
++        }
++    }
++    return result;
++}
+diff --git a/src/game.cpp b/src/game.cpp
+--- a/src/game.cpp
++++ b/src/game.cpp
+@@ -4123,16 +4123,7 @@
+     // travel_to_dimension() populates loaded_dimensions_ on first visit; on load
+     // we must do it explicitly.  The world_type is recovered by matching save_prefix.
+     if( !loaded_dimensions_.count( current_dimension_id_ ) ) {
+-        auto effective_wt = world_types::get_default();
+-        if( !current_dimension_id_.is_empty() ) {
+-            std::ranges::for_each( world_types::get_all(),
+-            [&]( const world_type & wt ) {
+-                if( !wt.save_prefix.empty() &&
+-                    current_dimension_id_.str().starts_with( wt.save_prefix ) ) {
+-                    effective_wt = wt.id;
+-                }
+-            } );
+-        }
++        const auto effective_wt = world_types::infer_from_dimension( current_dimension_id_ );
+         const struct world_type *target_type = effective_wt.is_valid() ? &effective_wt.obj() :
+                                                nullptr;
+         loaded_dimensions_[current_dimension_id_] = dimension_info{
+diff --git a/src/mapgen/mapgen.cpp b/src/mapgen/mapgen.cpp
+--- a/src/mapgen/mapgen.cpp
++++ b/src/mapgen/mapgen.cpp
+@@ -22,7 +22,8 @@
+ #include "drawing_primitives.h"
+ #include "enums.h"
+ #include "fluid_grid.h"
+-#include "game.h"
++#include "game.h"
++#include "world_type.h"
+ #include "game_constants.h"
+ #include "generic_factory.h"
+ #include "hsv_color.h"
+@@ -5388,9 +5389,12 @@
+ 
+ auto map::place_npc(const tripoint_bub_ms& p, const string_id<npc_template>& type, bool force)
+     -> character_id {
+-    if (!force && !get_option<bool>("STATIC_NPC")) {
+-        return character_id(); // Do not generate an npc.
+-    }
++    if (!force) {
++        const auto world = world_types::infer_from_dimension(bound_dimension_);
++        if (!get_option<bool>("STATIC_NPC") || (world.is_valid() && !world->allow_mapgen_npcs)) {
++            return character_id(); // Explicit force=true remains available to controlled deployment.
++        }
++    }
+     shared_ptr_fast<npc> temp = make_shared_fast<npc>();
+     const auto proj = project_remain<coords::sm>(map_local_to_abs(*this, p));
+     temp->load_npc_template(type);

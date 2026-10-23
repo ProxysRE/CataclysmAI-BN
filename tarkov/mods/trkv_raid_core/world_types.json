@@ -14,6 +14,7 @@
     "save_prefix": "trkv_dev01_",
     "allow_npc_travel": true,
     "allow_vehicle_travel": false,
-    "allow_random_npcs": false
+    "allow_random_npcs": false,
+    "allow_mapgen_npcs": false
   }
 ]
