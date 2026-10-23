@@ -9,6 +9,12 @@ def validate(e):
     assert e['type']=='terrain'
     assert 'copy-from'not in e,('Preview terrain must be concrete',e['id'])
     assert REQUIRED<=e.keys(),(e['id'],sorted(REQUIRED-e.keys()))
+    for action in ('bash','deconstruct'):
+        piece=e.get(action,{})
+        for key in ('ter_set','ter_set_bashed_from_above'):
+            assert piece.get(key)!='t_open_air',('BN requires implicit open-air result',e['id'],action,key)
+        for key in ('sound_vol','sound_fail_vol'):
+            if key in piece:assert isinstance(piece[key],str),('Legacy BN sound volume',e['id'],action,key)
 
 
 def validate_omt(e,known):
@@ -64,6 +70,14 @@ def check():
     terrain=[e for e in entries if e['type']=='terrain']
     assert len(terrain)==47
     for e in terrain:validate(e)
+    template={'type':'terrain','id':'regression_open_air','symbol':'x','color':'white',
+              'move_cost':2,'name':'probe','description':'probe'}
+    for action,key,value in [('bash','ter_set','t_open_air'),('bash','ter_set_bashed_from_above','t_open_air'),
+                             ('deconstruct','ter_set','t_open_air'),('bash','sound_vol',16)]:
+        probe=dict(template);probe[action]={key:value}
+        try:validate(probe)
+        except AssertionError:pass
+        else:raise AssertionError('Invalid destruction/sound regression accepted')
     stock_roofs=roof_sources()
     validate_roofs(entries,stock_roofs)
     for bad_roof in ('t_strconc_floor_no_roof','recursive_roof'):

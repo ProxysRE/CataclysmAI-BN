@@ -9,6 +9,8 @@ ROOT=Path(__file__).resolve().parent
 
 
 def check():
+    from check_geometry_runtime_rules import check as check_runtime_rules
+    check_runtime_rules()
     entries=json.loads((ROOT/'native/dda_geometry_preview.json').read_text(encoding='utf-8'))
     code=(ROOT/'native/dda_geometry_preview_test.cpp').read_text(encoding='utf-8')
     specials=[e for e in entries if e['type']=='overmap_special']

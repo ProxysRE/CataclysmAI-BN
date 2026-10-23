@@ -35,6 +35,10 @@ def prepare(check=False):
     physical=[];deferred=[]
     for n in ('t_drill_machinery','t_drill_string','t_underwater_drill_string'):
         e=copy.deepcopy(src[n]);assert 'copy-from'not in e
+        if e.get('bash',{}).get('ter_set')=='t_open_air':
+            deferred.append({'source':n,'field':'bash.ter_set','value':'t_open_air',
+                             'bn':'t_null','note':'BN strict data validation requires implicit open air; bash_ter_success falls back to t_open_air for a null result.'})
+            e['bash']['ter_set']='t_null'
         if e.get('looks_like')and ('terrain',e['looks_like'])not in core:
             deferred.append({'source':n,'field':'looks_like','value':e.pop('looks_like')})
         physical.append(rename(e))

@@ -12146,6 +12146,102 @@
       "reason": "BN automatic roofs require bash_below=true and no roof of their own; reinforced floor is not a valid roof provider"
     }
   ],
+  "barrier_phase_adaptations": [
+    {
+      "source": "LIXA_device_1",
+      "source_set": {
+        "line": "furniture",
+        "id": "dda_geo_research_f_LIXA_unfold_barrier",
+        "x": 6,
+        "y": 9,
+        "x2": 21,
+        "y2": 9
+      },
+      "bn_place_furniture": [
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 6,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 7,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 8,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 9,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 10,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 11,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 12,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 13,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 14,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 15,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 16,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 17,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 18,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 19,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 20,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 21,
+          "y": 9
+        }
+      ],
+      "reason": "DDA set furniture is phase-ordered after terrain; BN set runs before terrain and wall placements erase two barrier cells. Place furniture preserves the entire source line after terrain."
+    }
+  ],
   "deferred_source_fields": [
     {
       "source": "t_carpet_concrete_green_olight",
@@ -12170,6 +12266,20 @@
           8
         ]
       }
+    },
+    {
+      "source": "t_carpet_concrete_green_olight",
+      "field": "bash.sound_vol",
+      "value": 16,
+      "bn": "94 dB",
+      "note": "Exact replacement recommended by the pinned BN legacy-volume loader."
+    },
+    {
+      "source": "t_carpet_concrete_green_olight",
+      "field": "bash.sound_fail_vol",
+      "value": 10,
+      "bn": "90 dB",
+      "note": "Exact replacement recommended by the pinned BN legacy-volume loader."
     },
     {
       "source": "t_lixa_wall",

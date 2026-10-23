@@ -45547,7 +45547,7 @@
       "str_max": 150,
       "sound": "metal screeching!",
       "sound_fail": "clang!",
-      "ter_set": "t_open_air",
+      "ter_set": "t_null",
       "items": [
         {
           "item": "steel_plate",
@@ -45593,7 +45593,7 @@
       "str_max": 150,
       "sound": "metal screeching!",
       "sound_fail": "clang!",
-      "ter_set": "t_open_air",
+      "ter_set": "t_null",
       "items": [
         {
           "item": "steel_plate",

@@ -71,8 +71,22 @@
   "deferred_source_fields": [
     {
       "source": "t_drill_machinery",
+      "field": "bash.ter_set",
+      "value": "t_open_air",
+      "bn": "t_null",
+      "note": "BN strict data validation requires implicit open air; bash_ter_success falls back to t_open_air for a null result."
+    },
+    {
+      "source": "t_drill_machinery",
       "field": "looks_like",
       "value": "f_machinery_heavy"
+    },
+    {
+      "source": "t_drill_string",
+      "field": "bash.ter_set",
+      "value": "t_open_air",
+      "bn": "t_null",
+      "note": "BN strict data validation requires implicit open air; bash_ter_success falls back to t_open_air for a null result."
     },
     {
       "source": "t_saltwater_cube",

@@ -42,6 +42,12 @@ def prepare(check=False):
             # BN uses the wall flag for native line connection.
             e['flags']=list(dict.fromkeys(e.get('flags',[])+['CONNECT_TO_WALL']))
         if original.get('examine_action'):e['examine_action']='none'
+        if e['id']=='t_carpet_concrete_green_olight':
+            for key,legacy,volume in [('sound_vol',16,'94 dB'),('sound_fail_vol',10,'90 dB')]:
+                assert e['bash'][key]==legacy
+                deferred.append({'source':e['id'],'field':'bash.'+key,'value':legacy,'bn':volume,
+                                 'note':'Exact replacement recommended by the pinned BN legacy-volume loader.'})
+                e['bash'][key]=volume
         assert 'copy-from'not in e
         assert {'name','description','symbol','color'}<=e.keys(),e['id']
         assert ('move_cost'if e['type']=='terrain'else 'move_cost_mod')in e
@@ -71,7 +77,22 @@ def prepare(check=False):
     from check_geometry_terrain_schema import validate_roofs,roof_sources
     validate_roofs(physical,roof_sources())
     entries=expanded;own=index_entries(entries)
+    barrier_adaptations=[]
     for e in entries:
+        if e['type']=='mapgen':
+            obj=e['object'];kept=[]
+            for action in obj.get('set',[]):
+                if action.get('line')=='furniture' and action.get('id')==aliases['f_LIXA_unfold_barrier']:
+                    assert action['y']==action['y2'] and action['x']<=action['x2']
+                    assert set(action)=={'line','id','x','y','x2','y2'}
+                    points=[{'furn':action['id'],'x':x,'y':action['y']}for x in range(action['x'],action['x2']+1)]
+                    obj.setdefault('place_furniture',[]).extend(points)
+                    barrier_adaptations.append({'source':e.get('om_terrain'),
+                        'source_set':copy.deepcopy(action),'bn_place_furniture':copy.deepcopy(points),
+                        'reason':'DDA set furniture is phase-ordered after terrain; BN set runs before terrain and wall placements erase two barrier cells. Place furniture preserves the entire source line after terrain.'})
+                else:kept.append(action)
+            if kept:obj['set']=kept
+            else:obj.pop('set',None)
         if e['type']=='mapgen' and e['object'].get('predecessor_mapgen') and e['object'].get('rows'):
             e['object']['remove_all']={g:{} for g,t in e['object'].get('terrain',{}).items() if t!='t_null'}
     # looks_like is optional presentation, not a license to invent field IDs.
@@ -110,12 +131,17 @@ def prepare(check=False):
             for x in range(a['x'],a['x2']+1):
                 y=a['y']
                 furniture_points.setdefault(matrix[y//24][x//24],[]).append({'x':x%24,'y':y%24,'terrain':a['id'],'furniture':True})
+        for a in obj.get('place_furniture',[]):
+            if a.get('furn')!=aliases['f_LIXA_unfold_barrier']:continue
+            x,y=a['x'],a['y']
+            furniture_points.setdefault(matrix[y//24][x//24],[]).append({'x':x%24,'y':y%24,'terrain':a['furn'],'furniture':True})
     report={'status':'research_geometry_adapted_not_installed','native_embedded':False,'runtime_validated':False,
       'new_physical_definitions':dict(__import__('collections').Counter(e['type']for e in physical)),
       'aliases':aliases,'unresolved_typed_refs':missing,'generated_external_omt':['road_ns'],
       'navigation':navigation,'navigation_points':sum(map(len,navigation.values())),
       'structural_furniture_points':furniture_points,
       'roof_adaptations':roof_adaptations,
+      'barrier_phase_adaptations':barrier_adaptations,
       'deferred_source_fields':deferred,
       'preserved':['Source rows, special placements and ruined tent weights','LIXA wall destruction cycle with source thresholds','Source movement, coverage, flags, light and shaft markers','Source physical barrier line and XEDRA locked door geometry'],
       'adaptations':['BN green carpet replaces industrial concrete-backed carpet','BN metal flat roof replaces source metal roofs; red paint is lost; walkable source concrete-roof terrain uses BN reinforced-concrete flooring, while automatic roof links use the valid BN flat roof with its stock bash behavior','BN generic metal wall replaces corrugated wall; durability differs','BN regional shrub/tree selectors replace forest-specific selectors','BN straight road replaces source forest road; surroundings differ','Source precision metal component tiers reuse BN wire/steel_chunk','DDA shooting, emissions, tools, EOC actions and unsupported display connections remain archived'],

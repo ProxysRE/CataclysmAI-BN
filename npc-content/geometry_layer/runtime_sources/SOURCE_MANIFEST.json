@@ -1,0 +1,23 @@
+{
+  "pins": {
+    "bn": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "dda": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974"
+  },
+  "files": {
+    "bn/src/mapgen/mapgen.cpp": {
+      "sha256": "e634d0630dfe7ebf262fde108595c6ef999037b0a170f1c02ee54b8275be9948",
+      "blob_sha": "3d581d003fe08556e7fd97bc0cc4494b26f0ad3e",
+      "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/mapgen/mapgen.cpp"
+    },
+    "dda/src/mapgen.cpp": {
+      "sha256": "b7df88867fbb6b8d6a60555b739202a2e120b5db9b608221795423090d85389b",
+      "blob_sha": "f75aeb4e00d2283f260a1bbf27e1060420eeb1f6",
+      "url": "https://raw.githubusercontent.com/CleverRaven/Cataclysm-DDA/c19e95bc96d27d8bef8e2e246a63cd4cd6f89974/src/mapgen.cpp"
+    },
+    "bn/src/map/map.cpp": {
+      "sha256": "c25d14c49484456870a7ef1b25e7f77ce1500e0b4fa030b1dae23d6019024dd9",
+      "blob_sha": "3211f3fb9c63329ec10edacd0c8a7e2c5c7ae608",
+      "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/map/map.cpp"
+    }
+  }
+}

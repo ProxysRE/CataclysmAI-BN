@@ -684,14 +684,86 @@
         "    //Q....--TT--....Q//",
         "    //LWwwwwETTEwwwwWL//"
       ],
-      "set": [
+      "place_furniture": [
         {
-          "line": "furniture",
-          "id": "dda_geo_research_f_LIXA_unfold_barrier",
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
           "x": 6,
-          "y": 9,
-          "x2": 21,
-          "y2": 9
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 7,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 8,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 9,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 10,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 11,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 12,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 13,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 14,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 15,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 16,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 17,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 18,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 19,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 20,
+          "y": 9
+        },
+        {
+          "furn": "dda_geo_research_f_LIXA_unfold_barrier",
+          "x": 21,
+          "y": 9
         }
       ]
     },
@@ -3043,8 +3115,8 @@
       "str_max": 12,
       "sound": "glass breaking!",
       "sound_fail": "whack!",
-      "sound_vol": 16,
-      "sound_fail_vol": 10,
+      "sound_vol": "94 dB",
+      "sound_fail_vol": "90 dB",
       "ter_set": "t_carpet_green",
       "items": [
         {

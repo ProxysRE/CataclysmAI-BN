@@ -6,6 +6,8 @@ on:
     paths:
       - npc-content/prepare_research_geometry.py
       - npc-content/adapt_research_geometry.py
+      - npc-content/check_geometry_runtime_rules.py
+      - npc-content/geometry_layer/runtime_sources/**
       - npc-content/geometry_layer/RESEARCH_*
       - npc-content/geometry_layer/research_sources/**
       - .github/workflows/check-dda-research-geometry.yml
