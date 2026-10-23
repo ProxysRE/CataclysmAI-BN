@@ -107,6 +107,10 @@ elseif test_data.stage == "npc_live_depart" then
   assert(#gapi.get_all_npcs() == 3)
   local before = #gapi.get_all_npcs()
   local function pos(x, y) return TripointAbsMs.new(384 + x, 384 + y, 0) end
+  assert(gapi.can_place_npc_at(pos(18, 18)))
+  assert(not gapi.can_place_npc_at(pos(10, 8))) -- wall
+  assert(not gapi.can_place_npc_at(pos(14, 14))) -- occupied
+  assert(not gapi.can_place_npc_at(TripointAbsMs.new(100000, 100000, 0))) -- outside bubble
   assert(gapi.spawn_npc_at("trkv_missing_template", pos(18, 18)) == nil)
   assert(gapi.spawn_npc_at("trkv_patrol_tester", pos(10, 8)) == nil) -- wall
   assert(gapi.spawn_npc_at("trkv_patrol_tester", pos(14, 14)) == nil) -- occupied
@@ -187,6 +191,15 @@ elseif test_data.stage == "npc_reserved_enter" then
   -- Arrange a checkpoint before group deployment; C++ will occupy its first point.
   state.encounter, state.encounter_deployed = "squad", false
   test_data.reserved_choice = nil
+elseif test_data.stage == "npc_reserved_wall" or test_data.stage == "npc_reserved_floor" then
+  local wall = test_data.stage == "npc_reserved_wall"
+  local map = gapi.get_map()
+  local point = map:abs_to_bub(TripointAbsMs.new(398, 398, 0))
+  local terrain = TerId.new(wall and "t_wall" or "t_floor"):int_id()
+  map:set_ter_at(point, terrain)
+  assert(map:get_ter_at(point) == terrain)
+  assert(gapi.can_place_npc_at(TripointAbsMs.new(398, 398, 0)) == not wall)
+  test_data.reserved_wall = wall
 elseif test_data.stage == "npc_reserved_check" then
   assert(state.encounter == "squad" and not state.encounter_deployed)
   assert(not state.deployment_warning and #gapi.get_all_npcs() == 0)
@@ -195,6 +208,11 @@ elseif test_data.stage == "npc_reserved_check" then
   assert(package.loaded.trkv_loadouts.contains("technical_trained_rifle_v1", slot.loadout))
   if test_data.reserved_choice then assert(slot.loadout == test_data.reserved_choice) end
   test_data.reserved_choice = slot.loadout
+  if test_data.reserved_wall then
+    local map = gapi.get_map()
+    assert(map:get_ter_at(map:abs_to_bub(TripointAbsMs.new(398, 398, 0))) == TerId.new("t_wall"):int_id())
+    assert(not gapi.can_place_npc_at(TripointAbsMs.new(398, 398, 0)))
+  end
 elseif test_data.stage == "npc_reserved_released" then
   record_hostile_group()
   assert(test_data.hostile_choices[1] == test_data.reserved_choice)

@@ -27,6 +27,8 @@ class PatchCheckoutTest(unittest.TestCase):
              "src/mapgen/mapgen.cpp": "!world->allow_mapgen_npcs"}),
             ("0007-disable-vanilla-starting-npcs.patch", {"src/game.cpp": "bool game::uses_tarkov_npc_roster()",
              "src/game.h": "void create_profession_npcs( const std::vector<npc_class_id> &classes );"}),
+            ("0008-probe-npc-spawn-position.patch", {"src/catalua_bindings_game_creatures.cpp":
+             '"can_place_npc_at"'}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

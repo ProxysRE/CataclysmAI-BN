@@ -130,13 +130,20 @@ local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.
 TripointAbsMs = { new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end }
 gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } end
 gapi.get_all_npcs = function() return actors end
-local spawn_blocker
+local spawn_blocker, terrain_blocker
 -- Include a non-NPC blocker, mirroring an avatar/monster from the real query.
 gapi.get_all_creatures = function()
   local found = {}
   for i, actor in ipairs(actors) do found[i] = actor end
   if spawn_blocker then found[#found + 1] = { get_pos_ms = function() return spawn_blocker end } end
   return found
+end
+gapi.can_place_npc_at = function(point)
+  if terrain_blocker and terrain_blocker == point then return false end
+  for _, actor in ipairs(gapi.get_all_creatures()) do
+    if actor:get_pos_ms() == point then return false end
+  end
+  return true
 end
 local catalog_choose = package.loaded.trkv_loadouts.choose
 package.loaded.trkv_loadouts.choose = function(roll, pool_id)
@@ -300,6 +307,15 @@ root.raid, root.participants = copy(root.raid), copy(root.participants)
 mod.loaded(); tick()
 assert(spawned == before_group and group_draw == 1)
 spawn_blocker = nil
+terrain_blocker = TripointAbsMs.new(398, 398, 0)
+tick()
+assert(spawned == before_group and group_draw == 1)
+assert(root.participants.slots.hostile_1.status == "reserved")
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+mod.loaded(); tick()
+assert(spawned == before_group and group_draw == 1 and not root.raid.deployment_warning)
+assert(root.participants.slots.hostile_1.loadout == "rifle_civilian_v1")
+terrain_blocker = nil
 tick()
 assert(root.raid.encounter == "squad" and #actors == 3 and spawned == before_group + 3)
 assert(group_pools[1] == "technical_trained_rifle_v1")

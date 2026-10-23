@@ -1,0 +1,24 @@
+diff --git a/src/catalua_bindings_game_creatures.cpp b/src/catalua_bindings_game_creatures.cpp
+--- a/src/catalua_bindings_game_creatures.cpp
++++ b/src/catalua_bindings_game_creatures.cpp
+@@ -21,11 +21,18 @@
+ auto reg_game_api_creature_queries( luna::userlib &lib ) -> void
+ {
++    const auto can_place_npc_at = []( const tripoint_abs_ms &position ) -> bool {
++        const auto pos = abs_to_bub( position );
++        return g->m.inbounds( pos ) && g->m.passable( pos ) && g->is_empty( pos );
++    };
++    DOC( "Checks NPC placement bounds, passability and occupancy without creating an actor." );
++    luna::set_fx( lib, "can_place_npc_at", can_place_npc_at );
++
+     DOC( "Creates and activates an NPC from a template at an empty, passable absolute map position. Returns nil on invalid placement." );
+-    luna::set_fx( lib, "spawn_npc_at", []( const std::string &template_name,
++    luna::set_fx( lib, "spawn_npc_at", [can_place_npc_at]( const std::string &template_name,
+     const tripoint_abs_ms &position ) -> npc * {
+         const auto id = string_id<npc_template>( template_name );
+         const auto pos = abs_to_bub( position );
+-        if( !id.is_valid() || !g->m.inbounds( pos ) || !g->m.passable( pos ) || !g->is_empty( pos ) ) {
++        if( !id.is_valid() || !can_place_npc_at( position ) ) {
+             return nullptr;
+         }
+         const auto spawned_id = g->m.place_npc( pos, id, true );

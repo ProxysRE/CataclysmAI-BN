@@ -19,7 +19,8 @@ local function travel(dimension, terrain, x, y)
 end
 
 function adapter.check_capabilities()
-  for _, name in ipairs({ "place_player_dimension_at", "get_current_dimension_id", "reset_dimension" }) do
+  for _, name in ipairs({ "place_player_dimension_at", "get_current_dimension_id", "reset_dimension",
+      "spawn_npc_at", "can_place_npc_at" }) do
     if type(gapi[name]) ~= "function" then error("Tarkov DEV0.1 requires BN API: " .. name) end
   end
 end

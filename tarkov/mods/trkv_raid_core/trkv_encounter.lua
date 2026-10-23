@@ -23,11 +23,7 @@ function encounter.ensure(members, context, mode)
   local adapter = {
     available = function(spec)
       local point = spec.route[1]
-      local position = gapi.get_map():abs_to_bub(TripointAbsMs.new(point.x, point.y, point.z))
-      for _, actor in ipairs(gapi.get_all_creatures()) do
-        if actor:get_pos_ms() == position then return false end
-      end
-      return true
+      return gapi.can_place_npc_at(TripointAbsMs.new(point.x, point.y, point.z))
     end,
     spawn = function(spec, sequence, choice)
       local template = "trkv_patrol_tester"
