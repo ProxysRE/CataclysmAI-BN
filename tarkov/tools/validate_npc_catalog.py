@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 def validate(entries: list[dict]) -> None:
-    classes, groups = {}, set()
+    classes, groups = {}, {}
     for entry in entries:
         if entry.get("type") == "npc_class":
             ident = entry["id"]
@@ -15,7 +15,7 @@ def validate(entries: list[dict]) -> None:
                 raise ValueError(f"Duplicate NPC class: {ident}")
             classes[ident] = entry
         elif entry.get("type") == "item_group":
-            groups.add(entry["id"])
+            groups[entry["id"]] = entry
 
     def resolve(ident, chain=()):
         if ident in chain or ident not in classes:
@@ -56,6 +56,28 @@ def validate(entries: list[dict]) -> None:
             group = definition.get(field)
             if group not in groups and not (field == "carry_override" and group == "EMPTY_GROUP"):
                 raise ValueError(f"{ident}: missing project {field}; vanilla fallback is forbidden")
+        # Explicitly supported technical kits; expand this contract together with
+        # native compatibility coverage when another weapon family is introduced.
+        weapons = {"ar15": ("223", "stanag30", 30), "m4a1": ("223", "stanag30", 30),
+                   "ak47": ("762_m43", "akmag30", 30)}
+        weapon_entries = groups[definition["weapon_override"]].get("entries", [])
+        if len(weapon_entries) != 1 or weapon_entries[0].get("item") not in weapons:
+            raise ValueError(f"{ident}: expected one supported technical weapon")
+        weapon = weapon_entries[0]
+        ammo, magazine, capacity = weapons[weapon["item"]]
+        if (weapon.get("ammo-item") != ammo or type(weapon.get("charges")) is not int
+                or not 1 <= weapon["charges"] <= capacity):
+            raise ValueError(f"{ident}: incompatible issued ammunition/capacity")
+        carry = definition["carry_override"]
+        if carry != "EMPTY_GROUP":
+            supply = groups[carry]
+            if supply.get("items") or not supply.get("entries"):
+                raise ValueError(f"{ident}: expected explicit technical magazine supply")
+            for spare in supply["entries"]:
+                if (spare.get("item") != magazine or spare.get("ammo-item") != ammo
+                        or type(spare.get("charges")) is not int or not 1 <= spare["charges"] <= capacity
+                        or type(spare.get("count", 1)) is not int or spare.get("count", 1) < 1):
+                    raise ValueError(f"{ident}: spare magazine/ammunition mismatch")
         skills = definition.get("skills", [])
         if not skills or skills[0] != {"skill": "ALL", "level": {"constant": 0}}:
             raise ValueError(f"{ident}: skills must start with explicit ALL=0")

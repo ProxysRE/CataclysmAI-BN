@@ -2,6 +2,8 @@
 -- Catalog IDs retain their meaning; pools control which variants a role may draw.
 local loadouts = {}
 local catalog = {
+  rifle_ak_v1 = { template = "trkv_combat_ak_tester", profile = "rifle_trained_v1", equipment = "ak_v1" },
+  rifle_recruit_ak_v1 = { template = "trkv_combat_recruit_ak_tester", profile = "rifle_recruit_v1", equipment = "ak_v1" },
   rifle_civilian_v1 = { template = "trkv_combat_tester", profile = "rifle_trained_v1", equipment = "civilian_v1" },
   rifle_field_v1 = { template = "trkv_combat_field_tester", profile = "rifle_trained_v1", equipment = "field_v1" },
   rifle_recruit_civilian_v1 = { template = "trkv_combat_recruit_tester",
@@ -10,6 +12,16 @@ local catalog = {
     profile = "rifle_recruit_v1", equipment = "field_v1" },
 }
 local pools = {
+  technical_trained_rifle_v2 = {
+    { id = "rifle_civilian_v1", weight = 3 },
+    { id = "rifle_field_v1", weight = 1 },
+    { id = "rifle_ak_v1", weight = 2 },
+  },
+  technical_recruit_rifle_v2 = {
+    { id = "rifle_recruit_civilian_v1", weight = 3 },
+    { id = "rifle_recruit_field_v1", weight = 1 },
+    { id = "rifle_recruit_ak_v1", weight = 2 },
+  },
   technical_rifle_v1 = {
     { id = "rifle_civilian_v1", weight = 3 },
     { id = "rifle_field_v1", weight = 1 },

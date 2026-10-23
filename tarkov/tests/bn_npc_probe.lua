@@ -181,6 +181,38 @@ elseif test_data.stage == "npc_combat_depart" or test_data.stage == "npc_reload_
   test_data.combat_equipment = definition.equipment
   assert(state.encounter == "combat" and state.encounter_deployed)
   assert(#gapi.get_all_npcs() == 1)
+elseif test_data.stage == "npc_varied_reload_depart" then
+  assert(api.at_home() and state.phase == "home")
+  local catalog = assert(package.loaded.trkv_loadouts)
+  local choose, pick = catalog.choose, 0
+  local choices = { "rifle_ak_v1", "rifle_recruit_field_v1", "rifle_recruit_ak_v1" }
+  catalog.choose = function(_, pool)
+    pick = pick + 1
+    assert(catalog.contains(pool, choices[pick]))
+    return choices[pick]
+  end
+  local ok, entered = pcall(game.mod_runtime.trkv_raid_core.depart, "varied")
+  catalog.choose = choose
+  assert(ok and entered and pick == 3 and state.encounter_deployed)
+  test_data.varied_ids, test_data.varied_choices = {}, {}
+  for i = 1, 3 do
+    local slot = root.participants.slots["hostile_" .. i]
+    assert(slot.status == "ready" and slot.loadout == choices[i])
+    test_data.varied_ids[i], test_data.varied_choices[i] = slot.id, slot.loadout
+  end
+  test_data.combat_id, test_data.combat_loadout = test_data.varied_ids[1], choices[1]
+  assert(state.encounter == "varied" and #gapi.get_all_npcs() == 3)
+elseif test_data.stage == "npc_varied_checkpoint" then
+  state.encounter_deployed = false
+elseif test_data.stage == "npc_varied_restored" then
+  assert(state.encounter == "varied" and state.encounter_deployed and #gapi.get_all_npcs() == 3)
+  for i = 1, 3 do
+    local slot = root.participants.slots["hostile_" .. i]
+    assert(slot.status == "ready" and slot.id == test_data.varied_ids[i])
+    assert(slot.loadout == test_data.varied_choices[i])
+    local member = participants.find(root.participants, context(), slot.id)
+    assert(member and member.squad == "varied_test" and member.loadout == slot.loadout)
+  end
 elseif test_data.stage == "npc_hostile_group_depart" then
   assert(api.at_home() and state.phase == "home")
   assert(game.mod_runtime.trkv_raid_core.depart("squad"))

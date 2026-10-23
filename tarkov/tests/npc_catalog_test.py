@@ -40,3 +40,17 @@ for field, value in (("traits", "NPC_RANDOM"), ("bionics", [{"id": "bio_power_st
         classes["TRKV_COMBAT_TEST"][field] = "EMPTY_GROUP" if field == "traits" else []
     rejected(change)
 print("PASS combat catalog rejects fallback, missing HP, random skills, cycles and inherited modifiers")
+
+def bad_supply(data, classes):
+    group = next(e for e in data if e.get("id") == "trkv_combat_ak_carried")
+    group["entries"][0]["item"] = "stanag30"
+rejected(bad_supply)
+def bad_ammo(data, classes):
+    group = next(e for e in data if e.get("id") == "trkv_combat_ak_weapon")
+    group["entries"][0]["ammo-item"] = "223"
+rejected(bad_ammo)
+def overfilled(data, classes):
+    group = next(e for e in data if e.get("id") == "trkv_combat_ak_carried")
+    group["entries"][0]["charges"] = 31
+rejected(overfilled)
+print("PASS technical supply rejects wrong magazine, wrong caliber and overfilled magazine")

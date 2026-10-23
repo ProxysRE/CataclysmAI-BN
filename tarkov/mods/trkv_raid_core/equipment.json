@@ -55,5 +55,40 @@
         "count": 2
       }
     ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_ak_weapon",
+    "subtype": "distribution",
+    "entries": [
+      {
+        "item": "ak47",
+        "ammo-item": "762_m43",
+        "charges": 30
+      }
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_ak_clothes",
+    "subtype": "collection",
+    "items": [
+      "pants_cargo",
+      "tshirt",
+      "sneakers"
+    ]
+  },
+  {
+    "type": "item_group",
+    "id": "trkv_combat_ak_carried",
+    "subtype": "collection",
+    "entries": [
+      {
+        "item": "akmag30",
+        "ammo-item": "762_m43",
+        "charges": 30,
+        "count": 2
+      }
+    ]
   }
 ]

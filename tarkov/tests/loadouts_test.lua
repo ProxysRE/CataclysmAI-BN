@@ -79,3 +79,20 @@ api.select = function() return {} end
 ok, reason = deploy.ensure(state, context, specs, api)
 assert(not ok and reason == "selection_failed" and next(state.slots) == nil and spawns == 1)
 print("PASS saved loadout before spawn, interrupted recovery, no reroll/respawn and invalid-choice rejection")
+
+for _, profile in ipairs({ "trained", "recruit" }) do
+  local pool = "technical_" .. profile .. "_rifle_v2"
+  local counts = {}
+  for value = 1, 6 do
+    local id = loadouts.choose(function(low, high) assert(low == 1 and high == 6); return value end, pool)
+    local definition = loadouts.describe(id)
+    assert(definition.profile == "rifle_" .. profile .. "_v1" and loadouts.contains(pool, id))
+    counts[definition.equipment] = (counts[definition.equipment] or 0) + 1
+  end
+  assert(counts.civilian_v1 == 3 and counts.field_v1 == 1 and counts.ak_v1 == 2)
+end
+assert(not loadouts.contains("technical_trained_rifle_v1", "rifle_ak_v1"))
+assert(not loadouts.contains("technical_recruit_rifle_v2", "rifle_ak_v1"))
+assert(loadouts.template("rifle_ak_v1") == "trkv_combat_ak_tester")
+assert(loadouts.template("rifle_recruit_ak_v1") == "trkv_combat_recruit_ak_tester")
+print("PASS v2 pools add AK kits at weights 3/1/2 while retaining v1 meanings")

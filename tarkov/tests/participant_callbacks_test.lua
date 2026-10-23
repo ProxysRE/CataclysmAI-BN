@@ -155,7 +155,8 @@ gapi.rng = function(low, high) assert(low == 1 and high == 12); return 1 end
 gapi.spawn_npc_at = function(template, point)
   assert(where == "raid" and (template == "trkv_patrol_tester" or template == "trkv_combat_tester" or
     template == "trkv_combat_field_tester" or template == "trkv_combat_recruit_tester" or
-    template == "trkv_combat_recruit_field_tester"))
+    template == "trkv_combat_recruit_field_tester" or template == "trkv_combat_ak_tester" or
+    template == "trkv_combat_recruit_ak_tester"))
   last_template = template
   spawned = spawned + 1
   local actor = { position = point, moves = 1000, values = {}, id = 100 + spawned }
@@ -338,6 +339,40 @@ assert(root.raid.encounter_deployed and #actors == 2 and spawned == before_group
 assert(root.participants.slots.hostile_3.id == dead_id)
 assert(root.participants.slots.hostile_3.loadout == choices[3])
 print("PASS hostile group menu, pending retry, explicit role pools and casualty replay without reroll/respawn")
+-- New pools are isolated from v1 and survive the real sixth menu/retry path.
+mod.extract(); closed(); actors = {}
+local varied_picks, varied_before = 0, spawned
+package.loaded.trkv_loadouts.choose = function(roll, pool)
+  assert(pool == "technical_trained_rifle_v2" or pool == "technical_recruit_rifle_v2")
+  return catalog_choose(roll, pool)
+end
+local varied_rolls = { 6, 4, 6 }
+gapi.rng = function(low, high)
+  assert(low == 1 and high == 6)
+  varied_picks = varied_picks + 1
+  return varied_rolls[varied_picks]
+end
+fail_enter, answer = true, 6
+mod.start()
+assert(root.raid.phase == "entering" and root.raid.encounter == "varied" and spawned == varied_before)
+fail_enter, answer = false, 1
+mod.start()
+assert(root.raid.encounter == "varied" and root.raid.encounter_deployed and #actors == 3)
+assert(varied_picks == 3 and spawned == varied_before + 3)
+local varied_choices = { "rifle_ak_v1", "rifle_recruit_field_v1", "rifle_recruit_ak_v1" }
+local varied_ids = {}
+for i, choice in ipairs(varied_choices) do
+  local slot = root.participants.slots["hostile_" .. i]
+  assert(slot.loadout == choice and slot.id == actors[i].id)
+  varied_ids[i] = slot.id
+end
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+root.raid.encounter_deployed = false
+gapi.rng = function() error("Varied group rerolled after load") end
+mod.loaded(); tick()
+assert(root.raid.encounter_deployed and #actors == 3 and spawned == varied_before + 3)
+for i, id in ipairs(varied_ids) do assert(root.participants.slots["hostile_" .. i].id == id) end
+print("PASS varied menu, retry, role pools v2 and restored AK/M4 group without reroll")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }

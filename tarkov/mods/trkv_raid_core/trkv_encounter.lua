@@ -16,7 +16,12 @@ for i, x in ipairs({ 398, 400, 404 }) do
     pool = i == 1 and "technical_trained_rifle_v1" or "technical_recruit_rifle_v1",
     route = { { x = x, y = 398, z = 0 }, { x = x, y = 402, z = 0 } } }
 end
-local manifests = { patrol = specs, combat = combat, squad = squad }
+local varied = {}
+for i, spec in ipairs(squad) do
+  varied[i] = { slot = spec.slot, side = spec.side, squad = "varied_test", route = spec.route,
+    pool = i == 1 and "technical_trained_rifle_v2" or "technical_recruit_rifle_v2" }
+end
+local manifests = { patrol = specs, combat = combat, squad = squad, varied = varied }
 function encounter.ensure(members, context, mode)
   mode = mode or "patrol"
   if not manifests[mode] then return false, "unknown_encounter" end

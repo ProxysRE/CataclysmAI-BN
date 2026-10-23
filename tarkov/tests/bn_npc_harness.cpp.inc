@@ -708,115 +708,144 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     CHECK(get_overmapbuffer(home_dim).find_npc(combat_id) == nullptr);
     // Force only the preset choice for this additional encounter. The kit comes
     // from shipped JSON; actual npc::move must decide to reload and then fire.
-    probe("npc_reload_depart");
-    const auto reload_id = character_id(data["combat_id"].get<int>());
-    REQUIRE(data["combat_loadout"].get<std::string>() == "rifle_field_v1");
-    using magazine_state = std::map<std::string, std::pair<int, bool>>;
-    const auto magazine_snapshot = [&]() {
-        const auto* actor = g->find_npc(reload_id);
-        REQUIRE(actor != nullptr);
-        magazine_state result;
-        const auto* installed = actor->primary_weapon().magazine_current();
-        const auto record = [&](const item* value, bool in_weapon) {
-            if (!value || value->typeId().str() != "stanag30") { return; }
-            const auto marker = value->get_var("trkv_reload_probe");
-            REQUIRE_FALSE(marker.empty());
-            REQUIRE(result.emplace(marker, std::make_pair(value->ammo_remaining(), in_weapon)).second);
+    const auto run_reload_probe = [&](bool ak) {
+        const std::string weapon_type = ak ? "ak47" : "m4a1";
+        const std::string magazine_type = ak ? "akmag30" : "stanag30";
+        const std::string ammo_type = ak ? "762_m43" : "223";
+        probe(ak ? "npc_varied_reload_depart" : "npc_reload_depart");
+        const auto reload_id = character_id(data["combat_id"].get<int>());
+        REQUIRE(data["combat_loadout"].get<std::string>() == (ak ? "rifle_ak_v1" : "rifle_field_v1"));
+        using magazine_state = std::map<std::string, std::pair<int, bool>>;
+        const auto magazine_snapshot = [&]() {
+            const auto* actor = g->find_npc(reload_id);
+            REQUIRE(actor != nullptr);
+            magazine_state result;
+            const auto* installed = actor->primary_weapon().magazine_current();
+            const auto record = [&](const item* value, bool in_weapon) {
+                if (!value || value->typeId().str() != magazine_type) { return; }
+                if (value->ammo_remaining() > 0) { REQUIRE(value->ammo_current() == itype_id(ammo_type)); }
+                const auto marker = value->get_var("trkv_reload_probe");
+                REQUIRE_FALSE(marker.empty());
+                REQUIRE(result.emplace(marker, std::make_pair(value->ammo_remaining(), in_weapon)).second);
+            };
+            // visit_internal deliberately does not descend into guns or magazines.
+            // all_items covers carried spares; the fitted magazine needs its accessor.
+            record(installed, true);
+            for (const auto* value : actor->all_items(false)) {
+                if (value != installed) { record(value, false); }
+            }
+            return result;
         };
-        // visit_internal deliberately does not descend into guns or magazines.
-        // all_items covers carried spares; the fitted magazine needs its accessor.
-        record(installed, true);
-        for (const auto* value : actor->all_items(false)) {
-            if (value != installed) { record(value, false); }
+        {
+            auto* actor = g->find_npc(reload_id);
+            REQUIRE(actor != nullptr);
+            REQUIRE(actor->myclass == npc_class_id(ak ? "TRKV_COMBAT_AK" : "TRKV_COMBAT_FIELD"));
+            REQUIRE(actor->primary_weapon().typeId().str() == weapon_type);
+            REQUIRE(actor->primary_weapon().ammo_remaining() == 30);
+            auto* loaded = actor->primary_weapon().magazine_current();
+            REQUIRE(loaded != nullptr);
+            loaded->set_var("trkv_reload_probe", "initial");
+            auto spares = 0;
+            for (auto* value : actor->all_items(false)) {
+                if (value->typeId().str() == magazine_type && value != loaded) {
+                    REQUIRE(value->ammo_remaining() == 30);
+                    value->set_var("trkv_reload_probe", "spare_" + std::to_string(++spares));
+                }
+            }
+            REQUIRE(spares == 2);
+            const auto before_drain = magazine_snapshot();
+            REQUIRE(before_drain.size() == 3);
+            REQUIRE(before_drain.at("initial").second);
+            auto issued_rounds = 0;
+            for (const auto& entry : before_drain) { issued_rounds += entry.second.first; }
+            REQUIRE(issued_rounds == 90);
+            // Drain only the original loaded magazine; no rounds or reload items are
+            // supplied by the test. The two original spare magazines remain intact.
+            REQUIRE(actor->primary_weapon().ammo_consume(30, actor->bub_pos()) == 30);
+            REQUIRE(actor->primary_weapon().ammo_remaining() == 0);
+            auto rounds_after_drain = 0;
+            for (const auto& entry : magazine_snapshot()) { rounds_after_drain += entry.second.first; }
+            REQUIRE(rounds_after_drain == 60);
+            auto& player = get_avatar();
+            player.set_mutation(trait_id("DEBUG_NODMG"));
+            const auto restore_damage = on_out_of_scope([&]() {
+                player.unset_mutation(trait_id("DEBUG_NODMG"));
+                player.set_all_parts_hp_to_max();
+                player.clear_effects();
+            });
+            REQUIRE(player.primary_weapon().is_gun()); // Kept from the previous encounter.
+            player.setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+            set_time(calendar::turn);
+            REQUIRE(actor->sees(player));
+            auto reloaded = false;
+            for (auto decision = 0; decision < 30; ++decision) {
+                INFO("Production magazine reload decision " << decision);
+                actor->set_moves(100);
+                actor->move();
+                REQUIRE(actor->get_moves() < 100);
+                REQUIRE(actor->primary_weapon().typeId().str() == weapon_type);
+                if (actor->primary_weapon().ammo_remaining() > 0) { reloaded = true; break; }
+            }
+            REQUIRE(reloaded);
+            REQUIRE(actor->primary_weapon().ammo_remaining() == 30);
+            loaded = actor->primary_weapon().magazine_current();
+            REQUIRE(loaded != nullptr);
+            const auto marker = loaded->get_var("trkv_reload_probe");
+            REQUIRE((marker == "spare_1" || marker == "spare_2"));
+            auto total_rounds = 0;
+            for (const auto& entry : magazine_snapshot()) { total_rounds += entry.second.first; }
+            REQUIRE(total_rounds == 60);
+            auto fired = false;
+            for (auto decision = 0; decision < 30; ++decision) {
+                actor->set_moves(100);
+                actor->move();
+                REQUIRE(actor->get_moves() < 100);
+                REQUIRE(actor->primary_weapon().typeId().str() == weapon_type);
+                if (actor->primary_weapon().ammo_remaining() < 30) { fired = true; break; }
+            }
+            REQUIRE(fired);
+            const auto spent = 30 - actor->primary_weapon().ammo_remaining();
+            total_rounds = 0;
+            for (const auto& entry : magazine_snapshot()) { total_rounds += entry.second.first; }
+            REQUIRE(total_rounds == 60 - spent);
+            REQUIRE(actor->is_wearing(itype_id(ak ? "tshirt" : "hoodie")));
+            REQUIRE(actor->is_wearing(itype_id("pants_cargo")));
+            actor->set_part_hp_cur(bodypart_str_id("arm_l").id(), 17);
+            actor->recalc_hp();
+            REQUIRE(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == 17);
         }
-        return result;
-    };
-    {
-        auto* actor = g->find_npc(reload_id);
-        REQUIRE(actor != nullptr);
-        REQUIRE(actor->myclass == npc_class_id("TRKV_COMBAT_FIELD"));
-        REQUIRE(actor->primary_weapon().typeId().str() == "m4a1");
-        REQUIRE(actor->primary_weapon().ammo_remaining() == 30);
-        auto* loaded = actor->primary_weapon().magazine_current();
-        REQUIRE(loaded != nullptr);
-        loaded->set_var("trkv_reload_probe", "initial");
-        auto spares = 0;
-        for (auto* value : actor->all_items(false)) {
-            if (value->typeId().str() == "stanag30" && value != loaded) {
-                REQUIRE(value->ammo_remaining() == 30);
-                value->set_var("trkv_reload_probe", "spare_" + std::to_string(++spares));
+        const auto magazines_after_combat = magazine_snapshot();
+        probe(ak ? "npc_varied_checkpoint" : "npc_combat_checkpoint");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        probe(ak ? "npc_varied_restored" : "npc_combat_restored");
+        REQUIRE(magazine_snapshot() == magazines_after_combat);
+        REQUIRE(g->find_npc(reload_id)->get_part_hp_cur(bodypart_str_id("arm_l").id()) == 17);
+        REQUIRE(g->find_npc(reload_id)->get_part_hp_max(bodypart_str_id("arm_l").id()) == 60);
+        REQUIRE(g->find_npc(reload_id)->primary_weapon().typeId().str() == weapon_type);
+        std::vector<character_id> varied_ids;
+        if (ak) {
+            const sol::table ids = data["varied_ids"];
+            for (auto i = 1; i <= 3; ++i) { varied_ids.emplace_back(ids[i].get<int>()); }
+            for (auto i = 1; i < 3; ++i) {
+                const auto* other = g->find_npc(varied_ids[i]);
+                REQUIRE(other != nullptr);
+                CHECK(other->myclass == npc_class_id(i == 1 ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT_AK"));
+                CHECK(other->primary_weapon().typeId().str() == (i == 1 ? "m4a1" : "ak47"));
+                CHECK(other->primary_weapon().ammo_remaining() == 30);
+                CHECK(other->get_skill_level(skill_id("rifle")) == 3);
             }
         }
-        REQUIRE(spares == 2);
-        const auto before_drain = magazine_snapshot();
-        REQUIRE(before_drain.size() == 3);
-        REQUIRE(before_drain.at("initial").second);
-        auto issued_rounds = 0;
-        for (const auto& entry : before_drain) { issued_rounds += entry.second.first; }
-        REQUIRE(issued_rounds == 90);
-        // Drain only the original loaded magazine; no rounds or reload items are
-        // supplied by the test. The two original spare magazines remain intact.
-        REQUIRE(actor->primary_weapon().ammo_consume(30, actor->bub_pos()) == 30);
-        REQUIRE(actor->primary_weapon().ammo_remaining() == 0);
-        auto rounds_after_drain = 0;
-        for (const auto& entry : magazine_snapshot()) { rounds_after_drain += entry.second.first; }
-        REQUIRE(rounds_after_drain == 60);
-        auto& player = get_avatar();
-        player.set_mutation(trait_id("DEBUG_NODMG"));
-        const auto restore_damage = on_out_of_scope([&]() {
-            player.unset_mutation(trait_id("DEBUG_NODMG"));
-            player.set_all_parts_hp_to_max();
-            player.clear_effects();
-        });
-        REQUIRE(player.primary_weapon().is_gun()); // Kept from the previous encounter.
-        player.setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
-        set_time(calendar::turn);
-        REQUIRE(actor->sees(player));
-        auto reloaded = false;
-        for (auto decision = 0; decision < 30; ++decision) {
-            INFO("Production magazine reload decision " << decision);
-            actor->set_moves(100);
-            actor->move();
-            REQUIRE(actor->get_moves() < 100);
-            REQUIRE(actor->primary_weapon().typeId().str() == "m4a1");
-            if (actor->primary_weapon().ammo_remaining() > 0) { reloaded = true; break; }
+        probe("npc_extract");
+        for (const auto id : varied_ids) {
+            CHECK(g->find_npc(id) == nullptr);
+            CHECK(get_overmapbuffer(home_dim).find_npc(id) == nullptr);
         }
-        REQUIRE(reloaded);
-        REQUIRE(actor->primary_weapon().ammo_remaining() == 30);
-        loaded = actor->primary_weapon().magazine_current();
-        REQUIRE(loaded != nullptr);
-        const auto marker = loaded->get_var("trkv_reload_probe");
-        REQUIRE((marker == "spare_1" || marker == "spare_2"));
-        auto total_rounds = 0;
-        for (const auto& entry : magazine_snapshot()) { total_rounds += entry.second.first; }
-        REQUIRE(total_rounds == 60);
-        auto fired = false;
-        for (auto decision = 0; decision < 30; ++decision) {
-            actor->set_moves(100);
-            actor->move();
-            REQUIRE(actor->get_moves() < 100);
-            REQUIRE(actor->primary_weapon().typeId().str() == "m4a1");
-            if (actor->primary_weapon().ammo_remaining() < 30) { fired = true; break; }
-        }
-        REQUIRE(fired);
-        const auto spent = 30 - actor->primary_weapon().ammo_remaining();
-        total_rounds = 0;
-        for (const auto& entry : magazine_snapshot()) { total_rounds += entry.second.first; }
-        REQUIRE(total_rounds == 60 - spent);
-        REQUIRE(actor->is_wearing(itype_id("hoodie")));
-        REQUIRE(actor->is_wearing(itype_id("pants_cargo")));
-    }
-    const auto magazines_after_combat = magazine_snapshot();
-    probe("npc_combat_checkpoint");
-    REQUIRE(g->save(false));
-    REQUIRE(g->load(saved_character));
-    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
-    probe("npc_combat_restored");
-    REQUIRE(magazine_snapshot() == magazines_after_combat);
-    REQUIRE(g->find_npc(reload_id)->primary_weapon().typeId().str() == "m4a1");
-    probe("npc_extract");
-    CHECK(g->find_npc(reload_id) == nullptr);
-    CHECK(get_overmapbuffer(home_dim).find_npc(reload_id) == nullptr);
+        CHECK(g->find_npc(reload_id) == nullptr);
+        CHECK(get_overmapbuffer(home_dim).find_npc(reload_id) == nullptr);
+    };
+    run_reload_probe(false);
     // Player-selectable group uses the two restricted role pools together.
     probe("npc_hostile_group_depart");
     const sol::table hostile_id_table = data["hostile_ids"];
@@ -949,11 +978,12 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     }
     for (auto sample_index = 0; sample_index < 12; ++sample_index) {
         npc sample;
-        const auto sample_field = sample_index % 2 != 0;
-        const auto sample_recruit = sample_index % 4 >= 2;
+        const auto sample_field = sample_index % 3 == 1;
+        const auto sample_ak = sample_index % 3 == 2;
+        const auto sample_recruit = sample_index % 6 >= 3;
         const std::string sample_class = sample_recruit
-            ? (sample_field ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT")
-            : (sample_field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST");
+            ? (sample_ak ? "TRKV_COMBAT_RECRUIT_AK" : sample_field ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT")
+            : (sample_ak ? "TRKV_COMBAT_AK" : sample_field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST");
         sample.randomize(npc_class_id(sample_class));
         CHECK(sample.get_mutations().empty());
         CHECK(sample.get_bionics().empty());
@@ -970,17 +1000,17 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             const auto shooting = skill.ident() == skill_id("gun") || skill.ident() == skill_id("rifle");
             CHECK(sample.get_skill_level(skill.ident()) == (shooting ? (sample_recruit ? 3 : 6) : 0));
         }
-        CHECK(sample.primary_weapon().typeId().str() == (sample_field ? "m4a1" : "ar15"));
-        CHECK(sample.primary_weapon().ammo_remaining() == (sample_field ? 30 : 17));
+        CHECK(sample.primary_weapon().typeId().str() == (sample_ak ? "ak47" : sample_field ? "m4a1" : "ar15"));
+        CHECK(sample.primary_weapon().ammo_remaining() == (sample_field || sample_ak ? 30 : 17));
         CHECK(sample.is_wearing(itype_id(sample_field ? "hoodie" : "tshirt")));
         auto spares = 0;
         for (const auto* value : sample.all_items(false)) {
-            if (value->typeId().str() == "stanag30" && value != sample.primary_weapon().magazine_current()) {
+            if (value->typeId().str() == (sample_ak ? "akmag30" : "stanag30") && value != sample.primary_weapon().magazine_current()) {
                 ++spares;
                 CHECK(value->ammo_remaining() == 30);
             }
         }
-        CHECK(spares == (sample_field ? 2 : 0));
+        CHECK(spares == (sample_field || sample_ak ? 2 : 0));
         for (const auto& part : sample.get_all_body_parts()) {
             const auto maximum = expected_hp.at(part->main_part.str());
             CHECK(sample.get_part_hp_max(part) == maximum);
@@ -1032,6 +1062,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(get_overmapbuffer(dimension_id()).find_npc(control) != nullptr);
         REQUIRE(get_overmapbuffer(dimension_id()).remove_npc(control) != nullptr);
     }
+
+    run_reload_probe(true); // New AK kit after legacy combat checks to preserve their RNG.
 
     // A registered vanilla follower stays in its original dimension. Exercise
     // production travel and raid cleanup, including a save/load while away.

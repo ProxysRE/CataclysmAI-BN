@@ -176,3 +176,6 @@ msgstr "Тестовый стрелок"
 
 msgid "Enter group test raid (3 hostile NPCs)"
 msgstr "Войти в тестовый рейд с группой (3 враждебных НПС)"
+
+msgid "Enter varied group raid (3 equipment kits)"
+msgstr "Войти в рейд с разными комплектами (3 варианта снаряжения)"

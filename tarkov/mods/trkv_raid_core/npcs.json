@@ -202,5 +202,41 @@
     "mission": 0,
     "chat": "TALK_STRANGER_NEUTRAL",
     "faction": "trkv_combat_test"
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_COMBAT_AK",
+    "copy-from": "TRKV_COMBAT_TEST",
+    "weapon_override": "trkv_combat_ak_weapon",
+    "worn_override": "trkv_combat_ak_clothes",
+    "carry_override": "trkv_combat_ak_carried"
+  },
+  {
+    "type": "npc",
+    "id": "trkv_combat_ak_tester",
+    "name_suffix": "Combat test rifleman",
+    "class": "TRKV_COMBAT_AK",
+    "attitude": 10,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_combat_test"
+  },
+  {
+    "type": "npc_class",
+    "id": "TRKV_COMBAT_RECRUIT_AK",
+    "copy-from": "TRKV_COMBAT_RECRUIT",
+    "weapon_override": "trkv_combat_ak_weapon",
+    "worn_override": "trkv_combat_ak_clothes",
+    "carry_override": "trkv_combat_ak_carried"
+  },
+  {
+    "type": "npc",
+    "id": "trkv_combat_recruit_ak_tester",
+    "name_suffix": "Combat test rifleman",
+    "class": "TRKV_COMBAT_RECRUIT_AK",
+    "attitude": 10,
+    "mission": 0,
+    "chat": "TALK_STRANGER_NEUTRAL",
+    "faction": "trkv_combat_test"
   }
 ]

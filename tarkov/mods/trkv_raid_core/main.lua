@@ -64,7 +64,7 @@ end
 
 local function deploy_encounter()
   local state = current_state()
-  if (state.encounter ~= "patrol" and state.encounter ~= "combat" and state.encounter ~= "squad") or state.encounter_deployed or
+  if (state.encounter ~= "patrol" and state.encounter ~= "combat" and state.encounter ~= "squad" and state.encounter ~= "varied") or state.encounter_deployed or
       state.phase ~= "active" or not api.at_raid() then
     return
   end
@@ -96,7 +96,7 @@ mod.depart = function(mode)
   local state = current_state()
   if not api.at_home() then return false end
   if state.phase == "home" then
-    if mode ~= "empty" and mode ~= "patrol" and mode ~= "combat" and mode ~= "squad" then return false end
+    if mode ~= "empty" and mode ~= "patrol" and mode ~= "combat" and mode ~= "squad" and mode ~= "varied" then return false end
     state.encounter, state.encounter_deployed, state.deployment_warning = mode, false, false
   end
   local entered = raid.start(state, api, 30 * 60)
@@ -116,13 +116,15 @@ mod.start = function()
     menu:add(3, _("Enter patrol test raid (3 neutral NPCs)"))
     menu:add(4, _("Enter combat test raid (1 hostile rifleman)"))
     menu:add(5, _("Enter group test raid (3 hostile NPCs)"))
+    menu:add(6, _("Enter varied group raid (3 equipment kits)"))
   end
   menu:add(2, _("Cancel"))
   local choice = menu:query()
   if choice == 1 then mod.depart("empty")
   elseif choice == 3 and state.phase == "home" then mod.depart("patrol")
   elseif choice == 4 and state.phase == "home" then mod.depart("combat")
-  elseif choice == 5 and state.phase == "home" then mod.depart("squad") end
+  elseif choice == 5 and state.phase == "home" then mod.depart("squad")
+  elseif choice == 6 and state.phase == "home" then mod.depart("varied") end
 end
 
 mod.extract = function()
