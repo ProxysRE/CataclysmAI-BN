@@ -1,0 +1,15 @@
+{
+  "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "files": {
+    "bn/src/line.cpp": {
+      "sha256": "e59c4747ad60bed5cab78f8128a78b748c621ed2489c19fb24b64d4205149dcb",
+      "blob_sha": "3913314695651d14f7cd71ac7e5bafdd49798dce",
+      "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/line.cpp"
+    },
+    "bn/src/mapgen/mapgendata.cpp": {
+      "sha256": "e77c942a0b3e8150bf46ee63901a9495ffe55f52a6da0f02851e4d88b1015395",
+      "blob_sha": "f94bc9d69cefce999940594ad9acb7751dc0ffc4",
+      "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/mapgen/mapgendata.cpp"
+    }
+  }
+}

@@ -1,0 +1,3250 @@
+{
+  "status": "apartment_preview_candidate_not_embedded",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "world_maps": 31,
+  "own_omt": 37,
+  "nested_identities": 40,
+  "nested_definitions": 83,
+  "aliases": {
+    "apartment_complex_center_stairs_even": "dda_geo_apartment_complex_center_stairs_even",
+    "apartment_complex_center_stairs_even_north": "dda_geo_apartment_complex_center_stairs_even_north",
+    "apartment_complex_center_stairs_even_east": "dda_geo_apartment_complex_center_stairs_even_east",
+    "apartment_complex_center_stairs_even_south": "dda_geo_apartment_complex_center_stairs_even_south",
+    "apartment_complex_center_stairs_even_west": "dda_geo_apartment_complex_center_stairs_even_west",
+    "apartment_complex_center_stairs_even_ground": "dda_geo_apartment_complex_center_stairs_even_ground",
+    "apartment_complex_center_stairs_even_ground_north": "dda_geo_apartment_complex_center_stairs_even_ground_north",
+    "apartment_complex_center_stairs_even_ground_east": "dda_geo_apartment_complex_center_stairs_even_ground_east",
+    "apartment_complex_center_stairs_even_ground_south": "dda_geo_apartment_complex_center_stairs_even_ground_south",
+    "apartment_complex_center_stairs_even_ground_west": "dda_geo_apartment_complex_center_stairs_even_ground_west",
+    "apartment_complex_center_stairs_even_roof": "dda_geo_apartment_complex_center_stairs_even_roof",
+    "apartment_complex_center_stairs_even_roof_north": "dda_geo_apartment_complex_center_stairs_even_roof_north",
+    "apartment_complex_center_stairs_even_roof_east": "dda_geo_apartment_complex_center_stairs_even_roof_east",
+    "apartment_complex_center_stairs_even_roof_south": "dda_geo_apartment_complex_center_stairs_even_roof_south",
+    "apartment_complex_center_stairs_even_roof_west": "dda_geo_apartment_complex_center_stairs_even_roof_west",
+    "apartment_complex_center_stairs_odd": "dda_geo_apartment_complex_center_stairs_odd",
+    "apartment_complex_center_stairs_odd_north": "dda_geo_apartment_complex_center_stairs_odd_north",
+    "apartment_complex_center_stairs_odd_east": "dda_geo_apartment_complex_center_stairs_odd_east",
+    "apartment_complex_center_stairs_odd_south": "dda_geo_apartment_complex_center_stairs_odd_south",
+    "apartment_complex_center_stairs_odd_west": "dda_geo_apartment_complex_center_stairs_odd_west",
+    "apartment_complex_center_stairs_odd_roof": "dda_geo_apartment_complex_center_stairs_odd_roof",
+    "apartment_complex_center_stairs_odd_roof_north": "dda_geo_apartment_complex_center_stairs_odd_roof_north",
+    "apartment_complex_center_stairs_odd_roof_east": "dda_geo_apartment_complex_center_stairs_odd_roof_east",
+    "apartment_complex_center_stairs_odd_roof_south": "dda_geo_apartment_complex_center_stairs_odd_roof_south",
+    "apartment_complex_center_stairs_odd_roof_west": "dda_geo_apartment_complex_center_stairs_odd_roof_west",
+    "apartment_complex_center_stairs_roof_+1": "dda_geo_apartment_complex_center_stairs_roof_+1",
+    "apartment_complex_center_stairs_roof_+1_north": "dda_geo_apartment_complex_center_stairs_roof_+1_north",
+    "apartment_complex_center_stairs_roof_+1_east": "dda_geo_apartment_complex_center_stairs_roof_+1_east",
+    "apartment_complex_center_stairs_roof_+1_south": "dda_geo_apartment_complex_center_stairs_roof_+1_south",
+    "apartment_complex_center_stairs_roof_+1_west": "dda_geo_apartment_complex_center_stairs_roof_+1_west",
+    "apartment_complex_corner": "dda_geo_apartment_complex_corner",
+    "apartment_complex_corner_north": "dda_geo_apartment_complex_corner_north",
+    "apartment_complex_corner_east": "dda_geo_apartment_complex_corner_east",
+    "apartment_complex_corner_south": "dda_geo_apartment_complex_corner_south",
+    "apartment_complex_corner_west": "dda_geo_apartment_complex_corner_west",
+    "apartment_complex_corner_ground": "dda_geo_apartment_complex_corner_ground",
+    "apartment_complex_corner_ground_north": "dda_geo_apartment_complex_corner_ground_north",
+    "apartment_complex_corner_ground_east": "dda_geo_apartment_complex_corner_ground_east",
+    "apartment_complex_corner_ground_south": "dda_geo_apartment_complex_corner_ground_south",
+    "apartment_complex_corner_ground_west": "dda_geo_apartment_complex_corner_ground_west",
+    "apartment_complex_corner_inner": "dda_geo_apartment_complex_corner_inner",
+    "apartment_complex_corner_inner_north": "dda_geo_apartment_complex_corner_inner_north",
+    "apartment_complex_corner_inner_east": "dda_geo_apartment_complex_corner_inner_east",
+    "apartment_complex_corner_inner_south": "dda_geo_apartment_complex_corner_inner_south",
+    "apartment_complex_corner_inner_west": "dda_geo_apartment_complex_corner_inner_west",
+    "apartment_complex_corner_inner_ground": "dda_geo_apartment_complex_corner_inner_ground",
+    "apartment_complex_corner_inner_ground_north": "dda_geo_apartment_complex_corner_inner_ground_north",
+    "apartment_complex_corner_inner_ground_east": "dda_geo_apartment_complex_corner_inner_ground_east",
+    "apartment_complex_corner_inner_ground_south": "dda_geo_apartment_complex_corner_inner_ground_south",
+    "apartment_complex_corner_inner_ground_west": "dda_geo_apartment_complex_corner_inner_ground_west",
+    "apartment_complex_corner_inner_roof": "dda_geo_apartment_complex_corner_inner_roof",
+    "apartment_complex_corner_inner_roof_north": "dda_geo_apartment_complex_corner_inner_roof_north",
+    "apartment_complex_corner_inner_roof_east": "dda_geo_apartment_complex_corner_inner_roof_east",
+    "apartment_complex_corner_inner_roof_south": "dda_geo_apartment_complex_corner_inner_roof_south",
+    "apartment_complex_corner_inner_roof_west": "dda_geo_apartment_complex_corner_inner_roof_west",
+    "apartment_complex_corner_roof": "dda_geo_apartment_complex_corner_roof",
+    "apartment_complex_corner_roof_north": "dda_geo_apartment_complex_corner_roof_north",
+    "apartment_complex_corner_roof_east": "dda_geo_apartment_complex_corner_roof_east",
+    "apartment_complex_corner_roof_south": "dda_geo_apartment_complex_corner_roof_south",
+    "apartment_complex_corner_roof_west": "dda_geo_apartment_complex_corner_roof_west",
+    "apartment_complex_courtyard": "dda_geo_apartment_complex_courtyard",
+    "apartment_complex_courtyard_north": "dda_geo_apartment_complex_courtyard_north",
+    "apartment_complex_courtyard_east": "dda_geo_apartment_complex_courtyard_east",
+    "apartment_complex_courtyard_south": "dda_geo_apartment_complex_courtyard_south",
+    "apartment_complex_courtyard_west": "dda_geo_apartment_complex_courtyard_west",
+    "apartment_complex_entrance": "dda_geo_apartment_complex_entrance",
+    "apartment_complex_entrance_north": "dda_geo_apartment_complex_entrance_north",
+    "apartment_complex_entrance_east": "dda_geo_apartment_complex_entrance_east",
+    "apartment_complex_entrance_south": "dda_geo_apartment_complex_entrance_south",
+    "apartment_complex_entrance_west": "dda_geo_apartment_complex_entrance_west",
+    "apartment_complex_garage_corner": "dda_geo_apartment_complex_garage_corner",
+    "apartment_complex_garage_corner_north": "dda_geo_apartment_complex_garage_corner_north",
+    "apartment_complex_garage_corner_east": "dda_geo_apartment_complex_garage_corner_east",
+    "apartment_complex_garage_corner_south": "dda_geo_apartment_complex_garage_corner_south",
+    "apartment_complex_garage_corner_west": "dda_geo_apartment_complex_garage_corner_west",
+    "apartment_complex_garage_corner_gate_L": "dda_geo_apartment_complex_garage_corner_gate_L",
+    "apartment_complex_garage_corner_gate_L_north": "dda_geo_apartment_complex_garage_corner_gate_L_north",
+    "apartment_complex_garage_corner_gate_L_east": "dda_geo_apartment_complex_garage_corner_gate_L_east",
+    "apartment_complex_garage_corner_gate_L_south": "dda_geo_apartment_complex_garage_corner_gate_L_south",
+    "apartment_complex_garage_corner_gate_L_west": "dda_geo_apartment_complex_garage_corner_gate_L_west",
+    "apartment_complex_garage_corner_gate_R": "dda_geo_apartment_complex_garage_corner_gate_R",
+    "apartment_complex_garage_corner_gate_R_north": "dda_geo_apartment_complex_garage_corner_gate_R_north",
+    "apartment_complex_garage_corner_gate_R_east": "dda_geo_apartment_complex_garage_corner_gate_R_east",
+    "apartment_complex_garage_corner_gate_R_south": "dda_geo_apartment_complex_garage_corner_gate_R_south",
+    "apartment_complex_garage_corner_gate_R_west": "dda_geo_apartment_complex_garage_corner_gate_R_west",
+    "apartment_complex_garage_corner_inner": "dda_geo_apartment_complex_garage_corner_inner",
+    "apartment_complex_garage_corner_inner_north": "dda_geo_apartment_complex_garage_corner_inner_north",
+    "apartment_complex_garage_corner_inner_east": "dda_geo_apartment_complex_garage_corner_inner_east",
+    "apartment_complex_garage_corner_inner_south": "dda_geo_apartment_complex_garage_corner_inner_south",
+    "apartment_complex_garage_corner_inner_west": "dda_geo_apartment_complex_garage_corner_inner_west",
+    "apartment_complex_garage_corner_inner_wall": "dda_geo_apartment_complex_garage_corner_inner_wall",
+    "apartment_complex_garage_corner_inner_wall_north": "dda_geo_apartment_complex_garage_corner_inner_wall_north",
+    "apartment_complex_garage_corner_inner_wall_east": "dda_geo_apartment_complex_garage_corner_inner_wall_east",
+    "apartment_complex_garage_corner_inner_wall_south": "dda_geo_apartment_complex_garage_corner_inner_wall_south",
+    "apartment_complex_garage_corner_inner_wall_west": "dda_geo_apartment_complex_garage_corner_inner_wall_west",
+    "apartment_complex_garage_corner_inner_wallALT": "dda_geo_apartment_complex_garage_corner_inner_wallALT",
+    "apartment_complex_garage_corner_inner_wallALT_north": "dda_geo_apartment_complex_garage_corner_inner_wallALT_north",
+    "apartment_complex_garage_corner_inner_wallALT_east": "dda_geo_apartment_complex_garage_corner_inner_wallALT_east",
+    "apartment_complex_garage_corner_inner_wallALT_south": "dda_geo_apartment_complex_garage_corner_inner_wallALT_south",
+    "apartment_complex_garage_corner_inner_wallALT_west": "dda_geo_apartment_complex_garage_corner_inner_wallALT_west",
+    "apartment_complex_garage_straight": "dda_geo_apartment_complex_garage_straight",
+    "apartment_complex_garage_straight_north": "dda_geo_apartment_complex_garage_straight_north",
+    "apartment_complex_garage_straight_east": "dda_geo_apartment_complex_garage_straight_east",
+    "apartment_complex_garage_straight_south": "dda_geo_apartment_complex_garage_straight_south",
+    "apartment_complex_garage_straight_west": "dda_geo_apartment_complex_garage_straight_west",
+    "apartment_complex_garage_straight_gate": "dda_geo_apartment_complex_garage_straight_gate",
+    "apartment_complex_garage_straight_gate_north": "dda_geo_apartment_complex_garage_straight_gate_north",
+    "apartment_complex_garage_straight_gate_east": "dda_geo_apartment_complex_garage_straight_gate_east",
+    "apartment_complex_garage_straight_gate_south": "dda_geo_apartment_complex_garage_straight_gate_south",
+    "apartment_complex_garage_straight_gate_west": "dda_geo_apartment_complex_garage_straight_gate_west",
+    "apartment_complex_garage_straight_gate_wall": "dda_geo_apartment_complex_garage_straight_gate_wall",
+    "apartment_complex_garage_straight_gate_wall_north": "dda_geo_apartment_complex_garage_straight_gate_wall_north",
+    "apartment_complex_garage_straight_gate_wall_east": "dda_geo_apartment_complex_garage_straight_gate_wall_east",
+    "apartment_complex_garage_straight_gate_wall_south": "dda_geo_apartment_complex_garage_straight_gate_wall_south",
+    "apartment_complex_garage_straight_gate_wall_west": "dda_geo_apartment_complex_garage_straight_gate_wall_west",
+    "apartment_complex_garage_straight_gate_wallALT": "dda_geo_apartment_complex_garage_straight_gate_wallALT",
+    "apartment_complex_garage_straight_gate_wallALT_north": "dda_geo_apartment_complex_garage_straight_gate_wallALT_north",
+    "apartment_complex_garage_straight_gate_wallALT_east": "dda_geo_apartment_complex_garage_straight_gate_wallALT_east",
+    "apartment_complex_garage_straight_gate_wallALT_south": "dda_geo_apartment_complex_garage_straight_gate_wallALT_south",
+    "apartment_complex_garage_straight_gate_wallALT_west": "dda_geo_apartment_complex_garage_straight_gate_wallALT_west",
+    "apartment_complex_garage_straight_wall": "dda_geo_apartment_complex_garage_straight_wall",
+    "apartment_complex_garage_straight_wall_north": "dda_geo_apartment_complex_garage_straight_wall_north",
+    "apartment_complex_garage_straight_wall_east": "dda_geo_apartment_complex_garage_straight_wall_east",
+    "apartment_complex_garage_straight_wall_south": "dda_geo_apartment_complex_garage_straight_wall_south",
+    "apartment_complex_garage_straight_wall_west": "dda_geo_apartment_complex_garage_straight_wall_west",
+    "apartment_complex_garage_straight_wallALT": "dda_geo_apartment_complex_garage_straight_wallALT",
+    "apartment_complex_garage_straight_wallALT_north": "dda_geo_apartment_complex_garage_straight_wallALT_north",
+    "apartment_complex_garage_straight_wallALT_east": "dda_geo_apartment_complex_garage_straight_wallALT_east",
+    "apartment_complex_garage_straight_wallALT_south": "dda_geo_apartment_complex_garage_straight_wallALT_south",
+    "apartment_complex_garage_straight_wallALT_west": "dda_geo_apartment_complex_garage_straight_wallALT_west",
+    "apartment_complex_straight": "dda_geo_apartment_complex_straight",
+    "apartment_complex_straight_north": "dda_geo_apartment_complex_straight_north",
+    "apartment_complex_straight_east": "dda_geo_apartment_complex_straight_east",
+    "apartment_complex_straight_south": "dda_geo_apartment_complex_straight_south",
+    "apartment_complex_straight_west": "dda_geo_apartment_complex_straight_west",
+    "apartment_complex_straight_ground": "dda_geo_apartment_complex_straight_ground",
+    "apartment_complex_straight_ground_north": "dda_geo_apartment_complex_straight_ground_north",
+    "apartment_complex_straight_ground_east": "dda_geo_apartment_complex_straight_ground_east",
+    "apartment_complex_straight_ground_south": "dda_geo_apartment_complex_straight_ground_south",
+    "apartment_complex_straight_ground_west": "dda_geo_apartment_complex_straight_ground_west",
+    "apartment_complex_straight_roof": "dda_geo_apartment_complex_straight_roof",
+    "apartment_complex_straight_roof_north": "dda_geo_apartment_complex_straight_roof_north",
+    "apartment_complex_straight_roof_east": "dda_geo_apartment_complex_straight_roof_east",
+    "apartment_complex_straight_roof_south": "dda_geo_apartment_complex_straight_roof_south",
+    "apartment_complex_straight_roof_west": "dda_geo_apartment_complex_straight_roof_west",
+    "apartment_complex_straight_stairs_even": "dda_geo_apartment_complex_straight_stairs_even",
+    "apartment_complex_straight_stairs_even_north": "dda_geo_apartment_complex_straight_stairs_even_north",
+    "apartment_complex_straight_stairs_even_east": "dda_geo_apartment_complex_straight_stairs_even_east",
+    "apartment_complex_straight_stairs_even_south": "dda_geo_apartment_complex_straight_stairs_even_south",
+    "apartment_complex_straight_stairs_even_west": "dda_geo_apartment_complex_straight_stairs_even_west",
+    "apartment_complex_straight_stairs_even_ground": "dda_geo_apartment_complex_straight_stairs_even_ground",
+    "apartment_complex_straight_stairs_even_ground_north": "dda_geo_apartment_complex_straight_stairs_even_ground_north",
+    "apartment_complex_straight_stairs_even_ground_east": "dda_geo_apartment_complex_straight_stairs_even_ground_east",
+    "apartment_complex_straight_stairs_even_ground_south": "dda_geo_apartment_complex_straight_stairs_even_ground_south",
+    "apartment_complex_straight_stairs_even_ground_west": "dda_geo_apartment_complex_straight_stairs_even_ground_west",
+    "apartment_complex_straight_stairs_even_roof": "dda_geo_apartment_complex_straight_stairs_even_roof",
+    "apartment_complex_straight_stairs_even_roof_north": "dda_geo_apartment_complex_straight_stairs_even_roof_north",
+    "apartment_complex_straight_stairs_even_roof_east": "dda_geo_apartment_complex_straight_stairs_even_roof_east",
+    "apartment_complex_straight_stairs_even_roof_south": "dda_geo_apartment_complex_straight_stairs_even_roof_south",
+    "apartment_complex_straight_stairs_even_roof_west": "dda_geo_apartment_complex_straight_stairs_even_roof_west",
+    "apartment_complex_straight_stairs_odd": "dda_geo_apartment_complex_straight_stairs_odd",
+    "apartment_complex_straight_stairs_odd_north": "dda_geo_apartment_complex_straight_stairs_odd_north",
+    "apartment_complex_straight_stairs_odd_east": "dda_geo_apartment_complex_straight_stairs_odd_east",
+    "apartment_complex_straight_stairs_odd_south": "dda_geo_apartment_complex_straight_stairs_odd_south",
+    "apartment_complex_straight_stairs_odd_west": "dda_geo_apartment_complex_straight_stairs_odd_west",
+    "apartment_complex_straight_stairs_odd_roof": "dda_geo_apartment_complex_straight_stairs_odd_roof",
+    "apartment_complex_straight_stairs_odd_roof_north": "dda_geo_apartment_complex_straight_stairs_odd_roof_north",
+    "apartment_complex_straight_stairs_odd_roof_east": "dda_geo_apartment_complex_straight_stairs_odd_roof_east",
+    "apartment_complex_straight_stairs_odd_roof_south": "dda_geo_apartment_complex_straight_stairs_odd_roof_south",
+    "apartment_complex_straight_stairs_odd_roof_west": "dda_geo_apartment_complex_straight_stairs_odd_roof_west",
+    "apartment_complex_straight_stairs_roof_+1": "dda_geo_apartment_complex_straight_stairs_roof_+1",
+    "apartment_complex_straight_stairs_roof_+1_north": "dda_geo_apartment_complex_straight_stairs_roof_+1_north",
+    "apartment_complex_straight_stairs_roof_+1_east": "dda_geo_apartment_complex_straight_stairs_roof_+1_east",
+    "apartment_complex_straight_stairs_roof_+1_south": "dda_geo_apartment_complex_straight_stairs_roof_+1_south",
+    "apartment_complex_straight_stairs_roof_+1_west": "dda_geo_apartment_complex_straight_stairs_roof_+1_west",
+    "dda_geo_apartment_parking_2x1_0": "dda_geo_apartment_parking_2x1_0",
+    "dda_geo_apartment_parking_2x1_0_north": "dda_geo_apartment_parking_2x1_0_north",
+    "dda_geo_apartment_parking_2x1_0_east": "dda_geo_apartment_parking_2x1_0_east",
+    "dda_geo_apartment_parking_2x1_0_south": "dda_geo_apartment_parking_2x1_0_south",
+    "dda_geo_apartment_parking_2x1_0_west": "dda_geo_apartment_parking_2x1_0_west",
+    "dda_geo_apartment_parking_2x1_1": "dda_geo_apartment_parking_2x1_1",
+    "dda_geo_apartment_parking_2x1_1_north": "dda_geo_apartment_parking_2x1_1_north",
+    "dda_geo_apartment_parking_2x1_1_east": "dda_geo_apartment_parking_2x1_1_east",
+    "dda_geo_apartment_parking_2x1_1_south": "dda_geo_apartment_parking_2x1_1_south",
+    "dda_geo_apartment_parking_2x1_1_west": "dda_geo_apartment_parking_2x1_1_west",
+    "apartment_complex_3x3": "dda_geo_apartment_complex_3x3",
+    "apartment_complex_3x3_alt": "dda_geo_apartment_complex_3x3_alt",
+    "apartment_complex_line": "dda_geo_apartment_complex_line",
+    "apartment_complex_U": "dda_geo_apartment_complex_u",
+    "apartment_complex_U_alt": "dda_geo_apartment_complex_u_alt"
+  },
+  "runtime_source_evidence": {
+    "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+    "files": {
+      "bn/src/line.cpp": {
+        "sha256": "e59c4747ad60bed5cab78f8128a78b748c621ed2489c19fb24b64d4205149dcb",
+        "blob_sha": "3913314695651d14f7cd71ac7e5bafdd49798dce",
+        "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/line.cpp"
+      },
+      "bn/src/mapgen/mapgendata.cpp": {
+        "sha256": "e77c942a0b3e8150bf46ee63901a9495ffe55f52a6da0f02851e4d88b1015395",
+        "blob_sha": "f94bc9d69cefce999940594ad9acb7751dc0ffc4",
+        "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/mapgen/mapgendata.cpp"
+      }
+    }
+  },
+  "navigation": {
+    "dda_geo_apartment_complex_corner_ground": [],
+    "dda_geo_apartment_complex_corner": [],
+    "dda_geo_apartment_complex_corner_inner_ground": [],
+    "dda_geo_apartment_complex_corner_inner": [],
+    "dda_geo_apartment_complex_straight_ground": [],
+    "dda_geo_apartment_complex_straight": [],
+    "dda_geo_apartment_complex_straight_stairs_even_ground": [],
+    "dda_geo_apartment_complex_straight_stairs_even": [],
+    "dda_geo_apartment_complex_straight_stairs_odd": [],
+    "dda_geo_apartment_complex_courtyard": [],
+    "dda_geo_apartment_complex_entrance": [],
+    "dda_geo_apartment_complex_center_stairs_even_ground": [
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "dda_geo_apartment_complex_center_stairs_even": [
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      }
+    ],
+    "dda_geo_apartment_complex_center_stairs_odd": [
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "dda_geo_apartment_complex_garage_corner": [],
+    "dda_geo_apartment_complex_garage_corner_gate_L": [],
+    "dda_geo_apartment_complex_garage_corner_gate_R": [],
+    "dda_geo_apartment_complex_garage_corner_inner": [],
+    "dda_geo_apartment_complex_garage_corner_inner_wall": [],
+    "dda_geo_apartment_complex_garage_corner_inner_wallALT": [],
+    "dda_geo_apartment_complex_garage_straight": [],
+    "dda_geo_apartment_complex_garage_straight_gate": [],
+    "dda_geo_apartment_complex_garage_straight_wall": [],
+    "dda_geo_apartment_complex_garage_straight_gate_wall": [],
+    "dda_geo_apartment_complex_garage_straight_wallALT": [],
+    "dda_geo_apartment_complex_garage_straight_gate_wallALT": [],
+    "dda_geo_apartment_complex_corner_roof": [
+      {
+        "x": 10,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dda_geo_apartment_complex_corner_inner_roof": [],
+    "dda_geo_apartment_complex_straight_roof": [],
+    "dda_geo_apartment_complex_straight_stairs_even_roof": [
+      {
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "dda_geo_apartment_complex_straight_stairs_odd_roof": [
+      {
+        "x": 13,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "dda_geo_apartment_complex_straight_stairs_roof_+1": [],
+    "dda_geo_apartment_complex_center_stairs_even_roof": [
+      {
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "dda_geo_apartment_complex_center_stairs_odd_roof": [
+      {
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      }
+    ],
+    "dda_geo_apartment_complex_center_stairs_roof_+1": [],
+    "dda_geo_apartment_parking_2x1_0": [],
+    "dda_geo_apartment_parking_2x1_1": []
+  },
+  "navigation_points": 113,
+  "random_overlay_exclusions": 6,
+  "multi_omt_variants": {
+    "dda_geo_apartment_complex_entrance": [
+      {
+        "source_slot": [
+          0,
+          0
+        ],
+        "weight": 1000
+      },
+      {
+        "source_slot": [
+          1,
+          0
+        ],
+        "weight": 1000
+      },
+      {
+        "source_slot": [
+          2,
+          0
+        ],
+        "weight": 1000
+      },
+      {
+        "source_slot": [
+          3,
+          0
+        ],
+        "weight": 1000
+      }
+    ]
+  },
+  "conditional_nested": {
+    "dda_geo_apartment_complex_garage_straight": [
+      {
+        "x": 11,
+        "y": 1,
+        "neighbors_above": [
+          "dda_geo_apartment_complex_straight_stairs_odd"
+        ],
+        "terrain": "t_stairs_up",
+        "else_terrain": "t_linoleum_white"
+      }
+    ],
+    "dda_geo_apartment_complex_garage_straight_gate": [
+      {
+        "x": 11,
+        "y": 1,
+        "neighbors_above": [
+          "dda_geo_apartment_complex_straight_stairs_odd"
+        ],
+        "terrain": "t_stairs_up",
+        "else_terrain": "t_linoleum_white"
+      }
+    ],
+    "dda_geo_apartment_complex_garage_straight_wall": [
+      {
+        "x": 11,
+        "y": 1,
+        "neighbors_above": [
+          "dda_geo_apartment_complex_straight_stairs_odd"
+        ],
+        "terrain": "t_stairs_up",
+        "else_terrain": "t_linoleum_white"
+      }
+    ],
+    "dda_geo_apartment_complex_garage_straight_gate_wall": [
+      {
+        "x": 11,
+        "y": 1,
+        "neighbors_above": [
+          "dda_geo_apartment_complex_straight_stairs_odd"
+        ],
+        "terrain": "t_stairs_up",
+        "else_terrain": "t_linoleum_white"
+      }
+    ],
+    "dda_geo_apartment_complex_garage_straight_wallALT": [
+      {
+        "x": 11,
+        "y": 1,
+        "neighbors_above": [
+          "dda_geo_apartment_complex_straight_stairs_odd"
+        ],
+        "terrain": "t_stairs_up",
+        "else_terrain": "t_linoleum_white"
+      }
+    ],
+    "dda_geo_apartment_complex_garage_straight_gate_wallALT": [
+      {
+        "x": 11,
+        "y": 1,
+        "neighbors_above": [
+          "dda_geo_apartment_complex_straight_stairs_odd"
+        ],
+        "terrain": "t_stairs_up",
+        "else_terrain": "t_linoleum_white"
+      }
+    ]
+  },
+  "conditional_fixture_counts": {
+    "negative": 9,
+    "positive": 3
+  },
+  "fixture_checks": {
+    "dda_geo_apartment_complex_3x3": [
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "z": 3,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 0,
+        "z": 3,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 2,
+        "z": 3,
+        "x": 10,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 2,
+        "z": 3,
+        "x": 13,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dda_geo_apartment_complex_3x3_alt": [
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 1,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 2,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 2,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 2,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 3,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 3,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 8,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 8,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 8,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 9,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 9,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 9,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 11,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 11,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 11,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 12,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 12,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 12,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 14,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 14,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 14,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 15,
+        "y": 18,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 15,
+        "y": 19,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 15,
+        "y": 20,
+        "terrain": "t_elevator"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 20,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 20,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 21,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 21,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "z": 4,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 0,
+        "z": 4,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 2,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 2,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 3,
+        "y": 13,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 3,
+        "y": 14,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 20,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 20,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 21,
+        "y": 9,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 4,
+        "x": 21,
+        "y": 10,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 1,
+        "z": 4,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 2,
+        "z": 4,
+        "x": 10,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 2,
+        "z": 4,
+        "x": 13,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 2,
+        "z": 4,
+        "x": 13,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dda_geo_apartment_complex_line": [
+      {
+        "omt_x": 1,
+        "omt_y": 0,
+        "z": 0,
+        "x": 12,
+        "y": 22,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_south"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 0,
+        "z": 0,
+        "x": 12,
+        "y": 22,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_south"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_up",
+        "conditional_stair": true,
+        "above": "dda_geo_apartment_complex_straight_stairs_odd_north"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 1,
+        "z": 0,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_north"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "z": 5,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 0,
+        "z": 5,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "z": 5,
+        "x": 10,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 5,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 1,
+        "z": 5,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 1,
+        "z": 5,
+        "x": 13,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dda_geo_apartment_complex_u": [
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "z": 0,
+        "x": 22,
+        "y": 11,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_east"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 0,
+        "x": 1,
+        "y": 12,
+        "terrain": "t_stairs_up",
+        "conditional_stair": true,
+        "above": "dda_geo_apartment_complex_straight_stairs_odd_west"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 2,
+        "z": 0,
+        "x": 22,
+        "y": 11,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_east"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 3,
+        "z": 0,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_north"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "z": 3,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 0,
+        "z": 3,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 0,
+        "z": 3,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 0,
+        "z": 3,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 1,
+        "y": 12,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 1,
+        "z": 3,
+        "x": 22,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 3,
+        "z": 3,
+        "x": 10,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 3,
+        "z": 3,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 3,
+        "z": 3,
+        "x": 13,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      }
+    ],
+    "dda_geo_apartment_complex_u_alt": [
+      {
+        "omt_x": 3,
+        "omt_y": 1,
+        "z": 0,
+        "x": 22,
+        "y": 11,
+        "terrain": "t_stairs_up",
+        "conditional_stair": true,
+        "above": "dda_geo_apartment_complex_straight_stairs_odd_east"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 1,
+        "z": 0,
+        "x": 1,
+        "y": 12,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_west"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 2,
+        "z": 0,
+        "x": 1,
+        "y": 12,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_west"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 3,
+        "z": 0,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_linoleum_white",
+        "conditional_stair": false,
+        "above": "dda_geo_apartment_complex_straight_north"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "z": 3,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 0,
+        "z": 3,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 0,
+        "z": 3,
+        "x": 10,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 0,
+        "z": 3,
+        "x": 13,
+        "y": 10,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 1,
+        "omt_y": 1,
+        "z": 3,
+        "x": 1,
+        "y": 12,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 3,
+        "omt_y": 1,
+        "z": 3,
+        "x": 22,
+        "y": 11,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 3,
+        "z": 3,
+        "x": 10,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 2,
+        "omt_y": 3,
+        "z": 3,
+        "x": 11,
+        "y": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": 4,
+        "omt_y": 3,
+        "z": 3,
+        "x": 13,
+        "y": 13,
+        "terrain": "t_ladder_down"
+      }
+    ]
+  },
+  "fixture_check_count": 284,
+  "unresolved_typed_refs": [],
+  "limits": [
+    "Candidate only: no native patch modification or generation credit",
+    "BN source supports above-neighbor matching and additive multi-OMT variants; runtime assertions still pending",
+    "Deterministic navigation uses intersections across all repeated-ID slices, excluding random nested footprints",
+    "All-floor player traversal, elevator functions, furnishing and later content remain pending"
+  ]
+}

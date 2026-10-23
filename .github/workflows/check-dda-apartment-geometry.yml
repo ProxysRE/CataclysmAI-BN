@@ -7,8 +7,12 @@ on:
       - npc-content/prepare_apartment_geometry.py
       - npc-content/adapt_apartment_geometry.py
       - npc-content/check_apartment_geometry.py
+      - npc-content/prepare_apartment_preview.py
+      - npc-content/check_apartment_preview.py
       - npc-content/geometry_layer/APARTMENT_*
       - npc-content/geometry_layer/apartment_sources/**
+      - npc-content/geometry_layer/apartment_runtime_sources/**
+      - npc-content/geometry_layer/runtime_sources/**
       - .github/workflows/check-dda-apartment-geometry.yml
 jobs:
   check:
@@ -19,3 +23,4 @@ jobs:
         with:
           python-version: '3.12'
       - run: python npc-content/check_apartment_geometry.py
+      - run: python npc-content/check_apartment_preview.py
