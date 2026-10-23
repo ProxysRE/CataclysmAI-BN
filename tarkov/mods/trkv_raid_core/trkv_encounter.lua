@@ -8,6 +8,7 @@ for i, x in ipairs({ 14, 16, 20 }) do
     route = { { x = 384 + x, y = 398, z = 0 }, { x = 384 + x, y = 402, z = 0 } } }
 end
 local combat = { { slot = "combat_1", side = "hostile_test", squad = "combat_test",
+  pool = "technical_rifle_v1",
   route = { { x = 402, y = 392, z = 0 }, { x = 402, y = 394, z = 0 } } } }
 function encounter.ensure(members, context, mode)
   mode = mode or "patrol"
@@ -15,7 +16,10 @@ function encounter.ensure(members, context, mode)
   local adapter = {
     spawn = function(spec, sequence, choice)
       local template = "trkv_patrol_tester"
-      if mode == "combat" then template = loadouts.template(choice) end
+      if mode == "combat" then
+        if not loadouts.contains(spec.pool, choice) then return nil end
+        template = loadouts.template(choice)
+      end
       if not template then return nil end
       local point = spec.route[1]
       local actor = gapi.spawn_npc_at(template, TripointAbsMs.new(point.x, point.y, point.z))
@@ -38,7 +42,7 @@ function encounter.ensure(members, context, mode)
     end,
   }
   if mode == "combat" then
-    adapter.select = function() return loadouts.choose(gapi.rng) end
+    adapter.select = function(spec) return loadouts.choose(gapi.rng, spec.pool) end
   end
   return deployment.ensure(members, context, mode == "combat" and combat or specs, adapter)
 end

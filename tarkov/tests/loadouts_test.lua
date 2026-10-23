@@ -1,7 +1,7 @@
 local loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
 local counts = {}
 for roll = 1, 12 do
-  local id = loadouts.choose(function(low, high) assert(low == 1 and high == 12); return roll end)
+  local id = loadouts.choose(function(low, high) assert(low == 1 and high == 12); return roll end, "technical_rifle_v1")
   counts[id] = (counts[id] or 0) + 1
   local description = assert(loadouts.describe(id))
   assert(description.template == loadouts.template(id))
@@ -16,9 +16,30 @@ description.profile, description.template = "changed", "changed"
 assert(loadouts.describe("rifle_civilian_v1").profile == "rifle_trained_v1")
 assert(loadouts.template("rifle_civilian_v1") == "trkv_combat_tester")
 for _, value in ipairs({ 0, 13, 1.5, "1" }) do
-  assert(not pcall(loadouts.choose, function() return value end))
+  assert(not pcall(loadouts.choose, function() return value end, "technical_rifle_v1"))
 end
 print("PASS coherent loadout weighted boundaries and invalid selection")
+for _, profile in ipairs({ "trained", "recruit" }) do
+  local pool_id = "technical_" .. profile .. "_rifle_v1"
+  local counts = {}
+  for roll = 1, 4 do
+    local id = loadouts.choose(function(low, high) assert(low == 1 and high == 4); return roll end, pool_id)
+    assert(loadouts.describe(id).profile == "rifle_" .. profile .. "_v1")
+    assert(loadouts.contains(pool_id, id))
+    counts[loadouts.describe(id).equipment] = (counts[loadouts.describe(id).equipment] or 0) + 1
+  end
+  assert(counts.civilian_v1 == 3 and counts.field_v1 == 1)
+end
+assert(not loadouts.contains("technical_trained_rifle_v1", "rifle_recruit_field_v1"))
+assert(not loadouts.contains("technical_recruit_rifle_v1", "rifle_field_v1"))
+for _, pool_id in ipairs({ "unknown", "", false, 1 }) do
+  local calls = 0
+  assert(not pcall(loadouts.choose, function() calls = calls + 1; return 1 end, pool_id))
+  assert(calls == 0 and not loadouts.contains(pool_id, "rifle_field_v1"))
+end
+assert(not pcall(loadouts.choose, function() error("Missing pool called RNG") end))
+print("PASS explicit role pools, weights, cross-role exclusion and no fallback/RNG for unknown pools")
+
 
 package.loaded.trkv_participants = dofile("tarkov/mods/trkv_raid_core/trkv_participants.lua")
 local members = package.loaded.trkv_participants
@@ -49,6 +70,11 @@ assert(state.slots.one.loadout == "rifle_recruit_field_v1" and state.actors["17"
 state.actors["17"] = nil -- Defeated actor: retain the consumed ready slot.
 assert(deploy.ensure(state, context, specs, api) and spawns == 1 and selections == 1)
 members.begin(state, 2); context.sequence = 2
+api.select = function()
+  return loadouts.choose(function() error("Unknown pool consumed RNG") end, "removed_pool")
+end
+ok, reason = deploy.ensure(state, context, specs, api)
+assert(not ok and reason == "selection_failed" and next(state.slots) == nil and spawns == 1)
 api.select = function() return {} end
 ok, reason = deploy.ensure(state, context, specs, api)
 assert(not ok and reason == "selection_failed" and next(state.slots) == nil and spawns == 1)

@@ -130,6 +130,11 @@ local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.
 TripointAbsMs = { new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end }
 gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } end
 gapi.get_all_npcs = function() return actors end
+local catalog_choose = package.loaded.trkv_loadouts.choose
+package.loaded.trkv_loadouts.choose = function(roll, pool_id)
+  assert(pool_id == "technical_rifle_v1", "Combat manifest omitted its pool")
+  return catalog_choose(roll, pool_id)
+end
 gapi.rng = function(low, high) assert(low == 1 and high == 12); return 1 end
 gapi.spawn_npc_at = function(template, point)
   assert(where == "raid" and (template == "trkv_patrol_tester" or template == "trkv_combat_tester" or
