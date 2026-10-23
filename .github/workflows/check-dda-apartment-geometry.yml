@@ -24,3 +24,6 @@ jobs:
           python-version: '3.12'
       - run: python npc-content/check_apartment_geometry.py
       - run: python npc-content/check_apartment_preview.py
+      - run: python npc-content/prepare_geometry_preview.py --check
+      - run: python npc-content/check_geometry_terrain_schema.py
+      - run: python npc-content/check_geometry_preview_layout.py

@@ -35,7 +35,7 @@ def check():
     assert report['random_overlay_exclusions'] == 6
     assert report['conditional_fixture_counts'] == {'negative': 9, 'positive': 3}
     assert not report['unresolved_typed_refs']
-    assert not report['native_embedded'] and not report['runtime_validated']
+    assert report['native_embedded'] and not report['runtime_validated']
 
     def rename(v):
         if isinstance(v, str):
@@ -97,7 +97,7 @@ def check():
                          ('dda_geo_apartment_complex_u_alt', 3, 1, 22, 11)}
     assert negatives == 9
     print('PASS: namespaced 322-cell candidate, all 83 reachable nested alternatives and four entrance slices; '
-          '284 fixture points with three positive/nine negative stair checks; native integration pending')
+          '284 fixture points with three positive/nine negative stair checks; Windows validation pending')
 
 
 if __name__ == '__main__':

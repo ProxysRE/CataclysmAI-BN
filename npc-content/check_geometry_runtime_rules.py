@@ -53,6 +53,10 @@ def check():
     assert 'case JMAPGEN_SETMAP_LINE_FURN:' in phase and 'return mapgen_phase::furniture;' in phase
     bash = files['bn/src/map/map.cpp'].split('auto map::bash_ter_success(', 1)[1].split('spawn_items(p,', 1)[0]
     assert 'else if (bash.ter_set)' in bash and 'ter_set(p, t_open_air);' in bash
+    generation=bn.split('ZoneScopedN("generate_draw_map")',1)[1]
+    assert generation.index('draw_map(dat, draw_options)')<generation.index('ZoneScopedN("generate_extras")')
+    assert 'region_extras.find(terrain_type->get_extras())' in generation
+    assert 'MapExtras::apply_function' in generation
     entries = json.loads((ROOT / 'native/dda_geometry_preview.json').read_text(encoding='utf-8'))
     validate_barrier(entries)
     # Reject the old early-phase representation even with all sixteen test

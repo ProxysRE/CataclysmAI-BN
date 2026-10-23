@@ -23,6 +23,12 @@ def validate_omt(e,known):
     assert set(flags)<=known,('Unsupported BN overmap flags',e.get('id'),sorted(set(flags)-known))
 
 
+def validate_no_random_extras(entries):
+    for e in entries:
+        if e['type']=='overmap_terrain':
+            assert e.get('extras')=='',('Preview can inherit random map extras',e.get('id'),e.get('copy-from'))
+
+
 def roof_sources():
     result={}
     for folder,name,pin_key in (
@@ -70,6 +76,19 @@ def check():
     terrain=[e for e in entries if e['type']=='terrain']
     assert len(terrain)==47
     for e in terrain:validate(e)
+    validate_no_random_extras(entries)
+    # Missing overrides inherit extras=build through BN's generic city parent.
+    from compare_location_catalog import read_sources
+    stock={e['abstract']:e for path,text in read_sources()[0].items() if path.startswith('bn/')
+           for e in json.loads(text) if 'abstract'in e}
+    parent=stock['generic_city_building']['copy-from']
+    assert stock[parent]['extras']=='build'
+    for probe in ({'type':'overmap_terrain','id':'regression_extras','copy-from':'generic_city_building'},
+                  {'type':'overmap_terrain','id':'regression_extras','extras':'build'}):
+        try:validate_no_random_extras([probe])
+        except AssertionError:pass
+        else:raise AssertionError('Random extras inheritance regression accepted')
+    validate_no_random_extras([{'type':'overmap_terrain','id':'regression_extras','extras':''}])
     template={'type':'terrain','id':'regression_open_air','symbol':'x','color':'white',
               'move_cost':2,'name':'probe','description':'probe'}
     for action,key,value in [('bash','ter_set','t_open_air'),('bash','ter_set_bashed_from_above','t_open_air'),
@@ -124,6 +143,6 @@ def check():
             try:validate(probe)
             except AssertionError:pass
             else:raise AssertionError('Incomplete terrain regression accepted')
-    print('PASS: concrete preview terrains, automatic roof invariants, pinned BN overmap flags and placement locations; invalid floors/recursive roofs and incomplete panels rejected')
+    print('PASS: concrete terrain/roof rules, BN overmap flags and placement locations; random extras explicitly disabled; inheritance, destruction, sound and panel regressions rejected')
 
 if __name__=='__main__':check()

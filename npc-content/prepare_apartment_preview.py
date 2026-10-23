@@ -176,7 +176,7 @@ def prepare(check=False):
                 condition_counts['positive' if enabled else 'negative'] += 1
         fixture_checks[special['id']] = points
     assert condition_counts['positive'] and condition_counts['negative'], condition_counts
-    report = {'status': 'apartment_preview_candidate_not_embedded', 'native_embedded': False, 'runtime_validated': False,
+    report = {'status': 'apartment_preview_embedded_pending_windows', 'native_embedded': True, 'runtime_validated': False,
         'world_maps': len(world), 'own_omt': len(variants), 'nested_identities': len(nested),
         'nested_definitions': sum(map(len, nested.values())), 'aliases': aliases,
         'runtime_source_evidence': evidence, 'navigation': navigation,
@@ -186,7 +186,7 @@ def prepare(check=False):
         'conditional_nested': dict(conditional), 'conditional_fixture_counts': dict(condition_counts),
         'fixture_checks': fixture_checks, 'fixture_check_count': sum(map(len, fixture_checks.values())),
         'unresolved_typed_refs': [],
-        'limits': ['Candidate only: no native patch modification or generation credit',
+        'limits': ['Optional native preview integration prepared; source/installed Windows generation is pending; no completion credit',
                    'BN source supports above-neighbor matching and additive multi-OMT variants; runtime assertions still pending',
                    'Deterministic navigation uses intersections across all repeated-ID slices, excluding random nested footprints',
                    'All-floor player traversal, elevator functions, furnishing and later content remain pending']}

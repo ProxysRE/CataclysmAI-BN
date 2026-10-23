@@ -12,7 +12,7 @@ BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
 AIR_LOCATION='dda_geo_open_air'
-PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research','large')
+PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research','large','apartment')
 
 
 def payloads():
@@ -20,6 +20,11 @@ def payloads():
     report=json.loads((OUT/'REPORT.json').read_text())
     result=[]
     for name in PACKAGES:
+        if name=='apartment':
+            adapted=json.loads((OUT/'APARTMENT_PREVIEW_REPORT.json').read_text(encoding='utf-8'))
+            assert not adapted['unresolved_typed_refs']
+            result+=json.loads((OUT/'APARTMENT_PREVIEW_SHELL.json').read_text(encoding='utf-8'))
+            continue # This candidate already namespaces declarations and above-neighbor references.
         if name in ('exodii','frontier','raider','urban','waterside','research','large'):
             stem=name.upper()
             adapted=json.loads((OUT/('LARGE_SITES_PREVIEW_REPORT.json' if name=='large' else stem+'_ADAPTATION_REPORT.json')).read_text())
@@ -73,6 +78,10 @@ def payloads():
                 assert {'symbol','color','move_cost_mod','required_str','name','description'}<=e.keys(),e['id']
             else:raise AssertionError(e['type'])
         result+=entries
+    # Empty shells must not inherit BN's post-mapgen random events from a
+    # stock overmap parent. Those events can add loot and alter the geometry.
+    for e in result:
+        if e['type']=='overmap_terrain':e['extras']=''
     # BN has open_air terrain but no matching placement predicate. Keep the
     # source's air-only constraint rather than weakening it to land/anywhere.
     result.append({'type':'overmap_location','id':AIR_LOCATION,'terrains':['open_air']})
@@ -88,7 +97,7 @@ def payloads():
     generated.update(('overmap_terrain',n)for n in json.loads((OUT/'RESEARCH_ADAPTATION_REPORT.json').read_text())['generated_external_omt'])
     project=index_entries(json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text()))
     assert not required(result)-core-own-generated-project,sorted(required(result)-core-own-generated-project)
-    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper and oil platform in BN lake habitat. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
+    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat and five modular apartment layouts. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
 
 
 def native_test():
@@ -128,6 +137,7 @@ def native_test():
     entries=payloads()['native/dda_geometry_preview.json']
     from prepare_regional_locations import flatten
     predecessors={n:e['object']for e in entries if e['type']=='mapgen' and e['object'].get('predecessor_mapgen')for n in flatten(e.get('om_terrain',[]))}
+    apartment=json.loads((OUT/'APARTMENT_PREVIEW_REPORT.json').read_text(encoding='utf-8'))['fixture_checks']
     for i,special in enumerate(e for e in entries if e['type']=='overmap_special'):
         text+='\nTEST_CASE( "'+special['id']+'_all_floors_without_loot", "[dda_geometry]" )\n{\n    generate_site( '+str(4200+i*100)+', {\n'
         for c in special['overmaps']:
@@ -198,6 +208,10 @@ def native_test():
             for e in nav:
                 x,y,z=e['point']
                 text+=f'        {{ {x//24}, {y//24}, {x%24}, {y%24}, {z}, {json.dumps(e["terrain"])} }},\n'
+        if special['id']in apartment:
+            text+='    }, {\n'
+            for p in apartment[special['id']]:
+                text+=f'        {{ {p["omt_x"]}, {p["omt_y"]}, {p["x"]}, {p["y"]}, {p["z"]}, {json.dumps(p["terrain"])} }},\n'
         text+='    } );\n}\n'
     return text
 
@@ -224,13 +238,15 @@ def prepare(check=False):
     check_research(check=True)
     from prepare_large_site_preview import prepare as check_large
     check_large(check=True)
+    from prepare_apartment_preview import prepare as check_apartment
+    check_apartment(check=True)
     texts={p:json.dumps(v,indent=2,ensure_ascii=True)+'\n' for p,v in payloads().items()}
     texts['native/'+TEST]=native_test()
     for p,text in texts.items():
         path=ROOT/p
         if check:assert path.read_text()==text,path
         else:path.write_text(text)
-    print('Geometry preview: twelve isolated packages, no ID collisions; natural occurrences disabled; native validation pending')
+    print('Geometry preview: thirteen isolated packages, no ID collisions; natural occurrences and own-terrain random extras disabled; native validation pending')
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');prepare(parser.parse_args().check)

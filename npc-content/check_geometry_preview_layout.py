@@ -40,7 +40,20 @@ def check():
     body=code.split('TEST_CASE( "dda_geo_physics_lab_lixa_all_floors_without_loot"',1)[1]
     for x in range(6,22):
         assert f'{{ 1, 1, {x}, 9, -4, "{barrier}", true }}' in body,x
-    print(f'PASS: {len(specials)} native layouts / {count} fixture cells match embedded special coordinates; LIXA barrier has 16 furniture assertions')
+    from check_apartment_preview import validate_neighbors
+    validate_neighbors(entries)
+    apartment=json.loads((ROOT/'geometry_layer/APARTMENT_PREVIEW_REPORT.json').read_text(encoding='utf-8'))
+    apartment_count=0
+    for special,points in apartment['fixture_checks'].items():
+        marker='TEST_CASE( "'+special+'_all_floors_without_loot"'
+        body=code.split(marker,1)[1].split('\nTEST_CASE(',1)[0]
+        actual=collections.Counter(re.findall(
+            r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^"]+)"',body,re.M))
+        expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
+        assert actual==expected,(special,'apartment navigation/conditional stair fixture mismatch')
+        apartment_count+=len(points)
+    assert apartment_count==284
+    print(f'PASS: {len(specials)} native layouts / {count} fixture cells match embedded special coordinates; LIXA barrier has 16 furniture assertions; apartments have {apartment_count} navigation/conditional assertions')
 
 
 if __name__=='__main__':check()
