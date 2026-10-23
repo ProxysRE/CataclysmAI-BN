@@ -373,6 +373,17 @@ mod.loaded(); tick()
 assert(root.raid.encounter_deployed and #actors == 3 and spawned == varied_before + 3)
 for i, id in ipairs(varied_ids) do assert(root.participants.slots["hostile_" .. i].id == id) end
 print("PASS varied menu, retry, role pools v2 and restored AK/M4 group without reroll")
+root.cold_expected = { encounter = "varied", npc_ids = varied_ids, npc_choices = varied_choices }
+actors[3] = nil
+for _, record in pairs(root.participants.actors) do record.patrol.index = 1 end
+test_data = { stage = "cold_npc_saved" }
+dofile("tarkov/tests/bn_integration.lua")
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+mod.loaded(); tick()
+test_data.stage = "cold_npc_restored"
+dofile("tarkov/tests/bn_integration.lua")
+assert(#actors == 2 and spawned == varied_before + 3)
+print("PASS varied cold bookkeeping preserves role/kit/ID and consumed casualty")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }

@@ -63,6 +63,34 @@ class NativeGateTest(unittest.TestCase):
                 self.assertTrue(execute.call_args.kwargs["check"])
             self.assertFalse(report.exists())
 
+    def test_varied_cold_chain_uses_three_processes_and_separate_reports(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            executable = root / "test"
+            executable.touch()
+            old = root / "tarkov-cold-write.xml"
+            old.write_text("patrol-report")
+            def success(command, **kwargs):
+                env = kwargs["env"]
+                self.assertEqual(env["TRKV_COLD_ENCOUNTER"], "varied")
+                report = Path(command[command.index("--out") + 1])
+                self.assertIn("tarkov-cold-varied-", report.name)
+                report.write_text("<testsuites><testcase/></testsuites>")
+                manifest = Path(env["TRKV_COLD_MANIFEST"])
+                world = manifest.parent / (manifest.stem + "-world")
+                world.mkdir()
+                manifest.write_text(str(world))
+            with patch("run_cold_restart.subprocess.run", side_effect=success) as execute:
+                with redirect_stdout(io.StringIO()):
+                    run_cold(root, root, executable, encounter="varied")
+                self.assertEqual(execute.call_count, 3)
+                self.assertIn("[tarkov_cold_write]", execute.call_args_list[0].args[0])
+                self.assertEqual(execute.call_args_list[1].kwargs["env"]["TRKV_COLD_STAGE"], "cold_read_active")
+                self.assertEqual(execute.call_args_list[2].kwargs["env"]["TRKV_COLD_STAGE"], "cold_read_cleanup")
+            self.assertEqual(old.read_text(), "patrol-report")
+            for stage in ("write", "active", "cleanup"):
+                validate_report(root / f"tarkov-cold-varied-{stage}.xml")
+
     def test_npc_probe_propagates_failed_process_with_report(self):
         with tempfile.TemporaryDirectory() as scratch:
             root = Path(scratch)

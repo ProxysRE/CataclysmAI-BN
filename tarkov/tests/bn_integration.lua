@@ -193,34 +193,56 @@ elseif test_data.stage == "cold_write" then
   assert(api.at_home() and state.phase == "home")
   player:add_item_with_id(payload, -1)
   store_payload()
-  assert(game.mod_runtime.trkv_raid_core.depart("patrol"))
+  local mode = test_data.cold_encounter or "patrol"
+  local catalog = package.loaded.trkv_loadouts
+  local choose, pick = catalog.choose, 0
+  if mode == "varied" then
+    local choices = { "rifle_ak_v1", "rifle_recruit_field_v1", "rifle_recruit_ak_v1" }
+    catalog.choose = function(_, pool)
+      pick = pick + 1
+      assert(catalog.contains(pool, choices[pick]))
+      return choices[pick]
+    end
+  end
+  local ok, entered = pcall(game.mod_runtime.trkv_raid_core.depart, mode)
+  catalog.choose = choose
+  assert(ok and entered)
   take_payload()
   assert(gapi.get_map():set_ter_at(local_pos(15, 15), TerId.new("t_wall"):int_id()))
-  root.cold_expected = { deadline = state.deadline, sequence = state.sequence, npc_ids = {} }
-  for i = 1, 3 do root.cold_expected.npc_ids[i] = root.participants.slots["patrol_" .. i].id end
+  root.cold_expected = { deadline = state.deadline, sequence = state.sequence, encounter = mode, npc_ids = {}, npc_choices = {} }
+  for i = 1, 3 do
+    local slot = root.participants.slots[(mode == "varied" and "hostile_" or "patrol_") .. i]
+    root.cold_expected.npc_ids[i], root.cold_expected.npc_choices[i] = slot.id, slot.loadout
+  end
   test_data.cold_npc_ids = root.cold_expected.npc_ids
+  test_data.cold_encounter = root.cold_expected.encounter or "patrol"
 elseif test_data.stage == "cold_npc_saved" then
   assert(#gapi.get_all_npcs() == 2)
   for _, id in ipairs(root.cold_expected.npc_ids) do
-    assert(root.participants.actors[string.format("%d", id)].patrol.index == 2)
+    assert(root.participants.actors[string.format("%d", id)].patrol.index == (root.cold_expected.encounter == "varied" and 1 or 2))
   end
   -- Persist a replay checkpoint, including the ready slot of a dead actor.
   state.encounter_deployed = false
 elseif test_data.stage == "cold_npc_restored" then
   assert(state.encounter_deployed and #gapi.get_all_npcs() == 2)
   for i, id in ipairs(root.cold_expected.npc_ids) do
-    local slot = root.participants.slots["patrol_" .. i]
+    local varied = root.cold_expected.encounter == "varied"
+    local slot = root.participants.slots[(varied and "hostile_" or "patrol_") .. i]
     assert(slot.id == id and slot.status == "ready")
     local member = root.participants.actors[string.format("%d", id)]
-    assert(member.patrol.index == 2 and member.patrol.sequence == state.sequence)
-    assert(member.side == (i == 3 and "bear" or "usec"))
+    assert(member.patrol.index == (varied and 1 or 2) and member.patrol.sequence == state.sequence)
+    assert(member.side == (varied and "hostile_test" or i == 3 and "bear" or "usec"))
+    if varied then
+      assert(member.squad == "varied_test" and slot.loadout == root.cold_expected.npc_choices[i])
+    end
   end
 elseif test_data.stage == "cold_read_active_loaded" then
   assert(api.at_raid() and state.phase == "active")
   assert(state.deadline == root.cold_expected.deadline and state.sequence == root.cold_expected.sequence)
   assert(state.wins == 0 and state.losses == 0)
-  assert(state.encounter == "patrol" and not state.encounter_deployed)
+  assert(state.encounter == (root.cold_expected.encounter or "patrol") and not state.encounter_deployed)
   test_data.cold_npc_ids = root.cold_expected.npc_ids
+  test_data.cold_encounter = root.cold_expected.encounter or "patrol"
   assert(player:has_item_with_id(payload, false))
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_wall"):int_id())
   check_boundary()
@@ -235,16 +257,17 @@ elseif test_data.stage == "cold_read_cleanup_loaded" then
   assert(api.at_home() and state.phase == "cleanup" and state.wins == 0)
   assert(state.sequence == root.cold_expected.sequence)
   test_data.cold_npc_ids = root.cold_expected.npc_ids
+  test_data.cold_encounter = root.cold_expected.encounter or "patrol"
   check_stash()
 elseif test_data.stage == "cold_read_cleanup" then
   assert(api.at_home() and state.phase == "home" and state.wins == 1)
   check_stash()
   assert(root.participants.closed and next(root.participants.actors) == nil)
-  assert(game.mod_runtime.trkv_raid_core.depart("patrol"))
+  assert(game.mod_runtime.trkv_raid_core.depart(root.cold_expected.encounter or "patrol"))
   assert(state.sequence == root.cold_expected.sequence + 1)
   assert(#gapi.get_all_npcs() == 3)
   for i = 1, 3 do
-    local new_id = root.participants.slots["patrol_" .. i].id
+    local new_id = root.participants.slots[(root.cold_expected.encounter == "varied" and "hostile_" or "patrol_") .. i].id
     for _, old_id in ipairs(root.cold_expected.npc_ids) do assert(new_id ~= old_id) end
   end
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())

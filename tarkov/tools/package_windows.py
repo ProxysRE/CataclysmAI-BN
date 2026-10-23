@@ -64,6 +64,7 @@ def package(bn: Path, dist: Path, output: Path) -> None:
     checks_dir = output / "windows-runtime"
     checks = json.loads((checks_dir / "native-checks.json").read_text(encoding="utf-8"))
     expected_reports = {"tarkov-runtime.xml", "tarkov-cold-write.xml", "tarkov-cold-active.xml", "tarkov-cold-cleanup.xml"}
+    expected_reports.update(f"tarkov-cold-varied-{stage}.xml" for stage in ("write", "active", "cleanup"))
     if (checks.get("schema") != 1 or checks.get("passed") is not True or checks.get("platform") != "nt"
             or checks.get("project_sha") != project_sha or checks.get("bn_sha") != bn_sha
             or checks.get("game_sha256") != digest(executable)

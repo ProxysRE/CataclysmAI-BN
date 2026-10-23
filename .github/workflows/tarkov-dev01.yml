@@ -104,12 +104,14 @@ jobs:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
         run: ./build/bin/cata_test --mods=trkv_raid_core '[tarkov]' --rng-seed 20261020 --reporter junit --out ../tarkov-runtime.xml
-      - name: Run BN cold restart across three processes
+      - name: Run patrol and combat cold restarts in separate processes
         timeout-minutes: 50
         env:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
-        run: python3 tarkov/tools/run_cold_restart.py bn
+        run: |
+          python3 tarkov/tools/run_cold_restart.py bn
+          python3 tarkov/tools/run_cold_restart.py bn --encounter varied
       - name: Run isolated NPC lifecycle, patrol and combat probe
         timeout-minutes: 15
         run: >-

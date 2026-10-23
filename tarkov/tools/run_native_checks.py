@@ -49,6 +49,7 @@ def run(bn: Path, executable: Path, game: Path, output: Path) -> None:
     try:
         os.environ.update(SDL_VIDEODRIVER="dummy", SDL_AUDIODRIVER="dummy")
         run_cold(bn, output, executable)
+        run_cold(bn, output, executable, encounter="varied")
     finally:
         for key, value in previous.items():
             if value is None:
@@ -56,6 +57,7 @@ def run(bn: Path, executable: Path, game: Path, output: Path) -> None:
             else:
                 os.environ[key] = value
     reports = [report, *(output / f"tarkov-cold-{stage}.xml" for stage in ("write", "active", "cleanup"))]
+    reports.extend(output / f"tarkov-cold-varied-{stage}.xml" for stage in ("write", "active", "cleanup"))
     for path in reports:
         validate_report(path)
     metadata = {

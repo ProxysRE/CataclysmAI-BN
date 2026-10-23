@@ -4,10 +4,12 @@
 #include <cstdio>
 #include <filesystem>
 #include <fstream>
+#include <map>
 #include "dimension_info.h"
 #include "path_info.h"
 #include "worldfactory.h"
 #include "npc.h"
+#include "skill.h"
 #include "../src/map/mapbuffer_registry.h"
 
 static auto trkv_cold_env(const char* name) -> std::string {
@@ -24,6 +26,7 @@ static auto trkv_cold_manifest() -> void {
     REQUIRE(out.good());
 }
 static auto trkv_cold_check_npcs(sol::table& data, bool resume) -> void {
+    const auto varied = data["cold_encounter"].get<std::string>() == "varied";
     const sol::table ids = data["cold_npc_ids"];
     REQUIRE(ids.size() == 3);
     REQUIRE(get_overmapbuffer(dimension_id("trkv_dev01_raid")).get_overmap_npcs().size() == 2);
@@ -37,6 +40,43 @@ static auto trkv_cold_check_npcs(sol::table& data, bool resume) -> void {
         }
         REQUIRE(actor != nullptr);
         CHECK(actor->get_dimension() == dimension_id("trkv_dev01_raid"));
+        if (varied) {
+            CHECK(actor->get_attitude() == NPCATT_KILL);
+            CHECK(actor->abs_pos() == tripoint_abs_ms(i == 1 ? 398 : 400, 398, 0));
+            CHECK(actor->myclass == npc_class_id(i == 1 ? "TRKV_COMBAT_AK" : "TRKV_COMBAT_RECRUIT_FIELD"));
+            CHECK(actor->get_skill_level(skill_id("gun")) == (i == 1 ? 6 : 3));
+            CHECK(actor->get_skill_level(skill_id("rifle")) == (i == 1 ? 6 : 3));
+            CHECK(actor->get_skill_level(skill_id("barter")) == 0);
+            CHECK(actor->get_part_hp_max(bodypart_str_id("arm_l").id()) == 60);
+            CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == (i == 1 ? 17 : 60));
+            actor->recalc_hp();
+            CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == (i == 1 ? 17 : 60));
+            const auto& gun = actor->primary_weapon();
+            CHECK(gun.typeId().str() == (i == 1 ? "ak47" : "m4a1"));
+            CHECK(gun.ammo_remaining() == (i == 1 ? 23 : 30));
+            if (i == 1) {
+                CHECK(gun.get_var("trkv_cold_npc") == "rifle");
+                CHECK(gun.damage() == 901);
+                const auto* installed = gun.magazine_current();
+                REQUIRE(installed != nullptr);
+                CHECK(installed->get_var("trkv_cold_mag") == "loaded");
+                std::map<std::string, int> magazines;
+                const auto record = [&](const item* value) {
+                    if (value->typeId().str() != "akmag30") { return; }
+                    CHECK(value->ammo_current() == itype_id("762_m43"));
+                    REQUIRE(magazines.emplace(value->get_var("trkv_cold_mag"), value->ammo_remaining()).second);
+                };
+                record(installed);
+                for (const auto* value : actor->all_items(false)) {
+                    if (value != installed) { record(value); }
+                }
+                REQUIRE(magazines.size() == 3);
+                CHECK(magazines.at("loaded") == 23);
+                CHECK(magazines.at("spare_1") == 30);
+                CHECK(magazines.at("spare_2") == 30);
+            }
+            continue;
+        }
         CHECK(actor->get_attitude() == NPCATT_NULL);
         REQUIRE(actor->abs_pos() == tripoint_abs_ms(i == 1 ? 398 : 400, 399, 0));
         if (i == 1) {
@@ -62,7 +102,7 @@ static auto trkv_cold_check_npcs(sol::table& data, bool resume) -> void {
     }
     auto corpses = 0;
     auto dropped = 0;
-    for (const auto* value : g->m.i_at(abs_to_bub(tripoint_abs_ms(404, 399, 0)))) {
+    for (const auto* value : g->m.i_at(abs_to_bub(tripoint_abs_ms(404, varied ? 398 : 399, 0)))) {
         if (value->is_corpse()) { ++corpses; }
         if (value->get_var("trkv_cold_npc") == "dropped") { ++dropped; }
     }
@@ -87,6 +127,10 @@ TEST_CASE("tarkov cold writer saves a live raid", "[tarkov_cold_write]") {
     rifle->set_var("trkv_cold", "rifle");
     auto& carried = get_avatar().i_add(std::move(rifle));
     REQUIRE(get_avatar().wield(carried));
+    const auto* cold_mode = std::getenv("TRKV_COLD_ENCOUNTER");
+    const std::string encounter = cold_mode ? cold_mode : "patrol";
+    REQUIRE((encounter == "patrol" || encounter == "varied"));
+    data["cold_encounter"] = encounter;
     data["stage"] = "cold_write";
     run_lua_test_script(lua, "trkv_integration_test.lua");
     {
@@ -96,23 +140,44 @@ TEST_CASE("tarkov cold writer saves a live raid", "[tarkov_cold_write]") {
             auto* actor = g->find_npc(character_id(ids[i].get<int>()));
             REQUIRE(actor != nullptr);
             actor->set_moves(1000);
-            actor->move();
-            REQUIRE(actor->get_moves() < 1000);
+            if (encounter == "patrol") {
+                actor->move();
+                REQUIRE(actor->get_moves() < 1000);
+            }
             if (i == 1) {
-                actor->remove_primary_weapon();
-                auto gun = item::spawn("ar15");
-                auto mag = item::spawn("stanag30");
-                mag->ammo_set(itype_id("223"), 11);
-                gun->put_in(std::move(mag));
-                gun->set_damage(901);
-                gun->set_var("trkv_cold_npc", "rifle");
-                auto& equipped = actor->i_add(std::move(gun));
-                REQUIRE(actor->wield(equipped));
-                // Probe saved HP overrides across processes independently of
-                // the combat-class creation test in the NPC harness.
-                actor->set_value("npc_profile_hp_head", "35");
-                actor->recalc_hp();
-                actor->set_part_hp_cur(bodypart_str_id("head").id(), 21);
+                if (encounter == "varied") {
+                    auto& gun = actor->primary_weapon();
+                    REQUIRE(gun.typeId().str() == "ak47");
+                    REQUIRE(gun.ammo_consume(7, actor->bub_pos()) == 7);
+                    gun.set_var("trkv_cold_npc", "rifle");
+                    gun.set_damage(901);
+                    auto* loaded = gun.magazine_current();
+                    REQUIRE(loaded != nullptr);
+                    loaded->set_var("trkv_cold_mag", "loaded");
+                    auto spares = 0;
+                    for (auto* value : actor->all_items(false)) {
+                        if (value != loaded && value->typeId().str() == "akmag30") {
+                            value->set_var("trkv_cold_mag", "spare_" + std::to_string(++spares));
+                        }
+                    }
+                    REQUIRE(spares == 2);
+                    actor->set_part_hp_cur(bodypart_str_id("arm_l").id(), 17);
+                } else {
+                    actor->remove_primary_weapon();
+                    auto gun = item::spawn("ar15");
+                    auto mag = item::spawn("stanag30");
+                    mag->ammo_set(itype_id("223"), 11);
+                    gun->put_in(std::move(mag));
+                    gun->set_damage(901);
+                    gun->set_var("trkv_cold_npc", "rifle");
+                    auto& equipped = actor->i_add(std::move(gun));
+                    REQUIRE(actor->wield(equipped));
+                    // Probe saved HP overrides across processes independently of
+                    // the combat-class creation test in the NPC harness.
+                    actor->set_value("npc_profile_hp_head", "35");
+                    actor->recalc_hp();
+                    actor->set_part_hp_cur(bodypart_str_id("head").id(), 21);
+                }
             } else if (i == 3) {
                 auto dropped = item::spawn("rock");
                 dropped->set_var("trkv_cold_npc", "dropped");

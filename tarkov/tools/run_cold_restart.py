@@ -7,7 +7,10 @@ import tempfile
 import xml.etree.ElementTree as ET
 
 
-def run(bn: Path, output: Path, executable: Path | None = None) -> None:
+def run(bn: Path, output: Path, executable: Path | None = None, encounter: str = "patrol") -> None:
+    if encounter not in ("patrol", "varied"):
+        raise ValueError("Unknown cold encounter")
+    prefix = "tarkov-cold" + ("-varied" if encounter == "varied" else "")
     executable = executable or bn / "build/bin/cata_test"
     if not executable.is_file():
         raise FileNotFoundError(executable)
@@ -22,13 +25,14 @@ def run(bn: Path, output: Path, executable: Path | None = None) -> None:
         ]
         for name, tag, stage, keep in phases:
             manifest = root / (name + ".world")
-            report = output / ("tarkov-cold-" + name + ".xml")
-            log = output / ("tarkov-cold-" + name + ".log")
+            report = output / (prefix + "-" + name + ".xml")
+            log = output / (prefix + "-" + name + ".log")
             report.unlink(missing_ok=True)
             env = os.environ.copy()
             for key in ("TRKV_COLD_SOURCE", "TRKV_COLD_STAGE", "TRKV_COLD_MANIFEST"):
                 env.pop(key, None)
             env["TRKV_COLD_MANIFEST"] = str(manifest)
+            env["TRKV_COLD_ENCOUNTER"] = encounter
             if source is not None:
                 env["TRKV_COLD_SOURCE"] = str(source)
                 env["TRKV_COLD_STAGE"] = stage
@@ -37,7 +41,7 @@ def run(bn: Path, output: Path, executable: Path | None = None) -> None:
                        "--reporter", "junit", "--out", str(report)]
             if keep:
                 command.append("--trkv-keep-world")
-            print("Tarkov cold process: " + name, flush=True)
+            print("Tarkov cold process: " + encounter + "/" + name, flush=True)
             try:
                 with log.open("w", encoding="utf-8") as stream:
                     subprocess.run(command, cwd=bn, env=env, stdout=stream,
@@ -54,7 +58,7 @@ def run(bn: Path, output: Path, executable: Path | None = None) -> None:
                 source = Path(manifest.read_text(encoding="utf-8").strip()).resolve()
                 if not source.is_relative_to(root) or not source.is_dir():
                     raise RuntimeError("Exported world is not a disposable fixture")
-        print("PASS cold active load, patrol survivors/casualty, cleanup replay, stash, equipment and next raid", flush=True)
+        print("PASS cold " + encounter + " active load, survivors/casualty, cleanup replay, stash, equipment and next raid", flush=True)
 
 
 if __name__ == "__main__":
@@ -62,6 +66,7 @@ if __name__ == "__main__":
     parser.add_argument("bn", type=Path)
     parser.add_argument("--executable", type=Path, help="Explicit native test executable (including .exe)")
     parser.add_argument("--output", type=Path, help="Directory for reports and temporary test worlds")
+    parser.add_argument("--encounter", choices=("patrol", "varied"), default="patrol")
     args = parser.parse_args()
     run(args.bn.resolve(), (args.output or args.bn.resolve().parent).resolve(),
-        args.executable.resolve() if args.executable else None)
+        args.executable.resolve() if args.executable else None, args.encounter)
