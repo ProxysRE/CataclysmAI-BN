@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Fix unsupported DDA WATER overmap flag; corrected 26-case Windows validation pending.",
-  "package": "Isolated Road",
-  "native_compilation": "Successful Windows run 39686560752: source+installed 73 core /11030, 10 optional /2224, 23 geometry /648216; portable artifact 12389029662.",
+  "stage": "37-case source and installed Windows geometry validation passed; adapt survivor housing and Lacroix next.",
+  "package": "Layer-first DDA locations",
+  "native_compilation": "Successful Windows run 39962621096: source+installed 73 core /11030, 10 optional /2224, 37 geometry /1601080; portable artifact 12510420047.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -14,8 +14,8 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
-    "run_id": 39686560752,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -25,12 +25,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 23,
-    "geometry_assertions": 648216,
-    "installed_geometry_test_cases": 23,
-    "installed_geometry_assertions": 648216,
-    "artifact_id": 12389029662,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39686560752/artifacts/12389029662"
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080,
+    "artifact_id": 12510420047,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047"
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -92,13 +92,23 @@
     "epilogues": 2
   },
   "last_run": {
-    "head": "1031b2950d973ca18dee72b5f66249c1676f5ee3",
-    "run_id": 39025566841,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
-    "test_cases": 34,
-    "assertions": 2893,
-    "installed_data_test_cases": 34,
-    "installed_data_assertions": 2893
+    "test_cases": 73,
+    "assertions": 11030,
+    "mod_test_cases": 10,
+    "mod_assertions": 2224,
+    "installed_data_test_cases": 73,
+    "installed_data_assertions": 11030,
+    "installed_mod_test_cases": 10,
+    "installed_mod_assertions": 2224,
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080,
+    "artifact_id": 12510420047,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047"
   },
   "lighthouse": {
     "npcs": 4,
@@ -356,18 +366,19 @@
   "windows_packaging": {
     "mode": "Official BN cmake --install, installed-data regression, verified ZIP and SHA256",
     "artifact": "CBN-DDA-NPC-Windows-x64",
-    "status": "Source and installed core/mod suites passed at a379269; portable package verified",
+    "status": "Source and installed core, optional-mod and geometry suites passed; portable package verified",
     "local_checks": "Archive payload, provenance, checksum and incomplete/stale installation rejection passed",
     "includes_staged_bulk_communities": false,
     "includes_highway_branch": false,
-    "artifact_id": 12226743444,
-    "run_id": 39328860166,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444",
-    "artifact_size_bytes": 205593420
+    "artifact_id": 12510420047,
+    "run_id": 39962621096,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047",
+    "artifact_size_bytes": 205730746,
+    "artifact_digest": "sha256:9bef0a62f429348508f9c2ad8d787d4c53bd8973bb8d16e3e1aa6abd2cf67419"
   },
   "latest_validated_native_checkpoint": {
-    "head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
-    "run_id": 39686560752,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -377,12 +388,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 23,
-    "geometry_assertions": 648216,
-    "installed_geometry_test_cases": 23,
-    "installed_geometry_assertions": 648216,
-    "artifact_id": 12389029662,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39686560752/artifacts/12389029662"
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080,
+    "artifact_id": 12510420047,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047"
   },
   "hub_access_checkpoint": {
     "head": "029bcacf2f8b192b271e9a44f18dbd862db161aa",
@@ -506,8 +517,8 @@
     "lua_exclusion_validation_pending": true
   },
   "latest_clean_windows_build": {
-    "head": "a379269eee36b2545909d9418d18c95ee0af3052",
-    "run_id": 39328860166,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -517,9 +528,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "artifact_id": 12226743444,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39328860166/artifacts/12226743444",
-    "result": "success"
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080,
+    "artifact_id": 12510420047,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047"
   },
   "bundled_mod_inventory": {
     "status": "full_pinned_catalog_generated_and_local_audit_passed",
@@ -667,15 +681,16 @@
     "validation_checkpoint": 39328860166
   },
   "latest_source_native_checkpoint": {
-    "run": 39261460157,
-    "head": "87e10151559e881979343958833a09e7eab918eb",
+    "run": 39962621096,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
     "compilation": "success",
-    "source_core_cases": 71,
-    "source_core_assertions": 10719,
+    "source_core_cases": 73,
+    "source_core_assertions": 11030,
     "source_core_result": "success",
-    "optional_mod_result": "failed: missing shared palette glyphs and uncleared globally unique special state in test fixture",
-    "installed_tests_run": false,
-    "portable_package_produced": false
+    "optional_mod_result": "success: 10 cases /2224 assertions",
+    "geometry_result": "success: 37 cases /1601080 assertions",
+    "installed_tests_run": true,
+    "portable_package_produced": true
   },
   "container_yards": {
     "status": "complete_staging_not_native",
@@ -743,8 +758,8 @@
     "source_files": 59
   },
   "latest_portable_checkpoint": {
-    "head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
-    "run_id": 39686560752,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -754,12 +769,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 23,
-    "geometry_assertions": 648216,
-    "installed_geometry_test_cases": 23,
-    "installed_geometry_assertions": 648216,
-    "artifact_id": 12389029662,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39686560752/artifacts/12389029662"
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080,
+    "artifact_id": 12510420047,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047"
   },
   "layer_audit": {
     "report": "LAYER_AUDIT.md",
@@ -785,17 +800,20 @@
       "frontier",
       "raider",
       "urban",
-      "waterside"
+      "waterside",
+      "research",
+      "large",
+      "apartment"
     ],
-    "special_cells": 723,
+    "special_cells": 1542,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": false,
-    "status": "26 isolated geometry cases embedded; waterside validation pending",
+    "runtime_validated": true,
+    "status": "All 37 isolated geometry cases passed source and installed Windows validation",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "d5b809157222bae50c4d11d107271c83d74421d38e02713afdd8c21dc16886c6",
+    "native_patch_sha256": "0f20157691a2caabf874cd8bcbefdf32d1dab36abc38305f2d4fb6155391d4bf",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -809,11 +827,11 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "45a077a7654cdb664e443eaa2402fc497fd01d92",
-    "run_id": 39686560752,
-    "artifact_id": 12389029662,
-    "artifact_size": 205652350,
-    "artifact_digest": "sha256:856ddbfd9d1ceb01309c3b06b35bd8e4cc865c9d906d9e800d2b5237d5d087f2",
+    "checkpoint_head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
+    "artifact_id": 12510420047,
+    "artifact_size": 205730746,
+    "artifact_digest": "sha256:9bef0a62f429348508f9c2ad8d787d4c53bd8973bb8d16e3e1aa6abd2cf67419",
     "previous_successful_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -831,7 +849,11 @@
       "exodii",
       "frontier",
       "raider",
-      "urban"
+      "urban",
+      "waterside",
+      "research",
+      "large",
+      "apartment"
     ],
     "validated_geometry_cases": 23,
     "validated_geometry_placements": 704,
@@ -851,7 +873,8 @@
       "compile": "not reached",
       "error": "Windows default cp1252 decoded UTF-8 cottage glyphs into multiple characters; row-width preflight failed",
       "fix": "Explicit UTF-8 source reads and writes; simulated cp1252-default regression passed"
-    }
+    },
+    "source_special_placements": 1538
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -902,11 +925,11 @@
     "installation_scope": "namespaced opt-in debug preview; original source IDs remain staged separately"
   },
   "geometry_layer_progress": {
-    "verified_groups": 21,
+    "verified_groups": 31,
     "accepted_groups": 51,
-    "verified_percent": 41.2,
+    "verified_percent": 60.8,
     "additional_prepared_groups": 0,
-    "verified_plus_prepared_percent": 41.2,
+    "verified_plus_prepared_percent": 60.8,
     "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
     "report": "geometry_layer/PROGRESS.json"
   },
@@ -1011,36 +1034,69 @@
   },
   "geometry_waterside_candidate": {
     "native_embedded": true,
-    "runtime_validated": false,
+    "runtime_validated": true,
     "mapgen_definitions": 9,
     "own_omt": 11,
     "total_placements": 19,
     "report": "geometry_layer/WATERSIDE_GEOMETRY_REPORT.json",
-    "status": "Three waterside specials embedded; native loading and generation pending",
+    "status": "Isolated shell source and installed generation passed in run 39962621096; traversal and later-layer interactions remain separate",
     "adapted_unresolved_typed_refs": [],
     "new_terrain_definitions": 17,
     "navigation_expectations": 148,
     "adaptation_report": "geometry_layer/WATERSIDE_ADAPTATION_REPORT.json",
-    "water_collection_policy": "Use stock BN untreated water; DDA source temperature explicitly excluded by user, no mechanism planned"
+    "water_collection_policy": "Use stock BN untreated water; DDA source temperature explicitly excluded by user, no mechanism planned",
+    "validation_run": 39962621096
   },
   "geometry_research_candidate": {
-    "status": "Physical adaptation prepared with zero typed obligations; source device behavior and native loading pending",
+    "status": "Isolated shell source and installed generation passed in run 39962621096; traversal and later-layer interactions remain separate",
     "world_maps": 26,
     "structural_nested_maps": 1,
     "own_omt": 50,
     "special_placements": 100,
     "raw_typed_obligations": 25,
-    "native_embedded": false,
-    "runtime_validated": false,
+    "native_embedded": true,
+    "runtime_validated": true,
     "report": "geometry_layer/RESEARCH_GEOMETRY_REPORT.json",
     "limits": [
       "LIXA -8 device access and unfolding deferred",
       "XEDRA passcode interaction preserved separately",
-      "No completion credit"
+      "Generation credit only; no full traversal or interaction claim"
     ],
     "adapted_unresolved_typed_refs": [],
     "new_terrain_definitions": 19,
     "new_structural_furniture_definitions": 1,
-    "adaptation_report": "geometry_layer/RESEARCH_ADAPTATION_REPORT.json"
+    "adaptation_report": "geometry_layer/RESEARCH_ADAPTATION_REPORT.json",
+    "validation_run": 39962621096
+  },
+  "geometry_generation_progress": {
+    "verified_groups": 31,
+    "accepted_groups": 51,
+    "percent": 60.8,
+    "scope": "Unweighted groups with demonstrated geometry-generation scope; not full port completion",
+    "evidence": "lighthouse/VALIDATION.json"
+  },
+  "geometry_large_sites_candidate": {
+    "native_embedded": true,
+    "runtime_validated": true,
+    "status": "All source placements passed source and installed generation",
+    "special_placements": 393,
+    "validation_run": 39962621096,
+    "report": "geometry_layer/LARGE_SITES_PREVIEW_REPORT.json"
+  },
+  "geometry_apartment_candidate": {
+    "native_embedded": true,
+    "runtime_validated": true,
+    "status": "All five layouts passed source and installed generation; not exhaustive sampling of every random nested variant",
+    "special_placements": 322,
+    "navigation_and_conditional_expectations": 284,
+    "validation_run": 39962621096,
+    "report": "geometry_layer/APARTMENT_PREVIEW_REPORT.json"
+  },
+  "geometry_survivor_candidate": {
+    "native_embedded": false,
+    "runtime_validated": false,
+    "status": "Physical counterpart references close; three vertical placements, fallback forest and dynamic weight pending",
+    "special_placements": 16,
+    "report": "geometry_layer/SURVIVOR_ADAPTATION_REPORT.json"
   }
 }

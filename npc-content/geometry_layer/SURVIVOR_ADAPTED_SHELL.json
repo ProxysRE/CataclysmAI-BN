@@ -1,0 +1,1530 @@
+[
+  {
+    "type": "mapgen",
+    "om_terrain": "cabin_roof_1",
+    "object": {
+      "terrain": {
+        ".": "t_tar_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop",
+        "~": "t_tar_flat_roof"
+      },
+      "fill_ter": "t_tar_flat_roof",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "  -5------------------  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -..................-  ",
+        "  -................~.-  ",
+        "  -..................-  ",
+        "  --------------------  ",
+        "  ....................  ",
+        "  ....................  ",
+        "  ....................  ",
+        "  ....................  ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "cabin_prepper"
+    ],
+    "object": {
+      "terrain": {
+        "#": "t_wall_log",
+        "o": "t_column",
+        "R": "t_floor",
+        "r": "t_floor",
+        "S": "t_floor",
+        "%": "t_gutter_downspout",
+        ".": [
+          [
+            "t_region_groundcover",
+            4
+          ],
+          "t_region_groundcover_forest"
+        ],
+        "*": [
+          [
+            "t_region_groundcover",
+            15
+          ],
+          "t_region_shrub"
+        ],
+        "-": "t_railing",
+        "=": "t_door_locked",
+        ">": "t_stairs_down",
+        "$": "t_window_boarded",
+        "1": "t_floor",
+        "2": "t_floor",
+        "3": "t_floor",
+        "4": "t_floor",
+        "5": "t_floor",
+        "A": "t_floor",
+        "B": "t_floor",
+        "D": "t_floor",
+        "F": "t_floor",
+        "L": "t_floor",
+        "O": "t_floor",
+        "T": "t_floor",
+        "V": "t_floor",
+        "a": "t_floor",
+        "b": "t_floor",
+        "c": "t_floor",
+        "d": "t_floor",
+        "s": "t_floor",
+        "t": "t_floor",
+        "u": "t_floor"
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "........................",
+        "........................",
+        "...%....................",
+        "**######$##==#########**",
+        "**#R  d#sT#  #A DBBD #**",
+        "**#   c#  #  #A  BB  $**",
+        "**$   R#> =  =       $**",
+        "**$   R#  #  #########**",
+        "**#   R####  =  DBBD #**",
+        "**#RR  L##A  #A  BB  $**",
+        "**####=####  #A      $**",
+        "**#ttb  uu#  #########**",
+        "**$ttb   u#  #a OOO  $**",
+        "**$bb     =  =    rrr$**",
+        "**#      u#  #    rSr#**",
+        "**#1F5V234#  #a   rrr#**",
+        "**###$$####==####$$###**",
+        "..o bbbb             o..",
+        "..-                  -..",
+        "..-                  -..",
+        "..o-------o  o-------o..",
+        "........................",
+        "........................",
+        "........................"
+      ]
+    },
+    "weight": 500,
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "cabin_prepper"
+    ],
+    "object": {
+      "terrain": {
+        "#": "t_wall_log",
+        "o": "t_column",
+        "R": "t_floor",
+        "r": "t_floor",
+        "S": "t_floor",
+        "%": "t_gutter_downspout",
+        ".": [
+          [
+            "t_region_groundcover",
+            4
+          ],
+          [
+            "t_region_groundcover_forest",
+            3
+          ],
+          "t_region_shrub"
+        ],
+        "*": [
+          "t_region_shrub",
+          [
+            "t_region_groundcover_forest",
+            2
+          ],
+          [
+            "t_region_groundcover",
+            5
+          ]
+        ],
+        "-": "t_railing",
+        "=": "t_door_locked",
+        ">": "t_stairs_down",
+        "$": "t_window_boarded",
+        "1": "t_floor",
+        "2": "t_floor",
+        "3": "t_floor",
+        "4": "t_floor",
+        "5": "t_floor",
+        "A": "t_floor",
+        "B": "t_floor",
+        "D": "t_floor",
+        "F": "t_floor",
+        "L": "t_floor",
+        "O": "t_floor",
+        "T": "t_floor",
+        "V": "t_floor",
+        "a": "t_floor",
+        "b": "t_floor",
+        "c": "t_floor",
+        "d": "t_floor",
+        "s": "t_floor",
+        "t": "t_floor",
+        "u": "t_floor"
+      },
+      "parameters": {
+        "cabin_window_type": {
+          "type": "ter_str_id",
+          "default": {
+            "distribution": [
+              [
+                "t_window_boarded",
+                3
+              ],
+              [
+                "t_window_domestic",
+                1
+              ],
+              [
+                "t_window_no_curtains",
+                2
+              ]
+            ]
+          }
+        }
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "........................",
+        "........................",
+        "...%....................",
+        "**######$##==#########**",
+        "**#R  d#sT#  #A DBBD #**",
+        "**#   c#  #  #A  BB  $**",
+        "**$   R#> =  =       $**",
+        "**$   R#  #  #########**",
+        "**#   R####  =  DBBD #**",
+        "**#RR  L##A  #A  BB  $**",
+        "**####=####  #A      $**",
+        "**#ttb  uu#  #########**",
+        "**$ttb   u#  #a OOO  $**",
+        "**$bb     =  =    rrr$**",
+        "**#      u#  #    rSr#**",
+        "**#1F5V234#  #a   rrr#**",
+        "**###$$####==####$$###**",
+        "..o bbbb             o..",
+        "..-                  -..",
+        "..-                  -..",
+        "..o-------o  o-------o..",
+        "........................",
+        "........................",
+        "........................"
+      ]
+    },
+    "weight": 500,
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "cabin_prepper_shelter"
+    ],
+    "//": "A lmoe shelter replica refitted for the cabin's dug-out basement.",
+    "//2": "This particular 4-bed shelter is definitely homemade, mostly carved out of bare rock, and seems to be incomplete.",
+    "object": {
+      "terrain": {
+        "#": "t_dirt",
+        "*": "t_chaingate_c",
+        "+": "t_door_metal_c",
+        "-": "t_scrap_wall",
+        "<": "t_stairs_up",
+        "=": "t_chainfence",
+        "|": "t_wall_metal",
+        ":": "t_secretdoor_metal_c",
+        "~": "t_water_pump",
+        "t": "t_metal_floor",
+        "\u00e9": "t_metal_floor",
+        "&": "t_dirt_underground",
+        "A": "t_dirt_underground",
+        "B": "t_dirt_underground",
+        "C": "t_dirt_underground",
+        "D": "t_dirt_underground",
+        "F": "t_dirt_underground",
+        "G": "t_dirt_underground",
+        "H": "t_dirt_underground",
+        "K": "t_dirt_underground",
+        "L": "t_dirt_underground",
+        "R": "t_dirt_underground",
+        "S": "t_dirt_underground",
+        "T": "t_dirt_underground",
+        "U": "t_dirt_underground",
+        "V": "t_dirt_underground",
+        "W": "t_dirt_underground",
+        "Y": "t_dirt_underground",
+        "^": "t_dirt_underground",
+        "a": "t_dirt_underground",
+        "c": "t_dirt_underground",
+        "d": "t_dirt_underground",
+        "h": "t_dirt_underground",
+        "l": "t_dirt_underground",
+        "r": "t_dirt_underground",
+        "s": "t_dirt_underground",
+        "u": "t_dirt_underground",
+        "v": "t_dirt_underground",
+        "w": "t_dirt_underground",
+        "{": "t_dirt_underground",
+        "}": "t_dirt_underground"
+      },
+      "fill_ter": "t_dirt_underground",
+      "rows": [
+        "########################",
+        "########################",
+        "#########^^#############",
+        "########^..^############",
+        "########..^^############",
+        "########Y..^^###########",
+        "##G.R###<.|||####||||||#",
+        "##a.l###A.|UUVVvv|{{{{|#",
+        "##=*=###..|U.....:....|#",
+        "##c..ll-..|Uuuu.u||||||#",
+        "##c....+..|||||+||Dh..d#",
+        "##c.h..-r.+......+...BB#",
+        "##c.TTT-r.-r..h..------#",
+        "#######--+-r.hLh.+...BB#",
+        "#######-F.Sr..h..-Dh..d#",
+        "#######-\u00e9.......-------#",
+        "#######-CCKC.uu.+...hD-#",
+        "#######-----.--+-}....-#",
+        "#########W.~.-s.-}.BBS-#",
+        "#########H...-&.-w.BBr-#",
+        "#########l..A-Kt-------#",
+        "#########--------#######",
+        "########################",
+        "########################"
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "lmoe"
+    ],
+    "//": "Above ground",
+    "object": {
+      "fill_ter": "t_region_groundcover",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "lmoe_under_empty_prepperquest"
+    ],
+    "//": "This particular 2-bed shelter is a more professionally done, all metal bomb shelter with kitchen, secret safe room / gun locker, and workshop.",
+    "//2": "This terrain is the destination for the prepper_1 quest.  The front door is locked and can be unlocked by completing the quest.",
+    "object": {
+      "terrain": {
+        "#": "t_dirt",
+        "*": "t_chaingate_c",
+        "+": "t_door_metal_c",
+        "_": "t_metal_floor",
+        ",": "t_carpet_purple",
+        "1": "t_column",
+        "<": "t_stairs_up",
+        "=": "t_chainfence",
+        "|": "t_wall_metal",
+        ":": "t_secretdoor_metal_c",
+        "~": "t_water_pump",
+        "t": "t_metal_floor",
+        "\u00e9": "t_metal_floor",
+        "2": "t_metal_floor",
+        "A": "t_metal_floor",
+        "B": "t_metal_floor",
+        "C": "t_metal_floor",
+        "D": "t_metal_floor",
+        "E": "t_metal_floor",
+        "F": "t_metal_floor",
+        "G": "t_metal_floor",
+        "H": "t_metal_floor",
+        "K": "t_metal_floor",
+        "L": "t_metal_floor",
+        "P": "t_metal_floor",
+        "S": "t_metal_floor",
+        "T": "t_metal_floor",
+        "U": "t_metal_floor",
+        "V": "t_metal_floor",
+        "W": "t_metal_floor",
+        "a": "t_metal_floor",
+        "b": "t_metal_floor",
+        "c": "t_metal_floor",
+        "d": "t_metal_floor",
+        "e": "t_metal_floor",
+        "f": "t_metal_floor",
+        "h": "t_metal_floor",
+        "l": "t_metal_floor",
+        "r": "t_metal_floor",
+        "s": "t_metal_floor",
+        "u": "t_metal_floor",
+        "v": "t_metal_floor",
+        "w": "t_metal_floor",
+        "{": "t_metal_floor",
+        "}": "t_metal_floor"
+      },
+      "fill_ter": "t_metal_floor",
+      "rows": [
+        "########################",
+        "########################",
+        "##||||||||||||||||||||##",
+        "##|{{{{{|UUUUUU|w__BB|##",
+        "##|u____|U____U|d__BB|##",
+        "##|u___h|U_UU_U|A,,,_|##",
+        "##|u___D|=*==*=|_,,,}|##",
+        "##|A____:______+_,,,}|##",
+        "##|||||||_1,,1_|S__h2|##",
+        "##|VVVVV=_e,,P_|||||||##",
+        "##|_____*__,,____|s_K|##",
+        "##|vvvvv=_E,,f___+__t|##",
+        "##|||||||||++|||||||||##",
+        "##|c_bbbbA|,,|CSCCKCC|##",
+        "##|c______|,,|u_____C|##",
+        "##|c_TT___|,,|u_hLh_F|##",
+        "##|c_TTh__+__+______\u00e9|##",
+        "##|c_TT___|__|rrrr__~|##",
+        "##|c______|__|||||+|||##",
+        "##|c______|__*__a|__A|##",
+        "##|ccccccc|<<=G_a|HlW|##",
+        "##||||||||||||||||||||##",
+        "########################",
+        "########################"
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            "lmoe_exit_prepperquest_n"
+          ],
+          "x": 9,
+          "y": 17,
+          "z": 1
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "survivor_forest_camp"
+    ],
+    "object": {
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "  ,,,,,,,       ,,,,,,, ",
+        "  ,,===,,       ,,===,, ",
+        "  ,,===,,       ,,===,, ",
+        "  ,E,,,,,       ,E,,,,, ",
+        "  ,,,,,,,,,,,,,,M,,,,,, ",
+        "  ,,,,,,,,,,,,,,B,,,,,, ",
+        "  ,,,,,,,,,A@,,,C,,,,,, ",
+        "  ,,,,,,,,,,O,,,S,,,,,, ",
+        "  ,,,,,,,,,,@,,,,,,,,,, ",
+        "  ,,,,,,,,E,,,,,,,,,,,, ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,@,,,,,,      ",
+        "       -----------      ",
+        "      --~~~~~~~~~--     ",
+        "     --~~~~~~~~~~~--    ",
+        "      --~~~~~~~~~--     ",
+        "       -----------      "
+      ],
+      "nested": {
+        "E": {
+          "chunks": [
+            [
+              "leather_tent_5x5_S",
+              100
+            ]
+          ]
+        }
+      },
+      "terrain": {
+        ",": [
+          "t_region_groundcover"
+        ],
+        "~": "t_water_dp",
+        "O": "t_region_soil",
+        "@": "t_region_groundcover",
+        "E": "t_region_groundcover",
+        "S": "t_region_soil",
+        "=": "t_dirtmound",
+        "-": "t_water_sh",
+        "C": "t_region_soil",
+        "B": "t_region_groundcover",
+        "A": "t_region_groundcover",
+        "M": "t_region_groundcover"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "survivor_forest_camp"
+    ],
+    "weight": {
+      "math": [
+        "clamp( ( time_since('cataclysm', 'unit':'days') + 100 ),100,250)"
+      ]
+    },
+    "//": "This is meant to represent a camp that was attacked by the Shadow",
+    "object": {
+      "rows": [
+        "                        ",
+        "                        ",
+        " _________     _________",
+        " _,,,,,,,_     _,,,,,,,_",
+        " _,,===,,_     _,,===,,_",
+        " _,,===,,_     _,,===,,_",
+        " _,E....,_______,E....,_",
+        " _,.....,,,,,,,,M.....,_",
+        " _,.....,,,,,,,,B.....,_",
+        " _,.....,,,A@,,,C.....,_",
+        " _,.....,,,,O,,,S.....,_",
+        " _,,,,,,,,,,@,,,,,,,,,,_",
+        " _,,,,,,,,$....,,,,,,,,_",
+        " ______,,,.....,,,______",
+        "      _,,,.....,,,_     ",
+        "      _,,,.....,,,_     ",
+        "      _,,,.....,,,_     ",
+        "      _,,,,,,,,,,,_     ",
+        "      _,,,,@,,,,,,_     ",
+        "     __-----------__    ",
+        "    __--~~~~~~~~~--__   ",
+        "    _--~~~~~~~~~~~--_   ",
+        "    __--~~~~~~~~~--__   ",
+        "     __-----------__    "
+      ],
+      "nested": {
+        "E": {
+          "chunks": [
+            [
+              "leather_tent_b_5x5_S",
+              100
+            ]
+          ]
+        },
+        "$": {
+          "chunks": [
+            [
+              "leather_tent_b_5x5_N",
+              100
+            ]
+          ]
+        }
+      },
+      "terrain": {
+        ",": [
+          [
+            "t_dirt",
+            20
+          ],
+          [
+            "t_tree_dead",
+            1
+          ]
+        ],
+        ".": "t_dirt",
+        "_": [
+          [
+            "t_region_groundcover",
+            10
+          ],
+          [
+            "t_dirt",
+            10
+          ],
+          [
+            "t_tree_dead",
+            1
+          ]
+        ],
+        "~": "t_pit",
+        "O": "t_dirt",
+        "@": "t_dirt",
+        "$": "t_dirt",
+        "E": "t_dirt",
+        "S": "t_dirt",
+        "=": "t_dirtmound",
+        "-": "t_pit_shallow",
+        "C": "t_dirt",
+        "B": "t_dirt",
+        "A": "t_dirt",
+        "M": "t_dirt"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "cemetery_4square_11_roof"
+    ],
+    "object": {
+      "terrain": {
+        ".": "t_shingle_flat_roof",
+        " ": "t_open_air",
+        "-": "t_gutter",
+        "5": "t_gutter_drop"
+      },
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "          ----5-----    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          -........-    ",
+        "          ----------    ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        " ... ...                ",
+        " ... ...                ",
+        "                        ",
+        "                        "
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      [
+        "cemetery_4square_00_lacroix",
+        "cemetery_4square_10_lacroix"
+      ],
+      [
+        "cemetery_4square_01_lacroix",
+        "cemetery_4square_11_lacroix"
+      ]
+    ],
+    "object": {
+      "fill_ter": "t_region_soil",
+      "rows": [
+        "================================================",
+        "=$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$=",
+        "=$                                            $=",
+        "=$ 7 ^ ^ ^ ^ 7 ^ ^ ^ ^ SS ^ ^ ^ ^ 7 ^ ^ S ^ 7 $=",
+        "=$   X X X X   X X X X    X X X X   X X X X   $=",
+        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ ^ ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ ^ ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ ^ ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ S ^ ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ M x ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ ^ ^ ' ^ ^ ^ ^ '' ^ ^ ^ ^ ' ^ ^ ^ S ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ ^ S ' M ^ ^ ^ '' ^ ^ ^ ^ ' ^ x ^ x ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ S M ' M M ^ ^ '' ^ ^ ^ ^ ' ^ M x x ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ ' ^ ^ M M ' M M ^ S '' ^ ^ ^ ^ ' ^ ^ x M ' $=",
+        "=$ ' X X X X ' X X X X '' X X X X ' X X X X ' $=",
+        "=$ '        &'         ''         '         ' $=",
+        "=$ ''$$$$$$$$'$$$$$$$$$''$$$$$$$  '&        ' $=",
+        "=$$$ssssssssssssssssssssssssssss''''''''''''' $=",
+        "=$ $ssssssssssssssssssssssssssss              $=",
+        "=$ $ss$$$$$ss$$$$$ss$$$$$$$$$$ss $$$$$4$$$$$$ $=",
+        "=$7$ss$***$ss$***$ss$***  ***$ss $||0|||G|||$ $=",
+        "=$ $ss$*7*$ss$*7*$ss$*7*  *7*$ss $|nn|.....|$ $=",
+        "=$ $ss$***$ss$***$ss$***  ***$ss $G..|.....G$ $=",
+        "=$ $ss$$$$$ss$$$$$ss$        $ss $G..|..n..G$ $=",
+        "=$ $ssssssssssssssss$   MM   $ss S||+|.....|$ $=",
+        "=$7$ssssssssssssssss$   MM   $ssss+....bbb.G$ $=",
+        "=$ $y____y____y____y$        $ssss+........G$ $=",
+        "=$ $y____y____y____y$***  ***$ss S|Y...bbb.|$ $=",
+        "=$ $y____y____y____y$*7*  *7*$ss $G........G$ $=",
+        "=$ $y__\u00c1_y__\u00c1_y__\u00c1_y$***  ***$ss $G....bbb.G$ $=",
+        "=$7$y____y____y____y$$$$$$$$$$ss $|........|$ $=",
+        "=$ $y____y____y____y$sssssssssss $||GG||GG||$ $=",
+        "=$ $________________$sssssssssss $$$$$$$$$$$$ $=",
+        "=$ $________________$ss   s   s               $=",
+        "=$ $________________$ss 7 s 7 s               $=",
+        "=$7$________________$ss   s   s   7    7    7 $=",
+        "=$ $________________$ss $iSi$iSi$             $=",
+        "=$ $________________$ss $|||$|||$             $=",
+        "=$$$_______$$_______$ss$$$$$$$$$$$$$$$$$$$$$$$$=",
+        "====_______Pp_______=oo========================="
+      ],
+      "terrain": {
+        "4": "t_gutter_downspout",
+        " ": "t_region_groundcover_urban",
+        "'": "t_region_soil",
+        "+": "t_door_c",
+        ".": "t_thconc_floor",
+        "b": "t_thconc_floor",
+        "n": "t_thconc_floor",
+        "Y": "t_thconc_floor",
+        "_": "t_pavement",
+        "\u00c1": "t_pavement",
+        "0": "t_window_domestic",
+        "7": "t_region_tree_shade",
+        "y": "t_pavement_y",
+        "=": "t_drystone_wall_half",
+        "G": [
+          "t_window_stained_green",
+          "t_window_stained_red",
+          "t_window_stained_blue"
+        ],
+        "s": "t_concrete",
+        "|": "t_rock_smooth",
+        "i": "t_column",
+        "o": "t_chaingate_c",
+        "X": "t_grave",
+        "$": "t_region_soil",
+        "&": "t_region_soil",
+        "*": "t_region_soil",
+        "M": "t_region_soil",
+        "P": "t_region_soil",
+        "S": "t_region_soil",
+        "^": "t_region_soil",
+        "p": "t_region_soil",
+        "x": "t_region_soil"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": [
+      "cabin_liam"
+    ],
+    "object": {
+      "terrain": {
+        "#": "t_wall_log",
+        "o": "t_column",
+        "R": "t_floor",
+        "r": "t_floor",
+        "S": "t_floor",
+        "%": "t_gutter_downspout",
+        ".": [
+          [
+            "t_region_groundcover",
+            4
+          ],
+          "t_region_groundcover_forest"
+        ],
+        "~": [
+          [
+            "t_region_groundcover_barren",
+            3
+          ],
+          [
+            "t_region_groundcover",
+            2
+          ]
+        ],
+        "*": [
+          [
+            "t_region_groundcover",
+            15
+          ],
+          "t_region_shrub"
+        ],
+        "-": "t_railing",
+        "w": "t_window_domestic",
+        "+": "t_door_c",
+        "=": "t_door_c",
+        "\u0194": "t_region_groundcover_barren",
+        "$": "t_floor",
+        "1": "t_floor",
+        "2": "t_floor",
+        "3": "t_floor",
+        "4": "t_floor",
+        "5": "t_floor",
+        "6": "t_floor",
+        "7": "t_floor",
+        "8": "t_floor",
+        "9": "t_floor",
+        "A": "t_floor",
+        "B": "t_floor",
+        "D": "t_floor",
+        "F": "t_floor",
+        "L": "t_floor",
+        "O": "t_floor",
+        "T": "t_floor",
+        "a": "t_floor",
+        "b": "t_floor",
+        "c": "t_floor",
+        "d": "t_floor",
+        "s": "t_floor",
+        "t": "t_floor",
+        "u": "t_floor",
+        "\u0154": "t_floor",
+        "\u0156": "t_floor",
+        "\u0165": "t_floor"
+      },
+      "fill_ter": "t_floor",
+      "rows": [
+        "...........~~...........",
+        "...........~~...........",
+        "...%.......~~...........",
+        "**######w##++#########**",
+        "**#R  d#sT#  #A DBBD #**",
+        "**#R  c#  #  #A  BB  w**",
+        "**wR   #  =  =       w**",
+        "**wR   #  #  #########**",
+        "**#R   ####  =  DBBD #**",
+        "**#\u0156   L##A  #A  BB  w**",
+        "**####=####  #A      w**",
+        "**#ttb  uu#  #########**",
+        "**wttb   u#  #  OOO\u0165 w**",
+        "**wbb     =  =  87rrrw**",
+        "**#      u#  #   6rSr#**",
+        "**#1F5S234#  #a $9rr\u0154#**",
+        "**###ww####++####ww###**",
+        "..o bbbb     =~~~~~~~o..",
+        "..-          #~~~~~~~#..",
+        "..-          #~~~\u0194~~~#..",
+        "..o-------o  o~~~~~~~o..",
+        "...........~~.~~~~~~~...",
+        "...........~~.~~~.~~~...",
+        "...........~~~~~~~~~...."
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "lmoe_exit_roof_n",
+    "object": {
+      "terrain": {
+        " ": "t_region_groundcover",
+        "v": "t_open_air",
+        "(": "t_slope_down"
+      },
+      "mapgensize": [
+        6,
+        6
+      ],
+      "rows": [
+        "((v(((",
+        "(    (",
+        "(    (",
+        "(    (",
+        "(    (",
+        "(((((("
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "lmoe_exit_prepperquest_n",
+    "object": {
+      "terrain": {
+        "_": [
+          "t_region_groundcover",
+          [
+            "t_region_groundcover_barren",
+            9
+          ]
+        ],
+        "#": "t_dirt",
+        ".": "t_dirt",
+        ">": "t_stairs_down",
+        ")": "t_slope_up",
+        "X": "t_door_metal_locked"
+      },
+      "mapgensize": [
+        6,
+        6
+      ],
+      "rows": [
+        "))_)))",
+        ")#X##)",
+        ")#..#)",
+        ")#>>#)",
+        ")####)",
+        "))))))"
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            "lmoe_exit_roof_n"
+          ],
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      ]
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "tent_5x5_roof",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rows": [
+        "#####",
+        "#####",
+        "#####",
+        "#####",
+        "#####"
+      ],
+      "terrain": {
+        "#": "dda_geo_frontier_canvas_roof"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "leather_tent_5x5_S",
+    "//": "Canvas roof since we don't have a skin/leather one",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "#####",
+        "#xxx#",
+        "#xXx#",
+        "#xxx#",
+        "##+##"
+      ],
+      "place_nested": [
+        {
+          "chunks": [
+            "tent_5x5_roof"
+          ],
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      ],
+      "furniture": {
+        "#": "f_large_canvas_wall",
+        "X": "f_center_groundsheet",
+        "x": "f_large_groundsheet",
+        "+": "f_large_canvas_door"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "leather_tent_b_5x5_S",
+    "//": "No roof due to the ruined state.",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "#####",
+        "#xxx#",
+        "#xXx#",
+        "#xxx#",
+        "##+##"
+      ],
+      "furniture": {
+        "#": [
+          [
+            "f_large_canvas_wall",
+            5
+          ],
+          "f_null"
+        ],
+        "X": [
+          [
+            "f_center_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "x": [
+          [
+            "f_large_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "+": [
+          [
+            "f_large_canvas_door",
+            5
+          ],
+          "f_null"
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "leather_tent_b_5x5_N",
+    "//": "No roof due to the ruined state.",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "##+##",
+        "#xxx#",
+        "#xXx#",
+        "#xxx#",
+        "#####"
+      ],
+      "furniture": {
+        "#": [
+          [
+            "f_large_canvas_wall",
+            5
+          ],
+          "f_null"
+        ],
+        "X": [
+          [
+            "f_center_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "x": [
+          [
+            "f_large_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "+": [
+          [
+            "f_large_canvas_door",
+            5
+          ],
+          "f_null"
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_special",
+    "id": "Locked LMOE Shelter",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "lmoe_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          -1
+        ],
+        "overmap": "lmoe_under_empty_prepperquest_north"
+      }
+    ],
+    "locations": [
+      "forest_without_trail"
+    ],
+    "city_distance": [
+      25,
+      -1
+    ],
+    "city_sizes": [
+      0,
+      12
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "MAN_MADE",
+      "GLOBALLY_UNIQUE",
+      "WILDERNESS",
+      "SAFE_AT_WORLDGEN"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "Cabin_prepper",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "cabin_prepper_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "cabin_roof_1_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          -1
+        ],
+        "overmap": "cabin_prepper_shelter_north"
+      }
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          -1,
+          0
+        ],
+        "connection": "forest_trail"
+      }
+    ],
+    "locations": [
+      "forest"
+    ],
+    "city_distance": [
+      25,
+      -1
+    ],
+    "city_sizes": [
+      0,
+      20
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "cabin_liam",
+    "//": "Meant for starting scenario but anyone can find a similar cabin.",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "cabin_liam_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "cabin_roof_1_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "rural_road_forest_north"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "overmap": "rural_road_forest_north"
+      },
+      {
+        "point": [
+          0,
+          3,
+          0
+        ],
+        "overmap": "rural_road_forest_north"
+      },
+      {
+        "point": [
+          0,
+          4,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      }
+    ],
+    "locations": [
+      "forest"
+    ],
+    "city_distance": [
+      10,
+      25
+    ],
+    "city_sizes": [
+      0,
+      20
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          4,
+          0
+        ],
+        "connection": "local_road",
+        "from": [
+          0,
+          3,
+          0
+        ]
+      }
+    ],
+    "rotate": false,
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "GLOBALLY_UNIQUE",
+      "MAN_MADE",
+      "SAFE_AT_WORLDGEN"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "survivor_forest_camp",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "survivor_forest_camp_north"
+      }
+    ],
+    "locations": [
+      "forest_center"
+    ],
+    "city_distance": [
+      10,
+      80
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "UNIQUE",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "cemetery_lacroix",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "cemetery_4square_00_lacroix_north"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "cemetery_4square_10_lacroix_north"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "cemetery_4square_01_lacroix_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "cemetery_4square_11_lacroix_north"
+      },
+      {
+        "point": [
+          1,
+          1,
+          1
+        ],
+        "overmap": "cemetery_4square_11_roof_north"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "locations": [
+          "land",
+          "road"
+        ]
+      }
+    ],
+    "connections": [
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "connection": "local_road",
+        "from": [
+          0,
+          1,
+          0
+        ]
+      }
+    ],
+    "locations": [
+      "field",
+      "forest_without_trail"
+    ],
+    "city_distance": [
+      2,
+      5
+    ],
+    "city_sizes": [
+      4,
+      -1
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "GLOBALLY_UNIQUE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "cabin_prepper"
+    ],
+    "name": "cabin",
+    "sym": "C",
+    "color": "i_green",
+    "travel_cost_type": "structure",
+    "see_cost": 5,
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY",
+      "SOURCE_FOOD"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "cabin_liam"
+    ],
+    "name": "cabin",
+    "travel_cost_type": "structure",
+    "sym": "C",
+    "color": "i_green",
+    "see_cost": 5,
+    "flags": [
+      "RISK_LOW",
+      "SOURCE_SAFETY",
+      "SOURCE_FOOD"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "cabin_roof_1"
+    ],
+    "travel_cost_type": "roof",
+    "name": "cabin roof",
+    "sym": "C",
+    "color": "i_green",
+    "see_cost": 0
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "survivor_forest_camp"
+    ],
+    "name": "survivor forest camp",
+    "travel_cost_type": "forest",
+    "sym": "+",
+    "color": "green",
+    "see_cost": 5,
+    "flags": [
+      "REQUIRES_PREDECESSOR"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "cemetery_4square_00_lacroix",
+      "cemetery_4square_01_lacroix",
+      "cemetery_4square_10_lacroix",
+      "cemetery_4square_11_lacroix",
+      "cemetery_4square_11_roof"
+    ],
+    "copy-from": "generic_cemetery"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "lmoe"
+    ],
+    "name": "LMOE shelter",
+    "sym": "+",
+    "color": "red",
+    "see_cost": 5,
+    "flags": [
+      "KNOWN_DOWN",
+      "SOURCE_PEOPLE",
+      "SOURCE_SAFETY",
+      "SOURCE_GUN",
+      "SOURCE_AMMO",
+      "SOURCE_FOOD"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "lmoe_under_empty_prepperquest"
+    ],
+    "name": "LMOE shelter",
+    "sym": "+",
+    "color": "red",
+    "see_cost": 5,
+    "flags": [
+      "KNOWN_UP",
+      "SOURCE_PEOPLE",
+      "SOURCE_SAFETY",
+      "SOURCE_GUN",
+      "SOURCE_AMMO",
+      "SOURCE_FOOD"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": [
+      "cabin_prepper_shelter"
+    ],
+    "name": "LMOE shelter",
+    "sym": "+",
+    "color": "red",
+    "see_cost": 5,
+    "flags": [
+      "KNOWN_DOWN",
+      "RISK_HIGH",
+      "SOURCE_GUN",
+      "SOURCE_AMMO",
+      "SOURCE_FOOD"
+    ]
+  }
+]

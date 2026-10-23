@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 24,
-  "verified_percent": 47.1,
+  "verified_groups": 31,
+  "verified_percent": 60.8,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 47.1,
+  "verified_plus_prepared_percent": 60.8,
   "evidence_checkpoint": {
-    "head": "fff46f939510a3c20532759d26187b888f2bd0f2",
-    "run_id": 39828961648,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 26,
-    "geometry_assertions": 663753,
-    "installed_geometry_test_cases": 26,
-    "installed_geometry_assertions": 663753
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080
   },
   "rows": [
     {
@@ -133,28 +133,36 @@
       "source_identities": [
         "overmap_special:xedra_morgantown"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All Morgantown source cells passed source and installed generation"
     },
     {
       "name": "Рыбацкая хижина XEDRA",
       "source_identities": [
         "overmap_special:xedra_fishing_shack"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Fishing-shack source floor and roof passed source and installed generation"
     },
     {
       "name": "Физическая лаборатория LIXA",
       "source_identities": [
         "overmap_special:physics_lab_LIXA"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All LIXA source regions and sixteen source barrier positions passed source and installed generation; deferred device access remains separate"
     },
     {
       "name": "Нефтяная платформа",
       "source_identities": [
         "overmap_special:oil_platform"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 204 platform source placements passed source and installed generation with BN lake context; open-water traversal remains separate"
     },
     {
       "name": "Дом престарелых и его особый вариант",
@@ -217,14 +225,18 @@
       "source_identities": [
         "city_building:stadium_football"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 145 football stadium placements passed source and installed generation"
     },
     {
       "name": "Офисный небоскрёб",
       "source_identities": [
         "city_building:office_skyscraper"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 44 skyscraper placements passed source and installed generation with reachable room definitions loaded; not exhaustive sampling of every random room variant"
     },
     {
       "name": "Модульные многоквартирные комплексы",
@@ -235,7 +247,9 @@
         "city_building:apartment_complex_U",
         "city_building:apartment_complex_U_alt"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All five source apartment layouts and 322 placements passed source and installed generation, including 284 navigation and conditional-stair expectations"
     },
     {
       "name": "Большой супермаркет",

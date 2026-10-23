@@ -1,0 +1,147 @@
+{
+  "status": "physical_counterparts_closed_vertical_adaptation_pending",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "aliases": {
+    "f_large_skin_wall": "f_large_canvas_wall",
+    "f_large_skin_door": "f_large_canvas_door",
+    "f_large_skin_groundsheet": "f_large_groundsheet",
+    "f_skin_center_groundsheet": "f_center_groundsheet",
+    "t_carpet_metal_purple": "t_carpet_purple",
+    "t_tree_very_dead": "t_tree_dead",
+    "rural_road_forest_ns": "rural_road_forest_north",
+    "t_canvas_roof": "dda_geo_frontier_canvas_roof"
+  },
+  "unresolved_typed_refs": [],
+  "shared_preview_dependencies": [
+    [
+      "terrain",
+      "dda_geo_frontier_canvas_roof"
+    ]
+  ],
+  "generated_BN_overmap_variants": [
+    [
+      "overmap_terrain",
+      "rural_road_forest_north"
+    ]
+  ],
+  "geometry_issues": [
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": [
+        "lmoe_under_empty_prepperquest"
+      ],
+      "placement": {
+        "chunks": [
+          "lmoe_exit_prepperquest_n"
+        ],
+        "x": 9,
+        "y": 17,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "lmoe_exit_prepperquest_n",
+      "placement": {
+        "chunks": [
+          "lmoe_exit_roof_n"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "leather_tent_5x5_S",
+      "placement": {
+        "chunks": [
+          "tent_5x5_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "fallback_predecessor_needs_BN_adaptation",
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "value": "forest_thick"
+    },
+    {
+      "type": "dynamic_mapgen_weight_needs_BN_adaptation",
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "weight": {
+        "math": [
+          "clamp( ( time_since('cataclysm', 'unit':'days') + 100 ),100,250)"
+        ]
+      }
+    },
+    {
+      "type": "fallback_predecessor_needs_BN_adaptation",
+      "source": [
+        "survivor_forest_camp"
+      ],
+      "value": "forest_thick"
+    }
+  ],
+  "core_identity_intersections": [
+    [
+      "furniture",
+      "f_null"
+    ],
+    [
+      "item",
+      "null"
+    ],
+    [
+      "mapgen",
+      "cabin_roof_1"
+    ],
+    [
+      "mapgen",
+      "lmoe"
+    ],
+    [
+      "nested_mapgen",
+      "leather_tent_5x5_S"
+    ],
+    [
+      "overmap_terrain",
+      "cabin_roof_1"
+    ],
+    [
+      "overmap_terrain",
+      "lmoe"
+    ],
+    [
+      "terrain",
+      "t_null"
+    ]
+  ],
+  "bundled_mod_identity_intersections": [
+    [
+      "overmap_terrain",
+      "lmoe"
+    ]
+  ],
+  "counterpart_differences": [
+    "Heavy canvas substitutes leather walls and doors; BN physical and interaction behavior is retained",
+    "BN large/center groundsheets substitute skin groundsheets; no leather material parity claimed",
+    "Ordinary BN purple carpet substitutes metal-backed source carpet; destruction material differs",
+    "BN dead tree substitutes very dead source tree",
+    "Forest-road north is the rotating BN counterpart for DDA ns orientation"
+  ],
+  "limits": [
+    "Raw source identities still overlap BN; this candidate cannot be installed directly",
+    "All three upward placements remain intact and unsupported until explicit floor adaptation",
+    "Two fallback forest predecessors and the dynamic camp weight remain pending",
+    "Typed reference closure is not native schema or traversal acceptance",
+    "No native patch change or completion credit"
+  ]
+}

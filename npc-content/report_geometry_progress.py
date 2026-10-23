@@ -5,6 +5,13 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'overmap_special:xedra_morgantown':('native/dda_geometry_preview.json','All Morgantown source cells passed source and installed generation'),
+ 'overmap_special:xedra_fishing_shack':('native/dda_geometry_preview.json','Fishing-shack source floor and roof passed source and installed generation'),
+ 'overmap_special:physics_lab_LIXA':('native/dda_geometry_preview.json','All LIXA source regions and sixteen source barrier positions passed source and installed generation; deferred device access remains separate'),
+ 'overmap_special:oil_platform':('native/dda_geometry_preview.json','All 204 platform source placements passed source and installed generation with BN lake context; open-water traversal remains separate'),
+ 'city_building:stadium_football':('native/dda_geometry_preview.json','All 145 football stadium placements passed source and installed generation'),
+ 'city_building:office_skyscraper':('native/dda_geometry_preview.json','All 44 skyscraper placements passed source and installed generation with reachable room definitions loaded; not exhaustive sampling of every random room variant'),
+ 'city_building:apartment_complex_3x3':('native/dda_geometry_preview.json','All five source apartment layouts and 322 placements passed source and installed generation, including 284 navigation and conditional-stair expectations'),
  'overmap_special:Hot Springs':('native/dda_geometry_preview.json','Hot-spring source cells passed source and installed generation with ordinary BN water collection'),
  'overmap_special:Pottery Cottage':('native/dda_geometry_preview.json','All eight cottage cells including basement and two upper levels passed source and installed generation'),
  'overmap_special:sunken_helicopter':('native/dda_geometry_preview.json','All source wreck cells and four lake-water context cells passed source and installed generation'),
@@ -39,7 +46,8 @@ def prepare(check=False):
     validation=json.loads((ROOT/'lighthouse/VALIDATION.json').read_text())
     checkpoint=validation['checkpoint']
     assert checkpoint['status']=='success' and checkpoint['geometry_test_cases']>=3
-    assert {'hub_01','campus','exodii','frontier','raider','urban'}<=set(validation['geometry_preview']['packages'])
+    assert {'hub_01','campus','exodii','frontier','raider','urban','research','large','apartment'}<=set(validation['geometry_preview']['packages'])
+    assert checkpoint['geometry_test_cases'] >= 37 and checkpoint['installed_geometry_test_cases'] >= 37
     rows=[];seen=set()
     for g in groups:
         found=set(g['source_identities'])&VERIFIED.keys()

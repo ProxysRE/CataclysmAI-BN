@@ -1,0 +1,9 @@
+{
+  "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "files": {
+    "bn/data/json/furniture_and_terrain/furniture-terrains.json": {
+      "sha256": "1805f3927dc2fdada7739fd26c4c646cf2531dea139bf65400f63448ec4cbef5",
+      "blob_sha": "f539e12ceb86eb186b1d7b41dece92ecf17fa98c"
+    }
+  }
+}

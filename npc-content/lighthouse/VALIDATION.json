@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "fff46f939510a3c20532759d26187b888f2bd0f2",
-    "run_id": 39828961648,
+    "head": "58601a472b9b50ff197c115ec34699035e115b88",
+    "run_id": 39962621096,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 26,
-    "geometry_assertions": 663753,
-    "installed_geometry_test_cases": 26,
-    "installed_geometry_assertions": 663753
+    "geometry_test_cases": 37,
+    "geometry_assertions": 1601080,
+    "installed_geometry_test_cases": 37,
+    "installed_geometry_assertions": 1601080
   },
-  "native_patch_sha256": "adb70989e8f3c85adbef00585efd7ae27023c7cee8c37b3beb36b1304f32b24d",
+  "native_patch_sha256": "0f20157691a2caabf874cd8bcbefdf32d1dab36abc38305f2d4fb6155391d4bf",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -46,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Waterside source and installed geometry generation passed; current research preview awaits its separate Windows run. Full traversal and quests remain uncertified.",
+  "note": "Research, large sites and all five apartment layouts passed source and installed geometry generation. Full character traversal and quests remain uncertified. Staged survivor/Lacroix content is excluded.",
   "portable_package": {
-    "run_id": 39828961648,
+    "run_id": 39962621096,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,14 +57,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12452926077,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39828961648/artifacts/12452926077",
+    "artifact_id": 12510420047,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047",
     "installed_geometry_tests": {
-      "cases": 26,
-      "assertions": 663753
+      "cases": 37,
+      "assertions": 1601080
     },
-    "size": 205655665,
-    "digest": "sha256:c04b8a59f71fb560ee31a556bd09f7a3ddd189645501f937cd399a5bdd7b7d63"
+    "size": 205730746,
+    "digest": "sha256:9bef0a62f429348508f9c2ad8d787d4c53bd8973bb8d16e3e1aa6abd2cf67419"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -78,10 +78,13 @@
       "frontier",
       "raider",
       "urban",
-      "waterside"
+      "waterside",
+      "research",
+      "large",
+      "apartment"
     ],
-    "source_and_installed": "All 26 geometry cases passed without initialization errors",
-    "placed_cells": 723,
+    "source_and_installed": "All 37 geometry cases passed without initialization errors",
+    "placed_cells": 1542,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -91,6 +94,25 @@
     ],
     "raider_navigation_and_terrain_expectations": 841,
     "urban_navigation_and_marking_expectations": 120,
-    "waterside_navigation_and_terrain_expectations": 148
+    "waterside_navigation_and_terrain_expectations": 148,
+    "source_special_placements": 1538,
+    "additional_helicopter_context_cells": 4,
+    "apartment_navigation_and_conditional_expectations": 284,
+    "large_site_navigation_and_terrain_expectations": 671
+  },
+  "native_evidence": {
+    "job_id": 120444235617,
+    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/job/120444235617",
+    "source_suite_results": [
+      "73 cases /11030 assertions",
+      "10 cases /2224 assertions",
+      "37 cases /1601080 assertions"
+    ],
+    "installed_suite_results": [
+      "73 cases /11030 assertions",
+      "10 cases /2224 assertions",
+      "37 cases /1601080 assertions"
+    ],
+    "portable_upload": "success"
   }
 }
