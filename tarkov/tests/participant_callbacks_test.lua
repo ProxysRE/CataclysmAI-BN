@@ -132,7 +132,8 @@ gapi.get_map = function() return { abs_to_bub = function(_, p) return p end } en
 gapi.get_all_npcs = function() return actors end
 local catalog_choose = package.loaded.trkv_loadouts.choose
 package.loaded.trkv_loadouts.choose = function(roll, pool_id)
-  assert(pool_id == "technical_rifle_v1", "Combat manifest omitted its pool")
+  assert(pool_id == "technical_rifle_v1" or pool_id == "technical_trained_rifle_v1" or
+    pool_id == "technical_recruit_rifle_v1", "Combat manifest omitted its pool")
   return catalog_choose(roll, pool_id)
 end
 gapi.rng = function(low, high) assert(low == 1 and high == 12); return 1 end
@@ -262,6 +263,43 @@ dofile("tarkov/tests/bn_npc_probe.lua")
 assert(test_data.combat_loadout == "rifle_field_v1" and last_template == "trkv_combat_field_tester")
 assert(package.loaded.trkv_loadouts.choose == original_choose)
 print("PASS native reload setup uses production field template and restores the picker")
+-- Real menu route, failed entry retry and mixed role pools in a hostile group.
+mod.extract(); closed(); actors = {}
+local group_rolls = { 1, 4, 2 }
+local group_pools, group_draw = {}, 0
+package.loaded.trkv_loadouts.choose = function(roll, pool_id)
+  group_pools[#group_pools + 1] = pool_id
+  return catalog_choose(roll, pool_id)
+end
+gapi.rng = function(low, high)
+  assert(low == 1 and high == 4)
+  group_draw = group_draw + 1
+  return group_rolls[group_draw]
+end
+fail_enter, answer = true, 5
+local before_group = spawned
+mod.start()
+assert(root.raid.phase == "entering" and root.raid.encounter == "squad" and spawned == before_group)
+fail_enter, answer = false, 1
+mod.start()
+assert(root.raid.encounter == "squad" and #actors == 3 and spawned == before_group + 3)
+assert(group_pools[1] == "technical_trained_rifle_v1")
+assert(group_pools[2] == "technical_recruit_rifle_v1" and group_pools[3] == group_pools[2])
+local choices = { "rifle_civilian_v1", "rifle_recruit_field_v1", "rifle_recruit_civilian_v1" }
+for i, expected in ipairs(choices) do
+  local slot = root.participants.slots["hostile_" .. i]
+  assert(slot.id == actors[i].id and slot.loadout == expected)
+end
+local dead_id = actors[3].id
+actors[3] = nil -- Engine casualty: ready slot remains consumed.
+root.raid, root.participants = copy(root.raid), copy(root.participants)
+root.raid.encounter_deployed = false
+gapi.rng = function() error("Group load rerolled a participant") end
+mod.loaded(); tick()
+assert(root.raid.encounter_deployed and #actors == 2 and spawned == before_group + 3)
+assert(root.participants.slots.hostile_3.id == dead_id)
+assert(root.participants.slots.hostile_3.loadout == choices[3])
+print("PASS hostile group menu, pending retry, explicit role pools and casualty replay without reroll/respawn")
 -- Regression for the actual native probe's door setup: unchanged terrain is not failure.
 local door_map, set_calls, terrain = {}, 0, "t_door_c"
 TerId = { new = function(value) return { int_id = function() return value end } end }

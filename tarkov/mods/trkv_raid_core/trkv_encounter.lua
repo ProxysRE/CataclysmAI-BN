@@ -10,13 +10,20 @@ end
 local combat = { { slot = "combat_1", side = "hostile_test", squad = "combat_test",
   pool = "technical_rifle_v1",
   route = { { x = 402, y = 392, z = 0 }, { x = 402, y = 394, z = 0 } } } }
+local squad = {}
+for i, x in ipairs({ 398, 400, 404 }) do
+  squad[i] = { slot = "hostile_" .. i, side = "hostile_test", squad = "mixed_test",
+    pool = i == 1 and "technical_trained_rifle_v1" or "technical_recruit_rifle_v1",
+    route = { { x = x, y = 398, z = 0 }, { x = x, y = 402, z = 0 } } }
+end
+local manifests = { patrol = specs, combat = combat, squad = squad }
 function encounter.ensure(members, context, mode)
   mode = mode or "patrol"
-  if mode ~= "patrol" and mode ~= "combat" then return false, "unknown_encounter" end
+  if not manifests[mode] then return false, "unknown_encounter" end
   local adapter = {
     spawn = function(spec, sequence, choice)
       local template = "trkv_patrol_tester"
-      if mode == "combat" then
+      if mode ~= "patrol" then
         if not loadouts.contains(spec.pool, choice) then return nil end
         template = loadouts.template(choice)
       end
@@ -41,9 +48,9 @@ function encounter.ensure(members, context, mode)
       return found
     end,
   }
-  if mode == "combat" then
+  if mode ~= "patrol" then
     adapter.select = function(spec) return loadouts.choose(gapi.rng, spec.pool) end
   end
-  return deployment.ensure(members, context, mode == "combat" and combat or specs, adapter)
+  return deployment.ensure(members, context, manifests[mode], adapter)
 end
 return encounter

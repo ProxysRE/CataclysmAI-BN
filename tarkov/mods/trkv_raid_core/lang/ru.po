@@ -173,3 +173,6 @@ msgstr "Враждебный участник технической прове�
 
 msgid "Combat test rifleman"
 msgstr "Тестовый стрелок"
+
+msgid "Enter group test raid (3 hostile NPCs)"
+msgstr "Войти в тестовый рейд с группой (3 враждебных НПС)"

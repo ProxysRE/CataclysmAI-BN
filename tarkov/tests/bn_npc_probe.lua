@@ -159,6 +159,30 @@ elseif test_data.stage == "npc_combat_depart" or test_data.stage == "npc_reload_
   test_data.combat_equipment = definition.equipment
   assert(state.encounter == "combat" and state.encounter_deployed)
   assert(#gapi.get_all_npcs() == 1)
+elseif test_data.stage == "npc_hostile_group_depart" then
+  assert(api.at_home() and state.phase == "home")
+  assert(game.mod_runtime.trkv_raid_core.depart("squad"))
+  test_data.hostile_ids, test_data.hostile_choices = {}, {}
+  for i = 1, 3 do
+    local slot = root.participants.slots["hostile_" .. i]
+    assert(slot.status == "ready")
+    local definition = assert(package.loaded.trkv_loadouts.describe(slot.loadout))
+    assert(definition.profile == (i == 1 and "rifle_trained_v1" or "rifle_recruit_v1"))
+    test_data.hostile_ids[i], test_data.hostile_choices[i] = slot.id, slot.loadout
+  end
+  assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == 3)
+elseif test_data.stage == "npc_hostile_group_checkpoint" then
+  state.encounter_deployed = false
+elseif test_data.stage == "npc_hostile_group_restored" then
+  assert(state.encounter == "squad" and state.encounter_deployed)
+  assert(#gapi.get_all_npcs() == (test_data.hostile_dead_id and 2 or 3))
+  for i = 1, 3 do
+    local slot = root.participants.slots["hostile_" .. i]
+    assert(slot.status == "ready" and slot.id == test_data.hostile_ids[i])
+    assert(slot.loadout == test_data.hostile_choices[i])
+    local member = participants.find(root.participants, context(), slot.id)
+    assert(member.side == "hostile_test" and member.squad == "mixed_test" and member.loadout == slot.loadout)
+  end
 elseif test_data.stage == "npc_combat_checkpoint" then
   state.encounter_deployed = false
 elseif test_data.stage == "npc_combat_restored" then

@@ -784,6 +784,79 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_extract");
     CHECK(g->find_npc(reload_id) == nullptr);
     CHECK(get_overmapbuffer(home_dim).find_npc(reload_id) == nullptr);
+    // Player-selectable group uses the two restricted role pools together.
+    probe("npc_hostile_group_depart");
+    const sol::table hostile_id_table = data["hostile_ids"];
+    const sol::table hostile_choice_table = data["hostile_choices"];
+    std::vector<character_id> hostile_ids;
+    std::vector<std::string> hostile_choices;
+    for (auto i = 1; i <= 3; ++i) {
+        hostile_ids.emplace_back(hostile_id_table[i].get<int>());
+        hostile_choices.emplace_back(hostile_choice_table[i].get<std::string>());
+    }
+    REQUIRE(hostile_ids[0] != hostile_ids[1]);
+    REQUIRE(hostile_ids[0] != hostile_ids[2]);
+    REQUIRE(hostile_ids[1] != hostile_ids[2]);
+    const auto check_hostile_group = [&](bool changed, bool casualty) {
+        CHECK(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == (casualty ? 2 : 3));
+        for (auto i = 0; i < 3; ++i) {
+            const auto* actor = g->find_npc(hostile_ids[i]);
+            if (casualty && i == 2) {
+                CHECK(actor == nullptr);
+                CHECK(get_overmapbuffer(raid_dim).find_npc(hostile_ids[i]) == nullptr);
+                continue;
+            }
+            REQUIRE(actor != nullptr);
+            const auto trained = i == 0;
+            const auto& choice = hostile_choices[i];
+            const auto field = choice == "rifle_field_v1" || choice == "rifle_recruit_field_v1";
+            if (trained) {
+                REQUIRE((choice == "rifle_civilian_v1" || choice == "rifle_field_v1"));
+            } else {
+                REQUIRE((choice == "rifle_recruit_civilian_v1" || choice == "rifle_recruit_field_v1"));
+            }
+            const std::string npc_class_name = trained
+                ? (field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST")
+                : (field ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT");
+            CHECK(actor->myclass == npc_class_id(npc_class_name));
+            CHECK(actor->get_value("trkv_loadout") == choice);
+            CHECK(actor->get_attitude() == NPCATT_KILL);
+            CHECK(actor->get_skill_level(skill_id("gun")) == (trained ? 6 : 3));
+            CHECK(actor->get_skill_level(skill_id("rifle")) == (trained ? 6 : 3));
+            CHECK(actor->get_str_base() == (trained ? 10 : 8));
+            CHECK(actor->get_dex_base() == (trained ? 10 : 8));
+            CHECK(actor->get_per_base() == (trained ? 10 : 8));
+            CHECK(actor->primary_weapon().typeId().str() == (field ? "m4a1" : "ar15"));
+            CHECK(actor->primary_weapon().ammo_remaining() == (field ? 30 : 17) - (changed && trained ? 3 : 0));
+            CHECK(actor->get_part_hp_max(bodypart_str_id("arm_l").id()) == 60);
+            CHECK(actor->get_part_hp_cur(bodypart_str_id("arm_l").id()) == (changed && trained ? 17 : 60));
+            CHECK(actor->is_wearing(itype_id(field ? "hoodie" : "tshirt")));
+        }
+    };
+    check_hostile_group(false, false);
+    {
+        auto* actor = g->find_npc(hostile_ids[0]);
+        REQUIRE(actor != nullptr);
+        REQUIRE(actor->primary_weapon().ammo_consume(3, actor->bub_pos()) == 3);
+        actor->set_part_hp_cur(bodypart_str_id("arm_l").id(), 17);
+        auto* victim = g->find_npc(hostile_ids[2]);
+        REQUIRE(victim != nullptr);
+        victim->set_all_parts_hp_cur(0);
+        g->cleanup_dead();
+    }
+    data["hostile_dead_id"] = hostile_ids[2].get_value();
+    check_hostile_group(true, true);
+    probe("npc_hostile_group_checkpoint");
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    probe("npc_hostile_group_restored");
+    check_hostile_group(true, true);
+    probe("npc_extract");
+    for (const auto id : hostile_ids) {
+        CHECK(g->find_npc(id) == nullptr);
+        CHECK(get_overmapbuffer(home_dim).find_npc(id) == nullptr);
+    }
     for (auto sample_index = 0; sample_index < 12; ++sample_index) {
         npc sample;
         const auto sample_field = sample_index % 2 != 0;

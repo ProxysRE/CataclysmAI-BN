@@ -80,6 +80,7 @@ def main():
     lua.execute('game.mod_runtime.trkv_raid_core.start()')
     assert lua.globals().entries[3] == "Войти в тестовый рейд с патрулями (3 нейтральных НПС)"
     assert lua.globals().entries[4] == "Войти в боевой тестовый рейд (1 враждебный стрелок)"
+    assert lua.globals().entries[5] == "Войти в тестовый рейд с группой (3 враждебных НПС)"
     assert lua.globals().entries[1] == ru.gettext("Enter test raid (30 game minutes)")
     assert lua.globals().menu_title == ru.gettext("Tarkov DEV0.1: departure terminal")
     lua.eval("pending_entry")()
