@@ -25,6 +25,8 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0006-dimension-mapgen-npc-policy.patch", {"src/world_type.h": "bool allow_mapgen_npcs = true;",
              "src/world_type.cpp": '"allow_mapgen_npcs"', "src/game.cpp": "world_types::infer_from_dimension( current_dimension_id_ )",
              "src/mapgen/mapgen.cpp": "!world->allow_mapgen_npcs"}),
+            ("0007-disable-vanilla-starting-npcs.patch", {"src/game.cpp": "bool game::uses_tarkov_npc_roster()",
+             "src/game.h": "void create_profession_npcs( const std::vector<npc_class_id> &classes );"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

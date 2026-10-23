@@ -12,6 +12,10 @@
 // The installer declares this friend only in --tests checkouts.
 struct trkv_npc_spawn_probe {
     static void run(game& instance) { instance.perhaps_add_random_npc(); }
+    static void starting(game& instance) { instance.create_starting_npcs(); }
+    static void profession(game& instance) {
+        instance.create_profession_npcs({npc_class_id("TRKV_COMBAT_TEST")});
+    }
 };
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
@@ -26,8 +30,21 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     auto& lua = DynamicDataLoader::get_instance().lua->lua;
     auto data = lua.create_table();
     lua.globals()["test_data"] = data;
+    const auto check_starting_npcs_blocked = [&]() {
+        const override_option static_npcs("STATIC_NPC", "true");
+        const override_option starting_npcs("STARTING_NPC", "always");
+        const auto dimension = g->get_current_dimension_id();
+        const auto before = get_overmapbuffer(dimension).get_overmap_npcs().size();
+        const auto followers = g->get_follower_list();
+        trkv_npc_spawn_probe::starting(*g);
+        trkv_npc_spawn_probe::profession(*g);
+        CHECK(get_overmapbuffer(dimension).get_overmap_npcs().size() == before);
+        CHECK(g->get_follower_list() == followers);
+    };
+    check_starting_npcs_blocked();
     data["stage"] = "home";
     run_lua_test_script(lua, "trkv_integration_test.lua");
+    check_starting_npcs_blocked();
     const auto probe = [&](const std::string& stage) {
         data["stage"] = stage;
         run_lua_test_script(lua, "trkv_npc_probe.lua");
@@ -101,6 +118,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_enter");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
     check_random_spawn_blocked();
+    check_starting_npcs_blocked();
     const auto check_mapgen_npcs_blocked = [&]() {
         const override_option static_npcs("STATIC_NPC", "true");
         REQUIRE(get_option<bool>("STATIC_NPC"));
@@ -626,7 +644,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_combat_restored");
     check_combat_actor(initial_ammo);
-    check_random_spawn_blocked(); // Policy must also survive save/load.
+    check_random_spawn_blocked();
+    check_starting_npcs_blocked(); // Policy must also survive save/load.
     check_mapgen_npcs_blocked();
     auto remaining_ammo = initial_ammo;
     {

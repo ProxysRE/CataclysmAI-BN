@@ -1,0 +1,103 @@
+diff --git a/src/game.cpp b/src/game.cpp
+--- a/src/game.cpp
++++ b/src/game.cpp
+@@ -1090,31 +1090,9 @@
+           !g->scen->has_flag( "LONE_START" ) ) ) {
+         create_starting_npcs();
+     }
+-    if( !!u.prof ) {
+-        for( npc_class_id npcid : u.prof->npcs() ) {
+-            shared_ptr_fast<npc> tmp = make_shared_fast<npc>();
+-            tmp->randomize( npcid );
+-            auto point = random_point( m.points_in_radius( u.bub_pos(), 10 ), [&]( const tripoint_bub_ms & p ) {
+-                return m.has_floor( p ) && !is_dangerous_tile( p ) && m.passable( p );
+-            } );
+-            if( !point ) {
+-                break;
+-            }
+-            auto proj = project_remain<coords::sm>( bub_to_abs( *point ) );
+-            tmp->spawn_at_precise( proj.quotient, proj.remainder_tripoint );
+-            get_overmapbuffer( current_dimension_id_ ).insert_npc( tmp );
+-            tmp->set_fac( faction_id( "your_followers" ) );
+-            tmp->mission = NPC_MISSION_NULL;
+-            tmp->set_attitude( NPCATT_FOLLOW );
+-            add_npc_follower( tmp->getID() );
+-            cata::run_hooks( "on_creature_spawn", [&]( sol::table & params ) {
+-                params["creature"] = tmp.get();
+-            } );
+-            cata::run_hooks( "on_npc_spawn", [&]( sol::table & params ) {
+-                params["npc"] = tmp.get();
+-            } );
+-        }
+-    }
++    if( !!u.prof ) {
++        create_profession_npcs( u.prof->npcs() );
++    }
+     //Load NPCs. Set nearby npcs to active.
+     load_npcs();
+ 
+@@ -1501,8 +1479,48 @@
+     }
+ }
+ 
+-void game::create_starting_npcs()
+-{
++bool game::uses_tarkov_npc_roster()
++{
++    const auto *world = get_active_world();
++    return world && std::ranges::find( world->info->active_mod_order,
++                                     mod_id( "trkv_raid_core" ) ) != world->info->active_mod_order.end();
++}
++
++void game::create_profession_npcs( const std::vector<npc_class_id> &classes )
++{
++    if( uses_tarkov_npc_roster() ) {
++        return;
++    }
++    for( npc_class_id npcid : classes ) {
++        shared_ptr_fast<npc> tmp = make_shared_fast<npc>();
++        tmp->randomize( npcid );
++        auto point = random_point( m.points_in_radius( u.bub_pos(), 10 ), [&]( const tripoint_bub_ms & p ) {
++            return m.has_floor( p ) && !is_dangerous_tile( p ) && m.passable( p );
++        } );
++        if( !point ) {
++            break;
++        }
++        auto proj = project_remain<coords::sm>( bub_to_abs( *point ) );
++        tmp->spawn_at_precise( proj.quotient, proj.remainder_tripoint );
++        get_overmapbuffer( current_dimension_id_ ).insert_npc( tmp );
++        tmp->set_fac( faction_id( "your_followers" ) );
++        tmp->mission = NPC_MISSION_NULL;
++        tmp->set_attitude( NPCATT_FOLLOW );
++        add_npc_follower( tmp->getID() );
++        cata::run_hooks( "on_creature_spawn", [&]( sol::table & params ) {
++            params["creature"] = tmp.get();
++        } );
++        cata::run_hooks( "on_npc_spawn", [&]( sol::table & params ) {
++            params["npc"] = tmp.get();
++        } );
++    }
++}
++
++void game::create_starting_npcs()
++{
++    if( uses_tarkov_npc_roster() ) {
++        return;
++    }
+     if( !get_option<bool>( "STATIC_NPC" ) ||
+         get_option<std::string>( "STARTING_NPC" ) == "never" ) {
+         return; //Do not generate a starting npc.
+diff --git a/src/game.h b/src/game.h
+--- a/src/game.h
++++ b/src/game.h
+@@ -922,7 +922,9 @@
+ #endif
+         // Data Initialization
+         void init_autosave();     // Initializes autosave parameters
+-        void create_starting_npcs(); // Creates NPCs that start near you
++        void create_starting_npcs(); // Creates NPCs that start near you
++        bool uses_tarkov_npc_roster();
++        void create_profession_npcs( const std::vector<npc_class_id> &classes );
+         // create vehicle nearby, for example; for a profession vehicle.
+         vehicle *place_vehicle_nearby(
+             const vproto_id &id, const point_abs_omt &origin, int min_distance,

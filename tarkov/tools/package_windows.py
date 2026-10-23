@@ -41,6 +41,8 @@ def package(bn: Path, dist: Path, output: Path) -> None:
         raise SystemExit("The dimension random NPC policy patch is missing from the built source")
     if "!world->allow_mapgen_npcs" not in (bn / "src/mapgen/mapgen.cpp").read_text(encoding="utf-8"):
         raise SystemExit("The dimension mapgen NPC policy patch is missing from the built source")
+    if "bool game::uses_tarkov_npc_roster()" not in (bn / "src/game.cpp").read_text(encoding="utf-8"):
+        raise SystemExit("The project starting NPC policy patch is missing from the built source")
     executable = dist / "cataclysm-bn-tiles.exe"
     with executable.open("rb") as stream:
         if stream.read(2) != b"MZ":
