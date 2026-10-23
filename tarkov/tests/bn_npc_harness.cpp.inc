@@ -774,7 +774,14 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
                 player.clear_effects();
             });
             REQUIRE(player.primary_weapon().is_gun()); // Kept from the previous encounter.
-            player.setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+            // Varied entry is south of the arena's horizontal wall (y=396).
+            // Keep the target on that side; the legacy single actor is north.
+            const auto target_position = ak ? tripoint_abs_ms(398, 400, 0)
+                                         : tripoint_abs_ms(402, 388, 0);
+            player.setpos(abs_to_bub(target_position));
+            INFO("Reload weapon " << weapon_type << ", NPC " << actor->abs_pos().x()
+                 << "," << actor->abs_pos().y() << ", target " << target_position.x()
+                 << "," << target_position.y());
             set_time(calendar::turn);
             REQUIRE(actor->sees(player));
             auto reloaded = false;
