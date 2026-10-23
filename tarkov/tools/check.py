@@ -9,6 +9,9 @@ MOD = ROOT / "tarkov/mods/trkv_raid_core"
 
 
 def main() -> None:
+    from validate_npc_catalog import check_directory
+    check_directory(MOD)
+    print("PASS combat NPC profiles and equipment references without vanilla fallback")
     for path in MOD.glob("*.json"):
         entries = json.loads(path.read_text())
         assert isinstance(entries, list), path
@@ -56,6 +59,7 @@ def main() -> None:
         LuaRuntime(unpack_returned_tuples=True).execute((ROOT / "tarkov/tests" / suite).read_text())
     import runpy
     runpy.run_path(str(ROOT / "tarkov/tests/localization_test.py"), run_name="__main__")
+    runpy.run_path(str(ROOT / "tarkov/tests/npc_catalog_test.py"), run_name="__main__")
     print("PASS JSON structure, map dimensions, symbol coverage, connectivity and Lua 5.4 syntax")
 
 

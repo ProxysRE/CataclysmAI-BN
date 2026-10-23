@@ -938,6 +938,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             ? (sample_field ? "TRKV_COMBAT_RECRUIT_FIELD" : "TRKV_COMBAT_RECRUIT")
             : (sample_field ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST");
         sample.randomize(npc_class_id(sample_class));
+        CHECK(sample.get_mutations().empty());
+        CHECK(sample.get_bionics().empty());
         CHECK(sample.get_str_base() == (sample_recruit ? 8 : 10));
         CHECK(sample.get_dex_base() == (sample_recruit ? 8 : 10));
         CHECK(sample.get_int_base() == 8);

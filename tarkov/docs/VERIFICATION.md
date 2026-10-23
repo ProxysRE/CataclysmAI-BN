@@ -983,3 +983,33 @@ reserved-сценарий дополнен настоящей стеной, вт
 Локальные Lua/JSON, runner и применение патчей LF/CRLF/autocrlf пройдены. Патчи
 0002→0008 также последовательно применены к настоящему файлу закреплённого upstream.
 Новые C++ binding и native-сценарий ещё ожидают компиляции и исполнения в CI.
+
+
+## Размещение подтверждено; контроль наследуемых пресетов (23.10.2026)
+
+[Windows 39988453525](https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39988453525)
+и [Linux 39988453444](https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39988453444)
+полностью завершились success, включая placement predicate, реальную стену,
+сохранение reserved/выбора через save/load, восстановление пола, создание группы,
+raid native/cold и Windows-пакет.
+
+Аудит npc::randomize и npc_class на закреплённой базе не выявил скрытой выдачи
+мутаций/имплантов в текущих четырёх combat-классах. Traits по умолчанию EMPTY_GROUP,
+mutation_rounds, bionic_list и starting_spells пусты; gear overrides определены.
+Дополнительный runtime-запрет для отсутствующего поведения не вводится.
+
+Новый validate_npc_catalog.py включён в fast-checks. Он проверяет технические
+TRKV_COMBAT_* с наследованием: полный профиль stats/personality/HP, отсутствие
+traits/mutations/bionics/spells на каждом уровне предков, постоянные навыки с
+ALL=0 и ссылки всех трёх gear overrides на существующие проектные группы.
+Для carry разрешён EMPTY_GROUP. Пропущенный override не подменяется ванильной
+группой. Цикл или неизвестный предок отклоняется. Контроль узко соответствует
+нынешним техническим классам; это не полная реализация JSON inheritance BN и
+не проверка совместимости предметов/магазинов.
+
+Негативные fixtures меняют настоящие данные: потерянный weapon override, неизвестная
+carry group, неполные HP, RNG skill, цикл, неизвестный предок и четыре вида
+унаследованных модификаторов, скрытых пустым полем потомка. Все отклоняются.
+Native-проба 12 созданий четырёх классов дополнена get_mutations().empty() и
+get_bionics().empty() после randomize; шаблонный NPC_STATIC_NPC здесь не участвует.
+Локальные проверки пройдены. Новые native assertions ещё ожидают Windows/Linux CI.
