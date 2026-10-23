@@ -1,0 +1,2381 @@
+{
+  "status": "city_native_expectations_embedded_pending_windows",
+  "native_embedded": true,
+  "runtime_validated": false,
+  "fixture_checks": {
+    "dda_geo_city_add_s_library_3": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 5,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_gutter_downspout"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 4,
+        "z": 1,
+        "terrain": "t_gutter"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 19,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 21,
+        "y": 10,
+        "z": 1,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_urban_library_normal": [
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 7,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 13,
+        "y": 2,
+        "z": 0,
+        "terrain": "t_window"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 9,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 2,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 7,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 2,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 7,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 2,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 7,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 9,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 7,
+        "y": 10,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 13,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 14,
+        "y": 5,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 16,
+        "y": 21,
+        "z": 0,
+        "terrain": "t_wall_glass"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 21,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 13,
+        "y": 4,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 16,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_window"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 19,
+        "y": 12,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 20,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 1,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 14,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 15,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 14,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 15,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 14,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 15,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 22,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 11,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 11,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 12,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 13,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 1,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 6,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 9,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 1,
+        "y": 11,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 21,
+        "y": 4,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 11,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 22,
+        "y": 4,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 22,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 6,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 12,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 6,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 12,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_urban_library_vandalized": [
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 7,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 10,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_stairs_up"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 11,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 13,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_linoleum_white"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 15,
+        "y": 9,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 7,
+        "y": 5,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 8,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 13,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 16,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 18,
+        "y": 9,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 6,
+        "y": 12,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 8,
+        "y": 4,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 10,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 16,
+        "y": 16,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 1,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 5,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 7,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 14,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 8,
+        "y": 15,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 14,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 9,
+        "y": 15,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 14,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 10,
+        "y": 15,
+        "z": 1,
+        "terrain": "t_stairs_down"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 22,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 11,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 1,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 9,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 1,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 15,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 23,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 1,
+        "y": 11,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 21,
+        "y": 4,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 11,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 22,
+        "y": 4,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 22,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 6,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 12,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": -1,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 6,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 12,
+        "z": 2,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_synagogue": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 3,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 7,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 2,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 2,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 22,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 12,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_gutter_downspout"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 19,
+        "y": 17,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 6,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 12,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 18,
+        "z": 2,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 2,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_small_kindergarten": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 4,
+        "y": 11,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_door_glass_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 14,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 21,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_gutter_downspout"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 10,
+        "z": 1,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_office_dentist": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 3,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_ladder_up"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 8,
+        "z": 0,
+        "terrain": "t_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 3,
+        "z": 0,
+        "terrain": "t_pavement"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 14,
+        "y": 13,
+        "z": 0,
+        "terrain": "t_linoleum_white"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 20,
+        "z": 0,
+        "terrain": "t_window"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_door_glass_white_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 5,
+        "y": 19,
+        "z": 1,
+        "terrain": "t_grate"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_ladder_down"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_door_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 4,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 19,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_gutter"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_s_airsoft": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_pavement"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 4,
+        "z": 0,
+        "terrain": "t_pavement"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 15,
+        "z": 0,
+        "terrain": "t_thconc_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 9,
+        "z": 0,
+        "terrain": "t_thconc_floor"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 20,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_gutter_downspout"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 11,
+        "z": 1,
+        "terrain": "t_flat_roof"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 15,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 21,
+        "y": 16,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      }
+    ],
+    "dda_geo_city_add_office_warehouse_anduril": [
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 6,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 12,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 18,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 5,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 6,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 7,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 8,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 9,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 10,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 11,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_card_reader_broken"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 18,
+        "z": 0,
+        "terrain": "dda_geo_city_add_anduril_reader"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 12,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 16,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 1,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 17,
+        "y": 5,
+        "z": 0,
+        "terrain": "t_door_metal_locked"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 18,
+        "y": 5,
+        "z": 0,
+        "terrain": "dda_geo_city_add_anduril_reader"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 19,
+        "y": 19,
+        "z": 0,
+        "terrain": "t_door_c"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 0,
+        "terrain": "t_sidewalk"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 1,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 2,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_gutter"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      }
+    ]
+  },
+  "fixture_point_count": 242,
+  "random_overlay_navigation_exclusions": [
+    {
+      "omt": "dda_geo_city_add_urban_library_2_vandalized",
+      "x": 6,
+      "y": 2,
+      "terrain": "t_door_glass_c",
+      "reason": "Possible source nested damage/roof overlay"
+    },
+    {
+      "omt": "dda_geo_city_add_urban_library_2_vandalized",
+      "x": 7,
+      "y": 2,
+      "terrain": "t_door_glass_c",
+      "reason": "Possible source nested damage/roof overlay"
+    },
+    {
+      "omt": "dda_geo_city_add_urban_library_2_vandalized",
+      "x": 8,
+      "y": 2,
+      "terrain": "t_door_glass_c",
+      "reason": "Possible source nested damage/roof overlay"
+    },
+    {
+      "omt": "dda_geo_city_add_urban_library_2_vandalized",
+      "x": 6,
+      "y": 7,
+      "terrain": "t_door_glass_c",
+      "reason": "Possible source nested damage/roof overlay"
+    },
+    {
+      "omt": "dda_geo_city_add_urban_library_2_vandalized",
+      "x": 7,
+      "y": 7,
+      "terrain": "t_door_glass_c",
+      "reason": "Possible source nested damage/roof overlay"
+    },
+    {
+      "omt": "dda_geo_city_add_urban_library_2_vandalized",
+      "x": 8,
+      "y": 7,
+      "terrain": "t_door_glass_c",
+      "reason": "Possible source nested damage/roof overlay"
+    }
+  ],
+  "overlay_exclusion_count": 6,
+  "transform_checks": [
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_boarded",
+      "to": "t_door_boarded_damaged"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_boarded_damaged",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_boarded_damaged_peep",
+      "to": "t_door_b_peep"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_boarded_peep",
+      "to": "t_door_boarded_damaged_peep"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_c",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_c_peep",
+      "to": "t_door_b_peep"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_gray_c",
+      "to": "t_door_gray_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_gray_o",
+      "to": "t_door_gray_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_green_c",
+      "to": "t_door_green_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_green_o",
+      "to": "t_door_green_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_locked",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_locked_alarm",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_locked_interior",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_locked_peep",
+      "to": "t_door_b_peep"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_makeshift_c",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_makeshift_o",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_o",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_o_peep",
+      "to": "t_door_b_peep"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_red_c",
+      "to": "t_door_red_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_red_o",
+      "to": "t_door_red_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_white_c",
+      "to": "t_door_white_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_door_white_o",
+      "to": "t_door_white_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_rdoor_b",
+      "to": "t_door_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_rdoor_boarded",
+      "to": "t_rdoor_boarded_damaged"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_rdoor_boarded_damaged",
+      "to": "t_rdoor_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_rdoor_c",
+      "to": "t_rdoor_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_door",
+      "from": "t_rdoor_o",
+      "to": "t_rdoor_b"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_window",
+      "from": "t_curtains",
+      "to": "t_window_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_window",
+      "from": "t_window_domestic",
+      "to": "t_window_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_window",
+      "from": "t_window_no_curtains",
+      "to": "t_window_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_window",
+      "from": "t_window_no_curtains_open",
+      "to": "t_window_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_damaged_window",
+      "from": "t_window_open",
+      "to": "t_window_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_b",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_b_peep",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_boarded",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_boarded_damaged",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_boarded_damaged_peep",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_boarded_peep",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_c",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_c_peep",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_gray_b",
+      "to": "t_door_gray_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_gray_c",
+      "to": "t_door_gray_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_gray_o",
+      "to": "t_door_gray_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_green_b",
+      "to": "t_door_green_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_green_c",
+      "to": "t_door_green_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_green_o",
+      "to": "t_door_green_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_locked",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_locked_alarm",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_locked_interior",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_locked_peep",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_makeshift_c",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_makeshift_o",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_o",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_o_peep",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_red_b",
+      "to": "t_door_red_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_red_c",
+      "to": "t_door_red_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_red_o",
+      "to": "t_door_red_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_white_b",
+      "to": "t_door_white_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_white_c",
+      "to": "t_door_white_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_door_white_o",
+      "to": "t_door_white_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_rdoor_b",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_rdoor_boarded",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_rdoor_boarded_damaged",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_rdoor_c",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_door",
+      "from": "t_rdoor_o",
+      "to": "t_door_frame"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_window",
+      "from": "t_curtains",
+      "to": "t_window_empty"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_window",
+      "from": "t_window_domestic",
+      "to": "t_window_empty"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_window",
+      "from": "t_window_frame",
+      "to": "t_window_empty"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_window",
+      "from": "t_window_no_curtains",
+      "to": "t_window_empty"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_window",
+      "from": "t_window_no_curtains_open",
+      "to": "t_window_empty"
+    },
+    {
+      "transform": "dda_geo_city_add_destroyed_window",
+      "from": "t_window_open",
+      "to": "t_window_empty"
+    },
+    {
+      "transform": "dda_geo_city_add_glass_door_wall_2_floor",
+      "from": "t_door_glass_c",
+      "to": "t_floor"
+    },
+    {
+      "transform": "dda_geo_city_add_glass_door_wall_2_floor",
+      "from": "t_wall_glass",
+      "to": "t_floor"
+    }
+  ],
+  "transform_input_count": 73,
+  "layout_cases": 8,
+  "source_placements_in_debug_views": 37,
+  "limits": [
+    "Terrain checks are intersections across same-OMT variants and exclude all possible nested overlays",
+    "Every own tile still requires non-null terrain and empty loot; navigation exclusions never disable those checks",
+    "Native transform probes must exercise all valid BN input terrain on a real map and leave neighboring cells unchanged",
+    "No complete traversal, natural city placement, equipment or Anduril access-control interaction claim"
+  ]
+}

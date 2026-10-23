@@ -33,7 +33,8 @@ def check():
         assert point_count<8000,(name,'oversized native initializer risks Windows stack overflow',point_count)
         assert special['occurrences']==[0,0],name
         count+=len(expected)
-    assert code.count('TEST_CASE(')==len(specials)
+    assert code.count('TEST_CASE(')==len(specials)+1
+    assert code.count('TEST_CASE( "dda_city_geometry_transforms_preserve_adjacent_tiles"')==1
     # A structural furniture line must be tested as furniture, not just as a
     # non-null floor. This is also independent of the terrain-point generator.
     barrier='dda_geo_research_f_LIXA_unfold_barrier'
@@ -79,7 +80,16 @@ def check():
     for name,mask in camp['loot_masks'].items():
         body=code.split('TEST_CASE( "'+name+'_all_floors_without_loot"',1)[1].split('\nTEST_CASE(',1)[0]
         assert f'{{ 0, 0, 0, "{name}_north", "{mask}" }}' in body,('Camp empty-loot mask changed',name)
-    print(f'PASS: {len(specials)} native layouts / {count} fixture cells match embedded special coordinates; LIXA barrier has 16 furniture assertions; apartments have {apartment_count} navigation/conditional assertions; survivor sites have {survivor_count} access/roof assertions')
+    city=json.loads((ROOT/'geometry_layer/CITY_ADDITIONS_PREVIEW_REPORT.json').read_text())
+    for special,points in city['fixture_checks'].items():
+        body=code.split('TEST_CASE( "'+special+'_all_floors_without_loot"',1)[1].split('\nTEST_CASE(',1)[0]
+        actual=collections.Counter(re.findall(r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^"]+)"',body,re.M))
+        expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
+        assert actual==expected,(special,'City native geometry points changed')
+    from prepare_city_additions_preview import native_transform_test
+    assert code.endswith(native_transform_test(city)),'Native city transform matrix/behavior checks changed'
+    assert city['fixture_point_count']==242 and city['transform_input_count']==73
+    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
 
 
 if __name__=='__main__':check()

@@ -4,6 +4,10 @@ on:
     paths:
       - 'npc-content/prepare_city_additions_geometry.py'
       - 'npc-content/check_city_additions_geometry.py'
+      - 'npc-content/prepare_city_additions_preview.py'
+      - 'npc-content/check_city_additions_preview.py'
+      - 'npc-content/prepare_geometry_preview.py'
+      - 'npc-content/check_geometry_preview_layout.py'
       - 'npc-content/geometry_layer/CITY_ADDITIONS_*'
       - 'npc-content/geometry_layer/city_additions_sources/**'
       - '.github/workflows/check-dda-city-additions-geometry.yml'
@@ -17,3 +21,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python npc-content/check_city_additions_geometry.py
+      - run: python npc-content/check_city_additions_preview.py
+      - run: python npc-content/prepare_geometry_preview.py --check
+      - run: python npc-content/check_geometry_terrain_schema.py
+      - run: python npc-content/check_geometry_preview_layout.py

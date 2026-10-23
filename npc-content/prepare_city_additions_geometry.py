@@ -247,8 +247,8 @@ def prepare(check=False):
     assert not (own - BUILTIN_IDS) & (core | mods)
     cpp = runtime['bn/src/magic/magic_ter_fur_transform.cpp']
     assert 'valid_terrain' in cpp and 'load_transform_results(jo, "result", list)' in cpp
-    report = {'status': 'seven_city_sites_prepared_pending_native_schema_and_generation',
-              'native_embedded': False, 'runtime_validated': False,
+    report = {'status': 'seven_city_sites_embedded_pending_windows_loading_and_generation',
+              'native_embedded': True, 'runtime_validated': False,
               'source_sites': sorted(TARGETS), 'source_placements': sum(len(e['overmaps']) for e in registrations.values()),
               'preview_cases': sum(e['type'] == 'overmap_special' for e in preview),
               'preview_placements': sum(len(e['overmaps']) for e in preview if e['type'] == 'overmap_special'),
@@ -271,7 +271,7 @@ def prepare(check=False):
                          'Eight debug cases represent seven source city registrations, preserving whole-building library variation',
                          'Door/window transformations use existing BN machinery; native operation still requires runtime validation',
                          'Transforms omit source input terrain absent from BN; full original rules remain archived',
-                         'Empty-loot and deterministic-navigation masks for random rooftop/damage overlays must be prepared before embedding',
+                         'Native fixtures retain full empty-loot coverage and exclude possible random overlays only from fixed geometry expectations',
                          'No new generation credit or replacement of stock BN city locations']}
     for name, value in [('CITY_ADDITIONS_SHELLS.json', raw_entries), ('CITY_ADDITIONS_LATER_LAYERS.json', later),
                         ('CITY_ADDITIONS_PREVIEW_SHELL.json', preview), ('CITY_ADDITIONS_GEOMETRY_REPORT.json', report)]:

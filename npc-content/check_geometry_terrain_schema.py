@@ -74,7 +74,7 @@ def validate_locations(entries,stock):
 def check():
     entries=json.loads((ROOT/'native/dda_geometry_preview.json').read_text())
     terrain=[e for e in entries if e['type']=='terrain']
-    assert len(terrain)==47
+    assert len(terrain)==48
     for e in terrain:validate(e)
     validate_no_random_extras(entries)
     # Missing overrides inherit extras=build through BN's generic city parent.

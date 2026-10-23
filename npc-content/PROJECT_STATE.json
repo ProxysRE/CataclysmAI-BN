@@ -1,8 +1,8 @@
 {
   "remote_branch": "port/dda-npc-locations",
-  "stage": "Both forest camps embedded in 43-case preview; source and installed Windows generation pending.",
+  "stage": "Seven city sites embedded: 51 layout cases plus native terrain-transform matrix; expanded Windows validation pending.",
   "package": "Layer-first DDA locations",
-  "native_compilation": "Windows run 40004114601 passed source and installed 73 core /11030, 10 optional /2224, 41 geometry /1616215; archive 12525883815.",
+  "native_compilation": "Camp run 40021700275 compiled successfully and is running suites; expanded 52-case city candidate awaits its own Windows run.",
   "remaining": [
     "DDA trade-zone consumption and distribution consumers",
     "basecamp public-water access consumer and remaining trust consumers/penalties",
@@ -805,17 +805,18 @@
       "large",
       "apartment",
       "survivor",
-      "camp"
+      "camp",
+      "city_additions"
     ],
-    "special_cells": 1561,
+    "special_cells": 1598,
     "natural_occurrences": [
       0,
       0
     ],
     "runtime_validated": false,
-    "status": "43-case preview embedded; intact and ruined camp generation pending",
+    "status": "51 layouts plus one 73-input terrain-transform case embedded; city Windows loading/generation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "9cbe9cde895658eebb9a4bdbe947f8c5d2966831bfbec4194db56937a6f219d9",
+    "native_patch_sha256": "f4d49c1294563fb0486cc4a5f74e068db018547860ebea4422cfa8a03bc567bf",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -1118,7 +1119,7 @@
     "natural_time_weighting": "Archived source expression; not implemented by separate debug variants"
   },
   "geometry_city_additions_candidate": {
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
     "source_sites": 7,
     "source_placements": 25,
@@ -1128,7 +1129,10 @@
     "nested_definitions": 18,
     "damage_transforms": 5,
     "unresolved_typed_refs": [],
-    "status": "Seven city sites staged with correlated library variants and BN terrain-damage transforms; native masks and generation pending",
-    "report": "geometry_layer/CITY_ADDITIONS_GEOMETRY_REPORT.json"
+    "status": "All eight debug layouts embedded with 242 geometry points and 73 actual-map transform probes; source/installed Windows pending",
+    "report": "geometry_layer/CITY_ADDITIONS_GEOMETRY_REPORT.json",
+    "fixture_geometry_points": 242,
+    "native_transform_input_cases": 73,
+    "fixture_report": "geometry_layer/CITY_ADDITIONS_PREVIEW_REPORT.json"
   }
 }

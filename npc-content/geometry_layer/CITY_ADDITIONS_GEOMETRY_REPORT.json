@@ -1,6 +1,6 @@
 {
-  "status": "seven_city_sites_prepared_pending_native_schema_and_generation",
-  "native_embedded": false,
+  "status": "seven_city_sites_embedded_pending_windows_loading_and_generation",
+  "native_embedded": true,
   "runtime_validated": false,
   "source_sites": [
     "office_dentist",
@@ -949,7 +949,7 @@
     "Eight debug cases represent seven source city registrations, preserving whole-building library variation",
     "Door/window transformations use existing BN machinery; native operation still requires runtime validation",
     "Transforms omit source input terrain absent from BN; full original rules remain archived",
-    "Empty-loot and deterministic-navigation masks for random rooftop/damage overlays must be prepared before embedding",
+    "Native fixtures retain full empty-loot coverage and exclude possible random overlays only from fixed geometry expectations",
     "No new generation credit or replacement of stock BN city locations"
   ]
 }

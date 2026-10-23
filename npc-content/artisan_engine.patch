@@ -4461,11 +4461,13 @@
 +}
 --- /dev/null
 +++ b/tests/dda_geometry_preview_test.cpp
-@@ -0,0 +1,11017 @@
+@@ -0,0 +1,11455 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "cata_utility.h"
 +#include "map/map.h"
++#include "game.h"
++#include "magic/magic_ter_furn_transform.h"
 +#include "map_helpers.h"
 +#include "overmap/overmapbuffer.h"
 +#include "overmap/overmap.h"
@@ -15478,6 +15480,442 @@
 +    generate_site( 8400, {
 +        { 0, 0, 0, "dda_geo_camp_ruined_north", "000000000000000000000000000000000000000000000000011111111100000111111111011111111100000111111111011111111100000111111111011111111100000111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000001111111111111110000000011111111111111111000000011111111111111111000000011111111111111111000000001111111111111110000" },
 +    } );
++}
++
++TEST_CASE( "dda_geo_city_add_s_library_3_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8500, {
++        { 0, 0, 0, "dda_geo_city_add_s_library_3_north" },
++        { 0, 0, 1, "dda_geo_city_add_s_library_roof_3_north" },
++    }, {
++        { 0, 0, 0, 0, 0, "t_sidewalk" },
++        { 0, 0, 5, 17, 0, "t_gutter_downspout" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 7, 4, 1, "t_gutter" },
++        { 0, 0, 16, 19, 1, "t_open_air" },
++        { 0, 0, 21, 10, 1, "t_flat_roof" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_urban_library_normal_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8600, {
++        { -1, 0, 0, "dda_geo_city_add_urban_library_1_normal_north" },
++        { 0, 0, 0, "dda_geo_city_add_urban_library_2_normal_north" },
++        { -1, 1, 0, "dda_geo_city_add_urban_library_3_normal_north" },
++        { 0, 1, 0, "dda_geo_city_add_urban_library_4_normal_north" },
++        { -1, 0, 1, "dda_geo_city_add_urban_library_5_normal_north" },
++        { 0, 0, 1, "dda_geo_city_add_urban_library_6_normal_north" },
++        { -1, 1, 1, "dda_geo_city_add_urban_library_7_normal_north" },
++        { 0, 1, 1, "dda_geo_city_add_urban_library_8_normal_north" },
++        { -1, 0, 2, "dda_geo_city_add_urban_library_roof_1_north" },
++        { 0, 0, 2, "dda_geo_city_add_urban_library_roof_2_north" },
++        { -1, 1, 2, "dda_geo_city_add_urban_library_roof_3_north" },
++        { 0, 1, 2, "dda_geo_city_add_urban_library_roof_4_north" },
++    }, {
++        { -1, 0, 7, 15, 0, "t_floor" },
++        { -1, 0, 8, 14, 0, "t_stairs_up" },
++        { -1, 0, 8, 15, 0, "t_stairs_up" },
++        { -1, 0, 9, 14, 0, "t_stairs_up" },
++        { -1, 0, 9, 15, 0, "t_stairs_up" },
++        { -1, 0, 10, 14, 0, "t_stairs_up" },
++        { -1, 0, 10, 15, 0, "t_stairs_up" },
++        { -1, 0, 13, 2, 0, "t_window" },
++        { -1, 0, 23, 9, 0, "t_floor" },
++        { -1, 0, 23, 19, 0, "t_floor" },
++        { -1, 0, 23, 23, 0, "t_floor" },
++        { 0, 0, 6, 0, 0, "t_sidewalk" },
++        { 0, 0, 6, 2, 0, "t_door_glass_c" },
++        { 0, 0, 6, 7, 0, "t_door_glass_c" },
++        { 0, 0, 7, 2, 0, "t_door_glass_c" },
++        { 0, 0, 7, 7, 0, "t_door_glass_c" },
++        { 0, 0, 8, 2, 0, "t_door_glass_c" },
++        { 0, 0, 8, 7, 0, "t_door_glass_c" },
++        { 0, 0, 8, 9, 0, "t_floor" },
++        { 0, 0, 8, 14, 0, "t_floor" },
++        { 0, 0, 8, 19, 0, "t_floor" },
++        { 0, 0, 11, 23, 0, "t_floor" },
++        { -1, 1, 7, 10, 0, "t_floor" },
++        { -1, 1, 13, 0, 0, "t_floor" },
++        { -1, 1, 14, 5, 0, "t_floor" },
++        { -1, 1, 16, 21, 0, "t_wall_glass" },
++        { -1, 1, 21, 14, 0, "t_floor" },
++        { 0, 1, 0, 0, 0, "t_floor" },
++        { 0, 1, 13, 4, 0, "t_floor" },
++        { 0, 1, 16, 17, 0, "t_window" },
++        { 0, 1, 19, 12, 0, "t_floor" },
++        { 0, 1, 20, 8, 0, "t_floor" },
++        { -1, 0, 0, 0, 1, "t_open_air" },
++        { -1, 0, 1, 12, 1, "t_open_air" },
++        { -1, 0, 8, 5, 1, "t_open_air" },
++        { -1, 0, 8, 14, 1, "t_stairs_down" },
++        { -1, 0, 8, 15, 1, "t_stairs_down" },
++        { -1, 0, 8, 18, 1, "t_floor" },
++        { -1, 0, 9, 14, 1, "t_stairs_down" },
++        { -1, 0, 9, 15, 1, "t_stairs_down" },
++        { -1, 0, 10, 14, 1, "t_stairs_down" },
++        { -1, 0, 10, 15, 1, "t_stairs_down" },
++        { -1, 0, 22, 23, 1, "t_floor" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 10, 11, 1, "t_floor" },
++        { 0, 0, 12, 5, 1, "t_open_air" },
++        { 0, 0, 16, 17, 1, "t_open_air" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++        { -1, 1, 0, 0, 1, "t_open_air" },
++        { -1, 1, 11, 18, 1, "t_floor" },
++        { -1, 1, 12, 12, 1, "t_floor" },
++        { -1, 1, 13, 6, 1, "t_floor" },
++        { -1, 1, 23, 23, 1, "t_open_air" },
++        { 0, 1, 0, 0, 1, "t_floor" },
++        { 0, 1, 1, 6, 1, "t_floor" },
++        { 0, 1, 6, 12, 1, "t_floor" },
++        { 0, 1, 9, 18, 1, "t_open_air" },
++        { 0, 1, 23, 23, 1, "t_open_air" },
++        { -1, 0, 0, 0, 2, "t_open_air" },
++        { -1, 0, 1, 11, 2, "t_open_air" },
++        { -1, 0, 21, 4, 2, "t_open_air" },
++        { -1, 0, 23, 18, 2, "t_flat_roof" },
++        { -1, 0, 23, 23, 2, "t_flat_roof" },
++        { 0, 0, 0, 0, 2, "t_open_air" },
++        { 0, 0, 2, 11, 2, "t_flat_roof" },
++        { 0, 0, 22, 4, 2, "t_open_air" },
++        { 0, 0, 22, 18, 2, "t_open_air" },
++        { 0, 0, 23, 23, 2, "t_open_air" },
++        { -1, 1, 0, 0, 2, "t_open_air" },
++        { -1, 1, 0, 6, 2, "t_open_air" },
++        { -1, 1, 0, 12, 2, "t_open_air" },
++        { -1, 1, 0, 18, 2, "t_open_air" },
++        { -1, 1, 23, 23, 2, "t_open_air" },
++        { 0, 1, 0, 0, 2, "t_flat_roof" },
++        { 0, 1, 0, 6, 2, "t_flat_roof" },
++        { 0, 1, 0, 12, 2, "t_flat_roof" },
++        { 0, 1, 0, 18, 2, "t_open_air" },
++        { 0, 1, 23, 23, 2, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_urban_library_vandalized_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8700, {
++        { -1, 0, 0, "dda_geo_city_add_urban_library_1_vandalized_north" },
++        { 0, 0, 0, "dda_geo_city_add_urban_library_2_vandalized_north" },
++        { -1, 1, 0, "dda_geo_city_add_urban_library_3_vandalized_north" },
++        { 0, 1, 0, "dda_geo_city_add_urban_library_4_vandalized_north" },
++        { -1, 0, 1, "dda_geo_city_add_urban_library_5_vandalized_north" },
++        { 0, 0, 1, "dda_geo_city_add_urban_library_6_vandalized_north" },
++        { -1, 1, 1, "dda_geo_city_add_urban_library_7_vandalized_north" },
++        { 0, 1, 1, "dda_geo_city_add_urban_library_8_vandalized_north" },
++        { -1, 0, 2, "dda_geo_city_add_urban_library_roof_1_north" },
++        { 0, 0, 2, "dda_geo_city_add_urban_library_roof_2_north" },
++        { -1, 1, 2, "dda_geo_city_add_urban_library_roof_3_north" },
++        { 0, 1, 2, "dda_geo_city_add_urban_library_roof_4_north" },
++    }, {
++        { -1, 0, 7, 20, 0, "t_floor" },
++        { -1, 0, 8, 14, 0, "t_stairs_up" },
++        { -1, 0, 8, 15, 0, "t_stairs_up" },
++        { -1, 0, 9, 14, 0, "t_stairs_up" },
++        { -1, 0, 9, 15, 0, "t_stairs_up" },
++        { -1, 0, 10, 10, 0, "t_floor" },
++        { -1, 0, 10, 14, 0, "t_stairs_up" },
++        { -1, 0, 10, 15, 0, "t_stairs_up" },
++        { -1, 0, 11, 15, 0, "t_floor" },
++        { -1, 0, 13, 3, 0, "t_floor" },
++        { -1, 0, 23, 23, 0, "t_floor" },
++        { 0, 0, 6, 0, 0, "t_sidewalk" },
++        { 0, 0, 9, 19, 0, "t_floor" },
++        { 0, 0, 11, 23, 0, "t_floor" },
++        { 0, 0, 14, 14, 0, "t_linoleum_white" },
++        { 0, 0, 15, 9, 0, "t_floor" },
++        { -1, 1, 7, 5, 0, "t_floor" },
++        { -1, 1, 8, 14, 0, "t_floor" },
++        { -1, 1, 13, 0, 0, "t_floor" },
++        { -1, 1, 16, 20, 0, "t_floor" },
++        { -1, 1, 18, 9, 0, "t_floor" },
++        { 0, 1, 0, 0, 0, "t_floor" },
++        { 0, 1, 6, 12, 0, "t_floor" },
++        { 0, 1, 8, 4, 0, "t_floor" },
++        { 0, 1, 10, 8, 0, "t_floor" },
++        { 0, 1, 16, 16, 0, "t_floor" },
++        { -1, 0, 0, 0, 1, "t_open_air" },
++        { -1, 0, 1, 12, 1, "t_open_air" },
++        { -1, 0, 5, 5, 1, "t_open_air" },
++        { -1, 0, 7, 18, 1, "t_floor" },
++        { -1, 0, 8, 14, 1, "t_stairs_down" },
++        { -1, 0, 8, 15, 1, "t_stairs_down" },
++        { -1, 0, 9, 14, 1, "t_stairs_down" },
++        { -1, 0, 9, 15, 1, "t_stairs_down" },
++        { -1, 0, 10, 14, 1, "t_stairs_down" },
++        { -1, 0, 10, 15, 1, "t_stairs_down" },
++        { -1, 0, 22, 23, 1, "t_floor" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 7, 5, 1, "t_flat_roof" },
++        { 0, 0, 12, 11, 1, "t_floor" },
++        { 0, 0, 18, 17, 1, "t_open_air" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++        { -1, 1, 0, 0, 1, "t_open_air" },
++        { -1, 1, 0, 18, 1, "t_open_air" },
++        { -1, 1, 1, 12, 1, "t_open_air" },
++        { -1, 1, 9, 6, 1, "t_floor" },
++        { -1, 1, 23, 23, 1, "t_open_air" },
++        { 0, 1, 0, 0, 1, "t_floor" },
++        { 0, 1, 1, 12, 1, "t_floor" },
++        { 0, 1, 15, 18, 1, "t_open_air" },
++        { 0, 1, 23, 5, 1, "t_open_air" },
++        { 0, 1, 23, 23, 1, "t_open_air" },
++        { -1, 0, 0, 0, 2, "t_open_air" },
++        { -1, 0, 1, 11, 2, "t_open_air" },
++        { -1, 0, 21, 4, 2, "t_open_air" },
++        { -1, 0, 23, 18, 2, "t_flat_roof" },
++        { -1, 0, 23, 23, 2, "t_flat_roof" },
++        { 0, 0, 0, 0, 2, "t_open_air" },
++        { 0, 0, 2, 11, 2, "t_flat_roof" },
++        { 0, 0, 22, 4, 2, "t_open_air" },
++        { 0, 0, 22, 18, 2, "t_open_air" },
++        { 0, 0, 23, 23, 2, "t_open_air" },
++        { -1, 1, 0, 0, 2, "t_open_air" },
++        { -1, 1, 0, 6, 2, "t_open_air" },
++        { -1, 1, 0, 12, 2, "t_open_air" },
++        { -1, 1, 0, 18, 2, "t_open_air" },
++        { -1, 1, 23, 23, 2, "t_open_air" },
++        { 0, 1, 0, 0, 2, "t_flat_roof" },
++        { 0, 1, 0, 6, 2, "t_flat_roof" },
++        { 0, 1, 0, 12, 2, "t_flat_roof" },
++        { 0, 1, 0, 18, 2, "t_open_air" },
++        { 0, 1, 23, 23, 2, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_synagogue_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8800, {
++        { 0, 0, 0, "dda_geo_city_add_synagogue_north" },
++        { 0, 0, 1, "dda_geo_city_add_synagogue_roof_north" },
++        { 0, 0, 2, "dda_geo_city_add_synagogue_upper_roof_north" },
++    }, {
++        { 0, 0, 3, 0, 0, "t_sidewalk" },
++        { 0, 0, 7, 18, 0, "t_door_c" },
++        { 0, 0, 9, 7, 0, "t_floor" },
++        { 0, 0, 9, 20, 0, "t_door_c" },
++        { 0, 0, 11, 2, 0, "t_door_c" },
++        { 0, 0, 11, 6, 0, "t_door_c" },
++        { 0, 0, 11, 22, 0, "t_door_c" },
++        { 0, 0, 12, 2, 0, "t_door_c" },
++        { 0, 0, 12, 6, 0, "t_door_c" },
++        { 0, 0, 12, 22, 0, "t_door_c" },
++        { 0, 0, 14, 12, 0, "t_floor" },
++        { 0, 0, 16, 3, 0, "t_door_c" },
++        { 0, 0, 16, 18, 0, "t_door_c" },
++        { 0, 0, 17, 23, 0, "t_gutter_downspout" },
++        { 0, 0, 19, 17, 0, "t_floor" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 0, 6, 1, "t_open_air" },
++        { 0, 0, 0, 12, 1, "t_open_air" },
++        { 0, 0, 0, 18, 1, "t_open_air" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++        { 0, 0, 0, 0, 2, "t_open_air" },
++        { 0, 0, 0, 6, 2, "t_open_air" },
++        { 0, 0, 0, 12, 2, "t_open_air" },
++        { 0, 0, 0, 18, 2, "t_open_air" },
++        { 0, 0, 23, 23, 2, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_small_kindergarten_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8900, {
++        { 0, 0, 0, "dda_geo_city_add_small_kindergarten_north" },
++        { 0, 0, 1, "dda_geo_city_add_small_kindergarten_roof_north" },
++    }, {
++        { 0, 0, 4, 11, 0, "t_floor" },
++        { 0, 0, 9, 18, 0, "t_floor" },
++        { 0, 0, 11, 0, 0, "t_sidewalk" },
++        { 0, 0, 11, 8, 0, "t_door_glass_c" },
++        { 0, 0, 12, 8, 0, "t_door_glass_c" },
++        { 0, 0, 14, 14, 0, "t_floor" },
++        { 0, 0, 21, 23, 0, "t_gutter_downspout" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 6, 5, 1, "t_open_air" },
++        { 0, 0, 12, 10, 1, "t_flat_roof" },
++        { 0, 0, 18, 18, 1, "t_flat_roof" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_office_dentist_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 9000, {
++        { 0, 0, 0, "dda_geo_city_add_office_dentist_north" },
++        { 0, 0, 1, "dda_geo_city_add_office_dentist_roof_north" },
++    }, {
++        { 0, 0, 3, 0, 0, "t_sidewalk" },
++        { 0, 0, 6, 18, 0, "t_ladder_up" },
++        { 0, 0, 8, 8, 0, "t_floor" },
++        { 0, 0, 12, 3, 0, "t_pavement" },
++        { 0, 0, 14, 13, 0, "t_linoleum_white" },
++        { 0, 0, 17, 20, 0, "t_window" },
++        { 0, 0, 18, 15, 0, "t_door_glass_white_c" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 5, 19, 1, "t_grate" },
++        { 0, 0, 6, 18, 1, "t_ladder_down" },
++        { 0, 0, 8, 18, 1, "t_door_locked" },
++        { 0, 0, 18, 4, 1, "t_open_air" },
++        { 0, 0, 19, 12, 1, "t_gutter" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_s_airsoft_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 9100, {
++        { 0, 0, 0, "dda_geo_city_add_s_airsoft_north" },
++        { 0, 0, 1, "dda_geo_city_add_s_airsoft_roof_north" },
++    }, {
++        { 0, 0, 0, 0, 0, "t_pavement" },
++        { 0, 0, 8, 4, 0, "t_pavement" },
++        { 0, 0, 10, 15, 0, "t_thconc_floor" },
++        { 0, 0, 12, 9, 0, "t_thconc_floor" },
++        { 0, 0, 20, 23, 0, "t_gutter_downspout" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 6, 11, 1, "t_flat_roof" },
++        { 0, 0, 15, 5, 1, "t_open_air" },
++        { 0, 0, 21, 16, 1, "t_open_air" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_geo_city_add_office_warehouse_anduril_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 9200, {
++        { 0, 0, 0, "dda_geo_city_add_office_warehouse_anduril_north" },
++        { 0, 0, 1, "dda_geo_city_add_office_warehouse_anduril_roof_north" },
++    }, {
++        { 0, 0, 0, 0, 0, "t_sidewalk" },
++        { 0, 0, 0, 6, 0, "t_sidewalk" },
++        { 0, 0, 0, 12, 0, "t_sidewalk" },
++        { 0, 0, 0, 18, 0, "t_sidewalk" },
++        { 0, 0, 5, 1, 0, "t_door_metal_locked" },
++        { 0, 0, 6, 1, 0, "t_door_metal_locked" },
++        { 0, 0, 7, 1, 0, "t_door_metal_locked" },
++        { 0, 0, 8, 1, 0, "t_door_metal_locked" },
++        { 0, 0, 9, 1, 0, "t_door_metal_locked" },
++        { 0, 0, 10, 1, 0, "t_door_metal_locked" },
++        { 0, 0, 11, 1, 0, "t_card_reader_broken" },
++        { 0, 0, 12, 18, 0, "dda_geo_city_add_anduril_reader" },
++        { 0, 0, 12, 19, 0, "t_door_metal_locked" },
++        { 0, 0, 16, 1, 0, "t_door_c" },
++        { 0, 0, 17, 1, 0, "t_door_c" },
++        { 0, 0, 17, 5, 0, "t_door_metal_locked" },
++        { 0, 0, 18, 5, 0, "dda_geo_city_add_anduril_reader" },
++        { 0, 0, 19, 19, 0, "t_door_c" },
++        { 0, 0, 23, 23, 0, "t_sidewalk" },
++        { 0, 0, 0, 0, 1, "t_open_air" },
++        { 0, 0, 1, 18, 1, "t_open_air" },
++        { 0, 0, 2, 12, 1, "t_gutter" },
++        { 0, 0, 23, 5, 1, "t_open_air" },
++        { 0, 0, 23, 23, 1, "t_open_air" },
++    } );
++}
++
++TEST_CASE( "dda_city_geometry_transforms_preserve_adjacent_tiles", "[dda_geometry]" )
++{
++    clear_all_state();
++    clear_map();
++    build_test_map( ter_id( "t_floor" ) );
++    auto &m = get_map();
++    const tripoint_bub_ms p( 12, 12, 0 );
++    const tripoint_bub_ms adjacent( 13, 12, 0 );
++    struct transform_row { const char *id; const char *from; const char *to; };
++    for( const auto &row : std::initializer_list<transform_row> {
++        { "dda_geo_city_add_damaged_door", "t_door_boarded", "t_door_boarded_damaged" },
++        { "dda_geo_city_add_damaged_door", "t_door_boarded_damaged", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_boarded_damaged_peep", "t_door_b_peep" },
++        { "dda_geo_city_add_damaged_door", "t_door_boarded_peep", "t_door_boarded_damaged_peep" },
++        { "dda_geo_city_add_damaged_door", "t_door_c", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_c_peep", "t_door_b_peep" },
++        { "dda_geo_city_add_damaged_door", "t_door_gray_c", "t_door_gray_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_gray_o", "t_door_gray_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_green_c", "t_door_green_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_green_o", "t_door_green_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_locked", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_locked_alarm", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_locked_interior", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_locked_peep", "t_door_b_peep" },
++        { "dda_geo_city_add_damaged_door", "t_door_makeshift_c", "t_door_frame" },
++        { "dda_geo_city_add_damaged_door", "t_door_makeshift_o", "t_door_frame" },
++        { "dda_geo_city_add_damaged_door", "t_door_o", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_o_peep", "t_door_b_peep" },
++        { "dda_geo_city_add_damaged_door", "t_door_red_c", "t_door_red_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_red_o", "t_door_red_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_white_c", "t_door_white_b" },
++        { "dda_geo_city_add_damaged_door", "t_door_white_o", "t_door_white_b" },
++        { "dda_geo_city_add_damaged_door", "t_rdoor_b", "t_door_b" },
++        { "dda_geo_city_add_damaged_door", "t_rdoor_boarded", "t_rdoor_boarded_damaged" },
++        { "dda_geo_city_add_damaged_door", "t_rdoor_boarded_damaged", "t_rdoor_b" },
++        { "dda_geo_city_add_damaged_door", "t_rdoor_c", "t_rdoor_b" },
++        { "dda_geo_city_add_damaged_door", "t_rdoor_o", "t_rdoor_b" },
++        { "dda_geo_city_add_damaged_window", "t_curtains", "t_window_frame" },
++        { "dda_geo_city_add_damaged_window", "t_window_domestic", "t_window_frame" },
++        { "dda_geo_city_add_damaged_window", "t_window_no_curtains", "t_window_frame" },
++        { "dda_geo_city_add_damaged_window", "t_window_no_curtains_open", "t_window_frame" },
++        { "dda_geo_city_add_damaged_window", "t_window_open", "t_window_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_b", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_b_peep", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_boarded", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_boarded_damaged", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_boarded_damaged_peep", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_boarded_peep", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_c", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_c_peep", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_gray_b", "t_door_gray_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_gray_c", "t_door_gray_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_gray_o", "t_door_gray_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_green_b", "t_door_green_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_green_c", "t_door_green_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_green_o", "t_door_green_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_locked", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_locked_alarm", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_locked_interior", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_locked_peep", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_makeshift_c", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_makeshift_o", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_o", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_o_peep", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_red_b", "t_door_red_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_red_c", "t_door_red_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_red_o", "t_door_red_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_white_b", "t_door_white_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_white_c", "t_door_white_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_door_white_o", "t_door_white_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_rdoor_b", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_rdoor_boarded", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_rdoor_boarded_damaged", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_rdoor_c", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_door", "t_rdoor_o", "t_door_frame" },
++        { "dda_geo_city_add_destroyed_window", "t_curtains", "t_window_empty" },
++        { "dda_geo_city_add_destroyed_window", "t_window_domestic", "t_window_empty" },
++        { "dda_geo_city_add_destroyed_window", "t_window_frame", "t_window_empty" },
++        { "dda_geo_city_add_destroyed_window", "t_window_no_curtains", "t_window_empty" },
++        { "dda_geo_city_add_destroyed_window", "t_window_no_curtains_open", "t_window_empty" },
++        { "dda_geo_city_add_destroyed_window", "t_window_open", "t_window_empty" },
++        { "dda_geo_city_add_glass_door_wall_2_floor", "t_door_glass_c", "t_floor" },
++        { "dda_geo_city_add_glass_door_wall_2_floor", "t_wall_glass", "t_floor" },
++    } ) {
++        INFO( row.id << " input=" << row.from );
++        const ter_furn_transform_id change( row.id );
++        REQUIRE( change.is_valid() );
++        m.ter_set( p, ter_id( row.from ) );
++        m.furn_set( p, furn_id( "f_null" ) );
++        m.ter_set( adjacent, ter_id( "t_floor" ) );
++        m.furn_set( adjacent, furn_id( "f_chair" ) );
++        change->transform( m, p );
++        CHECK( m.ter( p ) == ter_id( row.to ) );
++        CHECK( m.ter( adjacent ) == ter_id( "t_floor" ) );
++        CHECK( m.furn( adjacent ) == furn_id( "f_chair" ) );
++        CHECK( m.furn( p ) == furn_id( "f_null" ) );
++        CHECK( m.i_at( p ).empty() );
++    }
++    clear_all_state();
 +}
 --- /dev/null
 +++ b/data/json/dda_artisan_activities.json
@@ -75457,7 +75895,7 @@
 +    "authors": [
 +      "ProxysRE"
 +    ],
-+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof Lacroix cemetery and separate intact/ruined forest camps with explicit tent roofs. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.",
++    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof Lacroix cemetery and separate intact/ruined forest camps with explicit tent roofs, synagogue, libraries, kindergarten, dentist, airsoft shop and Anduril warehouse shells. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.",
 +    "category": "buildings",
 +    "dependencies": [
 +      "bn"
@@ -75466,7 +75904,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,106281 @@
+@@ -0,0 +1,110736 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -181739,6 +182177,4461 @@
 +        }
 +      ]
 +    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_synagogue"
++    ],
++    "//": "New England Synagogue",
++    "object": {
++      "parameters": {
++        "linoleum_color": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_linoleum_gray",
++                1
++              ],
++              [
++                "t_linoleum_white",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        " ": "t_region_groundcover_urban",
++        "+": "t_door_c",
++        ".": "t_floor",
++        "S": "t_linoleum_gray",
++        "T": "t_linoleum_gray",
++        "^": "t_region_shrub_decorative",
++        "s": "t_sidewalk",
++        "w": "t_window",
++        "|": "t_brick_wall",
++        "B": "t_carpet_red",
++        "A": "t_carpet_red",
++        "\u00a3": "t_carpet_red",
++        "r": "t_railing",
++        "!": "t_gutter_downspout",
++        "#": "t_floor",
++        "D": "t_floor",
++        "d": "t_floor",
++        "e": "t_floor",
++        "h": "t_floor",
++        "l": "t_floor",
++        "o": "t_floor",
++        "t": "t_floor",
++        "y": "t_floor",
++        "\u00a7": "t_floor"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "   s       ss           ",
++        "  ss^^^^^^^ss^^^^^^^    ",
++        "  s^^||||w|++|w||||^^   ",
++        "  s^||tt........+.||^   ",
++        "  s^|\u00a7.........l|..|^   ",
++        " ss^|lll.tt.....|ST|^^  ",
++        " s^||||||||++||||||||^  ",
++        " s^|................|^  ",
++        " s^|.######..######.|^  ",
++        " s^w................w^  ",
++        " s^|#.#.#.rrrr.#.#.#|^  ",
++        " s^w#.#.#.r\u00a3\u00a3r.#.#.#w^  ",
++        " s^|#.#.#..BB..#.#.#|^  ",
++        " s^w#.#.#.rBBr.#.#.#w^  ",
++        " s^|#.#.#.rrrr.#.#.#|^  ",
++        " s^w................w^  ",
++        " s^|.######..######.|^  ",
++        " s^|.......AA......\u00a7|^  ",
++        " s^||||+||||||||+||||^  ",
++        " s^^woo.o|y.eD....ow^^  ",
++        " ss^|y...+.....h.ho|^   ",
++        "  s^||hd.|o..ydddd||^   ",
++        "  s^^|||w||++||w|||^^   ",
++        "  sssssssssss    !      "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_city_add_synagogue_roof",
++    "object": {
++      "terrain": {
++        ".": "t_tile_flat_roof",
++        " ": "t_open_air",
++        "o": "t_open_air_rooved",
++        "-": "t_gutter",
++        "5": "t_gutter_drop",
++        "|": "t_brick_wall",
++        "O": "t_window"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "     --------------     ",
++        "    --............--    ",
++        "    -..............-    ",
++        "    -..............-    ",
++        "   --..............--   ",
++        "   -................-   ",
++        "   -....|O|OO|O|....-   ",
++        "   -....OooooooO....-   ",
++        "   -....|oooooo|....-   ",
++        "   -....OooooooO....-   ",
++        "   -....|oooooo|....-   ",
++        "   -....OooooooO....-   ",
++        "   -....|oooooo|....-   ",
++        "   -....OooooooO....-   ",
++        "   -....|O|OO|O|....-   ",
++        "   -................-   ",
++        "   --..............--   ",
++        "    -..............-    ",
++        "    -..............-    ",
++        "    --............--    ",
++        "     ------------5-     ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_city_add_synagogue_upper_roof",
++    "object": {
++      "terrain": {
++        ".": "t_shingle_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter"
++      },
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "        --------        ",
++        "        -......-        ",
++        "        -......-        ",
++        "        -......-        ",
++        "        -......-        ",
++        "        -......-        ",
++        "        -......-        ",
++        "        -......-        ",
++        "        --------        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_city_add_urban_library_1_normal",
++        "dda_geo_city_add_urban_library_2_normal"
++      ],
++      [
++        "dda_geo_city_add_urban_library_3_normal",
++        "dda_geo_city_add_urban_library_4_normal"
++      ]
++    ],
++    "object": {
++      "parameters": {
++        "linoleum_color": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_linoleum_gray",
++                1
++              ],
++              [
++                "t_linoleum_white",
++                1
++              ]
++            ]
++          }
++        },
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "~": "t_linoleum_white",
++        "<": "t_stairs_up",
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": [
++          [
++            "t_region_groundcover_urban",
++            20
++          ],
++          "t_region_shrub_decorative"
++        ],
++        "-": "t_sidewalk",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ],
++          [
++            "t_door_locked_interior",
++            1
++          ]
++        ],
++        "\u00b6": "t_door_glass_c",
++        ":": "t_wall_glass",
++        "o": "t_window",
++        "S": "t_linoleum_white",
++        "t": "t_linoleum_white",
++        "%": "t_floor",
++        "B": "t_floor",
++        "C": "t_floor",
++        "E": "t_floor",
++        "I": "t_floor",
++        "K": "t_floor",
++        "L": "t_floor",
++        "Q": "t_floor",
++        "T": "t_floor",
++        "U": "t_floor",
++        "W": "t_floor",
++        "[": "t_floor",
++        "]": "t_floor",
++        "d": "t_floor",
++        "e": "t_floor",
++        "h": "t_floor",
++        "l": "t_floor",
++        "r": "t_floor",
++        "y": "t_floor"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "..............................---...............",
++        "..............................---...............",
++        "............#o#o#o#..........#\u00b6\u00b6\u00b6#..............",
++        "............#[ByB[#.........##   ##.............",
++        "............#     #.........#     #.............",
++        "............#[B B[#.........#     #.............",
++        "......##o#o##||+||###########|   |##o#o#o#......",
++        "......oL   L|   y[%[%[%[|B[[B|\u00b6\u00b6\u00b6|y      o......",
++        "......#L e L|%h   h h h          | hhhhh #......",
++        "......oL e L|%h                  | [[[[[ o......",
++        "......#L e L|     h h h          | hhhhh #......",
++        "......oL    +   y[%[%[%[|rr[y    +       o......",
++        "......#||||||  ||||||||||||||   |||||||||#......",
++        "......#        |TTTTT|               +~~~#......",
++        "......o <<<                       |y |~St#......",
++        "......o <<<                    dd ||+||###......",
++        "......#        |TTTTT|         d  E|~~~#........",
++        "......#||||||  |||||||         dB E|~~~#........",
++        "......#%[%[%y   B[B[B          d  E|~St#........",
++        "......#h h h                   dd |||||###......",
++        "......o                           [CC[  [o......",
++        "......#B                               h%o......",
++        "......o             QQQQQQQQQQQQQ    Bl [o......",
++        "......#TTTTT|                       |||||#......",
++        "....###||||||                       y   [#......",
++        "....#CCCCC|   h h   QQQQQQQQQQQQQ      h%#......",
++        "....# [[[C|   [[[                       |######.",
++        "....oB    |   [[[                       + Bd]]#.",
++        "....oB   l|   h h   QQQQQQQQQQQQQ      [|  dB #.",
++        "....#y   ||                           h%| Bd  o.",
++        "....oI        h h                      [|     o.",
++        "....oI IIII   [[[   UUUUUUUUUUUUU     |||||||##.",
++        "....#I        [[[                     |CC[  h#..",
++        "....oI IIII   h h                           [o..",
++        "....oI              WWWWWWWWWWWWW           ho..",
++        "....#K KKKK   h h                            o..",
++        "....oK        [[[                     |BlBlByo..",
++        "....oK KKKK   [[[                     |||#ooo#..",
++        "....#K        h h                        #......",
++        "....oK KK                [  [  [  [  [  [o......",
++        "....oK    %EE   EE%  BB h[ h[ h[ h[ h[ h[o......",
++        "....##oo# h   h   h #oo#oo#oo#oo#oo#oo#oo#......",
++        "........::   h[h   ::...........................",
++        ".........::y  h  y::............................",
++        "..........##B   B##.............................",
++        "...........#:::::#..............................",
++        "................................................",
++        "................................................"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_city_add_urban_library_1_vandalized",
++        "dda_geo_city_add_urban_library_2_vandalized"
++      ],
++      [
++        "dda_geo_city_add_urban_library_3_vandalized",
++        "dda_geo_city_add_urban_library_4_vandalized"
++      ]
++    ],
++    "object": {
++      "parameters": {
++        "linoleum_color": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_linoleum_gray",
++                1
++              ],
++              [
++                "t_linoleum_white",
++                1
++              ]
++            ]
++          }
++        },
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "~": "t_linoleum_white",
++        "<": "t_stairs_up",
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": [
++          [
++            "t_region_groundcover_urban",
++            20
++          ],
++          "t_region_shrub_decorative"
++        ],
++        "-": "t_sidewalk",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ],
++          [
++            "t_door_locked_interior",
++            1
++          ]
++        ],
++        "\u00b6": "t_door_glass_c",
++        ":": "t_wall_glass",
++        "o": "t_window",
++        "S": "t_linoleum_white",
++        "t": "t_linoleum_white",
++        "%": "t_floor",
++        "B": "t_floor",
++        "C": "t_floor",
++        "E": "t_floor",
++        "I": "t_floor",
++        "K": "t_floor",
++        "L": "t_floor",
++        "Q": "t_floor",
++        "T": "t_floor",
++        "U": "t_floor",
++        "W": "t_floor",
++        "[": "t_floor",
++        "]": "t_floor",
++        "d": "t_floor",
++        "e": "t_floor",
++        "h": "t_floor",
++        "l": "t_floor",
++        "r": "t_floor",
++        "y": "t_floor"
++      },
++      "nested": {
++        "+": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_door_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_door_nested",
++              3
++            ],
++            [
++              "null",
++              4
++            ]
++          ]
++        },
++        "o": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_window_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_window_nested",
++              1
++            ],
++            [
++              "null",
++              2
++            ]
++          ]
++        },
++        ":": {
++          "chunks": [
++            [
++              "dda_geo_city_add_destroyed_glass_door_wall",
++              1
++            ],
++            [
++              "null",
++              2
++            ]
++          ]
++        },
++        "\u00b6": {
++          "chunks": [
++            [
++              "dda_geo_city_add_destroyed_glass_door_wall",
++              2
++            ],
++            [
++              "null",
++              9
++            ]
++          ]
++        }
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "..............................---...............",
++        "..............................---...............",
++        "............#o#o#o#..........#\u00b6\u00b6\u00b6#..............",
++        "............#[ByB[#.........##   ##.............",
++        "............#     #.........#     #.............",
++        "............#[B B[#.........#     #.............",
++        "......##o#o##||+||###########|   |##o#o#o#......",
++        "......oL   L|   y[%[%[%[|B[[B|\u00b6\u00b6\u00b6|y      o......",
++        "......#L e L|%h   h h h          | hhhhh #......",
++        "......oL e L|%h                  | [[[[[ o......",
++        "......#L e L|     h h h          | hhhhh #......",
++        "......oL    +   y[%[%[%[|rr[y    +       o......",
++        "......#||||||  ||||||||||||||   |||||||||#......",
++        "......#        |TTTTT|               +~~~#......",
++        "......o <<<                       |y |~St#......",
++        "......o <<<                    dd ||+||###......",
++        "......#        |TTTTT|         d  E|~~~#........",
++        "......#||||||  |||||||         dB E|~~~#........",
++        "......#%[%[%y   B[B[B          d  E|~St#........",
++        "......#h h h                   dd |||||###......",
++        "......o                           [CC[  [o......",
++        "......#B                               h%o......",
++        "......o             QQQQQQQQQQQQQ    Bl [o......",
++        "......#TTTTT|                       |||||#......",
++        "....###||||||                       y   [#......",
++        "....#CCCCC|   h h   QQQQQQQQQQQQQ      h%#......",
++        "....# [[[C|   [[[                       |######.",
++        "....oB    |   [[[                       + Bd]]#.",
++        "....oB   l|   h h   QQQQQQQQQQQQQ      [|  dB #.",
++        "....#y   ||                           h%| Bd  o.",
++        "....oI        h h                      [|     o.",
++        "....oI IIII   [[[   UUUUUUUUUUUUU     |||||||##.",
++        "....#I        [[[                     |CC[  h#..",
++        "....oI IIII   h h                           [o..",
++        "....oI              WWWWWWWWWWWWW           ho..",
++        "....#K KKKK   h h                            o..",
++        "....oK        [[[                     |BlBlByo..",
++        "....oK KKKK   [[[                     |||#ooo#..",
++        "....#K        h h                        #......",
++        "....oK KK                [  [  [  [  [  [o......",
++        "....oK    %EE   EE%  BB h[ h[ h[ h[ h[ h[o......",
++        "....##oo# h   h   h #oo#oo#oo#oo#oo#oo#oo#......",
++        "........::   h[h   ::...........................",
++        ".........::y  h  y::............................",
++        "..........##B   B##.............................",
++        "...........#:::::#..............................",
++        "................................................",
++        "................................................"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_city_add_urban_library_5_normal",
++        "dda_geo_city_add_urban_library_6_normal"
++      ],
++      [
++        "dda_geo_city_add_urban_library_7_normal",
++        "dda_geo_city_add_urban_library_8_normal"
++      ]
++    ],
++    "object": {
++      "parameters": {
++        "linoleum_color": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_linoleum_gray",
++                1
++              ],
++              [
++                "t_linoleum_white",
++                1
++              ]
++            ]
++          }
++        },
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "~": "t_linoleum_white",
++        ";": "t_gutter",
++        ">": "t_stairs_down",
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": "t_open_air",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ],
++          [
++            "t_door_locked_interior",
++            1
++          ]
++        ],
++        ":": "t_wall_glass",
++        "o": "t_window",
++        "S": "t_linoleum_white",
++        "t": "t_linoleum_white",
++        ",": "t_flat_roof",
++        "A": "t_floor",
++        "B": "t_floor",
++        "C": "t_floor",
++        "E": "t_floor",
++        "J": "t_floor",
++        "M": "t_floor",
++        "N": "t_floor",
++        "O": "t_floor",
++        "P": "t_floor",
++        "[": "t_floor",
++        "d": "t_floor",
++        "h": "t_floor",
++        "l": "t_floor",
++        "y": "t_floor"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "................................................",
++        "................................................",
++        "............;;;;;;;..........;;;;;..............",
++        "............;,,,,,;.........;;,,,;;.............",
++        "............;,,,,,;.........;,,,,,;.............",
++        "............;,,,,,;.........;,,,,,;.............",
++        "......########oooo###o###ooo###ooo###ooo##......",
++        "......#S~~~~+      dy l|[[[[[[[[[[[EEEEEE#......",
++        "......#t~~~~|      d   +                 o......",
++        "......#||||||      d   |           EEEEEEo......",
++        "......#S~~~~|      d   |                 o......",
++        "......#t~~~~+      dB  |EEEEE   EEEEEEEEE#......",
++        "......#||||||      d   ||||||   |||||||||#......",
++        "......#y           ddy |yAAAA   AAA     Bo......",
++        "......o >>>         dd |                yo......",
++        "......o >>>            |              y#o#......",
++        "......#y               | EEEEEEEEEE   Bo........",
++        "......#||||||          |              [o........",
++        "......#y               |              Bo........",
++        "......o  hh        hh  | EEEEEEEEEE   y#o#......",
++        "......o h[[h      h[[h |                Co......",
++        "......o h[[h      h[[h |                Co......",
++        "......o  hh        hh  |yMMMMMMMMMMy|   y#......",
++        "......#y              y||||||||||||||   |#......",
++        "....###|||||y  y||||||||E               E#......",
++        "....#NNNNNNN    JJJJJJ||E hhhhh hhhhh   E#......",
++        "....o                 J|E [[[[[ [[[[[   |##oo##.",
++        "....o                 J|E hhhhh hhhhh   |  h  #.",
++        "....#PPPyNNN    OOOyJJ||E               + h[h o.",
++        "....o                 O|E hhhhh hhhhh   | h[h o.",
++        "....o                 O|E [[[[[ [[[[[   |  h  #.",
++        "....#PPPPPPP    OOOOOO||E hhhhh hhhhh   |||||##.",
++        "....o                 y|                |    #..",
++        "....oy  h              +                + hh o..",
++        "....#  h[h   h         |  [[[[[ [[[[[   |h[[ho..",
++        "....#[  h   h[h  h     |  hhhhh hhhhh   |h[[ho..",
++        "....oC    h  h  h[h    |                | hh #..",
++        "....oC   h[h     h     |  hhhhh hhhhh   |#oo##..",
++        "....#C    h  h         |  [[[[[ [[[[[    #......",
++        "....oC      h[h        |  hhhhh hhhhh    o......",
++        "....olCC[    h        y|                 o......",
++        "....##oo#[         [#oo#oo#oo#oo#oo#ooooo#......",
++        "........::B       B::...........................",
++        ".........::B     B::............................",
++        "..........::lB[Bl::.............................",
++        "...........:::::::..............................",
++        "................................................",
++        "................................................"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_city_add_urban_library_5_vandalized",
++        "dda_geo_city_add_urban_library_6_vandalized"
++      ],
++      [
++        "dda_geo_city_add_urban_library_7_vandalized",
++        "dda_geo_city_add_urban_library_8_vandalized"
++      ]
++    ],
++    "object": {
++      "parameters": {
++        "linoleum_color": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_linoleum_gray",
++                1
++              ],
++              [
++                "t_linoleum_white",
++                1
++              ]
++            ]
++          }
++        },
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "~": "t_linoleum_white",
++        ";": "t_gutter",
++        ">": "t_stairs_down",
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": "t_open_air",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ],
++          [
++            "t_door_locked_interior",
++            1
++          ]
++        ],
++        ":": "t_wall_glass",
++        "o": "t_window",
++        "S": "t_linoleum_white",
++        "t": "t_linoleum_white",
++        ",": "t_flat_roof",
++        "A": "t_floor",
++        "B": "t_floor",
++        "C": "t_floor",
++        "E": "t_floor",
++        "J": "t_floor",
++        "M": "t_floor",
++        "N": "t_floor",
++        "O": "t_floor",
++        "P": "t_floor",
++        "[": "t_floor",
++        "d": "t_floor",
++        "h": "t_floor",
++        "l": "t_floor",
++        "y": "t_floor"
++      },
++      "nested": {
++        "+": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_door_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_door_nested",
++              3
++            ],
++            [
++              "null",
++              4
++            ]
++          ]
++        },
++        "o": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_window_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_window_nested",
++              1
++            ],
++            [
++              "null",
++              2
++            ]
++          ]
++        },
++        ":": {
++          "chunks": [
++            [
++              "dda_geo_city_add_destroyed_glass_door_wall",
++              1
++            ],
++            [
++              "null",
++              2
++            ]
++          ]
++        }
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "................................................",
++        "................................................",
++        "............;;;;;;;..........;;;;;..............",
++        "............;,,,,,;.........;;,,,;;.............",
++        "............;,,,,,;.........;,,,,,;.............",
++        "............;,,,,,;.........;,,,,,;.............",
++        "......########oooo###o###ooo###ooo###ooo##......",
++        "......#S~~~~+      dy l|[[[[[[[[[[[EEEEEE#......",
++        "......#t~~~~|      d   +                 o......",
++        "......#||||||      d   |           EEEEEEo......",
++        "......#S~~~~|      d   |                 o......",
++        "......#t~~~~+      dB  |EEEEE   EEEEEEEEE#......",
++        "......#||||||      d   ||||||   |||||||||#......",
++        "......#y           ddy |yAAAA   AAA     Bo......",
++        "......o >>>         dd |                yo......",
++        "......o >>>            |              y#o#......",
++        "......#y               | EEEEEEEEEE   Bo........",
++        "......#||||||          |              [o........",
++        "......#y               |              Bo........",
++        "......o  hh        hh  | EEEEEEEEEE   y#o#......",
++        "......o h[[h      h[[h |                Co......",
++        "......o h[[h      h[[h |                Co......",
++        "......o  hh        hh  |yMMMMMMMMMMy|   y#......",
++        "......#y              y||||||||||||||   |#......",
++        "....###|||||y  y||||||||E               E#......",
++        "....#NNNNNNN    JJJJJJ||E hhhhh hhhhh   E#......",
++        "....o                 J|E [[[[[ [[[[[   |##oo##.",
++        "....o                 J|E hhhhh hhhhh   |  h  #.",
++        "....#PPPyNNN    OOOyJJ||E               + h[h o.",
++        "....o                 O|E hhhhh hhhhh   | h[h o.",
++        "....o                 O|E [[[[[ [[[[[   |  h  #.",
++        "....#PPPPPPP    OOOOOO||E hhhhh hhhhh   |||||##.",
++        "....o                 y|                |    #..",
++        "....oy  h              +                + hh o..",
++        "....#  h[h   h         |  [[[[[ [[[[[   |h[[ho..",
++        "....#[  h   h[h  h     |  hhhhh hhhhh   |h[[ho..",
++        "....oC    h  h  h[h    |                | hh #..",
++        "....oC   h[h     h     |  hhhhh hhhhh   |#oo##..",
++        "....#C    h  h         |  [[[[[ [[[[[    #......",
++        "....oC      h[h        |  hhhhh hhhhh    o......",
++        "....olCC[    h        y|                 o......",
++        "....##oo#[         [#oo#oo#oo#oo#oo#ooooo#......",
++        "........::B       B::...........................",
++        ".........::B     B::............................",
++        "..........::lB[Bl::.............................",
++        "...........:::::::..............................",
++        "................................................",
++        "................................................"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      [
++        "dda_geo_city_add_urban_library_roof_1",
++        "dda_geo_city_add_urban_library_roof_2"
++      ],
++      [
++        "dda_geo_city_add_urban_library_roof_3",
++        "dda_geo_city_add_urban_library_roof_4"
++      ]
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "&": "t_null",
++        ":": "t_null",
++        "X": "t_null",
++        "=": "t_null",
++        "A": "t_null",
++        "N": "t_flat_roof",
++        "\u042f": "t_flat_roof"
++      },
++      "nested": {
++        "0": {
++          "chunks": [
++            [
++              "dda_geo_city_add_residential_6kW_solar",
++              125
++            ],
++            [
++              "null",
++              873
++            ]
++          ]
++        }
++      },
++      "fill_ter": "t_flat_roof",
++      "rows": [
++        "                                                ",
++        "                                                ",
++        "            -------          -----              ",
++        "            -.....-         --...--             ",
++        "            -.....-         -.....-             ",
++        "            -.....-         -.....-             ",
++        "      -------.....-----------.....--------      ",
++        "      -..................................-      ",
++        "      -.0.....0...............0....0.....-      ",
++        "      -..................................-      ",
++        "      -..................................-      ",
++        "      -..................................-      ",
++        "      -..................................-      ",
++        "      -.0.....0...............0....0.....-      ",
++        "      -..................................-      ",
++        "      -................................---      ",
++        "      -................................-        ",
++        "      -...............=................-        ",
++        "      -...............=................-        ",
++        "      -...............N................---      ",
++        "      -...............&....AA............-      ",
++        "      -.....................A............-      ",
++        "      -...............X:.\u042f\u042f..............-      ",
++        "      -..................................-      ",
++        "    ---..................................-      ",
++        "    -....................................-      ",
++        "    -....................................------ ",
++        "    -.........................................- ",
++        "    -.........................................- ",
++        "    -.........................................- ",
++        "    -.........................................- ",
++        "    -........................................-- ",
++        "    -........................................-  ",
++        "    -........................................-  ",
++        "    -........................................-  ",
++        "    -........................................-  ",
++        "    -........................................-  ",
++        "    -....................................-----  ",
++        "    -....................................-      ",
++        "    -....................................-      ",
++        "    -....................................-      ",
++        "    -----...........----------------------      ",
++        "        --.........--                           ",
++        "         --.......--                            ",
++        "          --.....--                             ",
++        "           -------                              ",
++        "                                                ",
++        "                                                "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_s_library_3"
++    ],
++    "weight": 500,
++    "object": {
++      "parameters": {
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": [
++          [
++            "t_region_groundcover_urban",
++            20
++          ],
++          "t_region_shrub_decorative"
++        ],
++        "4": "t_gutter_downspout",
++        "-": "t_sidewalk",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ],
++          [
++            "t_door_locked_interior",
++            1
++          ]
++        ],
++        "*": [
++          [
++            "t_door_locked_peep",
++            2
++          ],
++          "t_door_locked_alarm",
++          [
++            "t_door_locked",
++            10
++          ],
++          [
++            "t_door_locked_peep",
++            4
++          ],
++          "t_door_locked_alarm",
++          [
++            "t_door_locked",
++            15
++          ],
++          "t_door_c",
++          [
++            "t_door_o",
++            2
++          ]
++        ],
++        ":": "t_wall_glass",
++        "o": "t_window",
++        "p": "t_region_groundcover_urban",
++        "5": "t_region_tree_evergreen",
++        "%": "t_floor",
++        "A": "t_floor",
++        "E": "t_floor",
++        "I": "t_floor",
++        "J": "t_floor",
++        "K": "t_floor",
++        "M": "t_floor",
++        "N": "t_floor",
++        "O": "t_floor",
++        "P": "t_floor",
++        "Q": "t_floor",
++        "S": "t_floor",
++        "T": "t_floor",
++        "U": "t_floor",
++        "W": "t_floor",
++        "[": "t_floor",
++        "c": "t_floor",
++        "h": "t_floor",
++        "t": "t_floor"
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "------------------------",
++        "..pp----pp##o#######o##.",
++        "..pp----pp#  KJ%J%JW  #.",
++        "..pp----pp#           #.",
++        ".#::#**#::#[h [h [h [h#.",
++        ".#U                   o.",
++        ".#U    OOMMNNUUPPAA   #.",
++        ".#I                   #.",
++        ".#T    QQKWJUUITKJW   #.",
++        ".o                    #.",
++        ".#||||||  [h [h [h [h o.",
++        ".#cScSc|              #.",
++        ".o     +  %U%I%T%J%E  #.",
++        ".#+|+|+|              #.",
++        ".# | | |  cc%cccc%cc  #.",
++        ".#t|t|t|              #.",
++        ".###########o####o#####.",
++        ".pppp4ppppppppppppppppp.",
++        "........................",
++        "...5..p..5....5..p..5...",
++        "........................",
++        "...5..p..5....5..p..5...",
++        "........................",
++        "........................"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_s_library_3"
++    ],
++    "weight": 1000,
++    "//": "vandalized variant.",
++    "object": {
++      "parameters": {
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": [
++          [
++            "t_region_groundcover_urban",
++            20
++          ],
++          "t_region_shrub_decorative"
++        ],
++        "4": "t_gutter_downspout",
++        "-": "t_sidewalk",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ],
++          [
++            "t_door_locked_interior",
++            1
++          ]
++        ],
++        "*": [
++          [
++            "t_door_locked_peep",
++            2
++          ],
++          "t_door_locked_alarm",
++          [
++            "t_door_locked",
++            10
++          ],
++          [
++            "t_door_locked_peep",
++            4
++          ],
++          "t_door_locked_alarm",
++          [
++            "t_door_locked",
++            15
++          ],
++          "t_door_c",
++          [
++            "t_door_o",
++            2
++          ]
++        ],
++        ":": "t_wall_glass",
++        "o": "t_window",
++        "p": "t_region_groundcover_urban",
++        "5": "t_region_tree_evergreen",
++        "%": "t_floor",
++        "A": "t_floor",
++        "E": "t_floor",
++        "I": "t_floor",
++        "J": "t_floor",
++        "K": "t_floor",
++        "M": "t_floor",
++        "N": "t_floor",
++        "O": "t_floor",
++        "P": "t_floor",
++        "Q": "t_floor",
++        "S": "t_floor",
++        "T": "t_floor",
++        "U": "t_floor",
++        "W": "t_floor",
++        "[": "t_floor",
++        "c": "t_floor",
++        "h": "t_floor",
++        "t": "t_floor"
++      },
++      "nested": {
++        "+": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_door_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_door_nested",
++              3
++            ],
++            [
++              "null",
++              4
++            ]
++          ]
++        },
++        "*": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_door_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_door_nested",
++              3
++            ],
++            [
++              "null",
++              4
++            ]
++          ]
++        },
++        "o": {
++          "chunks": [
++            [
++              "dda_geo_city_add_damaged_window_nested",
++              1
++            ],
++            [
++              "dda_geo_city_add_destroyed_window_nested",
++              1
++            ],
++            [
++              "null",
++              2
++            ]
++          ]
++        },
++        ":": {
++          "chunks": [
++            [
++              "dda_geo_city_add_destroyed_glass_door_wall",
++              1
++            ],
++            [
++              "null",
++              2
++            ]
++          ]
++        }
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "------------------------",
++        "..pp----pp##o#######o##.",
++        "..pp----pp#  KJ%J%JW  #.",
++        "..pp----pp#           #.",
++        ".#::#**#::#[h [h [h [h#.",
++        ".#U                   o.",
++        ".#U    OOMMNNUUPPAA   #.",
++        ".#I                   #.",
++        ".#T    QQKWJUUITKJW   #.",
++        ".o                    #.",
++        ".#||||||  [h [h [h [h o.",
++        ".#cScSc|              #.",
++        ".o     +  %U%I%T%J%E  #.",
++        ".#+|+|+|              #.",
++        ".# | | |  cc%cccc%cc  #.",
++        ".#t|t|t|              #.",
++        ".###########o####o#####.",
++        ".pppp4ppppppppppppppppp.",
++        "........................",
++        "...5..p..5....5..p..5...",
++        "........................",
++        "...5..p..5....5..p..5...",
++        "........................",
++        "........................"
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_city_add_s_library_roof_3",
++    "object": {
++      "terrain": {
++        ".": "t_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "5": "t_gutter_drop",
++        "R": "t_flat_roof",
++        "U": "t_flat_roof"
++      },
++      "fill_ter": "t_flat_roof",
++      "rows": [
++        "                        ",
++        "          ------------- ",
++        "          -...........- ",
++        "          -.R.........- ",
++        " ----------........U..- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " ----5----------------- ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "null",
++              20
++            ],
++            [
++              "dda_geo_city_add_roof_4x4_utility",
++              40
++            ],
++            [
++              "dda_geo_city_add_roof_6x6_utility",
++              20
++            ]
++          ],
++          "x": [
++            3,
++            15
++          ],
++          "y": [
++            8,
++            11
++          ]
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_small_kindergarten"
++    ],
++    "object": {
++      "terrain": {
++        "*": [
++          [
++            "t_door_locked_alarm",
++            2
++          ],
++          [
++            "t_door_locked_alarm",
++            2
++          ]
++        ],
++        ":": "t_wall_glass",
++        "o": [
++          [
++            "t_window_domestic",
++            10
++          ],
++          "t_window_no_curtains",
++          "t_window_open",
++          "t_window_no_curtains_open",
++          [
++            "t_curtains",
++            5
++          ]
++        ],
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        "-": "t_sidewalk",
++        ".": "t_region_groundcover_urban",
++        "+": [
++          [
++            "t_door_c",
++            5
++          ],
++          [
++            "t_door_o",
++            5
++          ]
++        ],
++        ";": "t_door_glass_c",
++        "4": "t_gutter_downspout",
++        "B": "t_floor",
++        "C": "t_floor",
++        "S": "t_floor",
++        "T": "t_floor",
++        "V": "t_floor",
++        "b": "t_floor",
++        "c": "t_floor",
++        "h": "t_floor",
++        "t": "t_floor",
++        "y": "t_floor",
++        "\u00a7": "t_floor"
++      },
++      "parameters": {
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        },
++        "carpet_color_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_carpet_red",
++                1
++              ],
++              [
++                "t_carpet_green",
++                1
++              ],
++              [
++                "t_carpet_purple",
++                1
++              ],
++              [
++                "t_carpet_yellow",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "fill_ter": "t_floor",
++      "rows": [
++        "...........--...........",
++        "...........--...........",
++        "...........--...........",
++        ".........#:**:#.........",
++        ".........#y  y#.........",
++        ".........#h  h#.........",
++        ".........#h  h#.........",
++        ".........#y  y#.........",
++        ".###ooo###:;;:##ooo####.",
++        ".#y  bb       \u00a7    CCC#.",
++        ".#              hh   C#.",
++        ".o b TT        hTTh   o.",
++        ".o b TT        hTTh   o.",
++        ".#              hh   S#.",
++        ".#   bb   hh        hT#.",
++        ".#       hTTh      hhT#.",
++        ".#               ccTTT#.",
++        ".#B     hhh hhh  |||||#.",
++        ".#B  B  hhh hhh  +    #.",
++        ".oT  B  hhh hhh  |V  t#.",
++        ".ob  B           |S  t#.",
++        ".#TbbB y \u00a7 h   y |V  t#.",
++        ".#########ooooo########.",
++        ".....................4.."
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_city_add_small_kindergarten_roof",
++    "object": {
++      "terrain": {
++        ".": "t_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "5": "t_gutter_drop"
++      },
++      "nested": {
++        "1": {
++          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
++          "chunks": [
++            [
++              "dda_geo_city_add_residential_6kW_solar",
++              31
++            ],
++            [
++              "dda_geo_city_add_residential_7kW_solar",
++              63
++            ],
++            [
++              "dda_geo_city_add_residential_8kW_solar",
++              31
++            ],
++            [
++              "null",
++              873
++            ]
++          ]
++        }
++      },
++      "fill_ter": "t_flat_roof",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "         ------         ",
++        "         -....-         ",
++        "         -....-         ",
++        "         -....-         ",
++        "         -....-         ",
++        " ---------....--------- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -......1.......1.....- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " -....................- ",
++        " --------------------5- ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_office_dentist"
++    ],
++    "weight": 500,
++    "object": {
++      "parameters": {
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        " ": "t_region_groundcover_urban",
++        ".": "t_floor",
++        "C": "t_linoleum_white",
++        "S": "t_linoleum_white",
++        "w": "t_window",
++        "t": "t_linoleum_white",
++        "d": [
++          [
++            "t_door_c",
++            2
++          ],
++          [
++            "t_door_o",
++            1
++          ]
++        ],
++        "&": "t_linoleum_white",
++        ",": "t_linoleum_white",
++        "R": "t_linoleum_white",
++        "M": "t_linoleum_white",
++        "D": "t_floor",
++        "f": "t_floor",
++        "~": "t_wall_glass",
++        "^": "t_door_glass_white_c",
++        "c": "t_linoleum_white",
++        "n": "t_linoleum_white",
++        "_": "t_thconc_floor",
++        "L": "t_thconc_floor",
++        "h": "t_floor",
++        "s": "t_sidewalk",
++        "B": "t_floor",
++        "b": "t_floor",
++        "-": "t_pavement",
++        "y": "t_pavement_y",
++        "[": "t_region_tree_shade",
++        "*": "t_region_shrub_decorative",
++        "+": "t_gutter_downspout",
++        "p": "t_floor",
++        "X": "t_linoleum_white",
++        "%": "t_linoleum_white",
++        "E": "t_linoleum_white",
++        "W": "t_thconc_floor",
++        "F": "t_thconc_floor",
++        "=": "t_ladder_up",
++        "P": "t_floor",
++        "!": "t_region_groundcover_urban",
++        "\u00a7": "t_region_groundcover_urban"
++      },
++      "fill_ter": "t_region_groundcover_urban",
++      "rows": [
++        "   sy----y----y----ys   ",
++        " ! sy----y----y----ys ! ",
++        " ! sy----y----y----ys ! ",
++        " ! sy----y----y----ys ! ",
++        " ! sy----y----y----ys ! ",
++        " ! ssssssssssssssssss ! ",
++        "   ##w#####dd########   ",
++        "  *#DPD|p.........\u00a7b#*  ",
++        "  *w.h.d...DPDff...bw*  ",
++        "  *#BBB|....h.ff...bw*  ",
++        "   #||||...|||||...b#*  ",
++        "  *#MSR|..........p##   ",
++        "  *w,,,d..||d||d|||#+   ",
++        "  *#cnc|..|S,|S,|X%#    ",
++        "  s#||||..|t&|t&|,,#*   ",
++        "  sd......|||||||~^#*   ",
++        "  s#|d||\u00a7..........w*   ",
++        "   #L__||d|||d|||d|#* [ ",
++        "   #L_=|S,E|S,E|S,E#*   ",
++        "   #LWF|C,,|C,,|C,,#    ",
++        "   ######w###w###w##    ",
++        "    *** *** *** ***     ",
++        "  [                     ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_city_add_office_dentist_roof",
++    "object": {
++      "parameters": {
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "#": "t_grate",
++        "v": "t_ladder_down",
++        ".": "t_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "5": "t_gutter_drop",
++        "+": "t_door_locked"
++      },
++      "fill_ter": "t_flat_roof",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "   ------------------   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -...............5-   ",
++        "   -...............-    ",
++        "   -...............-    ",
++        "   -...............-    ",
++        "   -...............-    ",
++        "   -...............-    ",
++        "   -.####..........-    ",
++        "   -.#v.+..........-    ",
++        "   -.####..........-    ",
++        "   -----------------    ",
++        "                        ",
++        "                        ",
++        "                        "
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "null",
++              20
++            ],
++            [
++              "null",
++              15
++            ],
++            [
++              "null",
++              5
++            ],
++            [
++              "null",
++              40
++            ],
++            [
++              "null",
++              50
++            ],
++            [
++              "null",
++              10
++            ],
++            [
++              "null",
++              5
++            ],
++            [
++              "dda_geo_city_add_roof_4x4_utility_1",
++              30
++            ],
++            [
++              "null",
++              5
++            ],
++            [
++              "dda_geo_city_add_roof_4x4_utility",
++              40
++            ],
++            [
++              "null",
++              5
++            ],
++            [
++              "dda_geo_city_add_roof_6x6_utility",
++              20
++            ]
++          ],
++          "x": [
++            5,
++            12
++          ],
++          "y": [
++            7,
++            10
++          ]
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_office_warehouse_anduril"
++    ],
++    "object": {
++      "fill_ter": "t_floor",
++      "rows": [
++        "ssssssssssssssssssssssss",
++        "ss###++++++7####--####ss",
++        "ss#\u00a7          #C  dcF#ss",
++        "ss# yyyyyyyyy #C  dd #ss",
++        "ss# y       y #C    p#ss",
++        "ss# y       y ###+6###ss",
++        "ss# y       y \u00a7      #ss",
++        "ss# y       y        #ss",
++        "ss# y       y   cd   #ss",
++        "ss# y       y   dd   #ss",
++        "ss# y       y       F#ss",
++        "ss# yyyyyyyyy  dc   F#ss",
++        "ss#            dd   F#ss",
++        "ss# ddd             F#ss",
++        "ss#  c           cd  #ss",
++        "ss#     WWWW^    dd  #ss",
++        "ss#**********        #ss",
++        "ss#         *        #ss",
++        "ss# SSSSSS  6        #ss",
++        "ss#         +     *-*#ss",
++        "ss# SSSSSS  *     * u#ss",
++        "ss#         *    \u00a7*Tt#ss",
++        "ss####################ss",
++        "ssssssssssssssssssssssss"
++      ],
++      "terrain": {
++        "s": "t_sidewalk",
++        "y": "t_thconc_y",
++        "C": "t_thconc_floor_no_roof",
++        "c": "t_thconc_floor_no_roof",
++        "d": "t_thconc_floor_no_roof",
++        "W": "t_thconc_floor_no_roof",
++        "u": "t_thconc_floor_no_roof",
++        "t": "t_thconc_floor_no_roof",
++        "T": "t_thconc_floor_no_roof",
++        "F": "t_thconc_floor_no_roof",
++        "p": "t_thconc_floor_no_roof",
++        "+": "t_door_metal_locked",
++        "-": "t_door_c",
++        "*": "t_wall",
++        "#": "t_strconc_wall",
++        "6": "dda_geo_city_add_anduril_reader",
++        "7": "t_card_reader_broken",
++        "^": "t_thconc_floor_no_roof",
++        "S": "t_thconc_floor_no_roof",
++        "\u00a7": "t_floor"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_city_add_office_warehouse_anduril_roof",
++    "object": {
++      "terrain": {
++        ".": "t_flat_roof",
++        " ": "t_open_air",
++        "o": "t_glass_roof",
++        "-": "t_gutter",
++        "K": "t_flat_roof",
++        "U": "t_flat_roof"
++      },
++      "nested": {
++        "Z": {
++          "chunks": [
++            "dda_geo_city_add_roof_2x2_infrastructure_2"
++          ]
++        }
++      },
++      "fill_ter": "t_flat_roof",
++      "rows": [
++        "                        ",
++        "  --------------------  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -.U................-  ",
++        "  -..................-  ",
++        "  -...............K..-  ",
++        "  -.Z................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -..................-  ",
++        "  -.................o-  ",
++        "  --------------------  ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_s_airsoft"
++    ],
++    "object": {
++      "parameters": {
++        "linoleum_color": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_linoleum_gray",
++                1
++              ],
++              [
++                "t_linoleum_white",
++                1
++              ]
++            ]
++          }
++        },
++        "interior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_wall_b",
++                5
++              ],
++              [
++                "t_wall_g",
++                5
++              ],
++              [
++                "t_wall_p",
++                1
++              ],
++              [
++                "t_wall_P",
++                1
++              ],
++              [
++                "t_wall_r",
++                3
++              ],
++              [
++                "t_wall_w",
++                15
++              ],
++              [
++                "t_wall_y",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                1
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_wall",
++                3
++              ],
++              [
++                "t_brick_wall",
++                2
++              ]
++            ]
++          }
++        },
++        "exterior_wall_type": {
++          "type": "ter_str_id",
++          "default": {
++            "distribution": [
++              [
++                "t_brick_wall",
++                4
++              ],
++              [
++                "t_wall_wood",
++                2
++              ],
++              [
++                "t_wall_w",
++                4
++              ],
++              [
++                "t_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_concrete_wall",
++                4
++              ],
++              [
++                "t_concrete_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_strconc_wall",
++                2
++              ],
++              [
++                "t_strconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ],
++              [
++                "t_sconc_wall",
++                2
++              ],
++              [
++                "t_sconc_wall",
++                1
++              ]
++            ]
++          }
++        }
++      },
++      "terrain": {
++        "~": "t_linoleum_gray",
++        "|": {
++          "param": "interior_wall_type",
++          "fallback": "t_wall_w"
++        },
++        "#": {
++          "param": "exterior_wall_type",
++          "fallback": "t_brick_wall"
++        },
++        ".": "t_region_groundcover_urban",
++        "\u00c0": "t_pavement",
++        "_": "t_pavement",
++        "=": "t_pavement_y",
++        "-": "t_sidewalk",
++        ",": "t_thconc_floor",
++        "+": [
++          [
++            "t_door_o",
++            1
++          ],
++          [
++            "t_door_c",
++            2
++          ]
++        ],
++        "*": [
++          [
++            "t_door_locked_alarm",
++            3
++          ],
++          [
++            "t_door_c",
++            2
++          ],
++          [
++            "t_door_o",
++            1
++          ]
++        ],
++        "^": "t_gutter_downspout",
++        "\u0166": "t_chainfence",
++        "\u0264": "t_chaingate_c",
++        "o": "t_window_alarm",
++        "S": "t_linoleum_gray",
++        "t": "t_linoleum_gray",
++        "C": "t_thconc_floor",
++        "D": "t_thconc_floor",
++        "F": "t_thconc_floor",
++        "R": "t_thconc_floor",
++        "T": "t_thconc_floor",
++        "c": "t_thconc_floor",
++        "h": "t_thconc_floor",
++        "m": "t_thconc_floor",
++        "s": "t_thconc_floor",
++        "v": "t_thconc_floor",
++        "y": "t_thconc_floor"
++      },
++      "fill_ter": "t_thconc_floor",
++      "rows": [
++        "_____=_____--_____=_____",
++        "_____=_____--_____=_____",
++        "_____=_____--_____=_____",
++        "_____=_____--_____=_____",
++        "_____=_____--_____=_____",
++        "___\u00c0_=___\u00c0_--___\u00c0_=___\u00c0_",
++        "_____=_____--_____=_____",
++        "------------------------",
++        "...###oooo#**#oooo###,..",
++        "...#R RRRR    RRRR R#,..",
++        "...oR              Ro,..",
++        "...oR  RRR    RRR  Ro,..",
++        "...#R  RRR    RRR  R#,..",
++        "...#R              R#,..",
++        "...#cccccmcccccccc R#,..",
++        "...#                #,..",
++        "...#RRRRRRRRRR RRRRR#\u0264\u0166\u0166",
++        "...#||||||||||+|||||#,,\u0166",
++        "...#tS|F yhTh| sssss#,,\u0166",
++        "...#~~|C  hTh|      *,,\u0166",
++        "...#~~|v     |      #DD\u0166",
++        "...#~~+      + sssss#DD\u0166",
++        "...##################\u0166\u0166\u0166",
++        "....................^..."
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": [
++      "dda_geo_city_add_s_airsoft_roof"
++    ],
++    "object": {
++      "terrain": {
++        ".": "t_flat_roof",
++        " ": "t_open_air",
++        "-": "t_gutter",
++        "5": "t_gutter_drop"
++      },
++      "nested": {
++        "1": {
++          "//": "12.5% chance of solar, assuming 50% of solar is 7kW, 25% is 6kW and 8kW.",
++          "chunks": [
++            [
++              "dda_geo_city_add_residential_6kW_solar",
++              31
++            ],
++            [
++              "dda_geo_city_add_residential_7kW_solar",
++              63
++            ],
++            [
++              "dda_geo_city_add_residential_8kW_solar",
++              31
++            ],
++            [
++              "null",
++              873
++            ]
++          ]
++        }
++      },
++      "fill_ter": "t_flat_roof",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "   5----------------5   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -.....1..........-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   -................-   ",
++        "   5----------------5   ",
++        "                        "
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_roof_4x4_utility",
++    "object": {
++      "mapgensize": [
++        4,
++        4
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        " xxx",
++        "  ax",
++        " xxx",
++        "  ox"
++      ],
++      "terrain": {
++        "x": "t_sewage_pipe"
++      },
++      "furniture": {
++        "a": "f_null",
++        "o": "f_null"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_roof_4x4_utility_1",
++    "object": {
++      "mapgensize": [
++        4,
++        4
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "UUUU",
++        "UAaU",
++        "c oU",
++        "UUUU"
++      ],
++      "terrain": {
++        "c": "t_chaingate_l",
++        "U": "t_chainfence"
++      },
++      "furniture": {
++        "A": "f_null",
++        "a": "f_null",
++        "o": "f_null"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_roof_6x6_utility",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        " xxxxx",
++        " xA  x",
++        " xx  x",
++        "     x",
++        "xooa x",
++        "xxxxxx"
++      ],
++      "terrain": {
++        "x": "t_sewage_pipe"
++      },
++      "furniture": {
++        "A": "f_null",
++        "a": "f_null",
++        "o": "f_null"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_roof_2x2_infrastructure_2",
++    "object": {
++      "mapgensize": [
++        2,
++        2
++      ],
++      "place_terrain": [
++        {
++          "ter": "t_switchgear_s",
++          "x": 0,
++          "y": 0
++        },
++        {
++          "ter": "t_sai_box",
++          "x": 0,
++          "y": 1
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_6kW_solar",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "dda_geo_city_add_residential_6kW_solar_v1",
++              80
++            ],
++            [
++              "dda_geo_city_add_residential_6kW_solar_v2",
++              20
++            ]
++          ],
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_7kW_solar",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "dda_geo_city_add_residential_7kW_solar_v1",
++              80
++            ],
++            [
++              "dda_geo_city_add_residential_7kW_solar_v2",
++              20
++            ]
++          ],
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_8kW_solar",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "place_nested": [
++        {
++          "chunks": [
++            [
++              "dda_geo_city_add_residential_8kW_solar_v1",
++              80
++            ],
++            [
++              "dda_geo_city_add_residential_8kW_solar_v2",
++              20
++            ]
++          ],
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_destroyed_glass_door_wall",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_ter_furn_transforms": [
++        {
++          "transform": "dda_geo_city_add_glass_door_wall_2_floor",
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_damaged_door_nested",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_ter_furn_transforms": [
++        {
++          "transform": "dda_geo_city_add_damaged_door",
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_destroyed_door_nested",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_ter_furn_transforms": [
++        {
++          "transform": "dda_geo_city_add_destroyed_door",
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_damaged_window_nested",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_ter_furn_transforms": [
++        {
++          "transform": "dda_geo_city_add_damaged_window",
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_destroyed_window_nested",
++    "object": {
++      "mapgensize": [
++        1,
++        1
++      ],
++      "place_ter_furn_transforms": [
++        {
++          "transform": "dda_geo_city_add_destroyed_window",
++          "x": 0,
++          "y": 0
++        }
++      ]
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_6kW_solar_v1",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "#####",
++        "#####",
++        "#####",
++        "#####",
++        "#####"
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_6kW_solar_v2",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "###  ",
++        "###  ",
++        "?##  ",
++        " ##  ",
++        " ##  "
++      ],
++      "terrain": {
++        "#": "t_flat_roof",
++        "?": "t_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_7kW_solar_v1",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "######",
++        "######",
++        "######",
++        "######",
++        "######",
++        "      "
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_7kW_solar_v2",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "      "
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_8kW_solar_v1",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "######",
++        "######",
++        "######",
++        "######",
++        "######",
++        "######"
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_city_add_residential_8kW_solar_v2",
++    "object": {
++      "mapgensize": [
++        6,
++        6
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   ",
++        "###   "
++      ],
++      "terrain": {
++        "#": "t_flat_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_s_library_3",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_s_library_3_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_s_library_roof_3_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_urban_library_normal",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          -1,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_1_normal_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_2_normal_north"
++      },
++      {
++        "point": [
++          -1,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_3_normal_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_4_normal_north"
++      },
++      {
++        "point": [
++          -1,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_5_normal_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_6_normal_north"
++      },
++      {
++        "point": [
++          -1,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_7_normal_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_8_normal_north"
++      },
++      {
++        "point": [
++          -1,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_2_north"
++      },
++      {
++        "point": [
++          -1,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_4_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_urban_library_vandalized",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          -1,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_1_vandalized_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_2_vandalized_north"
++      },
++      {
++        "point": [
++          -1,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_3_vandalized_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          0
++        ],
++        "overmap": "dda_geo_city_add_urban_library_4_vandalized_north"
++      },
++      {
++        "point": [
++          -1,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_5_vandalized_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_6_vandalized_north"
++      },
++      {
++        "point": [
++          -1,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_7_vandalized_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          1
++        ],
++        "overmap": "dda_geo_city_add_urban_library_8_vandalized_north"
++      },
++      {
++        "point": [
++          -1,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_1_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_2_north"
++      },
++      {
++        "point": [
++          -1,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_3_north"
++      },
++      {
++        "point": [
++          0,
++          1,
++          2
++        ],
++        "overmap": "dda_geo_city_add_urban_library_roof_4_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_synagogue",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_synagogue_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_synagogue_roof_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          2
++        ],
++        "overmap": "dda_geo_city_add_synagogue_upper_roof_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_small_kindergarten",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_small_kindergarten_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_small_kindergarten_roof_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_office_dentist",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_office_dentist_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_office_dentist_roof_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_s_airsoft",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_s_airsoft_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_s_airsoft_roof_north"
++      }
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": []
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_city_add_office_warehouse_anduril",
++    "locations": [
++      "land"
++    ],
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_city_add_office_warehouse_anduril_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_city_add_office_warehouse_anduril_roof_north"
++      }
++    ],
++    "flags": [
++      "GLOBALLY_UNIQUE"
++    ],
++    "occurrences": [
++      0,
++      0
++    ]
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_s_airsoft"
++    ],
++    "copy-from": "generic_city_building",
++    "name": "airsoft store",
++    "sym": "a",
++    "color": "red_white",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "copy-from": "generic_city_building_no_sidewalk",
++    "extend": {
++      "flags": [
++        "SIDEWALK"
++      ]
++    },
++    "id": [
++      "dda_geo_city_add_s_airsoft_roof"
++    ],
++    "name": "airsoft store roof",
++    "sym": "a",
++    "color": "red_white",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_office_warehouse_anduril"
++    ],
++    "copy-from": "generic_city_building",
++    "name": "small warehouse",
++    "sym": "w",
++    "color": "light_blue",
++    "flags": [
++      "SIDEWALK"
++    ],
++    "delete": {
++      "post_process_generators": [
++        "riot_damage"
++      ]
++    },
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "copy-from": "generic_city_building_no_sidewalk",
++    "extend": {
++      "flags": [
++        "SIDEWALK"
++      ]
++    },
++    "id": [
++      "dda_geo_city_add_office_warehouse_anduril_roof"
++    ],
++    "name": "small warehouse roof",
++    "sym": "w",
++    "color": "light_blue",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_synagogue"
++    ],
++    "copy-from": "generic_city_building",
++    "name": "dda_geo_city_add_synagogue",
++    "sym": "S",
++    "color": "blue",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "copy-from": "generic_city_building_no_sidewalk",
++    "extend": {
++      "flags": [
++        "SIDEWALK"
++      ]
++    },
++    "id": [
++      "dda_geo_city_add_synagogue_roof",
++      "dda_geo_city_add_synagogue_upper_roof"
++    ],
++    "name": "synagogue roof",
++    "sym": "S",
++    "color": "blue",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_s_library_3"
++    ],
++    "name": "library",
++    "copy-from": "generic_city_building",
++    "color": "i_brown",
++    "extend": {
++      "flags": [
++        "SOURCE_BOOKS",
++        "SOURCE_LUXURY"
++      ]
++    },
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_urban_library_1_normal",
++      "dda_geo_city_add_urban_library_2_normal",
++      "dda_geo_city_add_urban_library_3_normal",
++      "dda_geo_city_add_urban_library_4_normal",
++      "dda_geo_city_add_urban_library_5_normal",
++      "dda_geo_city_add_urban_library_6_normal",
++      "dda_geo_city_add_urban_library_7_normal",
++      "dda_geo_city_add_urban_library_8_normal"
++    ],
++    "name": "library",
++    "copy-from": "generic_city_building",
++    "color": "i_brown",
++    "extend": {
++      "flags": [
++        "SOURCE_BOOKS",
++        "SOURCE_LUXURY"
++      ]
++    },
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_urban_library_1_vandalized",
++      "dda_geo_city_add_urban_library_2_vandalized",
++      "dda_geo_city_add_urban_library_3_vandalized",
++      "dda_geo_city_add_urban_library_4_vandalized",
++      "dda_geo_city_add_urban_library_5_vandalized",
++      "dda_geo_city_add_urban_library_6_vandalized",
++      "dda_geo_city_add_urban_library_7_vandalized",
++      "dda_geo_city_add_urban_library_8_vandalized"
++    ],
++    "name": "library",
++    "copy-from": "generic_city_building",
++    "color": "i_brown",
++    "extend": {
++      "flags": [
++        "SOURCE_BOOKS",
++        "SOURCE_LUXURY"
++      ]
++    },
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "copy-from": "generic_city_building_no_sidewalk",
++    "extend": {
++      "flags": [
++        "SIDEWALK"
++      ]
++    },
++    "id": [
++      "dda_geo_city_add_s_library_roof_3",
++      "dda_geo_city_add_urban_library_roof_1",
++      "dda_geo_city_add_urban_library_roof_2",
++      "dda_geo_city_add_urban_library_roof_3",
++      "dda_geo_city_add_urban_library_roof_4"
++    ],
++    "name": "library roof",
++    "color": "i_brown",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_small_kindergarten"
++    ],
++    "name": "small kindergarten",
++    "copy-from": "generic_city_building",
++    "sym": "K",
++    "color": "i_light_blue",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "copy-from": "generic_city_building_no_sidewalk",
++    "extend": {
++      "flags": [
++        "SIDEWALK"
++      ]
++    },
++    "id": [
++      "dda_geo_city_add_small_kindergarten_roof"
++    ],
++    "name": "small kindergarten roof",
++    "sym": "K",
++    "color": "i_light_blue",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "id": [
++      "dda_geo_city_add_office_dentist"
++    ],
++    "name": "dentist office",
++    "copy-from": "generic_city_building",
++    "sym": "D",
++    "color": "i_light_blue",
++    "extras": ""
++  },
++  {
++    "type": "overmap_terrain",
++    "copy-from": "generic_city_building_no_sidewalk",
++    "extend": {
++      "flags": [
++        "SIDEWALK"
++      ]
++    },
++    "id": [
++      "dda_geo_city_add_office_dentist_roof"
++    ],
++    "name": "dentist office roof",
++    "sym": "D",
++    "color": "i_light_blue",
++    "extras": ""
++  },
++  {
++    "type": "terrain",
++    "id": "dda_geo_city_add_anduril_reader",
++    "name": "Anduril Industries card reader",
++    "description": "A badge scanner.  It has the logo of Anduril Industries and a sign that reads \"Authorized personnel only.  All visitors must sign in at the office.\"",
++    "//": "Science",
++    "symbol": "6",
++    "color": "green",
++    "move_cost": 0,
++    "roof": "t_flat_roof",
++    "flags": [
++      "NOITEM",
++      "CONNECT_TO_WALL"
++    ],
++    "examine_action": "none",
++    "bash": {
++      "str_min": 18,
++      "str_max": 180,
++      "sound": "crunch!",
++      "sound_fail": "whack!",
++      "ter_set": "t_card_reader_broken",
++      "items": [
++        {
++          "item": "plastic_chunk",
++          "count": [
++            0,
++            2
++          ]
++        },
++        {
++          "item": "scrap",
++          "prob": 50
++        }
++      ]
++    }
++  },
++  {
++    "type": "ter_furn_transform",
++    "id": "dda_geo_city_add_damaged_door",
++    "terrain": [
++      {
++        "result": "t_door_b",
++        "valid_terrain": [
++          "t_door_c",
++          "t_door_o",
++          "t_door_locked_interior",
++          "t_rdoor_b",
++          "t_door_locked",
++          "t_door_locked_alarm",
++          "t_door_boarded_damaged"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_rdoor_b",
++        "valid_terrain": [
++          "t_rdoor_c",
++          "t_rdoor_o",
++          "t_rdoor_boarded_damaged"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_boarded_damaged",
++        "valid_terrain": [
++          "t_door_boarded"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_rdoor_boarded_damaged",
++        "valid_terrain": [
++          "t_rdoor_boarded"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_boarded_damaged_peep",
++        "valid_terrain": [
++          "t_door_boarded_peep"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_frame",
++        "valid_terrain": [
++          "t_door_makeshift_c",
++          "t_door_makeshift_o"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_b_peep",
++        "valid_terrain": [
++          "t_door_c_peep",
++          "t_door_o_peep",
++          "t_door_locked_peep",
++          "t_door_boarded_damaged_peep"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_white_b",
++        "valid_terrain": [
++          "t_door_white_c",
++          "t_door_white_o"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_gray_b",
++        "valid_terrain": [
++          "t_door_gray_c",
++          "t_door_gray_o"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_red_b",
++        "valid_terrain": [
++          "t_door_red_c",
++          "t_door_red_o"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_green_b",
++        "valid_terrain": [
++          "t_door_green_c",
++          "t_door_green_o"
++        ],
++        "valid_flags": []
++      }
++    ]
++  },
++  {
++    "type": "ter_furn_transform",
++    "id": "dda_geo_city_add_damaged_window",
++    "terrain": [
++      {
++        "result": "t_window_frame",
++        "valid_terrain": [
++          "t_window_domestic",
++          "t_window_no_curtains",
++          "t_window_open",
++          "t_window_no_curtains_open",
++          "t_curtains"
++        ],
++        "valid_flags": []
++      }
++    ]
++  },
++  {
++    "type": "ter_furn_transform",
++    "id": "dda_geo_city_add_destroyed_door",
++    "terrain": [
++      {
++        "result": "t_door_frame",
++        "valid_terrain": [
++          "t_door_c",
++          "t_door_o",
++          "t_door_locked_interior",
++          "t_rdoor_b",
++          "t_door_locked",
++          "t_door_locked_alarm",
++          "t_door_boarded_damaged",
++          "t_door_b",
++          "t_rdoor_c",
++          "t_rdoor_o",
++          "t_rdoor_boarded_damaged",
++          "t_rdoor_b",
++          "t_door_boarded",
++          "t_door_boarded_damaged",
++          "t_rdoor_boarded",
++          "t_rdoor_boarded_damaged",
++          "t_door_boarded_peep",
++          "t_door_boarded_damaged_peep",
++          "t_door_makeshift_c",
++          "t_door_makeshift_o",
++          "t_door_c_peep",
++          "t_door_o_peep",
++          "t_door_locked_peep",
++          "t_door_boarded_damaged_peep",
++          "t_door_b_peep"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_white_frame",
++        "valid_terrain": [
++          "t_door_white_c",
++          "t_door_white_o",
++          "t_door_white_b"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_gray_frame",
++        "valid_terrain": [
++          "t_door_gray_c",
++          "t_door_gray_o",
++          "t_door_gray_b"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_red_frame",
++        "valid_terrain": [
++          "t_door_red_c",
++          "t_door_red_o",
++          "t_door_red_b"
++        ],
++        "valid_flags": []
++      },
++      {
++        "result": "t_door_green_frame",
++        "valid_terrain": [
++          "t_door_green_c",
++          "t_door_green_o",
++          "t_door_green_b"
++        ],
++        "valid_flags": []
++      }
++    ]
++  },
++  {
++    "type": "ter_furn_transform",
++    "id": "dda_geo_city_add_destroyed_window",
++    "terrain": [
++      {
++        "result": "t_window_empty",
++        "valid_terrain": [
++          "t_window_domestic",
++          "t_window_no_curtains",
++          "t_window_open",
++          "t_window_no_curtains_open",
++          "t_curtains",
++          "t_window_frame"
++        ],
++        "valid_flags": []
++      }
++    ]
++  },
++  {
++    "type": "ter_furn_transform",
++    "id": "dda_geo_city_add_glass_door_wall_2_floor",
++    "terrain": [
++      {
++        "result": "t_floor",
++        "valid_terrain": [
++          "t_wall_glass",
++          "t_door_glass_c"
++        ],
++        "valid_flags": []
++      }
++    ]
 +  },
 +  {
 +    "type": "overmap_location",

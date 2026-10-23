@@ -2,6 +2,8 @@
 #include "avatar.h"
 #include "cata_utility.h"
 #include "map/map.h"
+#include "game.h"
+#include "magic/magic_ter_furn_transform.h"
 #include "map_helpers.h"
 #include "overmap/overmapbuffer.h"
 #include "overmap/overmap.h"
@@ -11014,4 +11016,440 @@ TEST_CASE( "dda_geo_camp_ruined_all_floors_without_loot", "[dda_geometry]" )
     generate_site( 8400, {
         { 0, 0, 0, "dda_geo_camp_ruined_north", "000000000000000000000000000000000000000000000000011111111100000111111111011111111100000111111111011111111100000111111111011111111100000111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000001111111111111110000000011111111111111111000000011111111111111111000000011111111111111111000000001111111111111110000" },
     } );
+}
+
+TEST_CASE( "dda_geo_city_add_s_library_3_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 8500, {
+        { 0, 0, 0, "dda_geo_city_add_s_library_3_north" },
+        { 0, 0, 1, "dda_geo_city_add_s_library_roof_3_north" },
+    }, {
+        { 0, 0, 0, 0, 0, "t_sidewalk" },
+        { 0, 0, 5, 17, 0, "t_gutter_downspout" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 7, 4, 1, "t_gutter" },
+        { 0, 0, 16, 19, 1, "t_open_air" },
+        { 0, 0, 21, 10, 1, "t_flat_roof" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_urban_library_normal_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 8600, {
+        { -1, 0, 0, "dda_geo_city_add_urban_library_1_normal_north" },
+        { 0, 0, 0, "dda_geo_city_add_urban_library_2_normal_north" },
+        { -1, 1, 0, "dda_geo_city_add_urban_library_3_normal_north" },
+        { 0, 1, 0, "dda_geo_city_add_urban_library_4_normal_north" },
+        { -1, 0, 1, "dda_geo_city_add_urban_library_5_normal_north" },
+        { 0, 0, 1, "dda_geo_city_add_urban_library_6_normal_north" },
+        { -1, 1, 1, "dda_geo_city_add_urban_library_7_normal_north" },
+        { 0, 1, 1, "dda_geo_city_add_urban_library_8_normal_north" },
+        { -1, 0, 2, "dda_geo_city_add_urban_library_roof_1_north" },
+        { 0, 0, 2, "dda_geo_city_add_urban_library_roof_2_north" },
+        { -1, 1, 2, "dda_geo_city_add_urban_library_roof_3_north" },
+        { 0, 1, 2, "dda_geo_city_add_urban_library_roof_4_north" },
+    }, {
+        { -1, 0, 7, 15, 0, "t_floor" },
+        { -1, 0, 8, 14, 0, "t_stairs_up" },
+        { -1, 0, 8, 15, 0, "t_stairs_up" },
+        { -1, 0, 9, 14, 0, "t_stairs_up" },
+        { -1, 0, 9, 15, 0, "t_stairs_up" },
+        { -1, 0, 10, 14, 0, "t_stairs_up" },
+        { -1, 0, 10, 15, 0, "t_stairs_up" },
+        { -1, 0, 13, 2, 0, "t_window" },
+        { -1, 0, 23, 9, 0, "t_floor" },
+        { -1, 0, 23, 19, 0, "t_floor" },
+        { -1, 0, 23, 23, 0, "t_floor" },
+        { 0, 0, 6, 0, 0, "t_sidewalk" },
+        { 0, 0, 6, 2, 0, "t_door_glass_c" },
+        { 0, 0, 6, 7, 0, "t_door_glass_c" },
+        { 0, 0, 7, 2, 0, "t_door_glass_c" },
+        { 0, 0, 7, 7, 0, "t_door_glass_c" },
+        { 0, 0, 8, 2, 0, "t_door_glass_c" },
+        { 0, 0, 8, 7, 0, "t_door_glass_c" },
+        { 0, 0, 8, 9, 0, "t_floor" },
+        { 0, 0, 8, 14, 0, "t_floor" },
+        { 0, 0, 8, 19, 0, "t_floor" },
+        { 0, 0, 11, 23, 0, "t_floor" },
+        { -1, 1, 7, 10, 0, "t_floor" },
+        { -1, 1, 13, 0, 0, "t_floor" },
+        { -1, 1, 14, 5, 0, "t_floor" },
+        { -1, 1, 16, 21, 0, "t_wall_glass" },
+        { -1, 1, 21, 14, 0, "t_floor" },
+        { 0, 1, 0, 0, 0, "t_floor" },
+        { 0, 1, 13, 4, 0, "t_floor" },
+        { 0, 1, 16, 17, 0, "t_window" },
+        { 0, 1, 19, 12, 0, "t_floor" },
+        { 0, 1, 20, 8, 0, "t_floor" },
+        { -1, 0, 0, 0, 1, "t_open_air" },
+        { -1, 0, 1, 12, 1, "t_open_air" },
+        { -1, 0, 8, 5, 1, "t_open_air" },
+        { -1, 0, 8, 14, 1, "t_stairs_down" },
+        { -1, 0, 8, 15, 1, "t_stairs_down" },
+        { -1, 0, 8, 18, 1, "t_floor" },
+        { -1, 0, 9, 14, 1, "t_stairs_down" },
+        { -1, 0, 9, 15, 1, "t_stairs_down" },
+        { -1, 0, 10, 14, 1, "t_stairs_down" },
+        { -1, 0, 10, 15, 1, "t_stairs_down" },
+        { -1, 0, 22, 23, 1, "t_floor" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 10, 11, 1, "t_floor" },
+        { 0, 0, 12, 5, 1, "t_open_air" },
+        { 0, 0, 16, 17, 1, "t_open_air" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+        { -1, 1, 0, 0, 1, "t_open_air" },
+        { -1, 1, 11, 18, 1, "t_floor" },
+        { -1, 1, 12, 12, 1, "t_floor" },
+        { -1, 1, 13, 6, 1, "t_floor" },
+        { -1, 1, 23, 23, 1, "t_open_air" },
+        { 0, 1, 0, 0, 1, "t_floor" },
+        { 0, 1, 1, 6, 1, "t_floor" },
+        { 0, 1, 6, 12, 1, "t_floor" },
+        { 0, 1, 9, 18, 1, "t_open_air" },
+        { 0, 1, 23, 23, 1, "t_open_air" },
+        { -1, 0, 0, 0, 2, "t_open_air" },
+        { -1, 0, 1, 11, 2, "t_open_air" },
+        { -1, 0, 21, 4, 2, "t_open_air" },
+        { -1, 0, 23, 18, 2, "t_flat_roof" },
+        { -1, 0, 23, 23, 2, "t_flat_roof" },
+        { 0, 0, 0, 0, 2, "t_open_air" },
+        { 0, 0, 2, 11, 2, "t_flat_roof" },
+        { 0, 0, 22, 4, 2, "t_open_air" },
+        { 0, 0, 22, 18, 2, "t_open_air" },
+        { 0, 0, 23, 23, 2, "t_open_air" },
+        { -1, 1, 0, 0, 2, "t_open_air" },
+        { -1, 1, 0, 6, 2, "t_open_air" },
+        { -1, 1, 0, 12, 2, "t_open_air" },
+        { -1, 1, 0, 18, 2, "t_open_air" },
+        { -1, 1, 23, 23, 2, "t_open_air" },
+        { 0, 1, 0, 0, 2, "t_flat_roof" },
+        { 0, 1, 0, 6, 2, "t_flat_roof" },
+        { 0, 1, 0, 12, 2, "t_flat_roof" },
+        { 0, 1, 0, 18, 2, "t_open_air" },
+        { 0, 1, 23, 23, 2, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_urban_library_vandalized_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 8700, {
+        { -1, 0, 0, "dda_geo_city_add_urban_library_1_vandalized_north" },
+        { 0, 0, 0, "dda_geo_city_add_urban_library_2_vandalized_north" },
+        { -1, 1, 0, "dda_geo_city_add_urban_library_3_vandalized_north" },
+        { 0, 1, 0, "dda_geo_city_add_urban_library_4_vandalized_north" },
+        { -1, 0, 1, "dda_geo_city_add_urban_library_5_vandalized_north" },
+        { 0, 0, 1, "dda_geo_city_add_urban_library_6_vandalized_north" },
+        { -1, 1, 1, "dda_geo_city_add_urban_library_7_vandalized_north" },
+        { 0, 1, 1, "dda_geo_city_add_urban_library_8_vandalized_north" },
+        { -1, 0, 2, "dda_geo_city_add_urban_library_roof_1_north" },
+        { 0, 0, 2, "dda_geo_city_add_urban_library_roof_2_north" },
+        { -1, 1, 2, "dda_geo_city_add_urban_library_roof_3_north" },
+        { 0, 1, 2, "dda_geo_city_add_urban_library_roof_4_north" },
+    }, {
+        { -1, 0, 7, 20, 0, "t_floor" },
+        { -1, 0, 8, 14, 0, "t_stairs_up" },
+        { -1, 0, 8, 15, 0, "t_stairs_up" },
+        { -1, 0, 9, 14, 0, "t_stairs_up" },
+        { -1, 0, 9, 15, 0, "t_stairs_up" },
+        { -1, 0, 10, 10, 0, "t_floor" },
+        { -1, 0, 10, 14, 0, "t_stairs_up" },
+        { -1, 0, 10, 15, 0, "t_stairs_up" },
+        { -1, 0, 11, 15, 0, "t_floor" },
+        { -1, 0, 13, 3, 0, "t_floor" },
+        { -1, 0, 23, 23, 0, "t_floor" },
+        { 0, 0, 6, 0, 0, "t_sidewalk" },
+        { 0, 0, 9, 19, 0, "t_floor" },
+        { 0, 0, 11, 23, 0, "t_floor" },
+        { 0, 0, 14, 14, 0, "t_linoleum_white" },
+        { 0, 0, 15, 9, 0, "t_floor" },
+        { -1, 1, 7, 5, 0, "t_floor" },
+        { -1, 1, 8, 14, 0, "t_floor" },
+        { -1, 1, 13, 0, 0, "t_floor" },
+        { -1, 1, 16, 20, 0, "t_floor" },
+        { -1, 1, 18, 9, 0, "t_floor" },
+        { 0, 1, 0, 0, 0, "t_floor" },
+        { 0, 1, 6, 12, 0, "t_floor" },
+        { 0, 1, 8, 4, 0, "t_floor" },
+        { 0, 1, 10, 8, 0, "t_floor" },
+        { 0, 1, 16, 16, 0, "t_floor" },
+        { -1, 0, 0, 0, 1, "t_open_air" },
+        { -1, 0, 1, 12, 1, "t_open_air" },
+        { -1, 0, 5, 5, 1, "t_open_air" },
+        { -1, 0, 7, 18, 1, "t_floor" },
+        { -1, 0, 8, 14, 1, "t_stairs_down" },
+        { -1, 0, 8, 15, 1, "t_stairs_down" },
+        { -1, 0, 9, 14, 1, "t_stairs_down" },
+        { -1, 0, 9, 15, 1, "t_stairs_down" },
+        { -1, 0, 10, 14, 1, "t_stairs_down" },
+        { -1, 0, 10, 15, 1, "t_stairs_down" },
+        { -1, 0, 22, 23, 1, "t_floor" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 7, 5, 1, "t_flat_roof" },
+        { 0, 0, 12, 11, 1, "t_floor" },
+        { 0, 0, 18, 17, 1, "t_open_air" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+        { -1, 1, 0, 0, 1, "t_open_air" },
+        { -1, 1, 0, 18, 1, "t_open_air" },
+        { -1, 1, 1, 12, 1, "t_open_air" },
+        { -1, 1, 9, 6, 1, "t_floor" },
+        { -1, 1, 23, 23, 1, "t_open_air" },
+        { 0, 1, 0, 0, 1, "t_floor" },
+        { 0, 1, 1, 12, 1, "t_floor" },
+        { 0, 1, 15, 18, 1, "t_open_air" },
+        { 0, 1, 23, 5, 1, "t_open_air" },
+        { 0, 1, 23, 23, 1, "t_open_air" },
+        { -1, 0, 0, 0, 2, "t_open_air" },
+        { -1, 0, 1, 11, 2, "t_open_air" },
+        { -1, 0, 21, 4, 2, "t_open_air" },
+        { -1, 0, 23, 18, 2, "t_flat_roof" },
+        { -1, 0, 23, 23, 2, "t_flat_roof" },
+        { 0, 0, 0, 0, 2, "t_open_air" },
+        { 0, 0, 2, 11, 2, "t_flat_roof" },
+        { 0, 0, 22, 4, 2, "t_open_air" },
+        { 0, 0, 22, 18, 2, "t_open_air" },
+        { 0, 0, 23, 23, 2, "t_open_air" },
+        { -1, 1, 0, 0, 2, "t_open_air" },
+        { -1, 1, 0, 6, 2, "t_open_air" },
+        { -1, 1, 0, 12, 2, "t_open_air" },
+        { -1, 1, 0, 18, 2, "t_open_air" },
+        { -1, 1, 23, 23, 2, "t_open_air" },
+        { 0, 1, 0, 0, 2, "t_flat_roof" },
+        { 0, 1, 0, 6, 2, "t_flat_roof" },
+        { 0, 1, 0, 12, 2, "t_flat_roof" },
+        { 0, 1, 0, 18, 2, "t_open_air" },
+        { 0, 1, 23, 23, 2, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_synagogue_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 8800, {
+        { 0, 0, 0, "dda_geo_city_add_synagogue_north" },
+        { 0, 0, 1, "dda_geo_city_add_synagogue_roof_north" },
+        { 0, 0, 2, "dda_geo_city_add_synagogue_upper_roof_north" },
+    }, {
+        { 0, 0, 3, 0, 0, "t_sidewalk" },
+        { 0, 0, 7, 18, 0, "t_door_c" },
+        { 0, 0, 9, 7, 0, "t_floor" },
+        { 0, 0, 9, 20, 0, "t_door_c" },
+        { 0, 0, 11, 2, 0, "t_door_c" },
+        { 0, 0, 11, 6, 0, "t_door_c" },
+        { 0, 0, 11, 22, 0, "t_door_c" },
+        { 0, 0, 12, 2, 0, "t_door_c" },
+        { 0, 0, 12, 6, 0, "t_door_c" },
+        { 0, 0, 12, 22, 0, "t_door_c" },
+        { 0, 0, 14, 12, 0, "t_floor" },
+        { 0, 0, 16, 3, 0, "t_door_c" },
+        { 0, 0, 16, 18, 0, "t_door_c" },
+        { 0, 0, 17, 23, 0, "t_gutter_downspout" },
+        { 0, 0, 19, 17, 0, "t_floor" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 0, 6, 1, "t_open_air" },
+        { 0, 0, 0, 12, 1, "t_open_air" },
+        { 0, 0, 0, 18, 1, "t_open_air" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+        { 0, 0, 0, 0, 2, "t_open_air" },
+        { 0, 0, 0, 6, 2, "t_open_air" },
+        { 0, 0, 0, 12, 2, "t_open_air" },
+        { 0, 0, 0, 18, 2, "t_open_air" },
+        { 0, 0, 23, 23, 2, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_small_kindergarten_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 8900, {
+        { 0, 0, 0, "dda_geo_city_add_small_kindergarten_north" },
+        { 0, 0, 1, "dda_geo_city_add_small_kindergarten_roof_north" },
+    }, {
+        { 0, 0, 4, 11, 0, "t_floor" },
+        { 0, 0, 9, 18, 0, "t_floor" },
+        { 0, 0, 11, 0, 0, "t_sidewalk" },
+        { 0, 0, 11, 8, 0, "t_door_glass_c" },
+        { 0, 0, 12, 8, 0, "t_door_glass_c" },
+        { 0, 0, 14, 14, 0, "t_floor" },
+        { 0, 0, 21, 23, 0, "t_gutter_downspout" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 6, 5, 1, "t_open_air" },
+        { 0, 0, 12, 10, 1, "t_flat_roof" },
+        { 0, 0, 18, 18, 1, "t_flat_roof" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_office_dentist_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 9000, {
+        { 0, 0, 0, "dda_geo_city_add_office_dentist_north" },
+        { 0, 0, 1, "dda_geo_city_add_office_dentist_roof_north" },
+    }, {
+        { 0, 0, 3, 0, 0, "t_sidewalk" },
+        { 0, 0, 6, 18, 0, "t_ladder_up" },
+        { 0, 0, 8, 8, 0, "t_floor" },
+        { 0, 0, 12, 3, 0, "t_pavement" },
+        { 0, 0, 14, 13, 0, "t_linoleum_white" },
+        { 0, 0, 17, 20, 0, "t_window" },
+        { 0, 0, 18, 15, 0, "t_door_glass_white_c" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 5, 19, 1, "t_grate" },
+        { 0, 0, 6, 18, 1, "t_ladder_down" },
+        { 0, 0, 8, 18, 1, "t_door_locked" },
+        { 0, 0, 18, 4, 1, "t_open_air" },
+        { 0, 0, 19, 12, 1, "t_gutter" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_s_airsoft_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 9100, {
+        { 0, 0, 0, "dda_geo_city_add_s_airsoft_north" },
+        { 0, 0, 1, "dda_geo_city_add_s_airsoft_roof_north" },
+    }, {
+        { 0, 0, 0, 0, 0, "t_pavement" },
+        { 0, 0, 8, 4, 0, "t_pavement" },
+        { 0, 0, 10, 15, 0, "t_thconc_floor" },
+        { 0, 0, 12, 9, 0, "t_thconc_floor" },
+        { 0, 0, 20, 23, 0, "t_gutter_downspout" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 6, 11, 1, "t_flat_roof" },
+        { 0, 0, 15, 5, 1, "t_open_air" },
+        { 0, 0, 21, 16, 1, "t_open_air" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_geo_city_add_office_warehouse_anduril_all_floors_without_loot", "[dda_geometry]" )
+{
+    generate_site( 9200, {
+        { 0, 0, 0, "dda_geo_city_add_office_warehouse_anduril_north" },
+        { 0, 0, 1, "dda_geo_city_add_office_warehouse_anduril_roof_north" },
+    }, {
+        { 0, 0, 0, 0, 0, "t_sidewalk" },
+        { 0, 0, 0, 6, 0, "t_sidewalk" },
+        { 0, 0, 0, 12, 0, "t_sidewalk" },
+        { 0, 0, 0, 18, 0, "t_sidewalk" },
+        { 0, 0, 5, 1, 0, "t_door_metal_locked" },
+        { 0, 0, 6, 1, 0, "t_door_metal_locked" },
+        { 0, 0, 7, 1, 0, "t_door_metal_locked" },
+        { 0, 0, 8, 1, 0, "t_door_metal_locked" },
+        { 0, 0, 9, 1, 0, "t_door_metal_locked" },
+        { 0, 0, 10, 1, 0, "t_door_metal_locked" },
+        { 0, 0, 11, 1, 0, "t_card_reader_broken" },
+        { 0, 0, 12, 18, 0, "dda_geo_city_add_anduril_reader" },
+        { 0, 0, 12, 19, 0, "t_door_metal_locked" },
+        { 0, 0, 16, 1, 0, "t_door_c" },
+        { 0, 0, 17, 1, 0, "t_door_c" },
+        { 0, 0, 17, 5, 0, "t_door_metal_locked" },
+        { 0, 0, 18, 5, 0, "dda_geo_city_add_anduril_reader" },
+        { 0, 0, 19, 19, 0, "t_door_c" },
+        { 0, 0, 23, 23, 0, "t_sidewalk" },
+        { 0, 0, 0, 0, 1, "t_open_air" },
+        { 0, 0, 1, 18, 1, "t_open_air" },
+        { 0, 0, 2, 12, 1, "t_gutter" },
+        { 0, 0, 23, 5, 1, "t_open_air" },
+        { 0, 0, 23, 23, 1, "t_open_air" },
+    } );
+}
+
+TEST_CASE( "dda_city_geometry_transforms_preserve_adjacent_tiles", "[dda_geometry]" )
+{
+    clear_all_state();
+    clear_map();
+    build_test_map( ter_id( "t_floor" ) );
+    auto &m = get_map();
+    const tripoint_bub_ms p( 12, 12, 0 );
+    const tripoint_bub_ms adjacent( 13, 12, 0 );
+    struct transform_row { const char *id; const char *from; const char *to; };
+    for( const auto &row : std::initializer_list<transform_row> {
+        { "dda_geo_city_add_damaged_door", "t_door_boarded", "t_door_boarded_damaged" },
+        { "dda_geo_city_add_damaged_door", "t_door_boarded_damaged", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_boarded_damaged_peep", "t_door_b_peep" },
+        { "dda_geo_city_add_damaged_door", "t_door_boarded_peep", "t_door_boarded_damaged_peep" },
+        { "dda_geo_city_add_damaged_door", "t_door_c", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_c_peep", "t_door_b_peep" },
+        { "dda_geo_city_add_damaged_door", "t_door_gray_c", "t_door_gray_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_gray_o", "t_door_gray_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_green_c", "t_door_green_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_green_o", "t_door_green_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_locked", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_locked_alarm", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_locked_interior", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_locked_peep", "t_door_b_peep" },
+        { "dda_geo_city_add_damaged_door", "t_door_makeshift_c", "t_door_frame" },
+        { "dda_geo_city_add_damaged_door", "t_door_makeshift_o", "t_door_frame" },
+        { "dda_geo_city_add_damaged_door", "t_door_o", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_o_peep", "t_door_b_peep" },
+        { "dda_geo_city_add_damaged_door", "t_door_red_c", "t_door_red_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_red_o", "t_door_red_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_white_c", "t_door_white_b" },
+        { "dda_geo_city_add_damaged_door", "t_door_white_o", "t_door_white_b" },
+        { "dda_geo_city_add_damaged_door", "t_rdoor_b", "t_door_b" },
+        { "dda_geo_city_add_damaged_door", "t_rdoor_boarded", "t_rdoor_boarded_damaged" },
+        { "dda_geo_city_add_damaged_door", "t_rdoor_boarded_damaged", "t_rdoor_b" },
+        { "dda_geo_city_add_damaged_door", "t_rdoor_c", "t_rdoor_b" },
+        { "dda_geo_city_add_damaged_door", "t_rdoor_o", "t_rdoor_b" },
+        { "dda_geo_city_add_damaged_window", "t_curtains", "t_window_frame" },
+        { "dda_geo_city_add_damaged_window", "t_window_domestic", "t_window_frame" },
+        { "dda_geo_city_add_damaged_window", "t_window_no_curtains", "t_window_frame" },
+        { "dda_geo_city_add_damaged_window", "t_window_no_curtains_open", "t_window_frame" },
+        { "dda_geo_city_add_damaged_window", "t_window_open", "t_window_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_b", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_b_peep", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_boarded", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_boarded_damaged", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_boarded_damaged_peep", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_boarded_peep", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_c", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_c_peep", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_gray_b", "t_door_gray_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_gray_c", "t_door_gray_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_gray_o", "t_door_gray_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_green_b", "t_door_green_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_green_c", "t_door_green_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_green_o", "t_door_green_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_locked", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_locked_alarm", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_locked_interior", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_locked_peep", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_makeshift_c", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_makeshift_o", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_o", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_o_peep", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_red_b", "t_door_red_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_red_c", "t_door_red_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_red_o", "t_door_red_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_white_b", "t_door_white_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_white_c", "t_door_white_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_door_white_o", "t_door_white_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_rdoor_b", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_rdoor_boarded", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_rdoor_boarded_damaged", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_rdoor_c", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_door", "t_rdoor_o", "t_door_frame" },
+        { "dda_geo_city_add_destroyed_window", "t_curtains", "t_window_empty" },
+        { "dda_geo_city_add_destroyed_window", "t_window_domestic", "t_window_empty" },
+        { "dda_geo_city_add_destroyed_window", "t_window_frame", "t_window_empty" },
+        { "dda_geo_city_add_destroyed_window", "t_window_no_curtains", "t_window_empty" },
+        { "dda_geo_city_add_destroyed_window", "t_window_no_curtains_open", "t_window_empty" },
+        { "dda_geo_city_add_destroyed_window", "t_window_open", "t_window_empty" },
+        { "dda_geo_city_add_glass_door_wall_2_floor", "t_door_glass_c", "t_floor" },
+        { "dda_geo_city_add_glass_door_wall_2_floor", "t_wall_glass", "t_floor" },
+    } ) {
+        INFO( row.id << " input=" << row.from );
+        const ter_furn_transform_id change( row.id );
+        REQUIRE( change.is_valid() );
+        m.ter_set( p, ter_id( row.from ) );
+        m.furn_set( p, furn_id( "f_null" ) );
+        m.ter_set( adjacent, ter_id( "t_floor" ) );
+        m.furn_set( adjacent, furn_id( "f_chair" ) );
+        change->transform( m, p );
+        CHECK( m.ter( p ) == ter_id( row.to ) );
+        CHECK( m.ter( adjacent ) == ter_id( "t_floor" ) );
+        CHECK( m.furn( adjacent ) == furn_id( "f_chair" ) );
+        CHECK( m.furn( p ) == furn_id( "f_null" ) );
+        CHECK( m.i_at( p ).empty() );
+    }
+    clear_all_state();
 }

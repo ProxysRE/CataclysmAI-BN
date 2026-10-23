@@ -34,7 +34,7 @@ def check():
     assert (report['source_placements'], report['preview_cases'], report['preview_placements']) == (25, 8, 37)
     assert (report['world_maps'], report['nested_definitions'], report['transform_count']) == (19, 18, 5)
     assert not report['unresolved_typed_refs'] and not report['geometry_issues']
-    assert not report['native_embedded'] and not report['runtime_validated']
+    assert report['native_embedded'] and not report['runtime_validated']
     validate_library(entries)
     bad = copy.deepcopy(entries)
     e = next(e for e in bad if e.get('id') == PREFIX + 'urban_library_normal')
