@@ -14,8 +14,8 @@
   "policy": "Port all missing DDA dependencies; no stubs or removed branches",
   "base_commit": "9b75fffc33164c48e91d2e106738cc5b09d3d2e7",
   "latest_fix_checkpoint": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -25,12 +25,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215,
-    "artifact_id": 12525883815,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815"
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328,
+    "artifact_id": 12534776517,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517"
   },
   "shop_checkpoint": {
     "head": "4482f7332f7cd9e0c370cfa07313a95eb9f29986",
@@ -92,8 +92,8 @@
     "epilogues": 2
   },
   "last_run": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -103,12 +103,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215,
-    "artifact_id": 12525883815,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815"
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328,
+    "artifact_id": 12534776517,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517"
   },
   "lighthouse": {
     "npcs": 4,
@@ -370,15 +370,15 @@
     "local_checks": "Archive payload, provenance, checksum and incomplete/stale installation rejection passed",
     "includes_staged_bulk_communities": false,
     "includes_highway_branch": false,
-    "artifact_id": 12525883815,
-    "run_id": 40004114601,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815",
-    "artifact_size_bytes": 205734100,
-    "artifact_digest": "sha256:5202ff6fa895f791297c86d870611b4680fbe34b8a94d129edd32ae03f2d43b5"
+    "artifact_id": 12534776517,
+    "run_id": 40021700275,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517",
+    "artifact_size_bytes": 205736233,
+    "artifact_digest": "sha256:1f0e342ef3cabb67465107993da5119fc2607b1a6314e18386bb4fdbcac676df"
   },
   "latest_validated_native_checkpoint": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -388,12 +388,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215,
-    "artifact_id": 12525883815,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815"
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328,
+    "artifact_id": 12534776517,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517"
   },
   "hub_access_checkpoint": {
     "head": "029bcacf2f8b192b271e9a44f18dbd862db161aa",
@@ -517,8 +517,8 @@
     "lua_exclusion_validation_pending": true
   },
   "latest_clean_windows_build": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -528,12 +528,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215,
-    "artifact_id": 12525883815,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815"
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328,
+    "artifact_id": 12534776517,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517"
   },
   "bundled_mod_inventory": {
     "status": "full_pinned_catalog_generated_and_local_audit_passed",
@@ -681,14 +681,14 @@
     "validation_checkpoint": 39328860166
   },
   "latest_source_native_checkpoint": {
-    "run": 40004114601,
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
+    "run": 40021700275,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
     "compilation": "success",
     "source_core_cases": 73,
     "source_core_assertions": 11030,
     "source_core_result": "success",
     "optional_mod_result": "success: 10 cases /2224 assertions",
-    "geometry_result": "success: 41 cases /1616215 assertions",
+    "geometry_result": "success: 43 cases /1619328 assertions",
     "installed_tests_run": true,
     "portable_package_produced": true
   },
@@ -758,8 +758,8 @@
     "source_files": 59
   },
   "latest_portable_checkpoint": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -769,12 +769,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215,
-    "artifact_id": 12525883815,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815"
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328,
+    "artifact_id": 12534776517,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517"
   },
   "layer_audit": {
     "report": "LAYER_AUDIT.md",
@@ -830,11 +830,11 @@
       ],
       "installed_and_packaging": "not reached"
     },
-    "checkpoint_head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
-    "artifact_id": 12525883815,
-    "artifact_size": 205734100,
-    "artifact_digest": "sha256:5202ff6fa895f791297c86d870611b4680fbe34b8a94d129edd32ae03f2d43b5",
+    "checkpoint_head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
+    "artifact_id": 12534776517,
+    "artifact_size": 205736233,
+    "artifact_digest": "sha256:1f0e342ef3cabb67465107993da5119fc2607b1a6314e18386bb4fdbcac676df",
     "previous_successful_head": "60e5c6b21be8a964885cfe081c4588f26cfb7448",
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -857,10 +857,11 @@
       "research",
       "large",
       "apartment",
-      "survivor"
+      "survivor",
+      "camp"
     ],
-    "validated_geometry_cases": 23,
-    "validated_geometry_placements": 704,
+    "validated_geometry_cases": 43,
+    "validated_geometry_placements": 1561,
     "latest_failed_attempt": {
       "head": "d186031d749fcf61c13874ed7e25ba4c60ec650a",
       "run_id": 39786965319,
@@ -878,8 +879,10 @@
       "error": "Windows default cp1252 decoded UTF-8 cottage glyphs into multiple characters; row-width preflight failed",
       "fix": "Explicit UTF-8 source reads and writes; simulated cp1252-default regression passed"
     },
-    "source_special_placements": 1553,
-    "additional_derived_roof_cells": 1
+    "source_special_placements": 1592,
+    "additional_derived_roof_cells": 2,
+    "candidate_head": "ed263981c9684bf677ad96c77f7c441f62639614",
+    "candidate_run_id": 40042302365
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -930,11 +933,11 @@
     "installation_scope": "namespaced opt-in debug preview; original source IDs remain staged separately"
   },
   "geometry_layer_progress": {
-    "verified_groups": 32,
+    "verified_groups": 33,
     "accepted_groups": 51,
-    "verified_percent": 62.7,
+    "verified_percent": 64.7,
     "additional_prepared_groups": 0,
-    "verified_plus_prepared_percent": 62.7,
+    "verified_plus_prepared_percent": 64.7,
     "metric": "Unweighted groups with generation-verified geometry scope; not player traversal or work-hours percentage",
     "report": "geometry_layer/PROGRESS.json"
   },
@@ -1074,9 +1077,9 @@
     "validation_run": 39962621096
   },
   "geometry_generation_progress": {
-    "verified_groups": 32,
+    "verified_groups": 33,
     "accepted_groups": 51,
-    "percent": 62.7,
+    "percent": 64.7,
     "scope": "Unweighted groups with demonstrated geometry-generation scope; not full port completion",
     "evidence": "lighthouse/VALIDATION.json"
   },
@@ -1100,23 +1103,24 @@
   "geometry_survivor_candidate": {
     "native_embedded": true,
     "runtime_validated": true,
-    "status": "Four site previews passed source and installed generation; forest camp remains excluded",
+    "status": "Four site previews passed source and installed generation; camp variants separately validated in run 40021700275",
     "special_placements": 16,
     "report": "geometry_layer/SURVIVOR_PREVIEW_REPORT.json",
     "navigation_and_roof_expectations": 127,
-    "validation_run": 40004114601
+    "validation_run": 40021700275
   },
   "geometry_survivor_camp_candidate": {
     "native_embedded": true,
-    "runtime_validated": false,
-    "status": "Both variants embedded with source-painted loot masks and 90 source-derived roof/furniture assertions; Windows pending",
+    "runtime_validated": true,
+    "status": "Both variants passed source and installed generation, including all 90 structural expectations; natural time weighting remains deferred",
     "world_maps": 3,
     "nested_maps": 4,
     "debug_special_cells": 3,
     "intact_roof_tiles": 75,
     "fixture_expectations": 90,
     "report": "geometry_layer/SURVIVOR_CAMP_PREVIEW_REPORT.json",
-    "natural_time_weighting": "Archived source expression; not implemented by separate debug variants"
+    "natural_time_weighting": "Archived source expression; not implemented by separate debug variants",
+    "validation_run": 40021700275
   },
   "geometry_city_additions_candidate": {
     "native_embedded": true,
@@ -1133,6 +1137,8 @@
     "report": "geometry_layer/CITY_ADDITIONS_GEOMETRY_REPORT.json",
     "fixture_geometry_points": 242,
     "native_transform_input_cases": 73,
-    "fixture_report": "geometry_layer/CITY_ADDITIONS_PREVIEW_REPORT.json"
+    "fixture_report": "geometry_layer/CITY_ADDITIONS_PREVIEW_REPORT.json",
+    "validation_run": 40042302365,
+    "candidate_head": "ed263981c9684bf677ad96c77f7c441f62639614"
   }
 }

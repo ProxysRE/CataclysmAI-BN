@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328
   },
-  "native_patch_sha256": "548c8a83cc15bb21b297bbb35c3e89317c0d49edd441366f62c44c6c60ad9e96",
+  "native_patch_sha256": "9cbe9cde895658eebb9a4bdbe947f8c5d2966831bfbec4194db56937a6f219d9",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -38,7 +38,8 @@
     "Grey Moose trader/guard identities and seven NPCs across their floors",
     "Complete small island lighthouse six-level generation, ladders, beacon and supply capacity",
     "Complete eldercare site generation and all three specials in four rotations with optional mods",
-    "Installed portable data repeated both native suites successfully"
+    "Installed portable data repeated both native suites successfully",
+    "Intact and ruined forest camps, source-painted forest masks, 75 roof tiles and 90 deterministic structural expectations"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
@@ -46,9 +47,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Four survivor/Lacroix site previews passed source and installed Windows generation, including explicit LMOE exit and roof floors. Survivor housing group remains uncredited until forest camp generation is validated. Full traversal and later-layer interactions remain separate.",
+  "note": "Both forest-camp variants and all four survivor/Lacroix site previews passed source and installed generation. Natural time-dependent camp selection, full traversal and later-layer interactions remain separate. City candidate is pending its own Windows run.",
   "portable_package": {
-    "run_id": 40004114601,
+    "run_id": 40021700275,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,14 +58,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12525883815,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815",
+    "artifact_id": 12534776517,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/artifacts/12534776517",
     "installed_geometry_tests": {
-      "cases": 41,
-      "assertions": 1616215
+      "cases": 43,
+      "assertions": 1619328
     },
-    "size": 205734100,
-    "digest": "sha256:5202ff6fa895f791297c86d870611b4680fbe34b8a94d129edd32ae03f2d43b5"
+    "size": 205736233,
+    "digest": "sha256:1f0e342ef3cabb67465107993da5119fc2607b1a6314e18386bb4fdbcac676df"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -82,10 +83,11 @@
       "research",
       "large",
       "apartment",
-      "survivor"
+      "survivor",
+      "camp"
     ],
-    "source_and_installed": "All 41 geometry cases passed without initialization errors",
-    "placed_cells": 1558,
+    "source_and_installed": "All 43 geometry cases passed without initialization errors",
+    "placed_cells": 1561,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -96,25 +98,27 @@
     "raider_navigation_and_terrain_expectations": 841,
     "urban_navigation_and_marking_expectations": 120,
     "waterside_navigation_and_terrain_expectations": 148,
-    "source_special_placements": 1553,
+    "source_special_placements": 1555,
     "additional_helicopter_context_cells": 4,
     "apartment_navigation_and_conditional_expectations": 284,
     "large_site_navigation_and_terrain_expectations": 671,
     "additional_derived_LMOE_roof_cells": 1,
-    "survivor_access_and_roof_expectations": 127
+    "survivor_access_and_roof_expectations": 127,
+    "camp_roof_and_furniture_expectations": 90,
+    "additional_derived_camp_roof_cells": 1
   },
   "native_evidence": {
-    "job_id": 120587607065,
-    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/job/120587607065",
+    "job_id": 120647660962,
+    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40021700275/job/120647660962",
     "source_suite_results": [
       "73 cases /11030 assertions",
       "10 cases /2224 assertions",
-      "41 cases /1616215 assertions"
+      "43 cases /1619328 assertions"
     ],
     "installed_suite_results": [
       "73 cases /11030 assertions",
       "10 cases /2224 assertions",
-      "41 cases /1616215 assertions"
+      "43 cases /1619328 assertions"
     ],
     "portable_upload": "success"
   }

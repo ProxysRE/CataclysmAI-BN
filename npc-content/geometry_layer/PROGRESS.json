@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 32,
-  "verified_percent": 62.7,
+  "verified_groups": 33,
+  "verified_percent": 64.7,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 62.7,
+  "verified_plus_prepared_percent": 64.7,
   "evidence_checkpoint": {
-    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
-    "run_id": 40004114601,
+    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
+    "run_id": 40021700275,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 41,
-    "geometry_assertions": 1616215,
-    "installed_geometry_test_cases": 41,
-    "installed_geometry_assertions": 1616215
+    "geometry_test_cases": 43,
+    "geometry_assertions": 1619328,
+    "installed_geometry_test_cases": 43,
+    "installed_geometry_assertions": 1619328
   },
   "rows": [
     {
@@ -287,7 +287,9 @@
         "overmap_special:survivor_forest_camp",
         "overmap_special:Locked LMOE Shelter"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "Prepper and Liam cabins, locked LMOE and intact/ruined forest camps passed source and installed generation; natural time weighting and full traversal remain separate"
     },
     {
       "name": "Малый островной маяк",
