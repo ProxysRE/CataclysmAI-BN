@@ -1,0 +1,652 @@
+{
+  "status": "two_camp_variants_prepared_not_embedded",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "source_weights": {
+    "intact": 1000,
+    "ruined": {
+      "math": [
+        "clamp( ( time_since('cataclysm', 'unit':'days') + 100 ),100,250)"
+      ]
+    }
+  },
+  "source_special": {
+    "type": "overmap_special",
+    "id": "survivor_forest_camp",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "survivor_forest_camp_north"
+      }
+    ],
+    "locations": [
+      "forest_center"
+    ],
+    "city_distance": [
+      10,
+      80
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "UNIQUE",
+      "MAN_MADE"
+    ]
+  },
+  "variant_anchors": {
+    "intact": [
+      [
+        3,
+        6
+      ],
+      [
+        17,
+        6
+      ],
+      [
+        10,
+        12
+      ]
+    ],
+    "ruined": [
+      [
+        3,
+        6
+      ],
+      [
+        17,
+        6
+      ],
+      [
+        10,
+        12
+      ]
+    ]
+  },
+  "loot_masks": {
+    "dda_geo_camp_intact": "000000000000000000000000000000000000000000000000000000000000000000000000001111111000000011111110001111111000000011111110001111111000000011111110001111111000000011111110001111111111111111111110001111111111111111111110001111111111111111111110001111111111111111111110001111111111111111111110001111111111111111111110000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000111111111111100000000001111111111111110000000000111111111111100000000000011111111111000000",
+    "dda_geo_camp_ruined": "000000000000000000000000000000000000000000000000011111111100000111111111011111111100000111111111011111111100000111111111011111111100000111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000001111111111111110000000011111111111111111000000011111111111111111000000011111111111111111000000001111111111111110000"
+  },
+  "source_painted_cells": {
+    "dda_geo_camp_intact": 311,
+    "dda_geo_camp_ruined": 402
+  },
+  "unresolved_typed_refs": [],
+  "shared_preview_dependencies": [
+    [
+      "terrain",
+      "dda_geo_frontier_canvas_roof"
+    ]
+  ],
+  "source_rows_and_furniture_weights_preserved": true,
+  "world_maps": 3,
+  "nested_maps": 4,
+  "special_cells": {
+    "dda_geo_camp_intact": 2,
+    "dda_geo_camp_ruined": 1
+  },
+  "intact_expected_points": [
+    {
+      "x": 3,
+      "y": 6,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 7,
+      "y": 6,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 3,
+      "y": 10,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 7,
+      "y": 10,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 5,
+      "y": 8,
+      "z": 0,
+      "furniture": "f_center_groundsheet"
+    },
+    {
+      "x": 3,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 7,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 6,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 7,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 3,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 4,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 5,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 6,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 7,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 3,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 4,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 5,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 6,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 7,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 3,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 4,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 5,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 6,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 7,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 17,
+      "y": 6,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 21,
+      "y": 6,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 17,
+      "y": 10,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 21,
+      "y": 10,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 19,
+      "y": 8,
+      "z": 0,
+      "furniture": "f_center_groundsheet"
+    },
+    {
+      "x": 17,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 18,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 19,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 20,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 21,
+      "y": 6,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 17,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 18,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 19,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 20,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 21,
+      "y": 7,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 17,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 18,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 19,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 20,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 21,
+      "y": 8,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 17,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 18,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 19,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 20,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 21,
+      "y": 9,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 17,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 18,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 19,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 20,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 21,
+      "y": 10,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 10,
+      "y": 12,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 14,
+      "y": 12,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 10,
+      "y": 16,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 14,
+      "y": 16,
+      "z": 0,
+      "furniture": "f_large_canvas_wall"
+    },
+    {
+      "x": 12,
+      "y": 14,
+      "z": 0,
+      "furniture": "f_center_groundsheet"
+    },
+    {
+      "x": 10,
+      "y": 12,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 11,
+      "y": 12,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 12,
+      "y": 12,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 13,
+      "y": 12,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 14,
+      "y": 12,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 10,
+      "y": 13,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 11,
+      "y": 13,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 12,
+      "y": 13,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 13,
+      "y": 13,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 14,
+      "y": 13,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 10,
+      "y": 14,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 11,
+      "y": 14,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 12,
+      "y": 14,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 13,
+      "y": 14,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 14,
+      "y": 14,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 10,
+      "y": 15,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 11,
+      "y": 15,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 12,
+      "y": 15,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 13,
+      "y": 15,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 14,
+      "y": 15,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 10,
+      "y": 16,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 11,
+      "y": 16,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 12,
+      "y": 16,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 13,
+      "y": 16,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    },
+    {
+      "x": 14,
+      "y": 16,
+      "z": 1,
+      "terrain": "dda_geo_frontier_canvas_roof"
+    }
+  ],
+  "intact_roof_tiles": 75,
+  "registration_adaptations": [
+    "REQUIRES_PREDECESSOR replaced by explicit source fallback forest_thick for isolated debug generation",
+    "Relative time weight kept in source_weights; intact and ruined variants are separately selectable zero-occurrence debug specials"
+  ],
+  "limits": [
+    "Not embedded in the native patch; no new generation credit",
+    "Natural source time-dependent variant selection is not implemented",
+    "BN remove_all clears fields as well as furniture/items/traps, only on source-painted glyphs",
+    "Unpainted surrounding forest retains stock BN generation and its normal contents",
+    "Intact roof rotation is safe because its full 5x5 square is rotationally invariant",
+    "Ruined tents intentionally have no upper roof special; all original furniture/null weights are retained",
+    "Source monsters, corpses, loot and other later content remain in the full staging archives"
+  ]
+}

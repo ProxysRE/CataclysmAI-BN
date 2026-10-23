@@ -7,6 +7,8 @@ on:
       - 'npc-content/adapt_survivor_geometry.py'
       - 'npc-content/prepare_survivor_preview.py'
       - 'npc-content/check_survivor_preview.py'
+      - 'npc-content/prepare_survivor_camp_preview.py'
+      - 'npc-content/check_survivor_camp_preview.py'
       - 'npc-content/prepare_geometry_preview.py'
       - 'npc-content/check_geometry_preview_layout.py'
       - 'npc-content/geometry_layer/SURVIVOR_*'
@@ -25,6 +27,7 @@ jobs:
       - run: python npc-content/check_survivor_geometry.py
       - run: python npc-content/adapt_survivor_geometry.py --check
       - run: python npc-content/check_survivor_preview.py
+      - run: python npc-content/check_survivor_camp_preview.py
       - run: python npc-content/prepare_geometry_preview.py --check
       - run: python npc-content/check_geometry_terrain_schema.py
       - run: python npc-content/check_geometry_preview_layout.py

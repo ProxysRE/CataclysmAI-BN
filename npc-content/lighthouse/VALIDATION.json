@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "58601a472b9b50ff197c115ec34699035e115b88",
-    "run_id": 39962621096,
+    "head": "cf7f1d1b44b2b04b97250a0bbdb67da6a00004b3",
+    "run_id": 40004114601,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 37,
-    "geometry_assertions": 1601080,
-    "installed_geometry_test_cases": 37,
-    "installed_geometry_assertions": 1601080
+    "geometry_test_cases": 41,
+    "geometry_assertions": 1616215,
+    "installed_geometry_test_cases": 41,
+    "installed_geometry_assertions": 1616215
   },
-  "native_patch_sha256": "0f20157691a2caabf874cd8bcbefdf32d1dab36abc38305f2d4fb6155391d4bf",
+  "native_patch_sha256": "548c8a83cc15bb21b297bbb35c3e89317c0d49edd441366f62c44c6c60ad9e96",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -46,9 +46,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "Research, large sites and all five apartment layouts passed source and installed geometry generation. Full character traversal and quests remain uncertified. Staged survivor/Lacroix content is excluded.",
+  "note": "Four survivor/Lacroix site previews passed source and installed Windows generation, including explicit LMOE exit and roof floors. Survivor housing group remains uncredited until forest camp generation is validated. Full traversal and later-layer interactions remain separate.",
   "portable_package": {
-    "run_id": 39962621096,
+    "run_id": 40004114601,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -57,14 +57,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12510420047,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/artifacts/12510420047",
+    "artifact_id": 12525883815,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/artifacts/12525883815",
     "installed_geometry_tests": {
-      "cases": 37,
-      "assertions": 1601080
+      "cases": 41,
+      "assertions": 1616215
     },
-    "size": 205730746,
-    "digest": "sha256:9bef0a62f429348508f9c2ad8d787d4c53bd8973bb8d16e3e1aa6abd2cf67419"
+    "size": 205734100,
+    "digest": "sha256:5202ff6fa895f791297c86d870611b4680fbe34b8a94d129edd32ae03f2d43b5"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -81,10 +81,11 @@
       "waterside",
       "research",
       "large",
-      "apartment"
+      "apartment",
+      "survivor"
     ],
-    "source_and_installed": "All 37 geometry cases passed without initialization errors",
-    "placed_cells": 1542,
+    "source_and_installed": "All 41 geometry cases passed without initialization errors",
+    "placed_cells": 1558,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -95,23 +96,25 @@
     "raider_navigation_and_terrain_expectations": 841,
     "urban_navigation_and_marking_expectations": 120,
     "waterside_navigation_and_terrain_expectations": 148,
-    "source_special_placements": 1538,
+    "source_special_placements": 1553,
     "additional_helicopter_context_cells": 4,
     "apartment_navigation_and_conditional_expectations": 284,
-    "large_site_navigation_and_terrain_expectations": 671
+    "large_site_navigation_and_terrain_expectations": 671,
+    "additional_derived_LMOE_roof_cells": 1,
+    "survivor_access_and_roof_expectations": 127
   },
   "native_evidence": {
-    "job_id": 120444235617,
-    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/39962621096/job/120444235617",
+    "job_id": 120587607065,
+    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40004114601/job/120587607065",
     "source_suite_results": [
       "73 cases /11030 assertions",
       "10 cases /2224 assertions",
-      "37 cases /1601080 assertions"
+      "41 cases /1616215 assertions"
     ],
     "installed_suite_results": [
       "73 cases /11030 assertions",
       "10 cases /2224 assertions",
-      "37 cases /1601080 assertions"
+      "41 cases /1616215 assertions"
     ],
     "portable_upload": "success"
   }

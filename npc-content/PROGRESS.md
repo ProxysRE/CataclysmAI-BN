@@ -233,3 +233,17 @@ The two fixed LMOE upward stamps are now composed explicitly on their destinatio
 Prepared and embedded four isolated sites: prepper cabin (both correlated palette alternatives), Liam cabin, locked LMOE and Lacroix cemetery. Ten world-map alternatives, two structural nests, 16 fixture placements and 127 access/door/slope/roof expectations are included. The combined native fixture now covers 41 layouts and 1558 cells. Every previous preview object and all 37 previously successful native test bodies are unchanged. Original source coordinates/rows/weights are checked, and shifted LMOE upper stamps are rejected by regression probes. All reachable nested placements in this new candidate are 2D; no general nested-z engine support was added.
 
 Forest camp and all intact/ruined tent variants remain in full staging, excluded from this preview until fallback forest, dynamic weighting and correlated roof placement are adapted. Static schema/fixture checks pass; only the three canonical geometry patch sections changed. Windows source and installed generation remain pending. Historical confirmed scope stays 31/51 (60.8%); the successful portable build from run 39962621096 remains available.
+
+## Successful four-site survivor/Lacroix Windows checkpoint (2026-10-23)
+
+Run 40004114601 on cf7f1d1 passed compilation and all six source/installed suites: core 73/11,030, Civilians+Exotic Ammo 10/2,224 and geometry 41/1,616,215, repeated unchanged on installed data. The verified portable archive is artifact 12525883815 (205,734,100 bytes), SHA-256 5202ff6fa895f791297c86d870611b4680fbe34b8a94d129edd32ae03f2d43b5.
+
+All 127 new source-derived access/door/slope/roof expectations passed, including both LMOE stair columns, the locked entrance and the upper exit/roof stamps. Lacroix receives generation-scope credit: 32/51 = 62.7%. The housing/camp group remains uncredited as a complete group despite its three successful site previews; intact/ruined forest-camp generation is still pending. Full traversal, natural placement and later-layer interactions remain separate.
+
+## Forest-camp variant preparation (2026-10-23)
+
+Prepared both source camp layouts as separately selectable zero-occurrence debug specials, retaining the full original time-dependent selection in the source archive/report. Each isolated OMT has one mapgen, so normalizing its positive relative weight to 1000 does not change that variant's selection probability. This does not implement natural mixed-pool time weighting. Both source rows, all tent rotations and ruined furniture/null distributions are conserved.
+
+The three original intact tent anchors receive the source full-square 5x5 roof on an explicit upper OMT: 75 tiles. Since that roof is invariant under all four source tent rotations, it remains correlated with each tent without a general nested-z feature or random seed coupling. The ruined preview intentionally has no roof floor. Source fallback forest_thick is explicit; remove_all and future empty-loot masks cover only source-painted glyphs and preserve surrounding forest. Pinned runtime evidence and probes guard against shifted roofs and blanket forest clearing.
+
+Prepared 90 deterministic native expectations (75 roof, twelve wall corners, three centers). The new candidate is not embedded or native-certified. Existing 41-case patch remains byte-identical to the successful Windows run; confirmed geometry scope stays 32/51.

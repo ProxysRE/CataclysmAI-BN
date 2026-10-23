@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'overmap_special:cemetery_lacroix':('native/dda_geometry_preview.json','All four Lacroix cemetery ground cells and source roof passed source and installed generation'),
  'overmap_special:xedra_morgantown':('native/dda_geometry_preview.json','All Morgantown source cells passed source and installed generation'),
  'overmap_special:xedra_fishing_shack':('native/dda_geometry_preview.json','Fishing-shack source floor and roof passed source and installed generation'),
  'overmap_special:physics_lab_LIXA':('native/dda_geometry_preview.json','All LIXA source regions and sixteen source barrier positions passed source and installed generation; deferred device access remains separate'),
@@ -47,7 +48,7 @@ def prepare(check=False):
     checkpoint=validation['checkpoint']
     assert checkpoint['status']=='success' and checkpoint['geometry_test_cases']>=3
     assert {'hub_01','campus','exodii','frontier','raider','urban','research','large','apartment'}<=set(validation['geometry_preview']['packages'])
-    assert checkpoint['geometry_test_cases'] >= 37 and checkpoint['installed_geometry_test_cases'] >= 37
+    assert checkpoint['geometry_test_cases'] >= 41 and checkpoint['installed_geometry_test_cases'] >= 41
     rows=[];seen=set()
     for g in groups:
         found=set(g['source_identities'])&VERIFIED.keys()
