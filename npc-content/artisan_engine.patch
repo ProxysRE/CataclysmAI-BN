@@ -4461,7 +4461,7 @@
 +}
 --- /dev/null
 +++ b/tests/dda_geometry_preview_test.cpp
-@@ -0,0 +1,10911 @@
+@@ -0,0 +1,11017 @@
 +#include "catch/catch.hpp"
 +#include "avatar.h"
 +#include "cata_utility.h"
@@ -15371,6 +15371,112 @@
 +        { 1, 1, 10, 9, 0, "t_door_c" },
 +        { 1, 1, 10, 10, 0, "t_door_c" },
 +        { 1, 1, 12, 8, 0, "t_door_c" },
++    } );
++}
++
++TEST_CASE( "dda_geo_camp_intact_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8300, {
++        { 0, 0, 0, "dda_geo_camp_intact_north", "000000000000000000000000000000000000000000000000000000000000000000000000001111111000000011111110001111111000000011111110001111111000000011111110001111111000000011111110001111111111111111111110001111111111111111111110001111111111111111111110001111111111111111111110001111111111111111111110001111111111111111111110000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000011111111111000000000000111111111111100000000001111111111111110000000000111111111111100000000000011111111111000000" },
++        { 0, 0, 1, "dda_geo_camp_intact_roof_north" },
++    }, {
++        { 0, 0, 3, 6, 0, "f_large_canvas_wall", true },
++        { 0, 0, 7, 6, 0, "f_large_canvas_wall", true },
++        { 0, 0, 3, 10, 0, "f_large_canvas_wall", true },
++        { 0, 0, 7, 10, 0, "f_large_canvas_wall", true },
++        { 0, 0, 5, 8, 0, "f_center_groundsheet", true },
++        { 0, 0, 3, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 4, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 5, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 6, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 7, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 3, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 4, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 5, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 6, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 7, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 3, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 4, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 5, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 6, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 7, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 3, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 4, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 5, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 6, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 7, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 3, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 4, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 5, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 6, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 7, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 17, 6, 0, "f_large_canvas_wall", true },
++        { 0, 0, 21, 6, 0, "f_large_canvas_wall", true },
++        { 0, 0, 17, 10, 0, "f_large_canvas_wall", true },
++        { 0, 0, 21, 10, 0, "f_large_canvas_wall", true },
++        { 0, 0, 19, 8, 0, "f_center_groundsheet", true },
++        { 0, 0, 17, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 18, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 19, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 20, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 21, 6, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 17, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 18, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 19, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 20, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 21, 7, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 17, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 18, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 19, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 20, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 21, 8, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 17, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 18, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 19, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 20, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 21, 9, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 17, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 18, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 19, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 20, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 21, 10, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 10, 12, 0, "f_large_canvas_wall", true },
++        { 0, 0, 14, 12, 0, "f_large_canvas_wall", true },
++        { 0, 0, 10, 16, 0, "f_large_canvas_wall", true },
++        { 0, 0, 14, 16, 0, "f_large_canvas_wall", true },
++        { 0, 0, 12, 14, 0, "f_center_groundsheet", true },
++        { 0, 0, 10, 12, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 11, 12, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 12, 12, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 13, 12, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 14, 12, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 10, 13, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 11, 13, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 12, 13, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 13, 13, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 14, 13, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 10, 14, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 11, 14, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 12, 14, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 13, 14, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 14, 14, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 10, 15, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 11, 15, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 12, 15, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 13, 15, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 14, 15, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 10, 16, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 11, 16, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 12, 16, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 13, 16, 1, "dda_geo_frontier_canvas_roof" },
++        { 0, 0, 14, 16, 1, "dda_geo_frontier_canvas_roof" },
++    } );
++}
++
++TEST_CASE( "dda_geo_camp_ruined_all_floors_without_loot", "[dda_geometry]" )
++{
++    generate_site( 8400, {
++        { 0, 0, 0, "dda_geo_camp_ruined_north", "000000000000000000000000000000000000000000000000011111111100000111111111011111111100000111111111011111111100000111111111011111111100000111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111011111111111111111111111000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000000111111111111100000000001111111111111110000000011111111111111111000000011111111111111111000000011111111111111111000000001111111111111110000" },
 +    } );
 +}
 --- /dev/null
@@ -75351,7 +75457,7 @@
 +    "authors": [
 +      "ProxysRE"
 +    ],
-+    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof and Lacroix cemetery. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.",
++    "description": "Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof Lacroix cemetery and separate intact/ruined forest camps with explicit tent roofs. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.",
 +    "category": "buildings",
 +    "dependencies": [
 +      "bn"
@@ -75360,7 +75466,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,105783 @@
+@@ -0,0 +1,106281 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -181132,6 +181238,504 @@
 +          ],
 +          "x": 9,
 +          "y": 17
++        }
++      ]
++    }
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_camp_intact",
++    "object": {
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "  ,,,,,,,       ,,,,,,, ",
++        "  ,,===,,       ,,===,, ",
++        "  ,,===,,       ,,===,, ",
++        "  ,E,,,,,       ,E,,,,, ",
++        "  ,,,,,,,,,,,,,,M,,,,,, ",
++        "  ,,,,,,,,,,,,,,B,,,,,, ",
++        "  ,,,,,,,,,A@,,,C,,,,,, ",
++        "  ,,,,,,,,,,O,,,S,,,,,, ",
++        "  ,,,,,,,,,,@,,,,,,,,,, ",
++        "  ,,,,,,,,E,,,,,,,,,,,, ",
++        "       ,,,,,,,,,,,      ",
++        "       ,,,,,,,,,,,      ",
++        "       ,,,,,,,,,,,      ",
++        "       ,,,,,,,,,,,      ",
++        "       ,,,,,,,,,,,      ",
++        "       ,,,,@,,,,,,      ",
++        "       -----------      ",
++        "      --~~~~~~~~~--     ",
++        "     --~~~~~~~~~~~--    ",
++        "      --~~~~~~~~~--     ",
++        "       -----------      "
++      ],
++      "nested": {
++        "E": {
++          "chunks": [
++            [
++              "dda_geo_camp_leather_tent_5x5_S",
++              100
++            ]
++          ]
++        }
++      },
++      "terrain": {
++        ",": [
++          "t_region_groundcover"
++        ],
++        "~": "t_water_dp",
++        "O": "t_region_soil",
++        "@": "t_region_groundcover",
++        "E": "t_region_groundcover",
++        "S": "t_region_soil",
++        "=": "t_dirtmound",
++        "-": "t_water_sh",
++        "C": "t_region_soil",
++        "B": "t_region_groundcover",
++        "A": "t_region_groundcover",
++        "M": "t_region_groundcover"
++      },
++      "predecessor_mapgen": "forest_thick",
++      "remove_all": {
++        ",": {},
++        "~": {},
++        "O": {},
++        "@": {},
++        "E": {},
++        "S": {},
++        "=": {},
++        "-": {},
++        "C": {},
++        "B": {},
++        "A": {},
++        "M": {}
++      }
++    },
++    "method": "json",
++    "weight": 1000
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "dda_geo_camp_intact",
++    "name": "survivor forest camp (intact preview)",
++    "sym": "+",
++    "color": "green",
++    "see_cost": 5,
++    "extras": ""
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_camp_intact",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_camp_intact_north"
++      },
++      {
++        "point": [
++          0,
++          0,
++          1
++        ],
++        "overmap": "dda_geo_camp_intact_roof_north"
++      }
++    ],
++    "locations": [
++      "forest_center"
++    ],
++    "city_distance": [
++      10,
++      80
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "CLASSIC",
++      "WILDERNESS",
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "mapgen",
++    "om_terrain": "dda_geo_camp_ruined",
++    "weight": 1000,
++    "//": "This is meant to represent a camp that was attacked by the Shadow",
++    "object": {
++      "rows": [
++        "                        ",
++        "                        ",
++        " _________     _________",
++        " _,,,,,,,_     _,,,,,,,_",
++        " _,,===,,_     _,,===,,_",
++        " _,,===,,_     _,,===,,_",
++        " _,E....,_______,E....,_",
++        " _,.....,,,,,,,,M.....,_",
++        " _,.....,,,,,,,,B.....,_",
++        " _,.....,,,A@,,,C.....,_",
++        " _,.....,,,,O,,,S.....,_",
++        " _,,,,,,,,,,@,,,,,,,,,,_",
++        " _,,,,,,,,$....,,,,,,,,_",
++        " ______,,,.....,,,______",
++        "      _,,,.....,,,_     ",
++        "      _,,,.....,,,_     ",
++        "      _,,,.....,,,_     ",
++        "      _,,,,,,,,,,,_     ",
++        "      _,,,,@,,,,,,_     ",
++        "     __-----------__    ",
++        "    __--~~~~~~~~~--__   ",
++        "    _--~~~~~~~~~~~--_   ",
++        "    __--~~~~~~~~~--__   ",
++        "     __-----------__    "
++      ],
++      "nested": {
++        "E": {
++          "chunks": [
++            [
++              "dda_geo_camp_leather_tent_b_5x5_S",
++              100
++            ]
++          ]
++        },
++        "$": {
++          "chunks": [
++            [
++              "dda_geo_camp_leather_tent_b_5x5_N",
++              100
++            ]
++          ]
++        }
++      },
++      "terrain": {
++        ",": [
++          [
++            "t_dirt",
++            20
++          ],
++          [
++            "t_tree_dead",
++            1
++          ]
++        ],
++        ".": "t_dirt",
++        "_": [
++          [
++            "t_region_groundcover",
++            10
++          ],
++          [
++            "t_dirt",
++            10
++          ],
++          [
++            "t_tree_dead",
++            1
++          ]
++        ],
++        "~": "t_pit",
++        "O": "t_dirt",
++        "@": "t_dirt",
++        "$": "t_dirt",
++        "E": "t_dirt",
++        "S": "t_dirt",
++        "=": "t_dirtmound",
++        "-": "t_pit_shallow",
++        "C": "t_dirt",
++        "B": "t_dirt",
++        "A": "t_dirt",
++        "M": "t_dirt"
++      },
++      "predecessor_mapgen": "forest_thick",
++      "remove_all": {
++        ",": {},
++        ".": {},
++        "_": {},
++        "~": {},
++        "O": {},
++        "@": {},
++        "$": {},
++        "E": {},
++        "S": {},
++        "=": {},
++        "-": {},
++        "C": {},
++        "B": {},
++        "A": {},
++        "M": {}
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "dda_geo_camp_ruined",
++    "name": "survivor forest camp (ruined preview)",
++    "sym": "+",
++    "color": "green",
++    "see_cost": 5,
++    "extras": ""
++  },
++  {
++    "type": "overmap_special",
++    "id": "dda_geo_camp_ruined",
++    "overmaps": [
++      {
++        "point": [
++          0,
++          0,
++          0
++        ],
++        "overmap": "dda_geo_camp_ruined_north"
++      }
++    ],
++    "locations": [
++      "forest_center"
++    ],
++    "city_distance": [
++      10,
++      80
++    ],
++    "occurrences": [
++      0,
++      0
++    ],
++    "flags": [
++      "CLASSIC",
++      "WILDERNESS",
++      "UNIQUE",
++      "MAN_MADE"
++    ]
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_camp_tent_5x5_roof",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rows": [
++        "#####",
++        "#####",
++        "#####",
++        "#####",
++        "#####"
++      ],
++      "terrain": {
++        "#": "dda_geo_frontier_canvas_roof"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_camp_leather_tent_5x5_S",
++    "//": "Canvas roof since we don't have a skin/leather one",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "#####",
++        "#xxx#",
++        "#xXx#",
++        "#xxx#",
++        "##+##"
++      ],
++      "furniture": {
++        "#": "f_large_canvas_wall",
++        "X": "f_center_groundsheet",
++        "x": "f_large_groundsheet",
++        "+": "f_large_canvas_door"
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_camp_leather_tent_b_5x5_S",
++    "//": "No roof due to the ruined state.",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "#####",
++        "#xxx#",
++        "#xXx#",
++        "#xxx#",
++        "##+##"
++      ],
++      "furniture": {
++        "#": [
++          [
++            "f_large_canvas_wall",
++            5
++          ],
++          "f_null"
++        ],
++        "X": [
++          [
++            "f_center_groundsheet",
++            5
++          ],
++          "f_null"
++        ],
++        "x": [
++          [
++            "f_large_groundsheet",
++            5
++          ],
++          "f_null"
++        ],
++        "+": [
++          [
++            "f_large_canvas_door",
++            5
++          ],
++          "f_null"
++        ]
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "mapgen",
++    "nested_mapgen_id": "dda_geo_camp_leather_tent_b_5x5_N",
++    "//": "No roof due to the ruined state.",
++    "object": {
++      "mapgensize": [
++        5,
++        5
++      ],
++      "rotation": [
++        0,
++        3
++      ],
++      "rows": [
++        "##+##",
++        "#xxx#",
++        "#xXx#",
++        "#xxx#",
++        "#####"
++      ],
++      "furniture": {
++        "#": [
++          [
++            "f_large_canvas_wall",
++            5
++          ],
++          "f_null"
++        ],
++        "X": [
++          [
++            "f_center_groundsheet",
++            5
++          ],
++          "f_null"
++        ],
++        "x": [
++          [
++            "f_large_groundsheet",
++            5
++          ],
++          "f_null"
++        ],
++        "+": [
++          [
++            "f_large_canvas_door",
++            5
++          ],
++          "f_null"
++        ]
++      }
++    },
++    "method": "json"
++  },
++  {
++    "type": "overmap_terrain",
++    "id": "dda_geo_camp_intact_roof",
++    "name": "survivor camp tent roofs",
++    "sym": "+",
++    "color": "green",
++    "see_cost": 0,
++    "extras": ""
++  },
++  {
++    "type": "mapgen",
++    "method": "json",
++    "om_terrain": "dda_geo_camp_intact_roof",
++    "object": {
++      "fill_ter": "t_open_air",
++      "rows": [
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        ",
++        "                        "
++      ],
++      "terrain": {
++        " ": "t_open_air"
++      },
++      "place_nested": [
++        {
++          "chunks": [
++            "dda_geo_camp_tent_5x5_roof"
++          ],
++          "x": 3,
++          "y": 6
++        },
++        {
++          "chunks": [
++            "dda_geo_camp_tent_5x5_roof"
++          ],
++          "x": 17,
++          "y": 6
++        },
++        {
++          "chunks": [
++            "dda_geo_camp_tent_5x5_roof"
++          ],
++          "x": 10,
++          "y": 12
 +        }
 +      ]
 +    }

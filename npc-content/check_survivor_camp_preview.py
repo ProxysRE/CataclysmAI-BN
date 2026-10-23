@@ -73,7 +73,7 @@ def check():
         try: validate(bad, report)
         except AssertionError: pass
         else: raise AssertionError('Invalid camp geometry accepted: ' + mutation)
-    assert not report['native_embedded'] and not report['runtime_validated']
+    assert report['native_embedded'] and not report['runtime_validated']
     print('PASS: source rows, random tent rotations and ruined/null weights conserved; shifted roof and blanket forest clearing rejected; 90 native expectations prepared')
 
 

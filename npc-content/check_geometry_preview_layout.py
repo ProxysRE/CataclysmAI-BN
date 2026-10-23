@@ -66,6 +66,19 @@ def check():
         assert actual==expected,(special,'survivor access/LMOE stamp fixture mismatch')
         survivor_count+=len(points)
     assert survivor_count==127
+    from check_survivor_camp_preview import validate as validate_camp
+    camp=json.loads((ROOT/'geometry_layer/SURVIVOR_CAMP_PREVIEW_REPORT.json').read_text())
+    camp_payload=json.loads((ROOT/'geometry_layer/SURVIVOR_CAMP_PREVIEW_SHELL.json').read_text())
+    for entry in camp_payload:assert entry in entries,('Camp payload missing/modified',entry.get('id',entry.get('om_terrain')))
+    validate_camp(camp_payload,camp)
+    body=code.split('TEST_CASE( "dda_geo_camp_intact_all_floors_without_loot"',1)[1].split('\nTEST_CASE(',1)[0]
+    actual=collections.Counter(re.findall(
+        r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^"]+)"(, true)?',body,re.M))
+    expected=collections.Counter(('0','0',str(p['x']),str(p['y']),str(p['z']),p.get('terrain',p.get('furniture')),', true' if 'furniture' in p else '')for p in camp['intact_expected_points'])
+    assert actual==expected,'Camp native roof/furniture expectations changed'
+    for name,mask in camp['loot_masks'].items():
+        body=code.split('TEST_CASE( "'+name+'_all_floors_without_loot"',1)[1].split('\nTEST_CASE(',1)[0]
+        assert f'{{ 0, 0, 0, "{name}_north", "{mask}" }}' in body,('Camp empty-loot mask changed',name)
     print(f'PASS: {len(specials)} native layouts / {count} fixture cells match embedded special coordinates; LIXA barrier has 16 furniture assertions; apartments have {apartment_count} navigation/conditional assertions; survivor sites have {survivor_count} access/roof assertions')
 
 

@@ -1,6 +1,6 @@
 {
-  "status": "two_camp_variants_prepared_not_embedded",
-  "native_embedded": false,
+  "status": "two_camp_variants_embedded_pending_windows",
+  "native_embedded": true,
   "runtime_validated": false,
   "source_weights": {
     "intact": 1000,
@@ -641,7 +641,7 @@
     "Relative time weight kept in source_weights; intact and ruined variants are separately selectable zero-occurrence debug specials"
   ],
   "limits": [
-    "Not embedded in the native patch; no new generation credit",
+    "Embedded in the native preview; source/installed generation pending, no new generation credit",
     "Natural source time-dependent variant selection is not implemented",
     "BN remove_all clears fields as well as furniture/items/traps, only on source-painted glyphs",
     "Unpainted surrounding forest retains stock BN generation and its normal contents",

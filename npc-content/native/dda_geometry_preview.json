@@ -105774,6 +105774,504 @@
     }
   },
   {
+    "type": "mapgen",
+    "om_terrain": "dda_geo_camp_intact",
+    "object": {
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "  ,,,,,,,       ,,,,,,, ",
+        "  ,,===,,       ,,===,, ",
+        "  ,,===,,       ,,===,, ",
+        "  ,E,,,,,       ,E,,,,, ",
+        "  ,,,,,,,,,,,,,,M,,,,,, ",
+        "  ,,,,,,,,,,,,,,B,,,,,, ",
+        "  ,,,,,,,,,A@,,,C,,,,,, ",
+        "  ,,,,,,,,,,O,,,S,,,,,, ",
+        "  ,,,,,,,,,,@,,,,,,,,,, ",
+        "  ,,,,,,,,E,,,,,,,,,,,, ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,,,,,,,,      ",
+        "       ,,,,@,,,,,,      ",
+        "       -----------      ",
+        "      --~~~~~~~~~--     ",
+        "     --~~~~~~~~~~~--    ",
+        "      --~~~~~~~~~--     ",
+        "       -----------      "
+      ],
+      "nested": {
+        "E": {
+          "chunks": [
+            [
+              "dda_geo_camp_leather_tent_5x5_S",
+              100
+            ]
+          ]
+        }
+      },
+      "terrain": {
+        ",": [
+          "t_region_groundcover"
+        ],
+        "~": "t_water_dp",
+        "O": "t_region_soil",
+        "@": "t_region_groundcover",
+        "E": "t_region_groundcover",
+        "S": "t_region_soil",
+        "=": "t_dirtmound",
+        "-": "t_water_sh",
+        "C": "t_region_soil",
+        "B": "t_region_groundcover",
+        "A": "t_region_groundcover",
+        "M": "t_region_groundcover"
+      },
+      "predecessor_mapgen": "forest_thick",
+      "remove_all": {
+        ",": {},
+        "~": {},
+        "O": {},
+        "@": {},
+        "E": {},
+        "S": {},
+        "=": {},
+        "-": {},
+        "C": {},
+        "B": {},
+        "A": {},
+        "M": {}
+      }
+    },
+    "method": "json",
+    "weight": 1000
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "dda_geo_camp_intact",
+    "name": "survivor forest camp (intact preview)",
+    "sym": "+",
+    "color": "green",
+    "see_cost": 5,
+    "extras": ""
+  },
+  {
+    "type": "overmap_special",
+    "id": "dda_geo_camp_intact",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "dda_geo_camp_intact_north"
+      },
+      {
+        "point": [
+          0,
+          0,
+          1
+        ],
+        "overmap": "dda_geo_camp_intact_roof_north"
+      }
+    ],
+    "locations": [
+      "forest_center"
+    ],
+    "city_distance": [
+      10,
+      80
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "UNIQUE",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dda_geo_camp_ruined",
+    "weight": 1000,
+    "//": "This is meant to represent a camp that was attacked by the Shadow",
+    "object": {
+      "rows": [
+        "                        ",
+        "                        ",
+        " _________     _________",
+        " _,,,,,,,_     _,,,,,,,_",
+        " _,,===,,_     _,,===,,_",
+        " _,,===,,_     _,,===,,_",
+        " _,E....,_______,E....,_",
+        " _,.....,,,,,,,,M.....,_",
+        " _,.....,,,,,,,,B.....,_",
+        " _,.....,,,A@,,,C.....,_",
+        " _,.....,,,,O,,,S.....,_",
+        " _,,,,,,,,,,@,,,,,,,,,,_",
+        " _,,,,,,,,$....,,,,,,,,_",
+        " ______,,,.....,,,______",
+        "      _,,,.....,,,_     ",
+        "      _,,,.....,,,_     ",
+        "      _,,,.....,,,_     ",
+        "      _,,,,,,,,,,,_     ",
+        "      _,,,,@,,,,,,_     ",
+        "     __-----------__    ",
+        "    __--~~~~~~~~~--__   ",
+        "    _--~~~~~~~~~~~--_   ",
+        "    __--~~~~~~~~~--__   ",
+        "     __-----------__    "
+      ],
+      "nested": {
+        "E": {
+          "chunks": [
+            [
+              "dda_geo_camp_leather_tent_b_5x5_S",
+              100
+            ]
+          ]
+        },
+        "$": {
+          "chunks": [
+            [
+              "dda_geo_camp_leather_tent_b_5x5_N",
+              100
+            ]
+          ]
+        }
+      },
+      "terrain": {
+        ",": [
+          [
+            "t_dirt",
+            20
+          ],
+          [
+            "t_tree_dead",
+            1
+          ]
+        ],
+        ".": "t_dirt",
+        "_": [
+          [
+            "t_region_groundcover",
+            10
+          ],
+          [
+            "t_dirt",
+            10
+          ],
+          [
+            "t_tree_dead",
+            1
+          ]
+        ],
+        "~": "t_pit",
+        "O": "t_dirt",
+        "@": "t_dirt",
+        "$": "t_dirt",
+        "E": "t_dirt",
+        "S": "t_dirt",
+        "=": "t_dirtmound",
+        "-": "t_pit_shallow",
+        "C": "t_dirt",
+        "B": "t_dirt",
+        "A": "t_dirt",
+        "M": "t_dirt"
+      },
+      "predecessor_mapgen": "forest_thick",
+      "remove_all": {
+        ",": {},
+        ".": {},
+        "_": {},
+        "~": {},
+        "O": {},
+        "@": {},
+        "$": {},
+        "E": {},
+        "S": {},
+        "=": {},
+        "-": {},
+        "C": {},
+        "B": {},
+        "A": {},
+        "M": {}
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "dda_geo_camp_ruined",
+    "name": "survivor forest camp (ruined preview)",
+    "sym": "+",
+    "color": "green",
+    "see_cost": 5,
+    "extras": ""
+  },
+  {
+    "type": "overmap_special",
+    "id": "dda_geo_camp_ruined",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "dda_geo_camp_ruined_north"
+      }
+    ],
+    "locations": [
+      "forest_center"
+    ],
+    "city_distance": [
+      10,
+      80
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC",
+      "WILDERNESS",
+      "UNIQUE",
+      "MAN_MADE"
+    ]
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_camp_tent_5x5_roof",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rows": [
+        "#####",
+        "#####",
+        "#####",
+        "#####",
+        "#####"
+      ],
+      "terrain": {
+        "#": "dda_geo_frontier_canvas_roof"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_camp_leather_tent_5x5_S",
+    "//": "Canvas roof since we don't have a skin/leather one",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "#####",
+        "#xxx#",
+        "#xXx#",
+        "#xxx#",
+        "##+##"
+      ],
+      "furniture": {
+        "#": "f_large_canvas_wall",
+        "X": "f_center_groundsheet",
+        "x": "f_large_groundsheet",
+        "+": "f_large_canvas_door"
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_camp_leather_tent_b_5x5_S",
+    "//": "No roof due to the ruined state.",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "#####",
+        "#xxx#",
+        "#xXx#",
+        "#xxx#",
+        "##+##"
+      ],
+      "furniture": {
+        "#": [
+          [
+            "f_large_canvas_wall",
+            5
+          ],
+          "f_null"
+        ],
+        "X": [
+          [
+            "f_center_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "x": [
+          [
+            "f_large_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "+": [
+          [
+            "f_large_canvas_door",
+            5
+          ],
+          "f_null"
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "mapgen",
+    "nested_mapgen_id": "dda_geo_camp_leather_tent_b_5x5_N",
+    "//": "No roof due to the ruined state.",
+    "object": {
+      "mapgensize": [
+        5,
+        5
+      ],
+      "rotation": [
+        0,
+        3
+      ],
+      "rows": [
+        "##+##",
+        "#xxx#",
+        "#xXx#",
+        "#xxx#",
+        "#####"
+      ],
+      "furniture": {
+        "#": [
+          [
+            "f_large_canvas_wall",
+            5
+          ],
+          "f_null"
+        ],
+        "X": [
+          [
+            "f_center_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "x": [
+          [
+            "f_large_groundsheet",
+            5
+          ],
+          "f_null"
+        ],
+        "+": [
+          [
+            "f_large_canvas_door",
+            5
+          ],
+          "f_null"
+        ]
+      }
+    },
+    "method": "json"
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "dda_geo_camp_intact_roof",
+    "name": "survivor camp tent roofs",
+    "sym": "+",
+    "color": "green",
+    "see_cost": 0,
+    "extras": ""
+  },
+  {
+    "type": "mapgen",
+    "method": "json",
+    "om_terrain": "dda_geo_camp_intact_roof",
+    "object": {
+      "fill_ter": "t_open_air",
+      "rows": [
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        ",
+        "                        "
+      ],
+      "terrain": {
+        " ": "t_open_air"
+      },
+      "place_nested": [
+        {
+          "chunks": [
+            "dda_geo_camp_tent_5x5_roof"
+          ],
+          "x": 3,
+          "y": 6
+        },
+        {
+          "chunks": [
+            "dda_geo_camp_tent_5x5_roof"
+          ],
+          "x": 17,
+          "y": 6
+        },
+        {
+          "chunks": [
+            "dda_geo_camp_tent_5x5_roof"
+          ],
+          "x": 10,
+          "y": 12
+        }
+      ]
+    }
+  },
+  {
     "type": "overmap_location",
     "id": "dda_geo_open_air",
     "terrains": [

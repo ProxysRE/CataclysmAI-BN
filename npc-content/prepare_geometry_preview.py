@@ -12,7 +12,7 @@ BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
 AIR_LOCATION='dda_geo_open_air'
-PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research','large','apartment','survivor')
+PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research','large','apartment','survivor','camp')
 
 
 def payloads():
@@ -20,6 +20,11 @@ def payloads():
     report=json.loads((OUT/'REPORT.json').read_text())
     result=[]
     for name in PACKAGES:
+        if name=='camp':
+            adapted=json.loads((OUT/'SURVIVOR_CAMP_PREVIEW_REPORT.json').read_text())
+            assert not adapted['unresolved_typed_refs']
+            result+=json.loads((OUT/'SURVIVOR_CAMP_PREVIEW_SHELL.json').read_text())
+            continue # Both source variants have separate debug OMT; square roofs are on an explicit upper floor.
         if name=='survivor':
             adapted=json.loads((OUT/'SURVIVOR_PREVIEW_REPORT.json').read_text())
             assert not adapted['unresolved_typed_refs']
@@ -102,7 +107,7 @@ def payloads():
     generated.update(('overmap_terrain',n)for n in json.loads((OUT/'RESEARCH_ADAPTATION_REPORT.json').read_text())['generated_external_omt'])
     project=index_entries(json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text()))
     assert not required(result)-core-own-generated-project,sorted(required(result)-core-own-generated-project)
-    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof and Lacroix cemetery. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
+    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof Lacroix cemetery and separate intact/ruined forest camps with explicit tent roofs. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
 
 
 def native_test():
@@ -144,6 +149,7 @@ def native_test():
     predecessors={n:e['object']for e in entries if e['type']=='mapgen' and e['object'].get('predecessor_mapgen')for n in flatten(e.get('om_terrain',[]))}
     apartment=json.loads((OUT/'APARTMENT_PREVIEW_REPORT.json').read_text(encoding='utf-8'))['fixture_checks']
     survivor=json.loads((OUT/'SURVIVOR_PREVIEW_REPORT.json').read_text())['fixture_checks']
+    camp=json.loads((OUT/'SURVIVOR_CAMP_PREVIEW_REPORT.json').read_text())
     for i,special in enumerate(e for e in entries if e['type']=='overmap_special'):
         text+='\nTEST_CASE( "'+special['id']+'_all_floors_without_loot", "[dda_geometry]" )\n{\n    generate_site( '+str(4200+i*100)+', {\n'
         for c in special['overmaps']:
@@ -222,6 +228,12 @@ def native_test():
             text+='    }, {\n'
             for p in survivor[special['id']]:
                 text+=f'        {{ {p["omt_x"]}, {p["omt_y"]}, {p["x"]}, {p["y"]}, {p["z"]}, {json.dumps(p["terrain"])} }},\n'
+        if special['id']=='dda_geo_camp_intact':
+            text+='    }, {\n'
+            for p in camp['intact_expected_points']:
+                furniture=', true' if 'furniture' in p else ''
+                terrain=p.get('terrain',p.get('furniture'))
+                text+=f'        {{ 0, 0, {p["x"]}, {p["y"]}, {p["z"]}, {json.dumps(terrain)}{furniture} }},\n'
         text+='    } );\n}\n'
     return text
 
@@ -252,13 +264,15 @@ def prepare(check=False):
     check_apartment(check=True)
     from prepare_survivor_preview import prepare as check_survivor
     check_survivor(check=True)
+    from prepare_survivor_camp_preview import prepare as check_camp
+    check_camp(check=True)
     texts={p:json.dumps(v,indent=2,ensure_ascii=True)+'\n' for p,v in payloads().items()}
     texts['native/'+TEST]=native_test()
     for p,text in texts.items():
         path=ROOT/p
         if check:assert path.read_text()==text,path
         else:path.write_text(text)
-    print('Geometry preview: fourteen isolated packages, no ID collisions; natural occurrences and own-terrain random extras disabled; native validation pending')
+    print('Geometry preview: fifteen isolated packages, no ID collisions; natural occurrences and own-terrain random extras disabled; native validation pending')
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');prepare(parser.parse_args().check)

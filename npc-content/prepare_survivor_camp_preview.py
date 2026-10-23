@@ -101,7 +101,7 @@ def prepare(check=False):
         for dy in range(5):
             for dx in range(5): points.append({'x': x + dx, 'y': y + dy, 'z': 1, 'terrain': 'dda_geo_frontier_canvas_roof'})
     report = {
-        'status': 'two_camp_variants_prepared_not_embedded', 'native_embedded': False, 'runtime_validated': False,
+        'status': 'two_camp_variants_embedded_pending_windows', 'native_embedded': True, 'runtime_validated': False,
         'source_weights': source_weights, 'source_special': source_special,
         'variant_anchors': variant_anchors, 'loot_masks': masks,
         'source_painted_cells': {k: v.count('1') for k, v in masks.items()},
@@ -111,7 +111,7 @@ def prepare(check=False):
         'intact_expected_points': points, 'intact_roof_tiles': 75,
         'registration_adaptations': ['REQUIRES_PREDECESSOR replaced by explicit source fallback forest_thick for isolated debug generation',
                                     'Relative time weight kept in source_weights; intact and ruined variants are separately selectable zero-occurrence debug specials'],
-        'limits': ['Not embedded in the native patch; no new generation credit',
+        'limits': ['Embedded in the native preview; source/installed generation pending, no new generation credit',
                    'Natural source time-dependent variant selection is not implemented',
                    'BN remove_all clears fields as well as furniture/items/traps, only on source-painted glyphs',
                    'Unpainted surrounding forest retains stock BN generation and its normal contents',

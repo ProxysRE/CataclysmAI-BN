@@ -247,3 +247,9 @@ Prepared both source camp layouts as separately selectable zero-occurrence debug
 The three original intact tent anchors receive the source full-square 5x5 roof on an explicit upper OMT: 75 tiles. Since that roof is invariant under all four source tent rotations, it remains correlated with each tent without a general nested-z feature or random seed coupling. The ruined preview intentionally has no roof floor. Source fallback forest_thick is explicit; remove_all and future empty-loot masks cover only source-painted glyphs and preserve surrounding forest. Pinned runtime evidence and probes guard against shifted roofs and blanket forest clearing.
 
 Prepared 90 deterministic native expectations (75 roof, twelve wall corners, three centers). The new candidate is not embedded or native-certified. Existing 41-case patch remains byte-identical to the successful Windows run; confirmed geometry scope stays 32/51.
+
+## Intact and ruined forest-camp native integration (2026-10-23)
+
+Both prepared camp variants are embedded in the shared preview. The native fixture now has 43 cases /1561 cells and adds 90 deterministic intact-camp checks: 75 roof tiles, twelve wall corners and three central groundsheets. Furniture expectations use the existing furniture-aware helper. Both ground floors use the exact source-painted loot masks; surrounding BN forest is generated and left intact. Source rotation/null weights and the square-roof proof remain checked. Natural time-dependent variant selection is still archived rather than enabled.
+
+All previous 41 native fixture bodies and payload objects remain unchanged. Schema, layout, mask and complete embedded-source checks pass. Only three canonical geometry patch sections changed; source and installed Windows validation for the new 43-case candidate is pending. Historical accepted scope remains 32/51 = 62.7%. In parallel, the next seven-city-site source batch is being prepared separately.
