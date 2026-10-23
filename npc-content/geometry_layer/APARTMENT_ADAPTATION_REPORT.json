@@ -1,0 +1,164 @@
+{
+  "status": "apartment_physical_adaptation_prepared_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "counterparts": {
+    "t_carpet_linoleum_gray_green": "t_linoleum_gray",
+    "t_carpet_linoleum_gray_purple": "t_linoleum_gray",
+    "t_carpet_linoleum_gray_red": "t_linoleum_gray",
+    "t_carpet_linoleum_gray_yellow": "t_linoleum_gray",
+    "t_carpet_linoleum_white_green": "t_linoleum_white",
+    "t_carpet_linoleum_white_purple": "t_linoleum_white",
+    "t_carpet_linoleum_white_red": "t_linoleum_white",
+    "t_carpet_linoleum_white_yellow": "t_linoleum_white",
+    "t_concrete_wall_gray": "t_concrete_wall",
+    "t_concrete_wall_w": "t_concrete_wall",
+    "t_sconc_wall_gray": "t_sconc_wall",
+    "t_sconc_wall_w": "t_sconc_wall",
+    "t_strconc_wall_gray": "t_strconc_wall",
+    "t_strconc_wall_w": "t_strconc_wall",
+    "t_wall_black": "t_wall",
+    "t_wall_brown": "t_wall",
+    "t_wall_cyan": "t_wall",
+    "t_wall_gray": "t_wall",
+    "t_wall_orange": "t_wall"
+  },
+  "new_terrain_definitions": 0,
+  "isolated_parking_aliases": {
+    "parking_2x1_0": "dda_geo_apartment_parking_2x1_0",
+    "parking_2x1_0_north": "dda_geo_apartment_parking_2x1_0_north",
+    "parking_2x1_0_east": "dda_geo_apartment_parking_2x1_0_east",
+    "parking_2x1_0_south": "dda_geo_apartment_parking_2x1_0_south",
+    "parking_2x1_0_west": "dda_geo_apartment_parking_2x1_0_west",
+    "parking_2x1_1": "dda_geo_apartment_parking_2x1_1",
+    "parking_2x1_1_north": "dda_geo_apartment_parking_2x1_1_north",
+    "parking_2x1_1_east": "dda_geo_apartment_parking_2x1_1_east",
+    "parking_2x1_1_south": "dda_geo_apartment_parking_2x1_1_south",
+    "parking_2x1_1_west": "dda_geo_apartment_parking_2x1_1_west"
+  },
+  "unresolved_typed_refs": [],
+  "deferred_parent_fields": [
+    {
+      "source": [
+        "apartment_complex_center_stairs_even_roof",
+        "apartment_complex_center_stairs_odd_roof",
+        "apartment_complex_center_stairs_roof_+1",
+        "apartment_complex_corner_inner_roof",
+        "apartment_complex_corner_roof",
+        "apartment_complex_straight_roof",
+        "apartment_complex_straight_stairs_even_roof",
+        "apartment_complex_straight_stairs_odd_roof",
+        "apartment_complex_straight_stairs_roof_+1"
+      ],
+      "source_parent": {
+        "type": "overmap_terrain",
+        "abstract": "apartments_tower_roof_any",
+        "vision_levels": "roof_or_air",
+        "name": "apartment tower roof",
+        "sym": "A",
+        "color": "light_green",
+        "see_cost": "none",
+        "mondensity": 2,
+        "extras": "build",
+        "flags": [
+          "SIDEWALK",
+          "GENERIC_LOOT"
+        ]
+      }
+    },
+    {
+      "source": [
+        "apartment_complex_garage_corner_inner",
+        "apartment_complex_garage_straight_gate",
+        "apartment_complex_garage_straight_gate_wall"
+      ],
+      "field": "flags",
+      "value": [
+        "SHOULD_NOT_SPAWN"
+      ],
+      "note": "Unsupported DDA registration policy; all candidate specials have occurrences [0,0]. Natural city generation is not installed."
+    }
+  ],
+  "reachable_nested_identities": [
+    "dda_geo_apartment_1x1_tree",
+    "dda_geo_apartment_apt_complex_corner_a",
+    "dda_geo_apartment_apt_complex_corner_b",
+    "dda_geo_apartment_apt_complex_corner_inner_a",
+    "dda_geo_apartment_apt_complex_corner_inner_b",
+    "dda_geo_apartment_apt_complex_straight_a",
+    "dda_geo_apartment_apt_complex_straight_b",
+    "dda_geo_apartment_domestic_bookcase_nest_board_games",
+    "dda_geo_apartment_domestic_bookcase_nest_computers",
+    "dda_geo_apartment_domestic_bookcase_nest_cookbooks",
+    "dda_geo_apartment_domestic_bookcase_nest_eclectic",
+    "dda_geo_apartment_domestic_bookcase_nest_electronics",
+    "dda_geo_apartment_domestic_bookcase_nest_esoterica",
+    "dda_geo_apartment_domestic_bookcase_nest_european_comics",
+    "dda_geo_apartment_domestic_bookcase_nest_fiction",
+    "dda_geo_apartment_domestic_bookcase_nest_fiction_and_nonfiction",
+    "dda_geo_apartment_domestic_bookcase_nest_judaica",
+    "dda_geo_apartment_domestic_bookcase_nest_literature_enthusiast",
+    "dda_geo_apartment_domestic_bookcase_nest_manga",
+    "dda_geo_apartment_domestic_bookcase_nest_martial_arts",
+    "dda_geo_apartment_domestic_bookcase_nest_medical",
+    "dda_geo_apartment_domestic_bookcase_nest_plant",
+    "dda_geo_apartment_domestic_bookcase_nest_table_book",
+    "dda_geo_apartment_domestic_bookcase_nest_tailoring",
+    "dda_geo_apartment_general_graffiti",
+    "dda_geo_apartment_roof_1x1_birdnest",
+    "dda_geo_apartment_roof_2x2_golf",
+    "dda_geo_apartment_roof_2x2_infrastructure",
+    "dda_geo_apartment_roof_2x2_infrastructure_1",
+    "dda_geo_apartment_roof_2x2_utilities_b",
+    "dda_geo_apartment_roof_2x2_utilities_c",
+    "dda_geo_apartment_roof_2x2_utilities_d",
+    "dda_geo_apartment_roof_3x3_wine",
+    "dda_geo_apartment_roof_4x4_holdout",
+    "dda_geo_apartment_roof_4x4_party",
+    "dda_geo_apartment_roof_4x4_survivor",
+    "dda_geo_apartment_roof_4x4_utility_1",
+    "dda_geo_apartment_roof_6x6_survivor",
+    "dda_geo_apartment_shelter_graffiti",
+    "dda_geo_apartment_sub_t_stairs_up"
+  ],
+  "reachable_nested_definitions": 83,
+  "unused_nested_identities": [
+    "dda_geo_apartment_domestic_freezer_nest",
+    "dda_geo_apartment_industrial_1x1_solar",
+    "dda_geo_apartment_industrial_1x1_solar_v2",
+    "dda_geo_apartment_residential_6kW_solar",
+    "dda_geo_apartment_residential_6kW_solar_v1",
+    "dda_geo_apartment_residential_6kW_solar_v2",
+    "dda_geo_apartment_residential_7kW_solar",
+    "dda_geo_apartment_residential_7kW_solar_v1",
+    "dda_geo_apartment_residential_7kW_solar_v2",
+    "dda_geo_apartment_residential_8kW_solar",
+    "dda_geo_apartment_residential_8kW_solar_v1",
+    "dda_geo_apartment_residential_8kW_solar_v2",
+    "dda_geo_apartment_roof_2x2_infrastructure_2",
+    "dda_geo_apartment_roof_2x2_utilities",
+    "dda_geo_apartment_roof_4x4_utility",
+    "dda_geo_apartment_roof_6x6_garden_1",
+    "dda_geo_apartment_roof_6x6_garden_2",
+    "dda_geo_apartment_roof_6x6_greenhouse_1",
+    "dda_geo_apartment_roof_6x6_greenhouse_2",
+    "dda_geo_apartment_roof_6x6_greenhouse_roof"
+  ],
+  "reachable_vertical_blockers": [],
+  "adaptations": [
+    "Unavailable wall paint reuses matching BN wall construction",
+    "Eight patterned carpet/linoleum variants reuse underlying white or gray BN linoleum; pattern appearance is omitted",
+    "Missing roof abstract is expanded from DDA into supported BN registration fields",
+    "Both source parking cells are retained; no unrelated stock parking lot substituted"
+  ],
+  "remaining": [
+    "Review BN above-neighbor predicate and multi-OMT duplicate-identity handling before native embedding",
+    "Native source and installed loading/generation",
+    "All-floor traversal, stair alignment, elevator operation and later content layers"
+  ],
+  "limits": [
+    "Full adapted staging retains unused greenhouse z-offset blockers",
+    "Reachability alone does not certify conditional stairs or actual player access",
+    "Not installed and no completion credit"
+  ]
+}

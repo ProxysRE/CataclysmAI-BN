@@ -1,0 +1,33 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "files": {
+    "data/json/mapgen/apartment_complex/apartment_complex_apt.json": {
+      "sha256": "c8ec31da4aef1bb85622905b3ba42bd04b60573a4911a1244f05417cc5c677ec",
+      "blob_sha": "ada9b9feeca72a89ffb1b9bb3ea051c3af1ac622"
+    },
+    "data/json/mapgen/apartment_complex/apartment_complex_nested.json": {
+      "sha256": "5f0da9000020536f246ebf0be6040d49c9efae1871bb2cc8d3e18fb9629858db",
+      "blob_sha": "e84051d2fb319c148db4526c0d5b06cfe1699aab"
+    },
+    "data/json/mapgen/apartment_complex/apartment_complex_other.json": {
+      "sha256": "379ddac49f4dcdc240a29d107bfb15bb407e757bccbf1c92137886255b6b4c5d",
+      "blob_sha": "34a0b77355183a061897e868a626d4b95f7759b1"
+    },
+    "data/json/mapgen/apartment_complex/apartment_complex_roof.json": {
+      "sha256": "d4074827d0423dcd19f06120bae704bf30161c0731cc2cf73c0b33493e1239c4",
+      "blob_sha": "1393140fe8f9b8dbfabedff5260da0597cda0317"
+    },
+    "data/json/mapgen_palettes/apartment_complex.json": {
+      "sha256": "04e3c0a3e78cc04f1416424200ff8d0a0a61d6d189e133a164e340785abe7d43",
+      "blob_sha": "323a9d95330cc025e4f437c3e4b2821d293de773"
+    },
+    "data/json/mapgen/mobile_home_park/mobile_home_nested.json": {
+      "sha256": "fc9d7770338b2260350447dd0f9e382ee335d6806b9c923f3013c6d83c1bdd82",
+      "blob_sha": "5fa3624bf7e132bd93a959184007f23bc72cea04"
+    },
+    "data/json/mapgen/parking_lot.json": {
+      "sha256": "7af9184aedb6ba646d490c5c8f84e58085549aa084c5e6c91af9f4174748a6a6",
+      "blob_sha": "439bff896f3b6e7130dd0f7b2a3d98931f434d71"
+    }
+  }
+}

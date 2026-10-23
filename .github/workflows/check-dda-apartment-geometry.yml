@@ -1,0 +1,21 @@
+name: Check DDA apartment geometry staging
+on:
+  workflow_dispatch:
+  push:
+    branches: [port/dda-npc-locations]
+    paths:
+      - npc-content/prepare_apartment_geometry.py
+      - npc-content/adapt_apartment_geometry.py
+      - npc-content/check_apartment_geometry.py
+      - npc-content/geometry_layer/APARTMENT_*
+      - npc-content/geometry_layer/apartment_sources/**
+      - .github/workflows/check-dda-apartment-geometry.yml
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/check_apartment_geometry.py

@@ -1,0 +1,406 @@
+{
+  "status": "apartment_geometry_staged_not_installed",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "definitions": {
+    "mapgen": 134,
+    "overmap_special": 5,
+    "overmap_terrain": 6
+  },
+  "world_maps": 31,
+  "unique_omt": 37,
+  "nested_definitions": 103,
+  "nested_identities": 60,
+  "nested_aliases": {
+    "1x1_tree": "dda_geo_apartment_1x1_tree",
+    "apt_complex_corner_a": "dda_geo_apartment_apt_complex_corner_a",
+    "apt_complex_corner_b": "dda_geo_apartment_apt_complex_corner_b",
+    "apt_complex_corner_inner_a": "dda_geo_apartment_apt_complex_corner_inner_a",
+    "apt_complex_corner_inner_b": "dda_geo_apartment_apt_complex_corner_inner_b",
+    "apt_complex_straight_a": "dda_geo_apartment_apt_complex_straight_a",
+    "apt_complex_straight_b": "dda_geo_apartment_apt_complex_straight_b",
+    "domestic_bookcase_nest_board_games": "dda_geo_apartment_domestic_bookcase_nest_board_games",
+    "domestic_bookcase_nest_computers": "dda_geo_apartment_domestic_bookcase_nest_computers",
+    "domestic_bookcase_nest_cookbooks": "dda_geo_apartment_domestic_bookcase_nest_cookbooks",
+    "domestic_bookcase_nest_eclectic": "dda_geo_apartment_domestic_bookcase_nest_eclectic",
+    "domestic_bookcase_nest_electronics": "dda_geo_apartment_domestic_bookcase_nest_electronics",
+    "domestic_bookcase_nest_esoterica": "dda_geo_apartment_domestic_bookcase_nest_esoterica",
+    "domestic_bookcase_nest_european_comics": "dda_geo_apartment_domestic_bookcase_nest_european_comics",
+    "domestic_bookcase_nest_fiction": "dda_geo_apartment_domestic_bookcase_nest_fiction",
+    "domestic_bookcase_nest_fiction_and_nonfiction": "dda_geo_apartment_domestic_bookcase_nest_fiction_and_nonfiction",
+    "domestic_bookcase_nest_judaica": "dda_geo_apartment_domestic_bookcase_nest_judaica",
+    "domestic_bookcase_nest_literature_enthusiast": "dda_geo_apartment_domestic_bookcase_nest_literature_enthusiast",
+    "domestic_bookcase_nest_manga": "dda_geo_apartment_domestic_bookcase_nest_manga",
+    "domestic_bookcase_nest_martial_arts": "dda_geo_apartment_domestic_bookcase_nest_martial_arts",
+    "domestic_bookcase_nest_medical": "dda_geo_apartment_domestic_bookcase_nest_medical",
+    "domestic_bookcase_nest_plant": "dda_geo_apartment_domestic_bookcase_nest_plant",
+    "domestic_bookcase_nest_table_book": "dda_geo_apartment_domestic_bookcase_nest_table_book",
+    "domestic_bookcase_nest_tailoring": "dda_geo_apartment_domestic_bookcase_nest_tailoring",
+    "domestic_freezer_nest": "dda_geo_apartment_domestic_freezer_nest",
+    "general_graffiti": "dda_geo_apartment_general_graffiti",
+    "industrial_1x1_solar": "dda_geo_apartment_industrial_1x1_solar",
+    "industrial_1x1_solar_v2": "dda_geo_apartment_industrial_1x1_solar_v2",
+    "residential_6kW_solar": "dda_geo_apartment_residential_6kW_solar",
+    "residential_6kW_solar_v1": "dda_geo_apartment_residential_6kW_solar_v1",
+    "residential_6kW_solar_v2": "dda_geo_apartment_residential_6kW_solar_v2",
+    "residential_7kW_solar": "dda_geo_apartment_residential_7kW_solar",
+    "residential_7kW_solar_v1": "dda_geo_apartment_residential_7kW_solar_v1",
+    "residential_7kW_solar_v2": "dda_geo_apartment_residential_7kW_solar_v2",
+    "residential_8kW_solar": "dda_geo_apartment_residential_8kW_solar",
+    "residential_8kW_solar_v1": "dda_geo_apartment_residential_8kW_solar_v1",
+    "residential_8kW_solar_v2": "dda_geo_apartment_residential_8kW_solar_v2",
+    "roof_1x1_birdnest": "dda_geo_apartment_roof_1x1_birdnest",
+    "roof_2x2_golf": "dda_geo_apartment_roof_2x2_golf",
+    "roof_2x2_infrastructure": "dda_geo_apartment_roof_2x2_infrastructure",
+    "roof_2x2_infrastructure_1": "dda_geo_apartment_roof_2x2_infrastructure_1",
+    "roof_2x2_infrastructure_2": "dda_geo_apartment_roof_2x2_infrastructure_2",
+    "roof_2x2_utilities": "dda_geo_apartment_roof_2x2_utilities",
+    "roof_2x2_utilities_b": "dda_geo_apartment_roof_2x2_utilities_b",
+    "roof_2x2_utilities_c": "dda_geo_apartment_roof_2x2_utilities_c",
+    "roof_2x2_utilities_d": "dda_geo_apartment_roof_2x2_utilities_d",
+    "roof_3x3_wine": "dda_geo_apartment_roof_3x3_wine",
+    "roof_4x4_holdout": "dda_geo_apartment_roof_4x4_holdout",
+    "roof_4x4_party": "dda_geo_apartment_roof_4x4_party",
+    "roof_4x4_survivor": "dda_geo_apartment_roof_4x4_survivor",
+    "roof_4x4_utility": "dda_geo_apartment_roof_4x4_utility",
+    "roof_4x4_utility_1": "dda_geo_apartment_roof_4x4_utility_1",
+    "roof_6x6_garden_1": "dda_geo_apartment_roof_6x6_garden_1",
+    "roof_6x6_garden_2": "dda_geo_apartment_roof_6x6_garden_2",
+    "roof_6x6_greenhouse_1": "dda_geo_apartment_roof_6x6_greenhouse_1",
+    "roof_6x6_greenhouse_2": "dda_geo_apartment_roof_6x6_greenhouse_2",
+    "roof_6x6_greenhouse_roof": "dda_geo_apartment_roof_6x6_greenhouse_roof",
+    "roof_6x6_survivor": "dda_geo_apartment_roof_6x6_survivor",
+    "shelter_graffiti": "dda_geo_apartment_shelter_graffiti",
+    "sub_t_stairs_up": "dda_geo_apartment_sub_t_stairs_up"
+  },
+  "special_cells": {
+    "apartment_complex_3x3": 37,
+    "apartment_complex_3x3_alt": 69,
+    "apartment_complex_line": 62,
+    "apartment_complex_U": 77,
+    "apartment_complex_U_alt": 77
+  },
+  "source_z_levels": {
+    "apartment_complex_3x3": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "apartment_complex_3x3_alt": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "apartment_complex_line": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "apartment_complex_U": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "apartment_complex_U_alt": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "reused_authenticated_sources": [
+    {
+      "archive": "urban_sources",
+      "path": "data/json/mapgen_palettes/house_general_palette.json",
+      "sha256": "a352160e785435f7bee5c59fb901f9e98bad5d456205d6bbaeb494774b75a423"
+    },
+    {
+      "archive": "urban_sources",
+      "path": "data/json/mapgen_palettes/common_parameters.json",
+      "sha256": "abb3e250be1920840155264e84890f3c4aa12e9ec169f2e535add993905137e6"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen/nested/aux_nested.json",
+      "sha256": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen/nested/shelter_nested.json",
+      "sha256": "43c3671d16dd354acbf2c0f67c95deecd79bf59249db3e0d9cbf3f362406e5fe"
+    },
+    {
+      "archive": "waterside_adaptation_sources",
+      "path": "dda/data/json/mapgen/nested/house_nested.json",
+      "sha256": "89ceef5bbb9a615ee65734136be050e0b91d86315f795ffeaff8238b2d182d71"
+    }
+  ],
+  "inline_mapping_projection": [],
+  "conditional_nested_placements": [
+    {
+      "source": [
+        [
+          "apartment_complex_garage_straight",
+          "apartment_complex_garage_straight_gate"
+        ]
+      ],
+      "placement": {
+        "chunks": [
+          "dda_geo_apartment_sub_t_stairs_up"
+        ],
+        "x": 11,
+        "y": 1,
+        "neighbors": {
+          "above": [
+            "apartment_complex_straight_stairs_odd"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        [
+          "apartment_complex_garage_straight",
+          "apartment_complex_garage_straight_gate"
+        ]
+      ],
+      "placement": {
+        "chunks": [
+          "dda_geo_apartment_sub_t_stairs_up"
+        ],
+        "x": 35,
+        "y": 1,
+        "neighbors": {
+          "above": [
+            "apartment_complex_straight_stairs_odd"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        [
+          "apartment_complex_garage_straight_wall",
+          "apartment_complex_garage_straight_gate_wall"
+        ]
+      ],
+      "placement": {
+        "chunks": [
+          "dda_geo_apartment_sub_t_stairs_up"
+        ],
+        "x": 11,
+        "y": 1,
+        "neighbors": {
+          "above": [
+            "apartment_complex_straight_stairs_odd"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        [
+          "apartment_complex_garage_straight_wall",
+          "apartment_complex_garage_straight_gate_wall"
+        ]
+      ],
+      "placement": {
+        "chunks": [
+          "dda_geo_apartment_sub_t_stairs_up"
+        ],
+        "x": 35,
+        "y": 1,
+        "neighbors": {
+          "above": [
+            "apartment_complex_straight_stairs_odd"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        [
+          "apartment_complex_garage_straight_wallALT",
+          "apartment_complex_garage_straight_gate_wallALT"
+        ]
+      ],
+      "placement": {
+        "chunks": [
+          "dda_geo_apartment_sub_t_stairs_up"
+        ],
+        "x": 11,
+        "y": 1,
+        "neighbors": {
+          "above": [
+            "apartment_complex_straight_stairs_odd"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        [
+          "apartment_complex_garage_straight_wallALT",
+          "apartment_complex_garage_straight_gate_wallALT"
+        ]
+      ],
+      "placement": {
+        "chunks": [
+          "dda_geo_apartment_sub_t_stairs_up"
+        ],
+        "x": 35,
+        "y": 1,
+        "neighbors": {
+          "above": [
+            "apartment_complex_straight_stairs_odd"
+          ]
+        }
+      }
+    }
+  ],
+  "geometry_issues": [
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "roof_6x6_greenhouse_1",
+      "placement": {
+        "chunks": [
+          "roof_6x6_greenhouse_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "nested_vertical_offset_not_supported_by_pinned_BN",
+      "source": "roof_6x6_greenhouse_2",
+      "placement": {
+        "chunks": [
+          "roof_6x6_greenhouse_roof"
+        ],
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    }
+  ],
+  "unresolved_typed_refs": [
+    [
+      "overmap_terrain_abstract",
+      "apartments_tower_roof_any"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_gray_green"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_gray_purple"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_gray_red"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_gray_yellow"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_white_green"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_white_purple"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_white_red"
+    ],
+    [
+      "terrain",
+      "t_carpet_linoleum_white_yellow"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_concrete_wall_w"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_sconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_strconc_wall_w"
+    ],
+    [
+      "terrain",
+      "t_wall_black"
+    ],
+    [
+      "terrain",
+      "t_wall_brown"
+    ],
+    [
+      "terrain",
+      "t_wall_cyan"
+    ],
+    [
+      "terrain",
+      "t_wall_gray"
+    ],
+    [
+      "terrain",
+      "t_wall_orange"
+    ]
+  ],
+  "core_id_overlaps": [
+    [
+      "mapgen",
+      "parking_2x1_0"
+    ],
+    [
+      "mapgen",
+      "parking_2x1_1"
+    ],
+    [
+      "overmap_terrain",
+      "parking_2x1_0"
+    ],
+    [
+      "overmap_terrain",
+      "parking_2x1_1"
+    ]
+  ],
+  "bundled_mod_id_overlaps": [],
+  "limits": [
+    "No native integration or completion credit",
+    "All five original city registrations are archived; no replacement of BN city generation",
+    "Conditional garage stairs, split multi-OMT variants and parameter distributions require BN review",
+    "Furniture, loot, actors and device interactions are deferred, with originals retained"
+  ]
+}
