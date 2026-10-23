@@ -14,8 +14,8 @@ local function saved_actor()
     context(), test_data.actor_id))
 end
 
-local function record_hostile_group()
-  test_data.hostile_dead_id = nil
+local function record_hostile_group(dead_id)
+  test_data.hostile_dead_id = dead_id
   test_data.hostile_ids, test_data.hostile_choices = {}, {}
   for i = 1, 3 do
     local slot = root.participants.slots["hostile_" .. i]
@@ -24,7 +24,7 @@ local function record_hostile_group()
     assert(definition.profile == (i == 1 and "rifle_trained_v1" or "rifle_recruit_v1"))
     test_data.hostile_ids[i], test_data.hostile_choices[i] = slot.id, slot.loadout
   end
-  assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == 3)
+  assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == (dead_id and 2 or 3))
 end
 
 if test_data.stage == "npc_follower_enter" then
@@ -192,6 +192,7 @@ elseif test_data.stage == "npc_reserved_enter" then
   state.encounter, state.encounter_deployed = "squad", false
   test_data.reserved_choice = nil
   test_data.waiting_ids, test_data.waiting_choices = {}, {}
+  test_data.waiting_dead_id = nil
 elseif test_data.stage == "npc_reserved_wall" or test_data.stage == "npc_reserved_floor" then
   local wall = test_data.stage == "npc_reserved_wall"
   local map = gapi.get_map()
@@ -203,7 +204,10 @@ elseif test_data.stage == "npc_reserved_wall" or test_data.stage == "npc_reserve
   test_data.reserved_wall = wall
 elseif test_data.stage == "npc_reserved_check" then
   assert(state.encounter == "squad" and not state.encounter_deployed)
-  assert(not state.deployment_warning and #gapi.get_all_npcs() == 2)
+  assert(not state.deployment_warning and #gapi.get_all_npcs() == (test_data.waiting_dead_id and 1 or 2))
+  for _, actor in ipairs(gapi.get_all_npcs()) do
+    assert(actor:getID():get_value() ~= test_data.waiting_dead_id)
+  end
   local slot = assert(root.participants.slots.hostile_1)
   assert(slot.status == "reserved")
   for i = 2, 3 do
@@ -224,7 +228,7 @@ elseif test_data.stage == "npc_reserved_check" then
     assert(not gapi.can_place_npc_at(TripointAbsMs.new(398, 398, 0)))
   end
 elseif test_data.stage == "npc_reserved_released" then
-  record_hostile_group()
+  record_hostile_group(test_data.waiting_dead_id)
   assert(test_data.hostile_choices[1] == test_data.reserved_choice)
   for i = 2, 3 do
     assert(test_data.hostile_ids[i] == test_data.waiting_ids[i])

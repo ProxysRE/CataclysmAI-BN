@@ -908,11 +908,27 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_check");
     REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 2);
+    character_id waiting_dead_id;
+    {
+        const sol::table waiting_ids = data["waiting_ids"];
+        waiting_dead_id = character_id(waiting_ids[3].get<int>());
+        auto* victim = g->find_npc(waiting_dead_id);
+        REQUIRE(victim != nullptr);
+        victim->set_all_parts_hp_cur(0);
+        g->cleanup_dead();
+    }
+    data["waiting_dead_id"] = waiting_dead_id.get_value();
+    probe("npc_reserved_check");
+    REQUIRE(g->find_npc(waiting_dead_id) == nullptr);
+    REQUIRE(get_overmapbuffer(raid_dim).find_npc(waiting_dead_id) == nullptr);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 1);
     REQUIRE(g->save(false));
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_check");
-    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 2);
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 1);
+    REQUIRE(g->find_npc(waiting_dead_id) == nullptr);
+    REQUIRE(get_overmapbuffer(raid_dim).find_npc(waiting_dead_id) == nullptr);
     probe("npc_reserved_floor");
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_released");
@@ -924,7 +940,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         hostile_ids.emplace_back(released_ids[i].get<int>());
         hostile_choices.emplace_back(released_choices[i].get<std::string>());
     }
-    check_hostile_group(false, false);
+    REQUIRE(hostile_ids[2] == waiting_dead_id);
+    check_hostile_group(false, true);
     probe("npc_extract");
     for (const auto id : hostile_ids) {
         CHECK(g->find_npc(id) == nullptr);
