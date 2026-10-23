@@ -895,24 +895,24 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     get_avatar().setpos(abs_to_bub(tripoint_abs_ms(398, 398, 0)));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_check");
-    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 2);
     REQUIRE(g->save(false));
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_check");
-    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 2);
     get_avatar().setpos(abs_to_bub(tripoint_abs_ms(387, 387, 0)));
     // Replace the former avatar blocker with real impassable terrain. The same
     // choice stays reserved across another save/load, then creates after repair.
     probe("npc_reserved_wall");
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_check");
-    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 2);
     REQUIRE(g->save(false));
     REQUIRE(g->load(saved_character));
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_check");
-    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().empty());
+    REQUIRE(get_overmapbuffer(raid_dim).get_overmap_npcs().size() == 2);
     probe("npc_reserved_floor");
     cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
     probe("npc_reserved_released");

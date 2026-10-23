@@ -191,6 +191,7 @@ elseif test_data.stage == "npc_reserved_enter" then
   -- Arrange a checkpoint before group deployment; C++ will occupy its first point.
   state.encounter, state.encounter_deployed = "squad", false
   test_data.reserved_choice = nil
+  test_data.waiting_ids, test_data.waiting_choices = {}, {}
 elseif test_data.stage == "npc_reserved_wall" or test_data.stage == "npc_reserved_floor" then
   local wall = test_data.stage == "npc_reserved_wall"
   local map = gapi.get_map()
@@ -202,9 +203,18 @@ elseif test_data.stage == "npc_reserved_wall" or test_data.stage == "npc_reserve
   test_data.reserved_wall = wall
 elseif test_data.stage == "npc_reserved_check" then
   assert(state.encounter == "squad" and not state.encounter_deployed)
-  assert(not state.deployment_warning and #gapi.get_all_npcs() == 0)
+  assert(not state.deployment_warning and #gapi.get_all_npcs() == 2)
   local slot = assert(root.participants.slots.hostile_1)
-  assert(slot.status == "reserved" and root.participants.slots.hostile_2 == nil)
+  assert(slot.status == "reserved")
+  for i = 2, 3 do
+    local ready = assert(root.participants.slots["hostile_" .. i])
+    assert(ready.status == "ready")
+    assert(package.loaded.trkv_loadouts.contains("technical_recruit_rifle_v1", ready.loadout))
+    if test_data.waiting_ids[i] then
+      assert(ready.id == test_data.waiting_ids[i] and ready.loadout == test_data.waiting_choices[i])
+    end
+    test_data.waiting_ids[i], test_data.waiting_choices[i] = ready.id, ready.loadout
+  end
   assert(package.loaded.trkv_loadouts.contains("technical_trained_rifle_v1", slot.loadout))
   if test_data.reserved_choice then assert(slot.loadout == test_data.reserved_choice) end
   test_data.reserved_choice = slot.loadout
@@ -216,6 +226,10 @@ elseif test_data.stage == "npc_reserved_check" then
 elseif test_data.stage == "npc_reserved_released" then
   record_hostile_group()
   assert(test_data.hostile_choices[1] == test_data.reserved_choice)
+  for i = 2, 3 do
+    assert(test_data.hostile_ids[i] == test_data.waiting_ids[i])
+    assert(test_data.hostile_choices[i] == test_data.waiting_choices[i])
+  end
 elseif test_data.stage == "npc_hostile_group_checkpoint" then
   state.encounter_deployed = false
 elseif test_data.stage == "npc_hostile_group_restored" then

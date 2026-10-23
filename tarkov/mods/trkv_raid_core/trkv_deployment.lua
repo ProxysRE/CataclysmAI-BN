@@ -26,6 +26,7 @@ function deployment.ensure(state, context, specs, api)
   end
   if not valid_manifest(specs) then return false, "invalid_manifest" end
   state.slots = state.slots or {}
+  local blocked = false
   for _, spec in ipairs(specs) do
     local slot = state.slots[spec.slot]
     if not slot or slot.status ~= "ready" then
@@ -46,7 +47,10 @@ function deployment.ensure(state, context, specs, api)
         if api.available then
           local ok, available = pcall(api.available, spec, context.sequence, slot.loadout)
           if not ok or type(available) ~= "boolean" then return false, "placement_failed" end
-          if not available then return false, "blocked" end
+          if not available then
+            blocked = true
+            goto next_slot -- This reservation must not hold up other free entries.
+          end
         end
         slot.status = "creating" -- Mark uncertainty BEFORE calling the engine.
         local ok, created = pcall(api.spawn, spec, context.sequence, slot.loadout)
@@ -74,9 +78,11 @@ function deployment.ensure(state, context, specs, api)
       end
       state.slots[spec.slot] = { status = "ready", id = id, loadout = choice }
     end
+    ::next_slot::
     -- A ready slot remains consumed even if its actor subsequently dies or disappears.
     -- A load/extra terminal interaction must never respawn a defeated opponent.
   end
+  if blocked then return false, "blocked" end
   return true
 end
 

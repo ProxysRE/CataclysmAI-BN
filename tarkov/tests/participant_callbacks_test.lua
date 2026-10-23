@@ -299,27 +299,30 @@ fail_enter, answer = false, 1
 spawn_blocker = TripointAbsMs.new(398, 398, 0)
 mod.start()
 assert(root.raid.encounter == "squad" and not root.raid.encounter_deployed)
-assert(spawned == before_group and group_draw == 1)
+assert(spawned == before_group + 2 and group_draw == 3)
 assert(root.participants.slots.hostile_1.status == "reserved")
 assert(root.participants.slots.hostile_1.loadout == "rifle_civilian_v1")
 assert(not root.raid.deployment_warning)
 root.raid, root.participants = copy(root.raid), copy(root.participants)
 mod.loaded(); tick()
-assert(spawned == before_group and group_draw == 1)
+assert(spawned == before_group + 2 and group_draw == 3)
 spawn_blocker = nil
 terrain_blocker = TripointAbsMs.new(398, 398, 0)
 tick()
-assert(spawned == before_group and group_draw == 1)
+assert(spawned == before_group + 2 and group_draw == 3)
 assert(root.participants.slots.hostile_1.status == "reserved")
 root.raid, root.participants = copy(root.raid), copy(root.participants)
 mod.loaded(); tick()
-assert(spawned == before_group and group_draw == 1 and not root.raid.deployment_warning)
+assert(spawned == before_group + 2 and group_draw == 3 and not root.raid.deployment_warning)
 assert(root.participants.slots.hostile_1.loadout == "rifle_civilian_v1")
 terrain_blocker = nil
 tick()
 assert(root.raid.encounter == "squad" and #actors == 3 and spawned == before_group + 3)
 assert(group_pools[1] == "technical_trained_rifle_v1")
 assert(group_pools[2] == "technical_recruit_rifle_v1" and group_pools[3] == group_pools[2])
+local by_id = {}
+for _, actor in ipairs(actors) do by_id[actor.id] = actor end
+for i = 1, 3 do actors[i] = by_id[root.participants.slots["hostile_" .. i].id] end
 local choices = { "rifle_civilian_v1", "rifle_recruit_field_v1", "rifle_recruit_civilian_v1" }
 for i, expected in ipairs(choices) do
   local slot = root.participants.slots["hostile_" .. i]

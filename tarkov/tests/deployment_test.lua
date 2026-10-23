@@ -90,3 +90,36 @@ assert(deploy.ensure(waiting, wait_context, one, wait_api) and picks == 1 and at
 waiting.actors["500"] = nil
 assert(deploy.ensure(waiting, wait_context, one, wait_api) and attempts == 1)
 print("PASS reserved occupied slot, save/load without reroll, placement failure retry and no respawn after creation")
+
+-- Each position is independent, including when an already-created member dies
+-- while another position is still waiting. Saved ready slots remain consumed.
+for blocked_index = 1, 3 do
+  local partial, partial_context = {}, { phase = "active", at_raid = true, sequence = 1 }
+  participants.begin(partial, 1)
+  local blocked_slot, draws, created = specs[blocked_index].slot, 0, 0
+  local partial_api = {
+    select = function(spec) draws = draws + 1; return "kit_" .. spec.slot end,
+    available = function(spec) return spec.slot ~= blocked_slot end,
+    spawn = function() created = created + 1; return 700 + created end,
+    find_slot = function() error("Reserved/ready slots must not reconcile") end,
+  }
+  local ok, why = deploy.ensure(partial, partial_context, specs, partial_api)
+  assert(not ok and why == "blocked" and draws == 3 and created == 2)
+  local consumed
+  for i, spec in ipairs(specs) do
+    local slot = partial.slots[spec.slot]
+    assert(slot.loadout == "kit_" .. spec.slot)
+    if i == blocked_index then assert(slot.status == "reserved")
+    else assert(slot.status == "ready"); consumed = slot.id end
+  end
+  partial.actors[tostring(consumed)] = nil -- Casualty during partial deployment.
+  partial = copy(partial)
+  ok, why = deploy.ensure(partial, partial_context, specs, partial_api)
+  assert(not ok and why == "blocked" and draws == 3 and created == 2)
+  blocked_slot = nil
+  assert(deploy.ensure(partial, partial_context, specs, partial_api))
+  assert(draws == 3 and created == 3 and partial.actors[tostring(consumed)] == nil)
+  assert(deploy.ensure(partial, partial_context, specs, partial_api) and created == 3)
+  assert(participants.finish(partial, 1) and next(partial.slots) == nil)
+end
+print("PASS independent blocked first/middle/last slot, saved choices and casualty without respawn")
