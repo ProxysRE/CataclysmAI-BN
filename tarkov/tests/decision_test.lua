@@ -1,5 +1,6 @@
 package.loaded.trkv_perception = dofile("tarkov/mods/trkv_raid_core/trkv_perception.lua")
 package.loaded.trkv_search = dofile("tarkov/mods/trkv_raid_core/trkv_search.lua")
+package.loaded.trkv_hearing = dofile("tarkov/mods/trkv_raid_core/trkv_hearing.lua")
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
 local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 TripointAbsMs = { new = function(x, y, z) return { x = x, y = y, z = z } end }
@@ -11,6 +12,7 @@ local target = { get_pos_ms = function() return p end,
   abs_pos = function() assert(visible); reads = reads + 1; return p end }
 local origin = { x = 1, y = 2, z = 0 }
 local actor = {
+  get_value = function() return "" end,
   avoid_immediate_danger = function() return "" end,
   current_target = function() return target end, -- Includes a deliberately stale cache.
   sees = function() return visible end,
@@ -70,3 +72,33 @@ ctx.phase = "cleanup"
 actor.avoid_immediate_danger = function() error("Inactive callback entered hazard executor") end
 assert(not decision.step_actor(member, ctx, actor, map, 232))
 print("PASS hazard priority over combat/search, preserved attempt budget and aging contact during escape")
+
+-- Sound investigation uses its region, never turns an anonymous noise into a
+-- visual target, and returns to owned waiting after completion/expiry.
+ctx.phase = "active"
+member = { patrol = { sequence = 1, index = 1, route = {} } }
+local packet = "raid|300|6|10|0|combat"
+actor.get_value = function(_, key) assert(key == "trkv_heard_noise"); return packet end
+actor.current_target = function() return nil end
+actor.avoid_immediate_danger = function() return "" end
+ok, reason = decision.step_actor(member, ctx, actor, map, 301)
+assert(ok and reason == "sound_searching" and destination.x == 6 and destination.y == 10)
+assert(member.perception.contact == nil and member.hearing.contact.source == "sound")
+local sound_deadline = member.hearing.contact.expires_at
+origin.x, origin.y = 4, 8 -- Enter the region; do not require its exact center.
+ok, reason = decision.step_actor(member, ctx, actor, map, 302)
+assert(ok and reason == "sound_checked")
+ok, reason = decision.step_actor(member, ctx, actor, map, 303)
+assert(ok and reason == "wait_no_route" and member.hearing.contact.expires_at == sound_deadline)
+packet = "raid|304|6|10|0|movement"
+ok, reason = decision.step_actor(member, ctx, actor, map, 304)
+assert(ok and reason == "wait_no_route" and member.hearing.search.status == "checked")
+ok, reason = decision.step_actor(member, ctx, actor, map, 320)
+assert(ok and reason == "wait_no_route" and member.hearing.contact == nil)
+-- A real visual target takes precedence over fresh anonymous sound.
+visible = true; actor.current_target = function() return target end
+packet = "raid|321|14|18|0|combat"
+ok, reason = decision.step_actor(member, ctx, actor, map, 321)
+assert(not ok and reason == "threat" and member.perception.status == "visible")
+assert(member.hearing.search.goal == nil)
+print("PASS anonymous sound investigation, region arrival, no replay/rearm, expiry and visual priority")

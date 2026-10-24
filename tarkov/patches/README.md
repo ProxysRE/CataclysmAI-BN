@@ -20,3 +20,10 @@ without re-entering the general NPC selector. Used before project search/combat
 dispatch; the search deadline and attempt budget remain untouched.
 Application against pinned sources is checked; native results are recorded in
 docs/VERIFICATION.md. This does not expose a general tactical planner.
+
+
+0010 records anonymous coarse hearing events for lua_ai=TRKV_PATROL before
+vanilla source-identity lookup. The existing sound pipeline still determines
+audibility. A saved Creature value carries dimension/time/4x4-region/floor/kind;
+Lua owns deduplication and bounded investigation. Vanilla classes are unchanged.
+Native results and limitations are tracked in docs/VERIFICATION.md.

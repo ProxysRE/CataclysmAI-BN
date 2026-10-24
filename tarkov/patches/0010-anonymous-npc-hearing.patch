@@ -1,0 +1,37 @@
+diff --git a/src/npctalk.cpp b/src/npctalk.cpp
+--- a/src/npctalk.cpp
++++ b/src/npctalk.cpp
+@@ -868,6 +868,33 @@
+ 
+ void npc::handle_sound( const short heard_vol, sound_event sound )
+ {
++    // Project AI receives only an anonymous coarse-area event. Audibility was
++    // already checked by process_sounds_npc; never resolve the hidden creature.
++    if( myclass->lua_ai && *myclass->lua_ai == "TRKV_PATROL" ) {
++        if( heard_vol <= 0 || is_hallucination() || sees( sound.origin ) ) {
++            return;
++        }
++        std::string kind;
++        if( sound.category == sounds::sound_t::movement ) {
++            kind = "movement";
++        } else if( sound.category == sounds::sound_t::combat ||
++                   sound.category == sounds::sound_t::destructive_activity ) {
++            kind = "combat";
++        } else {
++            return;
++        }
++        const auto source = bub_to_abs( sound.origin );
++        const auto coarse = []( int n ) {
++            // Floor division also works west/south of coordinate zero.
++            return ( n >= 0 ? n / 4 : ( n - 3 ) / 4 ) * 4 + 2;
++        };
++        set_value( "trkv_heard_noise", get_dimension().str() + "|" +
++                   std::to_string( to_turn<int>( calendar::turn ) ) + "|" +
++                   std::to_string( coarse( source.x() ) ) + "|" +
++                   std::to_string( coarse( source.y() ) ) + "|" +
++                   std::to_string( source.z() ) + "|" + kind );
++        return;
++    }
+ 
+     // Remember that our heard volume is in milli-decibels spl
+     // Only sounds that are marked as being from a monster/npc/the player are passed to handle_sound, so we have a source creature.

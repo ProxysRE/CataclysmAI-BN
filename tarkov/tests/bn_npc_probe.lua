@@ -398,6 +398,28 @@ elseif test_data.stage == "npc_search_expired" then
   assert(member.perception.status == "none" and member.perception.contact == nil)
   assert(member.search.status == "expired" and member.search.goal.deadline == test_data.search_deadline)
   assert(test_data.patrol_handled and test_data.patrol_reason == "patrol")
+elseif test_data.stage == "npc_hearing_started" or test_data.stage == "npc_hearing_restored" then
+  local member = saved_actor()
+  local heard = assert(member.hearing.contact)
+  assert(heard.source == "sound" and heard.kind == "combat" and heard.radius == 2)
+  assert(heard.position.x == 386 and heard.position.y == 394 and heard.position.z == 0)
+  assert(member.perception.contact == nil and member.hearing.search.goal.attempts == 1)
+  assert(heard.expires_at == heard.seen_at + 20)
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor and actor:get_value("trkv_heard_noise") == member.hearing.last_event)
+  if test_data.stage == "npc_hearing_started" then
+    test_data.hearing_event, test_data.hearing_deadline = heard.event, heard.expires_at
+  else
+    assert(heard.event == test_data.hearing_event and heard.expires_at == test_data.hearing_deadline)
+  end
+elseif test_data.stage == "npc_hearing_expired" then
+  local heard = assert(saved_actor().hearing)
+  assert(heard.contact == nil and heard.status == "none")
+  assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
+  assert(heard.last_event == test_data.hearing_event)
 elseif test_data.stage == "npc_step" then
   local actor = assert(test_data.actor)
   local before = actor:get_moves()

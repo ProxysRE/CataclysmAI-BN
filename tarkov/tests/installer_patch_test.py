@@ -32,6 +32,7 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0009-immediate-npc-hazard-action.patch", {"src/npc.h": "std::string avoid_immediate_danger();",
              "src/npcmove.cpp": "std::string npc::avoid_immediate_danger()",
              "src/catalua_bindings_creature.cpp": "SET_FX_T( avoid_immediate_danger"}),
+            ("0010-anonymous-npc-hearing.patch", {"src/npctalk.cpp": 'set_value( "trkv_heard_noise"'}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

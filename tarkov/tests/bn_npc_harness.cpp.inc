@@ -1,5 +1,6 @@
 #include "npc_class.h"
 #include "map/field_type.h"
+#include "sounds.h"
 #include "skill.h"
 #include "world_type.h"
 #include "options_helpers.h"
@@ -299,6 +300,43 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         guard->move();
         REQUIRE(guard->get_moves() < 100);
         probe("npc_search_expired");
+        // Exercise the real audible-event pipeline and production AI class.
+        guard->myclass = npc_class_id("TRKV_PATROL");
+        guard->setpos(abs_to_bub(tripoint_abs_ms(395, 392, 0)));
+        get_avatar().setpos(abs_to_bub(tripoint_abs_ms(387, 392, 0)));
+        set_time(calendar::turn);
+        REQUIRE_FALSE(guard->sees(get_avatar()));
+        guard->remove_value("trkv_heard_noise");
+        sounds::reset_sounds();
+        sound_event noise;
+        noise.origin = get_avatar().bub_pos();
+        noise.from_player = true;
+        noise.category = sounds::sound_t::combat;
+        noise.description = "Tarkov native hearing probe";
+        noise.volume = 10;
+        sounds::sound(noise);
+        sounds::process_sounds_npc();
+        CHECK(guard->get_value("trkv_heard_noise").empty());
+        noise.volume = 140;
+        sounds::sound(noise);
+        sounds::process_sounds_npc();
+        REQUIRE_FALSE(guard->get_value("trkv_heard_noise").empty());
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        probe("npc_hearing_started");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        probe("npc_hearing_restored");
+        set_time(calendar::turn + 21_turns);
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        probe("npc_hearing_expired");
+        sounds::reset_sounds();
         player.set_all_parts_hp_to_max();
         player.clear_effects();
     }
