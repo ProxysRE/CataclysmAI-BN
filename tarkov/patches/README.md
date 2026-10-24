@@ -34,3 +34,9 @@ query for inclusive same-floor areas up to 4x4. It returns a safe unoccupied
 reachable endpoint without changing NPC.path or moves. Hearing owns the plain
 selected point and retries under the existing search budget. Native results
 are tracked in docs/VERIFICATION.md.
+
+
+0012 adds a bounded read-only visible-target standoff position evaluator.
+The trained-rifle Lua pilot owns the saved intention, timeout and cooldown;
+BN still executes movement, shooting and reload. This is a local spacing move,
+not a cover/flanking planner. Native results are tracked in VERIFICATION.md.

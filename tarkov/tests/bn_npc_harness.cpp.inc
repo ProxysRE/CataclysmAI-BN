@@ -341,6 +341,47 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         guard->move();
         REQUIRE(guard->get_moves() < 100);
         probe("npc_hearing_expired");
+        // First deliberate trained-rifle maneuver, on the same real actor.
+        get_avatar().set_mutation(trait_id("DEBUG_NODMG"));
+        const auto standoff_damage_guard = on_out_of_scope([&]() {
+            get_avatar().unset_mutation(trait_id("DEBUG_NODMG"));
+        });
+        guard->setpos(abs_to_bub(tripoint_abs_ms(402, 392, 0)));
+        get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 390, 0)));
+        set_time(calendar::turn);
+        guard->regen_ai_cache();
+        REQUIRE(guard->sees(get_avatar()));
+        const auto path_before_standoff = guard->path;
+        const auto moves_before_standoff = guard->get_moves();
+        probe("npc_standoff_setup");
+        CHECK(guard->path == path_before_standoff);
+        CHECK(guard->get_moves() == moves_before_standoff);
+        const auto ammo_before_standoff = guard->primary_weapon().ammo_remaining();
+        REQUIRE(ammo_before_standoff > 0);
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        CHECK(rl_dist(guard->bub_pos(), get_avatar().bub_pos()) > 2);
+        CHECK(guard->primary_weapon().ammo_remaining() == ammo_before_standoff);
+        probe("npc_standoff_started");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        probe("npc_standoff_restored");
+        for (auto step = 0; step < 6; ++step) {
+            guard->set_moves(100);
+            guard->move();
+            REQUIRE(guard->get_moves() < 100);
+            probe("npc_standoff_progress");
+            if (data["standoff_arrived"].get<bool>()) { break; }
+        }
+        REQUIRE(data["standoff_arrived"].get<bool>());
+        get_avatar().setpos(abs_to_bub(tripoint_abs_ms(387, 392, 0)));
+        set_time(calendar::turn);
+        REQUIRE_FALSE(guard->sees(get_avatar()));
+        probe("npc_standoff_hidden");
         sounds::reset_sounds();
         player.set_all_parts_hp_to_max();
         player.clear_effects();

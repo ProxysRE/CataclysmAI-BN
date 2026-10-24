@@ -1,0 +1,88 @@
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -1596,6 +1596,84 @@
+ 
+         luna::set_fx( ut, "set_first_topic", []( UT_CLASS & npchar, const std::string & str ) -> void { npchar.chatbin.first_topic = str; } );
+ 
++        DOC( "Choose or validate a short standoff move against the current visible target. Requires a loaded gun; returns an absolute position or nil without spending moves or changing NPC.path. Optional committed position validates only that point." );
++        luna::set_fx( ut, "choose_standoff_position", []( UT_CLASS & npchar,
++        const tripoint_abs_ms & observed, sol::optional<tripoint_abs_ms> committed ) -> std::optional<tripoint_abs_ms> {
++            const Creature *target = npchar.current_target();
++            if( !target || !npchar.sees( *target ) || target->abs_pos() != observed ||
++                !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_remaining() <= 0 ||
++                npchar.in_vehicle || npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++                return std::nullopt;
++            }
++            auto &here = get_map();
++            const auto origin = npchar.bub_pos();
++            const auto foe = abs_to_bub( observed );
++            const int distance = rl_dist( origin, foe );
++            if( foe.z() != origin.z() || ( !committed && distance > 3 ) ) {
++                return std::nullopt;
++            }
++            const auto avoid = npchar.get_legacy_path_avoid();
++            const auto score = [&]( const tripoint_bub_ms &candidate ) -> std::optional<int> {
++                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ) {
++                    return std::nullopt;
++                }
++                const int range = rl_dist( candidate, foe );
++                if( range < 3 || range > 6 || !here.passable( candidate ) ||
++                    here.dangerous_field_at( candidate ) ||
++                    ( candidate != origin && g->critter_at( candidate ) != nullptr ) ||
++                    !here.sees( candidate, foe, 60 ) ) {
++                    return std::nullopt;
++                }
++                for( const auto &p : here.find_clear_path( candidate, foe ) ) {
++                    if( p == candidate || p == foe ) {
++                        continue;
++                    }
++                    const Creature *blocker = g->critter_at( p );
++                    if( here.impassable( p ) || ( blocker && blocker != &npchar &&
++                        npchar.attitude_to( *blocker ) != Attitude::A_HOSTILE ) ) {
++                        return std::nullopt;
++                    }
++                }
++                auto route = here.route( origin, candidate,
++                                         npchar.get_legacy_pathfinding_settings( true ), avoid );
++                if( candidate != origin && route.empty() ) {
++                    return std::nullopt;
++                }
++                for( const auto &p : route ) {
++                    if( p.z() != origin.z() ) {
++                        return std::nullopt;
++                    }
++                }
++                if( !route.empty() && route.front() == origin ) {
++                    route.erase( route.begin() );
++                }
++                if( route.size() > 3 ) {
++                    return std::nullopt;
++                }
++                return 20 * std::min( range, 5 ) - 10 * static_cast<int>( route.size() );
++            };
++            if( committed ) {
++                const auto candidate = abs_to_bub( *committed );
++                return score( candidate ) ? std::optional<tripoint_abs_ms>( *committed ) : std::nullopt;
++            }
++            std::optional<tripoint_abs_ms> best;
++            int best_score = 20 * std::min( distance, 5 ) + 10;
++            for( int x = -2; x <= 2; ++x ) {
++                for( int y = -2; y <= 2; ++y ) {
++                    const tripoint_bub_ms candidate( origin.x() + x, origin.y() + y, origin.z() );
++                    if( rl_dist( candidate, foe ) < distance + 2 ) {
++                        continue;
++                    }
++                    const auto rating = score( candidate );
++                    if( rating && *rating > best_score ) {
++                        best = bub_to_abs( candidate );
++                        best_score = *rating;
++                    }
++                }
++            }
++            return best;
++        } );
++
+         DOC( "Triggers the npc menu to open." );
+         luna::set_fx( ut, "npc_menu", []( UT_CLASS & npchar, sol::optional<bool> force ) -> void { g->npc_menu( npchar, force.value_or( false ) ); } );
+ 

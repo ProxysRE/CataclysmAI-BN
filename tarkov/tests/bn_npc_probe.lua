@@ -457,6 +457,44 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage == "npc_standoff_setup" or test_data.stage == "npc_standoff_hidden" then
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor)
+  local target = gapi.get_avatar():abs_pos()
+  local proposed = actor:choose_standoff_position(target)
+  if test_data.stage == "npc_standoff_hidden" then
+    assert(proposed == nil)
+  else
+    assert(proposed and proposed.z == target.z)
+    assert(actor:choose_standoff_position(target, proposed))
+    assert(not actor:choose_standoff_position(TripointAbsMs.new(target.x, target.y + 1, target.z)))
+    local member = saved_actor()
+    member.loadout, member.combat = "rifle_civilian_v1", {}
+  end
+elseif test_data.stage == "npc_standoff_started" or test_data.stage == "npc_standoff_restored" then
+  local plan = assert(saved_actor().combat.goal)
+  assert(saved_actor().combat.status == "standoff" and plan.attempts == 1 and plan.stalled == 0)
+  if test_data.stage == "npc_standoff_started" then
+    test_data.standoff_position = { x = plan.position.x, y = plan.position.y, z = plan.position.z }
+    test_data.standoff_deadline = plan.deadline
+    test_data.standoff_arrived = false
+  else
+    assert(plan.position.x == test_data.standoff_position.x and plan.position.y == test_data.standoff_position.y)
+    assert(plan.position.z == test_data.standoff_position.z and plan.deadline == test_data.standoff_deadline)
+  end
+elseif test_data.stage == "npc_standoff_progress" then
+  local state = assert(saved_actor().combat)
+  if state.status == "arrived" then
+    assert(state.goal == nil)
+    test_data.standoff_arrived = true
+  else
+    local plan = assert(state.goal)
+    assert(state.status == "standoff" and plan.deadline == test_data.standoff_deadline)
+    assert(plan.position.x == test_data.standoff_position.x and plan.position.y == test_data.standoff_position.y)
+  end
 elseif test_data.stage == "npc_step" then
   local actor = assert(test_data.actor)
   local before = actor:get_moves()

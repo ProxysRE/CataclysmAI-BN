@@ -3,6 +3,7 @@ local perception = require("trkv_perception")
 local search = require("trkv_search")
 local hearing = require("trkv_hearing")
 local patrol = require("trkv_patrol")
+local combat = require("trkv_combat")
 local decision = {}
 
 function decision.step_actor(member, context, actor, map, now)
@@ -14,7 +15,9 @@ function decision.step_actor(member, context, actor, map, now)
   hearing.update(member.hearing, context, now, actor:get_value("trkv_heard_noise"))
   local hazard = actor:avoid_immediate_danger()
   if hazard ~= "" then return true, "escape_" .. hazard end
-  local handled, reason = search.step_actor(member.search, context, member.perception, actor, map, now)
+  local handled, reason = combat.step_actor(member, context, actor, map, now)
+  if handled then return handled, reason end
+  handled, reason = search.step_actor(member.search, context, member.perception, actor, map, now)
   if handled then return handled, reason end
   if member.perception.status ~= "visible" then
     handled, reason = hearing.step_actor(member.hearing, context, actor, map, now)

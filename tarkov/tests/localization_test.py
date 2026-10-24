@@ -79,6 +79,7 @@ def main():
     lua.globals().package.loaded.trkv_encounter = lua.execute((MOD / "trkv_encounter.lua").read_text())
     lua.globals().package.loaded.trkv_search = lua.execute((MOD / "trkv_search.lua").read_text())
     lua.globals().package.loaded.trkv_hearing = lua.execute((MOD / "trkv_hearing.lua").read_text())
+    lua.globals().package.loaded.trkv_combat = lua.execute((MOD / "trkv_combat.lua").read_text())
     lua.globals().package.loaded.trkv_decision = lua.execute((MOD / "trkv_decision.lua").read_text())
     lua.execute(source)
     lua.execute('game.mod_runtime.trkv_raid_core.start()')

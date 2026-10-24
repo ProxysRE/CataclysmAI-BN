@@ -53,6 +53,7 @@ package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.
 package.loaded.trkv_encounter = dofile("tarkov/mods/trkv_raid_core/trkv_encounter.lua")
 package.loaded.trkv_search = dofile("tarkov/mods/trkv_raid_core/trkv_search.lua")
 package.loaded.trkv_hearing = dofile("tarkov/mods/trkv_raid_core/trkv_hearing.lua")
+package.loaded.trkv_combat = dofile("tarkov/mods/trkv_raid_core/trkv_combat.lua")
 package.loaded.trkv_decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 dofile("tarkov/mods/trkv_raid_core/main.lua")
 local function context()

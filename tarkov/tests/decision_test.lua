@@ -2,6 +2,8 @@ package.loaded.trkv_perception = dofile("tarkov/mods/trkv_raid_core/trkv_percept
 package.loaded.trkv_search = dofile("tarkov/mods/trkv_raid_core/trkv_search.lua")
 package.loaded.trkv_hearing = dofile("tarkov/mods/trkv_raid_core/trkv_hearing.lua")
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
+package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
+package.loaded.trkv_combat = dofile("tarkov/mods/trkv_raid_core/trkv_combat.lua")
 local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 TripointAbsMs = { new = function(x, y, z) return { x = x, y = y, z = z } end }
 local map = { abs_to_bub = function(_, p) return p end }
