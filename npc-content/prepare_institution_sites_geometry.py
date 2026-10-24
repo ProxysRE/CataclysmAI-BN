@@ -130,6 +130,12 @@ def prepare(check=False):
             for base in ('t_strconc_wall', 't_sconc_wall', 't_concrete_wall', 't_wall'):
                 if name.startswith(base + '_') and ('terrain', base) in core: aliases[name] = base; break
     deferred = []
+    for e in entries:
+        if e['type'] == 'overmap_special' and 'priority' in e:
+            record = {'source': e['id'], 'field': 'priority', 'value': e.pop('priority'),
+                      'reason': 'BN rejects DDA placement priority; debug-only occurrences are zero'}
+            deferred.append(record)
+            later.append(copy.deepcopy(record))
     abstracts = {e['abstract']: e for p, text in catalog.items() if p.startswith('dda/')
                  for e in json.loads(text) if 'abstract' in e}
     for i, e in enumerate(entries):

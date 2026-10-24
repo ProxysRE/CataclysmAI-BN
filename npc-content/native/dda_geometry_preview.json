@@ -126313,7 +126313,6 @@
       0,
       0
     ],
-    "priority": 1,
     "flags": [
       "GLOBALLY_UNIQUE",
       "SAFE_AT_WORLDGEN",

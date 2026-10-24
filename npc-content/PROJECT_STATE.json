@@ -818,7 +818,7 @@
     "runtime_validated": false,
     "status": "Institution candidate embedded: 61 layouts /2436 fixture cells plus transform case; clean Windows source and installed validation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "c5ac3c2577db408fd5f21688b00c81df02772b5dbebf715b8453a34ddf25c658",
+    "native_patch_sha256": "2c5c8d0ca364294a35740b6d57fafefbf825497da6d4f7a48607878467703c15",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -867,15 +867,15 @@
     "validated_geometry_cases": 59,
     "validated_geometry_placements": 1837,
     "latest_failed_attempt": {
-      "head": "b8f348ae9697342e4841e11c1670b4ad174fef33",
-      "run_id": 40105621134,
+      "head": "da7bc1f169c45ec93f484c4b4244aa649045332a",
+      "run_id": 40127570589,
       "compile": "success",
       "source_core": "73 cases /11030 assertions passed",
       "source_optional": "10 cases /2224 assertions passed",
-      "geometry": "One case /one assertion failed: zoo OMT(3,3), tile(0,6), z1 expected air above roof-bearing stone wall; no initialization errors",
+      "geometry": "All 62 cases /2541985 assertions passed; suite failed because BN rejected refugee-center priority during initialization",
       "installed_and_package": "not reached",
-      "fix": "Project the exact BN t_rock_wall roof t_flat_roof into the source-air expectation using authenticated mapbuffer post-pass and terrain definition; retain the point",
-      "resolved_by_run": 40114771164
+      "fix": "Preserve source priority=1 in deferred registration metadata; omit unsupported member from debug-only BN special; all 62 native cases unchanged",
+      "resolved_by_run": null
     },
     "encoding_preflight_attempt": {
       "head": "f7546ac577cbde529f111fa7fdbcd13617b62008",
@@ -1174,12 +1174,23 @@
     "nested_definitions": 0,
     "unresolved_typed_refs": [],
     "geometry_issues": [],
-    "status": "All six dependencies closed; 1983 oriented fixed expectations and fourteen matched vertical links embedded; Windows source and installed validation pending",
+    "status": "All 62 source cases passed assertions; unsupported DDA placement priority deferred after JSON initialization failure; clean source and installed rerun pending",
     "report": "geometry_layer/INSTITUTION_SITES_GEOMETRY_REPORT.json",
     "fixture_report": "geometry_layer/INSTITUTION_SITES_PREVIEW_REPORT.json",
     "fixture_points": 1983,
     "vertical_links": 14,
     "layout_cases": 3,
-    "physical_terrain_definitions": 3
+    "physical_terrain_definitions": 3,
+    "previous_attempt": {
+      "head": "da7bc1f169c45ec93f484c4b4244aa649045332a",
+      "run_id": 40127570589,
+      "compile": "success",
+      "source_core": "73 cases /11030 assertions passed",
+      "source_optional": "10 cases /2224 assertions passed",
+      "geometry": "All 62 cases /2541985 assertions passed; suite failed because BN rejected refugee-center priority during initialization",
+      "installed_and_package": "not reached",
+      "fix": "Preserve source priority=1 in deferred registration metadata; omit unsupported member from debug-only BN special; all 62 native cases unchanged",
+      "resolved_by_run": null
+    }
   }
 }

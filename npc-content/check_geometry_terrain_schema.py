@@ -28,6 +28,8 @@ def validate_omt(e,known):
 
 def validate_no_random_extras(entries):
     for e in entries:
+        if e['type']=='overmap_special':
+            assert 'priority' not in e,('Unsupported DDA placement priority',e['id'])
         if e['type']=='overmap_terrain':
             assert e.get('extras')=='',('Preview can inherit random map extras',e.get('id'),e.get('copy-from'))
 
@@ -92,6 +94,9 @@ def check():
         except AssertionError:pass
         else:raise AssertionError('Random extras inheritance regression accepted')
     validate_no_random_extras([{'type':'overmap_terrain','id':'regression_extras','extras':''}])
+    try:validate_no_random_extras([{'type':'overmap_special','id':'regression_priority','priority':1}])
+    except AssertionError:pass
+    else:raise AssertionError('Unsupported DDA special priority accepted')
     template={'type':'terrain','id':'regression_open_air','symbol':'x','color':'white',
               'move_cost':2,'name':'probe','description':'probe'}
     for action,key,value in [('bash','ter_set','t_open_air'),('bash','ter_set_bashed_from_above','t_open_air'),

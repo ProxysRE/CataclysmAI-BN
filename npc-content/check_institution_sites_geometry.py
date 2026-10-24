@@ -74,6 +74,10 @@ def check():
             for field in ('camp', 'camp_name'):
                 if field in cell: assert any(e.get('source') == name and e.get('point') == cell['point'] and e.get('field') == field and e.get('value') == cell[field] for e in later)
         assert special['occurrences'] == [0, 0]
+        assert 'priority' not in special
+        if 'priority' in src:
+            assert any(e.get('source') == name and e.get('field') == 'priority'
+                       and e.get('value') == src['priority'] for e in later)
         assert sorted({c['point'][2] for c in src['overmaps'] if 'overmap' in c}) == report['source_z_levels'][name]
     assert all(not e['object'].get('place_nested') and not e['object'].get('nested') for e in entries if e['type'] == 'mapgen')
     bodybags = [e for es in files.values() for e in es if e.get('nested_mapgen_id') == 'pile_bodybag_corpses']

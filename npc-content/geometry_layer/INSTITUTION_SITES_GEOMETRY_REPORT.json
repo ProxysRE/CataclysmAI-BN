@@ -1054,6 +1054,12 @@
   },
   "deferred_registration_fields": [
     {
+      "source": "evac_center",
+      "field": "priority",
+      "value": 1,
+      "reason": "BN rejects DDA placement priority; debug-only occurrences are zero"
+    },
+    {
       "source": [
         "evac_center_1"
       ],

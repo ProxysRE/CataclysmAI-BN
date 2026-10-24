@@ -336,3 +336,10 @@ The puddle keeps source appearance and movement cost 3, without adding an infini
 Three native all-floor fixtures add 599 placements, 1983 fixed terrain/access expectations and fourteen matched vertical links (hospital eight, Alcatraz four, refugee center two), preserving the hospital's south orientation. Both endpoints are checked; a negative probe rejects a broken stair. Source air is not sampled as a fixed tile because BN may generate roofs there; every own tile still gets non-null and empty-loot checks. Existing cases and the 73-input transform matrix remain. Candidate total: 61 layouts /2436 fixture placements plus one transform case, 52 concrete custom terrains. Only the three generated geometry sections of the engine patch changed.
 
 Windows compilation and clean source/installed generation are pending for this candidate. Successful run 40114771164 and its portable artifact remain the previous validated checkpoint; the current candidate patch has a different checksum. Confirmed group scope remains 39/51 (76.5%).
+
+
+## Institution Windows initialization correction (2026-10-25)
+
+Run 40127570589 on da7bc1f compiled successfully and passed source core 73/11,030 and optional mods 10/2,224. All 62 geometry cases and 2,541,985 assertions passed, including the three institution layouts. The suite still failed because BN rejected DDA's `priority: 1` on the refugee-center special during JSON initialization. Installed tests and packaging were not reached; confirmed group credit remains 39/51 (76.5%).
+
+The source priority remains intact in the complete registration and raw shell archive, and is now explicitly deferred from the zero-occurrence BN debug special. No rows, physical terrain, context cells, placements, navigation expectations or any of the 62 native cases changed. A schema regression probe rejects reintroduced special priority before compilation. Repeat clean source and installed Windows validation remains required; successful checkpoint 40114771164 is unchanged.

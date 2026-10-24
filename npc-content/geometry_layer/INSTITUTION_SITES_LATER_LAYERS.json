@@ -12601,6 +12601,12 @@
     ]
   },
   {
+    "source": "evac_center",
+    "field": "priority",
+    "value": 1,
+    "reason": "BN rejects DDA placement priority; debug-only occurrences are zero"
+  },
+  {
     "source_terrain_definition": {
       "type": "terrain",
       "id": "t_soil",

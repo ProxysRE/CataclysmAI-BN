@@ -81199,7 +81199,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,126777 @@
+@@ -0,0 +1,126776 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -207515,7 +207515,6 @@
 +      0,
 +      0
 +    ],
-+    "priority": 1,
 +    "flags": [
 +      "GLOBALLY_UNIQUE",
 +      "SAFE_AT_WORLDGEN",
