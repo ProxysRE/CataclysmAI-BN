@@ -13,6 +13,7 @@ local target = { get_pos_ms = function() return p end,
 local origin = { x = 1, y = 2, z = 0 }
 local actor = {
   get_value = function() return "" end,
+  choose_area_entry = function(_, low) return { x = low.x + 2, y = low.y + 2, z = low.z } end,
   avoid_immediate_danger = function() return "" end,
   current_target = function() return target end, -- Includes a deliberately stale cache.
   sees = function() return visible end,

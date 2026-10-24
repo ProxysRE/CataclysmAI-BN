@@ -398,12 +398,46 @@ elseif test_data.stage == "npc_search_expired" then
   assert(member.perception.status == "none" and member.perception.contact == nil)
   assert(member.search.status == "expired" and member.search.goal.deadline == test_data.search_deadline)
   assert(test_data.patrol_handled and test_data.patrol_reason == "patrol")
+elseif test_data.stage == "npc_hearing_area_entry" then
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor)
+  local map = gapi.get_map()
+  local function absolute(x, y, z) return TripointAbsMs.new(x, y, z or 0) end
+  local center = map:abs_to_bub(absolute(386, 394))
+  map:set_ter_at(center, TerId.new("t_wall"):int_id())
+  assert(map:get_ter_at(center) == TerId.new("t_wall"):int_id())
+  local entry = assert(actor:choose_area_entry(absolute(384, 392), absolute(387, 395)))
+  assert(entry.x >= 384 and entry.x <= 387 and entry.y >= 392 and entry.y <= 395 and entry.z == 0)
+  assert(entry.x ~= 386 or entry.y ~= 394)
+  assert(not actor:choose_area_entry(absolute(387, 395), absolute(384, 392)))
+  assert(not actor:choose_area_entry(absolute(384, 392, 1), absolute(387, 395, 1)))
+  assert(not actor:choose_area_entry(absolute(384, 392), absolute(389, 395)))
+  -- An unrelated fully walled region must not yield a seemingly feasible entry.
+  local original = {}
+  for x = 398, 401 do
+    for y = 388, 391 do
+      local pos = map:abs_to_bub(absolute(x, y))
+      original[#original + 1] = { position = pos, terrain = map:get_ter_at(pos) }
+      map:set_ter_at(pos, TerId.new("t_wall"):int_id())
+    end
+  end
+  assert(not actor:choose_area_entry(absolute(398, 388), absolute(401, 391)))
+  map:set_ter_at(map:abs_to_bub(absolute(400, 390)), TerId.new("t_floor"):int_id())
+  assert(not actor:choose_area_entry(absolute(398, 388), absolute(401, 391)),
+    "An isolated passable tile is not a reachable destination")
+  for _, cell in ipairs(original) do map:set_ter_at(cell.position, cell.terrain) end
 elseif test_data.stage == "npc_hearing_started" or test_data.stage == "npc_hearing_restored" then
   local member = saved_actor()
   local heard = assert(member.hearing.contact)
   assert(heard.source == "sound" and heard.kind == "combat" and heard.radius == 2)
   assert(heard.position.x == 386 and heard.position.y == 394 and heard.position.z == 0)
   assert(member.perception.contact == nil and member.hearing.search.goal.attempts == 1)
+  local entry = assert(member.hearing.entry)
+  assert(entry.x >= 384 and entry.x <= 387 and entry.y >= 392 and entry.y <= 395 and entry.z == 0)
+  assert(entry.x ~= 386 or entry.y ~= 394)
   assert(heard.expires_at == heard.seen_at + 20)
   local actor
   for _, candidate in ipairs(gapi.get_all_npcs()) do
@@ -412,8 +446,11 @@ elseif test_data.stage == "npc_hearing_started" or test_data.stage == "npc_heari
   assert(actor and actor:get_value("trkv_heard_noise") == member.hearing.last_event)
   if test_data.stage == "npc_hearing_started" then
     test_data.hearing_event, test_data.hearing_deadline = heard.event, heard.expires_at
+    test_data.hearing_entry = { x = entry.x, y = entry.y, z = entry.z }
   else
     assert(heard.event == test_data.hearing_event and heard.expires_at == test_data.hearing_deadline)
+    assert(entry.x == test_data.hearing_entry.x and entry.y == test_data.hearing_entry.y and
+      entry.z == test_data.hearing_entry.z)
   end
 elseif test_data.stage == "npc_hearing_expired" then
   local heard = assert(saved_actor().hearing)

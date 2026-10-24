@@ -27,3 +27,10 @@ vanilla source-identity lookup. The existing sound pipeline still determines
 audibility. A saved Creature value carries dimension/time/4x4-region/floor/kind;
 Lua owns deduplication and bounded investigation. Vanilla classes are unchanged.
 Native results and limitations are tracked in docs/VERIFICATION.md.
+
+
+0011 adds Npc:choose_area_entry(minimum, maximum), a bounded read-only route
+query for inclusive same-floor areas up to 4x4. It returns a safe unoccupied
+reachable endpoint without changing NPC.path or moves. Hearing owns the plain
+selected point and retries under the existing search budget. Native results
+are tracked in docs/VERIFICATION.md.

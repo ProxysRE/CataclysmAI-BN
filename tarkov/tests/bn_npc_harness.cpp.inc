@@ -307,6 +307,11 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         set_time(calendar::turn);
         REQUIRE_FALSE(guard->sees(get_avatar()));
         guard->remove_value("trkv_heard_noise");
+        const auto path_before_area_probe = guard->path;
+        const auto moves_before_area_probe = guard->get_moves();
+        probe("npc_hearing_area_entry");
+        CHECK(guard->path == path_before_area_probe);
+        CHECK(guard->get_moves() == moves_before_area_probe);
         sounds::reset_sounds();
         sound_event noise;
         noise.origin = get_avatar().bub_pos();

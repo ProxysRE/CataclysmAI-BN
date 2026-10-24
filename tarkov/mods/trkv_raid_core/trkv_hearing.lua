@@ -9,7 +9,7 @@ function hearing.update(state, context, now, event)
   if context.phase ~= "active" or not context.at_raid then return false, "inactive" end
   if state.schema ~= nil and state.schema ~= 1 then error("Unsupported hearing schema") end
   if state.sequence ~= context.sequence or state.dimension ~= context.dimension then
-    state.contact, state.search, state.observed = nil, {}, false
+    state.contact, state.search, state.observed, state.entry = nil, {}, false, nil
   end
   state.schema, state.sequence, state.dimension = 1, context.sequence, context.dimension
   if state.contact and (now < state.contact.seen_at or now >= state.contact.expires_at) then
@@ -28,7 +28,7 @@ function hearing.update(state, context, now, event)
       if not state.contact or not same_region(p, state.contact.position) then
         state.contact = { source = "sound", position = p, seen_at = turn, expires_at = turn + 20,
           kind = kind, event = event, radius = 2 }
-        state.search = {}
+        state.search, state.entry = {}, nil
       end
       state.observed = true
     end
@@ -37,27 +37,49 @@ function hearing.update(state, context, now, event)
   return true, state.status
 end
 
-function hearing.step_actor(state, context, actor, map, now)
+-- Keep a chosen approach until progress stalls; selecting another tile never
+-- resets the episode's deadline or attempt budget.
+function hearing.step(state, context, now, api)
   local memory = { sequence = state.sequence, dimension = state.dimension,
     status = state.status, contact = state.contact }
   state.search = state.search or {}
+  local handled, reason = search.step(state.search, context, memory, now, {
+    at = api.in_region,
+    position = api.position,
+    moves = api.moves,
+    move_to = function(region)
+      if not state.entry or (state.search.goal and state.search.goal.stalled >= 2) then
+        local p = api.choose_entry(region)
+        state.entry = p and { x = p.x, y = p.y, z = p.z } or nil
+      end
+      if state.entry then api.move_to(state.entry) end
+    end,
+    wait = api.wait,
+  })
+  return handled, "sound_" .. reason
+end
+
+function hearing.step_actor(state, context, actor, map, now)
   local function own_position()
     local p = actor:abs_pos(); return { x = p.x, y = p.y, z = p.z }
   end
-  local handled, reason = search.step(state.search, context, memory, now, {
-    at = function(p)
+  return hearing.step(state, context, now, {
+    in_region = function(p)
       local q = own_position()
       return q.z == p.z and q.x >= p.x - 2 and q.x < p.x + 2 and
         q.y >= p.y - 2 and q.y < p.y + 2
     end,
     position = own_position,
     moves = function() return actor:get_moves() end,
+    choose_entry = function(p)
+      return actor:choose_area_entry(TripointAbsMs.new(p.x - 2, p.y - 2, p.z),
+        TripointAbsMs.new(p.x + 1, p.y + 1, p.z))
+    end,
     move_to = function(p)
       actor:move_towards(map:abs_to_bub(TripointAbsMs.new(p.x, p.y, p.z)))
     end,
     wait = function() actor:set_moves(actor:get_moves() - 100) end,
   })
-  return handled, "sound_" .. reason
 end
 
 return hearing

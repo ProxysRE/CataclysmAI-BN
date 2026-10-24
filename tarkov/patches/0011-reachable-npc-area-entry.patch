@@ -1,0 +1,59 @@
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -1629,6 +1629,55 @@
+ 
+         SET_FX_T( complain, bool() );
+ 
++        DOC( "Choose a reachable safe unoccupied tile in an inclusive same-floor area up to 4x4, using non-bashing paths. Does not spend moves or change the NPC path; returns an absolute position or nil." );
++        luna::set_fx( ut, "choose_area_entry", []( UT_CLASS & npchar,
++        const tripoint_abs_ms & minimum, const tripoint_abs_ms & maximum ) -> std::optional<tripoint_abs_ms> {
++            auto &here = get_map();
++            const auto low = abs_to_bub( minimum );
++            const auto high = abs_to_bub( maximum );
++            if( !here.inbounds( low ) || !here.inbounds( high ) ||
++                low.z() != npchar.bub_pos().z() || high.z() != low.z() ||
++                low.x() > high.x() || low.y() > high.y() ||
++                high.x() - low.x() >= 4 || high.y() - low.y() >= 4 ) {
++                return std::nullopt;
++            }
++            std::optional<tripoint_abs_ms> best;
++            std::size_t best_length = 0;
++            const auto avoid = npchar.get_legacy_path_avoid();
++            for( int x = low.x(); x <= high.x(); ++x ) {
++                for( int y = low.y(); y <= high.y(); ++y ) {
++                    const tripoint_bub_ms candidate( x, y, low.z() );
++                    if( !here.passable( candidate ) || here.dangerous_field_at( candidate ) ||
++                        ( candidate != npchar.bub_pos() && g->critter_at( candidate ) != nullptr ) ) {
++                        continue;
++                    }
++                    auto route = here.route( npchar.bub_pos(), candidate,
++                                             npchar.get_legacy_pathfinding_settings( true ), avoid );
++                    if( candidate != npchar.bub_pos() && route.empty() ) {
++                        continue;
++                    }
++                    bool same_floor = true;
++                    for( const auto &step : route ) {
++                        if( step.z() != low.z() ) {
++                            same_floor = false;
++                            break;
++                        }
++                    }
++                    if( !same_floor ) {
++                        continue;
++                    }
++                    if( !route.empty() && route.front() == npchar.bub_pos() ) {
++                        route.erase( route.begin() );
++                    }
++                    if( !best || route.size() < best_length ) {
++                        best = bub_to_abs( candidate );
++                        best_length = route.size();
++                    }
++                }
++            }
++            return best;
++        } );
++
+         DOC( "Rates how dangerous a target is from 0 (harmless) to 1 (max danger)." );
+ 
+         SET_FX_T( evaluate_enemy, float( const Creature & ) const );
