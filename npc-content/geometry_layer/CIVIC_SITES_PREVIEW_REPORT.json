@@ -167,22 +167,6 @@
       {
         "omt_x": 0,
         "omt_y": 1,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
-        "x": 3,
-        "y": 17,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
         "x": 10,
         "y": 11,
         "z": 1,
@@ -623,14 +607,6 @@
       {
         "omt_x": 2,
         "omt_y": 1,
-        "x": 0,
-        "y": 17,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 1,
         "x": 8,
         "y": 11,
         "z": 1,
@@ -959,26 +935,10 @@
       {
         "omt_x": 0,
         "omt_y": 2,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
         "x": 4,
         "y": 7,
         "z": 1,
         "terrain": "t_stairs_down"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 4,
-        "y": 18,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -1107,14 +1067,6 @@
         "y": 14,
         "z": 1,
         "terrain": "t_door_c"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -2135,14 +2087,6 @@
       {
         "omt_x": 1,
         "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 2,
         "x": 1,
         "y": 0,
         "z": 2,
@@ -3131,14 +3075,6 @@
         "y": 7,
         "z": 1,
         "terrain": "t_stairs_down"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 2,
@@ -4169,22 +4105,6 @@
       {
         "omt_x": 0,
         "omt_y": 1,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
-        "x": 3,
-        "y": 17,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
         "x": 10,
         "y": 11,
         "z": 1,
@@ -4633,14 +4553,6 @@
       {
         "omt_x": 2,
         "omt_y": 1,
-        "x": 0,
-        "y": 17,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 1,
         "x": 8,
         "y": 11,
         "z": 1,
@@ -4969,26 +4881,10 @@
       {
         "omt_x": 0,
         "omt_y": 2,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
         "x": 4,
         "y": 7,
         "z": 1,
         "terrain": "t_stairs_down"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 4,
-        "y": 18,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -5117,14 +5013,6 @@
         "y": 14,
         "z": 1,
         "terrain": "t_door_c"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -6145,14 +6033,6 @@
       {
         "omt_x": 1,
         "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 2,
         "x": 1,
         "y": 0,
         "z": 2,
@@ -7141,14 +7021,6 @@
         "y": 7,
         "z": 1,
         "terrain": "t_stairs_down"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 2,
@@ -8179,22 +8051,6 @@
       {
         "omt_x": 0,
         "omt_y": 1,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
-        "x": 3,
-        "y": 17,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
         "x": 10,
         "y": 11,
         "z": 1,
@@ -8635,14 +8491,6 @@
       {
         "omt_x": 2,
         "omt_y": 1,
-        "x": 0,
-        "y": 17,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 1,
         "x": 8,
         "y": 11,
         "z": 1,
@@ -8971,26 +8819,10 @@
       {
         "omt_x": 0,
         "omt_y": 2,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
         "x": 4,
         "y": 7,
         "z": 1,
         "terrain": "t_stairs_down"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 4,
-        "y": 18,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -9119,14 +8951,6 @@
         "y": 14,
         "z": 1,
         "terrain": "t_door_c"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -10147,14 +9971,6 @@
       {
         "omt_x": 1,
         "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 2,
         "x": 1,
         "y": 0,
         "z": 2,
@@ -11143,14 +10959,6 @@
         "y": 7,
         "z": 1,
         "terrain": "t_stairs_down"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 2,
@@ -15351,22 +15159,6 @@
         "terrain": "t_open_air"
       },
       {
-        "omt_x": 0,
-        "omt_y": 0,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 0,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
         "omt_x": 1,
         "omt_y": 0,
         "x": 0,
@@ -15391,22 +15183,6 @@
         "terrain": "t_open_air"
       },
       {
-        "omt_x": 1,
-        "omt_y": 0,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 0,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
         "omt_x": 2,
         "omt_y": 0,
         "x": 0,
@@ -15427,22 +15203,6 @@
         "omt_y": 0,
         "x": 23,
         "y": 11,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 0,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 3,
-        "omt_y": 0,
-        "x": 0,
-        "y": 0,
         "z": 1,
         "terrain": "t_open_air"
       },
@@ -15529,30 +15289,6 @@
       {
         "omt_x": 1,
         "omt_y": 1,
-        "x": 0,
-        "y": 6,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 1,
-        "x": 0,
-        "y": 12,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 1,
-        "x": 0,
-        "y": 18,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 1,
         "x": 23,
         "y": 23,
         "z": 1,
@@ -15563,30 +15299,6 @@
         "omt_y": 1,
         "x": 0,
         "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 1,
-        "x": 0,
-        "y": 6,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 1,
-        "x": 0,
-        "y": 12,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 1,
-        "x": 0,
-        "y": 18,
         "z": 1,
         "terrain": "t_open_air"
       },
@@ -15671,26 +15383,10 @@
         "terrain": "t_open_air"
       },
       {
-        "omt_x": 0,
-        "omt_y": 2,
-        "x": 23,
-        "y": 23,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
         "omt_x": 1,
         "omt_y": 2,
         "x": 0,
         "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 1,
-        "omt_y": 2,
-        "x": 23,
-        "y": 5,
         "z": 1,
         "terrain": "t_open_air"
       },
@@ -15723,14 +15419,6 @@
         "omt_y": 2,
         "x": 0,
         "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 2,
-        "omt_y": 2,
-        "x": 0,
-        "y": 6,
         "z": 1,
         "terrain": "t_open_air"
       },
@@ -15931,14 +15619,6 @@
         "omt_y": 3,
         "x": 0,
         "y": 6,
-        "z": 1,
-        "terrain": "t_open_air"
-      },
-      {
-        "omt_x": 3,
-        "omt_y": 3,
-        "x": 0,
-        "y": 12,
         "z": 1,
         "terrain": "t_open_air"
       },
@@ -17407,14 +17087,6 @@
         "y": 22,
         "z": 0,
         "terrain": "t_thconc_floor"
-      },
-      {
-        "omt_x": 0,
-        "omt_y": 1,
-        "x": 0,
-        "y": 0,
-        "z": 1,
-        "terrain": "t_open_air"
       },
       {
         "omt_x": 0,
@@ -19578,11 +19250,872 @@
       }
     ]
   },
-  "fixture_point_count": 2445,
+  "fixture_point_count": 2404,
   "random_overlay_navigation_exclusions": [],
   "overlay_exclusion_count": 0,
   "layout_cases": 7,
   "source_placements": 239,
+  "automatic_roof_air_exclusions": [
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_6",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 3,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_6",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 1,
+        "x": 0,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_4",
+      "lower_source_terrain": [
+        "t_region_tree_shade"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 4,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_8",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_1",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_7",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_6",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 3,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_6",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 1,
+        "x": 0,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_4",
+      "lower_source_terrain": [
+        "t_region_tree_shade"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 4,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_8",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_2",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_7",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_6",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 3,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_6",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 1,
+        "x": 0,
+        "y": 17,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_4",
+      "lower_source_terrain": [
+        "t_region_tree_shade"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 4,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_9",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_8",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_hotel_3",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_hotel_tower_1_7",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_0_0",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_1_0",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_1_0",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_2_0",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 0,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_2_0",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 3,
+        "omt_y": 0,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_3_0",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_1_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_1_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_1_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 1,
+        "x": 0,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_2_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 1,
+        "x": 0,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_2_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 1,
+        "x": 0,
+        "y": 18,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_2_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 2,
+        "x": 23,
+        "y": 23,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_0_2",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 1,
+        "omt_y": 2,
+        "x": 23,
+        "y": 5,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_1_2",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 2,
+        "omt_y": 2,
+        "x": 0,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_2_2",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_zoo",
+      "point": {
+        "omt_x": 3,
+        "omt_y": 3,
+        "x": 0,
+        "y": 12,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_zoo_3_3",
+      "lower_source_terrain": [
+        [
+          [
+            "t_region_groundcover_urban",
+            80
+          ],
+          [
+            "t_region_shrub",
+            2
+          ],
+          [
+            "t_region_shrub_fruit",
+            2
+          ],
+          [
+            "t_region_shrub_decorative",
+            2
+          ],
+          [
+            "t_region_tree_fruit",
+            2
+          ],
+          [
+            "t_region_tree_nut",
+            2
+          ],
+          [
+            "t_region_tree_shade",
+            1
+          ]
+        ]
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    },
+    {
+      "special": "dda_geo_civic_stadium",
+      "point": {
+        "omt_x": 0,
+        "omt_y": 1,
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "lower_omt": "dda_geo_civic_stadium_0_1",
+      "lower_source_terrain": [
+        "t_region_groundcover_urban"
+      ],
+      "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
+    }
+  ],
   "limits": [
     "Only fixed source terrain outside every possible nested overlay receives exact expectations",
     "All own cells must retain full empty-loot and non-null checks when embedded",

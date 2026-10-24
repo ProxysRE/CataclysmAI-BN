@@ -24,7 +24,7 @@ def payloads():
             adapted=json.loads((OUT/'CIVIC_SITES_GEOMETRY_REPORT.json').read_text())
             assert not adapted['unresolved_typed_refs'] and not adapted['geometry_issues']
             result+=json.loads((OUT/'CIVIC_SITES_PREVIEW_SHELL.json').read_text())
-            continue # Includes private names for dormant matrix slots, never stock null generators.
+            continue # Source null matrix slots use BN's erased dummy identity.
         if name=='city_additions':
             adapted=json.loads((OUT/'CITY_ADDITIONS_GEOMETRY_REPORT.json').read_text())
             assert not adapted['unresolved_typed_refs']
@@ -108,6 +108,7 @@ def payloads():
     core=set(map(tuple,read_cache(ROOT/'dependency_catalog/BN_ID_INDEX.json')['identifiers']))
     mods={(r['type'],r['id']) for r in mod_cache()['records']}
     own=index_entries(result)
+    own.discard(('mapgen','null')) # BN setup erases the source dummy slots; checked by civic adapter.
     assert not (own-BUILTIN_IDS)&(core|mods),sorted((own-BUILTIN_IDS)&(core|mods))
     hub=json.loads((OUT/'HUB_ADAPTATION_REPORT.json').read_text())
     generated={('overmap_terrain',n) for n in hub['generated_external_omt']}
@@ -132,7 +133,7 @@ def native_test():
         '                    std::initializer_list<geometry_point> geometry = {} )')
     text=text.replace('    }\n    clear_all_state();\n}', '''        for( const auto &expected : geometry ) {
             if( expected.omt_x != column.first || expected.omt_y != column.second ) { continue; }
-            INFO( "navigation terrain=" << expected.terrain << " z=" << expected.z );
+            INFO( "navigation terrain=" << expected.terrain << " x=" << expected.x << " y=" << expected.y << " z=" << expected.z );
             const tripoint_bub_ms p( expected.x, expected.y, expected.z );
             if( expected.furniture ) {
                 CHECK( generated.furn( p ) == furn_id( expected.terrain ) );

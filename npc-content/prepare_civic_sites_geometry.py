@@ -151,20 +151,11 @@ def prepare(check=False):
     preview = rename(entries, isolated)
     for e in preview:
         if e['type'] == 'overmap_terrain': e['extras'] = ''
-    # BN registers every string in a world-map matrix, including literal
-    # null. Give dormant source slots private mapgen names so this opt-in
-    # package cannot append generators to stock BN's global null identity.
-    # No overmap terrain or special cell is created for these unused names.
-    unplaced = []
-    for e in preview:
-        value = e.get('om_terrain')
-        if not isinstance(value, list) or not isinstance(value[0], list): continue
-        for y, row in enumerate(value):
-            for x, name in enumerate(row):
-                if name != 'null': continue
-                name = PREFIX + 'unused_grid_' + str(len(unplaced))
-                row[x] = name
-                unplaced.append({'source': 'null', 'grid_x': x, 'grid_y': y, 'preview_mapgen_id': name})
+    # Source null slots are temporary loader entries. BN removes this exact
+    # dummy mapgen identity during setup before consistency/generation.
+    unplaced = [{'source': 'null', 'grid_x': x, 'grid_y': y, 'preview_mapgen_id': 'null'}
+                for e in preview if isinstance(e.get('om_terrain'), list) and isinstance(e['om_terrain'][0], list)
+                for y, row in enumerate(e['om_terrain']) for x, name in enumerate(row) if name == 'null']
     assert len(unplaced) == 2
     runtime_root = OUT / 'runtime_sources'; runtime_manifest = json.loads((runtime_root / 'SOURCE_MANIFEST.json').read_text())
     runtime_path = 'bn/src/mapgen/mapgen.cpp'; runtime_raw = (runtime_root / runtime_path).read_bytes()
@@ -172,8 +163,10 @@ def prepare(check=False):
     assert hashlib.sha256(runtime_raw).hexdigest() == runtime_manifest['files'][runtime_path]['sha256']
     loader = runtime_raw.decode().split('void load_mapgen(const JsonObject& jo)', 1)[1].split('} else if (jo.has_string("om_terrain"))', 1)[0]
     assert 'load_and_add_mapgen_function(jo, mapgenid, offset, total);' in loader and '"null"' not in loader
+    setup = runtime_raw.decode().split('void setup() {', 1)[1].split('void check_consistency()', 1)[0]
+    assert 'mapgens_.erase("null");' in setup
     evidence.append({'archive': runtime_root.name, 'path': runtime_path, 'sha256': runtime_manifest['files'][runtime_path]['sha256']})
-    own = index_entries(preview)
+    own = index_entries(preview); own.discard(('mapgen', 'null')) # Erased BN dummy, proven above.
     mods = {(e['type'], e['id']) for e in mod_cache()['records']}
     missing = sorted(required(preview) - own - core)
     assert not (own - BUILTIN_IDS) & (core | mods), sorted((own - BUILTIN_IDS) & (core | mods))

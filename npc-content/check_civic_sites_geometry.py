@@ -12,6 +12,12 @@ from compare_location_catalog import read_sources
 from check_geometry_terrain_schema import validate, validate_omt
 
 
+def validate_world_ids(entries):
+    own = {n for e in entries if e['type'] == 'overmap_terrain' for n in flatten(e['id'])}
+    mapped = {n for e in entries if 'om_terrain' in e for n in flatten(e['om_terrain'])} - {'null'}
+    assert own == mapped, ('Unused or undefined world mapgen', sorted(mapped - own), sorted(own - mapped))
+
+
 def validate_vertical(fixtures):
     counts = {}
     for name, points in fixtures.items():
@@ -47,10 +53,15 @@ def check():
             for e in json.loads(text) if e.get('type') == 'city_building' and e.get('id') in TARGETS}
     own = {n for e in entries if e['type'] == 'overmap_terrain' for n in flatten(e['id'])}
     mapped = {n for e in entries if 'om_terrain' in e for n in flatten(e['om_terrain'])} - {'null'}
-    unused = {p['preview_mapgen_id'] for p in report['unplaced_grid_aliases']}
-    assert len(unused) == 2 and not unused & own
-    assert own == mapped - unused
-    assert 'null' not in mapped
+    unused = report['unplaced_grid_aliases']
+    assert len(unused) == 2 and all(p['preview_mapgen_id'] == 'null' for p in unused)
+    assert own == mapped and not any(n.startswith(PREFIX + 'unused_grid_') for n in mapped)
+    validate_world_ids(entries)
+    bad = copy.deepcopy(entries)
+    next(e for e in bad if 'om_terrain' in e)['om_terrain'] = [[PREFIX + 'unused_grid_0']]
+    try: validate_world_ids(bad)
+    except AssertionError: pass
+    else: raise AssertionError('Unused private placeholder generator accepted')
     for name, src in regs.items():
         special = next(e for e in entries if e.get('id') == PREFIX + name)
         assert special['occurrences'] == [0, 0]
@@ -63,7 +74,9 @@ def check():
         assert checks and len(checks) < 8000
         coordinates = {tuple(c['point']) for c in special['overmaps']}
         assert all((p['omt_x'], p['omt_y'], p['z']) in coordinates and 0 <= p['x'] < 24 and 0 <= p['y'] < 24 for p in checks)
-    assert points['fixture_point_count'] == 2445 and points['layout_cases'] == 7
+    assert points['fixture_point_count'] == sum(map(len, points['fixture_checks'].values())) and points['layout_cases'] == 7
+    assert all(e['point']['terrain'] == 't_open_air' and e['lower_source_terrain'] for e in points['automatic_roof_air_exclusions'])
+    assert points['fixture_point_count'] + len(points['automatic_roof_air_exclusions']) == 2445
     validate_vertical(points['fixture_checks'])
     broken = copy.deepcopy(points['fixture_checks'])
     for p in broken[PREFIX + 'hotel_1']:
@@ -86,7 +99,7 @@ def check():
     roof = next(e for e in entries if e.get('id') == PREFIX + 'wood_roof')
     assert roof == rename(roof_source, report['physical_aliases'])
     assert report['physical_aliases']['t_retractable_gate_l'] == 't_chaingate_l'
-    print('PASS: five civic groups /seven layouts, 239 exact source placements, 28 world maps, 11 structural nests and 2445 fixture points; Windows generation pending')
+    print('PASS: five civic groups /seven layouts, 239 exact source placements, 28 world maps, 11 structural nests and 2404 fixed fixture points; Windows generation pending')
 
 
 if __name__ == '__main__': check()

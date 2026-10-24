@@ -69,10 +69,35 @@ def prepare(check=False):
                                'x': x, 'y': y, 'z': cell['point'][2], 'terrain': terrain})
         fixture[e['id']] = checks
     assert len(fixture) == 7 and all(fixture.values())
+    # Regions can generate trees and their automatic roofs in source air.
+    # Exact air is not a fixed expectation above a regional/weighted cell.
+    # Keep every structural/navigation point and all native tile/loot checks.
+    world = collections.defaultdict(list)
+    for e in entries:
+        if 'om_terrain' not in e: continue
+        for gy, row in enumerate(matrix(e)):
+            for gx, name in enumerate(row): world[name].append((e['object'], gx, gy))
+    roof_exclusions = []
+    for special in [e for e in entries if e['type'] == 'overmap_special']:
+        cells = {tuple(c['point']): c['overmap'].removesuffix('_north') for c in special['overmaps']}
+        kept = []
+        for p in fixture[special['id']]:
+            lower_name = cells.get((p['omt_x'], p['omt_y'], p['z'] - 1))
+            uncertain = []
+            if p['terrain'] == 't_open_air' and lower_name:
+                for obj, gx, gy in world[lower_name]:
+                    glyph = obj['rows'][gy * 24 + p['y']][gx * 24 + p['x']]
+                    value = obj.get('terrain', {}).get(glyph, obj.get('fill_ter'))
+                    if not isinstance(value, str) or value.startswith('t_region_'): uncertain.append(value)
+            if uncertain:
+                roof_exclusions.append({'special': special['id'], 'point': p, 'lower_omt': lower_name,
+                    'lower_source_terrain': uncertain, 'reason': 'Regional/weighted lower terrain can generate automatic roofs in source air'})
+            else: kept.append(p)
+        fixture[special['id']] = kept
     report = {'status': 'civic_native_fixtures_embedded_pending_windows', 'native_embedded': True, 'runtime_validated': False,
               'fixture_checks': fixture, 'fixture_point_count': sum(map(len, fixture.values())),
               'random_overlay_navigation_exclusions': exclusions, 'overlay_exclusion_count': len(exclusions),
-              'layout_cases': 7, 'source_placements': 239,
+              'layout_cases': 7, 'source_placements': 239, 'automatic_roof_air_exclusions': roof_exclusions,
               'limits': ['Only fixed source terrain outside every possible nested overlay receives exact expectations',
                          'All own cells must retain full empty-loot and non-null checks when embedded',
                          'No full traversal, elevator operation or natural placement claim']}

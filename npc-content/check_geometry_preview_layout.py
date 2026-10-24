@@ -96,12 +96,13 @@ def check():
         actual=collections.Counter(re.findall(r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^\"]+)"',body,re.M))
         expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
         assert actual==expected,(special,'Civic native geometry points changed')
-    assert civic['fixture_point_count']==2445
+    assert civic['fixture_point_count']==2404
+    assert len(civic['automatic_roof_air_exclusions'])==41
     assert len(specials)==58 and count==1837
     from prepare_city_additions_preview import native_transform_test
     assert code.endswith(native_transform_test(city)),'Native city transform matrix/behavior checks changed'
     assert city['fixture_point_count']==242 and city['transform_input_count']==73
-    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 2445 civic points, 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
+    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 2404 civic points, 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
 
 
 if __name__=='__main__':check()

@@ -1588,13 +1588,13 @@
       "source": "null",
       "grid_x": 0,
       "grid_y": 0,
-      "preview_mapgen_id": "dda_geo_civic_unused_grid_0"
+      "preview_mapgen_id": "null"
     },
     {
       "source": "null",
       "grid_x": 1,
       "grid_y": 0,
-      "preview_mapgen_id": "dda_geo_civic_unused_grid_1"
+      "preview_mapgen_id": "null"
     }
   ],
   "physical_counterpart_differences": [
