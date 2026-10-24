@@ -3,6 +3,7 @@
 import argparse
 import collections
 import json
+import hashlib
 from prepare_civic_sites_geometry import prepare as stage, OUT
 from prepare_city_additions_preview import matrix, fixed
 from prepare_container_yards import required
@@ -77,27 +78,50 @@ def prepare(check=False):
         if 'om_terrain' not in e: continue
         for gy, row in enumerate(matrix(e)):
             for gx, name in enumerate(row): world[name].append((e['object'], gx, gy))
+    runtime = OUT / 'runtime_sources'; rm = json.loads((runtime / 'SOURCE_MANIFEST.json').read_text())
+    assert rm['pins']['bn'] == 'c621aaf42fa182473aad10feea2b55647704dcf1'
+    path = 'bn/src/map/mapbuffer.cpp'; raw = (runtime / path).read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == rm['files'][path]['sha256']
+    assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == rm['files'][path]['blob_sha']
+    post = raw.decode().split('if (terrain_here != t_open_air) { continue; }', 1)[1]
+    assert 'if (ter_below.roof)' in post and 'sub_here->set_ter(local, ter_below.roof.id());' in post
+    walls_root = OUT / 'waterside_adaptation_sources'; wm = json.loads((walls_root / 'SOURCE_MANIFEST.json').read_text())
+    walls_path = 'bn/data/json/furniture_and_terrain/terrain-walls.json'; walls_raw = (walls_root / walls_path).read_bytes()
+    assert wm['pins']['bn'] == rm['pins']['bn'] and hashlib.sha256(walls_raw).hexdigest() == wm['files'][walls_path]
+    walls = {e['id']: e for e in json.loads(walls_raw) if e.get('type') == 'terrain'}
+    roof_projections = []
     roof_exclusions = []
     for special in [e for e in entries if e['type'] == 'overmap_special']:
         cells = {tuple(c['point']): c['overmap'].removesuffix('_north') for c in special['overmaps']}
         kept = []
         for p in fixture[special['id']]:
             lower_name = cells.get((p['omt_x'], p['omt_y'], p['z'] - 1))
-            uncertain = []
+            uncertain = []; roofs = set()
             if p['terrain'] == 't_open_air' and lower_name:
                 for obj, gx, gy in world[lower_name]:
                     glyph = obj['rows'][gy * 24 + p['y']][gx * 24 + p['x']]
                     value = obj.get('terrain', {}).get(glyph, obj.get('fill_ter'))
                     if not isinstance(value, str) or value.startswith('t_region_'): uncertain.append(value)
+                    elif walls.get(value, {}).get('roof'): roofs.add((value, walls[value]['roof']))
             if uncertain:
                 roof_exclusions.append({'special': special['id'], 'point': p, 'lower_omt': lower_name,
                     'lower_source_terrain': uncertain, 'reason': 'Regional/weighted lower terrain can generate automatic roofs in source air'})
+            elif roofs:
+                assert len({roof for _, roof in roofs}) == 1, (special['id'], p, roofs)
+                roof = next(iter(roofs))[1]
+                point = dict(p, terrain=roof)
+                roof_projections.append({'special': special['id'], 'source_point': p, 'expected_point': point,
+                    'lower_omt': lower_name, 'lower_terrain_roofs': sorted([list(v) for v in roofs])})
+                kept.append(point)
             else: kept.append(p)
         fixture[special['id']] = kept
     report = {'status': 'civic_native_fixtures_embedded_pending_windows', 'native_embedded': True, 'runtime_validated': False,
               'fixture_checks': fixture, 'fixture_point_count': sum(map(len, fixture.values())),
               'random_overlay_navigation_exclusions': exclusions, 'overlay_exclusion_count': len(exclusions),
               'layout_cases': 7, 'source_placements': 239, 'automatic_roof_air_exclusions': roof_exclusions,
+              'automatic_roof_projections': roof_projections,
+              'automatic_roof_evidence': {'runtime_archive': runtime.name, 'path': path, 'sha256': rm['files'][path]['sha256'],
+                  'terrain_archive': walls_root.name, 'terrain_path': walls_path, 'terrain_sha256': wm['files'][walls_path]},
               'limits': ['Only fixed source terrain outside every possible nested overlay receives exact expectations',
                          'All own cells must retain full empty-loot and non-null checks when embedded',
                          'No full traversal, elevator operation or natural placement claim']}

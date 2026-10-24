@@ -815,9 +815,9 @@
       0
     ],
     "runtime_validated": false,
-    "status": "59-case civic candidate corrected after unused mapgen and variable-air expectation failures; clean source/installed Windows pending",
+    "status": "59-case civic candidate corrected for deterministic BN roof post-pass; clean Windows source/installed validation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "768cef546e510b19a906a6525cc152a49b65298a1144761b5fd5a20ab348340a",
+    "native_patch_sha256": "edcc28c13f9df975f8d1a95fbfec45708347ebde40077a1ef6f9c93b808904a6",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -865,14 +865,14 @@
     "validated_geometry_cases": 52,
     "validated_geometry_placements": 1598,
     "latest_failed_attempt": {
-      "head": "3a0522e62ba195eca9b6cc5577a0fbf40d4a55d8",
-      "run_id": 40088459396,
+      "head": "b8f348ae9697342e4841e11c1670b4ad174fef33",
+      "run_id": 40105621134,
       "compile": "success",
       "source_core": "73 cases /11030 assertions passed",
       "source_optional": "10 cases /2224 assertions passed",
-      "geometry": "4 cases /6 assertions failed; two unused private null-slot generators rejected at initialization",
+      "geometry": "One case /one assertion failed: zoo OMT(3,3), tile(0,6), z1 expected air above roof-bearing stone wall; no initialization errors",
       "installed_and_package": "not reached",
-      "fix": "Restore source null dummy slots, proven erased during BN setup; exclude exact-air expectations over regional/weighted lower terrain; retain structural, navigation and all tile/loot checks"
+      "fix": "Project the exact BN t_rock_wall roof t_flat_roof into the source-air expectation using authenticated mapbuffer post-pass and terrain definition; retain the point"
     },
     "encoding_preflight_attempt": {
       "head": "f7546ac577cbde529f111fa7fdbcd13617b62008",
@@ -1153,10 +1153,11 @@
     "new_terrain_definitions": 1,
     "unresolved_typed_refs": [],
     "geometry_issues": [],
-    "status": "Two unused placeholders and 41 variable-air expectations corrected; repeat 59-case Windows source/installed validation pending",
+    "status": "Exact zoo stone-wall roof expectation corrected from air to flat roof; repeat 59-case Windows validation pending",
     "report": "geometry_layer/CIVIC_SITES_GEOMETRY_REPORT.json",
     "fixture_report": "geometry_layer/CIVIC_SITES_PREVIEW_REPORT.json",
     "vertical_links": 50,
-    "automatic_roof_air_exclusions": 41
+    "automatic_roof_air_exclusions": 41,
+    "fixed_automatic_roof_projections": 1
   }
 }

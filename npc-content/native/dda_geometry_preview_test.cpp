@@ -13526,7 +13526,7 @@ TEST_CASE( "dda_geo_civic_zoo_all_floors_without_loot", "[dda_geometry]" )
         { 2, 3, 0, 18, 1, "t_open_air" },
         { 2, 3, 23, 23, 1, "t_open_air" },
         { 3, 3, 0, 0, 1, "t_open_air" },
-        { 3, 3, 0, 6, 1, "t_open_air" },
+        { 3, 3, 0, 6, 1, "t_flat_roof" },
         { 3, 3, 0, 18, 1, "t_rock_roof" },
         { 3, 3, 23, 23, 1, "t_open_air" },
         { 3, 2, 0, 0, -1, "t_concrete_wall" },

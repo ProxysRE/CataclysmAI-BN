@@ -15620,7 +15620,7 @@
         "x": 0,
         "y": 6,
         "z": 1,
-        "terrain": "t_open_air"
+        "terrain": "t_flat_roof"
       },
       {
         "omt_x": 3,
@@ -20116,6 +20116,42 @@
       "reason": "Regional/weighted lower terrain can generate automatic roofs in source air"
     }
   ],
+  "automatic_roof_projections": [
+    {
+      "special": "dda_geo_civic_zoo",
+      "source_point": {
+        "omt_x": 3,
+        "omt_y": 3,
+        "x": 0,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_open_air"
+      },
+      "expected_point": {
+        "omt_x": 3,
+        "omt_y": 3,
+        "x": 0,
+        "y": 6,
+        "z": 1,
+        "terrain": "t_flat_roof"
+      },
+      "lower_omt": "dda_geo_civic_zoo_3_3",
+      "lower_terrain_roofs": [
+        [
+          "t_rock_wall",
+          "t_flat_roof"
+        ]
+      ]
+    }
+  ],
+  "automatic_roof_evidence": {
+    "runtime_archive": "runtime_sources",
+    "path": "bn/src/map/mapbuffer.cpp",
+    "sha256": "9997d75d003d6055267d5e7ef76ef0a4cafbf5a51b7c1edf7a40d8db01de719d",
+    "terrain_archive": "waterside_adaptation_sources",
+    "terrain_path": "bn/data/json/furniture_and_terrain/terrain-walls.json",
+    "terrain_sha256": "886e13973131a1cefa4b3d9e22e58deebeca76db9de79dd4893dbc6a94a04370"
+  },
   "limits": [
     "Only fixed source terrain outside every possible nested overlay receives exact expectations",
     "All own cells must retain full empty-loot and non-null checks when embedded",

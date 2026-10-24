@@ -18,6 +18,17 @@ def validate_world_ids(entries):
     assert own == mapped, ('Unused or undefined world mapgen', sorted(mapped - own), sorted(own - mapped))
 
 
+def validate_automatic_roof(report):
+    projections = report['automatic_roof_projections']
+    assert len(projections) == 1
+    expected = {'omt_x': 3, 'omt_y': 3, 'x': 0, 'y': 6, 'z': 1, 'terrain': 't_flat_roof'}
+    p = projections[0]
+    assert p['special'] == PREFIX + 'zoo' and p['expected_point'] == expected
+    assert p['source_point'] == dict(expected, terrain='t_open_air')
+    assert p['lower_terrain_roofs'] == [['t_rock_wall', 't_flat_roof']]
+    assert expected in report['fixture_checks'][PREFIX + 'zoo']
+
+
 def validate_vertical(fixtures):
     counts = {}
     for name, points in fixtures.items():
@@ -77,6 +88,13 @@ def check():
     assert points['fixture_point_count'] == sum(map(len, points['fixture_checks'].values())) and points['layout_cases'] == 7
     assert all(e['point']['terrain'] == 't_open_air' and e['lower_source_terrain'] for e in points['automatic_roof_air_exclusions'])
     assert points['fixture_point_count'] + len(points['automatic_roof_air_exclusions']) == 2445
+    validate_automatic_roof(points)
+    broken_roof = copy.deepcopy(points)
+    target = next(p for p in broken_roof['fixture_checks'][PREFIX + 'zoo'] if p == points['automatic_roof_projections'][0]['expected_point'])
+    target['terrain'] = 't_open_air'
+    try: validate_automatic_roof(broken_roof)
+    except AssertionError: pass
+    else: raise AssertionError('Source air accepted above BN roof-bearing stone wall')
     validate_vertical(points['fixture_checks'])
     broken = copy.deepcopy(points['fixture_checks'])
     for p in broken[PREFIX + 'hotel_1']:

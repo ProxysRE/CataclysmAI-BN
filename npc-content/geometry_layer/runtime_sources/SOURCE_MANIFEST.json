@@ -18,6 +18,11 @@
       "sha256": "c25d14c49484456870a7ef1b25e7f77ce1500e0b4fa030b1dae23d6019024dd9",
       "blob_sha": "3211f3fb9c63329ec10edacd0c8a7e2c5c7ae608",
       "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/map/map.cpp"
+    },
+    "bn/src/map/mapbuffer.cpp": {
+      "sha256": "9997d75d003d6055267d5e7ef76ef0a4cafbf5a51b7c1edf7a40d8db01de719d",
+      "blob_sha": "904423072ca25a3d9d51a49b0fe255f2b2b51892",
+      "url": "https://raw.githubusercontent.com/cataclysmbn/Cataclysm-BN/c621aaf42fa182473aad10feea2b55647704dcf1/src/map/mapbuffer.cpp"
     }
   }
 }
