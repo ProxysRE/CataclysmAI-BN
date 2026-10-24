@@ -367,6 +367,9 @@ elseif test_data.stage == "npc_memory_hidden" then
 elseif test_data.stage == "npc_search_started" or test_data.stage == "npc_search_restored" then
   local member = saved_actor()
   local plan = assert(member.search.goal)
+  assert(member.perception.observed)
+  assert(member.decisions.action == "visual_search" and member.decisions.reason == "searching")
+  assert(#member.decisions.history <= 8)
   assert(member.search.status == "searching" and plan.attempts == 1 and plan.stalled == 0)
   assert(plan.position.x == 402 and plan.position.y == 390 and plan.position.z == 0)
   assert(plan.deadline == member.perception.contact.expires_at)
@@ -384,6 +387,8 @@ elseif test_data.stage == "npc_hazard_field" or test_data.stage == "npc_hazard_e
   local member = saved_actor()
   local expected = test_data.stage == "npc_hazard_field" and "escape_field" or "escape_explosive"
   assert(test_data.patrol_handled and test_data.patrol_reason == expected)
+  assert(member.decisions.action == "escape" and member.decisions.reason == expected)
+  assert(member.perception.observed)
   assert(member.search.goal.attempts == test_data.hazard_attempts)
   assert(member.patrol.index == test_data.hazard_patrol_index)
   assert(member.search.goal.deadline == test_data.search_deadline)
@@ -475,15 +480,22 @@ elseif test_data.stage == "npc_standoff_setup" or test_data.stage == "npc_stando
     member.loadout, member.combat = "rifle_civilian_v1", {}
   end
 elseif test_data.stage == "npc_standoff_started" or test_data.stage == "npc_standoff_restored" then
-  local plan = assert(saved_actor().combat.goal)
+  local member = saved_actor()
+  local plan = assert(member.combat.goal)
+  local trace = assert(member.decisions)
+  assert(trace.action == "maneuver" and trace.reason == "standoff" and trace.handled)
+  assert(#trace.history <= 8 and trace.history[#trace.history].source == "vision")
   assert(saved_actor().combat.status == "standoff" and plan.attempts == 1 and plan.stalled == 0)
   if test_data.stage == "npc_standoff_started" then
     test_data.standoff_position = { x = plan.position.x, y = plan.position.y, z = plan.position.z }
     test_data.standoff_deadline = plan.deadline
     test_data.standoff_arrived = false
+    test_data.standoff_trace_at = trace.last_now
+    test_data.standoff_trace_size = #trace.history
   else
     assert(plan.position.x == test_data.standoff_position.x and plan.position.y == test_data.standoff_position.y)
     assert(plan.position.z == test_data.standoff_position.z and plan.deadline == test_data.standoff_deadline)
+    assert(trace.last_now == test_data.standoff_trace_at and #trace.history == test_data.standoff_trace_size)
   end
 elseif test_data.stage == "npc_standoff_progress" then
   local state = assert(saved_actor().combat)

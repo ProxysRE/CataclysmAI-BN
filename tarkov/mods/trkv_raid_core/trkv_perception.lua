@@ -10,7 +10,7 @@ function memory.update(state, context, now, observation, lifetime)
   assert(type(context.dimension) == "string" and context.dimension ~= "")
   if state.schema ~= nil and state.schema ~= 1 then error("Unsupported perception schema") end
   if state.sequence ~= context.sequence or state.dimension ~= context.dimension then
-    state.contact = nil
+    state.contact, state.observed = nil, false
   end
   state.schema, state.sequence, state.dimension = 1, context.sequence, context.dimension
   if observation then
@@ -19,7 +19,7 @@ function memory.update(state, context, now, observation, lifetime)
     assert(p.x % 1 == 0 and p.y % 1 == 0 and p.z % 1 == 0)
     state.contact = { source = "vision", seen_at = now, expires_at = now + lifetime,
       position = { x = p.x, y = p.y, z = p.z } }
-    state.status = "visible"
+    state.status, state.observed = "visible", true
   elseif state.contact and now >= state.contact.seen_at and now < state.contact.expires_at then
     state.status = "remembered"
   else

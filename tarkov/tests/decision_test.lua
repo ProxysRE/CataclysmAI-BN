@@ -105,3 +105,48 @@ ok, reason = decision.step_actor(member, ctx, actor, map, 321)
 assert(not ok and reason == "threat" and member.perception.status == "visible")
 assert(member.hearing.search.goal == nil)
 print("PASS anonymous sound investigation, region arrival, no replay/rearm, expiry and visual priority")
+
+-- A first sighting during a long emergency must own the hidden fallback even
+-- if search.step never ran before the observation expired.
+member = { patrol = { sequence = 1, index = 1, route = {} } }
+packet = ""; visible = true
+actor.avoid_immediate_danger = function() moves = moves - 100; return "field" end
+assert(decision.step_actor(member, ctx, actor, map, 400))
+assert(member.perception.observed and member.search.observed == nil)
+assert(member.decisions.action == "escape" and member.decisions.history[1].source == "vision")
+visible = false
+assert(decision.step_actor(member, ctx, actor, map, 430))
+assert(member.perception.contact == nil and member.perception.observed)
+actor.avoid_immediate_danger = function() return "" end
+ok, reason = decision.step_actor(member, ctx, actor, map, 431)
+assert(ok and reason == "wait_no_route" and member.decisions.action == "wait")
+assert(member.decisions.refusals.combat == "disabled" and member.decisions.refusals.search == "no_memory")
+-- Persistence uses plain values; repeated decisions coalesce, transitions cap at 8.
+local function plain_copy(v)
+  if type(v) ~= "table" then
+    assert(type(v) == "string" or type(v) == "number" or type(v) == "boolean")
+    return v
+  end
+  local result = {}; for k, x in pairs(v) do result[k] = plain_copy(x) end; return result
+end
+member = plain_copy(member)
+local size = #member.decisions.history
+assert(decision.step_actor(member, ctx, actor, map, 432))
+assert(#member.decisions.history == size and member.decisions.history[size].repeats == 2)
+for i = 1, 20 do
+  actor.avoid_immediate_danger = function()
+    if i % 2 == 0 then moves = moves - 100; return "explosive" end
+    return ""
+  end
+  assert(decision.step_actor(member, ctx, actor, map, 432 + i))
+end
+assert(#member.decisions.history == 8)
+actor.avoid_immediate_danger = function() return "" end
+assert(decision.step_actor(member, ctx, actor, map, 10))
+assert(#member.decisions.history == 1 and member.decisions.history[1].at == 10)
+-- New raid identity clears both the observation ownership and the old trace.
+ctx.sequence = 2; member.patrol.sequence = 2
+ok, reason = decision.step_actor(member, ctx, actor, map, 11)
+assert(not ok and reason == "threat" and not member.perception.observed)
+assert(#member.decisions.history == 1 and member.decisions.sequence == 2)
+print("PASS emergency-only observation ownership, bounded decision trace, persistence, clock and raid reset")

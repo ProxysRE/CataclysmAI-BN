@@ -100,3 +100,16 @@ ok, reason = decision.step_actor(inactive_member, ctx, {}, {}, 31)
 assert(not ok and reason == "inactive" and state.goal == nil and state.cooldown_until == nil)
 for _, name in ipairs(module_names) do package.loaded[name] = saved_modules[name] end
 print("PASS dispatcher inactive exit cancels a pending combat maneuver without engine calls")
+
+-- A door/action can make a short route take its entire attempt budget. Reaching
+-- the point on attempt four is success, not a cancellation on the next tick.
+ctx.phase, ctx.sequence = "active", 1
+memory.status, memory.sequence = "visible", 1
+position.x, blocked, valid = 0, false, true
+state = {}
+for t = 100, 103 do assert(combat.step(state, ctx, memory, t, api)) end
+assert(position.x == 4 and state.goal.attempts == 4)
+local moves_at_arrival = moves
+ok, reason = combat.step(state, ctx, memory, 104, api)
+assert(not ok and reason == "arrived" and state.goal == nil and moves == moves_at_arrival)
+print("PASS arrival on final maneuver attempt hands the turn back to combat")

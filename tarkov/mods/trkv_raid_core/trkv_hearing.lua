@@ -15,7 +15,9 @@ function hearing.update(state, context, now, event)
   if state.contact and (now < state.contact.seen_at or now >= state.contact.expires_at) then
     state.contact = nil
   end
+  state.input_reason = "no_new_event"
   if type(event) == "string" and event ~= "" and event ~= state.last_event then
+    state.input_reason = "invalid_event"
     state.last_event = event -- Reading the same saved inbox cannot renew memory.
     local dim, turn, x, y, z, kind = event:match("^([^|]+)|(%-?%d+)|(%-?%d+)|(%-?%d+)|(%-?%d+)|(%a+)$")
     turn, x, y, z = tonumber(turn), tonumber(x), tonumber(y), tonumber(z)
@@ -25,10 +27,20 @@ function hearing.update(state, context, now, event)
         x % 4 == 2 and y % 4 == 2 then
       local p = { x = x, y = y, z = z }
       -- Repeated noises in the same active episode do not reset attempts/deadline.
-      if not state.contact or not same_region(p, state.contact.position) then
+      local completed = state.search and
+        (state.search.status == "checked" or state.search.status == "unreachable")
+      if state.contact and state.contact.kind == "combat" and kind == "movement" and not completed then
+        -- A footstep elsewhere must not pull an ongoing gunfire investigation
+        -- away from its region. There is no deferred queue or renewed deadline.
+        state.input_reason = "combat_priority"
+      elseif not state.contact or not same_region(p, state.contact.position) then
         state.contact = { source = "sound", position = p, seen_at = turn, expires_at = turn + 20,
           kind = kind, event = event, radius = 2 }
         state.search, state.entry = {}, nil
+        state.input_reason = "new_region"
+      else
+        if kind == "combat" then state.contact.kind = "combat" end
+        state.input_reason = "same_region"
       end
       state.observed = true
     end

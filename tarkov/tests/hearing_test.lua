@@ -29,13 +29,20 @@ for _, invalid in ipairs({ "other|121|6|10|0|combat", "raid|200|6|10|0|combat",
   hearing.update(state, ctx, 121, invalid)
   assert(state.contact == nil)
 end
--- A genuinely fresh event may start another episode; unrelated regions replace it.
+-- Fresh combat starts another episode; movement cannot displace active gunfire.
 hearing.update(state, ctx, 122, "raid|122|-2|-6|0|combat")
 assert(state.contact.position.x == -2 and state.contact.position.y == -6)
 hearing.update(state, ctx, 123, "raid|123|10|10|0|movement")
-assert(state.contact.position.x == 10 and state.contact.expires_at == 143)
-ctx.sequence = 2
+assert(state.contact.position.x == -2 and state.contact.expires_at == 142)
+assert(state.input_reason == "combat_priority")
+-- Completion releases that priority; ignored packets are not queued/replayed.
+state.search.status = "checked"
 hearing.update(state, ctx, 124, "raid|123|10|10|0|movement")
+assert(state.contact.position.x == -2)
+hearing.update(state, ctx, 124, "raid|124|10|10|0|movement")
+assert(state.contact.position.x == 10 and state.contact.expires_at == 144)
+ctx.sequence = 2
+hearing.update(state, ctx, 124, "raid|124|10|10|0|movement")
 assert(state.contact == nil and not state.observed)
 ctx.phase = "cleanup"
 assert(not hearing.update(state, ctx, 125, event))
@@ -90,3 +97,20 @@ assert(state.search.goal.deadline == 130)
 local before = selections
 assert(not hearing.step(state, ctx, 116, api) and selections == before)
 print("PASS reachable hearing entry, stable saved approach, bounded reselection and unavailable area")
+
+-- Upgrading the same movement episode to gunfire never rearms its search budget.
+state = {}
+hearing.update(state, ctx, 200, "raid|200|6|10|0|movement")
+state.search = { status = "searching", goal = { attempts = 3, deadline = 220 } }
+state.entry = { x = 4, y = 8, z = 0 }
+hearing.update(state, ctx, 205, "raid|205|6|10|0|combat")
+assert(state.contact.kind == "combat" and state.contact.seen_at == 200 and state.contact.expires_at == 220)
+state = copy(state)
+hearing.update(state, ctx, 206, "raid|206|14|18|0|movement")
+assert(state.input_reason == "combat_priority" and state.search.goal.attempts == 3)
+assert(state.entry.x == 4 and state.search.goal.deadline == 220)
+hearing.update(state, ctx, 220, "raid|206|14|18|0|movement")
+assert(state.contact == nil) -- previously ignored inbox cannot become a delayed lure
+hearing.update(state, ctx, 221, "raid|221|14|18|0|movement")
+assert(state.contact.kind == "movement" and state.contact.position.x == 14)
+print("PASS gunfire priority, same-area upgrade without budget reset, saved priority and no deferred replay")

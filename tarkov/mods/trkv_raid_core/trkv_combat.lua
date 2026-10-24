@@ -36,7 +36,7 @@ function combat.step(state, context, memory, now, api)
   end
   local goal = state.goal
   if goal then
-    if now < goal.started_at or now >= goal.deadline or goal.attempts >= 4 or goal.stalled >= 2 or
+    if now < goal.started_at or now >= goal.deadline or
         distance(goal.target, contact.position) > 1 then
       state.goal, state.status = nil, "cancelled"
       return false, state.status
@@ -44,6 +44,10 @@ function combat.step(state, context, memory, now, api)
     if api.at(goal.position) then
       state.goal, state.status = nil, "arrived"
       return false, state.status -- Leave this turn's actions for BN firing/reload.
+    end
+    if goal.attempts >= 4 or goal.stalled >= 2 then
+      state.goal, state.status = nil, "cancelled"
+      return false, state.status
     end
     if not api.validate(contact.position, goal.position) then
       state.goal, state.status = nil, "invalid_position"
