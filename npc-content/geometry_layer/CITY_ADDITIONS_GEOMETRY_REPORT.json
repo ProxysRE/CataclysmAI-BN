@@ -439,6 +439,16 @@
           ]
         }
       }
+    },
+    {
+      "source": [
+        "office_warehouse_anduril"
+      ],
+      "field": "delete.post_process_generators",
+      "value": [
+        "riot_damage"
+      ],
+      "reason": "BN has no DDA riot_damage inheritance; member rejected during native initialization"
     }
   ],
   "physical_counterpart_differences": [

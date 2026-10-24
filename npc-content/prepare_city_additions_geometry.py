@@ -212,6 +212,17 @@ def prepare(check=False):
         merge(base, {k: v for k, v in e.items() if k != 'copy-from'})
         entries[index] = base
         deferred_registration.append({'source': e['id'], 'expanded_abstract': abstract})
+    # BN has no inherited DDA riot-damage post-process generator to delete.
+    # Keep the exact source inheritance edit in the adaptation record instead
+    # of emitting an unvisited (and therefore fatal) JSON member.
+    for e in entries:
+        if e['type'] != 'overmap_terrain' or 'delete' not in e: continue
+        if 'post_process_generators' not in e['delete']: continue
+        removed = e['delete'].pop('post_process_generators')
+        assert removed == ['riot_damage'], (e['id'], removed)
+        deferred_registration.append({'source': e['id'], 'field': 'delete.post_process_generators',
+            'value': removed, 'reason': 'BN has no DDA riot_damage inheritance; member rejected during native initialization'})
+        if not e['delete']: del e['delete']
     mechanism_path = '/data/json/furniture_and_terrain/terrain-mechanisms.json'
     source_reader = next(e for e in shared['dda' + mechanism_path] if e.get('id') == 't_card_office_warehouse_anduril')
     stock_reader = next(e for e in shared['bn' + mechanism_path] if e.get('id') == 't_card_science')

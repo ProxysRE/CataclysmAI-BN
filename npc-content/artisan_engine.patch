@@ -75904,7 +75904,7 @@
 +]
 --- /dev/null
 +++ b/data/mods/DDA_Geometry_Preview/shells.json
-@@ -0,0 +1,110736 @@
+@@ -0,0 +1,110731 @@
 +[
 +  {
 +    "type": "mapgen",
@@ -186190,11 +186190,6 @@
 +    "flags": [
 +      "SIDEWALK"
 +    ],
-+    "delete": {
-+      "post_process_generators": [
-+        "riot_damage"
-+      ]
-+    },
 +    "extras": ""
 +  },
 +  {

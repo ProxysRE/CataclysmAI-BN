@@ -75,3 +75,9 @@ ter_furn_transform. Нативный код не расширяется. В пр
 Проверка: `python npc-content/check_city_additions_geometry.py`.
 
 Проверка нативных ожиданий: `python npc-content/check_city_additions_preview.py`.
+
+Windows-прогон 40042302365: компиляция и 52 теста прошли, но загрузка
+отклонена из-за неподдерживаемого `delete.post_process_generators` у Anduril.
+Правка наследования `riot_damage` сохранена в отчёте адаптации и полном
+исходнике; из BN-предпросмотра убран пустой объект `delete`. Повторный чистый
+прогон до и после установки обязателен; зачёт прогресса пока не увеличен.

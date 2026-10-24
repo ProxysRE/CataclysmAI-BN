@@ -110283,11 +110283,6 @@
     "flags": [
       "SIDEWALK"
     ],
-    "delete": {
-      "post_process_generators": [
-        "riot_damage"
-      ]
-    },
     "extras": ""
   },
   {

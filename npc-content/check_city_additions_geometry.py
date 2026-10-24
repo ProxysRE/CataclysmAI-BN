@@ -35,6 +35,11 @@ def check():
     assert (report['world_maps'], report['nested_definitions'], report['transform_count']) == (19, 18, 5)
     assert not report['unresolved_typed_refs'] and not report['geometry_issues']
     assert report['native_embedded'] and not report['runtime_validated']
+    deferred = [e for e in report['deferred_registration_fields'] if e.get('field') == 'delete.post_process_generators']
+    assert len(deferred) == 1 and deferred[0]['value'] == ['riot_damage']
+    assert deferred[0]['source'] == ['office_warehouse_anduril']
+    anduril = next(e for e in entries if e.get('id') == [PREFIX + 'office_warehouse_anduril'])
+    assert 'delete' not in anduril
     validate_library(entries)
     bad = copy.deepcopy(entries)
     e = next(e for e in bad if e.get('id') == PREFIX + 'urban_library_normal')

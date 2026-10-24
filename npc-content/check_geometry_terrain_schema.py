@@ -18,6 +18,9 @@ def validate(e):
 
 
 def validate_omt(e,known):
+    for field in ('extend','delete'):
+        if 'flags' in e:
+            assert 'post_process_generators' not in e.get(field,{}),('Unvisited BN overmap inheritance with direct flags',e.get('id'),field)
     flags=list(e.get('flags',[]))
     for field in ('extend','delete'):flags+=e.get(field,{}).get('flags',[])
     assert set(flags)<=known,('Unsupported BN overmap flags',e.get('id'),sorted(set(flags)-known))
@@ -113,6 +116,11 @@ def check():
     block=raw.decode('utf-8').split('oter_flags_map = {',1)[1].split('};',1)[0]
     known=set(re.findall(r'\{"([A-Z_]+)", oter_flags::',block))
     assert 'LAKE'in known and 'WATER'not in known
+    for field in ('extend','delete'):
+        probe={'type':'overmap_terrain','id':'regression_riot_damage','flags':[],field:{'post_process_generators':['riot_damage']}}
+        try:validate_omt(probe,known)
+        except AssertionError:pass
+        else:raise AssertionError('Unsupported post-process inheritance accepted: '+field)
     for e in entries:
         if e['type']=='overmap_terrain':validate_omt(e,known)
     name='bn/data/json/overmap/special_locations.json';raw=(archive/name).read_bytes()

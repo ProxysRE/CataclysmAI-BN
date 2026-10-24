@@ -814,9 +814,9 @@
       0
     ],
     "runtime_validated": false,
-    "status": "51 layouts plus one 73-input terrain-transform case embedded; city Windows loading/generation pending",
+    "status": "52-case city candidate corrected after initialization error; repeated Windows validation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "f4d49c1294563fb0486cc4a5f74e068db018547860ebea4422cfa8a03bc567bf",
+    "native_patch_sha256": "a06cf97561f01311620ae4aafd122749b0d0c61c768df3eac4c89a2bbb852b9a",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -863,14 +863,14 @@
     "validated_geometry_cases": 43,
     "validated_geometry_placements": 1561,
     "latest_failed_attempt": {
-      "head": "d186031d749fcf61c13874ed7e25ba4c60ec650a",
-      "run_id": 39786965319,
+      "head": "ed263981c9684bf677ad96c77f7c441f62639614",
+      "run_id": 40042302365,
       "compile": "success",
-      "source_core": "passed",
-      "source_optional": "passed",
-      "geometry": "Initialization failed: unsupported overmap flag WATER on hot_springs",
+      "source_core": "73 cases /11030 assertions passed",
+      "source_optional": "10 cases /2224 assertions passed",
+      "geometry": "52 cases /1662706 assertions passed; rejected because Anduril overmap delete.post_process_generators was unvisited JSON",
       "installed_and_package": "not reached",
-      "fix": "Archive generic WATER classification without imposing LAKE/RIVER; precompile checks cover every preview overmap flag against pinned BN registry"
+      "fix": "Archive unsupported Anduril riot-damage inheritance deletion, retaining complete source; reject recurrence before compilation"
     },
     "encoding_preflight_attempt": {
       "head": "f7546ac577cbde529f111fa7fdbcd13617b62008",
@@ -1133,7 +1133,7 @@
     "nested_definitions": 18,
     "damage_transforms": 5,
     "unresolved_typed_refs": [],
-    "status": "All eight debug layouts embedded with 242 geometry points and 73 actual-map transform probes; source/installed Windows pending",
+    "status": "Initialization compatibility fix prepared; all 52 source cases passed but source/installed clean Windows validation remains pending",
     "report": "geometry_layer/CITY_ADDITIONS_GEOMETRY_REPORT.json",
     "fixture_geometry_points": 242,
     "native_transform_input_cases": 73,
