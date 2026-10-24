@@ -295,3 +295,9 @@ Embedded all seven prepared civic layouts /239 source placements with 2445 geome
 BN's pinned loader registers every world-grid string, including null. The two unplaced source shopping-plaza slots therefore use private dormant mapgen names; no overmap terrain or placement is created for them. This preserves the complete source rows, grid offsets and 239 actual placements without adding generators to BN's global null identity. Full original raw staging and source grids remain intact; source loader evidence and exact aliases are recorded and checked.
 
 Schema, closure, exact source layouts/coordinates, fixture points, negative vertical-link probe and embedded-source/checksum checks pass. Only the canonical three geometry patch sections change. Source and installed Windows validation remain pending; successful historical checkpoint stays camp run 40021700275 and accepted geometry stays 33/51 (64.7%). City-fix run 40084713623 remains active independently.
+
+## Successful city Windows checkpoint (2026-10-24)
+
+Run 40084713623 on a42af4b passed compilation and all six suites cleanly: core 73/11,030, optional mods 10/2,224 and geometry 52/1,662,706, repeated on installed data. The seven-city group now receives generation-scope credit: 34/51 = 66.7%. The prior Anduril initialization error is resolved without weakening any test. Full traversal, natural city placement and late-layer interactions remain separate.
+
+Portable artifact 12557873347: 205744226 bytes, sha256:0e74707504eda6b44cad3b392217741109d72082ad4d488a164e395016678c8b. Its evidence and patch checksum refer to the successful city build, not the newly published civic candidate. Civic run 40088459396 on 3a0522e contains 59 cases and remains pending its own clean source and installed validation; five additional groups receive no credit yet.

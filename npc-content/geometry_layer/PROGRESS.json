@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 33,
-  "verified_percent": 64.7,
+  "verified_groups": 34,
+  "verified_percent": 66.7,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 64.7,
+  "verified_plus_prepared_percent": 66.7,
   "evidence_checkpoint": {
-    "head": "2160db5be9fcff25025e3b484e477e697e446b94",
-    "run_id": 40021700275,
+    "head": "a42af4b624b2c1269369185d07d9580a0935d792",
+    "run_id": 40084713623,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 43,
-    "geometry_assertions": 1619328,
-    "installed_geometry_test_cases": 43,
-    "installed_geometry_assertions": 1619328
+    "geometry_test_cases": 52,
+    "geometry_assertions": 1662706,
+    "installed_geometry_test_cases": 52,
+    "installed_geometry_assertions": 1662706
   },
   "rows": [
     {
@@ -362,7 +362,9 @@
         "city_building:s_airsoft",
         "city_building:office_warehouse_anduril"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All seven city sites in eight coherent layouts passed source and installed generation; thirteen vertical access columns and all 73 native door/window-transform inputs checked"
     },
     {
       "name": "Загадочные руины высокогорья",

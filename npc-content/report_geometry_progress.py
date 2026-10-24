@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 # Match source identities, never positional catalog indices (which can shift).
 VERIFIED={
+ 'city_building:synagogue':('native/dda_geometry_preview.json','All seven city sites in eight coherent layouts passed source and installed generation; thirteen vertical access columns and all 73 native door/window-transform inputs checked'),
  'overmap_special:Cabin_prepper':('native/dda_geometry_preview.json','Prepper and Liam cabins, locked LMOE and intact/ruined forest camps passed source and installed generation; natural time weighting and full traversal remain separate'),
  'overmap_special:cemetery_lacroix':('native/dda_geometry_preview.json','All four Lacroix cemetery ground cells and source roof passed source and installed generation'),
  'overmap_special:xedra_morgantown':('native/dda_geometry_preview.json','All Morgantown source cells passed source and installed generation'),
