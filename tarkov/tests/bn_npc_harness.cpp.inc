@@ -218,6 +218,10 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             }
         }
         CHECK(fired); // A false Lua return alone is not evidence of actual gunfire.
+        player.setpos(abs_to_bub(tripoint_abs_ms(387, 392, 0)));
+        set_time(calendar::turn);
+        REQUIRE_FALSE(guard->sees(player));
+        probe("npc_memory_hidden");
         player.set_all_parts_hp_to_max();
         player.clear_effects();
     }

@@ -12,6 +12,7 @@ local function copy(value)
   return result
 end
 local api = {
+  raid_id = "raid",
   check_capabilities = function() end,
   at_home = function() return where == "home" end,
   at_raid = function() return where == "raid" end,
@@ -45,6 +46,7 @@ UiList = { new = function() return { title = function() end, add = function() en
   query = function() return answer end } end }
 package.loaded.trkv_lifecycle, package.loaded.trkv_bn = raid, api
 package.loaded.trkv_participants = members
+package.loaded.trkv_perception = dofile("tarkov/mods/trkv_raid_core/trkv_perception.lua")
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
 package.loaded.trkv_deployment = dofile("tarkov/mods/trkv_raid_core/trkv_deployment.lua")
 package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")

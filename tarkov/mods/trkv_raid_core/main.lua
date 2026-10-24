@@ -5,6 +5,7 @@ local raid = require("trkv_lifecycle")
 local api = require("trkv_bn")
 -- Load while BN still provides package.path.
 local patrol = require("trkv_patrol")
+local perception = require("trkv_perception")
 local participants = require("trkv_participants")
 require("trkv_deployment")
 local encounter = require("trkv_encounter")
@@ -88,6 +89,10 @@ game.npc_ai_functions["TRKV_PATROL"] = function(actor)
   local context = { phase = state.phase, sequence = state.sequence, at_raid = api.at_raid() }
   local member = participants.find(current_participants(), context, actor:getID():get_value())
   if not member then return false end
+  context.dimension = api.raid_id
+  member.perception = member.perception or {}
+  -- Temporary 30-turn visual memory; passive until the search controller lands.
+  perception.observe_actor(member.perception, context, actor, api.now(), 30)
   local handled = patrol.step_actor(member.patrol, context, actor, gapi.get_map())
   return handled
 end

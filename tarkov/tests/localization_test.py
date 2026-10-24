@@ -71,6 +71,7 @@ def main():
         end
     ''')
     lua.globals().package.loaded.trkv_lifecycle = lua.execute((MOD / "trkv_lifecycle.lua").read_text())
+    lua.globals().package.loaded.trkv_perception = lua.execute((MOD / "trkv_perception.lua").read_text())
     lua.globals().package.loaded.trkv_patrol = lua.execute((MOD / "trkv_patrol.lua").read_text())
     lua.globals().package.loaded.trkv_participants = lua.execute((MOD / "trkv_participants.lua").read_text())
     lua.globals().package.loaded.trkv_deployment = lua.execute((MOD / "trkv_deployment.lua").read_text())

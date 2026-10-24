@@ -53,6 +53,9 @@ elseif test_data.stage == "npc_patrol_setup" then
     local decision_context = context()
     local member = participants.find(current.participants, decision_context, actor:getID():get_value())
     if not member then return false end
+    decision_context.dimension = api.raid_id
+    member.perception = member.perception or {}
+    package.loaded.trkv_perception.observe_actor(member.perception, decision_context, actor, api.now(), 30)
     local handled, reason = package.loaded.trkv_patrol.step_actor(member.patrol,
       decision_context, actor, gapi.get_map())
     test_data.patrol_moves_after = actor:get_moves()
@@ -338,12 +341,31 @@ elseif test_data.stage == "npc_patrol_restored" then
 elseif test_data.stage == "npc_patrol_resumed" then
   assert(saved_actor().patrol.index == 1)
 elseif test_data.stage == "npc_combat_handoff" then
+  local memory = assert(saved_actor().perception)
+  assert(memory.status == "visible" and memory.contact.source == "vision")
+  local player_position = gapi.get_avatar():abs_pos()
+  assert(memory.contact.position.x == player_position.x and memory.contact.position.y == player_position.y)
+  assert(memory.contact.position.z == player_position.z and memory.contact.seen_at == api.now())
   assert(test_data.patrol_target and not test_data.patrol_handled)
   assert(test_data.patrol_reason == "threat")
   assert(test_data.patrol_moves_after == test_data.patrol_moves_before,
     "Patrol spent combat actions before handing off to BN")
   assert(saved_actor().patrol.index == 2,
     "Patrol advanced its waypoint while the actor was fighting")
+elseif test_data.stage == "npc_memory_hidden" then
+  local member = saved_actor()
+  local old = assert(member.perception.contact)
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor and not actor:sees(gapi.get_avatar():get_pos_ms()))
+  local ctx = context()
+  ctx.dimension = api.raid_id
+  package.loaded.trkv_perception.observe_actor(member.perception, ctx, actor, api.now(), 30)
+  assert(member.perception.status == "remembered")
+  assert(member.perception.contact == old and old.position.x == 402 and old.position.y == 390)
+  assert(old.expires_at == old.seen_at + 30)
 elseif test_data.stage == "npc_step" then
   local actor = assert(test_data.actor)
   local before = actor:get_moves()
