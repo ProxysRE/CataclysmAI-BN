@@ -4,6 +4,7 @@ package.loaded.trkv_hearing = dofile("tarkov/mods/trkv_raid_core/trkv_hearing.lu
 package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua")
 package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
 package.loaded.trkv_combat = dofile("tarkov/mods/trkv_raid_core/trkv_combat.lua")
+package.loaded.trkv_reload = dofile("tarkov/mods/trkv_raid_core/trkv_reload.lua")
 local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 TripointAbsMs = { new = function(x, y, z) return { x = x, y = y, z = z } end }
 local map = { abs_to_bub = function(_, p) return p end }
@@ -15,6 +16,8 @@ local target = { get_pos_ms = function() return p end,
 local origin = { x = 1, y = 2, z = 0 }
 local actor = {
   get_value = function() return "" end,
+  can_reload_empty_gun = function() return false end,
+  choose_reload_cover = function() return nil end,
   choose_area_entry = function(_, low) return { x = low.x + 2, y = low.y + 2, z = low.z } end,
   avoid_immediate_danger = function() return "" end,
   current_target = function() return target end, -- Includes a deliberately stale cache.
@@ -177,3 +180,36 @@ ok, reason = decision.step_actor(member, ctx, actor, map, 502)
 assert(ok and reason == "searching" and member.combat.goal == nil and destination.x == 6)
 assert(lane_calls == 1 and member.decisions.refusals.combat == "lost_contact")
 print("PASS firing-lane action, hazard interruption, bounded plan and lost-contact search handoff")
+
+-- Cover reload owns the turn after LOS loss and calls the guarded executor;
+-- it must not surrender the hidden target to ordinary combat or visual search.
+member = { loadout = "rifle_field_v1", patrol = { sequence = 2, index = 1, route = {} } }
+visible, origin, p = true, { x = 2, y = 2, z = 0 }, { x = 6, y = 2, z = 0 }
+local empty, executed = true, 0
+local point_mt = { __eq = function(a, b) return a.x == b.x and a.y == b.y and a.z == b.z end }
+TripointAbsMs.new = function(x, y, z) return setmetatable({ x = x, y = y, z = z }, point_mt) end
+actor.move_towards = function(_, q) origin = TripointAbsMs.new(q.x, q.y, q.z); moves = moves - 100 end
+actor.can_reload_empty_gun = function() return empty end
+actor.choose_reload_cover = function(_, observed, committed)
+  assert(observed.x == 6)
+  return committed or { x = 3, y = 2, z = 0 }
+end
+actor.reload_under_cover = function(_, observed)
+  assert(not visible and observed.x == 6)
+  executed, empty, moves = executed + 1, false, moves - 350
+  return true
+end
+ok, reason = decision.step_actor(member, ctx, actor, map, 600)
+assert(ok and reason == "reload_cover" and member.decisions.action == "reload")
+local saved_deadline = member.reload.goal.deadline
+visible = false; p.x = 99
+actor.avoid_immediate_danger = function() moves = moves - 100; return "explosive" end
+ok, reason = decision.step_actor(member, ctx, actor, map, 601)
+assert(ok and reason == "escape_explosive" and member.reload.goal.attempts == 1)
+assert(member.reload.goal.deadline == saved_deadline and executed == 0)
+actor.avoid_immediate_danger = function() return "" end
+ok, reason = decision.step_actor(member, ctx, actor, map, 602)
+assert(ok and reason == "reloaded" and executed == 1 and member.reload.goal == nil)
+assert(member.perception.contact.position.x == 6 and member.decisions.action == "reload")
+assert(saved_deadline == 608)
+print("PASS controller reload priority and guarded reload after target becomes hidden")

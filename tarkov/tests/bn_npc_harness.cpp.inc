@@ -397,6 +397,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         probe("npc_lane_clear");
         auto& lane_blocker = spawn_npc(abs_to_bub(tripoint_abs_ms(402, 391, 0)), "test_talker");
         lane_blocker.set_attitude(NPCATT_NULL);
+        const auto lane_blocker_id = lane_blocker.getID();
         REQUIRE(guard->attitude_to(lane_blocker) != Attitude::A_HOSTILE);
         guard->regen_ai_cache();
         const auto path_before_lane = guard->path;
@@ -424,6 +425,47 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             if (data["standoff_arrived"].get<bool>()) { break; }
         }
         REQUIRE(data["standoff_arrived"].get<bool>());
+        auto* restored_blocker = g->find_npc(lane_blocker_id);
+        REQUIRE(restored_blocker != nullptr);
+        restored_blocker->setpos(abs_to_bub(tripoint_abs_ms(405, 394, 0)));
+        guard->setpos(abs_to_bub(tripoint_abs_ms(402, 392, 0)));
+        get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+        auto& reload_gun = guard->primary_weapon();
+        const auto remaining_before_cover = reload_gun.ammo_remaining();
+        REQUIRE(reload_gun.ammo_consume(remaining_before_cover, guard->bub_pos()) == remaining_before_cover);
+        auto cover_magazine = item::spawn("stanag30");
+        cover_magazine->ammo_set(itype_id("223"), 30);
+        guard->i_add(std::move(cover_magazine));
+        probe("npc_cover_reload_wall");
+        set_time(calendar::turn);
+        guard->regen_ai_cache();
+        REQUIRE(guard->sees(get_avatar()));
+        const auto cover_moves_before = guard->get_moves();
+        const auto cover_path_before = guard->path;
+        probe("npc_cover_reload_choose");
+        CHECK(guard->get_moves() == cover_moves_before);
+        CHECK(guard->path == cover_path_before);
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        REQUIRE(guard->primary_weapon().ammo_remaining() == 0);
+        probe("npc_cover_reload_started");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        probe("npc_cover_reload_restored");
+        for (auto step = 0; step < 6; ++step) {
+            guard->set_moves(100);
+            guard->move();
+            REQUIRE(guard->get_moves() < 100);
+            probe("npc_cover_reload_progress");
+            if (data["cover_reloaded"].get<bool>()) { break; }
+        }
+        REQUIRE(data["cover_reloaded"].get<bool>());
+        CHECK(guard->primary_weapon().ammo_remaining() == 30);
+        probe("npc_cover_reload_restore_wall");
         sounds::reset_sounds();
         player.set_all_parts_hp_to_max();
         player.clear_effects();

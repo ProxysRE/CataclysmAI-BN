@@ -1,0 +1,93 @@
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -1597,2 +1597,89 @@
++        DOC( "Whether the empty wielded gun can be reloaded from actual inventory." );
++        luna::set_fx( ut, "can_reload_empty_gun", []( UT_CLASS & npchar ) -> bool {
++            return !npchar.is_hallucination() && !npchar.in_vehicle &&
++                   !npchar.has_effect( efftype_id( "npc_run_away" ) ) &&
++                   npchar.primary_weapon().is_gun() && !npchar.primary_weapon().ammo_sufficient() &&
++                   npchar.can_reload_current();
++        } );
++
++        DOC( "Choose or validate short terrain cover for reloading an empty gun. New plans require the current visible target; committed plans use only the supplied observed position. Does not move or reload." );
++        luna::set_fx( ut, "choose_reload_cover", []( UT_CLASS & npchar, const tripoint_abs_ms & observed,
++        sol::optional<tripoint_abs_ms> committed ) -> std::optional<tripoint_abs_ms> {
++            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ||
++                !npchar.can_reload_current() || npchar.in_vehicle ||
++                npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++                return std::nullopt;
++            }
++            const Creature *target = npchar.current_target();
++            if( !committed && ( !target || !npchar.sees( *target ) || target->abs_pos() != observed ) ) {
++                return std::nullopt;
++            }
++            auto &here = get_map();
++            const auto origin = npchar.bub_pos();
++            const auto foe = abs_to_bub( observed );
++            if( foe.z() != origin.z() || !here.inbounds( foe ) ||
++                ( !committed && ( rl_dist( origin, foe ) < 4 || rl_dist( origin, foe ) > 12 ) ) ) {
++                return std::nullopt;
++            }
++            const auto avoid = npchar.get_legacy_path_avoid();
++            const auto score = [&]( const tripoint_bub_ms &candidate ) -> std::optional<int> {
++                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ||
++                    !here.passable( candidate ) || here.dangerous_field_at( candidate ) ||
++                    rl_dist( candidate, foe ) < 4 || here.sees( foe, candidate, 60 ) ||
++                    ( candidate != origin && g->critter_at( candidate ) != nullptr ) ) {
++                    return std::nullopt;
++                }
++                auto route = here.route( origin, candidate, npchar.get_legacy_pathfinding_settings( true ), avoid );
++                if( candidate != origin && route.empty() ) {
++                    return std::nullopt;
++                }
++                for( const auto &p : route ) {
++                    if( p.z() != origin.z() || here.dangerous_field_at( p ) ) {
++                        return std::nullopt;
++                    }
++                }
++                if( !route.empty() && route.front() == origin ) {
++                    route.erase( route.begin() );
++                }
++                if( route.size() > 3 ) {
++                    return std::nullopt;
++                }
++                return 100 - 10 * static_cast<int>( route.size() );
++            };
++            if( committed ) {
++                return score( abs_to_bub( *committed ) ) ? std::optional<tripoint_abs_ms>( *committed ) : std::nullopt;
++            }
++            int best_score = 0;
++            std::optional<tripoint_abs_ms> best;
++            for( int x = -2; x <= 2; ++x ) {
++                for( int y = -2; y <= 2; ++y ) {
++                    const tripoint_bub_ms candidate( origin.x() + x, origin.y() + y, origin.z() );
++                    const auto rating = score( candidate );
++                    if( rating && *rating > best_score ) {
++                        best_score = *rating;
++                        best = bub_to_abs( candidate );
++                    }
++                }
++            }
++            return best;
++        } );
++
++        DOC( "Reload the empty wielded gun using BN costs and inventory, only outside terrain LOS from the observed threat and with no currently visible selected target. Returns whether moves were spent." );
++        luna::set_fx( ut, "reload_under_cover", []( UT_CLASS & npchar, const tripoint_abs_ms & observed ) -> bool {
++            auto &here = get_map();
++            const auto foe = abs_to_bub( observed );
++            const Creature *target = npchar.current_target();
++            if( !here.inbounds( foe ) || foe.z() != npchar.bub_pos().z() ||
++                here.sees( foe, npchar.bub_pos(), 60 ) || here.dangerous_field_at( npchar.bub_pos() ) ||
++                ( target && npchar.sees( *target ) ) || !npchar.primary_weapon().is_gun() ||
++                npchar.primary_weapon().ammo_sufficient() || !npchar.can_reload_current() ||
++                npchar.in_vehicle || npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++                return false;
++            }
++            const int before = npchar.get_moves();
++            npchar.do_reload( npchar.primary_weapon() );
++            return npchar.get_moves() < before;
++        } );
++
+         DOC( "Triggers the npc menu to open." );
+         luna::set_fx( ut, "npc_menu", []( UT_CLASS & npchar, sol::optional<bool> force ) -> void { g->npc_menu( npchar, force.value_or( false ) ); } );

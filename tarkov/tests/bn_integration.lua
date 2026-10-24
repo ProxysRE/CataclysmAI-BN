@@ -360,7 +360,7 @@ elseif test_data.stage == "cold_read_cleanup" then
     for _, old_id in ipairs(root.cold_expected.npc_ids) do assert(new_id ~= old_id) end
     local fresh = root.participants.actors[string.format("%d", new_id)]
     assert(fresh.perception == nil and fresh.search == nil and fresh.hearing == nil)
-    assert(fresh.combat == nil and fresh.decisions == nil)
+    assert(fresh.combat == nil and fresh.reload == nil and fresh.decisions == nil)
   end
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload()

@@ -47,3 +47,11 @@ at visible-target range 4-12. It requires a blocked current geometric shot
 and returns a reachable clear alternative. The saved goal kind selects the
 validation policy. Both modes reject dangerous fields along the planned route.
 This does not replace BN's spread/friendly-fire checks.
+
+
+0013 exposes readiness for reloading an empty gun, a bounded terrain-cover
+selector/validator and a guarded executor calling BN do_reload. The executor
+requires actual cover relative to the supplied observation and no currently
+visible selected target; inventory and move costs remain native. Lua owns
+the persistent approach and its budgets. This is not multi-threat safety
+or protection from bullet penetration. Native results are in VERIFICATION.md.

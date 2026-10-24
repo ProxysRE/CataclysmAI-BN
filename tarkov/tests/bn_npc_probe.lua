@@ -462,6 +462,52 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage:match("^npc_cover_reload_") then
+  local member, actor = saved_actor()
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor)
+  local map = gapi.get_map()
+  local wall = map:abs_to_bub(TripointAbsMs.new(401, 390, 0))
+  if test_data.stage == "npc_cover_reload_wall" then
+    assert(map:get_ter_at(wall) == TerId.new("t_floor"):int_id())
+    assert(map:set_ter_at(wall, TerId.new("t_wall"):int_id()))
+    member.loadout, member.reload, member.combat = "rifle_field_v1", {}, {}
+  elseif test_data.stage == "npc_cover_reload_choose" then
+    local observed = gapi.get_avatar():abs_pos()
+    assert(actor:can_reload_empty_gun())
+    local selected = actor:choose_reload_cover(observed)
+    assert(selected and actor:choose_reload_cover(observed, selected))
+    assert(not actor:reload_under_cover(observed), "Cannot reload under cover while still exposed")
+    test_data.cover_reloaded = false
+  elseif test_data.stage == "npc_cover_reload_restore_wall" then
+    assert(map:set_ter_at(wall, TerId.new("t_floor"):int_id()))
+  elseif test_data.stage == "npc_cover_reload_started" or test_data.stage == "npc_cover_reload_restored" then
+    local goal = assert(member.reload.goal)
+    assert(member.reload.status == "reload_cover" and goal.attempts == 1 and goal.stalled == 0)
+    assert(member.decisions.action == "reload" and member.decisions.reason == "reload_cover")
+    if test_data.stage == "npc_cover_reload_started" then
+      test_data.cover_goal = { x = goal.position.x, y = goal.position.y, z = goal.position.z }
+      test_data.cover_deadline = goal.deadline
+      test_data.cover_seen_at = member.perception.contact.seen_at
+    else
+      assert(goal.position.x == test_data.cover_goal.x and goal.position.y == test_data.cover_goal.y)
+      assert(goal.position.z == test_data.cover_goal.z and goal.deadline == test_data.cover_deadline)
+      assert(member.perception.contact.seen_at == test_data.cover_seen_at)
+    end
+  elseif test_data.stage == "npc_cover_reload_progress" then
+    if member.reload.status == "reloaded" then
+      assert(member.reload.goal == nil and member.decisions.action == "reload")
+      assert(member.perception.status == "remembered")
+      assert(member.perception.contact.seen_at == test_data.cover_seen_at)
+      test_data.cover_reloaded = true
+    else
+      local goal = assert(member.reload.goal)
+      assert(member.reload.status == "reload_cover" and goal.deadline == test_data.cover_deadline)
+      assert(goal.position.x == test_data.cover_goal.x and goal.position.y == test_data.cover_goal.y)
+    end
+  else error("Unknown cover reload stage") end
 elseif test_data.stage == "npc_lane_clear" or test_data.stage == "npc_lane_setup" then
   local actor
   for _, candidate in ipairs(gapi.get_all_npcs()) do

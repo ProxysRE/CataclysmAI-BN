@@ -88,10 +88,10 @@ print("PASS combat cancellation on inactive/profile change, clock rollback coold
 
 -- The dispatcher has its own early exit; it must not bypass cancellation.
 local saved_modules = {}
-local module_names = { "trkv_perception", "trkv_search", "trkv_hearing", "trkv_patrol", "trkv_combat" }
+local module_names = { "trkv_perception", "trkv_search", "trkv_hearing", "trkv_patrol", "trkv_combat", "trkv_reload" }
 for _, name in ipairs(module_names) do
   saved_modules[name] = package.loaded[name]
-  package.loaded[name] = name == "trkv_combat" and combat or {}
+  package.loaded[name] = (name == "trkv_combat" or name == "trkv_reload") and combat or {}
 end
 local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 local inactive_member = { patrol = { sequence = 1 }, combat = state }

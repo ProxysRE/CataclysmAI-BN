@@ -4,6 +4,7 @@ local search = require("trkv_search")
 local hearing = require("trkv_hearing")
 local patrol = require("trkv_patrol")
 local combat = require("trkv_combat")
+local reload = require("trkv_reload")
 local decision = {}
 
 -- Only transitions are retained. No actor references, hidden coordinates or
@@ -41,6 +42,7 @@ function decision.step_actor(member, context, actor, map, now)
   if context.phase ~= "active" or not context.at_raid or
       member.patrol.sequence ~= context.sequence then
     if member.combat then combat.cancel(member.combat, "inactive") end
+    if member.reload then reload.cancel(member.reload, "inactive") end
     return finish("inactive", false, "inactive")
   end
   member.perception, member.search = member.perception or {}, member.search or {}
@@ -49,7 +51,13 @@ function decision.step_actor(member, context, actor, map, now)
   hearing.update(member.hearing, context, now, actor:get_value("trkv_heard_noise"))
   local hazard = actor:avoid_immediate_danger()
   if hazard ~= "" then return finish("escape", true, "escape_" .. hazard) end
-  local handled, reason = combat.step_actor(member, context, actor, map, now)
+  local handled, reason = reload.step_actor(member, context, actor, map, now)
+  if handled then
+    if member.combat then combat.cancel(member.combat, "reload_cover") end
+    return finish("reload", handled, reason)
+  end
+  refusals.reload = reason
+  handled, reason = combat.step_actor(member, context, actor, map, now)
   if handled then return finish("maneuver", handled, reason) end
   refusals.combat = reason
   handled, reason = search.step_actor(member.search, context, member.perception, actor, map, now)
