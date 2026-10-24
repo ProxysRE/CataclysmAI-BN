@@ -54,10 +54,8 @@ elseif test_data.stage == "npc_patrol_setup" then
     local member = participants.find(current.participants, decision_context, actor:getID():get_value())
     if not member then return false end
     decision_context.dimension = api.raid_id
-    member.perception = member.perception or {}
-    package.loaded.trkv_perception.observe_actor(member.perception, decision_context, actor, api.now(), 30)
-    local handled, reason = package.loaded.trkv_patrol.step_actor(member.patrol,
-      decision_context, actor, gapi.get_map())
+    local handled, reason = package.loaded.trkv_decision.step_actor(member,
+      decision_context, actor, gapi.get_map(), api.now())
     test_data.patrol_moves_after = actor:get_moves()
     test_data.patrol_handled = handled
     test_data.patrol_reason = reason
@@ -366,6 +364,28 @@ elseif test_data.stage == "npc_memory_hidden" then
   assert(member.perception.status == "remembered")
   assert(member.perception.contact == old and old.position.x == 402 and old.position.y == 390)
   assert(old.expires_at == old.seen_at + 30)
+elseif test_data.stage == "npc_search_started" or test_data.stage == "npc_search_restored" then
+  local member = saved_actor()
+  local plan = assert(member.search.goal)
+  assert(member.search.status == "searching" and plan.attempts == 1 and plan.stalled == 0)
+  assert(plan.position.x == 402 and plan.position.y == 390 and plan.position.z == 0)
+  assert(plan.deadline == member.perception.contact.expires_at)
+  if test_data.stage == "npc_search_started" then
+    test_data.search_deadline = plan.deadline
+    test_data.search_seen_at = plan.seen_at
+  else
+    assert(plan.deadline == test_data.search_deadline and plan.seen_at == test_data.search_seen_at)
+  end
+elseif test_data.stage == "npc_search_checked" then
+  local member = saved_actor()
+  assert(member.search.status == "checked" and member.search.goal.attempts == 3)
+  assert(member.search.goal.deadline == test_data.search_deadline)
+  assert(member.perception.status == "remembered" and test_data.patrol_reason == "checked")
+elseif test_data.stage == "npc_search_expired" then
+  local member = saved_actor()
+  assert(member.perception.status == "none" and member.perception.contact == nil)
+  assert(member.search.status == "expired" and member.search.goal.deadline == test_data.search_deadline)
+  assert(test_data.patrol_handled and test_data.patrol_reason == "patrol")
 elseif test_data.stage == "npc_step" then
   local actor = assert(test_data.actor)
   local before = actor:get_moves()

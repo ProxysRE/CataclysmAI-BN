@@ -222,6 +222,38 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         set_time(calendar::turn);
         REQUIRE_FALSE(guard->sees(player));
         probe("npc_memory_hidden");
+        // Keep the hidden avatar fixed across the wall; search a remembered tile.
+        guard->setpos(abs_to_bub(tripoint_abs_ms(402, 393, 0)));
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        CHECK(guard->abs_pos() == tripoint_abs_ms(402, 392, 0));
+        probe("npc_search_started");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        probe("npc_search_restored");
+        const auto search_ammo = guard->primary_weapon().ammo_remaining();
+        const auto remembered = tripoint_abs_ms(402, 390, 0);
+        for (auto step = 0; step < 4 && guard->abs_pos() != remembered; ++step) {
+            REQUIRE_FALSE(guard->sees(get_avatar()));
+            guard->set_moves(100);
+            guard->move();
+            REQUIRE(guard->get_moves() < 100);
+        }
+        REQUIRE(guard->abs_pos() == remembered);
+        guard->set_moves(100);
+        guard->move(); // Inspect the remembered tile, without a new target.
+        REQUIRE(guard->get_moves() < 100);
+        probe("npc_search_checked");
+        CHECK(guard->primary_weapon().ammo_remaining() == search_ammo);
+        set_time(calendar::turn + 31_turns);
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        probe("npc_search_expired");
         player.set_all_parts_hp_to_max();
         player.clear_effects();
     }

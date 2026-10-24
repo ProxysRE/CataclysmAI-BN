@@ -51,6 +51,8 @@ package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua"
 package.loaded.trkv_deployment = dofile("tarkov/mods/trkv_raid_core/trkv_deployment.lua")
 package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
 package.loaded.trkv_encounter = dofile("tarkov/mods/trkv_raid_core/trkv_encounter.lua")
+package.loaded.trkv_search = dofile("tarkov/mods/trkv_raid_core/trkv_search.lua")
+package.loaded.trkv_decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 dofile("tarkov/mods/trkv_raid_core/main.lua")
 local function context()
   return { phase = root.raid.phase, sequence = root.raid.sequence, at_raid = api.at_raid() }
@@ -184,9 +186,32 @@ assert(mod.depart("empty")) -- Pending retry must retain the originally chosen p
 assert(root.raid.encounter == "patrol" and root.raid.encounter_deployed and spawned == 3)
 assert(game.npc_ai_functions.TRKV_PATROL(actors[1]))
 assert(actors[1].position.y == 399 and actors[1].moves == 900)
+-- Exercise the registered AI callback against tables replaced during load.
+local visual = true
+local last_seen = TripointAbsMs.new(401, 402, 0)
+local visual_target = { get_pos_ms = function() return last_seen end,
+  abs_pos = function() assert(visual); return last_seen end }
+local first_actor = actors[1]
+local original_position, original_moves = first_actor.position, first_actor.moves
+local original_target = first_actor.current_target
+function first_actor:current_target() return visual_target end
+function first_actor:sees() return visual end
+function first_actor:abs_pos() return self.position end
+function first_actor:set_moves(value) self.moves = value end
+assert(not game.npc_ai_functions.TRKV_PATROL(first_actor))
+local old_member = root.participants.actors["101"]
+assert(old_member.perception.status == "visible")
 root.raid, root.participants = copy(root.raid), copy(root.participants)
 mod.loaded(); tick()
-assert(spawned == 3 and root.participants.actors["101"].patrol.index == 2)
+visual = false; last_seen.x = 499
+assert(game.npc_ai_functions.TRKV_PATROL(first_actor))
+local new_member = root.participants.actors["101"]
+assert(new_member ~= old_member and new_member.search.goal.position.x == 401)
+assert(new_member.perception.status == "remembered" and old_member.perception.status == "visible")
+assert(old_member.search.goal == nil and new_member.search.goal.attempts == 1)
+first_actor.position, first_actor.moves, first_actor.current_target = original_position, original_moves, original_target
+assert(spawned == 3 and new_member.patrol.index == 2)
+print("PASS registered AI callback follows replaced memory/search records without refreshing hidden coordinates")
 root.raid.encounter_deployed = false -- Replay a checkpoint before marking deployment complete.
 tick()
 assert(spawned == 3 and root.raid.encounter_deployed)
