@@ -12599,5 +12599,122 @@
       "pile_bodybag_corpses",
       "roof_1x1_birdnest"
     ]
+  },
+  {
+    "source_terrain_definition": {
+      "type": "terrain",
+      "id": "t_soil",
+      "copy-from": "t_abstract_wall_earthen",
+      "name": "solid earth",
+      "description": "A wall of solid earth.",
+      "extend": {
+        "flags": [
+          "NATURAL_UNDERGROUND"
+        ]
+      },
+      "delete": {
+        "flags": [
+          "AUTO_WALL_SYMBOL"
+        ]
+      },
+      "roof": "t_dirt",
+      "bash": {
+        "str_min": 100,
+        "str_max": 400,
+        "sound": "wham!",
+        "sound_fail": "whump!",
+        "ter_set": "t_dirt",
+        "ter_set_bashed_from_above": "t_dirt",
+        "items": [
+          {
+            "group": "digging_soil_loam_50L",
+            "count": 20
+          }
+        ]
+      }
+    },
+    "physical_definition": {
+      "type": "terrain",
+      "symbol": "#",
+      "move_cost": 0,
+      "coverage": 100,
+      "connects_to": "WALL",
+      "name": "solid earth",
+      "description": "A wall of solid earth.",
+      "roof": "dda_geo_institution_earth_cap",
+      "id": "dda_geo_institution_soil",
+      "color": "brown",
+      "looks_like": "t_rock",
+      "flags": [
+        "NOITEM",
+        "SUPPORTS_ROOF",
+        "WALL",
+        "NO_SCENT",
+        "BLOCK_WIND",
+        "MINEABLE"
+      ]
+    },
+    "deferred": [
+      "Mining/bashing yield and NATURAL_UNDERGROUND behavior"
+    ]
+  },
+  {
+    "source_terrain_definition": {
+      "type": "terrain",
+      "id": "t_puddle",
+      "name": "recess",
+      "description": "A shallow pit in the ground.",
+      "looks_like": "t_dirt",
+      "symbol": "~",
+      "color": "light_blue",
+      "move_cost": 3,
+      "liquid_source": {
+        "id": "water_murky",
+        "count": [
+          40,
+          240
+        ],
+        "min_temp": 2.2
+      },
+      "flags": [
+        "TRANSPARENT",
+        "LIQUIDCONT",
+        "NO_SCENT",
+        "SWIMMABLE",
+        "SHALLOW_WATER"
+      ],
+      "examine_action": "finite_water_source",
+      "phase_targets": [
+        "t_ice_sh_thick",
+        "t_ice_sh_thin",
+        "t_pseudo_phase"
+      ],
+      "phase_temps": [
+        -15,
+        -10
+      ],
+      "phase_method": "water_freeze"
+    },
+    "physical_definition": {
+      "type": "terrain",
+      "name": "recess",
+      "description": "A shallow pit in the ground.",
+      "symbol": "~",
+      "color": "light_blue",
+      "move_cost": 3,
+      "looks_like": "t_dirt",
+      "id": "dda_geo_institution_puddle",
+      "examine_action": "none",
+      "flags": [
+        "TRANSPARENT",
+        "NO_SCENT",
+        "SWIMMABLE",
+        "SHALLOW_WATER"
+      ]
+    },
+    "deferred": [
+      "Finite water inventory and collection; no infinite source substitution",
+      "DDA water temperature and freezing subsystem excluded"
+    ]
   }
 ]

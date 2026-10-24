@@ -39,7 +39,7 @@
         "`": "t_thconc_floor",
         "(": "t_door_metal_locked",
         ")": "t_card_reader_broken",
-        ".": "t_dirt",
+        ".": "dda_geo_institution_soil",
         "-": "t_metal_floor",
         "0": "t_linoleum_white",
         "1": "t_linoleum_white",
@@ -1118,7 +1118,7 @@
             3
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             3
           ]
         ]
@@ -1185,7 +1185,7 @@
             3
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             3
           ]
         ],
@@ -1207,7 +1207,7 @@
             2
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             1
           ]
         ],
@@ -1308,7 +1308,7 @@
             3
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             3
           ]
         ],
@@ -1330,7 +1330,7 @@
             2
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             1
           ]
         ],
@@ -1407,7 +1407,7 @@
             3
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             3
           ]
         ],
@@ -1429,7 +1429,7 @@
             2
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             1
           ]
         ],
@@ -1526,7 +1526,7 @@
             3
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             3
           ]
         ],
@@ -1548,7 +1548,7 @@
             2
           ],
           [
-            "t_puddle",
+            "dda_geo_institution_puddle",
             1
           ]
         ],
@@ -3479,7 +3479,7 @@
           0,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3490,7 +3490,7 @@
           0,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3501,7 +3501,7 @@
           0,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3512,7 +3512,7 @@
           0,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3523,7 +3523,7 @@
           0,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3534,7 +3534,7 @@
           1,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3545,7 +3545,7 @@
           1,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3556,7 +3556,7 @@
           1,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3567,7 +3567,7 @@
           1,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3578,7 +3578,7 @@
           1,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3589,7 +3589,7 @@
           2,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3600,7 +3600,7 @@
           2,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3611,7 +3611,7 @@
           2,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3622,7 +3622,7 @@
           2,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -3633,7 +3633,7 @@
           2,
           -1
         ],
-        "overmap": "solid_earth",
+        "overmap": "dda_geo_institution_solid_earth",
         "locations": [
           "lake_water_cube"
         ]
@@ -6227,7 +6227,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6235,7 +6235,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6243,7 +6243,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6251,7 +6251,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6259,7 +6259,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6267,7 +6267,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6275,7 +6275,7 @@
           4,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6283,7 +6283,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6291,7 +6291,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6299,7 +6299,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6307,7 +6307,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6315,7 +6315,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6323,7 +6323,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6331,7 +6331,7 @@
           5,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6339,7 +6339,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6347,7 +6347,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6355,7 +6355,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6363,7 +6363,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6371,7 +6371,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6379,7 +6379,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6387,7 +6387,7 @@
           6,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6395,7 +6395,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6403,7 +6403,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6411,7 +6411,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6419,7 +6419,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6427,7 +6427,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6435,7 +6435,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6443,7 +6443,7 @@
           7,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6451,7 +6451,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6459,7 +6459,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6467,7 +6467,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6475,7 +6475,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6483,7 +6483,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6491,7 +6491,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6499,7 +6499,7 @@
           8,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6507,7 +6507,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6515,7 +6515,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6523,7 +6523,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6531,7 +6531,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6539,7 +6539,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6547,7 +6547,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6555,7 +6555,7 @@
           9,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6563,7 +6563,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6571,7 +6571,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6579,7 +6579,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6587,7 +6587,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6595,7 +6595,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6603,7 +6603,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6611,7 +6611,7 @@
           10,
           -1
         ],
-        "overmap": "special_earth"
+        "overmap": "dda_geo_institution_special_earth"
       },
       {
         "point": [
@@ -6619,7 +6619,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6627,7 +6627,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6635,7 +6635,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6643,7 +6643,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6651,7 +6651,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6659,7 +6659,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6667,7 +6667,7 @@
           4,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6675,7 +6675,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6683,7 +6683,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6691,7 +6691,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6699,7 +6699,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6707,7 +6707,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6715,7 +6715,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6723,7 +6723,7 @@
           5,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6731,7 +6731,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6739,7 +6739,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6747,7 +6747,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6755,7 +6755,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6763,7 +6763,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6771,7 +6771,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6779,7 +6779,7 @@
           6,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6787,7 +6787,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6795,7 +6795,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6803,7 +6803,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6811,7 +6811,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6819,7 +6819,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6827,7 +6827,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6835,7 +6835,7 @@
           7,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6843,7 +6843,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6851,7 +6851,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6859,7 +6859,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6867,7 +6867,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6875,7 +6875,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6883,7 +6883,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6891,7 +6891,7 @@
           8,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6899,7 +6899,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6907,7 +6907,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6915,7 +6915,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6923,7 +6923,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6931,7 +6931,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6939,7 +6939,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6947,7 +6947,7 @@
           9,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6955,7 +6955,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6963,7 +6963,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6971,7 +6971,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6979,7 +6979,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6987,7 +6987,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -6995,7 +6995,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7003,7 +7003,7 @@
           10,
           -2
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7011,7 +7011,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7019,7 +7019,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7027,7 +7027,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7035,7 +7035,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7043,7 +7043,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7051,7 +7051,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7059,7 +7059,7 @@
           4,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7067,7 +7067,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7075,7 +7075,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7083,7 +7083,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7091,7 +7091,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7099,7 +7099,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7107,7 +7107,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7115,7 +7115,7 @@
           5,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7123,7 +7123,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7131,7 +7131,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7139,7 +7139,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7147,7 +7147,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7155,7 +7155,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7163,7 +7163,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7171,7 +7171,7 @@
           6,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7179,7 +7179,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7187,7 +7187,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7195,7 +7195,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7203,7 +7203,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7211,7 +7211,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7219,7 +7219,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7227,7 +7227,7 @@
           7,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7235,7 +7235,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7243,7 +7243,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7251,7 +7251,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7259,7 +7259,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7267,7 +7267,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7275,7 +7275,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7283,7 +7283,7 @@
           8,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7291,7 +7291,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7299,7 +7299,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7307,7 +7307,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7315,7 +7315,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7323,7 +7323,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7331,7 +7331,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7339,7 +7339,7 @@
           9,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7347,7 +7347,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7355,7 +7355,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7363,7 +7363,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7371,7 +7371,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7379,7 +7379,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7387,7 +7387,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7395,7 +7395,7 @@
           10,
           -3
         ],
-        "overmap": "special_rock"
+        "overmap": "dda_geo_institution_special_rock"
       },
       {
         "point": [
@@ -7403,7 +7403,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7411,7 +7411,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7419,7 +7419,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7427,7 +7427,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7435,7 +7435,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7443,7 +7443,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7451,7 +7451,7 @@
           4,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7459,7 +7459,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7467,7 +7467,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7475,7 +7475,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7483,7 +7483,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7491,7 +7491,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7499,7 +7499,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7507,7 +7507,7 @@
           5,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7515,7 +7515,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7523,7 +7523,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7531,7 +7531,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7539,7 +7539,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7547,7 +7547,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7555,7 +7555,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7563,7 +7563,7 @@
           6,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7571,7 +7571,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7579,7 +7579,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7587,7 +7587,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7595,7 +7595,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7603,7 +7603,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7611,7 +7611,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7619,7 +7619,7 @@
           7,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7627,7 +7627,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7635,7 +7635,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7643,7 +7643,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7651,7 +7651,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7659,7 +7659,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7667,7 +7667,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7675,7 +7675,7 @@
           8,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7683,7 +7683,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7691,7 +7691,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7699,7 +7699,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7707,7 +7707,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7715,7 +7715,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7723,7 +7723,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7731,7 +7731,7 @@
           9,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7739,7 +7739,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7747,7 +7747,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7755,7 +7755,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7763,7 +7763,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7771,7 +7771,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7779,7 +7779,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -7787,7 +7787,7 @@
           10,
           -4
         ],
-        "overmap": "special_deep_rock"
+        "overmap": "dda_geo_institution_special_deep_rock"
       },
       {
         "point": [
@@ -8039,15 +8039,24 @@
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_1"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u250c",
     "extras": ""
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_2",
       "dda_geo_institution_evac_center_22",
@@ -8055,21 +8064,29 @@
       "dda_geo_institution_evac_center_3",
       "dda_geo_institution_evac_center_4"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u2500",
     "extras": ""
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_5"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u2510",
     "extras": ""
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_10",
       "dda_geo_institution_evac_center_11",
@@ -8080,35 +8097,192 @@
       "dda_geo_institution_refctr_S3e",
       "dda_geo_institution_refctr_road"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u2502",
     "extras": ""
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_23"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u252c",
     "extras": ""
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_21"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u2514",
     "extras": ""
   },
   {
     "type": "overmap_terrain",
+    "name": "road",
+    "copy-from": "generic_transportation",
+    "color": "dark_gray",
+    "see_cost": 0,
+    "looks_like": "road",
     "id": [
       "dda_geo_institution_evac_center_25"
     ],
-    "copy-from": "road_abstract",
     "sym": "\u2518",
     "extras": ""
+  },
+  {
+    "type": "overmap_terrain",
+    "name": "solid earth",
+    "sym": "#",
+    "color": "brown",
+    "flags": [
+      "NO_ROTATE"
+    ],
+    "id": "dda_geo_institution_solid_earth",
+    "see_cost": 5,
+    "extras": ""
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dda_geo_institution_solid_earth",
+    "method": "json",
+    "object": {
+      "fill_ter": "dda_geo_institution_soil"
+    }
+  },
+  {
+    "type": "overmap_terrain",
+    "name": "solid earth",
+    "sym": "#",
+    "color": "brown",
+    "flags": [
+      "NO_ROTATE"
+    ],
+    "id": "dda_geo_institution_special_earth",
+    "see_cost": 5,
+    "extras": ""
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dda_geo_institution_special_earth",
+    "method": "json",
+    "object": {
+      "fill_ter": "dda_geo_institution_soil"
+    }
+  },
+  {
+    "type": "overmap_terrain",
+    "name": "solid rock",
+    "sym": "%",
+    "color": "dark_gray",
+    "flags": [
+      "NO_ROTATE"
+    ],
+    "id": "dda_geo_institution_special_rock",
+    "see_cost": 5,
+    "extras": ""
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dda_geo_institution_special_rock",
+    "method": "json",
+    "object": {
+      "fill_ter": "t_rock"
+    }
+  },
+  {
+    "type": "overmap_terrain",
+    "name": "solid rock",
+    "sym": "%",
+    "color": "dark_gray",
+    "flags": [
+      "NO_ROTATE"
+    ],
+    "id": "dda_geo_institution_special_deep_rock",
+    "see_cost": 5,
+    "extras": ""
+  },
+  {
+    "type": "mapgen",
+    "om_terrain": "dda_geo_institution_special_deep_rock",
+    "method": "json",
+    "object": {
+      "fill_ter": "t_rock"
+    }
+  },
+  {
+    "type": "terrain",
+    "id": "dda_geo_institution_earth_cap",
+    "name": "dirt",
+    "description": "It's dirt.  Looks like some fine soil for tillage.  Could also be dug out for construction projects.",
+    "symbol": ".",
+    "color": "brown",
+    "move_cost": 2,
+    "flags": [
+      "TRANSPARENT",
+      "FLAT",
+      "PLOWABLE",
+      "VEH_TREAT_AS_BASH_BELOW"
+    ],
+    "digging_results": {
+      "digging_min": 1,
+      "result_ter": "t_pit_shallow",
+      "num_minutes": 60
+    },
+    "bash": {
+      "ter_set": "t_null",
+      "str_min": 75,
+      "str_max": 400,
+      "str_min_supported": 100,
+      "bash_below": true
+    },
+    "looks_like": "t_dirt"
+  },
+  {
+    "type": "terrain",
+    "symbol": "#",
+    "move_cost": 0,
+    "coverage": 100,
+    "connects_to": "WALL",
+    "name": "solid earth",
+    "description": "A wall of solid earth.",
+    "roof": "dda_geo_institution_earth_cap",
+    "id": "dda_geo_institution_soil",
+    "color": "brown",
+    "looks_like": "t_rock",
+    "flags": [
+      "NOITEM",
+      "SUPPORTS_ROOF",
+      "WALL",
+      "NO_SCENT",
+      "BLOCK_WIND",
+      "MINEABLE"
+    ]
+  },
+  {
+    "type": "terrain",
+    "name": "recess",
+    "description": "A shallow pit in the ground.",
+    "symbol": "~",
+    "color": "light_blue",
+    "move_cost": 3,
+    "looks_like": "t_dirt",
+    "id": "dda_geo_institution_puddle",
+    "examine_action": "none",
+    "flags": [
+      "TRANSPARENT",
+      "NO_SCENT",
+      "SWIMMABLE",
+      "SHALLOW_WATER"
+    ]
   }
 ]

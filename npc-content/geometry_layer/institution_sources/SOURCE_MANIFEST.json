@@ -41,6 +41,16 @@
       "bytes": 17678,
       "blob_sha": "d6bf733243edd5842004ba742b59b078446a8b8f",
       "sha256": "a4d106d195d3dd3c6c610e4b800fbd2b94c401d29731ffa0211f933bc1633d92"
+    },
+    "data/json/furniture_and_terrain/terrain-walls.json": {
+      "bytes": 75141,
+      "sha256": "0aa0c79d98f42c655dd998bdc84fa96045c00e0f126b19125c969969cc959865",
+      "blob_sha": "c0e4086ee28c675eb5b3774ac0953acb1145ad1e"
+    },
+    "data/json/mapgen/special.json": {
+      "bytes": 946,
+      "sha256": "35fce0f4b9f8d4ca97b8a95269dd89dff0805be66d1fb959ae8cc14ba7975b0d",
+      "blob_sha": "2cd9b46fd76300d3e56e49f5bb292e3d088a33ee"
     }
   }
 }

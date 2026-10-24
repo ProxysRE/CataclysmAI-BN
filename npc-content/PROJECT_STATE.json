@@ -807,17 +807,18 @@
       "survivor",
       "camp",
       "city_additions",
-      "civic_sites"
+      "civic_sites",
+      "institution_sites"
     ],
-    "special_cells": 1837,
+    "special_cells": 2436,
     "natural_occurrences": [
       0,
       0
     ],
-    "runtime_validated": true,
-    "status": "All 59 cases passed clean source and installed Windows suites; full traversal and later layers remain separate",
+    "runtime_validated": false,
+    "status": "Institution candidate embedded: 61 layouts /2436 fixture cells plus transform case; clean Windows source and installed validation pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "edcc28c13f9df975f8d1a95fbfec45708347ebde40077a1ef6f9c93b808904a6",
+    "native_patch_sha256": "c5ac3c2577db408fd5f21688b00c81df02772b5dbebf715b8453a34ddf25c658",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -1165,40 +1166,20 @@
     "candidate_head": "e5359e8f098757af2ebf379bfccceb5c081cbb26"
   },
   "geometry_institution_sites_candidate": {
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
     "source_groups": 3,
     "source_placements": 599,
     "world_maps": 30,
     "nested_definitions": 0,
-    "unresolved_typed_refs": [
-      [
-        "overmap_terrain",
-        "solid_earth"
-      ],
-      [
-        "overmap_terrain",
-        "special_deep_rock"
-      ],
-      [
-        "overmap_terrain",
-        "special_earth"
-      ],
-      [
-        "overmap_terrain",
-        "special_rock"
-      ],
-      [
-        "overmap_terrain_abstract",
-        "road_abstract"
-      ],
-      [
-        "terrain",
-        "t_puddle"
-      ]
-    ],
+    "unresolved_typed_refs": [],
     "geometry_issues": [],
-    "status": "All three complete source registrations staged; six physical dependencies, navigation fixtures and Windows validation remain pending",
-    "report": "geometry_layer/INSTITUTION_SITES_GEOMETRY_REPORT.json"
+    "status": "All six dependencies closed; 1983 oriented fixed expectations and fourteen matched vertical links embedded; Windows source and installed validation pending",
+    "report": "geometry_layer/INSTITUTION_SITES_GEOMETRY_REPORT.json",
+    "fixture_report": "geometry_layer/INSTITUTION_SITES_PREVIEW_REPORT.json",
+    "fixture_points": 1983,
+    "vertical_links": 14,
+    "layout_cases": 3,
+    "physical_terrain_definitions": 3
   }
 }

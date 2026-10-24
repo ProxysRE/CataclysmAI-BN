@@ -39,7 +39,7 @@
         "`": "t_thconc_floor",
         "(": "t_door_metal_locked",
         ")": "t_card_reader_broken",
-        ".": "t_dirt",
+        ".": "dda_geo_institution_soil",
         "-": "t_metal_floor",
         "0": "t_linoleum_white",
         "1": "t_linoleum_white",

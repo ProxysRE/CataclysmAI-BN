@@ -7,21 +7,47 @@ from prepare_city_additions_preview import matrix
 from compare_location_catalog import read_sources
 
 
+def validate_fixtures(report):
+    assert report['fixture_point_count'] == 1983 and report['vertical_link_count'] == 14
+    assert {n.removeprefix(PREFIX): len(v) for n, v in report['vertical_links'].items()} == {
+        'urban_35_hospital': 8, 'Alcatraz Prison': 4, 'evac_center': 2}
+    for name, links in report['vertical_links'].items():
+        points = {(p['omt_x'] * 24 + p['x'], p['omt_y'] * 24 + p['y'], p['z']): p['terrain']
+                  for p in report['fixture_checks'][name]}
+        for p in links:
+            assert points[p['x'], p['y'], p['lower_z']] == p['lower']
+            assert points[p['x'], p['y'], p['lower_z'] + 1] == p['upper']
+
+
 def check():
     prepare(check=True)
     files, _, _, _ = sources()
     raw = json.loads((OUT / 'INSTITUTION_SITES_SHELLS.json').read_text())
     entries = json.loads((OUT / 'INSTITUTION_SITES_PREVIEW_SHELL.json').read_text())
     report = json.loads((OUT / 'INSTITUTION_SITES_GEOMETRY_REPORT.json').read_text())
-    assert not report['native_embedded'] and not report['runtime_validated']
+    assert report['native_embedded'] and not report['runtime_validated']
     assert report['source_groups'] == 3 and report['source_placements'] == 599
     assert report['special_cells'] == {'urban_35_hospital': 35, 'Alcatraz Prison': 131, 'evac_center': 433}
     assert report['world_maps'] == 30 and report['nested_definitions'] == 0
     assert not report['geometry_issues']
-    assert report['unresolved_typed_refs'] == [
-        ['overmap_terrain', 'solid_earth'], ['overmap_terrain', 'special_deep_rock'],
-        ['overmap_terrain', 'special_earth'], ['overmap_terrain', 'special_rock'],
-        ['overmap_terrain_abstract', 'road_abstract'], ['terrain', 't_puddle']]
+    assert not report['unresolved_typed_refs']
+    soil, puddle, cap = report['physical_definitions']
+    assert soil['id'] == PREFIX + 'soil' and soil['move_cost'] == 0 and soil['roof'] == cap['id']
+    assert cap['move_cost'] == 2 and cap['looks_like'] == 't_dirt' and cap['bash']['bash_below']
+    assert {'WALL', 'SUPPORTS_ROOF', 'NOITEM', 'MINEABLE'} <= set(soil['flags'])
+    assert puddle['id'] == PREFIX + 'puddle' and puddle['move_cost'] == 3
+    assert puddle['examine_action'] == 'none' and 'liquid_source' not in puddle
+    assert 'LIQUID' not in puddle['flags'] # Never imply infinite water collection.
+    assert not any(k.startswith('phase_') for k in puddle)
+    assert report['context_projection']['source_deep_and_empty_rock']['uniform_terrain'] == 't_rock'
+    for name in report['context_projection']['source_context_ids']:
+        context = next(e for e in entries if e.get('om_terrain') == PREFIX + name)
+        expected = soil['id'] if name in ('solid_earth', 'special_earth') else 't_rock'
+        assert context['object'] == {'fill_ter': expected}
+        assert next(e for e in entries if e.get('id') == PREFIX + name)['see_cost'] == 5
+    assert any(e.get('source_terrain_definition', {}).get('id') == 't_puddle'
+               and e['source_terrain_definition']['examine_action'] == 'finite_water_source'
+               for e in json.loads((OUT / 'INSTITUTION_SITES_LATER_LAYERS.json').read_text()))
     worlds = [e for e in raw if 'om_terrain' in e]
     assert len(worlds) == len(report['source_conservation'])
     for e, record in zip(worlds, report['source_conservation']):
@@ -55,7 +81,23 @@ def check():
     # The full late-only definition and the 70/30 source binding remain in
     # authenticated sources; geometry projects that branch to null only.
     assert bodybags[0]['object']['mapgensize'] == [3, 3]
-    print('PASS: three institution groups staged; 599 placements /30 maps preserved; six explicit physical/schema dependencies remain; no native acceptance claim')
+    from prepare_institution_sites_preview import prepare as fixtures
+    fixtures(check=True)
+    fixture_report = json.loads((OUT / 'INSTITUTION_SITES_PREVIEW_REPORT.json').read_text())
+    validate_fixtures(fixture_report)
+    # A missing lower endpoint must fail even if totals in the report stay fixed.
+    import copy
+    bad = copy.deepcopy(fixture_report)
+    key = PREFIX + 'urban_35_hospital'
+    link = bad['vertical_links'][key][0]
+    point = next(p for p in bad['fixture_checks'][key]
+                 if (p['omt_x'] * 24 + p['x'], p['omt_y'] * 24 + p['y'], p['z']) ==
+                    (link['x'], link['y'], link['lower_z']))
+    point['terrain'] = 't_floor'
+    try: validate_fixtures(bad)
+    except AssertionError: pass
+    else: raise AssertionError('Broken vertical institution endpoint accepted')
+    print('PASS: three institution groups physically closed; 599 placements /30 source maps preserved; solid earth and finite-water deferral explicit; no native acceptance claim')
 
 
 if __name__ == '__main__': check()

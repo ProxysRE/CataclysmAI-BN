@@ -98,11 +98,19 @@ def check():
         assert actual==expected,(special,'Civic native geometry points changed')
     assert civic['fixture_point_count']==2404
     assert len(civic['automatic_roof_air_exclusions'])==41
-    assert len(specials)==58 and count==1837
+    from check_institution_sites_geometry import validate_fixtures
+    institution=json.loads((ROOT/'geometry_layer/INSTITUTION_SITES_PREVIEW_REPORT.json').read_text())
+    validate_fixtures(institution)
+    for special,points in institution['fixture_checks'].items():
+        body=code.split('TEST_CASE( "'+special+'_all_floors_without_loot"',1)[1].split('\nTEST_CASE(',1)[0]
+        actual=collections.Counter(re.findall(r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^"]+)"',body,re.M))
+        expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
+        assert actual==expected,(special,'Institution native oriented access points changed')
+    assert len(specials)==61 and count==2436
     from prepare_city_additions_preview import native_transform_test
     assert code.endswith(native_transform_test(city)),'Native city transform matrix/behavior checks changed'
     assert city['fixture_point_count']==242 and city['transform_input_count']==73
-    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 2404 civic points, 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
+    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 1983 institution points /14 vertical links, 2404 civic points, 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
 
 
 if __name__=='__main__':check()

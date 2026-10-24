@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'npc-content/prepare_institution_sites_geometry.py'
+      - 'npc-content/prepare_institution_sites_preview.py'
       - 'npc-content/check_institution_sites_geometry.py'
       - 'npc-content/geometry_layer/INSTITUTION_SITES_*'
       - 'npc-content/geometry_layer/institution_sources/**'
@@ -18,4 +19,5 @@ jobs:
           python-version: '3.12'
       - run: python npc-content/check_institution_sites_geometry.py
       - run: python npc-content/report_geometry_progress.py --check
-      - run: python npc-content/check_validated_checkpoint.py
+      - run: python npc-content/check_geometry_terrain_schema.py
+      - run: python npc-content/check_geometry_preview_layout.py

@@ -12,7 +12,7 @@ BASE='data/mods/DDA_Geometry_Preview/'
 FILES={BASE+'modinfo.json':'native/dda_geometry_preview_modinfo.json',BASE+'shells.json':'native/dda_geometry_preview.json'}
 TEST='dda_geometry_preview_test.cpp'
 AIR_LOCATION='dda_geo_open_air'
-PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research','large','apartment','survivor','camp','city_additions','civic_sites')
+PACKAGES=('island_prison','xedra_church','hub_01','campus','godco_base','exodii','frontier','raider','urban','waterside','research','large','apartment','survivor','camp','city_additions','civic_sites','institution_sites')
 
 
 def payloads():
@@ -20,6 +20,11 @@ def payloads():
     report=json.loads((OUT/'REPORT.json').read_text())
     result=[]
     for name in PACKAGES:
+        if name=='institution_sites':
+            adapted=json.loads((OUT/'INSTITUTION_SITES_GEOMETRY_REPORT.json').read_text())
+            assert not adapted['unresolved_typed_refs'] and not adapted['geometry_issues']
+            result+=json.loads((OUT/'INSTITUTION_SITES_PREVIEW_SHELL.json').read_text())
+            continue
         if name=='civic_sites':
             adapted=json.loads((OUT/'CIVIC_SITES_GEOMETRY_REPORT.json').read_text())
             assert not adapted['unresolved_typed_refs'] and not adapted['geometry_issues']
@@ -118,7 +123,7 @@ def payloads():
     generated.update(('overmap_terrain',n)for n in json.loads((OUT/'RESEARCH_ADAPTATION_REPORT.json').read_text())['generated_external_omt'])
     project=index_entries(json.loads((ROOT/'native/dda_hub_elevator_access.json').read_text()))
     assert not required(result)-core-own-generated-project,sorted(required(result)-core-own-generated-project)
-    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof Lacroix cemetery and separate intact/ruined forest camps with explicit tent roofs, synagogue, libraries, kindergarten, dentist, airsoft shop and Anduril warehouse shells, office tower, three hotel variants, zoo, baseball stadium and shopping plaza. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
+    return {FILES[BASE+'modinfo.json']:[{'type':'MOD_INFO','id':MOD,'name':'DDA geometry preview (unfinished)','authors':['ProxysRE'],'description':'Terrain-only previews of the island prison, XEDRA church expanded Hub 01, campus, initial Godco retreat, Exodii sites, Isolated Road, gun show, Balthazar bunker, limnological station, raider sites, deserter settlement, police department, textile museum, supermarket, pottery cottage, hot springs, sunken helicopter, XEDRA Morgantown, XEDRA fishing shack, LIXA, football stadium, office skyscraper, oil platform in BN lake habitat five modular apartment layouts, prepper and Liam cabins, locked LMOE shelter with explicit surface exit/roof Lacroix cemetery and separate intact/ruined forest camps with explicit tent roofs, synagogue, libraries, kindergarten, dentist, airsoft shop and Anduril warehouse shells, office tower, three hotel variants, zoo, baseball stadium and shopping plaza, Alcatraz, the refugee center and high-rise hospital. Finite puddle water collection and soil mining remain deferred. Springs use ordinary BN water collection without DDA water temperature. Unfinished building geometry only: no content loot placements, inhabitants or quests. Random overmap events are disabled for own preview terrains. Debug placement in a test world. Surrounding forest retains BN generation.','category':'buildings','dependencies':['bn']}],FILES[BASE+'shells.json']:result}
 
 
 def native_test():
@@ -164,6 +169,7 @@ def native_test():
     camp=json.loads((OUT/'SURVIVOR_CAMP_PREVIEW_REPORT.json').read_text())
     city=json.loads((OUT/'CITY_ADDITIONS_PREVIEW_REPORT.json').read_text())
     civic=json.loads((OUT/'CIVIC_SITES_PREVIEW_REPORT.json').read_text())['fixture_checks']
+    institution=json.loads((OUT/'INSTITUTION_SITES_PREVIEW_REPORT.json').read_text())['fixture_checks']
     for i,special in enumerate(e for e in entries if e['type']=='overmap_special'):
         text+='\nTEST_CASE( "'+special['id']+'_all_floors_without_loot", "[dda_geometry]" )\n{\n    generate_site( '+str(4200+i*100)+', {\n'
         for c in special['overmaps']:
@@ -256,6 +262,10 @@ def native_test():
             text+='    }, {\n'
             for p in civic[special['id']]:
                 text+=f'        {{ {p["omt_x"]}, {p["omt_y"]}, {p["x"]}, {p["y"]}, {p["z"]}, {json.dumps(p["terrain"])} }},\n'
+        if special['id']in institution:
+            text+='    }, {\n'
+            for p in institution[special['id']]:
+                text+=f'        {{ {p["omt_x"]}, {p["omt_y"]}, {p["x"]}, {p["y"]}, {p["z"]}, {json.dumps(p["terrain"])} }},\n'
         text+='    } );\n}\n'
     from prepare_city_additions_preview import native_transform_test
     text+=native_transform_test(city)
@@ -294,13 +304,15 @@ def prepare(check=False):
     check_city(check=True)
     from prepare_civic_sites_preview import prepare as check_civic
     check_civic(check=True)
+    from prepare_institution_sites_preview import prepare as check_institution
+    check_institution(check=True)
     texts={p:json.dumps(v,indent=2,ensure_ascii=True)+'\n' for p,v in payloads().items()}
     texts['native/'+TEST]=native_test()
     for p,text in texts.items():
         path=ROOT/p
         if check:assert path.read_text()==text,path
         else:path.write_text(text)
-    print('Geometry preview: seventeen isolated packages, no ID collisions; natural occurrences and own-terrain random extras disabled; native validation pending')
+    print('Geometry preview: eighteen isolated packages, no ID collisions; natural occurrences and own-terrain random extras disabled; native validation pending')
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');prepare(parser.parse_args().check)

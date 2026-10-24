@@ -1,6 +1,6 @@
 {
-  "status": "institution_geometry_staged_pending_physical_closure",
-  "native_embedded": false,
+  "status": "institution_geometry_embedded_pending_windows",
+  "native_embedded": true,
   "runtime_validated": false,
   "source_groups": 3,
   "source_registrations": [
@@ -429,7 +429,9 @@
       "weight": 1000
     }
   ],
-  "physical_aliases": {},
+  "physical_aliases": {
+    "t_puddle": "dda_geo_institution_puddle"
+  },
   "isolated_ids": {
     "Alcatraz Prison": "dda_geo_institution_Alcatraz Prison",
     "evac_center": "dda_geo_institution_evac_center",
@@ -853,6 +855,26 @@
     "refctr_road_north": "dda_geo_institution_refctr_road_north",
     "refctr_road_south": "dda_geo_institution_refctr_road_south",
     "refctr_road_west": "dda_geo_institution_refctr_road_west",
+    "solid_earth": "dda_geo_institution_solid_earth",
+    "solid_earth_east": "dda_geo_institution_solid_earth_east",
+    "solid_earth_north": "dda_geo_institution_solid_earth_north",
+    "solid_earth_south": "dda_geo_institution_solid_earth_south",
+    "solid_earth_west": "dda_geo_institution_solid_earth_west",
+    "special_deep_rock": "dda_geo_institution_special_deep_rock",
+    "special_deep_rock_east": "dda_geo_institution_special_deep_rock_east",
+    "special_deep_rock_north": "dda_geo_institution_special_deep_rock_north",
+    "special_deep_rock_south": "dda_geo_institution_special_deep_rock_south",
+    "special_deep_rock_west": "dda_geo_institution_special_deep_rock_west",
+    "special_earth": "dda_geo_institution_special_earth",
+    "special_earth_east": "dda_geo_institution_special_earth_east",
+    "special_earth_north": "dda_geo_institution_special_earth_north",
+    "special_earth_south": "dda_geo_institution_special_earth_south",
+    "special_earth_west": "dda_geo_institution_special_earth_west",
+    "special_rock": "dda_geo_institution_special_rock",
+    "special_rock_east": "dda_geo_institution_special_rock_east",
+    "special_rock_north": "dda_geo_institution_special_rock_north",
+    "special_rock_south": "dda_geo_institution_special_rock_south",
+    "special_rock_west": "dda_geo_institution_special_rock_west",
     "urban_35_1": "dda_geo_institution_urban_35_1",
     "urban_35_10": "dda_geo_institution_urban_35_10",
     "urban_35_10_east": "dda_geo_institution_urban_35_10_east",
@@ -1030,7 +1052,484 @@
     "urban_35_9_west": "dda_geo_institution_urban_35_9_west",
     "urban_35_hospital": "dda_geo_institution_urban_35_hospital"
   },
-  "deferred_registration_fields": [],
+  "deferred_registration_fields": [
+    {
+      "source": [
+        "evac_center_1"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_1"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_1"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source": [
+        "evac_center_2",
+        "evac_center_22",
+        "evac_center_24",
+        "evac_center_3",
+        "evac_center_4"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_2",
+        "evac_center_22",
+        "evac_center_24",
+        "evac_center_3",
+        "evac_center_4"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_2",
+        "evac_center_22",
+        "evac_center_24",
+        "evac_center_3",
+        "evac_center_4"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source": [
+        "evac_center_5"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_5"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_5"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source": [
+        "evac_center_10",
+        "evac_center_11",
+        "evac_center_15",
+        "evac_center_16",
+        "evac_center_20",
+        "evac_center_6",
+        "refctr_S3e",
+        "refctr_road"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_10",
+        "evac_center_11",
+        "evac_center_15",
+        "evac_center_16",
+        "evac_center_20",
+        "evac_center_6",
+        "refctr_S3e",
+        "refctr_road"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_10",
+        "evac_center_11",
+        "evac_center_15",
+        "evac_center_16",
+        "evac_center_20",
+        "evac_center_6",
+        "refctr_S3e",
+        "refctr_road"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source": [
+        "evac_center_23"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_23"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_23"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source": [
+        "evac_center_21"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_21"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_21"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source": [
+        "evac_center_25"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "road_abstract",
+        "name": "road",
+        "copy-from": "generic_transportation",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "travel_cost_type": "road",
+        "looks_like": "road",
+        "vision_levels": "blends_till_outlines"
+      }
+    },
+    {
+      "source": [
+        "evac_center_25"
+      ],
+      "field": "vision_levels",
+      "value": "blends_till_outlines"
+    },
+    {
+      "source": [
+        "evac_center_25"
+      ],
+      "field": "travel_cost_type",
+      "value": "road"
+    },
+    {
+      "source_context_definition": {
+        "type": "overmap_terrain",
+        "id": "solid_earth",
+        "name": "solid earth",
+        "sym": "#",
+        "color": "brown",
+        "vision_levels": "always_full",
+        "see_cost": "opaque",
+        "travel_cost_type": "impassable",
+        "uniform_terrain": "t_soil",
+        "flags": [
+          "NO_ROTATE"
+        ]
+      }
+    },
+    {
+      "source_context_definition": {
+        "type": "overmap_terrain",
+        "id": "special_earth",
+        "name": "solid earth",
+        "vision_levels": "always_full",
+        "sym": "#",
+        "color": "brown",
+        "looks_like": "solid_earth",
+        "see_cost": "opaque",
+        "flags": [
+          "NO_ROTATE"
+        ]
+      }
+    },
+    {
+      "source_context_definition": {
+        "type": "overmap_terrain",
+        "id": "special_rock",
+        "vision_levels": "always_full",
+        "name": "solid rock",
+        "sym": "%",
+        "color": "dark_gray",
+        "looks_like": "empty_rock",
+        "see_cost": "opaque",
+        "flags": [
+          "NO_ROTATE"
+        ]
+      }
+    },
+    {
+      "source_context_definition": {
+        "type": "overmap_terrain",
+        "id": "special_deep_rock",
+        "//": "For placing terrain lookalikes that unlike placing said terrain don't allow mapgen intended for the naturally found version",
+        "vision_levels": "always_full",
+        "name": "solid rock",
+        "looks_like": "deep_rock",
+        "sym": "%",
+        "color": "dark_gray",
+        "see_cost": "opaque",
+        "flags": [
+          "NO_ROTATE"
+        ]
+      }
+    },
+    {
+      "source_rock_context_definition": {
+        "type": "overmap_terrain",
+        "//": "deep_rock is a placeholder solution to differentiate between subway tunnels, remove if per-special connection subtyping is implemented.",
+        "id": [
+          "empty_rock",
+          "deep_rock"
+        ],
+        "name": "solid rock",
+        "vision_levels": "always_full",
+        "sym": "%",
+        "color": "dark_gray",
+        "see_cost": "opaque",
+        "travel_cost_type": "impassable",
+        "uniform_terrain": "t_rock",
+        "flags": [
+          "NO_ROTATE"
+        ]
+      },
+      "projection": "Same fixed t_rock geometry; no natural mapgen inheritance"
+    },
+    {
+      "source": "t_soil",
+      "source_roof": "t_dirt",
+      "BN_roof": {
+        "type": "terrain",
+        "id": "dda_geo_institution_earth_cap",
+        "name": "dirt",
+        "description": "It's dirt.  Looks like some fine soil for tillage.  Could also be dug out for construction projects.",
+        "symbol": ".",
+        "color": "brown",
+        "move_cost": 2,
+        "flags": [
+          "TRANSPARENT",
+          "FLAT",
+          "PLOWABLE",
+          "VEH_TREAT_AS_BASH_BELOW"
+        ],
+        "digging_results": {
+          "digging_min": 1,
+          "result_ter": "t_pit_shallow",
+          "num_minutes": 60
+        },
+        "bash": {
+          "ter_set": "t_null",
+          "str_min": 75,
+          "str_max": 400,
+          "str_min_supported": 100,
+          "bash_below": true
+        },
+        "looks_like": "t_dirt"
+      },
+      "reason": "BN automatic roofs require bash_below; use stock dirt surface and stock underground floor bashing"
+    },
+    {
+      "source_terrain_definition": {
+        "type": "terrain",
+        "id": "t_soil",
+        "copy-from": "t_abstract_wall_earthen",
+        "name": "solid earth",
+        "description": "A wall of solid earth.",
+        "extend": {
+          "flags": [
+            "NATURAL_UNDERGROUND"
+          ]
+        },
+        "delete": {
+          "flags": [
+            "AUTO_WALL_SYMBOL"
+          ]
+        },
+        "roof": "t_dirt",
+        "bash": {
+          "str_min": 100,
+          "str_max": 400,
+          "sound": "wham!",
+          "sound_fail": "whump!",
+          "ter_set": "t_dirt",
+          "ter_set_bashed_from_above": "t_dirt",
+          "items": [
+            {
+              "group": "digging_soil_loam_50L",
+              "count": 20
+            }
+          ]
+        }
+      },
+      "physical_definition": {
+        "type": "terrain",
+        "symbol": "#",
+        "move_cost": 0,
+        "coverage": 100,
+        "connects_to": "WALL",
+        "name": "solid earth",
+        "description": "A wall of solid earth.",
+        "roof": "dda_geo_institution_earth_cap",
+        "id": "dda_geo_institution_soil",
+        "color": "brown",
+        "looks_like": "t_rock",
+        "flags": [
+          "NOITEM",
+          "SUPPORTS_ROOF",
+          "WALL",
+          "NO_SCENT",
+          "BLOCK_WIND",
+          "MINEABLE"
+        ]
+      },
+      "deferred": [
+        "Mining/bashing yield and NATURAL_UNDERGROUND behavior"
+      ]
+    },
+    {
+      "source_terrain_definition": {
+        "type": "terrain",
+        "id": "t_puddle",
+        "name": "recess",
+        "description": "A shallow pit in the ground.",
+        "looks_like": "t_dirt",
+        "symbol": "~",
+        "color": "light_blue",
+        "move_cost": 3,
+        "liquid_source": {
+          "id": "water_murky",
+          "count": [
+            40,
+            240
+          ],
+          "min_temp": 2.2
+        },
+        "flags": [
+          "TRANSPARENT",
+          "LIQUIDCONT",
+          "NO_SCENT",
+          "SWIMMABLE",
+          "SHALLOW_WATER"
+        ],
+        "examine_action": "finite_water_source",
+        "phase_targets": [
+          "t_ice_sh_thick",
+          "t_ice_sh_thin",
+          "t_pseudo_phase"
+        ],
+        "phase_temps": [
+          -15,
+          -10
+        ],
+        "phase_method": "water_freeze"
+      },
+      "physical_definition": {
+        "type": "terrain",
+        "name": "recess",
+        "description": "A shallow pit in the ground.",
+        "symbol": "~",
+        "color": "light_blue",
+        "move_cost": 3,
+        "looks_like": "t_dirt",
+        "id": "dda_geo_institution_puddle",
+        "examine_action": "none",
+        "flags": [
+          "TRANSPARENT",
+          "NO_SCENT",
+          "SWIMMABLE",
+          "SHALLOW_WATER"
+        ]
+      },
+      "deferred": [
+        "Finite water inventory and collection; no infinite source substitution",
+        "DDA water temperature and freezing subsystem excluded"
+      ]
+    }
+  ],
   "external_source_omt": [
     "empty_rock",
     "lake_surface",
@@ -1040,32 +1539,7 @@
     "special_rock"
   ],
   "geometry_issues": [],
-  "unresolved_typed_refs": [
-    [
-      "overmap_terrain",
-      "solid_earth"
-    ],
-    [
-      "overmap_terrain",
-      "special_deep_rock"
-    ],
-    [
-      "overmap_terrain",
-      "special_earth"
-    ],
-    [
-      "overmap_terrain",
-      "special_rock"
-    ],
-    [
-      "overmap_terrain_abstract",
-      "road_abstract"
-    ],
-    [
-      "terrain",
-      "t_puddle"
-    ]
-  ],
+  "unresolved_typed_refs": [],
   "reused_sources": [
     {
       "archive": "urban_sources",
@@ -1106,12 +1580,120 @@
       "archive": "island_prison/upstream",
       "path": "data/json/mapgen_palettes/prison.json",
       "sha256": "90fcf33321da55df0dfce6e2137347b8ab250c9c32e76e9541e7620e2a3f8d21"
+    },
+    {
+      "archive": "urban_adaptation_sources",
+      "path": "bn/data/json/furniture_and_terrain/terrain-floors-outdoors.json",
+      "sha256": "5bb8b4c3f2d185ec5865db3fd070623095bb90fedb715b2a0d911122280dd860"
+    },
+    {
+      "archive": "waterside_adaptation_sources",
+      "path": "dda/data/json/furniture_and_terrain/terrain-liquids.json",
+      "sha256": "29946e8f73ba86fd0670487ded19aed0f65920bc4ad54a455666810a125fedb8"
+    }
+  ],
+  "context_projection": {
+    "earth": "dda_geo_institution_soil",
+    "rock": "t_rock",
+    "see_cost": 5,
+    "source_context_ids": [
+      "solid_earth",
+      "special_earth",
+      "special_rock",
+      "special_deep_rock"
+    ],
+    "source_deep_and_empty_rock": {
+      "type": "overmap_terrain",
+      "//": "deep_rock is a placeholder solution to differentiate between subway tunnels, remove if per-special connection subtyping is implemented.",
+      "id": [
+        "empty_rock",
+        "deep_rock"
+      ],
+      "name": "solid rock",
+      "vision_levels": "always_full",
+      "sym": "%",
+      "color": "dark_gray",
+      "see_cost": "opaque",
+      "travel_cost_type": "impassable",
+      "uniform_terrain": "t_rock",
+      "flags": [
+        "NO_ROTATE"
+      ]
+    }
+  },
+  "physical_definitions": [
+    {
+      "type": "terrain",
+      "symbol": "#",
+      "move_cost": 0,
+      "coverage": 100,
+      "connects_to": "WALL",
+      "name": "solid earth",
+      "description": "A wall of solid earth.",
+      "roof": "dda_geo_institution_earth_cap",
+      "id": "dda_geo_institution_soil",
+      "color": "brown",
+      "looks_like": "t_rock",
+      "flags": [
+        "NOITEM",
+        "SUPPORTS_ROOF",
+        "WALL",
+        "NO_SCENT",
+        "BLOCK_WIND",
+        "MINEABLE"
+      ]
+    },
+    {
+      "type": "terrain",
+      "name": "recess",
+      "description": "A shallow pit in the ground.",
+      "symbol": "~",
+      "color": "light_blue",
+      "move_cost": 3,
+      "looks_like": "t_dirt",
+      "id": "dda_geo_institution_puddle",
+      "examine_action": "none",
+      "flags": [
+        "TRANSPARENT",
+        "NO_SCENT",
+        "SWIMMABLE",
+        "SHALLOW_WATER"
+      ]
+    },
+    {
+      "type": "terrain",
+      "id": "dda_geo_institution_earth_cap",
+      "name": "dirt",
+      "description": "It's dirt.  Looks like some fine soil for tillage.  Could also be dug out for construction projects.",
+      "symbol": ".",
+      "color": "brown",
+      "move_cost": 2,
+      "flags": [
+        "TRANSPARENT",
+        "FLAT",
+        "PLOWABLE",
+        "VEH_TREAT_AS_BASH_BELOW"
+      ],
+      "digging_results": {
+        "digging_min": 1,
+        "result_ter": "t_pit_shallow",
+        "num_minutes": 60
+      },
+      "bash": {
+        "ter_set": "t_null",
+        "str_min": 75,
+        "str_max": 400,
+        "str_min_supported": 100,
+        "bash_below": true
+      },
+      "looks_like": "t_dirt"
     }
   ],
   "limits": [
-    "Staged only; physical adaptation, native fixtures and Windows generation pending; no progress credit",
+    "Native fixture candidate embedded; Windows generation pending; no progress credit",
     "Full source and deferred later layers retained",
-    "Full source registrations include unadapted lake/rock/earth context; validate every floor before embedding",
+    "All lake/rock/earth context cells retained; validate every floor before embedding",
+    "Soil mining yields and finite puddle water collection deferred; DDA temperature subsystem excluded",
     "Natural occurrence disabled"
   ]
 }
