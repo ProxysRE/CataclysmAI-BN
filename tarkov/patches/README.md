@@ -40,3 +40,10 @@ are tracked in docs/VERIFICATION.md.
 The trained-rifle Lua pilot owns the saved intention, timeout and cooldown;
 BN still executes movement, shooting and reload. This is a local spacing move,
 not a cover/flanking planner. Native results are tracked in VERIFICATION.md.
+
+
+0012 also accepts an optional third boolean for short firing-lane recovery
+at visible-target range 4-12. It requires a blocked current geometric shot
+and returns a reachable clear alternative. The saved goal kind selects the
+validation policy. Both modes reject dangerous fields along the planned route.
+This does not replace BN's spread/friendly-fire checks.

@@ -1,4 +1,4 @@
--- First deliberate combat move: a short standoff for a trained rifle profile.
+-- Short saved combat moves for a trained rifle profile: spacing and firing lane.
 local loadouts = require("trkv_loadouts")
 local combat = {}
 local function copy(p) return { x = p.x, y = p.y, z = p.z } end
@@ -49,16 +49,16 @@ function combat.step(state, context, memory, now, api)
       state.goal, state.status = nil, "cancelled"
       return false, state.status
     end
-    if not api.validate(contact.position, goal.position) then
+    if not api.validate(contact.position, goal.position, goal.kind or "standoff") then
       state.goal, state.status = nil, "invalid_position"
       return false, state.status
     end
   else
     if now < (state.cooldown_until or 0) then return false, "cooldown" end
     state.cooldown_until = now + 12
-    local selected = api.choose(contact.position)
+    local selected, kind = api.choose(contact.position)
     if not selected then state.status = "no_position"; return false, state.status end
-    goal = { position = copy(selected), target = copy(contact.position), started_at = now,
+    goal = { kind = kind or "standoff", position = copy(selected), target = copy(contact.position), started_at = now,
       deadline = now + 8, attempts = 0, stalled = 0 }
     state.goal = goal
   end
@@ -67,7 +67,7 @@ function combat.step(state, context, memory, now, api)
   goal.attempts = goal.attempts + 1
   goal.stalled = distance(origin, api.position()) == 0 and goal.stalled + 1 or 0
   if api.moves() >= before then api.wait() end
-  state.status = "standoff"
+  state.status = goal.kind or "standoff"
   return true, state.status
 end
 
@@ -80,9 +80,13 @@ function combat.step_actor(member, context, actor, map, now)
   member.combat = member.combat or {}
   local function absolute(p) return TripointAbsMs.new(p.x, p.y, p.z) end
   return combat.step(member.combat, context, member.perception, now, {
-    choose = function(p) return actor:choose_standoff_position(absolute(p)) end,
-    validate = function(p, goal)
-      return actor:choose_standoff_position(absolute(p), absolute(goal)) ~= nil
+    choose = function(p)
+      local lane = actor:choose_standoff_position(absolute(p), nil, true)
+      if lane then return lane, "firing_lane" end
+      return actor:choose_standoff_position(absolute(p)), "standoff"
+    end,
+    validate = function(p, goal, kind)
+      return actor:choose_standoff_position(absolute(p), absolute(goal), kind == "firing_lane") ~= nil
     end,
     at = function(p) return actor:get_pos_ms() == map:abs_to_bub(absolute(p)) end,
     position = function() local p = actor:abs_pos(); return copy(p) end,

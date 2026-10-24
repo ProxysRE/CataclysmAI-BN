@@ -462,6 +462,21 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage == "npc_lane_clear" or test_data.stage == "npc_lane_setup" then
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor)
+  local target = gapi.get_avatar():abs_pos()
+  local proposed = actor:choose_standoff_position(target, nil, true)
+  if test_data.stage == "npc_lane_clear" then
+    assert(proposed == nil, "Clear firing line must not trigger lane recovery")
+  else
+    assert(proposed and actor:choose_standoff_position(target, proposed, true))
+    assert(not actor:choose_standoff_position(TripointAbsMs.new(target.x + 1, target.y, target.z), nil, true))
+    saved_actor().combat = {}
+  end
 elseif test_data.stage == "npc_standoff_setup" or test_data.stage == "npc_standoff_hidden" then
   local actor
   for _, candidate in ipairs(gapi.get_all_npcs()) do
@@ -479,14 +494,16 @@ elseif test_data.stage == "npc_standoff_setup" or test_data.stage == "npc_stando
     local member = saved_actor()
     member.loadout, member.combat = "rifle_civilian_v1", {}
   end
-elseif test_data.stage == "npc_standoff_started" or test_data.stage == "npc_standoff_restored" then
+elseif test_data.stage == "npc_standoff_started" or test_data.stage == "npc_standoff_restored" or
+    test_data.stage == "npc_lane_started" or test_data.stage == "npc_lane_restored" then
   local member = saved_actor()
+  local expected_kind = test_data.stage:match("^npc_lane_") and "firing_lane" or "standoff"
   local plan = assert(member.combat.goal)
   local trace = assert(member.decisions)
-  assert(trace.action == "maneuver" and trace.reason == "standoff" and trace.handled)
+  assert(trace.action == "maneuver" and trace.reason == expected_kind and trace.handled)
   assert(#trace.history <= 8 and trace.history[#trace.history].source == "vision")
-  assert(saved_actor().combat.status == "standoff" and plan.attempts == 1 and plan.stalled == 0)
-  if test_data.stage == "npc_standoff_started" then
+  assert(saved_actor().combat.status == expected_kind and plan.kind == expected_kind and plan.attempts == 1 and plan.stalled == 0)
+  if test_data.stage == "npc_standoff_started" or test_data.stage == "npc_lane_started" then
     test_data.standoff_position = { x = plan.position.x, y = plan.position.y, z = plan.position.z }
     test_data.standoff_deadline = plan.deadline
     test_data.standoff_arrived = false
@@ -497,14 +514,15 @@ elseif test_data.stage == "npc_standoff_started" or test_data.stage == "npc_stan
     assert(plan.position.z == test_data.standoff_position.z and plan.deadline == test_data.standoff_deadline)
     assert(trace.last_now == test_data.standoff_trace_at and #trace.history == test_data.standoff_trace_size)
   end
-elseif test_data.stage == "npc_standoff_progress" then
+elseif test_data.stage == "npc_standoff_progress" or test_data.stage == "npc_lane_progress" then
   local state = assert(saved_actor().combat)
   if state.status == "arrived" then
     assert(state.goal == nil)
     test_data.standoff_arrived = true
   else
     local plan = assert(state.goal)
-    assert(state.status == "standoff" and plan.deadline == test_data.standoff_deadline)
+    assert(state.status == (test_data.stage == "npc_lane_progress" and "firing_lane" or "standoff") and
+      plan.deadline == test_data.standoff_deadline)
     assert(plan.position.x == test_data.standoff_position.x and plan.position.y == test_data.standoff_position.y)
   end
 elseif test_data.stage == "npc_step" then

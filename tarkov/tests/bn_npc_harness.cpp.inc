@@ -387,6 +387,43 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         set_time(calendar::turn);
         REQUIRE_FALSE(guard->sees(get_avatar()));
         probe("npc_standoff_hidden");
+        // A visible neutral NPC blocks the direct firing line, but a short
+        // lateral route exists. Test the production selector and saved intent.
+        guard->setpos(abs_to_bub(tripoint_abs_ms(402, 394, 0)));
+        get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+        set_time(calendar::turn);
+        guard->regen_ai_cache();
+        REQUIRE(guard->sees(get_avatar()));
+        probe("npc_lane_clear");
+        auto& lane_blocker = spawn_npc(abs_to_bub(tripoint_abs_ms(402, 391, 0)), "test_talker");
+        lane_blocker.set_attitude(NPCATT_NULL);
+        REQUIRE(guard->attitude_to(lane_blocker) != Attitude::A_HOSTILE);
+        guard->regen_ai_cache();
+        const auto path_before_lane = guard->path;
+        const auto moves_before_lane = guard->get_moves();
+        probe("npc_lane_setup");
+        CHECK(guard->path == path_before_lane);
+        CHECK(guard->get_moves() == moves_before_lane);
+        const auto ammo_before_lane = guard->primary_weapon().ammo_remaining();
+        guard->set_moves(100);
+        guard->move();
+        CHECK(guard->get_moves() < 100);
+        CHECK(guard->primary_weapon().ammo_remaining() == ammo_before_lane);
+        probe("npc_lane_started");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        probe("npc_lane_restored");
+        for (auto step = 0; step < 6; ++step) {
+            guard->set_moves(100);
+            guard->move();
+            REQUIRE(guard->get_moves() < 100);
+            probe("npc_lane_progress");
+            if (data["standoff_arrived"].get<bool>()) { break; }
+        }
+        REQUIRE(data["standoff_arrived"].get<bool>());
         sounds::reset_sounds();
         player.set_all_parts_hp_to_max();
         player.clear_effects();

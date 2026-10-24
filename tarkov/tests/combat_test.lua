@@ -113,3 +113,18 @@ local moves_at_arrival = moves
 ok, reason = combat.step(state, ctx, memory, 104, api)
 assert(not ok and reason == "arrived" and state.goal == nil and moves == moves_at_arrival)
 print("PASS arrival on final maneuver attempt hands the turn back to combat")
+
+-- Maneuver type survives save/load and selects the matching validation policy.
+ctx.phase, ctx.sequence = "active", 1
+memory.sequence, memory.status = 1, "visible"
+state, position.x = {}, 2
+local old_choose, old_validate = api.choose, api.validate
+local validated_kind
+api.choose = function() return selected, "firing_lane" end
+api.validate = function(_, _, kind) validated_kind = kind; return true end
+assert(combat.step(state, ctx, memory, 200, api) and state.status == "firing_lane")
+state = copy(state)
+assert(combat.step(state, ctx, memory, 201, api) and validated_kind == "firing_lane")
+assert(state.goal.kind == "firing_lane" and state.goal.deadline == 208)
+api.choose, api.validate = old_choose, old_validate
+print("PASS saved firing-lane intention retains its validation policy and original deadline")

@@ -150,3 +150,30 @@ ok, reason = decision.step_actor(member, ctx, actor, map, 11)
 assert(not ok and reason == "threat" and not member.perception.observed)
 assert(#member.decisions.history == 1 and member.decisions.sequence == 2)
 print("PASS emergency-only observation ownership, bounded decision trace, persistence, clock and raid reset")
+
+-- The registered controller gives an emergency priority over lane recovery,
+-- then cancels that maneuver on lost vision and searches the observed point.
+member = { loadout = "rifle_civilian_v1", patrol = { sequence = 2, index = 1, route = {} } }
+visible, origin, p = true, { x = 2, y = 2, z = 0 }, { x = 6, y = 2, z = 0 }
+local lane_calls = 0
+actor.choose_standoff_position = function(_, observed, committed, recover)
+  assert(visible and observed.x == 6 and recover == true)
+  lane_calls = lane_calls + 1
+  return committed or { x = 3, y = 2, z = 0 }
+end
+actor.move_towards = function(_, q)
+  destination = q; origin = { x = q.x, y = q.y, z = q.z }; moves = moves - 100
+end
+ok, reason = decision.step_actor(member, ctx, actor, map, 500)
+assert(ok and reason == "firing_lane" and member.combat.goal.kind == "firing_lane")
+assert(member.decisions.action == "maneuver" and lane_calls == 1)
+local lane_deadline, lane_attempts = member.combat.goal.deadline, member.combat.goal.attempts
+actor.avoid_immediate_danger = function() moves = moves - 100; return "field" end
+assert(decision.step_actor(member, ctx, actor, map, 501))
+assert(member.combat.goal.deadline == lane_deadline and member.combat.goal.attempts == lane_attempts)
+actor.avoid_immediate_danger = function() return "" end
+visible = false; p.x = 99
+ok, reason = decision.step_actor(member, ctx, actor, map, 502)
+assert(ok and reason == "searching" and member.combat.goal == nil and destination.x == 6)
+assert(lane_calls == 1 and member.decisions.refusals.combat == "lost_contact")
+print("PASS firing-lane action, hazard interruption, bounded plan and lost-contact search handoff")
