@@ -2,13 +2,13 @@
   "metric": "Unweighted accepted location groups with demonstrated geometry-generation scope",
   "accepted_groups": 51,
   "catalog_groups_deferred_for_rename_review": 3,
-  "verified_groups": 34,
-  "verified_percent": 66.7,
+  "verified_groups": 39,
+  "verified_percent": 76.5,
   "additional_prepared_groups": 0,
-  "verified_plus_prepared_percent": 66.7,
+  "verified_plus_prepared_percent": 76.5,
   "evidence_checkpoint": {
-    "head": "a42af4b624b2c1269369185d07d9580a0935d792",
-    "run_id": 40084713623,
+    "head": "e5359e8f098757af2ebf379bfccceb5c081cbb26",
+    "run_id": 40114771164,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -18,10 +18,10 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 52,
-    "geometry_assertions": 1662706,
-    "installed_geometry_test_cases": 52,
-    "installed_geometry_assertions": 1662706
+    "geometry_test_cases": 59,
+    "geometry_assertions": 1940916,
+    "installed_geometry_test_cases": 59,
+    "installed_geometry_assertions": 1940916
   },
   "rows": [
     {
@@ -433,7 +433,9 @@
       "source_identities": [
         "city_building:office_tower"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All fourteen office-tower source placements and two fixed vertical links passed source and installed generation"
     },
     {
       "name": "Радиостанции с вышками",
@@ -452,28 +454,36 @@
         "city_building:hotel_2",
         "city_building:hotel_3"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All three hotel layouts, 117 source placements and thirty fixed vertical links passed source and installed generation"
     },
     {
       "name": "Зоопарк",
       "source_identities": [
         "city_building:zoo"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 34 zoo placements, two fixed vertical links and exact roof above the stone wall passed source and installed generation"
     },
     {
       "name": "Существующий стадион",
       "source_identities": [
         "city_building:stadium"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All 55 baseball-stadium placements and sixteen fixed vertical links passed source and installed generation"
     },
     {
       "name": "Торговая площадь",
       "source_identities": [
         "city_building:shopping_plaza"
       ],
-      "state": "not_counted_as_generation_verified"
+      "state": "native_generation_verified_scope",
+      "evidence": "native/dda_geometry_preview.json",
+      "scope": "All nineteen shopping-plaza placements passed source and installed generation, preserving two BN null dummy matrix slots"
     },
     {
       "name": "Авианосец",

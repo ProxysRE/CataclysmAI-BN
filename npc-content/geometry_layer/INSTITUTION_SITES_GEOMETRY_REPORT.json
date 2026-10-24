@@ -1,0 +1,1117 @@
+{
+  "status": "institution_geometry_staged_pending_physical_closure",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "source_groups": 3,
+  "source_registrations": [
+    "Alcatraz Prison",
+    "evac_center",
+    "urban_35_hospital"
+  ],
+  "source_placements": 599,
+  "special_cells": {
+    "urban_35_hospital": 35,
+    "Alcatraz Prison": 131,
+    "evac_center": 433
+  },
+  "source_z_levels": {
+    "urban_35_hospital": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "Alcatraz Prison": [
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "evac_center": [
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ]
+  },
+  "world_maps": 30,
+  "nested_definitions": 0,
+  "source_conservation": [
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_1",
+          "urban_35_2"
+        ],
+        [
+          "urban_35_3",
+          "urban_35_4"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_5",
+          "urban_35_6",
+          "urban_35_34"
+        ],
+        [
+          "urban_35_7",
+          "urban_35_8",
+          "urban_35_35"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_9",
+          "urban_35_10"
+        ],
+        [
+          "urban_35_11",
+          "urban_35_12"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_13",
+          "urban_35_14"
+        ],
+        [
+          "urban_35_15",
+          "urban_35_16"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_17",
+          "urban_35_18"
+        ],
+        [
+          "urban_35_19",
+          "urban_35_20"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_21",
+          "urban_35_22"
+        ],
+        [
+          "urban_35_23",
+          "urban_35_24"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_25",
+          "urban_35_26"
+        ],
+        [
+          "urban_35_27",
+          "urban_35_28"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        [
+          "urban_35_29",
+          "urban_35_30"
+        ],
+        [
+          "urban_35_31",
+          "urban_35_32"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/urban_35_hospital.json",
+      "source_omt": [
+        "urban_35_33"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/rc_grounds.json",
+      "source_omt": [
+        [
+          "refctr_field"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/rc_grounds.json",
+      "source_omt": [
+        [
+          "refctr_fence_NW",
+          "refctr_fence_NE"
+        ],
+        [
+          "refctr_fence_SW",
+          "refctr_fence_SE"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/rc_grounds.json",
+      "source_omt": [
+        [
+          "refctr_fence_v"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/rc_grounds.json",
+      "source_omt": [
+        [
+          "refctr_fence_h"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/rc_grounds.json",
+      "source_omt": [
+        [
+          "refctr_fence_entrance_L",
+          "refctr_road",
+          "refctr_fence_entrance_R"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/rc_grounds.json",
+      "source_omt": [
+        [
+          "refctr_S3e"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_1",
+          "evac_center_2",
+          "evac_center_3",
+          "evac_center_4",
+          "evac_center_5"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_6",
+          "evac_center_7",
+          "evac_center_8",
+          "evac_center_9",
+          "evac_center_10"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_11",
+          "evac_center_12",
+          "evac_center_13",
+          "evac_center_14",
+          "evac_center_15"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_16",
+          "evac_center_17",
+          "evac_center_18",
+          "evac_center_19",
+          "evac_center_20"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_21",
+          "evac_center_22",
+          "evac_center_23",
+          "evac_center_24",
+          "evac_center_25"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/z1_refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_7_z1",
+          "evac_center_8_z1",
+          "evac_center_9_z1"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/z1_refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_12_z1",
+          "evac_center_13_z1",
+          "evac_center_14_z1"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/z1_refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_17_z1",
+          "evac_center_18_z1",
+          "evac_center_19_z1"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/refugee_center/z2_refugee_center.json",
+      "source_omt": [
+        [
+          "evac_center_12_z2",
+          "evac_center_13_z2",
+          "evac_center_14_z2"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "island_prison/upstream/data/json/mapgen/prison/prison_alcatraz.json",
+      "source_omt": [
+        [
+          "prison_alcatraz_5",
+          "prison_alcatraz_4",
+          "prison_alcatraz_3",
+          "prison_alcatraz_2",
+          "prison_alcatraz_1"
+        ],
+        [
+          "prison_alcatraz_10",
+          "prison_alcatraz_9",
+          "prison_alcatraz_8",
+          "prison_alcatraz_7",
+          "prison_alcatraz_6"
+        ],
+        [
+          "prison_alcatraz_15",
+          "prison_alcatraz_14",
+          "prison_alcatraz_13",
+          "prison_alcatraz_12",
+          "prison_alcatraz_11"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "island_prison/upstream/data/json/mapgen/prison/prison_alcatraz.json",
+      "source_omt": [
+        [
+          "prison_alcatraz_5_2f",
+          "prison_alcatraz_4_2f",
+          "prison_alcatraz_3_2f",
+          "prison_alcatraz_2_2f",
+          "prison_alcatraz_1_2f"
+        ],
+        [
+          "prison_alcatraz_10_2f",
+          "prison_alcatraz_9_2f",
+          "prison_alcatraz_8_2f",
+          "prison_alcatraz_7_2f",
+          "prison_alcatraz_6_2f"
+        ],
+        [
+          "prison_alcatraz_15_2f",
+          "prison_alcatraz_14_2f",
+          "prison_alcatraz_13_2f",
+          "prison_alcatraz_12_2f",
+          "prison_alcatraz_11_2f"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "island_prison/upstream/data/json/mapgen/prison/prison_alcatraz.json",
+      "source_omt": [
+        [
+          "prison_alcatraz_10_3f",
+          "prison_alcatraz_9_3f"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "island_prison/upstream/data/json/mapgen/prison/prison_alcatraz.json",
+      "source_omt": [
+        "prison_alcatraz_6_3f"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "island_prison/upstream/data/json/mapgen/prison/prison_alcatraz.json",
+      "source_omt": [
+        [
+          "prison_alcatraz_15_3f",
+          "prison_alcatraz_14_3f"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "island_prison/upstream/data/json/mapgen/prison/prison_alcatraz.json",
+      "source_omt": [
+        "prison_alcatraz_11_3f"
+      ],
+      "weight": 1000
+    }
+  ],
+  "physical_aliases": {},
+  "isolated_ids": {
+    "Alcatraz Prison": "dda_geo_institution_Alcatraz Prison",
+    "evac_center": "dda_geo_institution_evac_center",
+    "evac_center_1": "dda_geo_institution_evac_center_1",
+    "evac_center_10": "dda_geo_institution_evac_center_10",
+    "evac_center_10_east": "dda_geo_institution_evac_center_10_east",
+    "evac_center_10_north": "dda_geo_institution_evac_center_10_north",
+    "evac_center_10_south": "dda_geo_institution_evac_center_10_south",
+    "evac_center_10_west": "dda_geo_institution_evac_center_10_west",
+    "evac_center_11": "dda_geo_institution_evac_center_11",
+    "evac_center_11_east": "dda_geo_institution_evac_center_11_east",
+    "evac_center_11_north": "dda_geo_institution_evac_center_11_north",
+    "evac_center_11_south": "dda_geo_institution_evac_center_11_south",
+    "evac_center_11_west": "dda_geo_institution_evac_center_11_west",
+    "evac_center_12": "dda_geo_institution_evac_center_12",
+    "evac_center_12_east": "dda_geo_institution_evac_center_12_east",
+    "evac_center_12_north": "dda_geo_institution_evac_center_12_north",
+    "evac_center_12_south": "dda_geo_institution_evac_center_12_south",
+    "evac_center_12_west": "dda_geo_institution_evac_center_12_west",
+    "evac_center_12_z1": "dda_geo_institution_evac_center_12_z1",
+    "evac_center_12_z1_east": "dda_geo_institution_evac_center_12_z1_east",
+    "evac_center_12_z1_north": "dda_geo_institution_evac_center_12_z1_north",
+    "evac_center_12_z1_south": "dda_geo_institution_evac_center_12_z1_south",
+    "evac_center_12_z1_west": "dda_geo_institution_evac_center_12_z1_west",
+    "evac_center_12_z2": "dda_geo_institution_evac_center_12_z2",
+    "evac_center_12_z2_east": "dda_geo_institution_evac_center_12_z2_east",
+    "evac_center_12_z2_north": "dda_geo_institution_evac_center_12_z2_north",
+    "evac_center_12_z2_south": "dda_geo_institution_evac_center_12_z2_south",
+    "evac_center_12_z2_west": "dda_geo_institution_evac_center_12_z2_west",
+    "evac_center_13": "dda_geo_institution_evac_center_13",
+    "evac_center_13_east": "dda_geo_institution_evac_center_13_east",
+    "evac_center_13_north": "dda_geo_institution_evac_center_13_north",
+    "evac_center_13_south": "dda_geo_institution_evac_center_13_south",
+    "evac_center_13_west": "dda_geo_institution_evac_center_13_west",
+    "evac_center_13_z1": "dda_geo_institution_evac_center_13_z1",
+    "evac_center_13_z1_east": "dda_geo_institution_evac_center_13_z1_east",
+    "evac_center_13_z1_north": "dda_geo_institution_evac_center_13_z1_north",
+    "evac_center_13_z1_south": "dda_geo_institution_evac_center_13_z1_south",
+    "evac_center_13_z1_west": "dda_geo_institution_evac_center_13_z1_west",
+    "evac_center_13_z2": "dda_geo_institution_evac_center_13_z2",
+    "evac_center_13_z2_east": "dda_geo_institution_evac_center_13_z2_east",
+    "evac_center_13_z2_north": "dda_geo_institution_evac_center_13_z2_north",
+    "evac_center_13_z2_south": "dda_geo_institution_evac_center_13_z2_south",
+    "evac_center_13_z2_west": "dda_geo_institution_evac_center_13_z2_west",
+    "evac_center_14": "dda_geo_institution_evac_center_14",
+    "evac_center_14_east": "dda_geo_institution_evac_center_14_east",
+    "evac_center_14_north": "dda_geo_institution_evac_center_14_north",
+    "evac_center_14_south": "dda_geo_institution_evac_center_14_south",
+    "evac_center_14_west": "dda_geo_institution_evac_center_14_west",
+    "evac_center_14_z1": "dda_geo_institution_evac_center_14_z1",
+    "evac_center_14_z1_east": "dda_geo_institution_evac_center_14_z1_east",
+    "evac_center_14_z1_north": "dda_geo_institution_evac_center_14_z1_north",
+    "evac_center_14_z1_south": "dda_geo_institution_evac_center_14_z1_south",
+    "evac_center_14_z1_west": "dda_geo_institution_evac_center_14_z1_west",
+    "evac_center_14_z2": "dda_geo_institution_evac_center_14_z2",
+    "evac_center_14_z2_east": "dda_geo_institution_evac_center_14_z2_east",
+    "evac_center_14_z2_north": "dda_geo_institution_evac_center_14_z2_north",
+    "evac_center_14_z2_south": "dda_geo_institution_evac_center_14_z2_south",
+    "evac_center_14_z2_west": "dda_geo_institution_evac_center_14_z2_west",
+    "evac_center_15": "dda_geo_institution_evac_center_15",
+    "evac_center_15_east": "dda_geo_institution_evac_center_15_east",
+    "evac_center_15_north": "dda_geo_institution_evac_center_15_north",
+    "evac_center_15_south": "dda_geo_institution_evac_center_15_south",
+    "evac_center_15_west": "dda_geo_institution_evac_center_15_west",
+    "evac_center_16": "dda_geo_institution_evac_center_16",
+    "evac_center_16_east": "dda_geo_institution_evac_center_16_east",
+    "evac_center_16_north": "dda_geo_institution_evac_center_16_north",
+    "evac_center_16_south": "dda_geo_institution_evac_center_16_south",
+    "evac_center_16_west": "dda_geo_institution_evac_center_16_west",
+    "evac_center_17": "dda_geo_institution_evac_center_17",
+    "evac_center_17_east": "dda_geo_institution_evac_center_17_east",
+    "evac_center_17_north": "dda_geo_institution_evac_center_17_north",
+    "evac_center_17_south": "dda_geo_institution_evac_center_17_south",
+    "evac_center_17_west": "dda_geo_institution_evac_center_17_west",
+    "evac_center_17_z1": "dda_geo_institution_evac_center_17_z1",
+    "evac_center_17_z1_east": "dda_geo_institution_evac_center_17_z1_east",
+    "evac_center_17_z1_north": "dda_geo_institution_evac_center_17_z1_north",
+    "evac_center_17_z1_south": "dda_geo_institution_evac_center_17_z1_south",
+    "evac_center_17_z1_west": "dda_geo_institution_evac_center_17_z1_west",
+    "evac_center_18": "dda_geo_institution_evac_center_18",
+    "evac_center_18_east": "dda_geo_institution_evac_center_18_east",
+    "evac_center_18_north": "dda_geo_institution_evac_center_18_north",
+    "evac_center_18_south": "dda_geo_institution_evac_center_18_south",
+    "evac_center_18_west": "dda_geo_institution_evac_center_18_west",
+    "evac_center_18_z1": "dda_geo_institution_evac_center_18_z1",
+    "evac_center_18_z1_east": "dda_geo_institution_evac_center_18_z1_east",
+    "evac_center_18_z1_north": "dda_geo_institution_evac_center_18_z1_north",
+    "evac_center_18_z1_south": "dda_geo_institution_evac_center_18_z1_south",
+    "evac_center_18_z1_west": "dda_geo_institution_evac_center_18_z1_west",
+    "evac_center_19": "dda_geo_institution_evac_center_19",
+    "evac_center_19_east": "dda_geo_institution_evac_center_19_east",
+    "evac_center_19_north": "dda_geo_institution_evac_center_19_north",
+    "evac_center_19_south": "dda_geo_institution_evac_center_19_south",
+    "evac_center_19_west": "dda_geo_institution_evac_center_19_west",
+    "evac_center_19_z1": "dda_geo_institution_evac_center_19_z1",
+    "evac_center_19_z1_east": "dda_geo_institution_evac_center_19_z1_east",
+    "evac_center_19_z1_north": "dda_geo_institution_evac_center_19_z1_north",
+    "evac_center_19_z1_south": "dda_geo_institution_evac_center_19_z1_south",
+    "evac_center_19_z1_west": "dda_geo_institution_evac_center_19_z1_west",
+    "evac_center_1_east": "dda_geo_institution_evac_center_1_east",
+    "evac_center_1_north": "dda_geo_institution_evac_center_1_north",
+    "evac_center_1_south": "dda_geo_institution_evac_center_1_south",
+    "evac_center_1_west": "dda_geo_institution_evac_center_1_west",
+    "evac_center_2": "dda_geo_institution_evac_center_2",
+    "evac_center_20": "dda_geo_institution_evac_center_20",
+    "evac_center_20_east": "dda_geo_institution_evac_center_20_east",
+    "evac_center_20_north": "dda_geo_institution_evac_center_20_north",
+    "evac_center_20_south": "dda_geo_institution_evac_center_20_south",
+    "evac_center_20_west": "dda_geo_institution_evac_center_20_west",
+    "evac_center_21": "dda_geo_institution_evac_center_21",
+    "evac_center_21_east": "dda_geo_institution_evac_center_21_east",
+    "evac_center_21_north": "dda_geo_institution_evac_center_21_north",
+    "evac_center_21_south": "dda_geo_institution_evac_center_21_south",
+    "evac_center_21_west": "dda_geo_institution_evac_center_21_west",
+    "evac_center_22": "dda_geo_institution_evac_center_22",
+    "evac_center_22_east": "dda_geo_institution_evac_center_22_east",
+    "evac_center_22_north": "dda_geo_institution_evac_center_22_north",
+    "evac_center_22_south": "dda_geo_institution_evac_center_22_south",
+    "evac_center_22_west": "dda_geo_institution_evac_center_22_west",
+    "evac_center_23": "dda_geo_institution_evac_center_23",
+    "evac_center_23_east": "dda_geo_institution_evac_center_23_east",
+    "evac_center_23_north": "dda_geo_institution_evac_center_23_north",
+    "evac_center_23_south": "dda_geo_institution_evac_center_23_south",
+    "evac_center_23_west": "dda_geo_institution_evac_center_23_west",
+    "evac_center_24": "dda_geo_institution_evac_center_24",
+    "evac_center_24_east": "dda_geo_institution_evac_center_24_east",
+    "evac_center_24_north": "dda_geo_institution_evac_center_24_north",
+    "evac_center_24_south": "dda_geo_institution_evac_center_24_south",
+    "evac_center_24_west": "dda_geo_institution_evac_center_24_west",
+    "evac_center_25": "dda_geo_institution_evac_center_25",
+    "evac_center_25_east": "dda_geo_institution_evac_center_25_east",
+    "evac_center_25_north": "dda_geo_institution_evac_center_25_north",
+    "evac_center_25_south": "dda_geo_institution_evac_center_25_south",
+    "evac_center_25_west": "dda_geo_institution_evac_center_25_west",
+    "evac_center_2_east": "dda_geo_institution_evac_center_2_east",
+    "evac_center_2_north": "dda_geo_institution_evac_center_2_north",
+    "evac_center_2_south": "dda_geo_institution_evac_center_2_south",
+    "evac_center_2_west": "dda_geo_institution_evac_center_2_west",
+    "evac_center_3": "dda_geo_institution_evac_center_3",
+    "evac_center_3_east": "dda_geo_institution_evac_center_3_east",
+    "evac_center_3_north": "dda_geo_institution_evac_center_3_north",
+    "evac_center_3_south": "dda_geo_institution_evac_center_3_south",
+    "evac_center_3_west": "dda_geo_institution_evac_center_3_west",
+    "evac_center_4": "dda_geo_institution_evac_center_4",
+    "evac_center_4_east": "dda_geo_institution_evac_center_4_east",
+    "evac_center_4_north": "dda_geo_institution_evac_center_4_north",
+    "evac_center_4_south": "dda_geo_institution_evac_center_4_south",
+    "evac_center_4_west": "dda_geo_institution_evac_center_4_west",
+    "evac_center_5": "dda_geo_institution_evac_center_5",
+    "evac_center_5_east": "dda_geo_institution_evac_center_5_east",
+    "evac_center_5_north": "dda_geo_institution_evac_center_5_north",
+    "evac_center_5_south": "dda_geo_institution_evac_center_5_south",
+    "evac_center_5_west": "dda_geo_institution_evac_center_5_west",
+    "evac_center_6": "dda_geo_institution_evac_center_6",
+    "evac_center_6_east": "dda_geo_institution_evac_center_6_east",
+    "evac_center_6_north": "dda_geo_institution_evac_center_6_north",
+    "evac_center_6_south": "dda_geo_institution_evac_center_6_south",
+    "evac_center_6_west": "dda_geo_institution_evac_center_6_west",
+    "evac_center_7": "dda_geo_institution_evac_center_7",
+    "evac_center_7_east": "dda_geo_institution_evac_center_7_east",
+    "evac_center_7_north": "dda_geo_institution_evac_center_7_north",
+    "evac_center_7_south": "dda_geo_institution_evac_center_7_south",
+    "evac_center_7_west": "dda_geo_institution_evac_center_7_west",
+    "evac_center_7_z1": "dda_geo_institution_evac_center_7_z1",
+    "evac_center_7_z1_east": "dda_geo_institution_evac_center_7_z1_east",
+    "evac_center_7_z1_north": "dda_geo_institution_evac_center_7_z1_north",
+    "evac_center_7_z1_south": "dda_geo_institution_evac_center_7_z1_south",
+    "evac_center_7_z1_west": "dda_geo_institution_evac_center_7_z1_west",
+    "evac_center_8": "dda_geo_institution_evac_center_8",
+    "evac_center_8_east": "dda_geo_institution_evac_center_8_east",
+    "evac_center_8_north": "dda_geo_institution_evac_center_8_north",
+    "evac_center_8_south": "dda_geo_institution_evac_center_8_south",
+    "evac_center_8_west": "dda_geo_institution_evac_center_8_west",
+    "evac_center_8_z1": "dda_geo_institution_evac_center_8_z1",
+    "evac_center_8_z1_east": "dda_geo_institution_evac_center_8_z1_east",
+    "evac_center_8_z1_north": "dda_geo_institution_evac_center_8_z1_north",
+    "evac_center_8_z1_south": "dda_geo_institution_evac_center_8_z1_south",
+    "evac_center_8_z1_west": "dda_geo_institution_evac_center_8_z1_west",
+    "evac_center_9": "dda_geo_institution_evac_center_9",
+    "evac_center_9_east": "dda_geo_institution_evac_center_9_east",
+    "evac_center_9_north": "dda_geo_institution_evac_center_9_north",
+    "evac_center_9_south": "dda_geo_institution_evac_center_9_south",
+    "evac_center_9_west": "dda_geo_institution_evac_center_9_west",
+    "evac_center_9_z1": "dda_geo_institution_evac_center_9_z1",
+    "evac_center_9_z1_east": "dda_geo_institution_evac_center_9_z1_east",
+    "evac_center_9_z1_north": "dda_geo_institution_evac_center_9_z1_north",
+    "evac_center_9_z1_south": "dda_geo_institution_evac_center_9_z1_south",
+    "evac_center_9_z1_west": "dda_geo_institution_evac_center_9_z1_west",
+    "prison_alcatraz_1": "dda_geo_institution_prison_alcatraz_1",
+    "prison_alcatraz_10": "dda_geo_institution_prison_alcatraz_10",
+    "prison_alcatraz_10_2f": "dda_geo_institution_prison_alcatraz_10_2f",
+    "prison_alcatraz_10_2f_east": "dda_geo_institution_prison_alcatraz_10_2f_east",
+    "prison_alcatraz_10_2f_north": "dda_geo_institution_prison_alcatraz_10_2f_north",
+    "prison_alcatraz_10_2f_south": "dda_geo_institution_prison_alcatraz_10_2f_south",
+    "prison_alcatraz_10_2f_west": "dda_geo_institution_prison_alcatraz_10_2f_west",
+    "prison_alcatraz_10_3f": "dda_geo_institution_prison_alcatraz_10_3f",
+    "prison_alcatraz_10_3f_east": "dda_geo_institution_prison_alcatraz_10_3f_east",
+    "prison_alcatraz_10_3f_north": "dda_geo_institution_prison_alcatraz_10_3f_north",
+    "prison_alcatraz_10_3f_south": "dda_geo_institution_prison_alcatraz_10_3f_south",
+    "prison_alcatraz_10_3f_west": "dda_geo_institution_prison_alcatraz_10_3f_west",
+    "prison_alcatraz_10_east": "dda_geo_institution_prison_alcatraz_10_east",
+    "prison_alcatraz_10_north": "dda_geo_institution_prison_alcatraz_10_north",
+    "prison_alcatraz_10_south": "dda_geo_institution_prison_alcatraz_10_south",
+    "prison_alcatraz_10_west": "dda_geo_institution_prison_alcatraz_10_west",
+    "prison_alcatraz_11": "dda_geo_institution_prison_alcatraz_11",
+    "prison_alcatraz_11_2f": "dda_geo_institution_prison_alcatraz_11_2f",
+    "prison_alcatraz_11_2f_east": "dda_geo_institution_prison_alcatraz_11_2f_east",
+    "prison_alcatraz_11_2f_north": "dda_geo_institution_prison_alcatraz_11_2f_north",
+    "prison_alcatraz_11_2f_south": "dda_geo_institution_prison_alcatraz_11_2f_south",
+    "prison_alcatraz_11_2f_west": "dda_geo_institution_prison_alcatraz_11_2f_west",
+    "prison_alcatraz_11_3f": "dda_geo_institution_prison_alcatraz_11_3f",
+    "prison_alcatraz_11_3f_east": "dda_geo_institution_prison_alcatraz_11_3f_east",
+    "prison_alcatraz_11_3f_north": "dda_geo_institution_prison_alcatraz_11_3f_north",
+    "prison_alcatraz_11_3f_south": "dda_geo_institution_prison_alcatraz_11_3f_south",
+    "prison_alcatraz_11_3f_west": "dda_geo_institution_prison_alcatraz_11_3f_west",
+    "prison_alcatraz_11_east": "dda_geo_institution_prison_alcatraz_11_east",
+    "prison_alcatraz_11_north": "dda_geo_institution_prison_alcatraz_11_north",
+    "prison_alcatraz_11_south": "dda_geo_institution_prison_alcatraz_11_south",
+    "prison_alcatraz_11_west": "dda_geo_institution_prison_alcatraz_11_west",
+    "prison_alcatraz_12": "dda_geo_institution_prison_alcatraz_12",
+    "prison_alcatraz_12_2f": "dda_geo_institution_prison_alcatraz_12_2f",
+    "prison_alcatraz_12_2f_east": "dda_geo_institution_prison_alcatraz_12_2f_east",
+    "prison_alcatraz_12_2f_north": "dda_geo_institution_prison_alcatraz_12_2f_north",
+    "prison_alcatraz_12_2f_south": "dda_geo_institution_prison_alcatraz_12_2f_south",
+    "prison_alcatraz_12_2f_west": "dda_geo_institution_prison_alcatraz_12_2f_west",
+    "prison_alcatraz_12_east": "dda_geo_institution_prison_alcatraz_12_east",
+    "prison_alcatraz_12_north": "dda_geo_institution_prison_alcatraz_12_north",
+    "prison_alcatraz_12_south": "dda_geo_institution_prison_alcatraz_12_south",
+    "prison_alcatraz_12_west": "dda_geo_institution_prison_alcatraz_12_west",
+    "prison_alcatraz_13": "dda_geo_institution_prison_alcatraz_13",
+    "prison_alcatraz_13_2f": "dda_geo_institution_prison_alcatraz_13_2f",
+    "prison_alcatraz_13_2f_east": "dda_geo_institution_prison_alcatraz_13_2f_east",
+    "prison_alcatraz_13_2f_north": "dda_geo_institution_prison_alcatraz_13_2f_north",
+    "prison_alcatraz_13_2f_south": "dda_geo_institution_prison_alcatraz_13_2f_south",
+    "prison_alcatraz_13_2f_west": "dda_geo_institution_prison_alcatraz_13_2f_west",
+    "prison_alcatraz_13_east": "dda_geo_institution_prison_alcatraz_13_east",
+    "prison_alcatraz_13_north": "dda_geo_institution_prison_alcatraz_13_north",
+    "prison_alcatraz_13_south": "dda_geo_institution_prison_alcatraz_13_south",
+    "prison_alcatraz_13_west": "dda_geo_institution_prison_alcatraz_13_west",
+    "prison_alcatraz_14": "dda_geo_institution_prison_alcatraz_14",
+    "prison_alcatraz_14_2f": "dda_geo_institution_prison_alcatraz_14_2f",
+    "prison_alcatraz_14_2f_east": "dda_geo_institution_prison_alcatraz_14_2f_east",
+    "prison_alcatraz_14_2f_north": "dda_geo_institution_prison_alcatraz_14_2f_north",
+    "prison_alcatraz_14_2f_south": "dda_geo_institution_prison_alcatraz_14_2f_south",
+    "prison_alcatraz_14_2f_west": "dda_geo_institution_prison_alcatraz_14_2f_west",
+    "prison_alcatraz_14_3f": "dda_geo_institution_prison_alcatraz_14_3f",
+    "prison_alcatraz_14_3f_east": "dda_geo_institution_prison_alcatraz_14_3f_east",
+    "prison_alcatraz_14_3f_north": "dda_geo_institution_prison_alcatraz_14_3f_north",
+    "prison_alcatraz_14_3f_south": "dda_geo_institution_prison_alcatraz_14_3f_south",
+    "prison_alcatraz_14_3f_west": "dda_geo_institution_prison_alcatraz_14_3f_west",
+    "prison_alcatraz_14_east": "dda_geo_institution_prison_alcatraz_14_east",
+    "prison_alcatraz_14_north": "dda_geo_institution_prison_alcatraz_14_north",
+    "prison_alcatraz_14_south": "dda_geo_institution_prison_alcatraz_14_south",
+    "prison_alcatraz_14_west": "dda_geo_institution_prison_alcatraz_14_west",
+    "prison_alcatraz_15": "dda_geo_institution_prison_alcatraz_15",
+    "prison_alcatraz_15_2f": "dda_geo_institution_prison_alcatraz_15_2f",
+    "prison_alcatraz_15_2f_east": "dda_geo_institution_prison_alcatraz_15_2f_east",
+    "prison_alcatraz_15_2f_north": "dda_geo_institution_prison_alcatraz_15_2f_north",
+    "prison_alcatraz_15_2f_south": "dda_geo_institution_prison_alcatraz_15_2f_south",
+    "prison_alcatraz_15_2f_west": "dda_geo_institution_prison_alcatraz_15_2f_west",
+    "prison_alcatraz_15_3f": "dda_geo_institution_prison_alcatraz_15_3f",
+    "prison_alcatraz_15_3f_east": "dda_geo_institution_prison_alcatraz_15_3f_east",
+    "prison_alcatraz_15_3f_north": "dda_geo_institution_prison_alcatraz_15_3f_north",
+    "prison_alcatraz_15_3f_south": "dda_geo_institution_prison_alcatraz_15_3f_south",
+    "prison_alcatraz_15_3f_west": "dda_geo_institution_prison_alcatraz_15_3f_west",
+    "prison_alcatraz_15_east": "dda_geo_institution_prison_alcatraz_15_east",
+    "prison_alcatraz_15_north": "dda_geo_institution_prison_alcatraz_15_north",
+    "prison_alcatraz_15_south": "dda_geo_institution_prison_alcatraz_15_south",
+    "prison_alcatraz_15_west": "dda_geo_institution_prison_alcatraz_15_west",
+    "prison_alcatraz_1_2f": "dda_geo_institution_prison_alcatraz_1_2f",
+    "prison_alcatraz_1_2f_east": "dda_geo_institution_prison_alcatraz_1_2f_east",
+    "prison_alcatraz_1_2f_north": "dda_geo_institution_prison_alcatraz_1_2f_north",
+    "prison_alcatraz_1_2f_south": "dda_geo_institution_prison_alcatraz_1_2f_south",
+    "prison_alcatraz_1_2f_west": "dda_geo_institution_prison_alcatraz_1_2f_west",
+    "prison_alcatraz_1_east": "dda_geo_institution_prison_alcatraz_1_east",
+    "prison_alcatraz_1_north": "dda_geo_institution_prison_alcatraz_1_north",
+    "prison_alcatraz_1_south": "dda_geo_institution_prison_alcatraz_1_south",
+    "prison_alcatraz_1_west": "dda_geo_institution_prison_alcatraz_1_west",
+    "prison_alcatraz_2": "dda_geo_institution_prison_alcatraz_2",
+    "prison_alcatraz_2_2f": "dda_geo_institution_prison_alcatraz_2_2f",
+    "prison_alcatraz_2_2f_east": "dda_geo_institution_prison_alcatraz_2_2f_east",
+    "prison_alcatraz_2_2f_north": "dda_geo_institution_prison_alcatraz_2_2f_north",
+    "prison_alcatraz_2_2f_south": "dda_geo_institution_prison_alcatraz_2_2f_south",
+    "prison_alcatraz_2_2f_west": "dda_geo_institution_prison_alcatraz_2_2f_west",
+    "prison_alcatraz_2_east": "dda_geo_institution_prison_alcatraz_2_east",
+    "prison_alcatraz_2_north": "dda_geo_institution_prison_alcatraz_2_north",
+    "prison_alcatraz_2_south": "dda_geo_institution_prison_alcatraz_2_south",
+    "prison_alcatraz_2_west": "dda_geo_institution_prison_alcatraz_2_west",
+    "prison_alcatraz_3": "dda_geo_institution_prison_alcatraz_3",
+    "prison_alcatraz_3_2f": "dda_geo_institution_prison_alcatraz_3_2f",
+    "prison_alcatraz_3_2f_east": "dda_geo_institution_prison_alcatraz_3_2f_east",
+    "prison_alcatraz_3_2f_north": "dda_geo_institution_prison_alcatraz_3_2f_north",
+    "prison_alcatraz_3_2f_south": "dda_geo_institution_prison_alcatraz_3_2f_south",
+    "prison_alcatraz_3_2f_west": "dda_geo_institution_prison_alcatraz_3_2f_west",
+    "prison_alcatraz_3_east": "dda_geo_institution_prison_alcatraz_3_east",
+    "prison_alcatraz_3_north": "dda_geo_institution_prison_alcatraz_3_north",
+    "prison_alcatraz_3_south": "dda_geo_institution_prison_alcatraz_3_south",
+    "prison_alcatraz_3_west": "dda_geo_institution_prison_alcatraz_3_west",
+    "prison_alcatraz_4": "dda_geo_institution_prison_alcatraz_4",
+    "prison_alcatraz_4_2f": "dda_geo_institution_prison_alcatraz_4_2f",
+    "prison_alcatraz_4_2f_east": "dda_geo_institution_prison_alcatraz_4_2f_east",
+    "prison_alcatraz_4_2f_north": "dda_geo_institution_prison_alcatraz_4_2f_north",
+    "prison_alcatraz_4_2f_south": "dda_geo_institution_prison_alcatraz_4_2f_south",
+    "prison_alcatraz_4_2f_west": "dda_geo_institution_prison_alcatraz_4_2f_west",
+    "prison_alcatraz_4_east": "dda_geo_institution_prison_alcatraz_4_east",
+    "prison_alcatraz_4_north": "dda_geo_institution_prison_alcatraz_4_north",
+    "prison_alcatraz_4_south": "dda_geo_institution_prison_alcatraz_4_south",
+    "prison_alcatraz_4_west": "dda_geo_institution_prison_alcatraz_4_west",
+    "prison_alcatraz_5": "dda_geo_institution_prison_alcatraz_5",
+    "prison_alcatraz_5_2f": "dda_geo_institution_prison_alcatraz_5_2f",
+    "prison_alcatraz_5_2f_east": "dda_geo_institution_prison_alcatraz_5_2f_east",
+    "prison_alcatraz_5_2f_north": "dda_geo_institution_prison_alcatraz_5_2f_north",
+    "prison_alcatraz_5_2f_south": "dda_geo_institution_prison_alcatraz_5_2f_south",
+    "prison_alcatraz_5_2f_west": "dda_geo_institution_prison_alcatraz_5_2f_west",
+    "prison_alcatraz_5_east": "dda_geo_institution_prison_alcatraz_5_east",
+    "prison_alcatraz_5_north": "dda_geo_institution_prison_alcatraz_5_north",
+    "prison_alcatraz_5_south": "dda_geo_institution_prison_alcatraz_5_south",
+    "prison_alcatraz_5_west": "dda_geo_institution_prison_alcatraz_5_west",
+    "prison_alcatraz_6": "dda_geo_institution_prison_alcatraz_6",
+    "prison_alcatraz_6_2f": "dda_geo_institution_prison_alcatraz_6_2f",
+    "prison_alcatraz_6_2f_east": "dda_geo_institution_prison_alcatraz_6_2f_east",
+    "prison_alcatraz_6_2f_north": "dda_geo_institution_prison_alcatraz_6_2f_north",
+    "prison_alcatraz_6_2f_south": "dda_geo_institution_prison_alcatraz_6_2f_south",
+    "prison_alcatraz_6_2f_west": "dda_geo_institution_prison_alcatraz_6_2f_west",
+    "prison_alcatraz_6_3f": "dda_geo_institution_prison_alcatraz_6_3f",
+    "prison_alcatraz_6_3f_east": "dda_geo_institution_prison_alcatraz_6_3f_east",
+    "prison_alcatraz_6_3f_north": "dda_geo_institution_prison_alcatraz_6_3f_north",
+    "prison_alcatraz_6_3f_south": "dda_geo_institution_prison_alcatraz_6_3f_south",
+    "prison_alcatraz_6_3f_west": "dda_geo_institution_prison_alcatraz_6_3f_west",
+    "prison_alcatraz_6_east": "dda_geo_institution_prison_alcatraz_6_east",
+    "prison_alcatraz_6_north": "dda_geo_institution_prison_alcatraz_6_north",
+    "prison_alcatraz_6_south": "dda_geo_institution_prison_alcatraz_6_south",
+    "prison_alcatraz_6_west": "dda_geo_institution_prison_alcatraz_6_west",
+    "prison_alcatraz_7": "dda_geo_institution_prison_alcatraz_7",
+    "prison_alcatraz_7_2f": "dda_geo_institution_prison_alcatraz_7_2f",
+    "prison_alcatraz_7_2f_east": "dda_geo_institution_prison_alcatraz_7_2f_east",
+    "prison_alcatraz_7_2f_north": "dda_geo_institution_prison_alcatraz_7_2f_north",
+    "prison_alcatraz_7_2f_south": "dda_geo_institution_prison_alcatraz_7_2f_south",
+    "prison_alcatraz_7_2f_west": "dda_geo_institution_prison_alcatraz_7_2f_west",
+    "prison_alcatraz_7_east": "dda_geo_institution_prison_alcatraz_7_east",
+    "prison_alcatraz_7_north": "dda_geo_institution_prison_alcatraz_7_north",
+    "prison_alcatraz_7_south": "dda_geo_institution_prison_alcatraz_7_south",
+    "prison_alcatraz_7_west": "dda_geo_institution_prison_alcatraz_7_west",
+    "prison_alcatraz_8": "dda_geo_institution_prison_alcatraz_8",
+    "prison_alcatraz_8_2f": "dda_geo_institution_prison_alcatraz_8_2f",
+    "prison_alcatraz_8_2f_east": "dda_geo_institution_prison_alcatraz_8_2f_east",
+    "prison_alcatraz_8_2f_north": "dda_geo_institution_prison_alcatraz_8_2f_north",
+    "prison_alcatraz_8_2f_south": "dda_geo_institution_prison_alcatraz_8_2f_south",
+    "prison_alcatraz_8_2f_west": "dda_geo_institution_prison_alcatraz_8_2f_west",
+    "prison_alcatraz_8_east": "dda_geo_institution_prison_alcatraz_8_east",
+    "prison_alcatraz_8_north": "dda_geo_institution_prison_alcatraz_8_north",
+    "prison_alcatraz_8_south": "dda_geo_institution_prison_alcatraz_8_south",
+    "prison_alcatraz_8_west": "dda_geo_institution_prison_alcatraz_8_west",
+    "prison_alcatraz_9": "dda_geo_institution_prison_alcatraz_9",
+    "prison_alcatraz_9_2f": "dda_geo_institution_prison_alcatraz_9_2f",
+    "prison_alcatraz_9_2f_east": "dda_geo_institution_prison_alcatraz_9_2f_east",
+    "prison_alcatraz_9_2f_north": "dda_geo_institution_prison_alcatraz_9_2f_north",
+    "prison_alcatraz_9_2f_south": "dda_geo_institution_prison_alcatraz_9_2f_south",
+    "prison_alcatraz_9_2f_west": "dda_geo_institution_prison_alcatraz_9_2f_west",
+    "prison_alcatraz_9_3f": "dda_geo_institution_prison_alcatraz_9_3f",
+    "prison_alcatraz_9_3f_east": "dda_geo_institution_prison_alcatraz_9_3f_east",
+    "prison_alcatraz_9_3f_north": "dda_geo_institution_prison_alcatraz_9_3f_north",
+    "prison_alcatraz_9_3f_south": "dda_geo_institution_prison_alcatraz_9_3f_south",
+    "prison_alcatraz_9_3f_west": "dda_geo_institution_prison_alcatraz_9_3f_west",
+    "prison_alcatraz_9_east": "dda_geo_institution_prison_alcatraz_9_east",
+    "prison_alcatraz_9_north": "dda_geo_institution_prison_alcatraz_9_north",
+    "prison_alcatraz_9_south": "dda_geo_institution_prison_alcatraz_9_south",
+    "prison_alcatraz_9_west": "dda_geo_institution_prison_alcatraz_9_west",
+    "refctr_S3e": "dda_geo_institution_refctr_S3e",
+    "refctr_S3e_east": "dda_geo_institution_refctr_S3e_east",
+    "refctr_S3e_north": "dda_geo_institution_refctr_S3e_north",
+    "refctr_S3e_south": "dda_geo_institution_refctr_S3e_south",
+    "refctr_S3e_west": "dda_geo_institution_refctr_S3e_west",
+    "refctr_fence_NE": "dda_geo_institution_refctr_fence_NE",
+    "refctr_fence_NE_east": "dda_geo_institution_refctr_fence_NE_east",
+    "refctr_fence_NE_north": "dda_geo_institution_refctr_fence_NE_north",
+    "refctr_fence_NE_south": "dda_geo_institution_refctr_fence_NE_south",
+    "refctr_fence_NE_west": "dda_geo_institution_refctr_fence_NE_west",
+    "refctr_fence_NW": "dda_geo_institution_refctr_fence_NW",
+    "refctr_fence_NW_east": "dda_geo_institution_refctr_fence_NW_east",
+    "refctr_fence_NW_north": "dda_geo_institution_refctr_fence_NW_north",
+    "refctr_fence_NW_south": "dda_geo_institution_refctr_fence_NW_south",
+    "refctr_fence_NW_west": "dda_geo_institution_refctr_fence_NW_west",
+    "refctr_fence_SE": "dda_geo_institution_refctr_fence_SE",
+    "refctr_fence_SE_east": "dda_geo_institution_refctr_fence_SE_east",
+    "refctr_fence_SE_north": "dda_geo_institution_refctr_fence_SE_north",
+    "refctr_fence_SE_south": "dda_geo_institution_refctr_fence_SE_south",
+    "refctr_fence_SE_west": "dda_geo_institution_refctr_fence_SE_west",
+    "refctr_fence_SW": "dda_geo_institution_refctr_fence_SW",
+    "refctr_fence_SW_east": "dda_geo_institution_refctr_fence_SW_east",
+    "refctr_fence_SW_north": "dda_geo_institution_refctr_fence_SW_north",
+    "refctr_fence_SW_south": "dda_geo_institution_refctr_fence_SW_south",
+    "refctr_fence_SW_west": "dda_geo_institution_refctr_fence_SW_west",
+    "refctr_fence_entrance_L": "dda_geo_institution_refctr_fence_entrance_L",
+    "refctr_fence_entrance_L_east": "dda_geo_institution_refctr_fence_entrance_L_east",
+    "refctr_fence_entrance_L_north": "dda_geo_institution_refctr_fence_entrance_L_north",
+    "refctr_fence_entrance_L_south": "dda_geo_institution_refctr_fence_entrance_L_south",
+    "refctr_fence_entrance_L_west": "dda_geo_institution_refctr_fence_entrance_L_west",
+    "refctr_fence_entrance_R": "dda_geo_institution_refctr_fence_entrance_R",
+    "refctr_fence_entrance_R_east": "dda_geo_institution_refctr_fence_entrance_R_east",
+    "refctr_fence_entrance_R_north": "dda_geo_institution_refctr_fence_entrance_R_north",
+    "refctr_fence_entrance_R_south": "dda_geo_institution_refctr_fence_entrance_R_south",
+    "refctr_fence_entrance_R_west": "dda_geo_institution_refctr_fence_entrance_R_west",
+    "refctr_fence_h": "dda_geo_institution_refctr_fence_h",
+    "refctr_fence_h_east": "dda_geo_institution_refctr_fence_h_east",
+    "refctr_fence_h_north": "dda_geo_institution_refctr_fence_h_north",
+    "refctr_fence_h_south": "dda_geo_institution_refctr_fence_h_south",
+    "refctr_fence_h_west": "dda_geo_institution_refctr_fence_h_west",
+    "refctr_fence_v": "dda_geo_institution_refctr_fence_v",
+    "refctr_fence_v_east": "dda_geo_institution_refctr_fence_v_east",
+    "refctr_fence_v_north": "dda_geo_institution_refctr_fence_v_north",
+    "refctr_fence_v_south": "dda_geo_institution_refctr_fence_v_south",
+    "refctr_fence_v_west": "dda_geo_institution_refctr_fence_v_west",
+    "refctr_field": "dda_geo_institution_refctr_field",
+    "refctr_field_east": "dda_geo_institution_refctr_field_east",
+    "refctr_field_north": "dda_geo_institution_refctr_field_north",
+    "refctr_field_south": "dda_geo_institution_refctr_field_south",
+    "refctr_field_west": "dda_geo_institution_refctr_field_west",
+    "refctr_road": "dda_geo_institution_refctr_road",
+    "refctr_road_east": "dda_geo_institution_refctr_road_east",
+    "refctr_road_north": "dda_geo_institution_refctr_road_north",
+    "refctr_road_south": "dda_geo_institution_refctr_road_south",
+    "refctr_road_west": "dda_geo_institution_refctr_road_west",
+    "urban_35_1": "dda_geo_institution_urban_35_1",
+    "urban_35_10": "dda_geo_institution_urban_35_10",
+    "urban_35_10_east": "dda_geo_institution_urban_35_10_east",
+    "urban_35_10_north": "dda_geo_institution_urban_35_10_north",
+    "urban_35_10_south": "dda_geo_institution_urban_35_10_south",
+    "urban_35_10_west": "dda_geo_institution_urban_35_10_west",
+    "urban_35_11": "dda_geo_institution_urban_35_11",
+    "urban_35_11_east": "dda_geo_institution_urban_35_11_east",
+    "urban_35_11_north": "dda_geo_institution_urban_35_11_north",
+    "urban_35_11_south": "dda_geo_institution_urban_35_11_south",
+    "urban_35_11_west": "dda_geo_institution_urban_35_11_west",
+    "urban_35_12": "dda_geo_institution_urban_35_12",
+    "urban_35_12_east": "dda_geo_institution_urban_35_12_east",
+    "urban_35_12_north": "dda_geo_institution_urban_35_12_north",
+    "urban_35_12_south": "dda_geo_institution_urban_35_12_south",
+    "urban_35_12_west": "dda_geo_institution_urban_35_12_west",
+    "urban_35_13": "dda_geo_institution_urban_35_13",
+    "urban_35_13_east": "dda_geo_institution_urban_35_13_east",
+    "urban_35_13_north": "dda_geo_institution_urban_35_13_north",
+    "urban_35_13_south": "dda_geo_institution_urban_35_13_south",
+    "urban_35_13_west": "dda_geo_institution_urban_35_13_west",
+    "urban_35_14": "dda_geo_institution_urban_35_14",
+    "urban_35_14_east": "dda_geo_institution_urban_35_14_east",
+    "urban_35_14_north": "dda_geo_institution_urban_35_14_north",
+    "urban_35_14_south": "dda_geo_institution_urban_35_14_south",
+    "urban_35_14_west": "dda_geo_institution_urban_35_14_west",
+    "urban_35_15": "dda_geo_institution_urban_35_15",
+    "urban_35_15_east": "dda_geo_institution_urban_35_15_east",
+    "urban_35_15_north": "dda_geo_institution_urban_35_15_north",
+    "urban_35_15_south": "dda_geo_institution_urban_35_15_south",
+    "urban_35_15_west": "dda_geo_institution_urban_35_15_west",
+    "urban_35_16": "dda_geo_institution_urban_35_16",
+    "urban_35_16_east": "dda_geo_institution_urban_35_16_east",
+    "urban_35_16_north": "dda_geo_institution_urban_35_16_north",
+    "urban_35_16_south": "dda_geo_institution_urban_35_16_south",
+    "urban_35_16_west": "dda_geo_institution_urban_35_16_west",
+    "urban_35_17": "dda_geo_institution_urban_35_17",
+    "urban_35_17_east": "dda_geo_institution_urban_35_17_east",
+    "urban_35_17_north": "dda_geo_institution_urban_35_17_north",
+    "urban_35_17_south": "dda_geo_institution_urban_35_17_south",
+    "urban_35_17_west": "dda_geo_institution_urban_35_17_west",
+    "urban_35_18": "dda_geo_institution_urban_35_18",
+    "urban_35_18_east": "dda_geo_institution_urban_35_18_east",
+    "urban_35_18_north": "dda_geo_institution_urban_35_18_north",
+    "urban_35_18_south": "dda_geo_institution_urban_35_18_south",
+    "urban_35_18_west": "dda_geo_institution_urban_35_18_west",
+    "urban_35_19": "dda_geo_institution_urban_35_19",
+    "urban_35_19_east": "dda_geo_institution_urban_35_19_east",
+    "urban_35_19_north": "dda_geo_institution_urban_35_19_north",
+    "urban_35_19_south": "dda_geo_institution_urban_35_19_south",
+    "urban_35_19_west": "dda_geo_institution_urban_35_19_west",
+    "urban_35_1_east": "dda_geo_institution_urban_35_1_east",
+    "urban_35_1_north": "dda_geo_institution_urban_35_1_north",
+    "urban_35_1_south": "dda_geo_institution_urban_35_1_south",
+    "urban_35_1_west": "dda_geo_institution_urban_35_1_west",
+    "urban_35_2": "dda_geo_institution_urban_35_2",
+    "urban_35_20": "dda_geo_institution_urban_35_20",
+    "urban_35_20_east": "dda_geo_institution_urban_35_20_east",
+    "urban_35_20_north": "dda_geo_institution_urban_35_20_north",
+    "urban_35_20_south": "dda_geo_institution_urban_35_20_south",
+    "urban_35_20_west": "dda_geo_institution_urban_35_20_west",
+    "urban_35_21": "dda_geo_institution_urban_35_21",
+    "urban_35_21_east": "dda_geo_institution_urban_35_21_east",
+    "urban_35_21_north": "dda_geo_institution_urban_35_21_north",
+    "urban_35_21_south": "dda_geo_institution_urban_35_21_south",
+    "urban_35_21_west": "dda_geo_institution_urban_35_21_west",
+    "urban_35_22": "dda_geo_institution_urban_35_22",
+    "urban_35_22_east": "dda_geo_institution_urban_35_22_east",
+    "urban_35_22_north": "dda_geo_institution_urban_35_22_north",
+    "urban_35_22_south": "dda_geo_institution_urban_35_22_south",
+    "urban_35_22_west": "dda_geo_institution_urban_35_22_west",
+    "urban_35_23": "dda_geo_institution_urban_35_23",
+    "urban_35_23_east": "dda_geo_institution_urban_35_23_east",
+    "urban_35_23_north": "dda_geo_institution_urban_35_23_north",
+    "urban_35_23_south": "dda_geo_institution_urban_35_23_south",
+    "urban_35_23_west": "dda_geo_institution_urban_35_23_west",
+    "urban_35_24": "dda_geo_institution_urban_35_24",
+    "urban_35_24_east": "dda_geo_institution_urban_35_24_east",
+    "urban_35_24_north": "dda_geo_institution_urban_35_24_north",
+    "urban_35_24_south": "dda_geo_institution_urban_35_24_south",
+    "urban_35_24_west": "dda_geo_institution_urban_35_24_west",
+    "urban_35_25": "dda_geo_institution_urban_35_25",
+    "urban_35_25_east": "dda_geo_institution_urban_35_25_east",
+    "urban_35_25_north": "dda_geo_institution_urban_35_25_north",
+    "urban_35_25_south": "dda_geo_institution_urban_35_25_south",
+    "urban_35_25_west": "dda_geo_institution_urban_35_25_west",
+    "urban_35_26": "dda_geo_institution_urban_35_26",
+    "urban_35_26_east": "dda_geo_institution_urban_35_26_east",
+    "urban_35_26_north": "dda_geo_institution_urban_35_26_north",
+    "urban_35_26_south": "dda_geo_institution_urban_35_26_south",
+    "urban_35_26_west": "dda_geo_institution_urban_35_26_west",
+    "urban_35_27": "dda_geo_institution_urban_35_27",
+    "urban_35_27_east": "dda_geo_institution_urban_35_27_east",
+    "urban_35_27_north": "dda_geo_institution_urban_35_27_north",
+    "urban_35_27_south": "dda_geo_institution_urban_35_27_south",
+    "urban_35_27_west": "dda_geo_institution_urban_35_27_west",
+    "urban_35_28": "dda_geo_institution_urban_35_28",
+    "urban_35_28_east": "dda_geo_institution_urban_35_28_east",
+    "urban_35_28_north": "dda_geo_institution_urban_35_28_north",
+    "urban_35_28_south": "dda_geo_institution_urban_35_28_south",
+    "urban_35_28_west": "dda_geo_institution_urban_35_28_west",
+    "urban_35_29": "dda_geo_institution_urban_35_29",
+    "urban_35_29_east": "dda_geo_institution_urban_35_29_east",
+    "urban_35_29_north": "dda_geo_institution_urban_35_29_north",
+    "urban_35_29_south": "dda_geo_institution_urban_35_29_south",
+    "urban_35_29_west": "dda_geo_institution_urban_35_29_west",
+    "urban_35_2_east": "dda_geo_institution_urban_35_2_east",
+    "urban_35_2_north": "dda_geo_institution_urban_35_2_north",
+    "urban_35_2_south": "dda_geo_institution_urban_35_2_south",
+    "urban_35_2_west": "dda_geo_institution_urban_35_2_west",
+    "urban_35_3": "dda_geo_institution_urban_35_3",
+    "urban_35_30": "dda_geo_institution_urban_35_30",
+    "urban_35_30_east": "dda_geo_institution_urban_35_30_east",
+    "urban_35_30_north": "dda_geo_institution_urban_35_30_north",
+    "urban_35_30_south": "dda_geo_institution_urban_35_30_south",
+    "urban_35_30_west": "dda_geo_institution_urban_35_30_west",
+    "urban_35_31": "dda_geo_institution_urban_35_31",
+    "urban_35_31_east": "dda_geo_institution_urban_35_31_east",
+    "urban_35_31_north": "dda_geo_institution_urban_35_31_north",
+    "urban_35_31_south": "dda_geo_institution_urban_35_31_south",
+    "urban_35_31_west": "dda_geo_institution_urban_35_31_west",
+    "urban_35_32": "dda_geo_institution_urban_35_32",
+    "urban_35_32_east": "dda_geo_institution_urban_35_32_east",
+    "urban_35_32_north": "dda_geo_institution_urban_35_32_north",
+    "urban_35_32_south": "dda_geo_institution_urban_35_32_south",
+    "urban_35_32_west": "dda_geo_institution_urban_35_32_west",
+    "urban_35_33": "dda_geo_institution_urban_35_33",
+    "urban_35_33_east": "dda_geo_institution_urban_35_33_east",
+    "urban_35_33_north": "dda_geo_institution_urban_35_33_north",
+    "urban_35_33_south": "dda_geo_institution_urban_35_33_south",
+    "urban_35_33_west": "dda_geo_institution_urban_35_33_west",
+    "urban_35_34": "dda_geo_institution_urban_35_34",
+    "urban_35_34_east": "dda_geo_institution_urban_35_34_east",
+    "urban_35_34_north": "dda_geo_institution_urban_35_34_north",
+    "urban_35_34_south": "dda_geo_institution_urban_35_34_south",
+    "urban_35_34_west": "dda_geo_institution_urban_35_34_west",
+    "urban_35_35": "dda_geo_institution_urban_35_35",
+    "urban_35_35_east": "dda_geo_institution_urban_35_35_east",
+    "urban_35_35_north": "dda_geo_institution_urban_35_35_north",
+    "urban_35_35_south": "dda_geo_institution_urban_35_35_south",
+    "urban_35_35_west": "dda_geo_institution_urban_35_35_west",
+    "urban_35_3_east": "dda_geo_institution_urban_35_3_east",
+    "urban_35_3_north": "dda_geo_institution_urban_35_3_north",
+    "urban_35_3_south": "dda_geo_institution_urban_35_3_south",
+    "urban_35_3_west": "dda_geo_institution_urban_35_3_west",
+    "urban_35_4": "dda_geo_institution_urban_35_4",
+    "urban_35_4_east": "dda_geo_institution_urban_35_4_east",
+    "urban_35_4_north": "dda_geo_institution_urban_35_4_north",
+    "urban_35_4_south": "dda_geo_institution_urban_35_4_south",
+    "urban_35_4_west": "dda_geo_institution_urban_35_4_west",
+    "urban_35_5": "dda_geo_institution_urban_35_5",
+    "urban_35_5_east": "dda_geo_institution_urban_35_5_east",
+    "urban_35_5_north": "dda_geo_institution_urban_35_5_north",
+    "urban_35_5_south": "dda_geo_institution_urban_35_5_south",
+    "urban_35_5_west": "dda_geo_institution_urban_35_5_west",
+    "urban_35_6": "dda_geo_institution_urban_35_6",
+    "urban_35_6_east": "dda_geo_institution_urban_35_6_east",
+    "urban_35_6_north": "dda_geo_institution_urban_35_6_north",
+    "urban_35_6_south": "dda_geo_institution_urban_35_6_south",
+    "urban_35_6_west": "dda_geo_institution_urban_35_6_west",
+    "urban_35_7": "dda_geo_institution_urban_35_7",
+    "urban_35_7_east": "dda_geo_institution_urban_35_7_east",
+    "urban_35_7_north": "dda_geo_institution_urban_35_7_north",
+    "urban_35_7_south": "dda_geo_institution_urban_35_7_south",
+    "urban_35_7_west": "dda_geo_institution_urban_35_7_west",
+    "urban_35_8": "dda_geo_institution_urban_35_8",
+    "urban_35_8_east": "dda_geo_institution_urban_35_8_east",
+    "urban_35_8_north": "dda_geo_institution_urban_35_8_north",
+    "urban_35_8_south": "dda_geo_institution_urban_35_8_south",
+    "urban_35_8_west": "dda_geo_institution_urban_35_8_west",
+    "urban_35_9": "dda_geo_institution_urban_35_9",
+    "urban_35_9_east": "dda_geo_institution_urban_35_9_east",
+    "urban_35_9_north": "dda_geo_institution_urban_35_9_north",
+    "urban_35_9_south": "dda_geo_institution_urban_35_9_south",
+    "urban_35_9_west": "dda_geo_institution_urban_35_9_west",
+    "urban_35_hospital": "dda_geo_institution_urban_35_hospital"
+  },
+  "deferred_registration_fields": [],
+  "external_source_omt": [
+    "empty_rock",
+    "lake_surface",
+    "solid_earth",
+    "special_deep_rock",
+    "special_earth",
+    "special_rock"
+  ],
+  "geometry_issues": [],
+  "unresolved_typed_refs": [
+    [
+      "overmap_terrain",
+      "solid_earth"
+    ],
+    [
+      "overmap_terrain",
+      "special_deep_rock"
+    ],
+    [
+      "overmap_terrain",
+      "special_earth"
+    ],
+    [
+      "overmap_terrain",
+      "special_rock"
+    ],
+    [
+      "overmap_terrain_abstract",
+      "road_abstract"
+    ],
+    [
+      "terrain",
+      "t_puddle"
+    ]
+  ],
+  "reused_sources": [
+    {
+      "archive": "urban_sources",
+      "path": "data/json/mapgen_palettes/common_parameters.json",
+      "sha256": "abb3e250be1920840155264e84890f3c4aa12e9ec169f2e535add993905137e6"
+    },
+    {
+      "archive": "urban_sources",
+      "path": "data/json/mapgen_palettes/house_general_palette.json",
+      "sha256": "a352160e785435f7bee5c59fb901f9e98bad5d456205d6bbaeb494774b75a423"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen/nested/aux_nested.json",
+      "sha256": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen/nested/shelter_nested.json",
+      "sha256": "43c3671d16dd354acbf2c0f67c95deecd79bf59249db3e0d9cbf3f362406e5fe"
+    },
+    {
+      "archive": "frontier_adaptation_sources",
+      "path": "bn/data/json/furniture_and_terrain/terrain-mechanisms.json",
+      "sha256": "0730b558a877b87f534d281c9ab7ab8350722cb0e8d46bf561e3689e56b37aa7"
+    },
+    {
+      "archive": "frontier_adaptation_sources",
+      "path": "dda/data/json/furniture_and_terrain/terrain-mechanisms.json",
+      "sha256": "fdecf757032145ccb8ee240b0b25e4adb5cbbd1b36dacc11da3397ed562332bd"
+    },
+    {
+      "archive": "island_prison/upstream",
+      "path": "data/json/mapgen/prison/prison_alcatraz.json",
+      "sha256": "b7b18ff92107ddea08b470176d0e3d6640e4c28bf721dd18e7c17cee59f9a23b"
+    },
+    {
+      "archive": "island_prison/upstream",
+      "path": "data/json/mapgen_palettes/prison.json",
+      "sha256": "90fcf33321da55df0dfce6e2137347b8ab250c9c32e76e9541e7620e2a3f8d21"
+    }
+  ],
+  "limits": [
+    "Staged only; physical adaptation, native fixtures and Windows generation pending; no progress credit",
+    "Full source and deferred later layers retained",
+    "Full source registrations include unadapted lake/rock/earth context; validate every floor before embedding",
+    "Natural occurrence disabled"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "files": {
+    "data/json/mapgen/urban_35_hospital.json": {
+      "blob_sha": "4aad49e97aa4e15d072b28c0ee025e40d195ef9e",
+      "bytes": 50768,
+      "sha256": "d475a62c2b94f8951e21f03ce1da35ffb1444ba42e62c127125335f5207d300c"
+    },
+    "data/json/mapgen/refugee_center/rc_grounds.json": {
+      "blob_sha": "9fc93d192b4b48bd1a933ba0da38bace5350ac66",
+      "bytes": 9637,
+      "sha256": "09256a345c775b2dea61f810461ecd2c12aa1c5bf46fc8acad813878b18c7280"
+    },
+    "data/json/mapgen/refugee_center/refugee_center.json": {
+      "blob_sha": "51f43e4fa314f8648d4e038a0a19416fbb2956a5",
+      "bytes": 33152,
+      "sha256": "8bb20ce0a4065042590c1eff058f1e2752498c68e552c287b322d880ad6715e9"
+    },
+    "data/json/mapgen/refugee_center/z1_refugee_center.json": {
+      "blob_sha": "f1c7d94c6d5257670502a818ea06520213a005de",
+      "bytes": 6882,
+      "sha256": "52e6f72e9189bc2950be63e57788c7264efe68f5403e88f4af9601d561d4fde9"
+    },
+    "data/json/mapgen/refugee_center/z2_refugee_center.json": {
+      "blob_sha": "f2dd16703e61e89e0b2a076ac05b4c2cc0d1cff1",
+      "bytes": 2255,
+      "sha256": "c75749185b84aa23ec98bb5854eb667d7af54abe62310ab45e23653241bd3985"
+    },
+    "data/json/mapgen_palettes/hospital.json": {
+      "blob_sha": "bd4a3169f6472e0157c68e45dd9334849a8f91ac",
+      "bytes": 8072,
+      "sha256": "ff2b67c4b017d1b14ac7cde47b1fcef9f159b9bae891da4537b2bbd022da8999"
+    },
+    "data/json/mapgen_palettes/refugee_center.json": {
+      "blob_sha": "66a04f1b39068f28451ce8ce9abe81591b983037",
+      "bytes": 2743,
+      "sha256": "ff93fe7c57cf4e6bc1b68271c59cecc9233395dd61a2a54c2f6198b686e25c3f"
+    },
+    "data/json/mapgen/hospital.json": {
+      "bytes": 17678,
+      "blob_sha": "d6bf733243edd5842004ba742b59b078446a8b8f",
+      "sha256": "a4d106d195d3dd3c6c610e4b800fbd2b94c401d29731ffa0211f933bc1633d92"
+    }
+  }
+}

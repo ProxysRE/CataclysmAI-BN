@@ -1,0 +1,21 @@
+name: Check three DDA institution geometry groups
+on:
+  push:
+    paths:
+      - 'npc-content/prepare_institution_sites_geometry.py'
+      - 'npc-content/check_institution_sites_geometry.py'
+      - 'npc-content/geometry_layer/INSTITUTION_SITES_*'
+      - 'npc-content/geometry_layer/institution_sources/**'
+      - '.github/workflows/check-dda-institution-geometry.yml'
+  workflow_dispatch:
+jobs:
+  geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/check_institution_sites_geometry.py
+      - run: python npc-content/report_geometry_progress.py --check
+      - run: python npc-content/check_validated_checkpoint.py

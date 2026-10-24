@@ -1,7 +1,7 @@
 {
   "checkpoint": {
-    "head": "a42af4b624b2c1269369185d07d9580a0935d792",
-    "run_id": 40084713623,
+    "head": "e5359e8f098757af2ebf379bfccceb5c081cbb26",
+    "run_id": 40114771164,
     "status": "success",
     "test_cases": 73,
     "assertions": 11030,
@@ -11,12 +11,12 @@
     "installed_data_assertions": 11030,
     "installed_mod_test_cases": 10,
     "installed_mod_assertions": 2224,
-    "geometry_test_cases": 52,
-    "geometry_assertions": 1662706,
-    "installed_geometry_test_cases": 52,
-    "installed_geometry_assertions": 1662706
+    "geometry_test_cases": 59,
+    "geometry_assertions": 1940916,
+    "installed_geometry_test_cases": 59,
+    "installed_geometry_assertions": 1940916
   },
-  "native_patch_sha256": "a06cf97561f01311620ae4aafd122749b0d0c61c768df3eac4c89a2bbb852b9a",
+  "native_patch_sha256": "edcc28c13f9df975f8d1a95fbfec45708347ebde40077a1ef6f9c93b808904a6",
   "native_community_sha256": "1fb5797dca6efb385726ac8c089f7eb37be46f3029b2e16028970d634e54a706",
   "passed": [
     "Actual community data load without startup failure",
@@ -40,7 +40,8 @@
     "Complete eldercare site generation and all three specials in four rotations with optional mods",
     "Installed portable data repeated both native suites successfully",
     "Intact and ruined forest camps, source-painted forest masks, 75 roof tiles and 90 deterministic structural expectations",
-    "Seven city sites in eight coherent layouts, thirteen vertical access columns, 242 fixed geometry points and 73 native terrain-transform input probes"
+    "Seven city sites in eight coherent layouts, thirteen vertical access columns, 242 fixed geometry points and 73 native terrain-transform input probes",
+    "Seven civic layouts across five accepted groups: 239 placements, 2404 fixed expectations, fifty vertical links and the exact zoo stone-wall roof"
   ],
   "not_certified": [
     "Complete quest walkthrough and turn-in sequence",
@@ -48,9 +49,9 @@
     "Save/load over the complete quest chain"
   ],
   "release_ready": false,
-  "note": "All seven city sites passed clean source and installed suites after the Anduril JSON fix. Five additional civic groups are embedded in a separate pending 59-case Windows candidate; full traversal and later layers remain separate.",
+  "note": "All five civic groups passed clean source and installed Windows generation after restoring BN null dummy slots and correcting automatic-roof expectations. Full player traversal, natural placement and later layers remain separate.",
   "portable_package": {
-    "run_id": 40084713623,
+    "run_id": 40114771164,
     "installed_tests": {
       "cases": 73,
       "assertions": 11030
@@ -59,14 +60,14 @@
       "cases": 10,
       "assertions": 2224
     },
-    "artifact_id": 12557873347,
-    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40084713623/artifacts/12557873347",
+    "artifact_id": 12570841545,
+    "artifact_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40114771164/artifacts/12570841545",
     "installed_geometry_tests": {
-      "cases": 52,
-      "assertions": 1662706
+      "cases": 59,
+      "assertions": 1940916
     },
-    "size": 205744226,
-    "digest": "sha256:0e74707504eda6b44cad3b392217741109d72082ad4d488a164e395016678c8b"
+    "size": 205759078,
+    "digest": "sha256:abbfc870d85a124ba996165ec399e55792cb60f1486d64e4a2b5921dd9bf2e24"
   },
   "geometry_preview": {
     "mod": "dda_geometry_preview",
@@ -86,10 +87,11 @@
       "apartment",
       "survivor",
       "camp",
-      "city_additions"
+      "city_additions",
+      "civic_sites"
     ],
-    "source_and_installed": "All 52 geometry cases passed without initialization errors: 51 layouts plus one transform case",
-    "placed_cells": 1598,
+    "source_and_installed": "All 59 geometry cases passed without initialization errors: 58 layouts plus one transform case",
+    "placed_cells": 1837,
     "hub_navigation_points": 238,
     "limits": [
       "No full character traversal or real elevator travel acceptance claim",
@@ -100,7 +102,7 @@
     "raider_navigation_and_terrain_expectations": 841,
     "urban_navigation_and_marking_expectations": 120,
     "waterside_navigation_and_terrain_expectations": 148,
-    "source_special_placements": 1592,
+    "source_special_placements": 1831,
     "additional_helicopter_context_cells": 4,
     "apartment_navigation_and_conditional_expectations": 284,
     "large_site_navigation_and_terrain_expectations": 671,
@@ -110,20 +112,24 @@
     "additional_derived_camp_roof_cells": 1,
     "city_geometry_expectations": 242,
     "city_vertical_access_columns": 13,
-    "city_transform_input_probes": 73
+    "city_transform_input_probes": 73,
+    "civic_fixed_geometry_expectations": 2404,
+    "civic_vertical_links": 50,
+    "civic_exact_roof_projections": 1,
+    "civic_variable_air_exclusions": 41
   },
   "native_evidence": {
-    "job_id": 120845198159,
-    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40084713623/job/120845198159",
+    "job_id": 120933709477,
+    "job_url": "https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40114771164/job/120933709477",
     "source_suite_results": [
       "73 cases /11030 assertions",
       "10 cases /2224 assertions",
-      "52 cases /1662706 assertions"
+      "59 cases /1940916 assertions"
     ],
     "installed_suite_results": [
       "73 cases /11030 assertions",
       "10 cases /2224 assertions",
-      "52 cases /1662706 assertions"
+      "59 cases /1940916 assertions"
     ],
     "portable_upload": "success"
   }

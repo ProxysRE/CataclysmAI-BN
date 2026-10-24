@@ -313,3 +313,15 @@ Pinned BN setup explicitly erases its null dummy mapgen before consistency check
 Run 40105621134 compiled, passed both source dialogue suites and loaded the geometry preview without errors. One assertion remained in the zoo: OMT(3,3), tile(0,6), z=1. Pinned BN t_rock_wall below has roof=t_flat_roof; the authenticated mapbuffer post-pass replaces source t_open_air with that exact roof. The fixture now predicts t_flat_roof instead of excluding this fixed structural point.
 
 Archived complete pinned BN mapbuffer.cpp with its upstream Git blob SHA and SHA256. Fixture generation verifies the air-only post-pass and the existing authenticated wall definition. A negative probe rejects the old air expectation. All 2404 points, fifty fixed vertical links, 59 native cases and full per-tile non-null/empty-loot checks remain. No map geometry changes. Repeat source and installed Windows validation is required; accepted scope remains 34/51 (66.7%).
+
+## Successful five-group civic Windows checkpoint (2026-10-24)
+
+Run 40114771164 on e5359e8 passed compilation and all six suites: source core 73/11,030, optional mods 10/2,224 and geometry 59/1,940,916, repeated on installed data. All seven civic layouts, 239 placements, 2404 fixed points, fifty vertical links and the exact stone-wall roof passed. The five groups now receive geometry-generation credit: 39/51 = 76.5%. Full traversal, natural city placement and later-layer interactions remain separate.
+
+Verified portable artifact 12570841545: 205759078 bytes, sha256:abbfc870d85a124ba996165ec399e55792cb60f1486d64e4a2b5921dd9bf2e24. All 58 layouts /1837 fixture placements plus the 73-input transform case are certified within that isolated generation scope. The complete current patch matches this successful run.
+
+## Three large institution groups staged together (2026-10-24)
+
+Prepared Alcatraz (131 placements, z=-5..2), the expanded refugee center (433, z=-4..2) and the high-rise hospital (35, z=-1..7): all 599 source placements and thirty world-map definitions. Source rows, dimensions, weights, southern hospital orientation, context cells and connection constraints are retained. Eight new complete pinned source files supplement the already authenticated Alcatraz/prison archive and shared palettes. The full item-only bodybag nest and source 70/30 distribution remain archived; refugee camp registration/name are deferred explicitly while source coordinates stay unchanged.
+
+Six typed dependencies remain explicit: solid_earth, special_earth, special_rock, special_deep_rock, road_abstract and t_puddle. In particular, finite puddle water and temperature must not silently become an infinite source; DDA temperature mechanics remain excluded. No context cells are removed merely to close references. Dedicated reproducibility/source-conservation checks pass with differing hash seeds; all native files and the successful 59-case patch remain byte-identical. This stage takes no additional group credit. Physical closure, oriented navigation fixtures and clean source/installed Windows validation are next.
