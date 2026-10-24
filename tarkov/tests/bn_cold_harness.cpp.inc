@@ -190,6 +190,10 @@ TEST_CASE("tarkov cold writer saves a live raid", "[tarkov_cold_write]") {
     trkv_cold_check_npcs(data, false);
     data["stage"] = "cold_npc_saved";
     run_lua_test_script(lua, "trkv_integration_test.lua");
+    if (encounter == "patrol") {
+        data["stage"] = "cold_ai_checkpoint";
+        run_lua_test_script(lua, "trkv_integration_test.lua");
+    }
     REQUIRE(g->save(false));
     trkv_cold_manifest();
     // No dimension cleanup: the next OS process must load these saved spaces.
@@ -244,6 +248,21 @@ TEST_CASE("tarkov cold reader loads a closed world's save", "[tarkov_cold_read]"
         data["stage"] = "cold_npc_restored";
         run_lua_test_script(lua, "trkv_integration_test.lua");
         trkv_cold_check_npcs(data, true);
+        data["stage"] = "cold_ai_resumed";
+        run_lua_test_script(lua, "trkv_integration_test.lua");
+        if (data["cold_encounter"].get<std::string>() == "patrol") {
+            const sol::table ids = data["cold_npc_ids"];
+            auto* actor = g->find_npc(character_id(ids[1].get<int>()));
+            REQUIRE(actor != nullptr);
+            set_time(calendar::turn + 31_turns);
+            actor->set_moves(1000);
+            actor->move();
+            CHECK(actor->get_moves() < 1000);
+            CHECK(actor->abs_pos() == tripoint_abs_ms(398, 401, 0));
+            CHECK(actor->primary_weapon().ammo_remaining() == 11);
+            data["stage"] = "cold_ai_expired";
+            run_lua_test_script(lua, "trkv_integration_test.lua");
+        }
     }
     std::fprintf(stderr, "Tarkov cold: first tick completed, checking equipment\n");
     bool found = false;

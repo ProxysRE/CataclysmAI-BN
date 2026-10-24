@@ -9,6 +9,29 @@ local state = root.raid
 local player = gapi.get_avatar()
 local payload = ItypeId.new("trkv_test_payload")
 
+
+-- Test-only controller checkpoint: seeded plain records, not a claim that this
+-- patrol actor observed or selected a combat position in the writer process.
+local function copy_plain(value)
+  if type(value) ~= "table" then return value end
+  local result = {}; for k, v in pairs(value) do result[k] = copy_plain(v) end
+  return result
+end
+local function assert_equal_plain(a, b)
+  assert(type(a) == type(b), "Cold AI state changed type")
+  if type(a) ~= "table" then assert(a == b, "Cold AI state changed value"); return end
+  for k, v in pairs(a) do assert_equal_plain(v, b[k]) end
+  for k in pairs(b) do assert(a[k] ~= nil, "Cold AI state gained a field") end
+end
+local function cold_ai_member()
+  return assert(root.participants.actors[string.format("%d", root.cold_expected.npc_ids[1])])
+end
+local function check_cold_ai()
+  if not root.cold_expected.ai then return end
+  local member = cold_ai_member()
+  for name, expected in pairs(root.cold_expected.ai) do assert_equal_plain(expected, member[name]) end
+end
+
 ---@param x integer
 ---@param y integer
 local function local_pos(x, y, z)
@@ -223,7 +246,72 @@ elseif test_data.stage == "cold_npc_saved" then
   end
   -- Persist a replay checkpoint, including the ready slot of a dead actor.
   state.encounter_deployed = false
+elseif test_data.stage == "cold_ai_checkpoint" then
+  assert(root.cold_expected.encounter == "patrol")
+  local member, now = cold_ai_member(), api.now()
+  local ctx = { phase = "active", at_raid = true, sequence = state.sequence, dimension = api.raid_id }
+  local goal = { x = 398, y = 400, z = 0 }
+  member.perception = {}
+  package.loaded.trkv_perception.update(member.perception, ctx, now,
+    { position = goal }, 30)
+  package.loaded.trkv_perception.update(member.perception, ctx, now, nil, 30)
+  member.search = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+    observed = true, status = "searching", goal = { position = copy_plain(goal),
+      seen_at = now, deadline = now + 30, attempts = 2, stalled = 0 } }
+  member.hearing = {}
+  package.loaded.trkv_hearing.update(member.hearing, ctx, now,
+    string.format("%s|%d|402|402|0|combat", api.raid_id, now))
+  assert(member.hearing.contact)
+  member.hearing.entry = { x = 400, y = 400, z = 0 }
+  member.hearing.search = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+    observed = true, status = "searching", goal = { position = { x = 402, y = 402, z = 0 },
+      seen_at = now, deadline = now + 20, attempts = 3, stalled = 1 } }
+  member.combat = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+    last_now = now, cooldown_until = now + 12, status = "standoff",
+    goal = { position = copy_plain(goal), target = { x = 402, y = 390, z = 0 },
+      started_at = now, deadline = now + 8, attempts = 1, stalled = 0 } }
+  member.decisions = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+    last_now = now, action = "visual_search", reason = "searching", handled = true,
+    hearing_input = "new_region", refusals = { combat = "lost_contact" }, history = {} }
+  for i = 1, 8 do
+    member.decisions.history[i] = { at = now - 8 + i, last_at = now - 8 + i,
+      action = i == 8 and "visual_search" or "wait", reason = i == 8 and "searching" or "wait_no_route",
+      source = "visual_memory", repeats = i == 8 and 7 or 1 }
+  end
+  root.cold_expected.ai = {}
+  for _, name in ipairs({ "perception", "search", "hearing", "combat", "decisions" }) do
+    root.cold_expected.ai[name] = copy_plain(member[name])
+  end
+elseif test_data.stage == "cold_ai_resumed" then
+  if root.cold_expected.ai then
+    local member, expected = cold_ai_member(), root.cold_expected.ai
+    assert(member.perception.status == "remembered" and member.perception.observed)
+    assert(member.perception.contact.seen_at == expected.perception.contact.seen_at)
+    assert(member.perception.contact.expires_at == expected.perception.contact.expires_at)
+    assert(member.search.goal.attempts == 3 and member.search.goal.stalled == 0)
+    assert(member.search.goal.deadline == expected.search.goal.deadline)
+    assert(member.search.goal.position.x == 398 and member.search.goal.position.y == 400)
+    assert(member.combat.goal == nil) -- remembered contact cannot continue a firing maneuver
+    assert(member.combat.status == "disabled" or member.combat.status == "lost_contact")
+    assert(member.decisions.action == "visual_search" and member.decisions.reason == "searching")
+    assert(#member.decisions.history == 8 and member.decisions.history[8].repeats == 8)
+    assert_equal_plain(expected.hearing.contact, member.hearing.contact)
+    assert_equal_plain(expected.hearing.search, member.hearing.search)
+    assert_equal_plain(expected.hearing.entry, member.hearing.entry)
+  end
+elseif test_data.stage == "cold_ai_expired" then
+  local member, expected = cold_ai_member(), assert(root.cold_expected.ai)
+  assert(member.perception.observed and member.perception.status == "none" and member.perception.contact == nil)
+  assert(member.search.status == "expired" and member.search.goal.attempts == 3)
+  assert(member.search.goal.deadline == expected.search.goal.deadline)
+  assert(member.hearing.contact == nil and member.hearing.status == "none")
+  assert(member.hearing.search.status == "expired" and member.hearing.search.goal.attempts == 3)
+  assert(member.hearing.search.goal.deadline == expected.hearing.search.goal.deadline)
+  assert(member.hearing.last_event == expected.hearing.last_event)
+  assert(member.combat.goal == nil and member.decisions.action == "patrol" and member.decisions.handled)
+  assert(#member.decisions.history <= 8)
 elseif test_data.stage == "cold_npc_restored" then
+  check_cold_ai()
   assert(state.encounter_deployed and #gapi.get_all_npcs() == 2)
   for i, id in ipairs(root.cold_expected.npc_ids) do
     local varied = root.cold_expected.encounter == "varied"
@@ -237,6 +325,7 @@ elseif test_data.stage == "cold_npc_restored" then
     end
   end
 elseif test_data.stage == "cold_read_active_loaded" then
+  check_cold_ai()
   assert(api.at_raid() and state.phase == "active")
   assert(state.deadline == root.cold_expected.deadline and state.sequence == root.cold_expected.sequence)
   assert(state.wins == 0 and state.losses == 0)
@@ -269,6 +358,9 @@ elseif test_data.stage == "cold_read_cleanup" then
   for i = 1, 3 do
     local new_id = root.participants.slots[(root.cold_expected.encounter == "varied" and "hostile_" or "patrol_") .. i].id
     for _, old_id in ipairs(root.cold_expected.npc_ids) do assert(new_id ~= old_id) end
+    local fresh = root.participants.actors[string.format("%d", new_id)]
+    assert(fresh.perception == nil and fresh.search == nil and fresh.hearing == nil)
+    assert(fresh.combat == nil and fresh.decisions == nil)
   end
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload()
