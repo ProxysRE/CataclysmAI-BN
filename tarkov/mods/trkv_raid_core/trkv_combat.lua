@@ -7,13 +7,27 @@ local function distance(a, b)
   return math.max(math.abs(a.x - b.x), math.abs(a.y - b.y))
 end
 
+function combat.cancel(state, reason)
+  state.goal, state.cooldown_until, state.last_now = nil, nil, nil
+  state.status = reason
+  return false, reason
+end
+
 function combat.step(state, context, memory, now, api)
-  if context.phase ~= "active" or not context.at_raid then return false, "inactive" end
+  if context.phase ~= "active" or not context.at_raid then
+    return combat.cancel(state, "inactive")
+  end
   if state.schema ~= nil and state.schema ~= 1 then error("Unsupported combat schema") end
   if state.sequence ~= context.sequence or state.dimension ~= context.dimension then
-    state.goal, state.cooldown_until = nil, 0
+    state.goal, state.cooldown_until, state.last_now = nil, 0, nil
   end
   state.schema, state.sequence, state.dimension = 1, context.sequence, context.dimension
+  if state.last_now and now < state.last_now then
+    combat.cancel(state, "clock_reset")
+    state.last_now, state.cooldown_until = now, now + 12
+    return false, state.status
+  end
+  state.last_now = now
   local contact = memory.contact
   if memory.status ~= "visible" or not contact or memory.sequence ~= context.sequence or
       memory.dimension ~= context.dimension then
@@ -55,7 +69,10 @@ end
 
 function combat.step_actor(member, context, actor, map, now)
   local preset = member.loadout and loadouts.describe(member.loadout)
-  if not preset or preset.profile ~= "rifle_trained_v1" then return false, "disabled" end
+  if not preset or preset.profile ~= "rifle_trained_v1" then
+    if member.combat then return combat.cancel(member.combat, "disabled") end
+    return false, "disabled"
+  end
   member.combat = member.combat or {}
   local function absolute(p) return TripointAbsMs.new(p.x, p.y, p.z) end
   return combat.step(member.combat, context, member.perception, now, {

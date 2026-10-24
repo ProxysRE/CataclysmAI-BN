@@ -8,7 +8,10 @@ local decision = {}
 
 function decision.step_actor(member, context, actor, map, now)
   if context.phase ~= "active" or not context.at_raid or
-      member.patrol.sequence ~= context.sequence then return false, "inactive" end
+      member.patrol.sequence ~= context.sequence then
+    if member.combat then combat.cancel(member.combat, "inactive") end
+    return false, "inactive"
+  end
   member.perception, member.search = member.perception or {}, member.search or {}
   perception.observe_actor(member.perception, context, actor, now, 30)
   member.hearing = member.hearing or {}

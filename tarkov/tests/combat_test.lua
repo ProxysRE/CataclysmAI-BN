@@ -56,3 +56,47 @@ assert(not combat.step(state, ctx, memory, 170, api))
 -- The pilot is enabled only for controlled trained rifle presets.
 assert(not combat.step_actor({ loadout = "rifle_recruit_field_v1" }, ctx, {}, {}, 170))
 print("PASS persistent combat intention, reload copy, arrival handoff, cooldown, stalled/expired/invalid/lost-target cancellation")
+
+-- A saved cooldown belongs to its clock and cannot freeze AI after a rollback.
+ctx.phase, ctx.sequence = "active", 1
+memory.sequence, memory.contact.position.x = 1, 0
+position.x, blocked = 2, false
+state = {}
+assert(combat.step(state, ctx, memory, 1000, api))
+state = copy(state)
+local before_reset = moves
+ok, reason = combat.step(state, ctx, memory, 10, api)
+assert(not ok and reason == "clock_reset" and state.goal == nil)
+assert(state.cooldown_until == 22 and moves == before_reset)
+assert(not combat.step(state, ctx, memory, 21, api))
+position.x = 2
+assert(combat.step(state, ctx, memory, 22, api))
+-- Cancellation must happen before any engine adapter is used.
+ctx.phase = "cleanup"
+ok, reason = combat.step(state, ctx, memory, 23, {})
+assert(not ok and reason == "inactive" and state.goal == nil and state.cooldown_until == nil)
+ctx.phase = "active"; position.x = 2
+assert(combat.step(state, ctx, memory, 24, api))
+local member = { loadout = "rifle_recruit_field_v1", combat = state }
+ok, reason = combat.step_actor(member, ctx, {}, {}, 25)
+assert(not ok and reason == "disabled" and state.goal == nil and state.last_now == nil)
+-- Changing raid identity clears the previous clock as well as its goal.
+state = { schema = 1, sequence = 0, dimension = "old", last_now = 9999, cooldown_until = 9999 }
+position.x = 2
+assert(combat.step(state, ctx, memory, 30, api) and state.goal.started_at == 30)
+print("PASS combat cancellation on inactive/profile change, clock rollback cooldown recovery and raid identity reset")
+
+-- The dispatcher has its own early exit; it must not bypass cancellation.
+local saved_modules = {}
+local module_names = { "trkv_perception", "trkv_search", "trkv_hearing", "trkv_patrol", "trkv_combat" }
+for _, name in ipairs(module_names) do
+  saved_modules[name] = package.loaded[name]
+  package.loaded[name] = name == "trkv_combat" and combat or {}
+end
+local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
+local inactive_member = { patrol = { sequence = 1 }, combat = state }
+ctx.phase = "cleanup"
+ok, reason = decision.step_actor(inactive_member, ctx, {}, {}, 31)
+assert(not ok and reason == "inactive" and state.goal == nil and state.cooldown_until == nil)
+for _, name in ipairs(module_names) do package.loaded[name] = saved_modules[name] end
+print("PASS dispatcher inactive exit cancels a pending combat maneuver without engine calls")
