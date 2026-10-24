@@ -1,0 +1,8423 @@
+[
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_1_3",
+          "hotel_tower_1_2",
+          "hotel_tower_1_1"
+        ],
+        [
+          "hotel_tower_1_6",
+          "hotel_tower_1_5",
+          "hotel_tower_1_4"
+        ],
+        [
+          "hotel_tower_1_9",
+          "hotel_tower_1_8",
+          "hotel_tower_1_7"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        },
+        "S": {
+          "item": "towel",
+          "chance": 3,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            31,
+            47
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            48,
+            69
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            48,
+            70
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            48,
+            69
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        }
+      ],
+      "place_vehicles": [
+        {
+          "vehicle": "luggage_cart",
+          "x": [
+            34,
+            38
+          ],
+          "y": [
+            35,
+            45
+          ],
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_flr2_1_6",
+          "hotel_tower_flr2_1_5",
+          "hotel_tower_flr2_1_4"
+        ],
+        [
+          "hotel_tower_flr2_1_9",
+          "hotel_tower_flr2_1_8",
+          "hotel_tower_flr2_1_7"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        },
+        "S": {
+          "item": "towel",
+          "chance": 3,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            24,
+            45
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            27,
+            46
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            24,
+            45
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_flr3_1_6",
+          "hotel_tower_flr3_1_5",
+          "hotel_tower_flr3_1_4"
+        ],
+        [
+          "hotel_tower_flr3_1_9",
+          "hotel_tower_flr3_1_8",
+          "hotel_tower_flr3_1_7"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        },
+        "S": {
+          "item": "towel",
+          "chance": 3,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            24,
+            45
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            27,
+            46
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            24,
+            45
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_flr4_1_6",
+          "hotel_tower_flr4_1_5",
+          "hotel_tower_flr4_1_4"
+        ],
+        [
+          "hotel_tower_flr4_1_9",
+          "hotel_tower_flr4_1_8",
+          "hotel_tower_flr4_1_7"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        },
+        "S": {
+          "item": "towel",
+          "chance": 3,
+          "amount": [
+            1,
+            2
+          ]
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            21,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            24,
+            45
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            27,
+            46
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            24,
+            45
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_roof_1_6",
+          "hotel_tower_roof_1_5",
+          "hotel_tower_roof_1_4"
+        ],
+        [
+          "hotel_tower_roof_1_9",
+          "hotel_tower_roof_1_8",
+          "hotel_tower_roof_1_7"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "H": [
+          [
+            "f_generator_broken",
+            25
+          ],
+          [
+            "f_diesel_generator",
+            5
+          ],
+          [
+            "f_12000_gasoline_generator",
+            5
+          ]
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "parameters": {},
+      "place_monster": [
+        {
+          "group": "GROUP_ROOF_ZOMBIE",
+          "x": [
+            7,
+            23
+          ],
+          "y": [
+            24,
+            46
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_ROOF_ZOMBIE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            27,
+            47
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_ROOF_ZOMBIE",
+          "x": [
+            49,
+            65
+          ],
+          "y": [
+            24,
+            46
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_6_1_9",
+          "hotel_tower_6_1_8",
+          "hotel_tower_6_1_7"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "hotel_tower_b_3",
+          "hotel_tower_b_2",
+          "hotel_tower_b_1"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_dryer",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "l": {
+          "item": "cleaning",
+          "chance": 60
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        },
+        "r": {
+          "item": "towel",
+          "chance": 80,
+          "amount": [
+            1,
+            4
+          ]
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "set": [
+        {
+          "point": "trap",
+          "id": "tr_rollmat",
+          "x": [
+            56,
+            61
+          ],
+          "y": 17,
+          "repeat": [
+            2,
+            4
+          ]
+        },
+        {
+          "point": "trap",
+          "id": "tr_rollmat",
+          "x": [
+            56,
+            61
+          ],
+          "y": 18,
+          "repeat": [
+            2,
+            4
+          ]
+        },
+        {
+          "point": "trap",
+          "id": "tr_rollmat",
+          "x": [
+            56,
+            61
+          ],
+          "y": 19,
+          "repeat": [
+            2,
+            4
+          ]
+        }
+      ],
+      "place_loot": [
+        {
+          "group": "laundromat_bleach",
+          "x": 7,
+          "y": [
+            12,
+            13
+          ],
+          "repeat": [
+            1,
+            6
+          ]
+        }
+      ],
+      "place_monster": [
+        {
+          "group": "GROUP_HOTEL_POOL",
+          "x": [
+            24,
+            46
+          ],
+          "y": [
+            12,
+            19
+          ],
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        {
+          "group": "GROUP_HOTEL_GYM",
+          "x": [
+            52,
+            65
+          ],
+          "y": [
+            12,
+            21
+          ],
+          "repeat": [
+            2,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "hotel_tower_1_5B"
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            7,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        }
+      ],
+      "place_vehicles": [
+        {
+          "vehicle": "luggage_cart",
+          "x": [
+            10,
+            15
+          ],
+          "y": [
+            11,
+            23
+          ],
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "hotel_tower_flr2_1_5B"
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "hotel_tower_1_5C"
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_ZOMBIE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            7,
+            23
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        }
+      ],
+      "place_vehicles": [
+        {
+          "vehicle": "luggage_cart",
+          "x": [
+            6,
+            18
+          ],
+          "y": [
+            16,
+            17
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "hotel_tower_flr2_1_5C"
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "B": "f_bed",
+        "c": "f_counter",
+        "C": "f_counter",
+        "o": "f_counter",
+        "O": "f_counter",
+        "m": "f_bench",
+        "d": "f_dresser",
+        "Y": "f_rack_coat",
+        "^": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ],
+        "h": "f_chair",
+        "r": "f_rack",
+        "t": "f_table",
+        "j": "f_sofa",
+        "S": "f_sink",
+        "&": "f_toilet",
+        "b": "f_bathtub",
+        "E": [
+          "f_exercise",
+          "f_ergometer",
+          "f_ergometer_mechanical",
+          "f_treadmill",
+          "f_treadmill_mechanical"
+        ],
+        "e": "f_fridge",
+        "l": "f_locker",
+        "W": "f_washer",
+        "D": "f_desk",
+        "x": "f_console_broken"
+      },
+      "vendingmachines": {
+        "U": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "toilets": {
+        "&": {}
+      },
+      "items": {
+        "B": {
+          "item": "bed",
+          "chance": 30,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "L": {
+          "item": "hotel_luggage",
+          "chance": 66
+        },
+        "c": {
+          "item": "magazines",
+          "chance": 15
+        },
+        "d": [
+          {
+            "item": "traveler",
+            "chance": 80,
+            "repeat": [
+              3,
+              5
+            ]
+          },
+          {
+            "item": "book_hotel_tower_bible",
+            "chance": 100
+          }
+        ],
+        "o": {
+          "item": "hotel_coffee_bar",
+          "chance": 50
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 30,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "item": "shower",
+          "chance": 10,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "&": {
+          "item": "SUS_toilet",
+          "chance": 10,
+          "repeat": [
+            1,
+            3
+          ]
+        }
+      },
+      "item": {
+        "O": {
+          "item": "television"
+        }
+      },
+      "vehicles": {
+        "V": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 270
+        },
+        "v": {
+          "vehicle": "parking_garage",
+          "chance": 45,
+          "rotation": 90
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "office_tower_nw",
+          "office_tower_ne"
+        ],
+        [
+          "office_tower_sw",
+          "office_tower_se"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "furniture": {
+        "*": "f_room_divider",
+        "%": "f_hedge_short",
+        "?": "f_sofa",
+        "M": "f_armchair",
+        "b": "f_bench",
+        "c": "f_counter",
+        "C": "f_counter",
+        "Y": "f_rack_coat",
+        "d": "f_desk",
+        "h": "f_chair",
+        "l": "f_locker",
+        "n": "f_table",
+        "t": "f_table",
+        "o": "f_oven",
+        "e": "f_fridge",
+        "^": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "r": "f_rack",
+        "S": "f_sink",
+        "O": [
+          [
+            "f_cardboard_box",
+            6
+          ],
+          "f_crate_c"
+        ],
+        "a": "f_trashcan",
+        "f": "f_filing_cabinet",
+        "Q": "f_safe_l",
+        "x": "f_console_broken",
+        "y": "f_locker",
+        "B": "f_bulletin",
+        "A": "f_bookcase"
+      },
+      "items": {
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 40
+        },
+        "e": {
+          "item": "SUS_fridge_breakroom",
+          "chance": 70
+        },
+        "o": {
+          "item": "SUS_oven",
+          "chance": 90
+        },
+        "r": [
+          {
+            "item": "SUS_office_supplies",
+            "chance": 65,
+            "repeat": [
+              1,
+              4
+            ]
+          }
+        ],
+        "y": {
+          "item": "SUS_janitors_closet",
+          "chance": 90
+        },
+        "Y": {
+          "item": "coat_rack",
+          "chance": 66,
+          "repeat": [
+            1,
+            5
+          ]
+        },
+        "a": {
+          "item": "SUS_trash_trashcan_public",
+          "chance": 70
+        },
+        "t": {
+          "item": "dining",
+          "chance": 40,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "f": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 90
+        },
+        "A": {
+          "item": "homebooks",
+          "chance": 40,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        ".": {
+          "item": "SUS_office_mess",
+          "chance": 1
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "monster": {
+        "_": {
+          "group": "GROUP_CIVILIAN",
+          "chance": 1
+        },
+        ".": {
+          "group": "GROUP_CIVILIAN",
+          "chance": 1
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "vehicles": {
+        "\u00c1": {
+          "vehicle": "parking_garage",
+          "chance": 50,
+          "rotation": 270
+        },
+        "\u00c9": {
+          "vehicle": "parking_garage",
+          "chance": 50,
+          "rotation": 90
+        },
+        "\u0141": {
+          "vehicle": "hand_truck",
+          "chance": 50
+        }
+      },
+      "nested": {
+        "6": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        "\u2264": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        "\u2265": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        "(": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        ")": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        "1": {
+          "chunks": [
+            [
+              "null",
+              2
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              2
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        },
+        "2": {
+          "chunks": [
+            [
+              "null",
+              2
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              2
+            ],
+            [
+              "null",
+              2
+            ]
+          ]
+        },
+        "\u00a1": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        "4": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        }
+      },
+      "place_loot": [
+        {
+          "item": "record_accounting",
+          "x": 24,
+          "y": 38
+        },
+        {
+          "item": "microwave",
+          "x": 26,
+          "y": 15
+        },
+        {
+          "item": "coffeemaker",
+          "x": 24,
+          "y": 15
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "office_tower_underground_nw",
+          "office_tower_underground_ne"
+        ],
+        [
+          "office_tower_underground_sw",
+          "office_tower_underground_se"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "furniture": {
+        "*": "f_room_divider",
+        "%": "f_hedge_short",
+        "?": "f_sofa",
+        "M": "f_armchair",
+        "b": "f_bench",
+        "c": "f_counter",
+        "C": "f_counter",
+        "Y": "f_rack_coat",
+        "d": "f_desk",
+        "h": "f_chair",
+        "l": "f_locker",
+        "n": "f_table",
+        "t": "f_table",
+        "o": "f_oven",
+        "e": "f_fridge",
+        "^": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "r": "f_rack",
+        "S": "f_sink",
+        "O": [
+          [
+            "f_cardboard_box",
+            6
+          ],
+          "f_crate_c"
+        ],
+        "a": "f_trashcan",
+        "f": "f_filing_cabinet",
+        "Q": "f_safe_l",
+        "x": "f_console_broken",
+        "y": "f_locker",
+        "B": "f_bulletin",
+        "A": "f_bookcase"
+      },
+      "items": {
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 40
+        },
+        "e": {
+          "item": "SUS_fridge_breakroom",
+          "chance": 70
+        },
+        "o": {
+          "item": "SUS_oven",
+          "chance": 90
+        },
+        "r": [
+          {
+            "item": "SUS_office_supplies",
+            "chance": 65,
+            "repeat": [
+              1,
+              4
+            ]
+          }
+        ],
+        "y": {
+          "item": "SUS_janitors_closet",
+          "chance": 90
+        },
+        "Y": {
+          "item": "coat_rack",
+          "chance": 66,
+          "repeat": [
+            1,
+            5
+          ]
+        },
+        "a": {
+          "item": "SUS_trash_trashcan_public",
+          "chance": 70
+        },
+        "t": {
+          "item": "dining",
+          "chance": 40,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "f": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 90
+        },
+        "A": {
+          "item": "homebooks",
+          "chance": 40,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        ".": {
+          "item": "SUS_office_mess",
+          "chance": 1
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "monster": {
+        "_": {
+          "group": "GROUP_CIVILIAN",
+          "chance": 1
+        },
+        ".": {
+          "group": "GROUP_CIVILIAN",
+          "chance": 1
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "vehicles": {
+        "\u00c1": {
+          "vehicle": "parking_garage",
+          "chance": 50,
+          "rotation": 270
+        },
+        "\u00c9": {
+          "vehicle": "parking_garage",
+          "chance": 50,
+          "rotation": 90
+        },
+        "\u0141": {
+          "vehicle": "hand_truck",
+          "chance": 50
+        }
+      },
+      "nested": {}
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "office_tower_roof_nw",
+          "office_tower_roof_ne"
+        ],
+        [
+          "office_tower_roof_sw",
+          "office_tower_roof_se"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "parameters": {},
+      "item": {
+        ".": {
+          "item": "feces_bird",
+          "chance": 2
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "office_tower_roof_ne_roof"
+        ],
+        [
+          "office_tower_roof_se_roof"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "stadium_0_0",
+          "stadium_1_0",
+          "stadium_2_0",
+          "stadium_3_0"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {
+        "flower": {
+          "type": "furn_str_id",
+          "default": {
+            "distribution": [
+              [
+                "f_region_flower_decorative",
+                5
+              ],
+              [
+                "f_flower_tulip",
+                3
+              ],
+              [
+                "f_lily",
+                3
+              ],
+              [
+                "f_dahlia",
+                3
+              ]
+            ]
+          }
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "furniture": {
+        "$": "f_atm_off",
+        "z": "f_water_heater_family",
+        "b": "f_metal_bench",
+        "B": "f_bench",
+        "8": "f_bench",
+        "T": "f_toilet",
+        "&": "f_trashcan",
+        "a": "f_trashcan",
+        "\u00e1": "f_trashcan",
+        "A": "f_dumpster",
+        "S": "f_sink",
+        "?": "f_shower",
+        "h": "f_chair",
+        "l": "f_locker",
+        "L": "f_locker",
+        "m": "f_locker",
+        "n": "f_table",
+        "N": "f_table",
+        "c": "f_counter",
+        "C": "f_counter_gate_c",
+        "d": "f_desk",
+        "P": "f_arcade_machine",
+        "p": "f_pinball_machine",
+        "r": "f_rack",
+        "q": "f_displaycase",
+        "e": [
+          "f_heavy_duty_fridge",
+          "f_heavy_duty_freezer"
+        ],
+        "\u00e9": "f_fridge",
+        "E": "f_glass_fridge",
+        "\u00c9": "f_glass_fridge",
+        "O": "f_oven",
+        "@": "f_speaker_cabinet",
+        "\u00df": "f_sink",
+        "K": "f_rack_wood",
+        "u": "f_cupboard",
+        "X": "f_cardboard_box",
+        "y": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "\u03b5": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "Y": "f_rack_coat",
+        "f": {
+          "param": "flower",
+          "fallback": "f_region_flower_decorative"
+        },
+        "/": "f_flagpole",
+        "!": "f_street_light"
+      },
+      "items": {
+        "b": [
+          {
+            "item": "beer_in_container",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "snacks",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "jackets",
+            "chance": 1
+          }
+        ],
+        "&": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "a": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "\u00e1": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "A": {
+          "item": "SUS_trash_dumpster",
+          "chance": 70,
+          "repeat": [
+            1,
+            8
+          ]
+        },
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 33
+        },
+        "m": {
+          "item": "SUS_janitors_closet",
+          "chance": 80
+        },
+        "\u00df": {
+          "item": "SUS_kitchen_sink",
+          "chance": 80
+        },
+        "O": {
+          "item": "SUS_oven",
+          "chance": 100
+        },
+        "n": {
+          "item": "fast_table",
+          "chance": 12
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 20,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "L": [
+          {
+            "item": "jackets",
+            "chance": 30
+          },
+          {
+            "item": "softdrugs",
+            "chance": 30
+          },
+          {
+            "item": "bags",
+            "chance": 30
+          },
+          {
+            "item": "winter",
+            "chance": 30
+          }
+        ],
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "item": {
+        "T": {
+          "item": "toilet_paper",
+          "chance": 33
+        },
+        "/": {
+          "item": "american_flag",
+          "chance": 100
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "vehicles": {
+        "1": {
+          "vehicle": "food_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "2": {
+          "vehicle": "ice_cream_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "3": {
+          "vehicle": "swivel_chair"
+        },
+        "4": {
+          "vehicle": "parking_garage",
+          "chance": 20,
+          "rotation": 270
+        },
+        "5": {
+          "vehicle": "parking_garage",
+          "chance": 20,
+          "rotation": 90
+        },
+        "6": {
+          "vehicle": "parking_garage",
+          "chance": 20,
+          "rotation": 180
+        },
+        "7": {
+          "vehicle": "parking_garage",
+          "chance": 20,
+          "rotation": 0
+        },
+        "$": {
+          "vehicle": "bus",
+          "chance": 33,
+          "rotation": 270
+        },
+        "9": {
+          "vehicle": "semi_truck",
+          "chance": 33,
+          "rotation": 0
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "stadium_0_1",
+          "stadium_1_1",
+          "stadium_2_1",
+          "stadium_3_1"
+        ],
+        [
+          "stadium_0_2",
+          "stadium_1_2",
+          "stadium_2_2",
+          "stadium_3_2"
+        ],
+        [
+          "stadium_0_3",
+          "stadium_1_3",
+          "stadium_2_3",
+          "stadium_3_3"
+        ],
+        [
+          "stadium_0_4",
+          "stadium_1_4",
+          "stadium_2_4",
+          "stadium_3_4"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {
+        "flower": {
+          "type": "furn_str_id",
+          "default": {
+            "distribution": [
+              [
+                "f_region_flower_decorative",
+                5
+              ],
+              [
+                "f_flower_tulip",
+                3
+              ],
+              [
+                "f_lily",
+                3
+              ],
+              [
+                "f_dahlia",
+                3
+              ]
+            ]
+          }
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "furniture": {
+        "$": "f_atm_off",
+        "z": "f_water_heater_family",
+        "b": "f_metal_bench",
+        "B": "f_bench",
+        "8": "f_bench",
+        "T": "f_toilet",
+        "&": "f_trashcan",
+        "a": "f_trashcan",
+        "\u00e1": "f_trashcan",
+        "A": "f_dumpster",
+        "S": "f_sink",
+        "?": "f_shower",
+        "h": "f_chair",
+        "l": "f_locker",
+        "L": "f_locker",
+        "m": "f_locker",
+        "n": "f_table",
+        "N": "f_table",
+        "c": "f_counter",
+        "C": "f_counter_gate_c",
+        "d": "f_desk",
+        "P": "f_arcade_machine",
+        "p": "f_pinball_machine",
+        "r": "f_rack",
+        "q": "f_displaycase",
+        "e": [
+          "f_heavy_duty_fridge",
+          "f_heavy_duty_freezer"
+        ],
+        "\u00e9": "f_fridge",
+        "E": "f_glass_fridge",
+        "\u00c9": "f_glass_fridge",
+        "O": "f_oven",
+        "@": "f_speaker_cabinet",
+        "\u00df": "f_sink",
+        "K": "f_rack_wood",
+        "u": "f_cupboard",
+        "X": "f_cardboard_box",
+        "y": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "\u03b5": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "Y": "f_rack_coat",
+        "f": {
+          "param": "flower",
+          "fallback": "f_region_flower_decorative"
+        },
+        "/": "f_flagpole"
+      },
+      "items": {
+        "b": [
+          {
+            "item": "beer_in_container",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "snacks",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "jackets",
+            "chance": 1
+          }
+        ],
+        "&": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "a": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "\u00e1": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "A": {
+          "item": "SUS_trash_dumpster",
+          "chance": 70,
+          "repeat": [
+            1,
+            8
+          ]
+        },
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 33
+        },
+        "m": {
+          "item": "SUS_janitors_closet",
+          "chance": 80
+        },
+        "\u00df": {
+          "item": "SUS_kitchen_sink",
+          "chance": 80
+        },
+        "O": {
+          "item": "SUS_oven",
+          "chance": 100
+        },
+        "n": {
+          "item": "fast_table",
+          "chance": 12
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 20,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "L": [
+          {
+            "item": "jackets",
+            "chance": 30
+          },
+          {
+            "item": "softdrugs",
+            "chance": 30
+          },
+          {
+            "item": "bags",
+            "chance": 30
+          },
+          {
+            "item": "winter",
+            "chance": 30
+          }
+        ],
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "E": {
+          "item": "soda_in_small_container",
+          "chance": 40,
+          "repeat": [
+            1,
+            20
+          ]
+        },
+        "r": {
+          "item": "baseball_souvenir",
+          "chance": 80
+        },
+        "e": {
+          "item": "fast_fridge",
+          "chance": 25,
+          "repeat": [
+            1,
+            20
+          ]
+        },
+        "u": {
+          "item": "fast_kitchen",
+          "chance": 60,
+          "repeat": [
+            1,
+            10
+          ]
+        },
+        "\u00e9": {
+          "item": "hotdog_fridge",
+          "chance": 70
+        },
+        "l": {
+          "item": "baseball_equip",
+          "chance": 30,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "q": {
+          "item": "baseball_equip",
+          "chance": 80,
+          "repeat": [
+            1,
+            2
+          ]
+        }
+      },
+      "item": {
+        "T": {
+          "item": "toilet_paper",
+          "chance": 33
+        },
+        "/": {
+          "item": "american_flag",
+          "chance": 100
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "vehicles": {
+        "1": {
+          "vehicle": "food_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "2": {
+          "vehicle": "ice_cream_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "3": {
+          "vehicle": "swivel_chair"
+        }
+      },
+      "place_item": [
+        {
+          "item": "napkin",
+          "x": 93,
+          "y": 75,
+          "chance": 70
+        },
+        {
+          "item": "napkin",
+          "x": 5,
+          "y": 48,
+          "chance": 70
+        }
+      ],
+      "place_loot": [
+        {
+          "group": "ketchup_sealed_rng",
+          "x": 5,
+          "y": 51,
+          "chance": 60,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "mustard_sealed_rng",
+          "x": 5,
+          "y": 51,
+          "chance": 60,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "cash_register_random",
+          "x": 5,
+          "y": [
+            48,
+            50
+          ]
+        },
+        {
+          "group": "cash_register_random",
+          "x": [
+            89,
+            92
+          ],
+          "y": 75
+        },
+        {
+          "group": "cash_register_random",
+          "x": [
+            1,
+            4
+          ],
+          "y": 72
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            48,
+            71
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            48,
+            71
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            48,
+            71
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            48,
+            71
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "stadium_0_1_1",
+          "stadium_1_1_1",
+          "stadium_2_1_1",
+          "stadium_3_1_1"
+        ],
+        [
+          "stadium_0_2_1",
+          "stadium_1_2_1",
+          "stadium_2_2_1",
+          "stadium_3_2_1"
+        ],
+        [
+          "stadium_0_3_1",
+          "stadium_1_3_1",
+          "stadium_2_3_1",
+          "stadium_3_3_1"
+        ],
+        [
+          "stadium_0_4_1",
+          "stadium_1_4_1",
+          "stadium_2_4_1",
+          "stadium_3_4_1"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {
+        "flower": {
+          "type": "furn_str_id",
+          "default": {
+            "distribution": [
+              [
+                "f_region_flower_decorative",
+                5
+              ],
+              [
+                "f_flower_tulip",
+                3
+              ],
+              [
+                "f_lily",
+                3
+              ],
+              [
+                "f_dahlia",
+                3
+              ]
+            ]
+          }
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "furniture": {
+        "$": "f_atm_off",
+        "z": "f_water_heater_family",
+        "b": "f_metal_bench",
+        "B": "f_bench",
+        "8": "f_bench",
+        "T": "f_toilet",
+        "&": "f_trashcan",
+        "a": "f_trashcan",
+        "\u00e1": "f_trashcan",
+        "A": "f_dumpster",
+        "S": "f_sink",
+        "?": "f_shower",
+        "h": "f_chair",
+        "l": "f_locker",
+        "L": "f_locker",
+        "m": "f_locker",
+        "n": "f_table",
+        "N": "f_table",
+        "c": "f_counter",
+        "C": "f_counter_gate_c",
+        "d": "f_desk",
+        "P": "f_arcade_machine",
+        "p": "f_pinball_machine",
+        "r": "f_rack",
+        "q": "f_displaycase",
+        "e": [
+          "f_heavy_duty_fridge",
+          "f_heavy_duty_freezer"
+        ],
+        "\u00e9": "f_fridge",
+        "E": "f_glass_fridge",
+        "\u00c9": "f_glass_fridge",
+        "O": "f_oven",
+        "@": "f_speaker_cabinet",
+        "\u00df": "f_sink",
+        "K": "f_rack_wood",
+        "u": "f_cupboard",
+        "X": "f_cardboard_box",
+        "y": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "\u03b5": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "Y": "f_rack_coat",
+        "f": {
+          "param": "flower",
+          "fallback": "f_region_flower_decorative"
+        },
+        "/": "f_flagpole"
+      },
+      "items": {
+        "b": [
+          {
+            "item": "beer_in_container",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "snacks",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "jackets",
+            "chance": 1
+          }
+        ],
+        "&": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "a": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "\u00e1": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "A": {
+          "item": "SUS_trash_dumpster",
+          "chance": 70,
+          "repeat": [
+            1,
+            8
+          ]
+        },
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 33
+        },
+        "m": {
+          "item": "SUS_janitors_closet",
+          "chance": 80
+        },
+        "\u00df": {
+          "item": "SUS_kitchen_sink",
+          "chance": 80
+        },
+        "O": {
+          "item": "SUS_oven",
+          "chance": 100
+        },
+        "n": {
+          "item": "fast_table",
+          "chance": 12
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 20,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "L": [
+          {
+            "item": "jackets",
+            "chance": 30
+          },
+          {
+            "item": "softdrugs",
+            "chance": 30
+          },
+          {
+            "item": "bags",
+            "chance": 30
+          },
+          {
+            "item": "winter",
+            "chance": 30
+          }
+        ],
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "r": {
+          "item": "arcade_prizes",
+          "chance": 80,
+          "repeat": [
+            1,
+            5
+          ]
+        },
+        "u": {
+          "item": "SUS_coffee_cupboard",
+          "chance": 80
+        },
+        "\u00c9": {
+          "item": "coffee_fridge",
+          "chance": 45,
+          "repeat": [
+            1,
+            10
+          ]
+        },
+        "E": {
+          "item": "beer_in_container",
+          "chance": 35,
+          "repeat": [
+            1,
+            20
+          ]
+        },
+        "K": {
+          "item": "snacks",
+          "chance": 40,
+          "repeat": [
+            1,
+            20
+          ]
+        },
+        "e": {
+          "item": "SUS_fridge_snacks",
+          "chance": 45,
+          "repeat": [
+            1,
+            6
+          ]
+        }
+      },
+      "item": {
+        "T": {
+          "item": "toilet_paper",
+          "chance": 33
+        },
+        "/": {
+          "item": "american_flag",
+          "chance": 100
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "vehicles": {
+        "1": {
+          "vehicle": "food_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "2": {
+          "vehicle": "ice_cream_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "3": {
+          "vehicle": "swivel_chair"
+        }
+      },
+      "place_item": [
+        {
+          "item": "television",
+          "x": 92,
+          "y": 47
+        }
+      ],
+      "place_loot": [
+        {
+          "group": "beer_in_container",
+          "repeat": [
+            1,
+            6
+          ],
+          "x": 92,
+          "y": [
+            50,
+            55
+          ],
+          "chance": 70
+        },
+        {
+          "group": "cash_register_random",
+          "x": 6,
+          "y": [
+            6,
+            7
+          ]
+        },
+        {
+          "group": "cash_register_random",
+          "x": [
+            1,
+            5
+          ],
+          "y": 50
+        },
+        {
+          "group": "cash_register_random",
+          "x": [
+            90,
+            91
+          ],
+          "y": 50
+        },
+        {
+          "group": "cash_register_random",
+          "x": 89,
+          "y": [
+            92,
+            93
+          ]
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            4,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            4,
+            17
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            48,
+            71
+          ],
+          "y": [
+            4,
+            17
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            4,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            48,
+            71
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            82,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            48,
+            71
+          ],
+          "y": [
+            82,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            82,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            80,
+            95
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            80,
+            95
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            80,
+            95
+          ],
+          "y": [
+            48,
+            71
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "stadium_0_1_2",
+          "stadium_1_1_2",
+          "stadium_2_1_2",
+          "stadium_3_1_2"
+        ],
+        [
+          "stadium_0_2_2",
+          "stadium_1_2_2",
+          "stadium_2_2_2",
+          "stadium_3_2_2"
+        ],
+        [
+          "stadium_0_3_2",
+          "stadium_1_3_2",
+          "stadium_2_3_2",
+          "stadium_3_3_2"
+        ],
+        [
+          "stadium_0_4_2",
+          "stadium_1_4_2",
+          "stadium_2_4_2",
+          "stadium_3_4_2"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {
+        "flower": {
+          "type": "furn_str_id",
+          "default": {
+            "distribution": [
+              [
+                "f_region_flower_decorative",
+                5
+              ],
+              [
+                "f_flower_tulip",
+                3
+              ],
+              [
+                "f_lily",
+                3
+              ],
+              [
+                "f_dahlia",
+                3
+              ]
+            ]
+          }
+        }
+      },
+      "vendingmachines": {
+        "D": {
+          "item_group": "vending_drink",
+          "lootable": true
+        },
+        "F": {
+          "item_group": "vending_food",
+          "lootable": true
+        }
+      },
+      "furniture": {
+        "$": "f_atm_off",
+        "z": "f_water_heater_family",
+        "b": "f_metal_bench",
+        "B": "f_bench",
+        "8": "f_bench",
+        "T": "f_toilet",
+        "&": "f_trashcan",
+        "a": "f_trashcan",
+        "\u00e1": "f_trashcan",
+        "A": "f_dumpster",
+        "S": "f_sink",
+        "?": "f_sofa",
+        "h": "f_armchair",
+        "l": "f_locker",
+        "L": "f_locker",
+        "m": "f_locker",
+        "n": "f_table",
+        "N": "f_table",
+        "c": "f_counter",
+        "C": "f_counter_gate_c",
+        "d": "f_desk",
+        "P": "f_arcade_machine",
+        "p": "f_pinball_machine",
+        "r": "f_rack",
+        "q": "f_displaycase",
+        "e": [
+          "f_heavy_duty_fridge",
+          "f_heavy_duty_freezer"
+        ],
+        "\u00e9": "f_fridge",
+        "E": "f_glass_fridge",
+        "\u00c9": "f_glass_fridge",
+        "O": "f_oven",
+        "@": "f_speaker_cabinet",
+        "\u00df": "f_sink",
+        "K": "f_rack_wood",
+        "u": "f_cupboard",
+        "X": "f_cardboard_box",
+        "y": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "\u03b5": [
+          "f_indoor_plant",
+          "f_indoor_plant_y"
+        ],
+        "Y": "f_rack_coat",
+        "f": {
+          "param": "flower",
+          "fallback": "f_region_flower_decorative"
+        },
+        "/": "f_flagpole",
+        "#": "f_small_satellite_dish",
+        "6": "f_console_broken"
+      },
+      "items": {
+        "b": [
+          {
+            "item": "beer_in_container",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "snacks",
+            "chance": 1,
+            "repeat": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "jackets",
+            "chance": 1
+          }
+        ],
+        "&": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "a": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "\u00e1": {
+          "item": "SUS_trash_trashcan",
+          "chance": 66
+        },
+        "A": {
+          "item": "SUS_trash_dumpster",
+          "chance": 70,
+          "repeat": [
+            1,
+            8
+          ]
+        },
+        "d": {
+          "item": "SUS_office_desk",
+          "chance": 33
+        },
+        "m": {
+          "item": "SUS_janitors_closet",
+          "chance": 80
+        },
+        "\u00df": {
+          "item": "SUS_kitchen_sink",
+          "chance": 80
+        },
+        "O": {
+          "item": "SUS_oven",
+          "chance": 100
+        },
+        "n": {
+          "item": "fast_table",
+          "chance": 12
+        },
+        "Y": {
+          "item": "unisex_coat_rack",
+          "chance": 20,
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        "L": [
+          {
+            "item": "jackets",
+            "chance": 30
+          },
+          {
+            "item": "softdrugs",
+            "chance": 30
+          },
+          {
+            "item": "bags",
+            "chance": 30
+          },
+          {
+            "item": "winter",
+            "chance": 30
+          }
+        ],
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "e": {
+          "item": "SUS_fridge_breakroom",
+          "chance": 60
+        },
+        "\u00e9": {
+          "item": "hotdog_fridge",
+          "chance": 70
+        },
+        "\u00c9": {
+          "item": "soda_in_small_container",
+          "chance": 40,
+          "repeat": [
+            1,
+            20
+          ]
+        },
+        "E": {
+          "item": "beer_in_container",
+          "chance": 35,
+          "repeat": [
+            1,
+            20
+          ]
+        }
+      },
+      "item": {
+        "T": {
+          "item": "toilet_paper",
+          "chance": 33
+        },
+        "/": {
+          "item": "american_flag",
+          "chance": 100
+        }
+      },
+      "toilets": {
+        "T": {}
+      },
+      "vehicles": {
+        "1": {
+          "vehicle": "food_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "2": {
+          "vehicle": "ice_cream_cart",
+          "chance": 33,
+          "rotation": [
+            0,
+            90,
+            180,
+            270
+          ]
+        },
+        "3": {
+          "vehicle": "swivel_chair"
+        }
+      },
+      "place_item": [
+        {
+          "item": "napkin",
+          "x": 4,
+          "y": 49,
+          "chance": 70
+        },
+        {
+          "item": "television",
+          "x": 29,
+          "y": 10
+        },
+        {
+          "item": "television",
+          "x": 46,
+          "y": 11
+        }
+      ],
+      "place_loot": [
+        {
+          "group": "ketchup_sealed_rng",
+          "x": 4,
+          "y": 51,
+          "chance": 60,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "mustard_sealed_rng",
+          "x": 4,
+          "y": 51,
+          "chance": 60,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "cash_register_random",
+          "x": 4,
+          "y": [
+            49,
+            50
+          ]
+        }
+      ],
+      "place_monsters": [
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            30,
+            47
+          ],
+          "y": [
+            5,
+            14
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            48,
+            66
+          ],
+          "y": [
+            5,
+            14
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            13
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            13
+          ],
+          "y": [
+            48,
+            71
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            0,
+            23
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            24,
+            47
+          ],
+          "y": [
+            83,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            48,
+            71
+          ],
+          "y": [
+            83,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            0,
+            23
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            82,
+            95
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            82,
+            95
+          ],
+          "y": [
+            48,
+            71
+          ],
+          "density": 0.066
+        },
+        {
+          "monster": "GROUP_HOUSE",
+          "x": [
+            72,
+            95
+          ],
+          "y": [
+            72,
+            95
+          ],
+          "density": 0.066
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "stadium_1_1_3",
+          "stadium_2_1_3"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        "stadium_0_3_3"
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        [
+          "zoo_0_0",
+          "zoo_1_0",
+          "zoo_2_0",
+          "zoo_3_0"
+        ],
+        [
+          "zoo_0_1",
+          "zoo_1_1",
+          "zoo_2_1",
+          "zoo_3_1"
+        ],
+        [
+          "zoo_0_2",
+          "zoo_1_2",
+          "zoo_2_2",
+          "zoo_3_2"
+        ],
+        [
+          "zoo_0_3",
+          "zoo_1_3",
+          "zoo_2_3",
+          "zoo_3_3"
+        ]
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "toilets": {
+        "t": {}
+      },
+      "furniture": {
+        "a": "f_atm_off",
+        "b": "f_boulder_small",
+        "c": "f_counter",
+        "d": "f_desk",
+        "e": "f_chair",
+        "h": "f_chair",
+        "i": "f_bench_park",
+        "r": "f_rack",
+        "s": "f_sink",
+        "w": "f_warehouse_shelf",
+        "x": "f_console_broken",
+        "z": "f_freezer",
+        "B": "f_boulder_medium",
+        "C": "f_counter",
+        "H": "f_hay",
+        "I": "f_filing_cabinet",
+        "O": "f_oven",
+        "P": "f_fridge",
+        "Q": "f_counter",
+        "S": "f_sink",
+        "T": "f_table",
+        "Y": "f_trashcan",
+        "\u00fe": "f_boulder_large"
+      },
+      "item": {
+        "I": {
+          "item": "id_science_transport_1",
+          "chance": 15
+        }
+      },
+      "items": {
+        "C": {
+          "item": "cash_register_random",
+          "chance": 100
+        },
+        "I": {
+          "item": "SUS_office_filing_cabinet",
+          "chance": 50,
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        "O": [
+          {
+            "item": "SUS_oven",
+            "chance": 50
+          },
+          {
+            "item": "SUS_pantry",
+            "chance": 25
+          }
+        ],
+        "P": {
+          "item": "SUS_fridge",
+          "chance": 50
+        },
+        "Q": [
+          {
+            "item": "SUS_utensils",
+            "chance": 15
+          },
+          {
+            "item": "SUS_silverware",
+            "chance": 15
+          },
+          {
+            "item": "SUS_knife_drawer",
+            "chance": 15
+          },
+          {
+            "item": "SUS_dishes",
+            "chance": 15
+          },
+          {
+            "item": "SUS_cookware",
+            "chance": 15
+          }
+        ],
+        "S": [
+          {
+            "item": "SUS_kitchen_sink",
+            "chance": 50
+          },
+          {
+            "item": "SUS_silverware",
+            "chance": 15
+          },
+          {
+            "item": "SUS_dishes",
+            "chance": 15
+          }
+        ],
+        "T": [
+          {
+            "item": "SUS_silverware",
+            "chance": 25
+          },
+          {
+            "item": "SUS_dishes",
+            "chance": 25
+          }
+        ],
+        "Y": {
+          "item": "SUS_trash_trashcan_public"
+        },
+        ",": {
+          "item": "forest",
+          "chance": 2
+        },
+        "d": [
+          {
+            "item": "SUS_office_desk",
+            "chance": 60
+          }
+        ],
+        "r": {
+          "item": "gift_shop",
+          "chance": 75
+        },
+        "t": {
+          "item": "SUS_toilet",
+          "chance": 50
+        },
+        "w": {
+          "item": "shelves_zoo",
+          "chance": 50,
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        "z": {
+          "item": "butcher_raw_meat",
+          "chance": 20,
+          "repeat": [
+            1,
+            20
+          ]
+        }
+      },
+      "place_monster": [
+        {
+          "group": "GROUP_REINDEERS_ZOO",
+          "x": [
+            6,
+            23
+          ],
+          "y": [
+            27,
+            40
+          ],
+          "repeat": [
+            2,
+            3
+          ]
+        },
+        {
+          "group": "GROUP_FOXES_ZOO",
+          "x": [
+            30,
+            41
+          ],
+          "y": [
+            25,
+            43
+          ],
+          "repeat": [
+            2,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_BEARS_ZOO",
+          "x": [
+            48,
+            61
+          ],
+          "y": [
+            27,
+            42
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_SNAKES_ZOO",
+          "x": [
+            89,
+            94
+          ],
+          "y": [
+            31,
+            41
+          ]
+        },
+        {
+          "group": "GROUP_SPIDERS_ZOO",
+          "x": [
+            89,
+            94
+          ],
+          "y": [
+            43,
+            47
+          ]
+        },
+        {
+          "group": "GROUP_FROGS_ZOO",
+          "x": [
+            76,
+            81
+          ],
+          "y": [
+            35,
+            47
+          ],
+          "repeat": [
+            2,
+            5
+          ]
+        },
+        {
+          "group": "GROUP_COUGARS_ZOO",
+          "x": [
+            51,
+            70
+          ],
+          "y": [
+            72,
+            87
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_TIGERS_ZOO",
+          "x": [
+            81,
+            95
+          ],
+          "y": [
+            57,
+            70
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_LLAMA_ZOO",
+          "x": [
+            24,
+            45
+          ],
+          "y": [
+            50,
+            55
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_COYOTES_ZOO",
+          "x": [
+            51,
+            70
+          ],
+          "y": [
+            50,
+            64
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_PETTING_ZOO",
+          "x": [
+            8,
+            21
+          ],
+          "y": [
+            66,
+            70
+          ],
+          "repeat": [
+            2,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            24,
+            35
+          ],
+          "y": [
+            85,
+            93
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        },
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            24,
+            46
+          ],
+          "y": [
+            57,
+            70
+          ],
+          "repeat": [
+            1,
+            4
+          ]
+        },
+        {
+          "group": "GROUP_PARK_PLAYGROUND",
+          "x": [
+            9,
+            14
+          ],
+          "y": [
+            50,
+            64
+          ],
+          "repeat": [
+            1,
+            3
+          ]
+        },
+        {
+          "group": "GROUP_VANILLA",
+          "x": [
+            83,
+            93
+          ],
+          "y": [
+            9,
+            22
+          ],
+          "repeat": [
+            1,
+            2
+          ]
+        }
+      ],
+      "vehicles": {
+        "\u00c1": {
+          "vehicle": "parking_garage",
+          "chance": 25,
+          "rotation": 270
+        },
+        "\u00c9": {
+          "vehicle": "parking_garage",
+          "chance": 25,
+          "rotation": 90
+        },
+        "\u00da": {
+          "vehicle": "VETS",
+          "chance": 35,
+          "rotation": 90
+        }
+      },
+      "place_zones": [
+        {
+          "type": "ZONE_START_POINT",
+          "faction": "your_followers",
+          "x": [
+            36,
+            37
+          ],
+          "y": [
+            64,
+            65
+          ]
+        }
+      ],
+      "place_signs": [
+        {
+          "signage": "Authorized access only",
+          "x": 0,
+          "y": 15
+        },
+        {
+          "signage": "<city> Zoo",
+          "x": 6,
+          "y": 0
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        [
+          "zoo_0_0_roof",
+          "zoo_1_0_roof",
+          "zoo_2_0_roof",
+          "zoo_3_0_roof"
+        ],
+        [
+          "zoo_0_1_roof",
+          "zoo_1_1_roof",
+          "zoo_2_1_roof",
+          "zoo_3_1_roof"
+        ],
+        [
+          "zoo_0_2_roof",
+          "zoo_1_2_roof",
+          "zoo_2_2_roof",
+          "zoo_3_2_roof"
+        ],
+        [
+          "zoo_0_3_roof",
+          "zoo_1_3_roof",
+          "zoo_2_3_roof",
+          "zoo_3_3_roof"
+        ]
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "2": {
+          "chunks": [
+            [
+              "null",
+              4
+            ],
+            [
+              "null",
+              1
+            ]
+          ]
+        },
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        },
+        "-": {
+          "chunks": [
+            [
+              "null",
+              1000
+            ],
+            [
+              "null",
+              5
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "om_terrain": [
+        [
+          "zoo_3_2_basement"
+        ],
+        [
+          "zoo_3_3_basement"
+        ]
+      ],
+      "type": "mapgen"
+    },
+    "later_fields": {
+      "furniture": {
+        "b": "f_boulder_small"
+      },
+      "place_monster": [
+        {
+          "monster": "mon_bat",
+          "x": [
+            3,
+            22
+          ],
+          "y": [
+            24,
+            47
+          ],
+          "repeat": [
+            4,
+            6
+          ]
+        },
+        {
+          "group": "GROUP_INSECT_ZOO",
+          "x": [
+            1,
+            22
+          ],
+          "y": [
+            1,
+            6
+          ],
+          "repeat": [
+            4,
+            6
+          ]
+        }
+      ],
+      "items": {
+        ",": {
+          "item": "forest",
+          "chance": 2
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "s_shoppingplaza_a1",
+          "s_shoppingplaza_a2",
+          "s_shoppingplaza_a3"
+        ],
+        [
+          "s_shoppingplaza_b1",
+          "s_shoppingplaza_b2",
+          "s_shoppingplaza_b3"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "A": "f_rack",
+        "B": "f_toilet",
+        "C": "f_counter",
+        "D": "f_sink",
+        "E": "f_sink",
+        "F": "f_chair",
+        "G": "f_locker",
+        "H": "f_table",
+        "I": "f_sofa"
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "s_shoppingplaza_a4",
+          "s_shoppingplaza_a5",
+          "s_shoppingplaza_a6"
+        ],
+        [
+          "s_shoppingplaza_b4",
+          "s_shoppingplaza_b5",
+          "s_shoppingplaza_b6"
+        ]
+      ]
+    },
+    "later_fields": {
+      "parameters": {},
+      "nested": {
+        "#": {
+          "chunks": [
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              1
+            ],
+            [
+              "null",
+              598
+            ]
+          ]
+        }
+      },
+      "furniture": {
+        "A": "f_rack",
+        "B": "f_toilet",
+        "C": "f_counter",
+        "D": "f_sink",
+        "E": "f_sink",
+        "F": "f_chair",
+        "G": "f_locker",
+        "H": "f_table",
+        "I": "f_sofa"
+      },
+      "place_items": [
+        {
+          "item": "vfw_tools",
+          "x": 55,
+          "y": [
+            32,
+            36
+          ],
+          "chance": 80,
+          "repeat": [
+            1,
+            5
+          ]
+        },
+        {
+          "item": "vfw_books",
+          "x": 52,
+          "y": [
+            39,
+            43
+          ],
+          "chance": 80,
+          "repeat": [
+            1,
+            5
+          ]
+        },
+        {
+          "item": "vfw_alcohol",
+          "x": 67,
+          "y": [
+            39,
+            43
+          ],
+          "chance": 80,
+          "repeat": [
+            1,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "s_shoppingplaza_B1",
+          "s_shoppingplaza_B2",
+          "s_shoppingplaza_B3"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "om_terrain": [
+        [
+          "null",
+          "null",
+          "s_shoppingplaza_A6"
+        ],
+        [
+          "s_shoppingplaza_B4",
+          "s_shoppingplaza_B5",
+          "s_shoppingplaza_B6"
+        ]
+      ]
+    },
+    "later_fields": {
+      "furniture": {
+        "&": "f_roof_turbine_vent",
+        "N": "f_TV_antenna",
+        ":": "f_cellphone_booster",
+        "X": "f_small_satellite_dish",
+        "~": "f_chimney",
+        "=": "f_vent_pipe",
+        "A": "f_air_conditioner",
+        "M": "f_solar_unit",
+        "b": "f_bench",
+        "c": "f_counter",
+        "t": "f_table",
+        "r": "f_rack",
+        "L": "f_locker",
+        "C": [
+          "f_crate_c",
+          "f_cardboard_box"
+        ],
+        "Y": "f_stool",
+        "s": "f_sofa",
+        "S": "f_sink",
+        "e": "f_oven",
+        "F": "f_fridge",
+        "\u042f": "f_standing_tank",
+        "w": "f_water_heater",
+        "W": "f_water_heater_family",
+        "y": [
+          "f_indoor_plant_y",
+          "f_indoor_plant"
+        ]
+      },
+      "liquids": {
+        "\u042f": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            300
+          ]
+        },
+        "w": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            1000
+          ]
+        },
+        "W": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      },
+      "nested": {
+        "5": {
+          "chunks": [
+            [
+              "null",
+              90
+            ],
+            [
+              "null",
+              10
+            ]
+          ]
+        }
+      },
+      "items": {
+        "T": {
+          "item": "SUS_toilet",
+          "chance": 50
+        }
+      },
+      "toilets": {
+        "T": {}
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "roof_4x4_utility"
+    },
+    "later_fields": {
+      "flags": [
+        "ERASE_ALL_BEFORE_PLACING_TERRAIN"
+      ],
+      "furniture": {
+        "o": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "a": "f_air_conditioner"
+      },
+      "liquids": {
+        "o": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "roof_4x4_utility_1"
+    },
+    "later_fields": {
+      "flags": [
+        "ERASE_ALL_BEFORE_PLACING_TERRAIN"
+      ],
+      "furniture": {
+        "o": [
+          "f_water_heater",
+          "f_water_heater_family"
+        ],
+        "a": "f_water_purifier",
+        "A": "f_standing_tank"
+      },
+      "liquids": {
+        "o": {
+          "liquid": "water_clean",
+          "amount": [
+            0,
+            100
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_6kW_solar"
+    },
+    "later_fields": {
+      "place_nested": []
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_7kW_solar"
+    },
+    "later_fields": {
+      "place_nested": []
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_8kW_solar"
+    },
+    "later_fields": {
+      "place_nested": []
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_6kW_solar_v1"
+    },
+    "later_fields": {
+      "furniture": {
+        "#": "f_solar_unit"
+      },
+      "flags": [
+        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_6kW_solar_v2"
+    },
+    "later_fields": {
+      "furniture": {
+        "#": "f_solar_unit_v2",
+        "?": [
+          [
+            "f_solar_unit_v2",
+            1
+          ],
+          [
+            "f_null",
+            1
+          ]
+        ]
+      },
+      "flags": [
+        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_7kW_solar_v1"
+    },
+    "later_fields": {
+      "furniture": {
+        "#": "f_solar_unit"
+      },
+      "flags": [
+        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_7kW_solar_v2"
+    },
+    "later_fields": {
+      "furniture": {
+        "#": "f_solar_unit_v2"
+      },
+      "flags": [
+        "ERASE_ITEMS_BEFORE_PLACING_TERRAIN"
+      ]
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_8kW_solar_v1"
+    },
+    "later_fields": {
+      "furniture": {
+        "#": "f_solar_unit"
+      }
+    }
+  },
+  {
+    "source": {
+      "type": "mapgen",
+      "nested_mapgen_id": "residential_8kW_solar_v2"
+    },
+    "later_fields": {
+      "furniture": {
+        "#": "f_solar_unit_v2"
+      }
+    }
+  },
+  {
+    "source": [
+      "office_tower_ne"
+    ],
+    "field": "vision_levels",
+    "value": "large_city_building"
+  },
+  {
+    "source": [
+      "office_tower_underground_ne",
+      "office_tower_underground_nw",
+      "office_tower_underground_se",
+      "office_tower_underground_sw"
+    ],
+    "field": "vision_levels",
+    "value": "large_pavement"
+  },
+  {
+    "source": [
+      "office_tower_roof_ne",
+      "office_tower_roof_ne_roof",
+      "office_tower_roof_nw",
+      "office_tower_roof_se",
+      "office_tower_roof_se_roof",
+      "office_tower_roof_sw"
+    ],
+    "field": "vision_levels",
+    "value": "roof_or_air"
+  },
+  {
+    "source": [
+      "hotel_tower_1_1",
+      "hotel_tower_1_2",
+      "hotel_tower_1_3",
+      "hotel_tower_1_4",
+      "hotel_tower_flr2_1_4",
+      "hotel_tower_flr2_1_6",
+      "hotel_tower_flr3_1_4",
+      "hotel_tower_flr3_1_6",
+      "hotel_tower_flr4_1_4",
+      "hotel_tower_flr4_1_6"
+    ],
+    "field": "vision_levels",
+    "value": "large_pavement"
+  },
+  {
+    "source": [
+      "hotel_tower_1_6",
+      "hotel_tower_1_7",
+      "hotel_tower_1_8",
+      "hotel_tower_1_9",
+      "hotel_tower_6_1_7",
+      "hotel_tower_6_1_8",
+      "hotel_tower_6_1_9",
+      "hotel_tower_flr2_1_5",
+      "hotel_tower_flr2_1_5B",
+      "hotel_tower_flr2_1_5C",
+      "hotel_tower_flr2_1_7",
+      "hotel_tower_flr2_1_8",
+      "hotel_tower_flr2_1_9",
+      "hotel_tower_flr3_1_5",
+      "hotel_tower_flr3_1_7",
+      "hotel_tower_flr3_1_8",
+      "hotel_tower_flr3_1_9",
+      "hotel_tower_flr4_1_5",
+      "hotel_tower_flr4_1_7",
+      "hotel_tower_flr4_1_8",
+      "hotel_tower_flr4_1_9",
+      "hotel_tower_roof_1_4",
+      "hotel_tower_roof_1_6",
+      "hotel_tower_roof_1_7",
+      "hotel_tower_roof_1_8",
+      "hotel_tower_roof_1_9"
+    ],
+    "field": "vision_levels",
+    "value": "large_building"
+  },
+  {
+    "source": [
+      "hotel_tower_1_5",
+      "hotel_tower_1_5B",
+      "hotel_tower_1_5C",
+      "hotel_tower_roof_1_5"
+    ],
+    "field": "vision_levels",
+    "value": "isolated_building"
+  },
+  {
+    "source": [
+      "hotel_tower_b_1",
+      "hotel_tower_b_2",
+      "hotel_tower_b_3"
+    ],
+    "field": "vision_levels",
+    "value": "underground_dirt"
+  },
+  {
+    "source": [
+      "s_shoppingplaza_a1",
+      "s_shoppingplaza_a2",
+      "s_shoppingplaza_a3",
+      "s_shoppingplaza_a4",
+      "s_shoppingplaza_a5"
+    ],
+    "field": "vision_levels",
+    "value": "large_pavement"
+  },
+  {
+    "source": [
+      "zoo_0_0",
+      "zoo_1_0"
+    ],
+    "field": "vision_levels",
+    "value": "large_pavement"
+  },
+  {
+    "source": [
+      "stadium_1_2",
+      "stadium_1_3",
+      "stadium_2_2",
+      "stadium_2_3"
+    ],
+    "field": "vision_levels",
+    "value": "blends_till_details"
+  },
+  {
+    "source": [
+      "stadium_0_1",
+      "stadium_0_1_1",
+      "stadium_0_1_2",
+      "stadium_0_2",
+      "stadium_0_2_1",
+      "stadium_0_2_2",
+      "stadium_0_3",
+      "stadium_0_3_1",
+      "stadium_0_3_2",
+      "stadium_0_3_3",
+      "stadium_0_4",
+      "stadium_0_4_1",
+      "stadium_0_4_2",
+      "stadium_1_1_1",
+      "stadium_1_1_2",
+      "stadium_1_1_3",
+      "stadium_1_4",
+      "stadium_1_4_1",
+      "stadium_1_4_2",
+      "stadium_2_1_1",
+      "stadium_2_1_2",
+      "stadium_2_1_3",
+      "stadium_2_4",
+      "stadium_2_4_1",
+      "stadium_2_4_2",
+      "stadium_3_1",
+      "stadium_3_1_1",
+      "stadium_3_1_2",
+      "stadium_3_2",
+      "stadium_3_2_1",
+      "stadium_3_2_2",
+      "stadium_3_3",
+      "stadium_3_3_1",
+      "stadium_3_3_2",
+      "stadium_3_4",
+      "stadium_3_4_1",
+      "stadium_3_4_2"
+    ],
+    "field": "vision_levels",
+    "value": "large_city_building"
+  },
+  {
+    "source": [
+      "stadium_1_1",
+      "stadium_2_1"
+    ],
+    "field": "vision_levels",
+    "value": "large_city_building"
+  },
+  {
+    "source": [
+      "stadium_1_2_1",
+      "stadium_1_2_2",
+      "stadium_1_3_1",
+      "stadium_1_3_2",
+      "stadium_2_2_1",
+      "stadium_2_2_2",
+      "stadium_2_3_1",
+      "stadium_2_3_2"
+    ],
+    "field": "vision_levels",
+    "value": "roof_or_air"
+  },
+  {
+    "source": [
+      "stadium_0_0",
+      "stadium_1_0",
+      "stadium_2_0",
+      "stadium_3_0"
+    ],
+    "field": "vision_levels",
+    "value": "large_pavement"
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "hotel_1",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_3_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_2_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_1_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_6_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_5_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_4_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_9_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_8_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_7_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_3_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_2_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_1_north"
+        }
+      ],
+      "city_sizes": [
+        12,
+        -1
+      ]
+    }
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "hotel_2",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_3_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_2_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_1_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_6_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_5B_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_5B_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_5_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_4_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_9_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_8_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_7_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_3_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_2_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_1_north"
+        }
+      ],
+      "city_sizes": [
+        12,
+        -1
+      ]
+    }
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "hotel_3",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_3_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_2_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "hotel_tower_1_1_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_6_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_5C_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_5C_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_5_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_5_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "hotel_tower_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_4_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_9_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_9_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_8_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_8_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            0
+          ],
+          "overmap": "hotel_tower_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            1
+          ],
+          "overmap": "hotel_tower_flr2_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            2
+          ],
+          "overmap": "hotel_tower_flr3_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            3
+          ],
+          "overmap": "hotel_tower_flr4_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            4
+          ],
+          "overmap": "hotel_tower_roof_1_7_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            5
+          ],
+          "overmap": "hotel_tower_6_1_7_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_3_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_2_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            -1
+          ],
+          "overmap": "hotel_tower_b_1_north"
+        }
+      ],
+      "city_sizes": [
+        12,
+        -1
+      ]
+    }
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "office_tower",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "office_tower_nw_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "office_tower_ne_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "office_tower_sw_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "office_tower_se_north"
+        },
+        {
+          "point": [
+            0,
+            0,
+            -1
+          ],
+          "overmap": "office_tower_underground_nw_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            -1
+          ],
+          "overmap": "office_tower_underground_ne_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            -1
+          ],
+          "overmap": "office_tower_underground_sw_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            -1
+          ],
+          "overmap": "office_tower_underground_se_north"
+        },
+        {
+          "point": [
+            0,
+            0,
+            1
+          ],
+          "overmap": "office_tower_roof_nw_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            1
+          ],
+          "overmap": "office_tower_roof_ne_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "office_tower_roof_sw_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "office_tower_roof_se_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            2
+          ],
+          "overmap": "office_tower_roof_ne_roof_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            2
+          ],
+          "overmap": "office_tower_roof_se_roof_north"
+        }
+      ],
+      "city_sizes": [
+        8,
+        -1
+      ]
+    }
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "shopping_plaza",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "s_shoppingplaza_a1_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "s_shoppingplaza_a2_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "s_shoppingplaza_a3_north"
+        },
+        {
+          "point": [
+            3,
+            0,
+            0
+          ],
+          "overmap": "s_shoppingplaza_a4_north"
+        },
+        {
+          "point": [
+            4,
+            0,
+            0
+          ],
+          "overmap": "s_shoppingplaza_a5_north"
+        },
+        {
+          "point": [
+            5,
+            0,
+            0
+          ],
+          "overmap": "s_shoppingplaza_a6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "s_shoppingplaza_b1_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "s_shoppingplaza_b2_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "s_shoppingplaza_b3_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            0
+          ],
+          "overmap": "s_shoppingplaza_b4_north"
+        },
+        {
+          "point": [
+            4,
+            1,
+            0
+          ],
+          "overmap": "s_shoppingplaza_b5_north"
+        },
+        {
+          "point": [
+            5,
+            1,
+            0
+          ],
+          "overmap": "s_shoppingplaza_b6_north"
+        },
+        {
+          "point": [
+            5,
+            0,
+            1
+          ],
+          "overmap": "s_shoppingplaza_A6_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "s_shoppingplaza_B1_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "s_shoppingplaza_B2_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            1
+          ],
+          "overmap": "s_shoppingplaza_B3_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            1
+          ],
+          "overmap": "s_shoppingplaza_B4_north"
+        },
+        {
+          "point": [
+            4,
+            1,
+            1
+          ],
+          "overmap": "s_shoppingplaza_B5_north"
+        },
+        {
+          "point": [
+            5,
+            1,
+            1
+          ],
+          "overmap": "s_shoppingplaza_B6_north"
+        }
+      ],
+      "city_sizes": [
+        6,
+        -1
+      ]
+    }
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "zoo",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "zoo_0_0_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "zoo_1_0_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "zoo_2_0_north"
+        },
+        {
+          "point": [
+            3,
+            0,
+            0
+          ],
+          "overmap": "zoo_3_0_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "zoo_0_1_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "zoo_1_1_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "zoo_2_1_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            0
+          ],
+          "overmap": "zoo_3_1_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            0
+          ],
+          "overmap": "zoo_0_2_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            0
+          ],
+          "overmap": "zoo_1_2_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            0
+          ],
+          "overmap": "zoo_2_2_north"
+        },
+        {
+          "point": [
+            3,
+            2,
+            0
+          ],
+          "overmap": "zoo_3_2_north"
+        },
+        {
+          "point": [
+            0,
+            3,
+            0
+          ],
+          "overmap": "zoo_0_3_north"
+        },
+        {
+          "point": [
+            1,
+            3,
+            0
+          ],
+          "overmap": "zoo_1_3_north"
+        },
+        {
+          "point": [
+            2,
+            3,
+            0
+          ],
+          "overmap": "zoo_2_3_north"
+        },
+        {
+          "point": [
+            3,
+            3,
+            0
+          ],
+          "overmap": "zoo_3_3_north"
+        },
+        {
+          "point": [
+            0,
+            0,
+            1
+          ],
+          "overmap": "zoo_0_0_roof_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            1
+          ],
+          "overmap": "zoo_1_0_roof_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            1
+          ],
+          "overmap": "zoo_2_0_roof_north"
+        },
+        {
+          "point": [
+            3,
+            0,
+            1
+          ],
+          "overmap": "zoo_3_0_roof_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "zoo_0_1_roof_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "zoo_1_1_roof_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            1
+          ],
+          "overmap": "zoo_2_1_roof_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            1
+          ],
+          "overmap": "zoo_3_1_roof_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            1
+          ],
+          "overmap": "zoo_0_2_roof_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            1
+          ],
+          "overmap": "zoo_1_2_roof_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            1
+          ],
+          "overmap": "zoo_2_2_roof_north"
+        },
+        {
+          "point": [
+            3,
+            2,
+            1
+          ],
+          "overmap": "zoo_3_2_roof_north"
+        },
+        {
+          "point": [
+            0,
+            3,
+            1
+          ],
+          "overmap": "zoo_0_3_roof_north"
+        },
+        {
+          "point": [
+            1,
+            3,
+            1
+          ],
+          "overmap": "zoo_1_3_roof_north"
+        },
+        {
+          "point": [
+            2,
+            3,
+            1
+          ],
+          "overmap": "zoo_2_3_roof_north"
+        },
+        {
+          "point": [
+            3,
+            3,
+            1
+          ],
+          "overmap": "zoo_3_3_roof_north"
+        },
+        {
+          "point": [
+            3,
+            2,
+            -1
+          ],
+          "overmap": "zoo_3_2_basement_north"
+        },
+        {
+          "point": [
+            3,
+            3,
+            -1
+          ],
+          "overmap": "zoo_3_3_basement_north"
+        }
+      ],
+      "city_sizes": [
+        6,
+        -1
+      ]
+    }
+  },
+  {
+    "source_registration": {
+      "type": "city_building",
+      "id": "stadium",
+      "locations": [
+        "land"
+      ],
+      "overmaps": [
+        {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "overmap": "stadium_0_0_north"
+        },
+        {
+          "point": [
+            1,
+            0,
+            0
+          ],
+          "overmap": "stadium_1_0_north"
+        },
+        {
+          "point": [
+            2,
+            0,
+            0
+          ],
+          "overmap": "stadium_2_0_north"
+        },
+        {
+          "point": [
+            3,
+            0,
+            0
+          ],
+          "overmap": "stadium_3_0_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            0
+          ],
+          "overmap": "stadium_0_1_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            0
+          ],
+          "overmap": "stadium_1_1_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            0
+          ],
+          "overmap": "stadium_2_1_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            0
+          ],
+          "overmap": "stadium_3_1_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            0
+          ],
+          "overmap": "stadium_0_2_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            0
+          ],
+          "overmap": "stadium_1_2_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            0
+          ],
+          "overmap": "stadium_2_2_north"
+        },
+        {
+          "point": [
+            3,
+            2,
+            0
+          ],
+          "overmap": "stadium_3_2_north"
+        },
+        {
+          "point": [
+            0,
+            3,
+            0
+          ],
+          "overmap": "stadium_0_3_north"
+        },
+        {
+          "point": [
+            1,
+            3,
+            0
+          ],
+          "overmap": "stadium_1_3_north"
+        },
+        {
+          "point": [
+            2,
+            3,
+            0
+          ],
+          "overmap": "stadium_2_3_north"
+        },
+        {
+          "point": [
+            3,
+            3,
+            0
+          ],
+          "overmap": "stadium_3_3_north"
+        },
+        {
+          "point": [
+            0,
+            4,
+            0
+          ],
+          "overmap": "stadium_0_4_north"
+        },
+        {
+          "point": [
+            1,
+            4,
+            0
+          ],
+          "overmap": "stadium_1_4_north"
+        },
+        {
+          "point": [
+            2,
+            4,
+            0
+          ],
+          "overmap": "stadium_2_4_north"
+        },
+        {
+          "point": [
+            3,
+            4,
+            0
+          ],
+          "overmap": "stadium_3_4_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            1
+          ],
+          "overmap": "stadium_0_1_1_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            1
+          ],
+          "overmap": "stadium_1_1_1_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            1
+          ],
+          "overmap": "stadium_2_1_1_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            1
+          ],
+          "overmap": "stadium_3_1_1_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            1
+          ],
+          "overmap": "stadium_0_2_1_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            1
+          ],
+          "overmap": "stadium_1_2_1_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            1
+          ],
+          "overmap": "stadium_2_2_1_north"
+        },
+        {
+          "point": [
+            3,
+            2,
+            1
+          ],
+          "overmap": "stadium_3_2_1_north"
+        },
+        {
+          "point": [
+            0,
+            3,
+            1
+          ],
+          "overmap": "stadium_0_3_1_north"
+        },
+        {
+          "point": [
+            1,
+            3,
+            1
+          ],
+          "overmap": "stadium_1_3_1_north"
+        },
+        {
+          "point": [
+            2,
+            3,
+            1
+          ],
+          "overmap": "stadium_2_3_1_north"
+        },
+        {
+          "point": [
+            3,
+            3,
+            1
+          ],
+          "overmap": "stadium_3_3_1_north"
+        },
+        {
+          "point": [
+            0,
+            4,
+            1
+          ],
+          "overmap": "stadium_0_4_1_north"
+        },
+        {
+          "point": [
+            1,
+            4,
+            1
+          ],
+          "overmap": "stadium_1_4_1_north"
+        },
+        {
+          "point": [
+            2,
+            4,
+            1
+          ],
+          "overmap": "stadium_2_4_1_north"
+        },
+        {
+          "point": [
+            3,
+            4,
+            1
+          ],
+          "overmap": "stadium_3_4_1_north"
+        },
+        {
+          "point": [
+            0,
+            1,
+            2
+          ],
+          "overmap": "stadium_0_1_2_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            2
+          ],
+          "overmap": "stadium_1_1_2_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            2
+          ],
+          "overmap": "stadium_2_1_2_north"
+        },
+        {
+          "point": [
+            3,
+            1,
+            2
+          ],
+          "overmap": "stadium_3_1_2_north"
+        },
+        {
+          "point": [
+            0,
+            2,
+            2
+          ],
+          "overmap": "stadium_0_2_2_north"
+        },
+        {
+          "point": [
+            1,
+            2,
+            2
+          ],
+          "overmap": "stadium_1_2_2_north"
+        },
+        {
+          "point": [
+            2,
+            2,
+            2
+          ],
+          "overmap": "stadium_2_2_2_north"
+        },
+        {
+          "point": [
+            3,
+            2,
+            2
+          ],
+          "overmap": "stadium_3_2_2_north"
+        },
+        {
+          "point": [
+            0,
+            3,
+            2
+          ],
+          "overmap": "stadium_0_3_2_north"
+        },
+        {
+          "point": [
+            1,
+            3,
+            2
+          ],
+          "overmap": "stadium_1_3_2_north"
+        },
+        {
+          "point": [
+            2,
+            3,
+            2
+          ],
+          "overmap": "stadium_2_3_2_north"
+        },
+        {
+          "point": [
+            3,
+            3,
+            2
+          ],
+          "overmap": "stadium_3_3_2_north"
+        },
+        {
+          "point": [
+            0,
+            4,
+            2
+          ],
+          "overmap": "stadium_0_4_2_north"
+        },
+        {
+          "point": [
+            1,
+            4,
+            2
+          ],
+          "overmap": "stadium_1_4_2_north"
+        },
+        {
+          "point": [
+            2,
+            4,
+            2
+          ],
+          "overmap": "stadium_2_4_2_north"
+        },
+        {
+          "point": [
+            3,
+            4,
+            2
+          ],
+          "overmap": "stadium_3_4_2_north"
+        },
+        {
+          "point": [
+            1,
+            1,
+            3
+          ],
+          "overmap": "stadium_1_1_3_north"
+        },
+        {
+          "point": [
+            2,
+            1,
+            3
+          ],
+          "overmap": "stadium_2_1_3_north"
+        },
+        {
+          "point": [
+            0,
+            3,
+            3
+          ],
+          "overmap": "stadium_0_3_3_north"
+        }
+      ],
+      "city_sizes": [
+        16,
+        -1
+      ],
+      "flags": [
+        "CITY_UNIQUE"
+      ]
+    }
+  },
+  {
+    "late_only_nested_ids_projected_to_null": [
+      "14x14_office_crowded_se",
+      "14x14_office_crowded_sw",
+      "14x14_office_cubicle_se",
+      "14x14_office_cubicle_sw",
+      "14x14_office_generic_se",
+      "14x14_office_generic_sw",
+      "14x14_office_glass_se",
+      "14x14_office_glass_sw",
+      "14x14_office_slide_se",
+      "14x14_office_slide_sw",
+      "5x5_cabinet_cleaning0_l",
+      "5x5_cabinet_cleaning0_r",
+      "5x5_cabinet_cleaning1_l",
+      "5x5_cabinet_cleaning1_r",
+      "5x5_cabinet_office0_n",
+      "5x5_cabinet_office1_n",
+      "5x5_cabinet_sec_n",
+      "5x5_cabinet_sofa_n",
+      "5x5_cabinet_storage0_l",
+      "5x5_cabinet_storage0_r",
+      "5x5_cabinet_storage1_l",
+      "5x5_cabinet_storage1_r",
+      "5x5_cabinet_storage2_l",
+      "5x5_cabinet_storage2_r",
+      "5x5_cabinet_toilet_l",
+      "5x5_cabinet_toilet_r",
+      "5x5_corridor_benches_ne",
+      "5x5_corridor_office_ne",
+      "5x5_corridor_register_ne",
+      "5x5_corridor_sofa_ne",
+      "6x6_room_boss_r",
+      "6x6_room_breakroom_r",
+      "6x6_room_files_r",
+      "6x6_room_office_r",
+      "8x8_meeting_room_l_1",
+      "8x8_meeting_room_l_2",
+      "8x8_meeting_room_l_3",
+      "8x8_meeting_room_r_1",
+      "8x8_meeting_room_r_2",
+      "8x8_meeting_room_r_3",
+      "8x8_meeting_room_r_4",
+      "general_graffiti",
+      "industrial_1x1_solar",
+      "industrial_1x1_solar_v2",
+      "roof_1x1_birdnest",
+      "roof_2x2_utilities",
+      "roof_2x2_utilities_b",
+      "roof_2x2_utilities_c",
+      "shelter_graffiti"
+    ]
+  }
+]

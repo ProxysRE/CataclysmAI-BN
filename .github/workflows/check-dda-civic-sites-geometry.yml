@@ -1,0 +1,21 @@
+name: Check five DDA civic geometry groups
+on:
+  push:
+    paths:
+      - 'npc-content/prepare_civic_sites_geometry.py'
+      - 'npc-content/prepare_civic_sites_preview.py'
+      - 'npc-content/check_civic_sites_geometry.py'
+      - 'npc-content/geometry_layer/CIVIC_SITES_*'
+      - 'npc-content/geometry_layer/civic_sites_sources/**'
+      - '.github/workflows/check-dda-civic-sites-geometry.yml'
+  workflow_dispatch:
+jobs:
+  geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python npc-content/check_civic_sites_geometry.py
+      - run: python npc-content/report_geometry_progress.py --check

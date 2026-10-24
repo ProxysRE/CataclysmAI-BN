@@ -1,0 +1,1641 @@
+{
+  "status": "civic_geometry_staged_pending_adaptation_and_native_tests",
+  "native_embedded": false,
+  "runtime_validated": false,
+  "source_groups": 5,
+  "source_registrations": [
+    "hotel_1",
+    "hotel_2",
+    "hotel_3",
+    "office_tower",
+    "shopping_plaza",
+    "stadium",
+    "zoo"
+  ],
+  "source_placements": 239,
+  "special_cells": {
+    "hotel_1": 39,
+    "hotel_2": 39,
+    "hotel_3": 39,
+    "office_tower": 14,
+    "shopping_plaza": 19,
+    "zoo": 34,
+    "stadium": 55
+  },
+  "source_z_levels": {
+    "hotel_1": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "hotel_2": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "hotel_3": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "office_tower": [
+      -1,
+      0,
+      1,
+      2
+    ],
+    "shopping_plaza": [
+      0,
+      1
+    ],
+    "zoo": [
+      -1,
+      0,
+      1
+    ],
+    "stadium": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "world_maps": 28,
+  "nested_definitions": 11,
+  "source_conservation": [
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_1_3",
+          "hotel_tower_1_2",
+          "hotel_tower_1_1"
+        ],
+        [
+          "hotel_tower_1_6",
+          "hotel_tower_1_5",
+          "hotel_tower_1_4"
+        ],
+        [
+          "hotel_tower_1_9",
+          "hotel_tower_1_8",
+          "hotel_tower_1_7"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_flr2_1_6",
+          "hotel_tower_flr2_1_5",
+          "hotel_tower_flr2_1_4"
+        ],
+        [
+          "hotel_tower_flr2_1_9",
+          "hotel_tower_flr2_1_8",
+          "hotel_tower_flr2_1_7"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_flr3_1_6",
+          "hotel_tower_flr3_1_5",
+          "hotel_tower_flr3_1_4"
+        ],
+        [
+          "hotel_tower_flr3_1_9",
+          "hotel_tower_flr3_1_8",
+          "hotel_tower_flr3_1_7"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_flr4_1_6",
+          "hotel_tower_flr4_1_5",
+          "hotel_tower_flr4_1_4"
+        ],
+        [
+          "hotel_tower_flr4_1_9",
+          "hotel_tower_flr4_1_8",
+          "hotel_tower_flr4_1_7"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_roof_1_6",
+          "hotel_tower_roof_1_5",
+          "hotel_tower_roof_1_4"
+        ],
+        [
+          "hotel_tower_roof_1_9",
+          "hotel_tower_roof_1_8",
+          "hotel_tower_roof_1_7"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_6_1_9",
+          "hotel_tower_6_1_8",
+          "hotel_tower_6_1_7"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        [
+          "hotel_tower_b_3",
+          "hotel_tower_b_2",
+          "hotel_tower_b_1"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        "hotel_tower_1_5B"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        "hotel_tower_flr2_1_5B"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        "hotel_tower_1_5C"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/hotel_tower.json",
+      "source_omt": [
+        "hotel_tower_flr2_1_5C"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/office_tower.json",
+      "source_omt": [
+        [
+          "office_tower_nw",
+          "office_tower_ne"
+        ],
+        [
+          "office_tower_sw",
+          "office_tower_se"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/office_tower.json",
+      "source_omt": [
+        [
+          "office_tower_underground_nw",
+          "office_tower_underground_ne"
+        ],
+        [
+          "office_tower_underground_sw",
+          "office_tower_underground_se"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/office_tower.json",
+      "source_omt": [
+        [
+          "office_tower_roof_nw",
+          "office_tower_roof_ne"
+        ],
+        [
+          "office_tower_roof_sw",
+          "office_tower_roof_se"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/office_tower.json",
+      "source_omt": [
+        [
+          "office_tower_roof_ne_roof"
+        ],
+        [
+          "office_tower_roof_se_roof"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/stadium_baseball.json",
+      "source_omt": [
+        [
+          "stadium_0_0",
+          "stadium_1_0",
+          "stadium_2_0",
+          "stadium_3_0"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/stadium_baseball.json",
+      "source_omt": [
+        [
+          "stadium_0_1",
+          "stadium_1_1",
+          "stadium_2_1",
+          "stadium_3_1"
+        ],
+        [
+          "stadium_0_2",
+          "stadium_1_2",
+          "stadium_2_2",
+          "stadium_3_2"
+        ],
+        [
+          "stadium_0_3",
+          "stadium_1_3",
+          "stadium_2_3",
+          "stadium_3_3"
+        ],
+        [
+          "stadium_0_4",
+          "stadium_1_4",
+          "stadium_2_4",
+          "stadium_3_4"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/stadium_baseball.json",
+      "source_omt": [
+        [
+          "stadium_0_1_1",
+          "stadium_1_1_1",
+          "stadium_2_1_1",
+          "stadium_3_1_1"
+        ],
+        [
+          "stadium_0_2_1",
+          "stadium_1_2_1",
+          "stadium_2_2_1",
+          "stadium_3_2_1"
+        ],
+        [
+          "stadium_0_3_1",
+          "stadium_1_3_1",
+          "stadium_2_3_1",
+          "stadium_3_3_1"
+        ],
+        [
+          "stadium_0_4_1",
+          "stadium_1_4_1",
+          "stadium_2_4_1",
+          "stadium_3_4_1"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/stadium_baseball.json",
+      "source_omt": [
+        [
+          "stadium_0_1_2",
+          "stadium_1_1_2",
+          "stadium_2_1_2",
+          "stadium_3_1_2"
+        ],
+        [
+          "stadium_0_2_2",
+          "stadium_1_2_2",
+          "stadium_2_2_2",
+          "stadium_3_2_2"
+        ],
+        [
+          "stadium_0_3_2",
+          "stadium_1_3_2",
+          "stadium_2_3_2",
+          "stadium_3_3_2"
+        ],
+        [
+          "stadium_0_4_2",
+          "stadium_1_4_2",
+          "stadium_2_4_2",
+          "stadium_3_4_2"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/stadium_baseball.json",
+      "source_omt": [
+        [
+          "stadium_1_1_3",
+          "stadium_2_1_3"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/stadium_baseball.json",
+      "source_omt": [
+        "stadium_0_3_3"
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/zoo.json",
+      "source_omt": [
+        [
+          "zoo_0_0",
+          "zoo_1_0",
+          "zoo_2_0",
+          "zoo_3_0"
+        ],
+        [
+          "zoo_0_1",
+          "zoo_1_1",
+          "zoo_2_1",
+          "zoo_3_1"
+        ],
+        [
+          "zoo_0_2",
+          "zoo_1_2",
+          "zoo_2_2",
+          "zoo_3_2"
+        ],
+        [
+          "zoo_0_3",
+          "zoo_1_3",
+          "zoo_2_3",
+          "zoo_3_3"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/zoo.json",
+      "source_omt": [
+        [
+          "zoo_0_0_roof",
+          "zoo_1_0_roof",
+          "zoo_2_0_roof",
+          "zoo_3_0_roof"
+        ],
+        [
+          "zoo_0_1_roof",
+          "zoo_1_1_roof",
+          "zoo_2_1_roof",
+          "zoo_3_1_roof"
+        ],
+        [
+          "zoo_0_2_roof",
+          "zoo_1_2_roof",
+          "zoo_2_2_roof",
+          "zoo_3_2_roof"
+        ],
+        [
+          "zoo_0_3_roof",
+          "zoo_1_3_roof",
+          "zoo_2_3_roof",
+          "zoo_3_3_roof"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/zoo.json",
+      "source_omt": [
+        [
+          "zoo_3_2_basement"
+        ],
+        [
+          "zoo_3_3_basement"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/abandoned_shopping_plaza.json",
+      "source_omt": [
+        [
+          "s_shoppingplaza_a1",
+          "s_shoppingplaza_a2",
+          "s_shoppingplaza_a3"
+        ],
+        [
+          "s_shoppingplaza_b1",
+          "s_shoppingplaza_b2",
+          "s_shoppingplaza_b3"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/abandoned_shopping_plaza.json",
+      "source_omt": [
+        [
+          "s_shoppingplaza_a4",
+          "s_shoppingplaza_a5",
+          "s_shoppingplaza_a6"
+        ],
+        [
+          "s_shoppingplaza_b4",
+          "s_shoppingplaza_b5",
+          "s_shoppingplaza_b6"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/abandoned_shopping_plaza.json",
+      "source_omt": [
+        [
+          "s_shoppingplaza_B1",
+          "s_shoppingplaza_B2",
+          "s_shoppingplaza_B3"
+        ]
+      ],
+      "weight": 1000
+    },
+    {
+      "path": "data/json/mapgen/abandoned_shopping_plaza.json",
+      "source_omt": [
+        [
+          "null",
+          "null",
+          "s_shoppingplaza_A6"
+        ],
+        [
+          "s_shoppingplaza_B4",
+          "s_shoppingplaza_B5",
+          "s_shoppingplaza_B6"
+        ]
+      ],
+      "weight": 1000
+    }
+  ],
+  "physical_aliases": {
+    "t_metal_roof": "t_metal_flat_roof",
+    "t_door_elocked": "t_door_locked",
+    "t_window_domestic_alarm": "t_window_domestic",
+    "t_curtains_alarm": "t_curtains",
+    "t_bollard": "t_little_column",
+    "t_door_metal_elocked": "t_door_metal_locked",
+    "t_retractable_gate_l": "t_chaingate_l",
+    "t_wood_roof": "dda_geo_civic_wood_roof",
+    "t_concrete_wall_gray": "t_concrete_wall",
+    "t_concrete_wall_w": "t_concrete_wall",
+    "t_sconc_wall_gray": "t_sconc_wall",
+    "t_sconc_wall_w": "t_sconc_wall",
+    "t_strconc_wall_P": "t_strconc_wall",
+    "t_strconc_wall_b": "t_strconc_wall",
+    "t_strconc_wall_black": "t_strconc_wall",
+    "t_strconc_wall_brown": "t_strconc_wall",
+    "t_strconc_wall_cyan": "t_strconc_wall",
+    "t_strconc_wall_g": "t_strconc_wall",
+    "t_strconc_wall_gray": "t_strconc_wall",
+    "t_strconc_wall_orange": "t_strconc_wall",
+    "t_strconc_wall_p": "t_strconc_wall",
+    "t_strconc_wall_r": "t_strconc_wall",
+    "t_strconc_wall_w": "t_strconc_wall",
+    "t_strconc_wall_y": "t_strconc_wall",
+    "t_wall_black": "t_wall",
+    "t_wall_brown": "t_wall",
+    "t_wall_cyan": "t_wall",
+    "t_wall_gray": "t_wall",
+    "t_wall_orange": "t_wall"
+  },
+  "isolated_ids": {
+    "hotel_1": "dda_geo_civic_hotel_1",
+    "hotel_2": "dda_geo_civic_hotel_2",
+    "hotel_3": "dda_geo_civic_hotel_3",
+    "hotel_tower_1_1": "dda_geo_civic_hotel_tower_1_1",
+    "hotel_tower_1_1_east": "dda_geo_civic_hotel_tower_1_1_east",
+    "hotel_tower_1_1_north": "dda_geo_civic_hotel_tower_1_1_north",
+    "hotel_tower_1_1_south": "dda_geo_civic_hotel_tower_1_1_south",
+    "hotel_tower_1_1_west": "dda_geo_civic_hotel_tower_1_1_west",
+    "hotel_tower_1_2": "dda_geo_civic_hotel_tower_1_2",
+    "hotel_tower_1_2_east": "dda_geo_civic_hotel_tower_1_2_east",
+    "hotel_tower_1_2_north": "dda_geo_civic_hotel_tower_1_2_north",
+    "hotel_tower_1_2_south": "dda_geo_civic_hotel_tower_1_2_south",
+    "hotel_tower_1_2_west": "dda_geo_civic_hotel_tower_1_2_west",
+    "hotel_tower_1_3": "dda_geo_civic_hotel_tower_1_3",
+    "hotel_tower_1_3_east": "dda_geo_civic_hotel_tower_1_3_east",
+    "hotel_tower_1_3_north": "dda_geo_civic_hotel_tower_1_3_north",
+    "hotel_tower_1_3_south": "dda_geo_civic_hotel_tower_1_3_south",
+    "hotel_tower_1_3_west": "dda_geo_civic_hotel_tower_1_3_west",
+    "hotel_tower_1_4": "dda_geo_civic_hotel_tower_1_4",
+    "hotel_tower_1_4_east": "dda_geo_civic_hotel_tower_1_4_east",
+    "hotel_tower_1_4_north": "dda_geo_civic_hotel_tower_1_4_north",
+    "hotel_tower_1_4_south": "dda_geo_civic_hotel_tower_1_4_south",
+    "hotel_tower_1_4_west": "dda_geo_civic_hotel_tower_1_4_west",
+    "hotel_tower_1_5": "dda_geo_civic_hotel_tower_1_5",
+    "hotel_tower_1_5B": "dda_geo_civic_hotel_tower_1_5B",
+    "hotel_tower_1_5B_east": "dda_geo_civic_hotel_tower_1_5B_east",
+    "hotel_tower_1_5B_north": "dda_geo_civic_hotel_tower_1_5B_north",
+    "hotel_tower_1_5B_south": "dda_geo_civic_hotel_tower_1_5B_south",
+    "hotel_tower_1_5B_west": "dda_geo_civic_hotel_tower_1_5B_west",
+    "hotel_tower_1_5C": "dda_geo_civic_hotel_tower_1_5C",
+    "hotel_tower_1_5C_east": "dda_geo_civic_hotel_tower_1_5C_east",
+    "hotel_tower_1_5C_north": "dda_geo_civic_hotel_tower_1_5C_north",
+    "hotel_tower_1_5C_south": "dda_geo_civic_hotel_tower_1_5C_south",
+    "hotel_tower_1_5C_west": "dda_geo_civic_hotel_tower_1_5C_west",
+    "hotel_tower_1_5_east": "dda_geo_civic_hotel_tower_1_5_east",
+    "hotel_tower_1_5_north": "dda_geo_civic_hotel_tower_1_5_north",
+    "hotel_tower_1_5_south": "dda_geo_civic_hotel_tower_1_5_south",
+    "hotel_tower_1_5_west": "dda_geo_civic_hotel_tower_1_5_west",
+    "hotel_tower_1_6": "dda_geo_civic_hotel_tower_1_6",
+    "hotel_tower_1_6_east": "dda_geo_civic_hotel_tower_1_6_east",
+    "hotel_tower_1_6_north": "dda_geo_civic_hotel_tower_1_6_north",
+    "hotel_tower_1_6_south": "dda_geo_civic_hotel_tower_1_6_south",
+    "hotel_tower_1_6_west": "dda_geo_civic_hotel_tower_1_6_west",
+    "hotel_tower_1_7": "dda_geo_civic_hotel_tower_1_7",
+    "hotel_tower_1_7_east": "dda_geo_civic_hotel_tower_1_7_east",
+    "hotel_tower_1_7_north": "dda_geo_civic_hotel_tower_1_7_north",
+    "hotel_tower_1_7_south": "dda_geo_civic_hotel_tower_1_7_south",
+    "hotel_tower_1_7_west": "dda_geo_civic_hotel_tower_1_7_west",
+    "hotel_tower_1_8": "dda_geo_civic_hotel_tower_1_8",
+    "hotel_tower_1_8_east": "dda_geo_civic_hotel_tower_1_8_east",
+    "hotel_tower_1_8_north": "dda_geo_civic_hotel_tower_1_8_north",
+    "hotel_tower_1_8_south": "dda_geo_civic_hotel_tower_1_8_south",
+    "hotel_tower_1_8_west": "dda_geo_civic_hotel_tower_1_8_west",
+    "hotel_tower_1_9": "dda_geo_civic_hotel_tower_1_9",
+    "hotel_tower_1_9_east": "dda_geo_civic_hotel_tower_1_9_east",
+    "hotel_tower_1_9_north": "dda_geo_civic_hotel_tower_1_9_north",
+    "hotel_tower_1_9_south": "dda_geo_civic_hotel_tower_1_9_south",
+    "hotel_tower_1_9_west": "dda_geo_civic_hotel_tower_1_9_west",
+    "hotel_tower_6_1_7": "dda_geo_civic_hotel_tower_6_1_7",
+    "hotel_tower_6_1_7_east": "dda_geo_civic_hotel_tower_6_1_7_east",
+    "hotel_tower_6_1_7_north": "dda_geo_civic_hotel_tower_6_1_7_north",
+    "hotel_tower_6_1_7_south": "dda_geo_civic_hotel_tower_6_1_7_south",
+    "hotel_tower_6_1_7_west": "dda_geo_civic_hotel_tower_6_1_7_west",
+    "hotel_tower_6_1_8": "dda_geo_civic_hotel_tower_6_1_8",
+    "hotel_tower_6_1_8_east": "dda_geo_civic_hotel_tower_6_1_8_east",
+    "hotel_tower_6_1_8_north": "dda_geo_civic_hotel_tower_6_1_8_north",
+    "hotel_tower_6_1_8_south": "dda_geo_civic_hotel_tower_6_1_8_south",
+    "hotel_tower_6_1_8_west": "dda_geo_civic_hotel_tower_6_1_8_west",
+    "hotel_tower_6_1_9": "dda_geo_civic_hotel_tower_6_1_9",
+    "hotel_tower_6_1_9_east": "dda_geo_civic_hotel_tower_6_1_9_east",
+    "hotel_tower_6_1_9_north": "dda_geo_civic_hotel_tower_6_1_9_north",
+    "hotel_tower_6_1_9_south": "dda_geo_civic_hotel_tower_6_1_9_south",
+    "hotel_tower_6_1_9_west": "dda_geo_civic_hotel_tower_6_1_9_west",
+    "hotel_tower_b_1": "dda_geo_civic_hotel_tower_b_1",
+    "hotel_tower_b_1_east": "dda_geo_civic_hotel_tower_b_1_east",
+    "hotel_tower_b_1_north": "dda_geo_civic_hotel_tower_b_1_north",
+    "hotel_tower_b_1_south": "dda_geo_civic_hotel_tower_b_1_south",
+    "hotel_tower_b_1_west": "dda_geo_civic_hotel_tower_b_1_west",
+    "hotel_tower_b_2": "dda_geo_civic_hotel_tower_b_2",
+    "hotel_tower_b_2_east": "dda_geo_civic_hotel_tower_b_2_east",
+    "hotel_tower_b_2_north": "dda_geo_civic_hotel_tower_b_2_north",
+    "hotel_tower_b_2_south": "dda_geo_civic_hotel_tower_b_2_south",
+    "hotel_tower_b_2_west": "dda_geo_civic_hotel_tower_b_2_west",
+    "hotel_tower_b_3": "dda_geo_civic_hotel_tower_b_3",
+    "hotel_tower_b_3_east": "dda_geo_civic_hotel_tower_b_3_east",
+    "hotel_tower_b_3_north": "dda_geo_civic_hotel_tower_b_3_north",
+    "hotel_tower_b_3_south": "dda_geo_civic_hotel_tower_b_3_south",
+    "hotel_tower_b_3_west": "dda_geo_civic_hotel_tower_b_3_west",
+    "hotel_tower_flr2_1_4": "dda_geo_civic_hotel_tower_flr2_1_4",
+    "hotel_tower_flr2_1_4_east": "dda_geo_civic_hotel_tower_flr2_1_4_east",
+    "hotel_tower_flr2_1_4_north": "dda_geo_civic_hotel_tower_flr2_1_4_north",
+    "hotel_tower_flr2_1_4_south": "dda_geo_civic_hotel_tower_flr2_1_4_south",
+    "hotel_tower_flr2_1_4_west": "dda_geo_civic_hotel_tower_flr2_1_4_west",
+    "hotel_tower_flr2_1_5": "dda_geo_civic_hotel_tower_flr2_1_5",
+    "hotel_tower_flr2_1_5B": "dda_geo_civic_hotel_tower_flr2_1_5B",
+    "hotel_tower_flr2_1_5B_east": "dda_geo_civic_hotel_tower_flr2_1_5B_east",
+    "hotel_tower_flr2_1_5B_north": "dda_geo_civic_hotel_tower_flr2_1_5B_north",
+    "hotel_tower_flr2_1_5B_south": "dda_geo_civic_hotel_tower_flr2_1_5B_south",
+    "hotel_tower_flr2_1_5B_west": "dda_geo_civic_hotel_tower_flr2_1_5B_west",
+    "hotel_tower_flr2_1_5C": "dda_geo_civic_hotel_tower_flr2_1_5C",
+    "hotel_tower_flr2_1_5C_east": "dda_geo_civic_hotel_tower_flr2_1_5C_east",
+    "hotel_tower_flr2_1_5C_north": "dda_geo_civic_hotel_tower_flr2_1_5C_north",
+    "hotel_tower_flr2_1_5C_south": "dda_geo_civic_hotel_tower_flr2_1_5C_south",
+    "hotel_tower_flr2_1_5C_west": "dda_geo_civic_hotel_tower_flr2_1_5C_west",
+    "hotel_tower_flr2_1_5_east": "dda_geo_civic_hotel_tower_flr2_1_5_east",
+    "hotel_tower_flr2_1_5_north": "dda_geo_civic_hotel_tower_flr2_1_5_north",
+    "hotel_tower_flr2_1_5_south": "dda_geo_civic_hotel_tower_flr2_1_5_south",
+    "hotel_tower_flr2_1_5_west": "dda_geo_civic_hotel_tower_flr2_1_5_west",
+    "hotel_tower_flr2_1_6": "dda_geo_civic_hotel_tower_flr2_1_6",
+    "hotel_tower_flr2_1_6_east": "dda_geo_civic_hotel_tower_flr2_1_6_east",
+    "hotel_tower_flr2_1_6_north": "dda_geo_civic_hotel_tower_flr2_1_6_north",
+    "hotel_tower_flr2_1_6_south": "dda_geo_civic_hotel_tower_flr2_1_6_south",
+    "hotel_tower_flr2_1_6_west": "dda_geo_civic_hotel_tower_flr2_1_6_west",
+    "hotel_tower_flr2_1_7": "dda_geo_civic_hotel_tower_flr2_1_7",
+    "hotel_tower_flr2_1_7_east": "dda_geo_civic_hotel_tower_flr2_1_7_east",
+    "hotel_tower_flr2_1_7_north": "dda_geo_civic_hotel_tower_flr2_1_7_north",
+    "hotel_tower_flr2_1_7_south": "dda_geo_civic_hotel_tower_flr2_1_7_south",
+    "hotel_tower_flr2_1_7_west": "dda_geo_civic_hotel_tower_flr2_1_7_west",
+    "hotel_tower_flr2_1_8": "dda_geo_civic_hotel_tower_flr2_1_8",
+    "hotel_tower_flr2_1_8_east": "dda_geo_civic_hotel_tower_flr2_1_8_east",
+    "hotel_tower_flr2_1_8_north": "dda_geo_civic_hotel_tower_flr2_1_8_north",
+    "hotel_tower_flr2_1_8_south": "dda_geo_civic_hotel_tower_flr2_1_8_south",
+    "hotel_tower_flr2_1_8_west": "dda_geo_civic_hotel_tower_flr2_1_8_west",
+    "hotel_tower_flr2_1_9": "dda_geo_civic_hotel_tower_flr2_1_9",
+    "hotel_tower_flr2_1_9_east": "dda_geo_civic_hotel_tower_flr2_1_9_east",
+    "hotel_tower_flr2_1_9_north": "dda_geo_civic_hotel_tower_flr2_1_9_north",
+    "hotel_tower_flr2_1_9_south": "dda_geo_civic_hotel_tower_flr2_1_9_south",
+    "hotel_tower_flr2_1_9_west": "dda_geo_civic_hotel_tower_flr2_1_9_west",
+    "hotel_tower_flr3_1_4": "dda_geo_civic_hotel_tower_flr3_1_4",
+    "hotel_tower_flr3_1_4_east": "dda_geo_civic_hotel_tower_flr3_1_4_east",
+    "hotel_tower_flr3_1_4_north": "dda_geo_civic_hotel_tower_flr3_1_4_north",
+    "hotel_tower_flr3_1_4_south": "dda_geo_civic_hotel_tower_flr3_1_4_south",
+    "hotel_tower_flr3_1_4_west": "dda_geo_civic_hotel_tower_flr3_1_4_west",
+    "hotel_tower_flr3_1_5": "dda_geo_civic_hotel_tower_flr3_1_5",
+    "hotel_tower_flr3_1_5_east": "dda_geo_civic_hotel_tower_flr3_1_5_east",
+    "hotel_tower_flr3_1_5_north": "dda_geo_civic_hotel_tower_flr3_1_5_north",
+    "hotel_tower_flr3_1_5_south": "dda_geo_civic_hotel_tower_flr3_1_5_south",
+    "hotel_tower_flr3_1_5_west": "dda_geo_civic_hotel_tower_flr3_1_5_west",
+    "hotel_tower_flr3_1_6": "dda_geo_civic_hotel_tower_flr3_1_6",
+    "hotel_tower_flr3_1_6_east": "dda_geo_civic_hotel_tower_flr3_1_6_east",
+    "hotel_tower_flr3_1_6_north": "dda_geo_civic_hotel_tower_flr3_1_6_north",
+    "hotel_tower_flr3_1_6_south": "dda_geo_civic_hotel_tower_flr3_1_6_south",
+    "hotel_tower_flr3_1_6_west": "dda_geo_civic_hotel_tower_flr3_1_6_west",
+    "hotel_tower_flr3_1_7": "dda_geo_civic_hotel_tower_flr3_1_7",
+    "hotel_tower_flr3_1_7_east": "dda_geo_civic_hotel_tower_flr3_1_7_east",
+    "hotel_tower_flr3_1_7_north": "dda_geo_civic_hotel_tower_flr3_1_7_north",
+    "hotel_tower_flr3_1_7_south": "dda_geo_civic_hotel_tower_flr3_1_7_south",
+    "hotel_tower_flr3_1_7_west": "dda_geo_civic_hotel_tower_flr3_1_7_west",
+    "hotel_tower_flr3_1_8": "dda_geo_civic_hotel_tower_flr3_1_8",
+    "hotel_tower_flr3_1_8_east": "dda_geo_civic_hotel_tower_flr3_1_8_east",
+    "hotel_tower_flr3_1_8_north": "dda_geo_civic_hotel_tower_flr3_1_8_north",
+    "hotel_tower_flr3_1_8_south": "dda_geo_civic_hotel_tower_flr3_1_8_south",
+    "hotel_tower_flr3_1_8_west": "dda_geo_civic_hotel_tower_flr3_1_8_west",
+    "hotel_tower_flr3_1_9": "dda_geo_civic_hotel_tower_flr3_1_9",
+    "hotel_tower_flr3_1_9_east": "dda_geo_civic_hotel_tower_flr3_1_9_east",
+    "hotel_tower_flr3_1_9_north": "dda_geo_civic_hotel_tower_flr3_1_9_north",
+    "hotel_tower_flr3_1_9_south": "dda_geo_civic_hotel_tower_flr3_1_9_south",
+    "hotel_tower_flr3_1_9_west": "dda_geo_civic_hotel_tower_flr3_1_9_west",
+    "hotel_tower_flr4_1_4": "dda_geo_civic_hotel_tower_flr4_1_4",
+    "hotel_tower_flr4_1_4_east": "dda_geo_civic_hotel_tower_flr4_1_4_east",
+    "hotel_tower_flr4_1_4_north": "dda_geo_civic_hotel_tower_flr4_1_4_north",
+    "hotel_tower_flr4_1_4_south": "dda_geo_civic_hotel_tower_flr4_1_4_south",
+    "hotel_tower_flr4_1_4_west": "dda_geo_civic_hotel_tower_flr4_1_4_west",
+    "hotel_tower_flr4_1_5": "dda_geo_civic_hotel_tower_flr4_1_5",
+    "hotel_tower_flr4_1_5_east": "dda_geo_civic_hotel_tower_flr4_1_5_east",
+    "hotel_tower_flr4_1_5_north": "dda_geo_civic_hotel_tower_flr4_1_5_north",
+    "hotel_tower_flr4_1_5_south": "dda_geo_civic_hotel_tower_flr4_1_5_south",
+    "hotel_tower_flr4_1_5_west": "dda_geo_civic_hotel_tower_flr4_1_5_west",
+    "hotel_tower_flr4_1_6": "dda_geo_civic_hotel_tower_flr4_1_6",
+    "hotel_tower_flr4_1_6_east": "dda_geo_civic_hotel_tower_flr4_1_6_east",
+    "hotel_tower_flr4_1_6_north": "dda_geo_civic_hotel_tower_flr4_1_6_north",
+    "hotel_tower_flr4_1_6_south": "dda_geo_civic_hotel_tower_flr4_1_6_south",
+    "hotel_tower_flr4_1_6_west": "dda_geo_civic_hotel_tower_flr4_1_6_west",
+    "hotel_tower_flr4_1_7": "dda_geo_civic_hotel_tower_flr4_1_7",
+    "hotel_tower_flr4_1_7_east": "dda_geo_civic_hotel_tower_flr4_1_7_east",
+    "hotel_tower_flr4_1_7_north": "dda_geo_civic_hotel_tower_flr4_1_7_north",
+    "hotel_tower_flr4_1_7_south": "dda_geo_civic_hotel_tower_flr4_1_7_south",
+    "hotel_tower_flr4_1_7_west": "dda_geo_civic_hotel_tower_flr4_1_7_west",
+    "hotel_tower_flr4_1_8": "dda_geo_civic_hotel_tower_flr4_1_8",
+    "hotel_tower_flr4_1_8_east": "dda_geo_civic_hotel_tower_flr4_1_8_east",
+    "hotel_tower_flr4_1_8_north": "dda_geo_civic_hotel_tower_flr4_1_8_north",
+    "hotel_tower_flr4_1_8_south": "dda_geo_civic_hotel_tower_flr4_1_8_south",
+    "hotel_tower_flr4_1_8_west": "dda_geo_civic_hotel_tower_flr4_1_8_west",
+    "hotel_tower_flr4_1_9": "dda_geo_civic_hotel_tower_flr4_1_9",
+    "hotel_tower_flr4_1_9_east": "dda_geo_civic_hotel_tower_flr4_1_9_east",
+    "hotel_tower_flr4_1_9_north": "dda_geo_civic_hotel_tower_flr4_1_9_north",
+    "hotel_tower_flr4_1_9_south": "dda_geo_civic_hotel_tower_flr4_1_9_south",
+    "hotel_tower_flr4_1_9_west": "dda_geo_civic_hotel_tower_flr4_1_9_west",
+    "hotel_tower_roof_1_4": "dda_geo_civic_hotel_tower_roof_1_4",
+    "hotel_tower_roof_1_4_east": "dda_geo_civic_hotel_tower_roof_1_4_east",
+    "hotel_tower_roof_1_4_north": "dda_geo_civic_hotel_tower_roof_1_4_north",
+    "hotel_tower_roof_1_4_south": "dda_geo_civic_hotel_tower_roof_1_4_south",
+    "hotel_tower_roof_1_4_west": "dda_geo_civic_hotel_tower_roof_1_4_west",
+    "hotel_tower_roof_1_5": "dda_geo_civic_hotel_tower_roof_1_5",
+    "hotel_tower_roof_1_5_east": "dda_geo_civic_hotel_tower_roof_1_5_east",
+    "hotel_tower_roof_1_5_north": "dda_geo_civic_hotel_tower_roof_1_5_north",
+    "hotel_tower_roof_1_5_south": "dda_geo_civic_hotel_tower_roof_1_5_south",
+    "hotel_tower_roof_1_5_west": "dda_geo_civic_hotel_tower_roof_1_5_west",
+    "hotel_tower_roof_1_6": "dda_geo_civic_hotel_tower_roof_1_6",
+    "hotel_tower_roof_1_6_east": "dda_geo_civic_hotel_tower_roof_1_6_east",
+    "hotel_tower_roof_1_6_north": "dda_geo_civic_hotel_tower_roof_1_6_north",
+    "hotel_tower_roof_1_6_south": "dda_geo_civic_hotel_tower_roof_1_6_south",
+    "hotel_tower_roof_1_6_west": "dda_geo_civic_hotel_tower_roof_1_6_west",
+    "hotel_tower_roof_1_7": "dda_geo_civic_hotel_tower_roof_1_7",
+    "hotel_tower_roof_1_7_east": "dda_geo_civic_hotel_tower_roof_1_7_east",
+    "hotel_tower_roof_1_7_north": "dda_geo_civic_hotel_tower_roof_1_7_north",
+    "hotel_tower_roof_1_7_south": "dda_geo_civic_hotel_tower_roof_1_7_south",
+    "hotel_tower_roof_1_7_west": "dda_geo_civic_hotel_tower_roof_1_7_west",
+    "hotel_tower_roof_1_8": "dda_geo_civic_hotel_tower_roof_1_8",
+    "hotel_tower_roof_1_8_east": "dda_geo_civic_hotel_tower_roof_1_8_east",
+    "hotel_tower_roof_1_8_north": "dda_geo_civic_hotel_tower_roof_1_8_north",
+    "hotel_tower_roof_1_8_south": "dda_geo_civic_hotel_tower_roof_1_8_south",
+    "hotel_tower_roof_1_8_west": "dda_geo_civic_hotel_tower_roof_1_8_west",
+    "hotel_tower_roof_1_9": "dda_geo_civic_hotel_tower_roof_1_9",
+    "hotel_tower_roof_1_9_east": "dda_geo_civic_hotel_tower_roof_1_9_east",
+    "hotel_tower_roof_1_9_north": "dda_geo_civic_hotel_tower_roof_1_9_north",
+    "hotel_tower_roof_1_9_south": "dda_geo_civic_hotel_tower_roof_1_9_south",
+    "hotel_tower_roof_1_9_west": "dda_geo_civic_hotel_tower_roof_1_9_west",
+    "office_tower": "dda_geo_civic_office_tower",
+    "office_tower_ne": "dda_geo_civic_office_tower_ne",
+    "office_tower_ne_east": "dda_geo_civic_office_tower_ne_east",
+    "office_tower_ne_north": "dda_geo_civic_office_tower_ne_north",
+    "office_tower_ne_south": "dda_geo_civic_office_tower_ne_south",
+    "office_tower_ne_west": "dda_geo_civic_office_tower_ne_west",
+    "office_tower_nw": "dda_geo_civic_office_tower_nw",
+    "office_tower_nw_east": "dda_geo_civic_office_tower_nw_east",
+    "office_tower_nw_north": "dda_geo_civic_office_tower_nw_north",
+    "office_tower_nw_south": "dda_geo_civic_office_tower_nw_south",
+    "office_tower_nw_west": "dda_geo_civic_office_tower_nw_west",
+    "office_tower_roof_ne": "dda_geo_civic_office_tower_roof_ne",
+    "office_tower_roof_ne_east": "dda_geo_civic_office_tower_roof_ne_east",
+    "office_tower_roof_ne_north": "dda_geo_civic_office_tower_roof_ne_north",
+    "office_tower_roof_ne_roof": "dda_geo_civic_office_tower_roof_ne_roof",
+    "office_tower_roof_ne_roof_east": "dda_geo_civic_office_tower_roof_ne_roof_east",
+    "office_tower_roof_ne_roof_north": "dda_geo_civic_office_tower_roof_ne_roof_north",
+    "office_tower_roof_ne_roof_south": "dda_geo_civic_office_tower_roof_ne_roof_south",
+    "office_tower_roof_ne_roof_west": "dda_geo_civic_office_tower_roof_ne_roof_west",
+    "office_tower_roof_ne_south": "dda_geo_civic_office_tower_roof_ne_south",
+    "office_tower_roof_ne_west": "dda_geo_civic_office_tower_roof_ne_west",
+    "office_tower_roof_nw": "dda_geo_civic_office_tower_roof_nw",
+    "office_tower_roof_nw_east": "dda_geo_civic_office_tower_roof_nw_east",
+    "office_tower_roof_nw_north": "dda_geo_civic_office_tower_roof_nw_north",
+    "office_tower_roof_nw_south": "dda_geo_civic_office_tower_roof_nw_south",
+    "office_tower_roof_nw_west": "dda_geo_civic_office_tower_roof_nw_west",
+    "office_tower_roof_se": "dda_geo_civic_office_tower_roof_se",
+    "office_tower_roof_se_east": "dda_geo_civic_office_tower_roof_se_east",
+    "office_tower_roof_se_north": "dda_geo_civic_office_tower_roof_se_north",
+    "office_tower_roof_se_roof": "dda_geo_civic_office_tower_roof_se_roof",
+    "office_tower_roof_se_roof_east": "dda_geo_civic_office_tower_roof_se_roof_east",
+    "office_tower_roof_se_roof_north": "dda_geo_civic_office_tower_roof_se_roof_north",
+    "office_tower_roof_se_roof_south": "dda_geo_civic_office_tower_roof_se_roof_south",
+    "office_tower_roof_se_roof_west": "dda_geo_civic_office_tower_roof_se_roof_west",
+    "office_tower_roof_se_south": "dda_geo_civic_office_tower_roof_se_south",
+    "office_tower_roof_se_west": "dda_geo_civic_office_tower_roof_se_west",
+    "office_tower_roof_sw": "dda_geo_civic_office_tower_roof_sw",
+    "office_tower_roof_sw_east": "dda_geo_civic_office_tower_roof_sw_east",
+    "office_tower_roof_sw_north": "dda_geo_civic_office_tower_roof_sw_north",
+    "office_tower_roof_sw_south": "dda_geo_civic_office_tower_roof_sw_south",
+    "office_tower_roof_sw_west": "dda_geo_civic_office_tower_roof_sw_west",
+    "office_tower_se": "dda_geo_civic_office_tower_se",
+    "office_tower_se_east": "dda_geo_civic_office_tower_se_east",
+    "office_tower_se_north": "dda_geo_civic_office_tower_se_north",
+    "office_tower_se_south": "dda_geo_civic_office_tower_se_south",
+    "office_tower_se_west": "dda_geo_civic_office_tower_se_west",
+    "office_tower_sw": "dda_geo_civic_office_tower_sw",
+    "office_tower_sw_east": "dda_geo_civic_office_tower_sw_east",
+    "office_tower_sw_north": "dda_geo_civic_office_tower_sw_north",
+    "office_tower_sw_south": "dda_geo_civic_office_tower_sw_south",
+    "office_tower_sw_west": "dda_geo_civic_office_tower_sw_west",
+    "office_tower_underground_ne": "dda_geo_civic_office_tower_underground_ne",
+    "office_tower_underground_ne_east": "dda_geo_civic_office_tower_underground_ne_east",
+    "office_tower_underground_ne_north": "dda_geo_civic_office_tower_underground_ne_north",
+    "office_tower_underground_ne_south": "dda_geo_civic_office_tower_underground_ne_south",
+    "office_tower_underground_ne_west": "dda_geo_civic_office_tower_underground_ne_west",
+    "office_tower_underground_nw": "dda_geo_civic_office_tower_underground_nw",
+    "office_tower_underground_nw_east": "dda_geo_civic_office_tower_underground_nw_east",
+    "office_tower_underground_nw_north": "dda_geo_civic_office_tower_underground_nw_north",
+    "office_tower_underground_nw_south": "dda_geo_civic_office_tower_underground_nw_south",
+    "office_tower_underground_nw_west": "dda_geo_civic_office_tower_underground_nw_west",
+    "office_tower_underground_se": "dda_geo_civic_office_tower_underground_se",
+    "office_tower_underground_se_east": "dda_geo_civic_office_tower_underground_se_east",
+    "office_tower_underground_se_north": "dda_geo_civic_office_tower_underground_se_north",
+    "office_tower_underground_se_south": "dda_geo_civic_office_tower_underground_se_south",
+    "office_tower_underground_se_west": "dda_geo_civic_office_tower_underground_se_west",
+    "office_tower_underground_sw": "dda_geo_civic_office_tower_underground_sw",
+    "office_tower_underground_sw_east": "dda_geo_civic_office_tower_underground_sw_east",
+    "office_tower_underground_sw_north": "dda_geo_civic_office_tower_underground_sw_north",
+    "office_tower_underground_sw_south": "dda_geo_civic_office_tower_underground_sw_south",
+    "office_tower_underground_sw_west": "dda_geo_civic_office_tower_underground_sw_west",
+    "residential_6kW_solar": "dda_geo_civic_residential_6kW_solar",
+    "residential_6kW_solar_v1": "dda_geo_civic_residential_6kW_solar_v1",
+    "residential_6kW_solar_v2": "dda_geo_civic_residential_6kW_solar_v2",
+    "residential_7kW_solar": "dda_geo_civic_residential_7kW_solar",
+    "residential_7kW_solar_v1": "dda_geo_civic_residential_7kW_solar_v1",
+    "residential_7kW_solar_v2": "dda_geo_civic_residential_7kW_solar_v2",
+    "residential_8kW_solar": "dda_geo_civic_residential_8kW_solar",
+    "residential_8kW_solar_v1": "dda_geo_civic_residential_8kW_solar_v1",
+    "residential_8kW_solar_v2": "dda_geo_civic_residential_8kW_solar_v2",
+    "roof_4x4_utility": "dda_geo_civic_roof_4x4_utility",
+    "roof_4x4_utility_1": "dda_geo_civic_roof_4x4_utility_1",
+    "s_shoppingplaza_A6": "dda_geo_civic_s_shoppingplaza_A6",
+    "s_shoppingplaza_A6_east": "dda_geo_civic_s_shoppingplaza_A6_east",
+    "s_shoppingplaza_A6_north": "dda_geo_civic_s_shoppingplaza_A6_north",
+    "s_shoppingplaza_A6_south": "dda_geo_civic_s_shoppingplaza_A6_south",
+    "s_shoppingplaza_A6_west": "dda_geo_civic_s_shoppingplaza_A6_west",
+    "s_shoppingplaza_B1": "dda_geo_civic_s_shoppingplaza_B1",
+    "s_shoppingplaza_B1_east": "dda_geo_civic_s_shoppingplaza_B1_east",
+    "s_shoppingplaza_B1_north": "dda_geo_civic_s_shoppingplaza_B1_north",
+    "s_shoppingplaza_B1_south": "dda_geo_civic_s_shoppingplaza_B1_south",
+    "s_shoppingplaza_B1_west": "dda_geo_civic_s_shoppingplaza_B1_west",
+    "s_shoppingplaza_B2": "dda_geo_civic_s_shoppingplaza_B2",
+    "s_shoppingplaza_B2_east": "dda_geo_civic_s_shoppingplaza_B2_east",
+    "s_shoppingplaza_B2_north": "dda_geo_civic_s_shoppingplaza_B2_north",
+    "s_shoppingplaza_B2_south": "dda_geo_civic_s_shoppingplaza_B2_south",
+    "s_shoppingplaza_B2_west": "dda_geo_civic_s_shoppingplaza_B2_west",
+    "s_shoppingplaza_B3": "dda_geo_civic_s_shoppingplaza_B3",
+    "s_shoppingplaza_B3_east": "dda_geo_civic_s_shoppingplaza_B3_east",
+    "s_shoppingplaza_B3_north": "dda_geo_civic_s_shoppingplaza_B3_north",
+    "s_shoppingplaza_B3_south": "dda_geo_civic_s_shoppingplaza_B3_south",
+    "s_shoppingplaza_B3_west": "dda_geo_civic_s_shoppingplaza_B3_west",
+    "s_shoppingplaza_B4": "dda_geo_civic_s_shoppingplaza_B4",
+    "s_shoppingplaza_B4_east": "dda_geo_civic_s_shoppingplaza_B4_east",
+    "s_shoppingplaza_B4_north": "dda_geo_civic_s_shoppingplaza_B4_north",
+    "s_shoppingplaza_B4_south": "dda_geo_civic_s_shoppingplaza_B4_south",
+    "s_shoppingplaza_B4_west": "dda_geo_civic_s_shoppingplaza_B4_west",
+    "s_shoppingplaza_B5": "dda_geo_civic_s_shoppingplaza_B5",
+    "s_shoppingplaza_B5_east": "dda_geo_civic_s_shoppingplaza_B5_east",
+    "s_shoppingplaza_B5_north": "dda_geo_civic_s_shoppingplaza_B5_north",
+    "s_shoppingplaza_B5_south": "dda_geo_civic_s_shoppingplaza_B5_south",
+    "s_shoppingplaza_B5_west": "dda_geo_civic_s_shoppingplaza_B5_west",
+    "s_shoppingplaza_B6": "dda_geo_civic_s_shoppingplaza_B6",
+    "s_shoppingplaza_B6_east": "dda_geo_civic_s_shoppingplaza_B6_east",
+    "s_shoppingplaza_B6_north": "dda_geo_civic_s_shoppingplaza_B6_north",
+    "s_shoppingplaza_B6_south": "dda_geo_civic_s_shoppingplaza_B6_south",
+    "s_shoppingplaza_B6_west": "dda_geo_civic_s_shoppingplaza_B6_west",
+    "s_shoppingplaza_a1": "dda_geo_civic_s_shoppingplaza_a1",
+    "s_shoppingplaza_a1_east": "dda_geo_civic_s_shoppingplaza_a1_east",
+    "s_shoppingplaza_a1_north": "dda_geo_civic_s_shoppingplaza_a1_north",
+    "s_shoppingplaza_a1_south": "dda_geo_civic_s_shoppingplaza_a1_south",
+    "s_shoppingplaza_a1_west": "dda_geo_civic_s_shoppingplaza_a1_west",
+    "s_shoppingplaza_a2": "dda_geo_civic_s_shoppingplaza_a2",
+    "s_shoppingplaza_a2_east": "dda_geo_civic_s_shoppingplaza_a2_east",
+    "s_shoppingplaza_a2_north": "dda_geo_civic_s_shoppingplaza_a2_north",
+    "s_shoppingplaza_a2_south": "dda_geo_civic_s_shoppingplaza_a2_south",
+    "s_shoppingplaza_a2_west": "dda_geo_civic_s_shoppingplaza_a2_west",
+    "s_shoppingplaza_a3": "dda_geo_civic_s_shoppingplaza_a3",
+    "s_shoppingplaza_a3_east": "dda_geo_civic_s_shoppingplaza_a3_east",
+    "s_shoppingplaza_a3_north": "dda_geo_civic_s_shoppingplaza_a3_north",
+    "s_shoppingplaza_a3_south": "dda_geo_civic_s_shoppingplaza_a3_south",
+    "s_shoppingplaza_a3_west": "dda_geo_civic_s_shoppingplaza_a3_west",
+    "s_shoppingplaza_a4": "dda_geo_civic_s_shoppingplaza_a4",
+    "s_shoppingplaza_a4_east": "dda_geo_civic_s_shoppingplaza_a4_east",
+    "s_shoppingplaza_a4_north": "dda_geo_civic_s_shoppingplaza_a4_north",
+    "s_shoppingplaza_a4_south": "dda_geo_civic_s_shoppingplaza_a4_south",
+    "s_shoppingplaza_a4_west": "dda_geo_civic_s_shoppingplaza_a4_west",
+    "s_shoppingplaza_a5": "dda_geo_civic_s_shoppingplaza_a5",
+    "s_shoppingplaza_a5_east": "dda_geo_civic_s_shoppingplaza_a5_east",
+    "s_shoppingplaza_a5_north": "dda_geo_civic_s_shoppingplaza_a5_north",
+    "s_shoppingplaza_a5_south": "dda_geo_civic_s_shoppingplaza_a5_south",
+    "s_shoppingplaza_a5_west": "dda_geo_civic_s_shoppingplaza_a5_west",
+    "s_shoppingplaza_a6": "dda_geo_civic_s_shoppingplaza_a6",
+    "s_shoppingplaza_a6_east": "dda_geo_civic_s_shoppingplaza_a6_east",
+    "s_shoppingplaza_a6_north": "dda_geo_civic_s_shoppingplaza_a6_north",
+    "s_shoppingplaza_a6_south": "dda_geo_civic_s_shoppingplaza_a6_south",
+    "s_shoppingplaza_a6_west": "dda_geo_civic_s_shoppingplaza_a6_west",
+    "s_shoppingplaza_b1": "dda_geo_civic_s_shoppingplaza_b1",
+    "s_shoppingplaza_b1_east": "dda_geo_civic_s_shoppingplaza_b1_east",
+    "s_shoppingplaza_b1_north": "dda_geo_civic_s_shoppingplaza_b1_north",
+    "s_shoppingplaza_b1_south": "dda_geo_civic_s_shoppingplaza_b1_south",
+    "s_shoppingplaza_b1_west": "dda_geo_civic_s_shoppingplaza_b1_west",
+    "s_shoppingplaza_b2": "dda_geo_civic_s_shoppingplaza_b2",
+    "s_shoppingplaza_b2_east": "dda_geo_civic_s_shoppingplaza_b2_east",
+    "s_shoppingplaza_b2_north": "dda_geo_civic_s_shoppingplaza_b2_north",
+    "s_shoppingplaza_b2_south": "dda_geo_civic_s_shoppingplaza_b2_south",
+    "s_shoppingplaza_b2_west": "dda_geo_civic_s_shoppingplaza_b2_west",
+    "s_shoppingplaza_b3": "dda_geo_civic_s_shoppingplaza_b3",
+    "s_shoppingplaza_b3_east": "dda_geo_civic_s_shoppingplaza_b3_east",
+    "s_shoppingplaza_b3_north": "dda_geo_civic_s_shoppingplaza_b3_north",
+    "s_shoppingplaza_b3_south": "dda_geo_civic_s_shoppingplaza_b3_south",
+    "s_shoppingplaza_b3_west": "dda_geo_civic_s_shoppingplaza_b3_west",
+    "s_shoppingplaza_b4": "dda_geo_civic_s_shoppingplaza_b4",
+    "s_shoppingplaza_b4_east": "dda_geo_civic_s_shoppingplaza_b4_east",
+    "s_shoppingplaza_b4_north": "dda_geo_civic_s_shoppingplaza_b4_north",
+    "s_shoppingplaza_b4_south": "dda_geo_civic_s_shoppingplaza_b4_south",
+    "s_shoppingplaza_b4_west": "dda_geo_civic_s_shoppingplaza_b4_west",
+    "s_shoppingplaza_b5": "dda_geo_civic_s_shoppingplaza_b5",
+    "s_shoppingplaza_b5_east": "dda_geo_civic_s_shoppingplaza_b5_east",
+    "s_shoppingplaza_b5_north": "dda_geo_civic_s_shoppingplaza_b5_north",
+    "s_shoppingplaza_b5_south": "dda_geo_civic_s_shoppingplaza_b5_south",
+    "s_shoppingplaza_b5_west": "dda_geo_civic_s_shoppingplaza_b5_west",
+    "s_shoppingplaza_b6": "dda_geo_civic_s_shoppingplaza_b6",
+    "s_shoppingplaza_b6_east": "dda_geo_civic_s_shoppingplaza_b6_east",
+    "s_shoppingplaza_b6_north": "dda_geo_civic_s_shoppingplaza_b6_north",
+    "s_shoppingplaza_b6_south": "dda_geo_civic_s_shoppingplaza_b6_south",
+    "s_shoppingplaza_b6_west": "dda_geo_civic_s_shoppingplaza_b6_west",
+    "shopping_plaza": "dda_geo_civic_shopping_plaza",
+    "stadium": "dda_geo_civic_stadium",
+    "stadium_0_0": "dda_geo_civic_stadium_0_0",
+    "stadium_0_0_east": "dda_geo_civic_stadium_0_0_east",
+    "stadium_0_0_north": "dda_geo_civic_stadium_0_0_north",
+    "stadium_0_0_south": "dda_geo_civic_stadium_0_0_south",
+    "stadium_0_0_west": "dda_geo_civic_stadium_0_0_west",
+    "stadium_0_1": "dda_geo_civic_stadium_0_1",
+    "stadium_0_1_1": "dda_geo_civic_stadium_0_1_1",
+    "stadium_0_1_1_east": "dda_geo_civic_stadium_0_1_1_east",
+    "stadium_0_1_1_north": "dda_geo_civic_stadium_0_1_1_north",
+    "stadium_0_1_1_south": "dda_geo_civic_stadium_0_1_1_south",
+    "stadium_0_1_1_west": "dda_geo_civic_stadium_0_1_1_west",
+    "stadium_0_1_2": "dda_geo_civic_stadium_0_1_2",
+    "stadium_0_1_2_east": "dda_geo_civic_stadium_0_1_2_east",
+    "stadium_0_1_2_north": "dda_geo_civic_stadium_0_1_2_north",
+    "stadium_0_1_2_south": "dda_geo_civic_stadium_0_1_2_south",
+    "stadium_0_1_2_west": "dda_geo_civic_stadium_0_1_2_west",
+    "stadium_0_1_east": "dda_geo_civic_stadium_0_1_east",
+    "stadium_0_1_north": "dda_geo_civic_stadium_0_1_north",
+    "stadium_0_1_south": "dda_geo_civic_stadium_0_1_south",
+    "stadium_0_1_west": "dda_geo_civic_stadium_0_1_west",
+    "stadium_0_2": "dda_geo_civic_stadium_0_2",
+    "stadium_0_2_1": "dda_geo_civic_stadium_0_2_1",
+    "stadium_0_2_1_east": "dda_geo_civic_stadium_0_2_1_east",
+    "stadium_0_2_1_north": "dda_geo_civic_stadium_0_2_1_north",
+    "stadium_0_2_1_south": "dda_geo_civic_stadium_0_2_1_south",
+    "stadium_0_2_1_west": "dda_geo_civic_stadium_0_2_1_west",
+    "stadium_0_2_2": "dda_geo_civic_stadium_0_2_2",
+    "stadium_0_2_2_east": "dda_geo_civic_stadium_0_2_2_east",
+    "stadium_0_2_2_north": "dda_geo_civic_stadium_0_2_2_north",
+    "stadium_0_2_2_south": "dda_geo_civic_stadium_0_2_2_south",
+    "stadium_0_2_2_west": "dda_geo_civic_stadium_0_2_2_west",
+    "stadium_0_2_east": "dda_geo_civic_stadium_0_2_east",
+    "stadium_0_2_north": "dda_geo_civic_stadium_0_2_north",
+    "stadium_0_2_south": "dda_geo_civic_stadium_0_2_south",
+    "stadium_0_2_west": "dda_geo_civic_stadium_0_2_west",
+    "stadium_0_3": "dda_geo_civic_stadium_0_3",
+    "stadium_0_3_1": "dda_geo_civic_stadium_0_3_1",
+    "stadium_0_3_1_east": "dda_geo_civic_stadium_0_3_1_east",
+    "stadium_0_3_1_north": "dda_geo_civic_stadium_0_3_1_north",
+    "stadium_0_3_1_south": "dda_geo_civic_stadium_0_3_1_south",
+    "stadium_0_3_1_west": "dda_geo_civic_stadium_0_3_1_west",
+    "stadium_0_3_2": "dda_geo_civic_stadium_0_3_2",
+    "stadium_0_3_2_east": "dda_geo_civic_stadium_0_3_2_east",
+    "stadium_0_3_2_north": "dda_geo_civic_stadium_0_3_2_north",
+    "stadium_0_3_2_south": "dda_geo_civic_stadium_0_3_2_south",
+    "stadium_0_3_2_west": "dda_geo_civic_stadium_0_3_2_west",
+    "stadium_0_3_3": "dda_geo_civic_stadium_0_3_3",
+    "stadium_0_3_3_east": "dda_geo_civic_stadium_0_3_3_east",
+    "stadium_0_3_3_north": "dda_geo_civic_stadium_0_3_3_north",
+    "stadium_0_3_3_south": "dda_geo_civic_stadium_0_3_3_south",
+    "stadium_0_3_3_west": "dda_geo_civic_stadium_0_3_3_west",
+    "stadium_0_3_east": "dda_geo_civic_stadium_0_3_east",
+    "stadium_0_3_north": "dda_geo_civic_stadium_0_3_north",
+    "stadium_0_3_south": "dda_geo_civic_stadium_0_3_south",
+    "stadium_0_3_west": "dda_geo_civic_stadium_0_3_west",
+    "stadium_0_4": "dda_geo_civic_stadium_0_4",
+    "stadium_0_4_1": "dda_geo_civic_stadium_0_4_1",
+    "stadium_0_4_1_east": "dda_geo_civic_stadium_0_4_1_east",
+    "stadium_0_4_1_north": "dda_geo_civic_stadium_0_4_1_north",
+    "stadium_0_4_1_south": "dda_geo_civic_stadium_0_4_1_south",
+    "stadium_0_4_1_west": "dda_geo_civic_stadium_0_4_1_west",
+    "stadium_0_4_2": "dda_geo_civic_stadium_0_4_2",
+    "stadium_0_4_2_east": "dda_geo_civic_stadium_0_4_2_east",
+    "stadium_0_4_2_north": "dda_geo_civic_stadium_0_4_2_north",
+    "stadium_0_4_2_south": "dda_geo_civic_stadium_0_4_2_south",
+    "stadium_0_4_2_west": "dda_geo_civic_stadium_0_4_2_west",
+    "stadium_0_4_east": "dda_geo_civic_stadium_0_4_east",
+    "stadium_0_4_north": "dda_geo_civic_stadium_0_4_north",
+    "stadium_0_4_south": "dda_geo_civic_stadium_0_4_south",
+    "stadium_0_4_west": "dda_geo_civic_stadium_0_4_west",
+    "stadium_1_0": "dda_geo_civic_stadium_1_0",
+    "stadium_1_0_east": "dda_geo_civic_stadium_1_0_east",
+    "stadium_1_0_north": "dda_geo_civic_stadium_1_0_north",
+    "stadium_1_0_south": "dda_geo_civic_stadium_1_0_south",
+    "stadium_1_0_west": "dda_geo_civic_stadium_1_0_west",
+    "stadium_1_1": "dda_geo_civic_stadium_1_1",
+    "stadium_1_1_1": "dda_geo_civic_stadium_1_1_1",
+    "stadium_1_1_1_east": "dda_geo_civic_stadium_1_1_1_east",
+    "stadium_1_1_1_north": "dda_geo_civic_stadium_1_1_1_north",
+    "stadium_1_1_1_south": "dda_geo_civic_stadium_1_1_1_south",
+    "stadium_1_1_1_west": "dda_geo_civic_stadium_1_1_1_west",
+    "stadium_1_1_2": "dda_geo_civic_stadium_1_1_2",
+    "stadium_1_1_2_east": "dda_geo_civic_stadium_1_1_2_east",
+    "stadium_1_1_2_north": "dda_geo_civic_stadium_1_1_2_north",
+    "stadium_1_1_2_south": "dda_geo_civic_stadium_1_1_2_south",
+    "stadium_1_1_2_west": "dda_geo_civic_stadium_1_1_2_west",
+    "stadium_1_1_3": "dda_geo_civic_stadium_1_1_3",
+    "stadium_1_1_3_east": "dda_geo_civic_stadium_1_1_3_east",
+    "stadium_1_1_3_north": "dda_geo_civic_stadium_1_1_3_north",
+    "stadium_1_1_3_south": "dda_geo_civic_stadium_1_1_3_south",
+    "stadium_1_1_3_west": "dda_geo_civic_stadium_1_1_3_west",
+    "stadium_1_1_east": "dda_geo_civic_stadium_1_1_east",
+    "stadium_1_1_north": "dda_geo_civic_stadium_1_1_north",
+    "stadium_1_1_south": "dda_geo_civic_stadium_1_1_south",
+    "stadium_1_1_west": "dda_geo_civic_stadium_1_1_west",
+    "stadium_1_2": "dda_geo_civic_stadium_1_2",
+    "stadium_1_2_1": "dda_geo_civic_stadium_1_2_1",
+    "stadium_1_2_1_east": "dda_geo_civic_stadium_1_2_1_east",
+    "stadium_1_2_1_north": "dda_geo_civic_stadium_1_2_1_north",
+    "stadium_1_2_1_south": "dda_geo_civic_stadium_1_2_1_south",
+    "stadium_1_2_1_west": "dda_geo_civic_stadium_1_2_1_west",
+    "stadium_1_2_2": "dda_geo_civic_stadium_1_2_2",
+    "stadium_1_2_2_east": "dda_geo_civic_stadium_1_2_2_east",
+    "stadium_1_2_2_north": "dda_geo_civic_stadium_1_2_2_north",
+    "stadium_1_2_2_south": "dda_geo_civic_stadium_1_2_2_south",
+    "stadium_1_2_2_west": "dda_geo_civic_stadium_1_2_2_west",
+    "stadium_1_2_east": "dda_geo_civic_stadium_1_2_east",
+    "stadium_1_2_north": "dda_geo_civic_stadium_1_2_north",
+    "stadium_1_2_south": "dda_geo_civic_stadium_1_2_south",
+    "stadium_1_2_west": "dda_geo_civic_stadium_1_2_west",
+    "stadium_1_3": "dda_geo_civic_stadium_1_3",
+    "stadium_1_3_1": "dda_geo_civic_stadium_1_3_1",
+    "stadium_1_3_1_east": "dda_geo_civic_stadium_1_3_1_east",
+    "stadium_1_3_1_north": "dda_geo_civic_stadium_1_3_1_north",
+    "stadium_1_3_1_south": "dda_geo_civic_stadium_1_3_1_south",
+    "stadium_1_3_1_west": "dda_geo_civic_stadium_1_3_1_west",
+    "stadium_1_3_2": "dda_geo_civic_stadium_1_3_2",
+    "stadium_1_3_2_east": "dda_geo_civic_stadium_1_3_2_east",
+    "stadium_1_3_2_north": "dda_geo_civic_stadium_1_3_2_north",
+    "stadium_1_3_2_south": "dda_geo_civic_stadium_1_3_2_south",
+    "stadium_1_3_2_west": "dda_geo_civic_stadium_1_3_2_west",
+    "stadium_1_3_east": "dda_geo_civic_stadium_1_3_east",
+    "stadium_1_3_north": "dda_geo_civic_stadium_1_3_north",
+    "stadium_1_3_south": "dda_geo_civic_stadium_1_3_south",
+    "stadium_1_3_west": "dda_geo_civic_stadium_1_3_west",
+    "stadium_1_4": "dda_geo_civic_stadium_1_4",
+    "stadium_1_4_1": "dda_geo_civic_stadium_1_4_1",
+    "stadium_1_4_1_east": "dda_geo_civic_stadium_1_4_1_east",
+    "stadium_1_4_1_north": "dda_geo_civic_stadium_1_4_1_north",
+    "stadium_1_4_1_south": "dda_geo_civic_stadium_1_4_1_south",
+    "stadium_1_4_1_west": "dda_geo_civic_stadium_1_4_1_west",
+    "stadium_1_4_2": "dda_geo_civic_stadium_1_4_2",
+    "stadium_1_4_2_east": "dda_geo_civic_stadium_1_4_2_east",
+    "stadium_1_4_2_north": "dda_geo_civic_stadium_1_4_2_north",
+    "stadium_1_4_2_south": "dda_geo_civic_stadium_1_4_2_south",
+    "stadium_1_4_2_west": "dda_geo_civic_stadium_1_4_2_west",
+    "stadium_1_4_east": "dda_geo_civic_stadium_1_4_east",
+    "stadium_1_4_north": "dda_geo_civic_stadium_1_4_north",
+    "stadium_1_4_south": "dda_geo_civic_stadium_1_4_south",
+    "stadium_1_4_west": "dda_geo_civic_stadium_1_4_west",
+    "stadium_2_0": "dda_geo_civic_stadium_2_0",
+    "stadium_2_0_east": "dda_geo_civic_stadium_2_0_east",
+    "stadium_2_0_north": "dda_geo_civic_stadium_2_0_north",
+    "stadium_2_0_south": "dda_geo_civic_stadium_2_0_south",
+    "stadium_2_0_west": "dda_geo_civic_stadium_2_0_west",
+    "stadium_2_1": "dda_geo_civic_stadium_2_1",
+    "stadium_2_1_1": "dda_geo_civic_stadium_2_1_1",
+    "stadium_2_1_1_east": "dda_geo_civic_stadium_2_1_1_east",
+    "stadium_2_1_1_north": "dda_geo_civic_stadium_2_1_1_north",
+    "stadium_2_1_1_south": "dda_geo_civic_stadium_2_1_1_south",
+    "stadium_2_1_1_west": "dda_geo_civic_stadium_2_1_1_west",
+    "stadium_2_1_2": "dda_geo_civic_stadium_2_1_2",
+    "stadium_2_1_2_east": "dda_geo_civic_stadium_2_1_2_east",
+    "stadium_2_1_2_north": "dda_geo_civic_stadium_2_1_2_north",
+    "stadium_2_1_2_south": "dda_geo_civic_stadium_2_1_2_south",
+    "stadium_2_1_2_west": "dda_geo_civic_stadium_2_1_2_west",
+    "stadium_2_1_3": "dda_geo_civic_stadium_2_1_3",
+    "stadium_2_1_3_east": "dda_geo_civic_stadium_2_1_3_east",
+    "stadium_2_1_3_north": "dda_geo_civic_stadium_2_1_3_north",
+    "stadium_2_1_3_south": "dda_geo_civic_stadium_2_1_3_south",
+    "stadium_2_1_3_west": "dda_geo_civic_stadium_2_1_3_west",
+    "stadium_2_1_east": "dda_geo_civic_stadium_2_1_east",
+    "stadium_2_1_north": "dda_geo_civic_stadium_2_1_north",
+    "stadium_2_1_south": "dda_geo_civic_stadium_2_1_south",
+    "stadium_2_1_west": "dda_geo_civic_stadium_2_1_west",
+    "stadium_2_2": "dda_geo_civic_stadium_2_2",
+    "stadium_2_2_1": "dda_geo_civic_stadium_2_2_1",
+    "stadium_2_2_1_east": "dda_geo_civic_stadium_2_2_1_east",
+    "stadium_2_2_1_north": "dda_geo_civic_stadium_2_2_1_north",
+    "stadium_2_2_1_south": "dda_geo_civic_stadium_2_2_1_south",
+    "stadium_2_2_1_west": "dda_geo_civic_stadium_2_2_1_west",
+    "stadium_2_2_2": "dda_geo_civic_stadium_2_2_2",
+    "stadium_2_2_2_east": "dda_geo_civic_stadium_2_2_2_east",
+    "stadium_2_2_2_north": "dda_geo_civic_stadium_2_2_2_north",
+    "stadium_2_2_2_south": "dda_geo_civic_stadium_2_2_2_south",
+    "stadium_2_2_2_west": "dda_geo_civic_stadium_2_2_2_west",
+    "stadium_2_2_east": "dda_geo_civic_stadium_2_2_east",
+    "stadium_2_2_north": "dda_geo_civic_stadium_2_2_north",
+    "stadium_2_2_south": "dda_geo_civic_stadium_2_2_south",
+    "stadium_2_2_west": "dda_geo_civic_stadium_2_2_west",
+    "stadium_2_3": "dda_geo_civic_stadium_2_3",
+    "stadium_2_3_1": "dda_geo_civic_stadium_2_3_1",
+    "stadium_2_3_1_east": "dda_geo_civic_stadium_2_3_1_east",
+    "stadium_2_3_1_north": "dda_geo_civic_stadium_2_3_1_north",
+    "stadium_2_3_1_south": "dda_geo_civic_stadium_2_3_1_south",
+    "stadium_2_3_1_west": "dda_geo_civic_stadium_2_3_1_west",
+    "stadium_2_3_2": "dda_geo_civic_stadium_2_3_2",
+    "stadium_2_3_2_east": "dda_geo_civic_stadium_2_3_2_east",
+    "stadium_2_3_2_north": "dda_geo_civic_stadium_2_3_2_north",
+    "stadium_2_3_2_south": "dda_geo_civic_stadium_2_3_2_south",
+    "stadium_2_3_2_west": "dda_geo_civic_stadium_2_3_2_west",
+    "stadium_2_3_east": "dda_geo_civic_stadium_2_3_east",
+    "stadium_2_3_north": "dda_geo_civic_stadium_2_3_north",
+    "stadium_2_3_south": "dda_geo_civic_stadium_2_3_south",
+    "stadium_2_3_west": "dda_geo_civic_stadium_2_3_west",
+    "stadium_2_4": "dda_geo_civic_stadium_2_4",
+    "stadium_2_4_1": "dda_geo_civic_stadium_2_4_1",
+    "stadium_2_4_1_east": "dda_geo_civic_stadium_2_4_1_east",
+    "stadium_2_4_1_north": "dda_geo_civic_stadium_2_4_1_north",
+    "stadium_2_4_1_south": "dda_geo_civic_stadium_2_4_1_south",
+    "stadium_2_4_1_west": "dda_geo_civic_stadium_2_4_1_west",
+    "stadium_2_4_2": "dda_geo_civic_stadium_2_4_2",
+    "stadium_2_4_2_east": "dda_geo_civic_stadium_2_4_2_east",
+    "stadium_2_4_2_north": "dda_geo_civic_stadium_2_4_2_north",
+    "stadium_2_4_2_south": "dda_geo_civic_stadium_2_4_2_south",
+    "stadium_2_4_2_west": "dda_geo_civic_stadium_2_4_2_west",
+    "stadium_2_4_east": "dda_geo_civic_stadium_2_4_east",
+    "stadium_2_4_north": "dda_geo_civic_stadium_2_4_north",
+    "stadium_2_4_south": "dda_geo_civic_stadium_2_4_south",
+    "stadium_2_4_west": "dda_geo_civic_stadium_2_4_west",
+    "stadium_3_0": "dda_geo_civic_stadium_3_0",
+    "stadium_3_0_east": "dda_geo_civic_stadium_3_0_east",
+    "stadium_3_0_north": "dda_geo_civic_stadium_3_0_north",
+    "stadium_3_0_south": "dda_geo_civic_stadium_3_0_south",
+    "stadium_3_0_west": "dda_geo_civic_stadium_3_0_west",
+    "stadium_3_1": "dda_geo_civic_stadium_3_1",
+    "stadium_3_1_1": "dda_geo_civic_stadium_3_1_1",
+    "stadium_3_1_1_east": "dda_geo_civic_stadium_3_1_1_east",
+    "stadium_3_1_1_north": "dda_geo_civic_stadium_3_1_1_north",
+    "stadium_3_1_1_south": "dda_geo_civic_stadium_3_1_1_south",
+    "stadium_3_1_1_west": "dda_geo_civic_stadium_3_1_1_west",
+    "stadium_3_1_2": "dda_geo_civic_stadium_3_1_2",
+    "stadium_3_1_2_east": "dda_geo_civic_stadium_3_1_2_east",
+    "stadium_3_1_2_north": "dda_geo_civic_stadium_3_1_2_north",
+    "stadium_3_1_2_south": "dda_geo_civic_stadium_3_1_2_south",
+    "stadium_3_1_2_west": "dda_geo_civic_stadium_3_1_2_west",
+    "stadium_3_1_east": "dda_geo_civic_stadium_3_1_east",
+    "stadium_3_1_north": "dda_geo_civic_stadium_3_1_north",
+    "stadium_3_1_south": "dda_geo_civic_stadium_3_1_south",
+    "stadium_3_1_west": "dda_geo_civic_stadium_3_1_west",
+    "stadium_3_2": "dda_geo_civic_stadium_3_2",
+    "stadium_3_2_1": "dda_geo_civic_stadium_3_2_1",
+    "stadium_3_2_1_east": "dda_geo_civic_stadium_3_2_1_east",
+    "stadium_3_2_1_north": "dda_geo_civic_stadium_3_2_1_north",
+    "stadium_3_2_1_south": "dda_geo_civic_stadium_3_2_1_south",
+    "stadium_3_2_1_west": "dda_geo_civic_stadium_3_2_1_west",
+    "stadium_3_2_2": "dda_geo_civic_stadium_3_2_2",
+    "stadium_3_2_2_east": "dda_geo_civic_stadium_3_2_2_east",
+    "stadium_3_2_2_north": "dda_geo_civic_stadium_3_2_2_north",
+    "stadium_3_2_2_south": "dda_geo_civic_stadium_3_2_2_south",
+    "stadium_3_2_2_west": "dda_geo_civic_stadium_3_2_2_west",
+    "stadium_3_2_east": "dda_geo_civic_stadium_3_2_east",
+    "stadium_3_2_north": "dda_geo_civic_stadium_3_2_north",
+    "stadium_3_2_south": "dda_geo_civic_stadium_3_2_south",
+    "stadium_3_2_west": "dda_geo_civic_stadium_3_2_west",
+    "stadium_3_3": "dda_geo_civic_stadium_3_3",
+    "stadium_3_3_1": "dda_geo_civic_stadium_3_3_1",
+    "stadium_3_3_1_east": "dda_geo_civic_stadium_3_3_1_east",
+    "stadium_3_3_1_north": "dda_geo_civic_stadium_3_3_1_north",
+    "stadium_3_3_1_south": "dda_geo_civic_stadium_3_3_1_south",
+    "stadium_3_3_1_west": "dda_geo_civic_stadium_3_3_1_west",
+    "stadium_3_3_2": "dda_geo_civic_stadium_3_3_2",
+    "stadium_3_3_2_east": "dda_geo_civic_stadium_3_3_2_east",
+    "stadium_3_3_2_north": "dda_geo_civic_stadium_3_3_2_north",
+    "stadium_3_3_2_south": "dda_geo_civic_stadium_3_3_2_south",
+    "stadium_3_3_2_west": "dda_geo_civic_stadium_3_3_2_west",
+    "stadium_3_3_east": "dda_geo_civic_stadium_3_3_east",
+    "stadium_3_3_north": "dda_geo_civic_stadium_3_3_north",
+    "stadium_3_3_south": "dda_geo_civic_stadium_3_3_south",
+    "stadium_3_3_west": "dda_geo_civic_stadium_3_3_west",
+    "stadium_3_4": "dda_geo_civic_stadium_3_4",
+    "stadium_3_4_1": "dda_geo_civic_stadium_3_4_1",
+    "stadium_3_4_1_east": "dda_geo_civic_stadium_3_4_1_east",
+    "stadium_3_4_1_north": "dda_geo_civic_stadium_3_4_1_north",
+    "stadium_3_4_1_south": "dda_geo_civic_stadium_3_4_1_south",
+    "stadium_3_4_1_west": "dda_geo_civic_stadium_3_4_1_west",
+    "stadium_3_4_2": "dda_geo_civic_stadium_3_4_2",
+    "stadium_3_4_2_east": "dda_geo_civic_stadium_3_4_2_east",
+    "stadium_3_4_2_north": "dda_geo_civic_stadium_3_4_2_north",
+    "stadium_3_4_2_south": "dda_geo_civic_stadium_3_4_2_south",
+    "stadium_3_4_2_west": "dda_geo_civic_stadium_3_4_2_west",
+    "stadium_3_4_east": "dda_geo_civic_stadium_3_4_east",
+    "stadium_3_4_north": "dda_geo_civic_stadium_3_4_north",
+    "stadium_3_4_south": "dda_geo_civic_stadium_3_4_south",
+    "stadium_3_4_west": "dda_geo_civic_stadium_3_4_west",
+    "zoo": "dda_geo_civic_zoo",
+    "zoo_0_0": "dda_geo_civic_zoo_0_0",
+    "zoo_0_0_east": "dda_geo_civic_zoo_0_0_east",
+    "zoo_0_0_north": "dda_geo_civic_zoo_0_0_north",
+    "zoo_0_0_roof": "dda_geo_civic_zoo_0_0_roof",
+    "zoo_0_0_roof_east": "dda_geo_civic_zoo_0_0_roof_east",
+    "zoo_0_0_roof_north": "dda_geo_civic_zoo_0_0_roof_north",
+    "zoo_0_0_roof_south": "dda_geo_civic_zoo_0_0_roof_south",
+    "zoo_0_0_roof_west": "dda_geo_civic_zoo_0_0_roof_west",
+    "zoo_0_0_south": "dda_geo_civic_zoo_0_0_south",
+    "zoo_0_0_west": "dda_geo_civic_zoo_0_0_west",
+    "zoo_0_1": "dda_geo_civic_zoo_0_1",
+    "zoo_0_1_east": "dda_geo_civic_zoo_0_1_east",
+    "zoo_0_1_north": "dda_geo_civic_zoo_0_1_north",
+    "zoo_0_1_roof": "dda_geo_civic_zoo_0_1_roof",
+    "zoo_0_1_roof_east": "dda_geo_civic_zoo_0_1_roof_east",
+    "zoo_0_1_roof_north": "dda_geo_civic_zoo_0_1_roof_north",
+    "zoo_0_1_roof_south": "dda_geo_civic_zoo_0_1_roof_south",
+    "zoo_0_1_roof_west": "dda_geo_civic_zoo_0_1_roof_west",
+    "zoo_0_1_south": "dda_geo_civic_zoo_0_1_south",
+    "zoo_0_1_west": "dda_geo_civic_zoo_0_1_west",
+    "zoo_0_2": "dda_geo_civic_zoo_0_2",
+    "zoo_0_2_east": "dda_geo_civic_zoo_0_2_east",
+    "zoo_0_2_north": "dda_geo_civic_zoo_0_2_north",
+    "zoo_0_2_roof": "dda_geo_civic_zoo_0_2_roof",
+    "zoo_0_2_roof_east": "dda_geo_civic_zoo_0_2_roof_east",
+    "zoo_0_2_roof_north": "dda_geo_civic_zoo_0_2_roof_north",
+    "zoo_0_2_roof_south": "dda_geo_civic_zoo_0_2_roof_south",
+    "zoo_0_2_roof_west": "dda_geo_civic_zoo_0_2_roof_west",
+    "zoo_0_2_south": "dda_geo_civic_zoo_0_2_south",
+    "zoo_0_2_west": "dda_geo_civic_zoo_0_2_west",
+    "zoo_0_3": "dda_geo_civic_zoo_0_3",
+    "zoo_0_3_east": "dda_geo_civic_zoo_0_3_east",
+    "zoo_0_3_north": "dda_geo_civic_zoo_0_3_north",
+    "zoo_0_3_roof": "dda_geo_civic_zoo_0_3_roof",
+    "zoo_0_3_roof_east": "dda_geo_civic_zoo_0_3_roof_east",
+    "zoo_0_3_roof_north": "dda_geo_civic_zoo_0_3_roof_north",
+    "zoo_0_3_roof_south": "dda_geo_civic_zoo_0_3_roof_south",
+    "zoo_0_3_roof_west": "dda_geo_civic_zoo_0_3_roof_west",
+    "zoo_0_3_south": "dda_geo_civic_zoo_0_3_south",
+    "zoo_0_3_west": "dda_geo_civic_zoo_0_3_west",
+    "zoo_1_0": "dda_geo_civic_zoo_1_0",
+    "zoo_1_0_east": "dda_geo_civic_zoo_1_0_east",
+    "zoo_1_0_north": "dda_geo_civic_zoo_1_0_north",
+    "zoo_1_0_roof": "dda_geo_civic_zoo_1_0_roof",
+    "zoo_1_0_roof_east": "dda_geo_civic_zoo_1_0_roof_east",
+    "zoo_1_0_roof_north": "dda_geo_civic_zoo_1_0_roof_north",
+    "zoo_1_0_roof_south": "dda_geo_civic_zoo_1_0_roof_south",
+    "zoo_1_0_roof_west": "dda_geo_civic_zoo_1_0_roof_west",
+    "zoo_1_0_south": "dda_geo_civic_zoo_1_0_south",
+    "zoo_1_0_west": "dda_geo_civic_zoo_1_0_west",
+    "zoo_1_1": "dda_geo_civic_zoo_1_1",
+    "zoo_1_1_east": "dda_geo_civic_zoo_1_1_east",
+    "zoo_1_1_north": "dda_geo_civic_zoo_1_1_north",
+    "zoo_1_1_roof": "dda_geo_civic_zoo_1_1_roof",
+    "zoo_1_1_roof_east": "dda_geo_civic_zoo_1_1_roof_east",
+    "zoo_1_1_roof_north": "dda_geo_civic_zoo_1_1_roof_north",
+    "zoo_1_1_roof_south": "dda_geo_civic_zoo_1_1_roof_south",
+    "zoo_1_1_roof_west": "dda_geo_civic_zoo_1_1_roof_west",
+    "zoo_1_1_south": "dda_geo_civic_zoo_1_1_south",
+    "zoo_1_1_west": "dda_geo_civic_zoo_1_1_west",
+    "zoo_1_2": "dda_geo_civic_zoo_1_2",
+    "zoo_1_2_east": "dda_geo_civic_zoo_1_2_east",
+    "zoo_1_2_north": "dda_geo_civic_zoo_1_2_north",
+    "zoo_1_2_roof": "dda_geo_civic_zoo_1_2_roof",
+    "zoo_1_2_roof_east": "dda_geo_civic_zoo_1_2_roof_east",
+    "zoo_1_2_roof_north": "dda_geo_civic_zoo_1_2_roof_north",
+    "zoo_1_2_roof_south": "dda_geo_civic_zoo_1_2_roof_south",
+    "zoo_1_2_roof_west": "dda_geo_civic_zoo_1_2_roof_west",
+    "zoo_1_2_south": "dda_geo_civic_zoo_1_2_south",
+    "zoo_1_2_west": "dda_geo_civic_zoo_1_2_west",
+    "zoo_1_3": "dda_geo_civic_zoo_1_3",
+    "zoo_1_3_east": "dda_geo_civic_zoo_1_3_east",
+    "zoo_1_3_north": "dda_geo_civic_zoo_1_3_north",
+    "zoo_1_3_roof": "dda_geo_civic_zoo_1_3_roof",
+    "zoo_1_3_roof_east": "dda_geo_civic_zoo_1_3_roof_east",
+    "zoo_1_3_roof_north": "dda_geo_civic_zoo_1_3_roof_north",
+    "zoo_1_3_roof_south": "dda_geo_civic_zoo_1_3_roof_south",
+    "zoo_1_3_roof_west": "dda_geo_civic_zoo_1_3_roof_west",
+    "zoo_1_3_south": "dda_geo_civic_zoo_1_3_south",
+    "zoo_1_3_west": "dda_geo_civic_zoo_1_3_west",
+    "zoo_2_0": "dda_geo_civic_zoo_2_0",
+    "zoo_2_0_east": "dda_geo_civic_zoo_2_0_east",
+    "zoo_2_0_north": "dda_geo_civic_zoo_2_0_north",
+    "zoo_2_0_roof": "dda_geo_civic_zoo_2_0_roof",
+    "zoo_2_0_roof_east": "dda_geo_civic_zoo_2_0_roof_east",
+    "zoo_2_0_roof_north": "dda_geo_civic_zoo_2_0_roof_north",
+    "zoo_2_0_roof_south": "dda_geo_civic_zoo_2_0_roof_south",
+    "zoo_2_0_roof_west": "dda_geo_civic_zoo_2_0_roof_west",
+    "zoo_2_0_south": "dda_geo_civic_zoo_2_0_south",
+    "zoo_2_0_west": "dda_geo_civic_zoo_2_0_west",
+    "zoo_2_1": "dda_geo_civic_zoo_2_1",
+    "zoo_2_1_east": "dda_geo_civic_zoo_2_1_east",
+    "zoo_2_1_north": "dda_geo_civic_zoo_2_1_north",
+    "zoo_2_1_roof": "dda_geo_civic_zoo_2_1_roof",
+    "zoo_2_1_roof_east": "dda_geo_civic_zoo_2_1_roof_east",
+    "zoo_2_1_roof_north": "dda_geo_civic_zoo_2_1_roof_north",
+    "zoo_2_1_roof_south": "dda_geo_civic_zoo_2_1_roof_south",
+    "zoo_2_1_roof_west": "dda_geo_civic_zoo_2_1_roof_west",
+    "zoo_2_1_south": "dda_geo_civic_zoo_2_1_south",
+    "zoo_2_1_west": "dda_geo_civic_zoo_2_1_west",
+    "zoo_2_2": "dda_geo_civic_zoo_2_2",
+    "zoo_2_2_east": "dda_geo_civic_zoo_2_2_east",
+    "zoo_2_2_north": "dda_geo_civic_zoo_2_2_north",
+    "zoo_2_2_roof": "dda_geo_civic_zoo_2_2_roof",
+    "zoo_2_2_roof_east": "dda_geo_civic_zoo_2_2_roof_east",
+    "zoo_2_2_roof_north": "dda_geo_civic_zoo_2_2_roof_north",
+    "zoo_2_2_roof_south": "dda_geo_civic_zoo_2_2_roof_south",
+    "zoo_2_2_roof_west": "dda_geo_civic_zoo_2_2_roof_west",
+    "zoo_2_2_south": "dda_geo_civic_zoo_2_2_south",
+    "zoo_2_2_west": "dda_geo_civic_zoo_2_2_west",
+    "zoo_2_3": "dda_geo_civic_zoo_2_3",
+    "zoo_2_3_east": "dda_geo_civic_zoo_2_3_east",
+    "zoo_2_3_north": "dda_geo_civic_zoo_2_3_north",
+    "zoo_2_3_roof": "dda_geo_civic_zoo_2_3_roof",
+    "zoo_2_3_roof_east": "dda_geo_civic_zoo_2_3_roof_east",
+    "zoo_2_3_roof_north": "dda_geo_civic_zoo_2_3_roof_north",
+    "zoo_2_3_roof_south": "dda_geo_civic_zoo_2_3_roof_south",
+    "zoo_2_3_roof_west": "dda_geo_civic_zoo_2_3_roof_west",
+    "zoo_2_3_south": "dda_geo_civic_zoo_2_3_south",
+    "zoo_2_3_west": "dda_geo_civic_zoo_2_3_west",
+    "zoo_3_0": "dda_geo_civic_zoo_3_0",
+    "zoo_3_0_east": "dda_geo_civic_zoo_3_0_east",
+    "zoo_3_0_north": "dda_geo_civic_zoo_3_0_north",
+    "zoo_3_0_roof": "dda_geo_civic_zoo_3_0_roof",
+    "zoo_3_0_roof_east": "dda_geo_civic_zoo_3_0_roof_east",
+    "zoo_3_0_roof_north": "dda_geo_civic_zoo_3_0_roof_north",
+    "zoo_3_0_roof_south": "dda_geo_civic_zoo_3_0_roof_south",
+    "zoo_3_0_roof_west": "dda_geo_civic_zoo_3_0_roof_west",
+    "zoo_3_0_south": "dda_geo_civic_zoo_3_0_south",
+    "zoo_3_0_west": "dda_geo_civic_zoo_3_0_west",
+    "zoo_3_1": "dda_geo_civic_zoo_3_1",
+    "zoo_3_1_east": "dda_geo_civic_zoo_3_1_east",
+    "zoo_3_1_north": "dda_geo_civic_zoo_3_1_north",
+    "zoo_3_1_roof": "dda_geo_civic_zoo_3_1_roof",
+    "zoo_3_1_roof_east": "dda_geo_civic_zoo_3_1_roof_east",
+    "zoo_3_1_roof_north": "dda_geo_civic_zoo_3_1_roof_north",
+    "zoo_3_1_roof_south": "dda_geo_civic_zoo_3_1_roof_south",
+    "zoo_3_1_roof_west": "dda_geo_civic_zoo_3_1_roof_west",
+    "zoo_3_1_south": "dda_geo_civic_zoo_3_1_south",
+    "zoo_3_1_west": "dda_geo_civic_zoo_3_1_west",
+    "zoo_3_2": "dda_geo_civic_zoo_3_2",
+    "zoo_3_2_basement": "dda_geo_civic_zoo_3_2_basement",
+    "zoo_3_2_basement_east": "dda_geo_civic_zoo_3_2_basement_east",
+    "zoo_3_2_basement_north": "dda_geo_civic_zoo_3_2_basement_north",
+    "zoo_3_2_basement_south": "dda_geo_civic_zoo_3_2_basement_south",
+    "zoo_3_2_basement_west": "dda_geo_civic_zoo_3_2_basement_west",
+    "zoo_3_2_east": "dda_geo_civic_zoo_3_2_east",
+    "zoo_3_2_north": "dda_geo_civic_zoo_3_2_north",
+    "zoo_3_2_roof": "dda_geo_civic_zoo_3_2_roof",
+    "zoo_3_2_roof_east": "dda_geo_civic_zoo_3_2_roof_east",
+    "zoo_3_2_roof_north": "dda_geo_civic_zoo_3_2_roof_north",
+    "zoo_3_2_roof_south": "dda_geo_civic_zoo_3_2_roof_south",
+    "zoo_3_2_roof_west": "dda_geo_civic_zoo_3_2_roof_west",
+    "zoo_3_2_south": "dda_geo_civic_zoo_3_2_south",
+    "zoo_3_2_west": "dda_geo_civic_zoo_3_2_west",
+    "zoo_3_3": "dda_geo_civic_zoo_3_3",
+    "zoo_3_3_basement": "dda_geo_civic_zoo_3_3_basement",
+    "zoo_3_3_basement_east": "dda_geo_civic_zoo_3_3_basement_east",
+    "zoo_3_3_basement_north": "dda_geo_civic_zoo_3_3_basement_north",
+    "zoo_3_3_basement_south": "dda_geo_civic_zoo_3_3_basement_south",
+    "zoo_3_3_basement_west": "dda_geo_civic_zoo_3_3_basement_west",
+    "zoo_3_3_east": "dda_geo_civic_zoo_3_3_east",
+    "zoo_3_3_north": "dda_geo_civic_zoo_3_3_north",
+    "zoo_3_3_roof": "dda_geo_civic_zoo_3_3_roof",
+    "zoo_3_3_roof_east": "dda_geo_civic_zoo_3_3_roof_east",
+    "zoo_3_3_roof_north": "dda_geo_civic_zoo_3_3_roof_north",
+    "zoo_3_3_roof_south": "dda_geo_civic_zoo_3_3_roof_south",
+    "zoo_3_3_roof_west": "dda_geo_civic_zoo_3_3_roof_west",
+    "zoo_3_3_south": "dda_geo_civic_zoo_3_3_south",
+    "zoo_3_3_west": "dda_geo_civic_zoo_3_3_west"
+  },
+  "deferred_registration_fields": [
+    {
+      "source": [
+        "office_tower_roof_ne",
+        "office_tower_roof_ne_roof",
+        "office_tower_roof_nw",
+        "office_tower_roof_se",
+        "office_tower_roof_se_roof",
+        "office_tower_roof_sw"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "generic_city_building_roof",
+        "copy-from": "generic_city_building_no_sidewalk",
+        "extend": {
+          "flags": [
+            "SIDEWALK"
+          ]
+        },
+        "delete": {
+          "post_process_generators": [
+            "riot_damage"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        "office_tower_roof_ne",
+        "office_tower_roof_ne_roof",
+        "office_tower_roof_nw",
+        "office_tower_roof_se",
+        "office_tower_roof_se_roof",
+        "office_tower_roof_sw"
+      ],
+      "field": "delete.post_process_generators",
+      "value": [
+        "riot_damage"
+      ]
+    },
+    {
+      "source": [
+        "hotel_tower_b_1",
+        "hotel_tower_b_2",
+        "hotel_tower_b_3"
+      ],
+      "field": "delete.post_process_generators",
+      "value": [
+        "riot_damage"
+      ]
+    },
+    {
+      "source": [
+        "s_shoppingplaza_A6",
+        "s_shoppingplaza_B1",
+        "s_shoppingplaza_B2",
+        "s_shoppingplaza_B3",
+        "s_shoppingplaza_B4",
+        "s_shoppingplaza_B5",
+        "s_shoppingplaza_B6"
+      ],
+      "field": "delete.post_process_generators",
+      "value": [
+        "riot_damage"
+      ]
+    },
+    {
+      "source": [
+        "zoo_3_2_basement",
+        "zoo_3_3_basement"
+      ],
+      "field": "delete.post_process_generators",
+      "value": [
+        "riot_damage"
+      ]
+    },
+    {
+      "source": [
+        "zoo_0_0_roof",
+        "zoo_0_1_roof",
+        "zoo_0_2_roof",
+        "zoo_0_3_roof",
+        "zoo_1_0_roof",
+        "zoo_1_1_roof",
+        "zoo_1_2_roof",
+        "zoo_1_3_roof",
+        "zoo_2_0_roof",
+        "zoo_2_1_roof",
+        "zoo_2_2_roof",
+        "zoo_2_3_roof",
+        "zoo_3_0_roof",
+        "zoo_3_1_roof",
+        "zoo_3_2_roof",
+        "zoo_3_3_roof"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "generic_city_building_roof",
+        "copy-from": "generic_city_building_no_sidewalk",
+        "extend": {
+          "flags": [
+            "SIDEWALK"
+          ]
+        },
+        "delete": {
+          "post_process_generators": [
+            "riot_damage"
+          ]
+        }
+      }
+    },
+    {
+      "source": [
+        "zoo_0_0_roof",
+        "zoo_0_1_roof",
+        "zoo_0_2_roof",
+        "zoo_0_3_roof",
+        "zoo_1_0_roof",
+        "zoo_1_1_roof",
+        "zoo_1_2_roof",
+        "zoo_1_3_roof",
+        "zoo_2_0_roof",
+        "zoo_2_1_roof",
+        "zoo_2_2_roof",
+        "zoo_2_3_roof",
+        "zoo_3_0_roof",
+        "zoo_3_1_roof",
+        "zoo_3_2_roof",
+        "zoo_3_3_roof"
+      ],
+      "field": "delete.post_process_generators",
+      "value": [
+        "riot_damage"
+      ]
+    },
+    {
+      "source": [
+        "stadium_0_0",
+        "stadium_1_0",
+        "stadium_2_0",
+        "stadium_3_0"
+      ],
+      "expanded_abstract": {
+        "type": "overmap_terrain",
+        "abstract": "generic_stadium_park",
+        "vision_levels": "large_pavement",
+        "name": "stadium parking",
+        "color": "dark_gray",
+        "see_cost": "none",
+        "mondensity": 2,
+        "flags": [
+          "SIDEWALK"
+        ],
+        "post_process_generators": [
+          "riot_damage"
+        ]
+      }
+    },
+    {
+      "source": [
+        "stadium_0_0",
+        "stadium_1_0",
+        "stadium_2_0",
+        "stadium_3_0"
+      ],
+      "field": "vision_levels",
+      "value": "large_pavement"
+    },
+    {
+      "source": [
+        "stadium_0_0",
+        "stadium_1_0",
+        "stadium_2_0",
+        "stadium_3_0"
+      ],
+      "field": "mondensity",
+      "value": 2
+    },
+    {
+      "source": [
+        "stadium_0_0",
+        "stadium_1_0",
+        "stadium_2_0",
+        "stadium_3_0"
+      ],
+      "field": "post_process_generators",
+      "value": [
+        "riot_damage"
+      ]
+    }
+  ],
+  "new_terrain_definitions": 1,
+  "physical_counterpart_differences": [
+    "Retractable locked gate uses BN locked chain-link gate: transparent, impassable and pickable; source visuals, retraction, cutting and damage behavior remain archived",
+    "Bollard uses BN small column; keypad metal door uses BN locked metal door; source device interactions remain deferred",
+    "Wooden roof retains exact source concrete physical definition and transitions"
+  ],
+  "geometry_issues": [],
+  "unresolved_typed_refs": [],
+  "reused_sources": [
+    {
+      "archive": "urban_sources",
+      "path": "data/json/mapgen_palettes/common_parameters.json",
+      "sha256": "abb3e250be1920840155264e84890f3c4aa12e9ec169f2e535add993905137e6"
+    },
+    {
+      "archive": "urban_sources",
+      "path": "data/json/mapgen_palettes/house_general_palette.json",
+      "sha256": "a352160e785435f7bee5c59fb901f9e98bad5d456205d6bbaeb494774b75a423"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen/nested/aux_nested.json",
+      "sha256": "e0a61f7f937c93e31263f172f374b3373fbf86f30d05dbed135ac1836ae881c6"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen/nested/shelter_nested.json",
+      "sha256": "43c3671d16dd354acbf2c0f67c95deecd79bf59249db3e0d9cbf3f362406e5fe"
+    },
+    {
+      "archive": "frontier_adaptation_sources",
+      "path": "bn/data/json/furniture_and_terrain/terrain-mechanisms.json",
+      "sha256": "0730b558a877b87f534d281c9ab7ab8350722cb0e8d46bf561e3689e56b37aa7"
+    },
+    {
+      "archive": "frontier_adaptation_sources",
+      "path": "dda/data/json/furniture_and_terrain/terrain-mechanisms.json",
+      "sha256": "fdecf757032145ccb8ee240b0b25e4adb5cbbd1b36dacc11da3397ed562332bd"
+    },
+    {
+      "archive": "large_sites_sources",
+      "path": "data/json/mapgen_palettes/stadium_palette.json",
+      "sha256": "dc25fbd9cdd94d9a36f8eb612e2c8b24608d6c41f63625237b25ade0c86870a2"
+    },
+    {
+      "archive": "frontier_adaptation_sources",
+      "path": "dda/data/json/furniture_and_terrain/terrain-roofs.json",
+      "sha256": "b4951674cec91ddbe43ea8caf2fcea53da66a5db6fe7f359ce3b5d2616240b98"
+    }
+  ],
+  "limits": [
+    "Not installed or generation-validated; no progress credit",
+    "Full source and deferred later layers retained",
+    "Random nested rooms and damage overlays require source-derived fixture masks",
+    "Natural occurrence disabled"
+  ]
+}

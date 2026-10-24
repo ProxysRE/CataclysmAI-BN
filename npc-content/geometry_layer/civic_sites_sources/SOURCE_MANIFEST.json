@@ -1,0 +1,56 @@
+{
+  "dda_commit": "c19e95bc96d27d8bef8e2e246a63cd4cd6f89974",
+  "bn_commit": "c621aaf42fa182473aad10feea2b55647704dcf1",
+  "files": {
+    "data/json/mapgen/hotel_tower.json": {
+      "blob_sha": "7ed8c5df729dee9cf53f3c4135ea33db47d0d18e",
+      "bytes": 37341,
+      "sha256": "28308fe8dcec13ae7fca0dcfce1e0ca5f90a92421a6e7ddf36e66eeb0572db67"
+    },
+    "data/json/mapgen/office_tower.json": {
+      "blob_sha": "a995456782d26a0971e99eecc666cf7e166c8eaa",
+      "bytes": 31345,
+      "sha256": "e5f3f3981a6d55565753b77af3d8eda290fdb1d4b4081c01a218bfb5e56050d0"
+    },
+    "data/json/mapgen/office_tower_2.json": {
+      "blob_sha": "0b776fdfba154dfabd23159347b90ccf5d2e5bed",
+      "bytes": 18315,
+      "sha256": "5429e10744c113666aa5b60903089585198378a123b962e0d3fac72970fe2dcc"
+    },
+    "data/json/mapgen/stadium_baseball.json": {
+      "blob_sha": "1d53c6f0c9b94709abf838cf9774911b9aa7bff9",
+      "bytes": 47265,
+      "sha256": "44c5e1755a322aca8b4d3e6791e12daa7dcfbef2d7c6dad88227c7d46dc7a5d2"
+    },
+    "data/json/mapgen/zoo.json": {
+      "blob_sha": "2ecc413096366addd46009685e1b22f47c303b87",
+      "bytes": 33282,
+      "sha256": "4a95a452bbc7f9bfb557033dc87adb5e703a22ab372339aefe6686f4831826f5"
+    },
+    "data/json/mapgen/abandoned_shopping_plaza.json": {
+      "blob_sha": "bae62d36c65427861918e2771ca5268f8bd492d7",
+      "bytes": 16364,
+      "sha256": "042f8ccf72621b3d63c1f6d1414c8d19eedf757e1afa16fac560df7f0a1b8aa0"
+    },
+    "data/json/mapgen_palettes/hotel_tower_palette.json": {
+      "blob_sha": "247203d83c5658894872f173afce2bb51d9f634e",
+      "bytes": 2789,
+      "sha256": "603a8c13d7b214f09a784706199f2c545a27df64737ed063dd8a2ad1554aa131"
+    },
+    "data/json/mapgen_palettes/office.json": {
+      "blob_sha": "97ecf5685a21e31b68d85673afca52052c22fe1c",
+      "bytes": 6986,
+      "sha256": "fd79748e597275efc73218708d66fd81e88920cbea19a068989623178be71d22"
+    },
+    "data/json/mapgen/nested/office_nested.json": {
+      "blob_sha": "284455fe78d26287d8994c4a711a319af57d0779",
+      "bytes": 29305,
+      "sha256": "4fd877c90bfd780161d9756426bdd2756ae625cf69913b8e402dcef713eba14b"
+    },
+    "data/json/furniture_and_terrain/terrain-fences-gates.json": {
+      "blob_sha": "830b316961ef58682950e781ad14064804f3f8ea",
+      "bytes": 46835,
+      "sha256": "7485b73d574d3a3e2c422c57baf1118906066a5b20918990337ee0799833dbe8"
+    }
+  }
+}

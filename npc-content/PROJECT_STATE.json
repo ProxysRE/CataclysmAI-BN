@@ -1140,5 +1140,21 @@
     "fixture_report": "geometry_layer/CITY_ADDITIONS_PREVIEW_REPORT.json",
     "validation_run": 40042302365,
     "candidate_head": "ed263981c9684bf677ad96c77f7c441f62639614"
+  },
+  "geometry_civic_sites_candidate": {
+    "native_embedded": false,
+    "runtime_validated": false,
+    "source_groups": 5,
+    "source_registrations": 7,
+    "source_placements": 239,
+    "world_maps": 28,
+    "nested_definitions": 11,
+    "fixture_geometry_points": 2445,
+    "new_terrain_definitions": 1,
+    "unresolved_typed_refs": [],
+    "geometry_issues": [],
+    "status": "Five groups staged with seven isolated layouts and source-derived fixtures; native integration and source/installed Windows pending",
+    "report": "geometry_layer/CIVIC_SITES_GEOMETRY_REPORT.json",
+    "fixture_report": "geometry_layer/CIVIC_SITES_PREVIEW_REPORT.json"
   }
 }
