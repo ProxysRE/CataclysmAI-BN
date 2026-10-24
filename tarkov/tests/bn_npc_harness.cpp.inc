@@ -358,10 +358,14 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(guard->get_moves() == moves_before_standoff);
         const auto ammo_before_standoff = guard->primary_weapon().ammo_remaining();
         REQUIRE(ammo_before_standoff > 0);
+        const auto standoff_origin = guard->bub_pos();
+        const auto standoff_initial_range = rl_dist(standoff_origin, get_avatar().bub_pos());
         guard->set_moves(100);
         guard->move();
         REQUIRE(guard->get_moves() < 100);
-        CHECK(rl_dist(guard->bub_pos(), get_avatar().bub_pos()) > 2);
+        // A valid short route may start laterally before increasing separation.
+        CHECK(guard->bub_pos() != standoff_origin);
+        CHECK(rl_dist(guard->bub_pos(), get_avatar().bub_pos()) >= standoff_initial_range);
         CHECK(guard->primary_weapon().ammo_remaining() == ammo_before_standoff);
         probe("npc_standoff_started");
         REQUIRE(g->save(false));
@@ -378,6 +382,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             if (data["standoff_arrived"].get<bool>()) { break; }
         }
         REQUIRE(data["standoff_arrived"].get<bool>());
+        CHECK(rl_dist(guard->bub_pos(), get_avatar().bub_pos()) >= standoff_initial_range + 2);
         get_avatar().setpos(abs_to_bub(tripoint_abs_ms(387, 392, 0)));
         set_time(calendar::turn);
         REQUIRE_FALSE(guard->sees(get_avatar()));
