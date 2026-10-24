@@ -151,23 +151,44 @@ def prepare(check=False):
     preview = rename(entries, isolated)
     for e in preview:
         if e['type'] == 'overmap_terrain': e['extras'] = ''
-    own = index_entries(preview); own.discard(('mapgen', 'null'))
-    # null is an intentional empty world-map grid slot, not a definition.
+    # BN registers every string in a world-map matrix, including literal
+    # null. Give dormant source slots private mapgen names so this opt-in
+    # package cannot append generators to stock BN's global null identity.
+    # No overmap terrain or special cell is created for these unused names.
+    unplaced = []
+    for e in preview:
+        value = e.get('om_terrain')
+        if not isinstance(value, list) or not isinstance(value[0], list): continue
+        for y, row in enumerate(value):
+            for x, name in enumerate(row):
+                if name != 'null': continue
+                name = PREFIX + 'unused_grid_' + str(len(unplaced))
+                row[x] = name
+                unplaced.append({'source': 'null', 'grid_x': x, 'grid_y': y, 'preview_mapgen_id': name})
+    assert len(unplaced) == 2
+    runtime_root = OUT / 'runtime_sources'; runtime_manifest = json.loads((runtime_root / 'SOURCE_MANIFEST.json').read_text())
+    runtime_path = 'bn/src/mapgen/mapgen.cpp'; runtime_raw = (runtime_root / runtime_path).read_bytes()
+    assert runtime_manifest['pins']['bn'] == 'c621aaf42fa182473aad10feea2b55647704dcf1'
+    assert hashlib.sha256(runtime_raw).hexdigest() == runtime_manifest['files'][runtime_path]['sha256']
+    loader = runtime_raw.decode().split('void load_mapgen(const JsonObject& jo)', 1)[1].split('} else if (jo.has_string("om_terrain"))', 1)[0]
+    assert 'load_and_add_mapgen_function(jo, mapgenid, offset, total);' in loader and '"null"' not in loader
+    evidence.append({'archive': runtime_root.name, 'path': runtime_path, 'sha256': runtime_manifest['files'][runtime_path]['sha256']})
+    own = index_entries(preview)
     mods = {(e['type'], e['id']) for e in mod_cache()['records']}
     missing = sorted(required(preview) - own - core)
     assert not (own - BUILTIN_IDS) & (core | mods), sorted((own - BUILTIN_IDS) & (core | mods))
-    report = {'status': 'civic_geometry_staged_pending_adaptation_and_native_tests', 'native_embedded': False, 'runtime_validated': False,
+    report = {'status': 'civic_geometry_embedded_pending_windows', 'native_embedded': True, 'runtime_validated': False,
               'source_groups': 5, 'source_registrations': sorted(TARGETS), 'source_placements': sum(len(e['overmaps']) for e in registrations.values()),
               'special_cells': {e['id']: len(e['overmaps']) for e in registrations.values()},
               'source_z_levels': {e['id']: sorted({c['point'][2] for c in e['overmaps']}) for e in registrations.values()},
               'world_maps': len(conservation), 'nested_definitions': sum('nested_mapgen_id' in e for e in entries),
               'source_conservation': conservation, 'physical_aliases': aliases, 'isolated_ids': dict(sorted(isolated.items())),
-              'deferred_registration_fields': deferred, 'new_terrain_definitions': 1,
+              'deferred_registration_fields': deferred, 'new_terrain_definitions': 1, 'unplaced_grid_aliases': unplaced,
               'physical_counterpart_differences': ['Retractable locked gate uses BN locked chain-link gate: transparent, impassable and pickable; source visuals, retraction, cutting and damage behavior remain archived',
                   'Bollard uses BN small column; keypad metal door uses BN locked metal door; source device interactions remain deferred',
                   'Wooden roof retains exact source concrete physical definition and transitions'],
               'geometry_issues': issues, 'unresolved_typed_refs': missing, 'reused_sources': evidence,
-              'limits': ['Not installed or generation-validated; no progress credit', 'Full source and deferred later layers retained',
+              'limits': ['Embedded debug preview awaiting Windows generation; no progress credit', 'Full source and deferred later layers retained',
                          'Random nested rooms and damage overlays require source-derived fixture masks', 'Natural occurrence disabled']}
     for name, value in [('CIVIC_SITES_SHELLS.json', raw_entries), ('CIVIC_SITES_LATER_LAYERS.json', later),
                         ('CIVIC_SITES_PREVIEW_SHELL.json', preview), ('CIVIC_SITES_GEOMETRY_REPORT.json', report)]:

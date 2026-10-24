@@ -1,6 +1,6 @@
 {
-  "status": "civic_geometry_staged_pending_adaptation_and_native_tests",
-  "native_embedded": false,
+  "status": "civic_geometry_embedded_pending_windows",
+  "native_embedded": true,
   "runtime_validated": false,
   "source_groups": 5,
   "source_registrations": [
@@ -1583,6 +1583,20 @@
     }
   ],
   "new_terrain_definitions": 1,
+  "unplaced_grid_aliases": [
+    {
+      "source": "null",
+      "grid_x": 0,
+      "grid_y": 0,
+      "preview_mapgen_id": "dda_geo_civic_unused_grid_0"
+    },
+    {
+      "source": "null",
+      "grid_x": 1,
+      "grid_y": 0,
+      "preview_mapgen_id": "dda_geo_civic_unused_grid_1"
+    }
+  ],
   "physical_counterpart_differences": [
     "Retractable locked gate uses BN locked chain-link gate: transparent, impassable and pickable; source visuals, retraction, cutting and damage behavior remain archived",
     "Bollard uses BN small column; keypad metal door uses BN locked metal door; source device interactions remain deferred",
@@ -1630,10 +1644,15 @@
       "archive": "frontier_adaptation_sources",
       "path": "dda/data/json/furniture_and_terrain/terrain-roofs.json",
       "sha256": "b4951674cec91ddbe43ea8caf2fcea53da66a5db6fe7f359ce3b5d2616240b98"
+    },
+    {
+      "archive": "runtime_sources",
+      "path": "bn/src/mapgen/mapgen.cpp",
+      "sha256": "e634d0630dfe7ebf262fde108595c6ef999037b0a170f1c02ee54b8275be9948"
     }
   ],
   "limits": [
-    "Not installed or generation-validated; no progress credit",
+    "Embedded debug preview awaiting Windows generation; no progress credit",
     "Full source and deferred later layers retained",
     "Random nested rooms and damage overlays require source-derived fixture masks",
     "Natural occurrence disabled"

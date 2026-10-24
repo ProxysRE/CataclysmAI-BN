@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check all five civic groups against authenticated source layouts."""
 import json
+import copy
 import re
 from prepare_civic_sites_geometry import prepare, sources, OUT, ROOT, TARGETS, PREFIX
 from prepare_civic_sites_preview import prepare as fixtures
@@ -9,6 +10,17 @@ from prepare_city_additions_geometry import rename
 from prepare_regional_locations import flatten
 from compare_location_catalog import read_sources
 from check_geometry_terrain_schema import validate, validate_omt
+
+
+def validate_vertical(fixtures):
+    counts = {}
+    for name, points in fixtures.items():
+        terrain = {(p['omt_x'] * 24 + p['x'], p['omt_y'] * 24 + p['y'], p['z']): p['terrain'] for p in points}
+        counts[name.removeprefix(PREFIX)] = sum(t in ('t_stairs_up', 't_ladder_up') and
+            terrain.get((x, y, z + 1)) in ('t_stairs_down', 't_ladder_down', 't_stairs_updown')
+            for (x, y, z), t in terrain.items())
+    assert counts == {'hotel_1': 10, 'hotel_2': 10, 'hotel_3': 10, 'office_tower': 2,
+                      'shopping_plaza': 0, 'zoo': 2, 'stadium': 16}, counts
 
 
 def check():
@@ -20,7 +32,7 @@ def check():
     points = json.loads((OUT / 'CIVIC_SITES_PREVIEW_REPORT.json').read_text())
     assert (report['source_groups'], report['world_maps'], report['nested_definitions']) == (5, 28, 11)
     assert report['source_placements'] == 239 and not report['geometry_issues'] and not report['unresolved_typed_refs']
-    assert not report['native_embedded'] and not report['runtime_validated']
+    assert report['native_embedded'] and not report['runtime_validated']
     worlds = [e for e in raw if 'om_terrain' in e]
     assert len(worlds) == len(report['source_conservation'])
     for e, record in zip(worlds, report['source_conservation']):
@@ -35,7 +47,10 @@ def check():
             for e in json.loads(text) if e.get('type') == 'city_building' and e.get('id') in TARGETS}
     own = {n for e in entries if e['type'] == 'overmap_terrain' for n in flatten(e['id'])}
     mapped = {n for e in entries if 'om_terrain' in e for n in flatten(e['om_terrain'])} - {'null'}
-    assert own == mapped
+    unused = {p['preview_mapgen_id'] for p in report['unplaced_grid_aliases']}
+    assert len(unused) == 2 and not unused & own
+    assert own == mapped - unused
+    assert 'null' not in mapped
     for name, src in regs.items():
         special = next(e for e in entries if e.get('id') == PREFIX + name)
         assert special['occurrences'] == [0, 0]
@@ -49,6 +64,13 @@ def check():
         coordinates = {tuple(c['point']) for c in special['overmaps']}
         assert all((p['omt_x'], p['omt_y'], p['z']) in coordinates and 0 <= p['x'] < 24 and 0 <= p['y'] < 24 for p in checks)
     assert points['fixture_point_count'] == 2445 and points['layout_cases'] == 7
+    validate_vertical(points['fixture_checks'])
+    broken = copy.deepcopy(points['fixture_checks'])
+    for p in broken[PREFIX + 'hotel_1']:
+        if p['terrain'] == 't_stairs_down': p['terrain'] = 't_floor'
+    try: validate_vertical(broken)
+    except AssertionError: pass
+    else: raise AssertionError('Broken hotel vertical links accepted')
     registry = (OUT / 'waterside_adaptation_sources/bn/src/overmap/overmap.h').read_text()
     flags = set(re.findall(r'\{"([A-Z_]+)", oter_flags::', registry.split('oter_flags_map = {', 1)[1].split('};', 1)[0]))
     for e in entries:
@@ -64,7 +86,7 @@ def check():
     roof = next(e for e in entries if e.get('id') == PREFIX + 'wood_roof')
     assert roof == rename(roof_source, report['physical_aliases'])
     assert report['physical_aliases']['t_retractable_gate_l'] == 't_chaingate_l'
-    print('PASS: five civic groups /seven layouts, 239 exact source placements, 28 world maps, 11 structural nests and 2445 fixture points; native integration pending')
+    print('PASS: five civic groups /seven layouts, 239 exact source placements, 28 world maps, 11 structural nests and 2445 fixture points; Windows generation pending')
 
 
 if __name__ == '__main__': check()

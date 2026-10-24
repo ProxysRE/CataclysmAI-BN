@@ -806,17 +806,18 @@
       "apartment",
       "survivor",
       "camp",
-      "city_additions"
+      "city_additions",
+      "civic_sites"
     ],
-    "special_cells": 1598,
+    "special_cells": 1837,
     "natural_occurrences": [
       0,
       0
     ],
     "runtime_validated": false,
-    "status": "52-case city candidate corrected after initialization error; repeated Windows validation pending",
+    "status": "58 layouts plus one 73-input terrain-transform case embedded; clean source/installed Windows pending",
     "container_yards": "not embedded; cross-z nested roof blocker",
-    "native_patch_sha256": "a06cf97561f01311620ae4aafd122749b0d0c61c768df3eac4c89a2bbb852b9a",
+    "native_patch_sha256": "09fbd2ab86ca3197b99d0ce3462c0342c79aa5701b285641999b1041e9424f22",
     "previous_attempt": {
       "head": "815f764de8bce0cc812ff10ee1aadf276be771db",
       "run_id": 39345643352,
@@ -879,10 +880,8 @@
       "error": "Windows default cp1252 decoded UTF-8 cottage glyphs into multiple characters; row-width preflight failed",
       "fix": "Explicit UTF-8 source reads and writes; simulated cp1252-default regression passed"
     },
-    "source_special_placements": 1592,
-    "additional_derived_roof_cells": 2,
-    "candidate_head": "ed263981c9684bf677ad96c77f7c441f62639614",
-    "candidate_run_id": 40042302365
+    "source_special_placements": 1831,
+    "additional_derived_roof_cells": 2
   },
   "geometry_hub_candidate": {
     "mapgen_definitions": 9,
@@ -1138,11 +1137,11 @@
     "fixture_geometry_points": 242,
     "native_transform_input_cases": 73,
     "fixture_report": "geometry_layer/CITY_ADDITIONS_PREVIEW_REPORT.json",
-    "validation_run": 40042302365,
-    "candidate_head": "ed263981c9684bf677ad96c77f7c441f62639614"
+    "validation_run": 40084713623,
+    "candidate_head": "a42af4b624b2c1269369185d07d9580a0935d792"
   },
   "geometry_civic_sites_candidate": {
-    "native_embedded": false,
+    "native_embedded": true,
     "runtime_validated": false,
     "source_groups": 5,
     "source_registrations": 7,
@@ -1153,8 +1152,9 @@
     "new_terrain_definitions": 1,
     "unresolved_typed_refs": [],
     "geometry_issues": [],
-    "status": "Five groups staged with seven isolated layouts and source-derived fixtures; native integration and source/installed Windows pending",
+    "status": "Seven layouts embedded with 2445 expectations and 50 fixed vertical links; Windows source/installed generation pending",
     "report": "geometry_layer/CIVIC_SITES_GEOMETRY_REPORT.json",
-    "fixture_report": "geometry_layer/CIVIC_SITES_PREVIEW_REPORT.json"
+    "fixture_report": "geometry_layer/CIVIC_SITES_PREVIEW_REPORT.json",
+    "vertical_links": 50
   }
 }

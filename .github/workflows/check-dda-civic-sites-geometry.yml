@@ -6,6 +6,8 @@ on:
       - 'npc-content/prepare_civic_sites_preview.py'
       - 'npc-content/check_civic_sites_geometry.py'
       - 'npc-content/geometry_layer/CIVIC_SITES_*'
+      - 'npc-content/prepare_geometry_preview.py'
+      - 'npc-content/check_geometry_preview_layout.py'
       - 'npc-content/geometry_layer/civic_sites_sources/**'
       - '.github/workflows/check-dda-civic-sites-geometry.yml'
   workflow_dispatch:
@@ -19,3 +21,6 @@ jobs:
           python-version: '3.12'
       - run: python npc-content/check_civic_sites_geometry.py
       - run: python npc-content/report_geometry_progress.py --check
+      - run: python npc-content/prepare_geometry_preview.py --check
+      - run: python npc-content/check_geometry_terrain_schema.py
+      - run: python npc-content/check_geometry_preview_layout.py

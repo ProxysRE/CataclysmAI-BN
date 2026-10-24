@@ -1,6 +1,6 @@
 {
-  "status": "civic_native_fixtures_prepared_not_embedded",
-  "native_embedded": false,
+  "status": "civic_native_fixtures_embedded_pending_windows",
+  "native_embedded": true,
   "runtime_validated": false,
   "fixture_checks": {
     "dda_geo_civic_hotel_1": [

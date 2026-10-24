@@ -86,10 +86,22 @@ def check():
         actual=collections.Counter(re.findall(r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^"]+)"',body,re.M))
         expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
         assert actual==expected,(special,'City native geometry points changed')
+    from check_civic_sites_geometry import validate_vertical as validate_civic_vertical
+    civic=json.loads((ROOT/'geometry_layer/CIVIC_SITES_PREVIEW_REPORT.json').read_text())
+    civic_payload=json.loads((ROOT/'geometry_layer/CIVIC_SITES_PREVIEW_SHELL.json').read_text())
+    for entry in civic_payload:assert entry in entries,('Civic payload missing/modified',entry.get('id',entry.get('om_terrain')))
+    validate_civic_vertical(civic['fixture_checks'])
+    for special,points in civic['fixture_checks'].items():
+        body=code.split('TEST_CASE( "'+special+'_all_floors_without_loot"',1)[1].split('\nTEST_CASE(',1)[0]
+        actual=collections.Counter(re.findall(r'^        \{ (-?\d+), (-?\d+), (-?\d+), (-?\d+), (-?\d+), "([^\"]+)"',body,re.M))
+        expected=collections.Counter((str(p['omt_x']),str(p['omt_y']),str(p['x']),str(p['y']),str(p['z']),p['terrain'])for p in points)
+        assert actual==expected,(special,'Civic native geometry points changed')
+    assert civic['fixture_point_count']==2445
+    assert len(specials)==58 and count==1837
     from prepare_city_additions_preview import native_transform_test
     assert code.endswith(native_transform_test(city)),'Native city transform matrix/behavior checks changed'
     assert city['fixture_point_count']==242 and city['transform_input_count']==73
-    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
+    print(f'PASS: {len(specials)} native layouts / {count} fixture cells; 2445 civic points, 242 city geometry points and all 73 native transform inputs; existing LIXA/apartment/survivor/camp assertions retained')
 
 
 if __name__=='__main__':check()

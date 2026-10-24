@@ -69,7 +69,7 @@ def prepare(check=False):
                                'x': x, 'y': y, 'z': cell['point'][2], 'terrain': terrain})
         fixture[e['id']] = checks
     assert len(fixture) == 7 and all(fixture.values())
-    report = {'status': 'civic_native_fixtures_prepared_not_embedded', 'native_embedded': False, 'runtime_validated': False,
+    report = {'status': 'civic_native_fixtures_embedded_pending_windows', 'native_embedded': True, 'runtime_validated': False,
               'fixture_checks': fixture, 'fixture_point_count': sum(map(len, fixture.values())),
               'random_overlay_navigation_exclusions': exclusions, 'overlay_exclusion_count': len(exclusions),
               'layout_cases': 7, 'source_placements': 239,
@@ -79,7 +79,7 @@ def prepare(check=False):
     path = OUT / 'CIVIC_SITES_PREVIEW_REPORT.json'; text = json.dumps(report, indent=2, ensure_ascii=True) + '\n'
     if check: assert path.read_text() == text, path
     else: path.write_text(text)
-    print(f'Civic fixtures prepared: seven layouts /239 cells, {report["fixture_point_count"]} stable geometry/access points; native embedding pending')
+    print(f'Civic fixtures prepared: seven layouts /239 cells, {report["fixture_point_count"]} stable geometry/access points; Windows generation pending')
 
 
 if __name__ == '__main__':

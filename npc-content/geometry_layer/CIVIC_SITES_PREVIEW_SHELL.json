@@ -4944,8 +4944,8 @@
     "type": "mapgen",
     "om_terrain": [
       [
-        "null",
-        "null",
+        "dda_geo_civic_unused_grid_0",
+        "dda_geo_civic_unused_grid_1",
         "dda_geo_civic_s_shoppingplaza_A6"
       ],
       [
