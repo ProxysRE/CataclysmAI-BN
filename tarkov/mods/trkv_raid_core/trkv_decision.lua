@@ -9,6 +9,8 @@ function decision.step_actor(member, context, actor, map, now)
       member.patrol.sequence ~= context.sequence then return false, "inactive" end
   member.perception, member.search = member.perception or {}, member.search or {}
   perception.observe_actor(member.perception, context, actor, now, 30)
+  local hazard = actor:avoid_immediate_danger()
+  if hazard ~= "" then return true, "escape_" .. hazard end
   local handled, reason = search.step_actor(member.search, context, member.perception, actor, map, now)
   if handled then return handled, reason end
   -- Once contact was established, absence of vision must not hand a hidden

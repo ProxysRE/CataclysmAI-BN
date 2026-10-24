@@ -11,6 +11,7 @@ local target = { get_pos_ms = function() return p end,
   abs_pos = function() assert(visible); reads = reads + 1; return p end }
 local origin = { x = 1, y = 2, z = 0 }
 local actor = {
+  avoid_immediate_danger = function() return "" end,
   current_target = function() return target end, -- Includes a deliberately stale cache.
   sees = function() return visible end,
   get_pos_ms = function() return origin end,
@@ -41,3 +42,31 @@ assert(not ok and reason == "threat" and member.search.goal == nil and reads == 
 ctx.phase = "cleanup"
 assert(not decision.step_actor(member, ctx, actor, map, 134) and reads == 2)
 print("PASS decision integration, visible combat handoff, immutable hidden goal and no post-search hidden fallback")
+
+-- Hazards override both a visible fight and a remembered search. They do not
+-- consume search attempts or renew the contact deadline while taking priority.
+ctx.phase = "active"
+member = { patrol = { sequence = 1, index = 1, route = {} } }
+local hazard = "field"
+actor.avoid_immediate_danger = function() moves = moves - 100; return hazard end
+visible = true
+ok, reason = decision.step_actor(member, ctx, actor, map, 200)
+assert(ok and reason == "escape_field" and member.search.goal == nil)
+visible = false
+actor.avoid_immediate_danger = function() return "" end
+actor.move_towards = function(_, q) destination = q; moves = moves - 100 end
+assert(decision.step_actor(member, ctx, actor, map, 201))
+local deadline, attempts = member.search.goal.deadline, member.search.goal.attempts
+actor.avoid_immediate_danger = function() moves = moves - 100; return "explosive" end
+ok, reason = decision.step_actor(member, ctx, actor, map, 202)
+assert(ok and reason == "escape_explosive" and member.search.goal.attempts == attempts)
+assert(member.search.goal.deadline == deadline and member.perception.contact.seen_at == 200)
+ok, reason = decision.step_actor(member, ctx, actor, map, 230)
+assert(ok and reason == "escape_explosive" and member.perception.contact == nil)
+actor.avoid_immediate_danger = function() return "" end
+decision.step_actor(member, ctx, actor, map, 231)
+assert(member.search.status == "expired" and member.search.goal.deadline == deadline)
+ctx.phase = "cleanup"
+actor.avoid_immediate_danger = function() error("Inactive callback entered hazard executor") end
+assert(not decision.step_actor(member, ctx, actor, map, 232))
+print("PASS hazard priority over combat/search, preserved attempt budget and aging contact during escape")

@@ -29,6 +29,9 @@ class PatchCheckoutTest(unittest.TestCase):
              "src/game.h": "void create_profession_npcs( const std::vector<npc_class_id> &classes );"}),
             ("0008-probe-npc-spawn-position.patch", {"src/catalua_bindings_game_creatures.cpp":
              '"can_place_npc_at"'}),
+            ("0009-immediate-npc-hazard-action.patch", {"src/npc.h": "std::string avoid_immediate_danger();",
+             "src/npcmove.cpp": "std::string npc::avoid_immediate_danger()",
+             "src/catalua_bindings_creature.cpp": "SET_FX_T( avoid_immediate_danger"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

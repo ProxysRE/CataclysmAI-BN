@@ -169,6 +169,7 @@ gapi.spawn_npc_at = function(template, point)
   function actor:get_value(k) return self.values[k] or "" end
   function actor:get_pos_ms() return self.position end
   function actor:get_moves() return self.moves end
+  function actor:avoid_immediate_danger() return "" end
   function actor:current_target() return nil end
   function actor:danger_assessment() return -10 end
   function actor:move_towards(p)

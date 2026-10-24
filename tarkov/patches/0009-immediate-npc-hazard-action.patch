@@ -1,0 +1,64 @@
+diff --git a/src/npc.h b/src/npc.h
+--- a/src/npc.h
++++ b/src/npc.h
+@@ -940,6 +940,8 @@
+ 
+         // AI helpers
+         void regen_ai_cache();
++        // Consume one immediate hazard response, or return an empty reason.
++        std::string avoid_immediate_danger();
+         const Creature *current_target() const;
+         Creature *current_target();
+         const Creature *current_ally() const;
+diff --git a/src/npcmove.cpp b/src/npcmove.cpp
+--- a/src/npcmove.cpp
++++ b/src/npcmove.cpp
+@@ -906,6 +906,35 @@
+     }
+ }
+ 
++std::string npc::avoid_immediate_danger()
++{
++    // Called from lua_ai after regen_ai_cache. Do not run the general selector:
++    // it may reintroduce a hidden combat target into a memory-driven search.
++    const int before = get_moves();
++    if( !in_vehicle && ( sees_dangerous_field( bub_pos() ) ||
++                         has_effect( effect_npc_fire_bad ) ) ) {
++        path.clear();
++        const auto escape = good_escape_direction( sees_dangerous_field( bub_pos() ) );
++        if( escape != bub_pos() && escape.z() == bub_pos().z() &&
++            get_map().inbounds( escape ) && g->critter_at( escape ) == nullptr ) {
++            move_to( escape, true, nullptr );
++        }
++        if( get_moves() >= before ) {
++            mod_moves( -100 );
++        }
++        return "field";
++    }
++    if( !ai_cache.dangerous_explosives.empty() ) {
++        path.clear();
++        escape_explosion();
++        if( get_moves() >= before ) {
++            mod_moves( -100 );
++        }
++        return "explosive";
++    }
++    return "";
++}
++
+ void npc::move()
+ {
+     ZoneScoped;
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -1572,6 +1572,9 @@
+ 
+         SET_FX_T( follow_distance, int() const );
+ 
++        DOC( "After the NPC cache refresh, execute only an immediate field/explosive escape. Returns field/explosive, or an empty string without spending moves." );
++        SET_FX_T( avoid_immediate_danger, std::string() );
++
+         DOC( "Returns the npc's current target as a creature, if it has one." );
+ 
+         SET_FX_T( current_target, Creature * () );

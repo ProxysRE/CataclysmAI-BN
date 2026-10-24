@@ -1,4 +1,5 @@
 #include "npc_class.h"
+#include "map/field_type.h"
 #include "skill.h"
 #include "world_type.h"
 #include "options_helpers.h"
@@ -235,6 +236,50 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         guard = g->find_npc(first_id);
         REQUIRE(guard != nullptr);
         probe("npc_search_restored");
+        probe("npc_hazard_checkpoint");
+        const auto search_origin = guard->abs_pos();
+        const auto before_hazard_ammo = guard->primary_weapon().ammo_remaining();
+        const auto fire_pos = guard->bub_pos();
+        REQUIRE(g->m.add_field(fire_pos, fd_fire, 3, 0_turns, false));
+        set_time(calendar::turn);
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        CHECK(guard->abs_pos() != search_origin);
+        CHECK_FALSE(g->m.dangerous_field_at(guard->bub_pos()));
+        probe("npc_hazard_field");
+        g->m.remove_field(fire_pos, fd_fire);
+        guard->remove_effect(efftype_id("npc_fire_bad"));
+        guard->setpos(abs_to_bub(search_origin));
+        const auto grenade_pos = abs_to_bub(tripoint_abs_ms(401, 392, 0));
+        REQUIRE(guard->sees(grenade_pos));
+        auto grenade = item::spawn("test_grenade_act");
+        grenade->charges = 1;
+        grenade->activate();
+        g->m.add_item(grenade_pos, std::move(grenade));
+        set_time(calendar::turn);
+        guard->set_moves(100);
+        guard->move();
+        REQUIRE(guard->get_moves() < 100);
+        CHECK(guard->abs_pos() != search_origin);
+        probe("npc_hazard_explosive");
+        g->m.i_clear(grenade_pos); // No item tick/detonation in this escape-only probe.
+        // A nearby explosive behind the solid wall must not become known by proximity.
+        guard->setpos(abs_to_bub(tripoint_abs_ms(395, 392, 0)));
+        const auto hidden_grenade_pos = abs_to_bub(tripoint_abs_ms(393, 392, 0));
+        auto hidden_grenade = item::spawn("test_grenade_act");
+        hidden_grenade->charges = 1;
+        hidden_grenade->activate();
+        g->m.add_item(hidden_grenade_pos, std::move(hidden_grenade));
+        set_time(calendar::turn);
+        REQUIRE_FALSE(guard->sees(hidden_grenade_pos));
+        guard->regen_ai_cache();
+        guard->set_moves(100);
+        CHECK(guard->avoid_immediate_danger().empty());
+        CHECK(guard->get_moves() == 100);
+        g->m.i_clear(hidden_grenade_pos);
+        guard->setpos(abs_to_bub(search_origin));
+        CHECK(guard->primary_weapon().ammo_remaining() == before_hazard_ammo);
         const auto search_ammo = guard->primary_weapon().ammo_remaining();
         const auto remembered = tripoint_abs_ms(402, 390, 0);
         for (auto step = 0; step < 4 && guard->abs_pos() != remembered; ++step) {

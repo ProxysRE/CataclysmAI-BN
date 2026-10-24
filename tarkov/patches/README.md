@@ -12,3 +12,11 @@ the game after installation. The test-driver changes remain test-only. Save form
 is unchanged. Patch application is checked against the exact pinned source. Linux runtime
 validation passed in run 39511333415 at project commit
 da9189db992697e2f45349420c1512a59a8f1e9c; Windows UI validation is pending. A passing same-process reload does not cover this defect.
+
+
+0009 adds Npc:avoid_immediate_danger(), called after the NPC cache refresh.
+It executes only an immediate field/explosive response and returns a reason,
+without re-entering the general NPC selector. Used before project search/combat
+dispatch; the search deadline and attempt budget remain untouched.
+Application against pinned sources is checked; native results are recorded in
+docs/VERIFICATION.md. This does not expose a general tactical planner.

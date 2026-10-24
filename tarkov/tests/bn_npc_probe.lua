@@ -376,6 +376,18 @@ elseif test_data.stage == "npc_search_started" or test_data.stage == "npc_search
   else
     assert(plan.deadline == test_data.search_deadline and plan.seen_at == test_data.search_seen_at)
   end
+elseif test_data.stage == "npc_hazard_checkpoint" then
+  local member = saved_actor()
+  test_data.hazard_attempts = member.search.goal.attempts
+  test_data.hazard_patrol_index = member.patrol.index
+elseif test_data.stage == "npc_hazard_field" or test_data.stage == "npc_hazard_explosive" then
+  local member = saved_actor()
+  local expected = test_data.stage == "npc_hazard_field" and "escape_field" or "escape_explosive"
+  assert(test_data.patrol_handled and test_data.patrol_reason == expected)
+  assert(member.search.goal.attempts == test_data.hazard_attempts)
+  assert(member.patrol.index == test_data.hazard_patrol_index)
+  assert(member.search.goal.deadline == test_data.search_deadline)
+  assert(member.search.goal.position.x == 402 and member.search.goal.position.y == 390)
 elseif test_data.stage == "npc_search_checked" then
   local member = saved_actor()
   assert(member.search.status == "checked" and member.search.goal.attempts == 3)
