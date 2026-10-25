@@ -62,3 +62,10 @@ for a single committed point. Basic reload_without_visible_target is used
 only by the controller's no-fresh-contact branch after hazard handling;
 it does not guarantee absence of every threat. Recruits gain basic weapon
 maintenance but do not gain trained cover-approach selection.
+
+
+0013's cover predicate traces both same-floor zero-slope rays directly,
+without map::sees' reciprocal skew cache. This avoids accepting an exposed
+corner merely because the other direction primed that cache. Transparency
+and rotated-vehicle obstruction checks remain native. The global visibility
+algorithm is unchanged; the executor still rejects a visible selected target.

@@ -477,6 +477,8 @@ elseif test_data.stage:match("^npc_cover_reload_") then
   elseif test_data.stage == "npc_cover_reload_choose" then
     local observed = gapi.get_avatar():abs_pos()
     assert(actor:can_reload_empty_gun())
+    assert(actor:reload_cover_status(observed, TripointAbsMs.new(401, 392, 0)) == "exposed_cover",
+      "Corner trap must be rejected independently of the map LOS cache")
     local selected = actor:choose_reload_cover(observed)
     assert(selected and actor:choose_reload_cover(observed, selected))
     test_data.cover_selected = { x = selected.x, y = selected.y, z = selected.z }
@@ -500,6 +502,10 @@ elseif test_data.stage:match("^npc_cover_reload_") then
       test_data.cover_deadline = goal.deadline
       test_data.cover_seen_at = member.perception.contact.seen_at
     else
+      assert(map:get_ter_at(wall) == TerId.new("t_wall"):int_id(), "Reload wall changed after load")
+      local checked = actor:reload_cover_status(TripointAbsMs.new(goal.threat.x, goal.threat.y, goal.threat.z),
+        TripointAbsMs.new(goal.position.x, goal.position.y, goal.position.z))
+      assert(checked == "valid", "Saved cover changed after load: " .. checked)
       assert(goal.position.x == test_data.cover_goal.x and goal.position.y == test_data.cover_goal.y)
       assert(goal.position.z == test_data.cover_goal.z and goal.deadline == test_data.cover_deadline)
       assert(member.perception.contact.seen_at == test_data.cover_seen_at)

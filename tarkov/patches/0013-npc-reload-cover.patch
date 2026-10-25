@@ -1,7 +1,11 @@
 diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
 --- a/src/catalua_bindings_creature.cpp
 +++ b/src/catalua_bindings_creature.cpp
-@@ -1597,2 +1597,165 @@
+@@ -27,2 +27,3 @@
+ #include "json.h"
++#include "line.h"
+ #include "magic/magic.h"
+@@ -1597,2 +1598,194 @@
 +        DOC( "Whether the empty wielded gun can be reloaded from actual inventory." );
 +        luna::set_fx( ut, "can_reload_empty_gun", []( UT_CLASS & npchar ) -> bool {
 +            return !npchar.is_hallucination() && !npchar.in_vehicle &&
@@ -10,7 +14,36 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +                   npchar.can_reload_current();
 +        } );
 +
-+        const auto evaluate_reload_cover = []( UT_CLASS & npchar, const tripoint_abs_ms & observed,
++        // map::sees caches a reciprocal pair but traces the first caller's
++        // direction. Check both zero-slope rays directly for stable cover.
++        const auto reload_ray_open = []( const tripoint_bub_ms &from, const tripoint_bub_ms &to ) -> bool {
++            auto &here = get_map();
++            if( from.z() != to.z() || !here.inbounds( from ) || !here.inbounds( to ) ) {
++                return true; // Unknown geometry is never accepted as cover.
++            }
++            bool open = true;
++            auto last = from.xy();
++            bresenham( from.xy().raw(), to.xy().raw(), 0, [&]( const point &next ) {
++                if( next == to.xy().raw() ) {
++                    return false;
++                }
++                const tripoint_bub_ms p( point_bub_ms( next ), from.z() );
++                if( !here.is_transparent( p ) ||
++                    here.obscured_by_vehicle_rotation( tripoint_bub_ms( last, from.z() ), p ) ) {
++                    open = false;
++                    return false;
++                }
++                last = point_bub_ms( next );
++                return true;
++            } );
++            return open;
++        };
++        const auto reload_cover_blocks_rays = [reload_ray_open]( const tripoint_bub_ms &a,
++        const tripoint_bub_ms &b ) {
++            return !reload_ray_open( a, b ) && !reload_ray_open( b, a );
++        };
++
++        const auto evaluate_reload_cover = [reload_cover_blocks_rays]( UT_CLASS & npchar, const tripoint_abs_ms & observed,
 +        sol::optional<tripoint_abs_ms> committed, std::string &why ) -> std::optional<tripoint_abs_ms> {
 +            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ) {
 +                why = "weapon_not_empty"; return std::nullopt;
@@ -43,7 +76,7 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +                if( rl_dist( candidate, foe ) < 4 ) {
 +                    why = "cover_too_close"; return std::nullopt;
 +                }
-+                if( here.sees( foe, candidate, 60 ) || here.sees( candidate, foe, 60 ) ) {
++                if( !reload_cover_blocks_rays( foe, candidate ) ) {
 +                    why = "exposed_cover"; return std::nullopt;
 +                }
 +                if( candidate != origin && g->critter_at( candidate ) != nullptr ) {
@@ -129,7 +162,7 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +        } );
 +
 +        DOC( "Reload the empty wielded gun using BN costs and inventory, only outside terrain LOS from the observed threat and with no currently visible selected target. Returns whether moves were spent." );
-+        luna::set_fx( ut, "reload_under_cover", []( UT_CLASS & npchar, const tripoint_abs_ms & observed ) -> bool {
++        luna::set_fx( ut, "reload_under_cover", [reload_cover_blocks_rays]( UT_CLASS & npchar, const tripoint_abs_ms & observed ) -> bool {
 +            auto &here = get_map();
 +            const auto foe = abs_to_bub( observed );
 +            const Creature *target = npchar.current_target();
@@ -140,7 +173,7 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +            if( !here.inbounds( foe ) || foe.z() != npchar.bub_pos().z() ) {
 +                return refuse( "invalid_threat_position" );
 +            }
-+            if( here.sees( foe, npchar.bub_pos(), 60 ) || here.sees( npchar.bub_pos(), foe, 60 ) ) {
++            if( !reload_cover_blocks_rays( foe, npchar.bub_pos() ) ) {
 +                return refuse( "exposed" );
 +            }
 +            if( here.dangerous_field_at( npchar.bub_pos() ) ) {
