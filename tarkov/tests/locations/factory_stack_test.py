@@ -76,6 +76,21 @@ class Stack(unittest.TestCase):
         report=checker.graph({-1:['<'],0:['>']},{'<':2,'>':2})
         self.assertEqual(report['main_size'],2)
 
+    def test_missing_world_type_or_extra_json_is_rejected_before_execution(self):
+        for mutation in ['missing_world_type','extra_json']:
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temp:
+                bn=Path(temp)/'bn';(bn/'data/mods').mkdir(parents=True);(bn/'tests').mkdir()
+                exe=bn/'exe';exe.write_bytes(b'protocol-only')
+                with patch('subprocess.check_output',return_value=installer.BN_SHA+'\n'):
+                    installer.install(bn)
+                    mod=bn/'data/mods/trkv_factory_stack_dev'
+                    if mutation=='missing_world_type':(mod/'world_types.json').unlink()
+                    else:(mod/'extra.json').write_text('[]')
+                    with patch.object(runner.subprocess,'run') as execute:
+                        with self.assertRaisesRegex(ValueError,'Installed mod differs'):
+                            runner.run(bn,exe,Path(temp)/'logs',[7],'factory-stack')
+                        execute.assert_not_called()
+
     def test_stack_runner_uses_its_own_mod_test_and_fixture(self):
         with tempfile.TemporaryDirectory() as temp:
             bn=Path(temp)/'bn';(bn/'data/mods').mkdir(parents=True);(bn/'tests').mkdir()

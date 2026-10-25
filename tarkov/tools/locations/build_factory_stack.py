@@ -85,6 +85,11 @@ def build():
           'name':'Тарков: Завод — многоэтажный макет','authors':['ProxysRE'],
           'description':'Четыре уровня, парные лестницы и черновые объёмы цехов. Изолированный макет, без рейда.',
           'category':'content','dependencies':['bn']}])
+    write(MOD/'world_types.json',[{'type':'world_type','id':'trkv_factory_probe',
+          'name':'Завод: проверка перемещения',
+          'description':'Неограниченное тестовое измерение конструктора, не рейд проекта.',
+          'region_settings':'default','infinite_bounds':True,'save_prefix':'trkv_factory_probe_',
+          'allow_npc_travel':False,'allow_vehicle_travel':False}])
     write(OUT/'stack_geometry.json',{'status':'four_level_workshop_volume_draft','source_sha256':SOURCE_DIGEST,
           'svg_units_per_cell':.5,'terrain':TERRAIN,
           'floors':[{'z':z,'size':[w,h],'rows':rows} for z,rows in sorted(grids.items())]})

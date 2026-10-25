@@ -9,7 +9,7 @@ from check_factory_stack import reconstruct
 from build_factory_stack import ROOT, MOD, OUT, load
 from install_native_probe import BN_SHA
 
-CASE = 'factory stack generates matching levels and paired stairs'
+CASE = 'factory stack generates levels and avatar climbs paired stairs'
 
 
 def fixture():
@@ -28,6 +28,16 @@ def fixture():
     out += ['        default: return "";','    }','}',
             f'constexpr auto stack_expected_main_size = {report["main_size"]};',
             'const auto stack_anchor = tripoint('+','.join(map(str,report['anchor'][:2]+[report['anchor'][2]+1]))+');']
+    transitions = manifest['vertical_transitions']
+    if not transitions:
+        raise ValueError('Actor probe requires nonempty paired stairs')
+    out += ['struct stack_stair_pair { tripoint lower; tripoint upper; };',
+            f'const auto stack_stairs = std::array<stack_stair_pair, {len(transitions)}>{{{{']
+    for pair in transitions:
+        lower = ','.join(map(str,pair['from']))
+        upper = ','.join(map(str,pair['to']))
+        out.append(f'    {{tripoint({lower}), tripoint({upper})}},')
+    out.append('}};')
     return '\n'.join(out)+'\n'
 
 

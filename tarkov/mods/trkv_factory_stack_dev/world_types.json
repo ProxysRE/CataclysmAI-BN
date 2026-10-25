@@ -1,0 +1,13 @@
+[
+  {
+    "type": "world_type",
+    "id": "trkv_factory_probe",
+    "name": "Завод: проверка перемещения",
+    "description": "Неограниченное тестовое измерение конструктора, не рейд проекта.",
+    "region_settings": "default",
+    "infinite_bounds": true,
+    "save_prefix": "trkv_factory_probe_",
+    "allow_npc_travel": false,
+    "allow_vehicle_travel": false
+  }
+]

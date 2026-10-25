@@ -46,7 +46,7 @@ def run(bn, executable, output, seeds, location="industrial"):
                     'install_factory_probe'),
         'factory-stack': ('trkv_factory_stack_dev', 'trkv_factory_stack_constructor_test.cpp',
                           'bn_factory_stack_probe.cpp.inc', 'trkv_factory_stack_fixture.inc',
-                          'factory stack generates matching levels and paired stairs',
+                          'factory stack generates levels and avatar climbs paired stairs',
                           '[trkv_factory_stack]', 'install_factory_stack_probe'),
     }
     if location not in profiles:
@@ -61,9 +61,11 @@ def run(bn, executable, output, seeds, location="industrial"):
     if any(not isinstance(s,int) or not 0 <= s <= 2**32-1 for s in seeds):
         raise ValueError('Seeds must be unsigned 32-bit integers')
     installed_mod=bn/'data/mods'/mod_id
-    for name in ['mapgen.json','modinfo.json','overmap.json']:
-        if digest(installed_mod/name) != digest(ROOT/'mods'/mod_id/name):
-            raise ValueError(f'Installed mod differs: {name}')
+    source_mod=ROOT/'mods'/mod_id
+    source_json={str(p.relative_to(source_mod)):digest(p) for p in source_mod.rglob('*.json')}
+    installed_json={str(p.relative_to(installed_mod)):digest(p) for p in installed_mod.rglob('*.json')}
+    if not source_json or installed_json != source_json:
+        raise ValueError('Installed mod differs: JSON file inventory or contents')
     if (bn/'tests'/test_name).read_bytes() != (ROOT/'tests/locations'/source_name).read_bytes():
         raise ValueError('Installed test source differs')
     # This is a source-input check, not proof that an arbitrary executable was rebuilt.
@@ -93,7 +95,7 @@ def run(bn, executable, output, seeds, location="industrial"):
     data={'evidence':'native_generation','location':location,'bn_commit':sha,'executable_sha256':digest(executable),
           'mapgen_sha256':digest(installed_mod/'mapgen.json'),
           'test_source_sha256':digest(bn/'tests'/test_name),
-          'fixture_sha256':digest(bn/'tests'/fixture_name), 'runs':records,
+          'fixture_sha256':digest(bn/'tests'/fixture_name), 'mod_json_sha256':installed_json, 'runs':records,
           'limitations':['Сборочное происхождение executable подтверждает внешний pipeline',
                         'Не проверяет игровой lightmap, открывание дверей, НПС или Windows-интерфейс']}
     receipt.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

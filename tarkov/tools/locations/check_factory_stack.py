@@ -108,6 +108,12 @@ def check(bn):
     assert len(specials)==1 and specials[0]['occurrences']==[0,0]
     assert specials[0]['overmaps']==[{'point':[b['origin'][0]//24,b['origin'][1]//24,b['origin'][2]],
                                      'overmap':b['terrain_id']} for b in manifest['blocks']]
+    world_types = load(MOD/'world_types.json')
+    assert len(world_types)==1
+    wt = world_types[0]
+    assert wt['type']=='world_type' and wt['id']=='trkv_factory_probe'
+    assert wt['save_prefix']=='trkv_factory_probe_' and wt['infinite_bounds'] is True
+    assert wt['region_settings']=='default' and not wt['allow_npc_travel'] and not wt['allow_vehicle_travel']
     asset = catalog(bn)
     costs = {c:asset(t)['move_cost'] for c,t in palette.items()}
     assert all((costs[c]>0)==(c in '.S<>~') for c in palette)
