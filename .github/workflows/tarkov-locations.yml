@@ -84,15 +84,20 @@ jobs:
           -DBUILD_SHADERCROSS=ON -DSHADER_TARGETS=spirv
       - name: Compile game and test executable
         run: cmake --build bn/build --target cataclysm-bn cata_test --parallel 3
-      - name: Load isolated mod through the game executable
-        timeout-minutes: 5
+      - name: Load industrial mod through the game executable
+        timeout-minutes: 10
         working-directory: bn
         env:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
-        run: |
-          ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-loc-modcheck/' --check-mods trkv_locations_dev
-          ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-factory-modcheck/' --check-mods trkv_factory_dev
+        run: ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-loc-modcheck/' --check-mods trkv_locations_dev
+      - name: Load Factory mod through the game executable
+        timeout-minutes: 10
+        working-directory: bn
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-factory-modcheck/' --check-mods trkv_factory_dev
       - name: Generate actual maps in three separate processes
         timeout-minutes: 35
         env:
@@ -118,3 +123,5 @@ jobs:
             factory-native-logs/
             bn/build/CMakeFiles/CMakeConfigureLog.yaml
             bn/config/debug.log
+            ${{ runner.temp }}/trkv-loc-modcheck/
+            ${{ runner.temp }}/trkv-factory-modcheck/
