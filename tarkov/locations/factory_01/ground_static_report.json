@@ -1,0 +1,32 @@
+{
+  "evidence": "static_packaging_and_asset_topology",
+  "bn_commit": "554950f3635f50ddd1d32c6e1b6e2bdee9842bd6",
+  "blocks": 132,
+  "size": [
+    264,
+    288
+  ],
+  "cells_by_symbol": {
+    " ": 30984,
+    "#": 3405,
+    ".": 39081,
+    "S": 1851,
+    "X": 711
+  },
+  "walkable_cells": 40932,
+  "component_sizes": [
+    40813,
+    113,
+    2,
+    1,
+    1,
+    1,
+    1
+  ],
+  "automatic_passage_repair": false,
+  "limitations": [
+    "Не доказывает генерацию BN или маршрут НПС",
+    "Не определяет назначение раздельных участков без сверки этажей",
+    "Материалы и LOS силуэтов пока условные"
+  ]
+}

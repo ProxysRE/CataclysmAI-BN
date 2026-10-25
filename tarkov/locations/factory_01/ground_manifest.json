@@ -1,0 +1,1621 @@
+{
+  "location_id": "factory_01",
+  "stage": "ground_geometry_draft",
+  "bn_commit": "554950f3635f50ddd1d32c6e1b6e2bdee9842bd6",
+  "mod_id": "trkv_factory_dev",
+  "size": [
+    264,
+    288
+  ],
+  "levels": [
+    0
+  ],
+  "coordinates": {
+    "origin": "SVG top-left",
+    "x": "SVG right",
+    "y": "SVG down",
+    "z": "up",
+    "geographic_orientation": "not_established"
+  },
+  "source_sha256": "c8e576ca7974e086b78151f9bff532b5a99b2fc4a130b080e5be030236bc07bd",
+  "svg_units_per_cell": 0.5,
+  "blocks": [
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_0",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_0",
+      "origin": [
+        24,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_0",
+      "origin": [
+        48,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_0",
+      "origin": [
+        72,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_0",
+      "origin": [
+        96,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_0",
+      "origin": [
+        120,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_0",
+      "origin": [
+        144,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_0",
+      "origin": [
+        168,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_0",
+      "origin": [
+        192,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_0",
+      "origin": [
+        216,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_0",
+      "origin": [
+        240,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_1",
+      "origin": [
+        0,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_1",
+      "origin": [
+        24,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_1",
+      "origin": [
+        48,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_1",
+      "origin": [
+        72,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_1",
+      "origin": [
+        96,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_1",
+      "origin": [
+        120,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_1",
+      "origin": [
+        144,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_1",
+      "origin": [
+        168,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_1",
+      "origin": [
+        192,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_1",
+      "origin": [
+        216,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_1",
+      "origin": [
+        240,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_2",
+      "origin": [
+        0,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_2",
+      "origin": [
+        24,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_2",
+      "origin": [
+        48,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_2",
+      "origin": [
+        72,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_2",
+      "origin": [
+        96,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_2",
+      "origin": [
+        120,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_2",
+      "origin": [
+        144,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_2",
+      "origin": [
+        168,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_2",
+      "origin": [
+        192,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_2",
+      "origin": [
+        216,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_2",
+      "origin": [
+        240,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_3",
+      "origin": [
+        0,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_3",
+      "origin": [
+        24,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_3",
+      "origin": [
+        48,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_3",
+      "origin": [
+        72,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_3",
+      "origin": [
+        96,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_3",
+      "origin": [
+        120,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_3",
+      "origin": [
+        144,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_3",
+      "origin": [
+        168,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_3",
+      "origin": [
+        192,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_3",
+      "origin": [
+        216,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_3",
+      "origin": [
+        240,
+        72,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_4",
+      "origin": [
+        0,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_4",
+      "origin": [
+        24,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_4",
+      "origin": [
+        48,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_4",
+      "origin": [
+        72,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_4",
+      "origin": [
+        96,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_4",
+      "origin": [
+        120,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_4",
+      "origin": [
+        144,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_4",
+      "origin": [
+        168,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_4",
+      "origin": [
+        192,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_4",
+      "origin": [
+        216,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_4",
+      "origin": [
+        240,
+        96,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_5",
+      "origin": [
+        0,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_5",
+      "origin": [
+        24,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_5",
+      "origin": [
+        48,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_5",
+      "origin": [
+        72,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_5",
+      "origin": [
+        96,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_5",
+      "origin": [
+        120,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_5",
+      "origin": [
+        144,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_5",
+      "origin": [
+        168,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_5",
+      "origin": [
+        192,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_5",
+      "origin": [
+        216,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_5",
+      "origin": [
+        240,
+        120,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_6",
+      "origin": [
+        0,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_6",
+      "origin": [
+        24,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_6",
+      "origin": [
+        48,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_6",
+      "origin": [
+        72,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_6",
+      "origin": [
+        96,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_6",
+      "origin": [
+        120,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_6",
+      "origin": [
+        144,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_6",
+      "origin": [
+        168,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_6",
+      "origin": [
+        192,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_6",
+      "origin": [
+        216,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_6",
+      "origin": [
+        240,
+        144,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_7",
+      "origin": [
+        0,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_7",
+      "origin": [
+        24,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_7",
+      "origin": [
+        48,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_7",
+      "origin": [
+        72,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_7",
+      "origin": [
+        96,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_7",
+      "origin": [
+        120,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_7",
+      "origin": [
+        144,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_7",
+      "origin": [
+        168,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_7",
+      "origin": [
+        192,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_7",
+      "origin": [
+        216,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_7",
+      "origin": [
+        240,
+        168,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_8",
+      "origin": [
+        0,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_8",
+      "origin": [
+        24,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_8",
+      "origin": [
+        48,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_8",
+      "origin": [
+        72,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_8",
+      "origin": [
+        96,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_8",
+      "origin": [
+        120,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_8",
+      "origin": [
+        144,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_8",
+      "origin": [
+        168,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_8",
+      "origin": [
+        192,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_8",
+      "origin": [
+        216,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_8",
+      "origin": [
+        240,
+        192,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_9",
+      "origin": [
+        0,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_9",
+      "origin": [
+        24,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_9",
+      "origin": [
+        48,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_9",
+      "origin": [
+        72,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_9",
+      "origin": [
+        96,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_9",
+      "origin": [
+        120,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_9",
+      "origin": [
+        144,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_9",
+      "origin": [
+        168,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_9",
+      "origin": [
+        192,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_9",
+      "origin": [
+        216,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_9",
+      "origin": [
+        240,
+        216,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_10",
+      "origin": [
+        0,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_10",
+      "origin": [
+        24,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_10",
+      "origin": [
+        48,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_10",
+      "origin": [
+        72,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_10",
+      "origin": [
+        96,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_10",
+      "origin": [
+        120,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_10",
+      "origin": [
+        144,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_10",
+      "origin": [
+        168,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_10",
+      "origin": [
+        192,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_10",
+      "origin": [
+        216,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_10",
+      "origin": [
+        240,
+        240,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_0_11",
+      "origin": [
+        0,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_1_11",
+      "origin": [
+        24,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_2_11",
+      "origin": [
+        48,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_3_11",
+      "origin": [
+        72,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_4_11",
+      "origin": [
+        96,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_5_11",
+      "origin": [
+        120,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_6_11",
+      "origin": [
+        144,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_7_11",
+      "origin": [
+        168,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_8_11",
+      "origin": [
+        192,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_9_11",
+      "origin": [
+        216,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_factory_01_g_10_11",
+      "origin": [
+        240,
+        264,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    }
+  ],
+  "spawn_areas": [],
+  "extraction_areas": [],
+  "vertical_transitions": [],
+  "runtime_status": "not_integrated",
+  "adaptations": [
+    "Дискретизация 0.5 SVG-единицы на клетку; длина в метрах не установлена.",
+    "Неразмеченные области временно закрыты t_rock как граница теста, не стены оригинала.",
+    "Силуэты временно заменены t_concrete_wall; материал и LOS не подтверждены.",
+    "Графические площадки лестниц остаются полом; вертикальных переходов пока нет.",
+    "Проёмы не исправляются автоматически; двери, мебель, свет и содержимое пока не добавлены."
+  ],
+  "derived_geometry_license": "CC-BY-NC-SA-4.0",
+  "source_author": "Shebuka"
+}

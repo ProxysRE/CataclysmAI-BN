@@ -164,7 +164,7 @@ def inspect():
         'orientation':'SVG x-right/y-down; geographic north not established',
         'source_unit_to_meters':'not_calibrated',
         'limits':['Это снимок исходной схемы, не гарантия актуальности всех участков игры на 25.10.2026',
-                  'Внешние дворы и поздние изменения требуют отдельной сверки',
+                  'Полноту дворов и дверей проверяем по изображениям; наружные участки добавлены уже в 0.15 (2024)',
                   'Силуэты не определяют материал, прозрачность и пулестойкость объектов']}
     write(OUT/'source_lock.json',source_lock)
     audit={'status':'reference_study_not_runtime','renderer':{

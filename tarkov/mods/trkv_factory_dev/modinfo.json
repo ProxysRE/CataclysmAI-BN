@@ -1,0 +1,15 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "trkv_factory_dev",
+    "name": "Тарков: Завод — геометрический черновик",
+    "authors": [
+      "ProxysRE"
+    ],
+    "description": "Основной этаж по схеме Shebuka. Черновые материалы, без лестниц и рейда.",
+    "category": "content",
+    "dependencies": [
+      "bn"
+    ]
+  }
+]
