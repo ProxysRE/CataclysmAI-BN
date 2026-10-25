@@ -1,5 +1,6 @@
 -- Short saved combat moves for a trained rifle profile: spacing and firing lane.
 local loadouts = require("trkv_loadouts")
+local positions = require("trkv_positions")
 local combat = {}
 local function copy(p) return { x = p.x, y = p.y, z = p.z } end
 local function distance(a, b)
@@ -71,7 +72,7 @@ function combat.step(state, context, memory, now, api)
   return true, state.status
 end
 
-function combat.step_actor(member, context, actor, map, now)
+function combat.step_actor(member, context, actor, map, now, roster)
   local preset = member.loadout and loadouts.describe(member.loadout)
   if not preset or preset.profile ~= "rifle_trained_v1" then
     if member.combat then return combat.cancel(member.combat, "disabled") end
@@ -81,12 +82,14 @@ function combat.step_actor(member, context, actor, map, now)
   local function absolute(p) return TripointAbsMs.new(p.x, p.y, p.z) end
   return combat.step(member.combat, context, member.perception, now, {
     choose = function(p)
-      local lane = actor:choose_standoff_position(absolute(p), nil, true)
+      local excluded = positions.collect(member, context, actor, roster, now, false)
+      local lane = actor:choose_standoff_position(absolute(p), nil, true, excluded)
       if lane then return lane, "firing_lane" end
-      return actor:choose_standoff_position(absolute(p)), "standoff"
+      return actor:choose_standoff_position(absolute(p), nil, false, excluded), "standoff"
     end,
     validate = function(p, goal, kind)
-      return actor:choose_standoff_position(absolute(p), absolute(goal), kind == "firing_lane") ~= nil
+      return actor:choose_standoff_position(absolute(p), absolute(goal), kind == "firing_lane",
+        positions.collect(member, context, actor, roster, now, true)) ~= nil
     end,
     at = function(p) return actor:get_pos_ms() == map:abs_to_bub(absolute(p)) end,
     position = function() local p = actor:abs_pos(); return copy(p) end,

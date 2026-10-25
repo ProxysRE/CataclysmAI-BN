@@ -478,6 +478,15 @@ elseif test_data.stage:match("^npc_squad_report_") then
     local ctx = {phase = state.phase, at_raid = true, sequence = state.sequence, dimension = api.raid_id}
     package.loaded.trkv_perception.observe_actor(sender.perception, ctx, donor, api.now(), 30)
     assert(sender.perception.status == "visible")
+    -- Seed a short intention solely to exercise the production reservation
+    -- adapter against real living/visible NPCs; no claim of tactical selection.
+    local now = api.now()
+    sender.combat = { schema = 1, sequence = state.sequence, dimension = api.raid_id, last_now = now,
+      goal = { position = {x = 403, y = 393, z = 0}, started_at = now, deadline = now + 8 } }
+    local excluded = package.loaded.trkv_positions.collect(member, ctx, actor, root.participants, now, false)
+    assert(#excluded == 1 and excluded[1].x == 403 and excluded[1].y == 393)
+    sender.combat = nil
+    assert(#package.loaded.trkv_positions.collect(member, ctx, actor, root.participants, now, false) == 0)
     member.perception, member.search, member.hearing, member.squad_memory = {}, {}, {}, nil
     test_data.report_seen_at = sender.perception.contact.seen_at
     test_data.report_position = sender.perception.contact.position
@@ -511,6 +520,11 @@ elseif test_data.stage:match("^npc_cover_reload_") then
       "Corner trap must be rejected independently of the map LOS cache")
     local selected = actor:choose_reload_cover(observed)
     assert(selected and actor:choose_reload_cover(observed, selected))
+    local reserved = { selected }
+    assert(not actor:choose_reload_cover(observed, selected, reserved))
+    assert(actor:reload_cover_status(observed, selected, reserved) == "reserved_cover")
+    local alternative = actor:choose_reload_cover(observed, nil, reserved)
+    assert(not alternative or alternative.x ~= selected.x or alternative.y ~= selected.y or alternative.z ~= selected.z)
     test_data.cover_selected = { x = selected.x, y = selected.y, z = selected.z }
     assert(not actor:reload_under_cover(observed), "Cannot reload under cover while still exposed")
     assert(not actor:reload_without_visible_target(), "Idle reload must reject a visible selected target")
@@ -581,6 +595,9 @@ elseif test_data.stage == "npc_lane_clear" or test_data.stage == "npc_lane_setup
     assert(proposed == nil, "Clear firing line must not trigger lane recovery")
   else
     assert(proposed and actor:choose_standoff_position(target, proposed, true))
+    assert(not actor:choose_standoff_position(target, proposed, true, { proposed }))
+    local alternative = actor:choose_standoff_position(target, nil, true, { proposed })
+    assert(not alternative or alternative.x ~= proposed.x or alternative.y ~= proposed.y or alternative.z ~= proposed.z)
     assert(not actor:choose_standoff_position(TripointAbsMs.new(target.x + 1, target.y, target.z), nil, true))
     saved_actor().combat = {}
   end
@@ -597,6 +614,9 @@ elseif test_data.stage == "npc_standoff_setup" or test_data.stage == "npc_stando
   else
     assert(proposed and proposed.z == target.z)
     assert(actor:choose_standoff_position(target, proposed))
+    assert(not actor:choose_standoff_position(target, proposed, false, { proposed }))
+    local alternative = actor:choose_standoff_position(target, nil, false, { proposed })
+    assert(not alternative or alternative.x ~= proposed.x or alternative.y ~= proposed.y or alternative.z ~= proposed.z)
     assert(not actor:choose_standoff_position(TripointAbsMs.new(target.x, target.y + 1, target.z)))
     local member = saved_actor()
     member.loadout, member.combat = "rifle_civilian_v1", {}

@@ -5,7 +5,7 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
  #include "json.h"
 +#include "line.h"
  #include "magic/magic.h"
-@@ -1597,2 +1598,194 @@
+@@ -1597,2 +1598,201 @@
 +        DOC( "Whether the empty wielded gun can be reloaded from actual inventory." );
 +        luna::set_fx( ut, "can_reload_empty_gun", []( UT_CLASS & npchar ) -> bool {
 +            return !npchar.is_hallucination() && !npchar.in_vehicle &&
@@ -44,7 +44,7 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +        };
 +
 +        const auto evaluate_reload_cover = [reload_cover_blocks_rays]( UT_CLASS & npchar, const tripoint_abs_ms & observed,
-+        sol::optional<tripoint_abs_ms> committed, std::string &why ) -> std::optional<tripoint_abs_ms> {
++        sol::optional<tripoint_abs_ms> committed, std::string &why, sol::optional<sol::table> excluded ) -> std::optional<tripoint_abs_ms> {
 +            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ) {
 +                why = "weapon_not_empty"; return std::nullopt;
 +            }
@@ -69,6 +69,13 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +            const auto score = [&]( const tripoint_bub_ms &candidate ) -> std::optional<int> {
 +                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ) {
 +                    why = "invalid_cover_position"; return std::nullopt;
++                }
++                if( excluded ) {
++                    for( const auto &entry : *excluded ) {
++                        if( entry.second.as<tripoint_abs_ms>() == bub_to_abs( candidate ) ) {
++                            why = "reserved_cover"; return std::nullopt;
++                        }
++                    }
 +                }
 +                if( !here.passable( candidate ) || here.dangerous_field_at( candidate ) ) {
 +                    why = "blocked_or_dangerous_cover"; return std::nullopt;
@@ -120,15 +127,15 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +
 +        DOC( "Choose or validate short reload cover without moving or reading a hidden target position." );
 +        luna::set_fx( ut, "choose_reload_cover", [evaluate_reload_cover]( UT_CLASS & npchar,
-+        const tripoint_abs_ms &observed, sol::optional<tripoint_abs_ms> committed ) -> std::optional<tripoint_abs_ms> {
++        const tripoint_abs_ms &observed, sol::optional<tripoint_abs_ms> committed, sol::optional<sol::table> excluded ) -> std::optional<tripoint_abs_ms> {
 +            std::string why;
-+            return evaluate_reload_cover( npchar, observed, committed, why );
++            return evaluate_reload_cover( npchar, observed, committed, why, excluded );
 +        } );
 +        DOC( "Explain validation of one committed reload-cover point without side effects." );
 +        luna::set_fx( ut, "reload_cover_status", [evaluate_reload_cover]( UT_CLASS & npchar,
-+        const tripoint_abs_ms &observed, const tripoint_abs_ms &committed ) -> std::string {
++        const tripoint_abs_ms &observed, const tripoint_abs_ms &committed, sol::optional<sol::table> excluded ) -> std::string {
 +            std::string why;
-+            evaluate_reload_cover( npchar, observed, sol::optional<tripoint_abs_ms>( committed ), why );
++            evaluate_reload_cover( npchar, observed, sol::optional<tripoint_abs_ms>( committed ), why, excluded );
 +            return why;
 +        } );
 +

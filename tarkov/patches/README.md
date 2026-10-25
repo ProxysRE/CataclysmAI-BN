@@ -69,3 +69,11 @@ without map::sees' reciprocal skew cache. This avoids accepting an exposed
 corner merely because the other direction primed that cache. Transparency
 and rotated-vehicle obstruction checks remain native. The global visibility
 algorithm is unchanged; the executor still rejects a visible selected target.
+
+
+0012/0013: optional Lua table с абсолютными точками excluded передаётся scorer
+при выборе и проверке. В standoff binding это четвёртый аргумент после recover_line;
+в choose_reload_cover/reload_cover_status — третий. Старые вызовы без таблицы
+сохраняются. Отбор альтернативы использует исходную нативную оценку; exclusions
+не меняют terrain LOS и не дают знания скрытого врага. Runtime подтверждение
+нового optional-table аргумента ожидает CI.

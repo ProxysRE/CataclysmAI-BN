@@ -1,3 +1,4 @@
+package.loaded.trkv_positions = dofile("tarkov/mods/trkv_raid_core/trkv_positions.lua")
 -- Exercise the production lifecycle wiring, including replaced nested save tables.
 local members = dofile("tarkov/mods/trkv_raid_core/trkv_participants.lua")
 local raid = dofile("tarkov/mods/trkv_raid_core/trkv_lifecycle.lua")

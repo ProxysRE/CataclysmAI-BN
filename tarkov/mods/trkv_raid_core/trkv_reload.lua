@@ -1,5 +1,6 @@
 -- Reload behind terrain cover; all persisted data is plain and raid-local.
 local loadouts = require("trkv_loadouts")
+local positions = require("trkv_positions")
 local reload = {}
 local function copy(p) return { x = p.x, y = p.y, z = p.z } end
 local function distance(a, b)
@@ -86,7 +87,7 @@ function reload.step(state, ctx, memory, now, api)
   state.status = "reload_cover"
   return true, state.status
 end
-function reload.step_actor(member, ctx, actor, map, now)
+function reload.step_actor(member, ctx, actor, map, now, roster)
   local preset = member.loadout and loadouts.describe(member.loadout)
   if not preset or (preset.profile ~= "rifle_trained_v1" and preset.profile ~= "rifle_recruit_v1") then
     if member.reload then return reload.cancel(member.reload, "disabled") end
@@ -102,9 +103,12 @@ function reload.step_actor(member, ctx, actor, map, now)
       if member.squad_memory and member.squad_memory.contact then return false end
       return actor:reload_without_visible_target()
     end,
-    choose = function(p) return actor:choose_reload_cover(absolute(p)) end,
-    validate = function(p, goal) return actor:choose_reload_cover(absolute(p), absolute(goal)) ~= nil end,
-    cover_failure = function(p, goal) return actor:reload_cover_status(absolute(p), absolute(goal)) end,
+    choose = function(p) return actor:choose_reload_cover(absolute(p), nil,
+      positions.collect(member, ctx, actor, roster, now, false)) end,
+    validate = function(p, goal) return actor:choose_reload_cover(absolute(p), absolute(goal),
+      positions.collect(member, ctx, actor, roster, now, true)) ~= nil end,
+    cover_failure = function(p, goal) return actor:reload_cover_status(absolute(p), absolute(goal),
+      positions.collect(member, ctx, actor, roster, now, true)) end,
     at = function(p) return actor:get_pos_ms() == map:abs_to_bub(absolute(p)) end,
     position = function() return copy(actor:abs_pos()) end,
     moves = function() return actor:get_moves() end,

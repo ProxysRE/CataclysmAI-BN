@@ -1,13 +1,13 @@
 diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
 --- a/src/catalua_bindings_creature.cpp
 +++ b/src/catalua_bindings_creature.cpp
-@@ -1596,6 +1596,96 @@
+@@ -1596,6 +1596,103 @@
  
          luna::set_fx( ut, "set_first_topic", []( UT_CLASS & npchar, const std::string & str ) -> void { npchar.chatbin.first_topic = str; } );
  
 +        DOC( "Choose or validate a short standoff move against the current visible target. Requires a loaded gun; returns an absolute position or nil without spending moves or changing NPC.path. Optional committed position validates only that point. Third argument enables short firing-lane recovery at range 4-12 when the current geometric shot is blocked." );
 +        luna::set_fx( ut, "choose_standoff_position", []( UT_CLASS & npchar,
-+        const tripoint_abs_ms & observed, sol::optional<tripoint_abs_ms> committed, sol::optional<bool> recover_line ) -> std::optional<tripoint_abs_ms> {
++        const tripoint_abs_ms & observed, sol::optional<tripoint_abs_ms> committed, sol::optional<bool> recover_line, sol::optional<sol::table> excluded ) -> std::optional<tripoint_abs_ms> {
 +            const Creature *target = npchar.current_target();
 +            if( !target || !npchar.sees( *target ) || target->abs_pos() != observed ||
 +                !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_remaining() <= 0 ||
@@ -45,6 +45,13 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +            const auto score = [&]( const tripoint_bub_ms &candidate ) -> std::optional<int> {
 +                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ) {
 +                    return std::nullopt;
++                }
++                if( excluded ) {
++                    for( const auto &entry : *excluded ) {
++                        if( entry.second.as<tripoint_abs_ms>() == bub_to_abs( candidate ) ) {
++                            return std::nullopt;
++                        }
++                    }
 +                }
 +                const int range = rl_dist( candidate, foe );
 +                if( range < 3 || range > ( lane ? 14 : 6 ) ||

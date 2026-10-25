@@ -1,3 +1,4 @@
+package.loaded.trkv_positions = dofile("tarkov/mods/trkv_raid_core/trkv_positions.lua")
 package.loaded.trkv_perception = dofile("tarkov/mods/trkv_raid_core/trkv_perception.lua")
 -- Callback regression: BN deserialization replaces nested mod_storage tables.
 locale = { gettext = function(text) return text end }

@@ -1,3 +1,4 @@
+package.loaded.trkv_positions = dofile("tarkov/mods/trkv_raid_core/trkv_positions.lua")
 package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
 local combat = dofile("tarkov/mods/trkv_raid_core/trkv_combat.lua")
 local ctx = { phase = "active", at_raid = true, sequence = 1, dimension = "raid" }

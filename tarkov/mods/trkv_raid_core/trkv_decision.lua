@@ -58,13 +58,13 @@ function decision.step_actor(member, context, actor, map, now, roster)
   hearing.update(member.hearing, context, now, actor:get_value("trkv_heard_noise"))
   local hazard = actor:avoid_immediate_danger()
   if hazard ~= "" then return finish("escape", true, "escape_" .. hazard) end
-  local handled, reason = reload.step_actor(member, context, actor, map, now)
+  local handled, reason = reload.step_actor(member, context, actor, map, now, roster)
   if handled then
     if member.combat then combat.cancel(member.combat, "reload_cover") end
     return finish("reload", handled, reason)
   end
   refusals.reload = reason
-  handled, reason = combat.step_actor(member, context, actor, map, now)
+  handled, reason = combat.step_actor(member, context, actor, map, now, roster)
   if handled then return finish("maneuver", handled, reason) end
   refusals.combat = reason
   handled, reason = search.step_actor(member.search, context, member.perception, actor, map, now)

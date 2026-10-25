@@ -1,3 +1,4 @@
+package.loaded.trkv_positions = dofile("tarkov/mods/trkv_raid_core/trkv_positions.lua")
 package.loaded.trkv_perception = dofile("tarkov/mods/trkv_raid_core/trkv_perception.lua")
 package.loaded.trkv_search = dofile("tarkov/mods/trkv_raid_core/trkv_search.lua")
 package.loaded.trkv_hearing = dofile("tarkov/mods/trkv_raid_core/trkv_hearing.lua")
