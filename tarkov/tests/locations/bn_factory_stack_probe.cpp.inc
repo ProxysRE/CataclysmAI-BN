@@ -151,39 +151,47 @@ TEST_CASE("factory stack generates levels and avatar climbs paired stairs", "[tr
     disable_mapgen = true;
     REQUIRE_FALSE(stack_stairs.empty());
     auto& player = get_avatar();
-    const auto first = stack_stairs.front().lower;
-    const auto first_absolute = tripoint_abs_ms(60 * 24 + first.x, 60 * 24 + first.y, first.z);
-    const auto load_origin = project_to<coords::sm>(first_absolute)
-                             - tripoint_rel_sm(g_half_mapsize, g_half_mapsize, 0);
-    entered_dimension = g->travel_to_dimension(
-        dim, world_type_id("trkv_factory_probe"), std::nullopt, load_origin, place_overmap_ids);
-    REQUIRE(entered_dimension);
     auto& here = get_map();
     auto climbed_pairs = 0;
     for (const auto& pair : stack_stairs) {
         CAPTURE(pair.lower.x, pair.lower.y, pair.lower.z, pair.upper.z);
         const auto lower = tripoint_abs_ms(60 * 24 + pair.lower.x, 60 * 24 + pair.lower.y, pair.lower.z);
         const auto upper = tripoint_abs_ms(60 * 24 + pair.upper.x, 60 * 24 + pair.upper.y, pair.upper.z);
-        player.setpos(lower); // Select the tested pair; climbing itself is never forced.
+        // Enter with this pair centered. Teleporting between distant pairs inside
+        // one active bubble exercises an unrelated BN eviction bug (see handoff).
+        REQUIRE(g->get_current_dimension_id() == original_dimension);
+        const auto load_origin = project_to<coords::sm>(lower)
+                                 - tripoint_rel_sm(g_half_mapsize, g_half_mapsize, 0);
+        const auto entered = g->travel_to_dimension(
+            dim, world_type_id("trkv_factory_probe"), std::nullopt, load_origin, place_overmap_ids);
+        entered_dimension = entered_dimension || entered;
+        REQUIRE(entered);
+        player.setpos(lower); // Select the landing within its centered loaded submap.
         REQUIRE(player.abs_pos() == lower);
         REQUIRE(here.get_bound_dimension() == dim);
         REQUIRE(here.ter(player.bub_pos()).id().str() == "t_stairs_up");
         const auto destination = g->find_stairs(here, upper.z(), false);
         REQUIRE(destination.has_value());
         REQUIRE(*destination == abs_to_bub(upper));
+        const auto centered_xy = player_reality_bubble_origin().xy();
         player.set_moves(1000);
         g->vertical_move(1, false);
         REQUIRE(player.abs_pos() == upper);
         CHECK(player.get_moves() < 1000);
+        CHECK(player_reality_bubble_origin().xy() == centered_xy);
         CHECK(g->get_current_dimension_id() == dim);
         REQUIRE(here.ter(player.bub_pos()).id().str() == "t_stairs_down_no_roof");
         player.set_moves(1000);
         g->vertical_move(-1, false);
         REQUIRE(player.abs_pos() == lower);
         CHECK(player.get_moves() < 1000);
+        CHECK(player_reality_bubble_origin().xy() == centered_xy);
         CHECK(g->get_current_dimension_id() == dim);
         REQUIRE(here.ter(player.bub_pos()).id().str() == "t_stairs_up");
         ++climbed_pairs;
+        REQUIRE(g->travel_to_dimension(
+            original_dimension, world_type_id(), std::nullopt, original_origin));
+        player.setpos(original_position);
     }
     CHECK(climbed_pairs == static_cast<int>(stack_stairs.size()));
     // No claim of NPC navigation, cold reload, falling, ballistics or Windows UI.

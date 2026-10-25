@@ -139,7 +139,7 @@ jobs:
           python tarkov/tools/locations/run_native_probe.py --bn bn
           --exe bn/build/bin/cata_test --output factory-native-logs --location factory
       - name: Generate four Factory levels and climb all paired stairs
-        timeout-minutes: 35
+        timeout-minutes: 50
         env:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy

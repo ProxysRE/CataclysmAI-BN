@@ -88,7 +88,7 @@ def run(bn, executable, output, seeds, location="industrial"):
             args=[str(executable),f'--user-dir={user}', f'--mods={mod_id}',
                   tag,'--rng-seed',str(seed),'--reporter','junit','--out',str(report)]
             with log.open('w',encoding='utf-8') as stream:
-                result=subprocess.run(args,cwd=bn,stdout=stream,stderr=subprocess.STDOUT,timeout=600)
+                result=subprocess.run(args,cwd=bn,stdout=stream,stderr=subprocess.STDOUT,timeout=900 if location=='factory-stack' else 600)
             result.check_returncode()
             validate_report(report, case)
         records.append({'seed':seed,'report':report.name,'sha256':digest(report),'log':log.name})
