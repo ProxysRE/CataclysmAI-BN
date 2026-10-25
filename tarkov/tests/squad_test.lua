@@ -63,3 +63,61 @@ for _, cause in ipairs({"wall", "range", "floor", "dead", "side", "squad", "raid
   assert(not observe(), cause)
 end
 print("PASS local communication requires living visible nearby same-floor same-side same-squad registered donor with personal current observation")
+
+-- Local cooperation never changes the report's lifetime or invents a new
+-- search budget. Failure/death/communication loss releases the waiting actor.
+local function episode(status)
+  return {sequence=1,dimension="raid",last_now=100,status="remembered",
+    contact={source="squad",sender=2,seen_at=100,expires_at=110,position={x=8,y=4,z=0}},
+    search={sequence=1,dimension="raid",status=status or "searching",
+      goal={position={x=8,y=4,z=0},seen_at=100,deadline=110,attempts=2,stalled=0}}}
+end
+local own, peer = episode(), episode()
+local reason, id = squad.coordinate(own,ctx,101,{{id=3,memory=peer}},10)
+assert(reason=="wait_for_investigator" and id==3)
+assert(not squad.coordinate(own,ctx,101,{{id=20,memory=peer}},10))
+peer.search.goal.stalled=4
+assert(not squad.coordinate(own,ctx,101,{{id=3,memory=peer}},10))
+peer.search.goal.stalled=0; peer.search.status="unreachable"
+assert(not squad.coordinate(own,ctx,101,{{id=3,memory=peer}},10))
+peer.search.status="checked"; peer.checked_at=101
+peer.checked_at=99
+assert(not squad.coordinate(own,ctx,101,{{id=20,memory=peer}},10))
+peer.checked_at=101
+reason,id=squad.coordinate(own,ctx,101,{{id=20,memory=peer}},10)
+assert(reason=="report_checked_by_squad" and id==20)
+peer.search.status="checked_by_squad" -- no relayed assertion of completion
+assert(not squad.coordinate(own,ctx,101,{{id=3,memory=peer}},10))
+peer.search.status="searching"; peer.contact.sender=99
+assert(not squad.coordinate(own,ctx,101,{{id=3,memory=peer}},10))
+peer.contact.sender=2
+assert(not squad.coordinate(own,ctx,110,{{id=3,memory=peer}},10))
+peer.contact.position.x=9
+assert(not squad.coordinate(own,ctx,101,{{id=3,memory=peer}},10))
+print("PASS investigator ID priority, fixed report deadline, failed/completed peer, no completion relay and unrelated contact rejection")
+
+receiver={id=10,side="usec",squad="alpha",squad_memory=episode()}
+receiver.squad_memory.search={}
+donor={id=3,side="usec",squad="alpha",patrol={sequence=1},squad_memory=episode()}
+roster={schema=1,sequence=1,closed=false,actors={donor}}
+buddy.getID=function() return {get_value=function() return 3 end} end
+visible,dead,pos.x,pos.z=true,false,2,0
+local moves,steps=1000,0
+actor.get_moves=function() return moves end
+actor.set_moves=function(_,value) moves=value end
+actor.abs_pos=function() return {x=0,y=0,z=0} end
+actor.move_towards=function() steps=steps+1; moves=moves-100 end
+TripointAbsMs={new=function(x,y,z) return {x=x,y=y,z=z} end}
+local map={abs_to_bub=function(_,p) return p end}
+assert(squad.step_actor(receiver,ctx,actor,map,101,roster))
+assert(moves==900 and steps==0 and receiver.squad_memory.waiting_for==3)
+assert(receiver.squad_memory.search.goal==nil and receiver.squad_memory.contact.expires_at==110)
+dead=true
+assert(squad.step_actor(receiver,ctx,actor,map,102,roster))
+assert(steps==1 and receiver.squad_memory.waiting_for==nil and receiver.squad_memory.search.goal.deadline==110)
+dead=false; donor.squad_memory.search.status="checked"; donor.squad_memory.checked_at=103
+local handled,why=squad.step_actor(receiver,ctx,actor,map,103,roster)
+assert(handled and why=="report_checked_by_squad" and steps==1)
+assert(receiver.squad_memory.search.finished_by==3)
+assert(not squad.step_actor(receiver,ctx,actor,map,104,roster) and steps==1)
+print("PASS live adapter waits without moving, resumes after investigator death and accepts visible peer completion once")

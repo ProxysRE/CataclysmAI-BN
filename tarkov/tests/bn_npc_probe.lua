@@ -462,6 +462,19 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage:match("^npc_squad_waiter_") then
+  local investigator = saved_actor()
+  if test_data.stage == "npc_squad_waiter_setup" then
+    assert(participants.register(root.participants, state.sequence, test_data.report_waiter_id,
+      investigator.side, investigator.squad, {}))
+  else
+    local member = assert(participants.find(root.participants, context(), test_data.report_waiter_id))
+    local memory = assert(member.squad_memory)
+    assert(memory.contact and memory.contact.sender == test_data.report_donor_id)
+    assert(memory.waiting_for == test_data.actor_id and memory.contact.expires_at == test_data.report_seen_at + 10)
+    assert(member.decisions.action == "squad_search" and member.decisions.reason == "wait_for_investigator")
+    assert(member.perception.contact == nil and memory.search.goal == nil)
+  end
 elseif test_data.stage:match("^npc_squad_report_") then
   local member = saved_actor()
   local actor, donor

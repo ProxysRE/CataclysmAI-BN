@@ -71,7 +71,7 @@ function decision.step_actor(member, context, actor, map, now, roster)
   if handled then return finish("visual_search", handled, reason) end
   refusals.search = reason
   if member.perception.status ~= "visible" then
-    handled, reason = squad.step_actor(member, context, actor, map, now)
+    handled, reason = squad.step_actor(member, context, actor, map, now, roster)
     if handled then return finish("squad_search", handled, reason) end
     refusals.squad = reason
     handled, reason = hearing.step_actor(member.hearing, context, actor, map, now)
