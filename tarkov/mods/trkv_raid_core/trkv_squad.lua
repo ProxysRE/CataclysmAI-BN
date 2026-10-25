@@ -70,7 +70,7 @@ function squad.observe_actor(member, ctx, actor, roster, now)
           local p = buddy:get_pos_ms()
           -- Local visual communication: no radio, no report through a wall,
           -- no hidden enemy query and no relay of another report.
-          if p.z == origin.z and math.max(math.abs(p.x-origin.x), math.abs(p.y-origin.y)) <= 12 and actor:sees(p) then
+          if p.z == origin.z and math.max(math.abs(p.x-origin.x), math.abs(p.y-origin.y)) <= 12 and actor:sees_creature(buddy) then
             reports[#reports + 1] = { sender = other.id, contact = other.perception.contact }
           end
         end
@@ -134,7 +134,7 @@ function squad.step_actor(member, ctx, actor, map, now, roster)
         local other = candidates[buddy:getID():get_value()]
         if other and not buddy:is_dead() then
           local p = buddy:get_pos_ms()
-          if p.z == origin.z and math.max(math.abs(p.x-origin.x), math.abs(p.y-origin.y)) <= 12 and actor:sees(p) then
+          if p.z == origin.z and math.max(math.abs(p.x-origin.x), math.abs(p.y-origin.y)) <= 12 and actor:sees_creature(buddy) then
             peers[#peers + 1] = {id = other.id, memory = other.squad_memory}
           end
         end

@@ -13,7 +13,8 @@ local buddy = {getID=function() return {get_value=function() return other.id end
   get_pos_ms=function() return point end, is_dead=function() return dead end,
   abs_pos=function() error("Reservation must not query hidden or absolute positions") end}
 gapi = {get_all_npcs=function() return {buddy} end}
-local actor = {get_pos_ms=function() return {x=0,y=0,z=0} end, sees=function() return visible end}
+local actor = {get_pos_ms=function() return {x=0,y=0,z=0} end, sees_creature=function() return visible end}
+actor.sees = function() error("Tile visibility cannot authorize creature perception") end
 local function collect(committed, now) return positions.collect(member,ctx,actor,roster,now or 101,committed) end
 local list = collect(false)
 assert(#list==1 and list[1].x==8) -- duplicate combat/reload claims collapse
@@ -24,12 +25,12 @@ assert(#collect(true)==0) -- restored conflict: lower actor ID retains its point
 member.id = 30
 assert(#collect(true)==1)
 assert(#collect(false,108)==0 and #collect(false,99)==0)
-for _, cause in ipairs({"wall","range","floor","dead","side","squad","raid","dimension","closed","clock"}) do
+for _, cause in ipairs({"wall","invisible","range","floor","dead","side","squad","raid","dimension","closed","clock"}) do
   visible, dead, point.x, point.z = true, false, 2, 0
   other.side, other.squad, other.combat.sequence, other.reload.sequence = "usec", "alpha", 1, 1
   other.combat.dimension, other.reload.dimension, roster.closed = "raid", "raid", false
   other.combat.last_now, other.reload.last_now = 100, 100
-  if cause=="wall" then visible=false
+  if cause=="wall" or cause=="invisible" then visible=false
   elseif cause=="range" then point.x=13
   elseif cause=="floor" then point.z=1
   elseif cause=="dead" then dead=true

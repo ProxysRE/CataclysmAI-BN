@@ -24,7 +24,7 @@ local actor = {
   choose_area_entry = function(_, low) return { x = low.x + 2, y = low.y + 2, z = low.z } end,
   avoid_immediate_danger = function() return "" end,
   current_target = function() return target end, -- Includes a deliberately stale cache.
-  sees = function() return visible end,
+  sees_creature = function() return visible end,
   get_pos_ms = function() return origin end,
   abs_pos = function() return origin end,
   get_moves = function() return moves end,
@@ -242,7 +242,7 @@ local buddy = {getID = function() return {get_value = function() return 2 end} e
   get_pos_ms = function() return buddy_pos end, is_dead = function() return false end}
 gapi = {get_all_npcs = function() return {buddy} end}
 origin, packet, visible = TripointAbsMs.new(0, 0, 0), "raid|800|14|18|0|combat", false
-actor.sees = function(_, q) return q == buddy_pos end
+actor.sees_creature = function(_, q) return q == buddy end
 actor.can_reload_empty_gun = function() return false end
 local calls_before = maintenance_calls
 ok, reason = decision.step_actor(member, ctx, actor, map, 800, roster)

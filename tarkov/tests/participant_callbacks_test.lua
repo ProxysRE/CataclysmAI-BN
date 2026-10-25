@@ -201,7 +201,7 @@ local first_actor = actors[1]
 local original_position, original_moves = first_actor.position, first_actor.moves
 local original_target = first_actor.current_target
 function first_actor:current_target() return visual_target end
-function first_actor:sees() return visual end
+function first_actor:sees_creature() return visual end
 function first_actor:abs_pos() return self.position end
 function first_actor:set_moves(value) self.moves = value end
 assert(not game.npc_ai_functions.TRKV_PATROL(first_actor))

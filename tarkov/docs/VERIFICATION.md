@@ -1867,3 +1867,32 @@ investigator; ветвь смерти по-прежнему подтвержде
 
 Локально прошли полный check.py, 13-патчевый LF/CRLF installer, 7 runner tests
 и diff --check. Обновлённый native wait/save/load/handover ожидает CI.
+
+
+## Creature visibility — 26.10.2026
+
+Windows 40230010827 / Linux 40230010861 полностью success: исправленная
+подготовка третьего NPC, bounded ожидание, save/load и реальный подхват после
+утраты локальной связи. Подтверждённые ранее cover/raid/cold gates сохранены.
+
+В pinned Creature binding sees принимает tripoint_bub_ms; Creature::sees(Creature)
+дополнительно проверяет невидимость/особенности цели. В pinned Character::is_invisible
+DEBUG_CLOAK явно является условием невидимости. Новый production patch 0014
+открывает отдельный sees_creature; perception не читает даже target:get_pos_ms
+до этой проверки. Локальная коммуникация, координация поиска и позиционные
+резервы тоже проверяют видимость самого союзника.
+
+Полный check.py, 14-патчевый LF/CRLF fixture, 7 runner tests и последовательное
+применение binding-hunks 0003/0009/0011/0012/0013/0014 к pinned source прошли.
+Perception fixture запрещает вызов tile predicate/get_pos_ms цели; остальные
+fixtures различают положительную видимость существа и недопустимый tile-only
+fallback, включая скрытого союзника.
+
+Native расширен случаем DEBUG_CLOAK: после исходного законного наблюдения
+current_target сохраняется намеренно, часы проходят один ход, клетка игрока
+остаётся видимой, а Creature sight=false. Lua должен оставить remembered с
+исходными seen_at/expires_at. Затем trait удаляется, положительная видимость
+подтверждается. В группе невидимый донор на видимой клетке не может передать
+новое сообщение или позиционный резерв. DEBUG_CLOAK здесь только тестовый
+инструмент проверки различия, не новая механика проекта. Новые assertions и
+C++ binding ожидают CI; их native успех пока не заявляется.

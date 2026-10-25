@@ -462,6 +462,25 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage:match("^npc_creature_visibility_") then
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  local target = assert(actor:current_target())
+  local ctx = {phase = state.phase, at_raid = true, sequence = state.sequence, dimension = api.raid_id}
+  if test_data.stage == "npc_creature_visibility_baseline" then
+    assert(actor:sees_creature(target))
+    test_data.visibility_memory = {}
+    package.loaded.trkv_perception.observe_actor(test_data.visibility_memory, ctx, actor, api.now(), 30)
+    test_data.visibility_seen_at = test_data.visibility_memory.contact.seen_at
+  else
+    assert(not actor:sees_creature(target) and actor:sees(target:get_pos_ms()))
+    package.loaded.trkv_perception.observe_actor(test_data.visibility_memory, ctx, actor, api.now(), 30)
+    assert(test_data.visibility_memory.status == "remembered")
+    assert(test_data.visibility_memory.contact.seen_at == test_data.visibility_seen_at)
+    assert(test_data.visibility_memory.contact.expires_at == test_data.visibility_seen_at + 30)
+  end
 elseif test_data.stage:match("^npc_squad_waiter_") then
   local investigator = saved_actor()
   if test_data.stage == "npc_squad_waiter_setup" then
@@ -509,6 +528,15 @@ elseif test_data.stage:match("^npc_squad_report_") then
     member.perception, member.search, member.hearing, member.squad_memory = {}, {}, {}, nil
     test_data.report_seen_at = sender.perception.contact.seen_at
     test_data.report_position = sender.perception.contact.position
+  elseif test_data.stage == "npc_squad_report_hidden_donor" then
+    local ctx = {phase = state.phase, at_raid = true, sequence = state.sequence, dimension = api.raid_id}
+    package.loaded.trkv_squad.observe_actor(member, ctx, actor, root.participants, api.now())
+    assert(member.squad_memory.contact == nil, "Invisible donor cannot communicate through a visible tile")
+    local sender = assert(participants.find(root.participants, context(), test_data.report_donor_id))
+    sender.combat = {schema = 1, sequence = state.sequence, dimension = api.raid_id, last_now = api.now(),
+      goal = {position = {x = 403, y = 393, z = 0}, started_at = api.now(), deadline = api.now() + 8}}
+    assert(#package.loaded.trkv_positions.collect(member, ctx, actor, root.participants, api.now(), false) == 0)
+    sender.combat = nil
   else
     local memory = assert(member.squad_memory)
     local report, goal = assert(memory.contact), assert(memory.search.goal)

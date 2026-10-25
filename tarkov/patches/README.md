@@ -77,3 +77,11 @@ algorithm is unchanged; the executor still rejects a visible selected target.
 сохраняются. Отбор альтернативы использует исходную нативную оценку; exclusions
 не меняют terrain LOS и не дают знания скрытого врага. Runtime подтверждение
 нового optional-table аргумента ожидает CI.
+
+
+0014-creature-visibility-query.patch: обязательный production binding
+Creature:sees_creature(other) для чтения личного контакта и локальной связи
+отряда. Использует исходный Creature::sees(Creature), сохраняя sees(point)
+для проверки клетки. Отдельно учитывает невидимость/скрытие самого существа;
+не переписывает движковое зрение и не возвращает координат. Новый binding
+проверяется native DEBUG_CLOAK-сценарием; CI-результат ожидается.

@@ -3,10 +3,11 @@ local context = { phase = "active", at_raid = true, sequence = 7, dimension = "r
 local state, visible, position_reads = {}, true, 0
 local p = { x = 10, y = 20, z = 0 }
 local target = {
-  get_pos_ms = function() return p end,
+  get_pos_ms = function() error("Target tile must not be read before creature visibility") end,
   abs_pos = function() position_reads = position_reads + 1; return p end,
 }
-local actor = { current_target = function() return target end, sees = function() return visible end }
+local actor = { current_target = function() return target end, sees = function() error("Tile visibility is insufficient") end,
+  sees_creature = function(_, other) assert(other == target); return visible end }
 assert(memory.observe_actor(state, context, actor, 100, 30))
 assert(state.status == "visible" and state.contact.position.x == 10)
 p.x, visible = 99, false

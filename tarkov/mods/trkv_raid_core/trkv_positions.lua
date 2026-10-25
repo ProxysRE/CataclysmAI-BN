@@ -30,7 +30,7 @@ function positions.collect(member, ctx, actor, roster, now, committed)
     local other = donors[buddy:getID():get_value()]
     if other and not buddy:is_dead() then
       local p = buddy:get_pos_ms()
-      if p.z == origin.z and math.max(math.abs(p.x-origin.x), math.abs(p.y-origin.y)) <= 12 and actor:sees(p) then
+      if p.z == origin.z and math.max(math.abs(p.x-origin.x), math.abs(p.y-origin.y)) <= 12 and actor:sees_creature(buddy) then
         for _, name in ipairs({ "combat", "reload" }) do
           local plan = other[name]
           if active(plan, ctx, now) then

@@ -43,14 +43,15 @@ local buddy = { getID = function() return {get_value = function() return 2 end} 
   is_dead = function() return dead end, get_pos_ms = function() return pos end,
   abs_pos = function() error("Report must not query enemy or buddy absolute position") end }
 gapi = { get_all_npcs = function() reads = reads + 1; return {buddy} end }
-local actor = {get_pos_ms = function() return {x = 0, y = 0, z = 0} end, sees = function() return visible end}
+local actor = {get_pos_ms = function() return {x = 0, y = 0, z = 0} end, sees_creature = function() return visible end}
+actor.sees = function() error("Tile visibility cannot authorize creature perception") end
 local function observe() receiver.squad_memory = nil; squad.observe_actor(receiver, ctx, actor, roster, 101); return receiver.squad_memory.contact end
 assert(observe() and reads == 1)
-for _, cause in ipairs({"wall", "range", "floor", "dead", "side", "squad", "raid", "dimension", "remembered", "closed"}) do
+for _, cause in ipairs({"wall", "invisible", "range", "floor", "dead", "side", "squad", "raid", "dimension", "remembered", "closed"}) do
   visible, dead, pos.x, pos.z = true, false, 2, 0
   donor.side, donor.squad, donor.perception.status = "usec", "alpha", "visible"
   donor.perception.sequence, donor.perception.dimension, roster.closed = 1, "raid", false
-  if cause == "wall" then visible = false
+  if cause == "wall" or cause == "invisible" then visible = false
   elseif cause == "range" then pos.x = 13
   elseif cause == "floor" then pos.z = 1
   elseif cause == "dead" then dead = true

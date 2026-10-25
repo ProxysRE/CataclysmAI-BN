@@ -1,0 +1,9 @@
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -201,3 +201,5 @@
+         luna::set_fx( ut, "sees", []( const Creature & cr, const tripoint_bub_ms & t ) -> bool { return cr.sees( t ); } );
++        DOC( "Whether this creature perceives another creature, including invisibility and creature-specific concealment. Does not expose its position." );
++        luna::set_fx( ut, "sees_creature", []( const Creature &cr, const Creature &other ) -> bool { return cr.sees( other ); } );
+ 
+         SET_FX_T( sight_range, int( int ) const );

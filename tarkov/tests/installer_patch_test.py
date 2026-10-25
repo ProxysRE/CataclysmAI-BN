@@ -36,6 +36,7 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0011-reachable-npc-area-entry.patch", {"src/catalua_bindings_creature.cpp": '"choose_area_entry"'}),
             ("0012-visible-npc-standoff-position.patch", {"src/catalua_bindings_creature.cpp": '"choose_standoff_position"'}),
             ("0013-npc-reload-cover.patch", {"src/catalua_bindings_creature.cpp": '"choose_reload_cover"'}),
+            ("0014-creature-visibility-query.patch", {"src/catalua_bindings_creature.cpp": '"sees_creature"'}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

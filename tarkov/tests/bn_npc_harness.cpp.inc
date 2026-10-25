@@ -441,6 +441,20 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         guard->regen_ai_cache();
         REQUIRE(guard->sees(get_avatar()));
         const auto cover_moves_before = guard->get_moves();
+        probe("npc_creature_visibility_baseline");
+        {
+            get_avatar().set_mutation(trait_id("DEBUG_CLOAK"));
+            const auto restore_visibility = on_out_of_scope([&]() {
+                get_avatar().unset_mutation(trait_id("DEBUG_CLOAK"));
+            });
+            set_time(calendar::turn + 1_turns);
+            REQUIRE(guard->sees(get_avatar().bub_pos()));
+            REQUIRE_FALSE(guard->sees(get_avatar()));
+            // Keep the old selected target intentionally: the observer must
+            // reject the creature even though its tile remains visible.
+            probe("npc_creature_visibility_concealed");
+        }
+        REQUIRE(guard->sees(get_avatar()));
         const auto cover_path_before = guard->path;
         // Prime the shared map::sees key from one direction. The cover query
         // must still reject a corner with a clear reverse zero-slope ray.
@@ -513,6 +527,15 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(guard->sees(*report_donor));
         data["report_donor_id"] = lane_blocker_id.get_value();
         probe("npc_squad_report_setup");
+        {
+            report_donor->set_mutation(trait_id("DEBUG_CLOAK"));
+            const auto restore_donor_visibility = on_out_of_scope([&]() {
+                report_donor->unset_mutation(trait_id("DEBUG_CLOAK"));
+            });
+            REQUIRE(guard->sees(report_donor->bub_pos()));
+            REQUIRE_FALSE(guard->sees(*report_donor));
+            probe("npc_squad_report_hidden_donor");
+        }
         const auto report_origin = guard->abs_pos();
         guard->set_moves(100);
         guard->move();

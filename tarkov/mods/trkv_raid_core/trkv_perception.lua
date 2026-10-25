@@ -29,13 +29,13 @@ function memory.update(state, context, now, observation, lifetime)
   return true, state.status
 end
 
--- Called after BN refreshes the actor cache. Read position only after explicit LOS.
+-- Called after BN refreshes the actor cache. Read position only after explicit Creature visibility.
 -- This observes the current selected target; it is not an all-enemy sensor.
 function memory.observe_actor(state, context, actor, now, lifetime)
   if context.phase ~= "active" or not context.at_raid then return false, "inactive" end
   local observation
   local target = actor:current_target()
-  if target and actor:sees(target:get_pos_ms()) then
+  if target and actor:sees_creature(target) then
     local p = target:abs_pos()
     observation = { position = { x = p.x, y = p.y, z = p.z } }
   end
