@@ -114,3 +114,25 @@ member.perception.contact = { position = { x = 0, y = 0, z = 0 }, seen_at = 146,
 ok, reason = reload.step_actor(member, ctx, actor, {}, 146)
 assert(not ok and reason == "cover_disabled" and engine_calls == 2 and member.reload.goal == nil)
 print("PASS recruits reload between contacts without gaining trained cover maneuvers")
+
+-- A saved approach must recheck the actual weapon/ammunition before movement,
+-- even when its old cover would otherwise remain valid.
+for _, restored in ipairs({ false, true }) do
+  ctx, memory, box, api = setup(); state = {}
+  assert(reload.step(state, ctx, memory, 100, api))
+  if restored then state = copy(state) end
+  local deadline, before, position = state.cooldown_until, box.moves, box.x
+  state.failure_reason = "old_failure"
+  box.ready = false
+  api.validate = function() error("Unneeded approach evaluated terrain") end
+  api.move_to = function() error("Unneeded approach moved") end
+  ok, reason = reload.step(state, ctx, memory, 101, api)
+  assert(not ok and reason == "no_longer_needed" and state.status == reason)
+  assert(state.goal == nil and state.failure_reason == nil)
+  assert(box.moves == before and box.x == position and state.cooldown_until == deadline)
+  -- Returning ammunition cannot renew the cancelled plan inside its cooldown.
+  box.ready = true
+  ok, reason = reload.step(state, ctx, memory, 102, api)
+  assert(not ok and reason == "cooldown" and box.choices == 1)
+end
+print("PASS reload approach rechecks inventory after interruptions and restore without spending moves or renewing cooldown")

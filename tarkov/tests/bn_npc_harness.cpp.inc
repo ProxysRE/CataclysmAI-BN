@@ -477,6 +477,14 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
         REQUIRE(data["cover_reloaded"].get<bool>());
         CHECK(guard->primary_weapon().ammo_remaining() == 30);
+        const auto cancelled_reload_position = guard->abs_pos();
+        const auto cancelled_reload_moves = guard->get_moves();
+        const auto cancelled_reload_path = guard->path;
+        probe("npc_cover_reload_unneeded");
+        CHECK(guard->abs_pos() == cancelled_reload_position);
+        CHECK(guard->get_moves() == cancelled_reload_moves);
+        CHECK(guard->path == cancelled_reload_path);
+        CHECK(guard->primary_weapon().ammo_remaining() == 30);
         // Once both contact memories expire, the owned controller still needs
         // to reload an empty gun instead of walking its patrol indefinitely.
         REQUIRE(guard->primary_weapon().ammo_consume(30, guard->bub_pos()) == 30);

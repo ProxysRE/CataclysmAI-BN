@@ -491,6 +491,21 @@ elseif test_data.stage:match("^npc_cover_reload_") then
     assert(member.hearing.contact == nil)
     assert(member.decisions.action == "reload" and member.decisions.reason == "idle_reloaded")
     assert(actor:get_value("trkv_reload_result") == "idle_reloaded")
+  elseif test_data.stage == "npc_cover_reload_unneeded" then
+    -- Simulate resuming an old approach after another action has loaded the
+    -- real gun. The production adapter must reject it before terrain/movement.
+    local now = api.now()
+    local pending = { loadout = member.loadout, perception = member.perception,
+      reload = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+        last_now = now, cooldown_until = now + 12, status = "reload_cover",
+        goal = { position = test_data.cover_goal, threat = member.perception.contact.position,
+          started_at = now, deadline = now + 8, attempts = 1, stalled = 0 } } }
+    assert(not actor:can_reload_empty_gun())
+    local handled, reason = package.loaded.trkv_reload.step_actor(pending,
+      { phase = state.phase, at_raid = true, sequence = state.sequence, dimension = api.raid_id },
+      actor, map, now)
+    assert(not handled and reason == "no_longer_needed" and pending.reload.goal == nil)
+    assert(pending.reload.cooldown_until == now + 12)
   elseif test_data.stage == "npc_cover_reload_restore_wall" then
     assert(map:set_ter_at(wall, TerId.new("t_floor"):int_id()))
   elseif test_data.stage == "npc_cover_reload_started" or test_data.stage == "npc_cover_reload_restored" then

@@ -33,6 +33,13 @@ function reload.step(state, ctx, memory, now, api)
     return false, state.status
   end
   local goal = state.goal
+  -- Inventory may change between decisions or while a saved approach is paused.
+  -- Stop before validating terrain or taking another step with a loaded gun /
+  -- unavailable ammunition. Keep the original cooldown to avoid plan churn.
+  if goal and not api.ready() then
+    state.goal, state.status, state.failure_reason = nil, "no_longer_needed", nil
+    return false, state.status
+  end
   if not goal then
     if memory.status ~= "visible" then
       -- A previous maneuver can be cancelled after an emergency. If already

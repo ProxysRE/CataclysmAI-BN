@@ -270,6 +270,10 @@ elseif test_data.stage == "cold_ai_checkpoint" then
     last_now = now, cooldown_until = now + 12, status = "standoff",
     goal = { position = copy_plain(goal), target = { x = 402, y = 390, z = 0 },
       started_at = now, deadline = now + 8, attempts = 1, stalled = 0 } }
+  member.reload = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+    last_now = now, cooldown_until = now + 12, status = "reload_cover",
+    goal = { position = copy_plain(goal), threat = { x = 402, y = 390, z = 0 },
+      started_at = now, deadline = now + 8, attempts = 1, stalled = 1 } }
   member.decisions = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
     last_now = now, action = "visual_search", reason = "searching", handled = true,
     hearing_input = "new_region", refusals = { combat = "lost_contact" }, history = {} }
@@ -279,7 +283,7 @@ elseif test_data.stage == "cold_ai_checkpoint" then
       source = "visual_memory", repeats = i == 8 and 7 or 1 }
   end
   root.cold_expected.ai = {}
-  for _, name in ipairs({ "perception", "search", "hearing", "combat", "decisions" }) do
+  for _, name in ipairs({ "perception", "search", "hearing", "combat", "reload", "decisions" }) do
     root.cold_expected.ai[name] = copy_plain(member[name])
   end
 elseif test_data.stage == "cold_ai_resumed" then
@@ -293,6 +297,10 @@ elseif test_data.stage == "cold_ai_resumed" then
     assert(member.search.goal.position.x == 398 and member.search.goal.position.y == 400)
     assert(member.combat.goal == nil) -- remembered contact cannot continue a firing maneuver
     assert(member.combat.status == "disabled" or member.combat.status == "lost_contact")
+    -- This checkpoint uses the unarmed patrol profile. Its restored reload
+    -- record must survive deserialization exactly, then be cancelled on use.
+    assert(member.reload.goal == nil and member.reload.status == "disabled")
+    assert(member.reload.cooldown_until == nil and member.reload.last_now == nil)
     assert(member.decisions.action == "visual_search" and member.decisions.reason == "searching")
     assert(#member.decisions.history == 8 and member.decisions.history[8].repeats == 8)
     assert_equal_plain(expected.hearing.contact, member.hearing.contact)
@@ -309,6 +317,7 @@ elseif test_data.stage == "cold_ai_expired" then
   assert(member.hearing.search.goal.deadline == expected.hearing.search.goal.deadline)
   assert(member.hearing.last_event == expected.hearing.last_event)
   assert(member.combat.goal == nil and member.decisions.action == "patrol" and member.decisions.handled)
+  assert(member.reload.goal == nil and member.reload.status == "disabled")
   assert(#member.decisions.history <= 8)
 elseif test_data.stage == "cold_npc_restored" then
   check_cold_ai()
