@@ -1,0 +1,92 @@
+name: Tarkov isolated location generation
+
+on:
+  push:
+    branches: [ project/tarkov-locations-dev01 ]
+    paths:
+      - '.github/workflows/tarkov-locations.yml'
+      - 'tarkov/tools/locations/**'
+      - 'tarkov/tests/locations/**'
+      - 'tarkov/mods/trkv_locations_dev/**'
+      - 'tarkov/locations/industrial_01/manifest.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tarkov-locations-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  linux-generation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: cataclysmbn/Cataclysm-BN
+          ref: 554950f3635f50ddd1d32c6e1b6e2bdee9842bd6
+          path: bn
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Static map and protocol checks
+        run: |
+          python tarkov/tools/locations/check_industrial.py --bn bn
+          python tarkov/tests/locations/industrial_validation_test.py --bn bn -v
+          python tarkov/tests/locations/native_probe_protocol_test.py -v
+      - name: Native dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libncurses-dev libsqlite3-dev zlib1g-dev libvulkan-dev mesa-vulkan-drivers libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev libxtst-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libasound2-dev libpulse-dev autoconf autoconf-archive automake libtool libltdl-dev
+      - uses: aminya/setup-cpp@v1
+        with:
+          compiler: llvm-22
+          cmake: true
+          ninja: true
+          setup-cpp: false
+      - uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: tarkov-locations-bn554950f-clang22
+          max-size: 3G
+      - name: Install constructor tests without core or production patches
+        run: python tarkov/tools/locations/install_native_probe.py bn
+      - name: Configure pinned BN
+        run: >-
+          cmake -S bn -B bn/build -G Ninja
+          -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_C_COMPILER_LAUNCHER=ccache
+          -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE='-O0 -DNDEBUG'
+          -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${{ github.workspace }}/bn/build/bin
+          -DCURSES=ON -DTILES=OFF -DSOUND=OFF -DTESTS=ON
+          -DLOCALIZE=OFF -DLANGUAGES=none -DBACKTRACE=OFF -DRELEASE=ON
+          -DUSE_PREFIX_DATA_DIR=OFF -DUSE_HOME_DIR=OFF
+          -DCATA_FORMAT_TARGETS=OFF -DLUA_DOCS_ON_BUILD=OFF
+          -DBUILD_SHADERCROSS=ON -DSHADER_TARGETS=spirv
+      - name: Compile game and test executable
+        run: cmake --build bn/build --target cataclysm-bn cata_test --parallel 3
+      - name: Load isolated mod through the game executable
+        timeout-minutes: 5
+        working-directory: bn
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-loc-modcheck/' --check-mods trkv_locations_dev
+      - name: Generate actual maps in three separate processes
+        timeout-minutes: 35
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: >-
+          python tarkov/tools/locations/run_native_probe.py --bn bn
+          --exe bn/build/bin/cata_test --output location-native-logs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Tarkov_location_generation_logs
+          path: |
+            location-native-logs/
+            bn/build/CMakeFiles/CMakeConfigureLog.yaml
+            bn/config/debug.log
