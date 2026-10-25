@@ -1,0 +1,1569 @@
+{
+  "status": "vertical_construction_plan_not_runtime",
+  "source_sha256": "c8e576ca7974e086b78151f9bff532b5a99b2fc4a130b080e5be030236bc07bd",
+  "svg_units_per_cell": 0.5,
+  "automatic_passage_repair": false,
+  "direction_supported_candidates": [
+    {
+      "source_ref": "stair-1",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        39.1426,
+        95.2973,
+        3.0521,
+        11.2827
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 132,
+      "proposed_position": [
+        81,
+        201
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-100",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 60,
+      "proposed_position": [
+        143,
+        192
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        72,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        0,
+        7440
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-101",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 55,
+      "proposed_position": [
+        187,
+        46
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        76,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        0,
+        7440
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-127",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 91,
+      "proposed_position": [
+        54,
+        82
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        1818,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        1543,
+        7440
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-128",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 78,
+      "proposed_position": [
+        54,
+        134
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        1818,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        1543,
+        7440
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-129",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        96,
+        93
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        72,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        0,
+        7440
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-130",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        24.7418,
+        72.3192,
+        2.9143,
+        1.2792
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 12,
+      "proposed_position": [
+        52,
+        145
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        1818
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1543
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-131",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        82.6128,
+        42.6737,
+        1.453,
+        3.7298
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 24,
+      "proposed_position": [
+        166,
+        89
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        1202
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1052
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-132",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        83.3833,
+        33.9564,
+        1.2252,
+        5.4587
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 22,
+      "proposed_position": [
+        167,
+        73
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        1202
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1052
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-135",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        12.0115,
+        65.0487,
+        3.2275,
+        1.3764
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 18,
+      "proposed_position": [
+        27,
+        131
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        21
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-136",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        53.6835,
+        6.40033,
+        2.9323,
+        1.32034
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 12,
+      "proposed_position": [
+        110,
+        14
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-138",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        53.1803,
+        28.8471,
+        2.9557,
+        1.229
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 12,
+      "proposed_position": [
+        109,
+        58
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-139",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        75.299,
+        37.6569,
+        2.8779,
+        1.3571
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 15,
+      "proposed_position": [
+        153,
+        76
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-140",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down",
+        "up"
+      ],
+      "shared_stair_cells": 18,
+      "proposed_position": [
+        65,
+        192
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-140",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ],
+      "lower_directions": [
+        "down",
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 18,
+      "proposed_position": [
+        65,
+        191
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        296
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        260
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-141",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        46.4488,
+        94.6592,
+        1.2787,
+        2.9043
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 12,
+      "proposed_position": [
+        94,
+        192
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        296
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        260
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-143",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        0.147886,
+        71.7988,
+        1.41017,
+        2.9255
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 15,
+      "proposed_position": [
+        1,
+        146
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-155",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        51.3337,
+        17.4393,
+        1.1721,
+        3.4477
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 14,
+      "proposed_position": [
+        103,
+        38
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        751
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        709
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-2",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        23.5652,
+        114.287,
+        6.5965,
+        3.006
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 78,
+      "proposed_position": [
+        53,
+        231
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-220",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        86.1828,
+        39.5518,
+        4.9597,
+        10.3352
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 210,
+      "proposed_position": [
+        177,
+        89
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-221",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        98.587,
+        37.8808,
+        2.931,
+        1.2648
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 12,
+      "proposed_position": [
+        200,
+        77
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-222",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        98.4578,
+        9.62181,
+        2.9422,
+        1.42359
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 18,
+      "proposed_position": [
+        199,
+        20
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-223",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        45.8568,
+        62.7733,
+        1.3624,
+        4.8857
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 18,
+      "proposed_position": [
+        93,
+        130
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-224",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        54.4139,
+        60.0327,
+        1.3622,
+        4.8857
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 30,
+      "proposed_position": [
+        110,
+        124
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-226",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        69.8078,
+        21.945,
+        1.1722,
+        3.6041
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 14,
+      "proposed_position": [
+        140,
+        47
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        751
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        709
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-3",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        23.7935,
+        120.316,
+        2.8739,
+        1.517
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 15,
+      "proposed_position": [
+        50,
+        242
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-4",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        28.3251,
+        75.1428,
+        1.4402,
+        3.0709
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 18,
+      "proposed_position": [
+        58,
+        153
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-62",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        25.3049,
+        25.5765,
+        2.7258,
+        4.1555
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 40,
+      "proposed_position": [
+        53,
+        55
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        1818
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1543
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-63",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        24.7291,
+        87.3812,
+        2.9143,
+        1.2792
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 12,
+      "proposed_position": [
+        52,
+        176
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        40813,
+        1818
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1543
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-69",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        39,
+        228
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        78,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        0,
+        7440
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-7",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        75.1812,
+        95.2502,
+        9.078,
+        2.9672
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 95,
+      "proposed_position": [
+        159,
+        193
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-8",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        87.0874,
+        63.3964,
+        2.9758,
+        8.3085
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 96,
+      "proposed_position": [
+        177,
+        135
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-96",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        31,
+        144
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        72,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        0,
+        7440
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-97",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "down"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        106,
+        192
+      ],
+      "runtime_enabled": false,
+      "status": "direction_supported_candidate",
+      "component_sizes_at_position": [
+        72,
+        8063
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        0,
+        7440
+      ],
+      "requires_intermediate_flight_review": true
+    }
+  ],
+  "direction_ambiguous": [
+    {
+      "source_ref": "stair-100",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 60,
+      "proposed_position": [
+        143,
+        192
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        72
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-101",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 55,
+      "proposed_position": [
+        187,
+        46
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        76
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-127",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 91,
+      "proposed_position": [
+        54,
+        82
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-127",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 91,
+      "proposed_position": [
+        54,
+        82
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        1818
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1543
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-128",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ],
+      "lower_directions": [
+        "unlabeled"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 78,
+      "proposed_position": [
+        54,
+        134
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        13793,
+        40813
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        12538,
+        38962
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-128",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 78,
+      "proposed_position": [
+        54,
+        134
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        1818
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        1543
+      ],
+      "requires_intermediate_flight_review": false
+    },
+    {
+      "source_ref": "stair-129",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        96,
+        93
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        72
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-69",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        39,
+        228
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        78
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-96",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        31,
+        144
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        72
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    },
+    {
+      "source_ref": "stair-97",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ],
+      "lower_directions": [
+        "up"
+      ],
+      "upper_directions": [
+        "up"
+      ],
+      "shared_stair_cells": 72,
+      "proposed_position": [
+        106,
+        192
+      ],
+      "runtime_enabled": false,
+      "status": "direction_ambiguous_review",
+      "component_sizes_at_position": [
+        40813,
+        72
+      ],
+      "landing_isolated": false,
+      "horizontal_floor_cells_in_endpoint_components": [
+        38962,
+        0
+      ],
+      "requires_intermediate_flight_review": true
+    }
+  ],
+  "missing_intermediate_landings": [
+    {
+      "source_ref": "stair-134",
+      "from_z": -1,
+      "to_z": 1,
+      "status": "missing_intermediate_landing_do_not_connect"
+    }
+  ],
+  "floors": [
+    {
+      "z": -1,
+      "standing_cells": 13794,
+      "component_sizes": [
+        13793,
+        1
+      ],
+      "conditionally_reachable_cells_from_main_ground": 13793
+    },
+    {
+      "z": 0,
+      "standing_cells": 40932,
+      "component_sizes": [
+        40813,
+        113,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "conditionally_reachable_cells_from_main_ground": 40813
+    },
+    {
+      "z": 1,
+      "standing_cells": 4530,
+      "component_sizes": [
+        1818,
+        1202,
+        751,
+        296,
+        78,
+        76,
+        72,
+        72,
+        72,
+        72,
+        21
+      ],
+      "conditionally_reachable_cells_from_main_ground": 4530
+    },
+    {
+      "z": 2,
+      "standing_cells": 8782,
+      "component_sizes": [
+        8063,
+        719
+      ],
+      "conditionally_reachable_cells_from_main_ground": 8063
+    }
+  ],
+  "warning": "Условная связность учитывает только кандидатов с направлением, не доказывает лестницы BN, двери, прыжки или путь НПС."
+}
