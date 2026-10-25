@@ -72,14 +72,20 @@ TEST_CASE("factory stack generates matching levels and paired stairs", "[trkv_fa
                         CAPTURE(level, gx, gy, symbol);
                         CHECK(tile.ter(p).id().str() == stack_terrain(symbol));
                         CHECK(tile.furn(p).id().str() == "f_null");
-                        CHECK(tile.tr_at(p).is_null());
+                        if (symbol == '~') {
+                            CHECK(tile.tr_at(p).id.str() == "tr_ledge");
+                            CHECK(tile.has_flag("TRANSPARENT", p));
+                        } else {
+                            CHECK(tile.tr_at(p).is_null());
+                        }
+                        CHECK(tile.has_flag("NO_FLOOR", p) == (symbol == '~'));
                         CHECK(tile.i_at(p).empty());
-                        const auto expected_passable = symbol == '.' || symbol == 'S' || symbol == '<' || symbol == '>';
+                        const auto expected_passable = symbol == '.' || symbol == 'S' || symbol == '<' || symbol == '>' || symbol == '~';
                         CHECK(tile.passable(p) == expected_passable);
                         CHECK(tile.has_flag("GOES_UP", p) == (symbol == '<'));
                         CHECK(tile.has_flag("GOES_DOWN", p) == (symbol == '>'));
                         cells[index(tripoint(gx, gy, level))] = static_cast<unsigned char>(
-                            (tile.passable(p) ? 1 : 0) | (tile.has_flag("GOES_UP", p) ? 2 : 0)
+                            (tile.passable(p) && !tile.has_flag("NO_FLOOR", p) ? 1 : 0) | (tile.has_flag("GOES_UP", p) ? 2 : 0)
                             | (tile.has_flag("GOES_DOWN", p) ? 4 : 0));
                     }
                 }

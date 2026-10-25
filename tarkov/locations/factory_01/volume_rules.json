@@ -1,0 +1,14 @@
+{
+  "status": "limited_workshop_volume_inference",
+  "source_sha256": "c8e576ca7974e086b78151f9bff532b5a99b2fc4a130b080e5be030236bc07bd",
+  "svg_units_per_cell": 0.5,
+  "guard_cells": 2,
+  "target_z": [1, 2],
+  "zones": [
+    {"id": "central_workshop", "svg_bounds": [34, 43, 103, 94]},
+    {"id": "boiler_workshop", "svg_bounds": [34, 11, 97, 39]}
+  ],
+  "evidence": ["Pinned SVG floor outlines on all four levels", "re3mr Factory 1.7C top/middle/ground floor panels visually cross-checked"],
+  "rules": ["Only unmarked upper cells above explicit ground-floor floor may become air", "Never replace a drawn floor, stair, wall or obstacle", "Keep a two-cell guard around ground obstacles/walls/stairs and stairs on either upper level", "Do not apply to the office block, basement, ground floor or the rest of the exterior"],
+  "limits": ["Air is an interpretation of aligned floor plans within reviewed workshop regions, not measured 3D geometry", "Roof and permanent equipment height remain unknown", "Source stair glyphs without an accepted pair are still placeholders"]
+}

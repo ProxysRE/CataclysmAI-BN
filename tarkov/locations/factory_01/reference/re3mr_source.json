@@ -1,0 +1,16 @@
+{
+  "author": "re3mr",
+  "page": "https://reemr.se/factory/",
+  "image_url": "https://www.re3mr.com/maps/Factory/FactorybyRe3mr.png",
+  "version_displayed": "1.7C",
+  "retrieved": "2026-10-25",
+  "original_size": [13440, 6656],
+  "original_bytes": 15273462,
+  "original_sha256": "9893433ba729530924b70980ff38ad6e6cfffeb2d9bedad79103ee230b6fc596",
+  "license": "CC-BY-NC-SA-4.0",
+  "license_evidence": "Author page and original image footer both state Attribution-NonCommercial-ShareAlike 4.0",
+  "stored_derivative": "Factory_re3mr_v17c_preview.png",
+  "derivative_changes": "Full image downscaled proportionally to 1800 pixels wide for visual reference; no original geometry edited",
+  "use": "Visual cross-check of high workshop volumes and floor/catwalk arrangement. No automatic registration or pixel-to-SVG conversion.",
+  "limits": ["Does not establish exact wall height, roof shape or material", "Map labels and spawn counts are not imported into game tables"]
+}

@@ -7,6 +7,7 @@ import subprocess
 
 from check_industrial import catalog
 from build_factory_stack import load, OUT, MOD
+from factory_volumes import air_candidates
 
 
 def reconstruct(manifest, definitions):
@@ -35,7 +36,8 @@ def reconstruct(manifest, definitions):
     return {z:[''.join(r) for r in rows] for z,rows in grids.items()},palette
 
 
-def validate_source(grids, manifest, blueprints, plan):
+def validate_source(grids, manifest, blueprints, plan, volumes=None):
+    air = air_candidates(blueprints,volumes) if volumes is not None else {}
     expected = {tuple(r['from']):'<' for r in manifest['vertical_transitions']}
     expected.update({tuple(r['to']):'>' for r in manifest['vertical_transitions']})
     assert len(expected)==2*len(manifest['vertical_transitions'])
@@ -53,7 +55,7 @@ def validate_source(grids, manifest, blueprints, plan):
         z = floor['z']
         for y,row in enumerate(floor['rows']):
             for x,c in enumerate(row):
-                expected_c = expected.get((x,y,z),c)
+                expected_c = expected.get((x,y,z),'~' if (x,y,z) in air else c)
                 assert expected_c==grids[z][y][x], (x,y,z,'Unexpected geometry change')
                 if (x,y,z) in expected:
                     assert c=='S', 'A stair cannot cut a new hole'
@@ -96,7 +98,7 @@ def check(bn):
     assert manifest['levels']==[-1,0,1,2] and manifest['size']==[264,288]
     grids,palette = reconstruct(manifest,load(MOD/'mapgen.json'))
     assert grids=={f['z']:f['rows'] for f in geometry['floors']} and palette==geometry['terrain']
-    validate_source(grids,manifest,load(OUT/'floor_blueprints.json'),load(OUT/'vertical_plan.json'))
+    validate_source(grids,manifest,load(OUT/'floor_blueprints.json'),load(OUT/'vertical_plan.json'),load(OUT/'volume_rules.json'))
     overmap = load(MOD/'overmap.json')
     terrain = {d['id']:d for d in overmap if d['type']=='overmap_terrain'}
     specials = [d for d in overmap if d['type']=='overmap_special']
@@ -108,14 +110,23 @@ def check(bn):
                                      'overmap':b['terrain_id']} for b in manifest['blocks']]
     asset = catalog(bn)
     costs = {c:asset(t)['move_cost'] for c,t in palette.items()}
-    assert all((costs[c]>0)==(c in '.S<>') for c in palette)
+    assert all((costs[c]>0)==(c in '.S<>~') for c in palette)
     assert 'GOES_UP' in asset(palette['<'])['flags'] and 'GOES_DOWN' not in asset(palette['<'])['flags']
     assert 'GOES_DOWN' in asset(palette['>'])['flags'] and 'GOES_UP' not in asset(palette['>'])['flags']
+    assert 'NO_FLOOR' in asset(palette['~'])['flags'] and 'TRANSPARENT' in asset(palette['~'])['flags']
+    assert asset(palette['~'])['trap']=='tr_ledge'
+    standing_costs = {c:(0 if 'NO_FLOOR' in asset(t)['flags'] else costs[c]) for c,t in palette.items()}
+    air_count = sum(row.count('~') for rows in grids.values() for row in rows)
+    assert air_count==manifest['open_air_cells']
     report = {'evidence':'static_source_preservation_and_topology','bn_commit':manifest['bn_commit'],
               'blocks':len(manifest['blocks']),'paired_stairs':len(manifest['vertical_transitions']),
-              'changed_source_cells':len(manifest['vertical_transitions'])*2,**graph(grids,costs),
+              'changed_source_cells':len(manifest['vertical_transitions'])*2+air_count,
+              'stair_cells':len(manifest['vertical_transitions'])*2,'open_air_cells':air_count,
+              'air_cells_by_level':{str(z):sum(row.count('~') for row in rows) for z,rows in sorted(grids.items())},
+              'standing_graph_excludes_no_floor':True,
+              **graph(grids,standing_costs),
               'limitations':['Не проверяет движение персонажа по лестницам или путь НПС',
-                             'Неразмеченные клетки закрыты тестовой границей; атриумы и крыша не воспроизведены',
+                             'Воздух задан в двух цеховых зонах; остальное закрыто тестовой границей; крыша и падение не проверены',
                              'Материалы и баллистика условные']}
     from build_factory_stack import write
     write(OUT/'stack_static_report.json',report)

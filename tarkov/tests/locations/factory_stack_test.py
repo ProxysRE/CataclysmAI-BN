@@ -20,17 +20,18 @@ class Stack(unittest.TestCase):
     def setUpClass(cls):
         cls.blueprints = builder.load(builder.OUT/'floor_blueprints.json')
         cls.plan = builder.load(builder.OUT/'vertical_plan.json')
+        cls.volumes = builder.load(builder.OUT/'volume_rules.json')
         cls.manifest = builder.load(builder.OUT/'stack_manifest.json')
         cls.definitions = builder.load(builder.MOD/'mapgen.json')
         cls.grids,cls.palette = checker.reconstruct(cls.manifest,cls.definitions)
 
-    def test_54_stair_cells_are_the_only_geometry_changes(self):
-        checker.validate_source(self.grids,self.manifest,self.blueprints,self.plan)
+    def test_only_declared_stair_and_air_cells_change(self):
+        checker.validate_source(self.grids,self.manifest,self.blueprints,self.plan,self.volumes)
         self.assertEqual(len(self.manifest['vertical_transitions']),27)
         self.assertEqual(sum(c in '<>' for rows in self.grids.values() for r in rows for c in r),54)
 
     def test_builder_reproduces_packaged_rows(self):
-        grids,transitions = builder.construct(self.blueprints,self.plan)
+        grids,transitions = builder.construct(self.blueprints,self.plan,self.volumes)
         self.assertEqual(grids,self.grids)
         self.assertEqual(transitions,self.manifest['vertical_transitions'])
 
@@ -39,14 +40,14 @@ class Stack(unittest.TestCase):
             grids = {z:rows.copy() for z,rows in self.grids.items()}
             row = list(grids[0][0]);row[0]=edit;grids[0][0]=''.join(row)
             with self.assertRaises(AssertionError):
-                checker.validate_source(grids,self.manifest,self.blueprints,self.plan)
+                checker.validate_source(grids,self.manifest,self.blueprints,self.plan,self.volumes)
 
     def test_shifted_or_skipped_level_stair_is_rejected(self):
         for offset in [1,2]:
             manifest = deepcopy(self.manifest)
             manifest['vertical_transitions'][0]['to'][2] += offset
             with self.assertRaises(AssertionError):
-                checker.validate_source(self.grids,manifest,self.blueprints,self.plan)
+                checker.validate_source(self.grids,manifest,self.blueprints,self.plan,self.volumes)
 
     def test_rejected_plan_relations_are_not_installed(self):
         rejected = {r['source_ref'] for r in self.plan['direction_supported_candidates']

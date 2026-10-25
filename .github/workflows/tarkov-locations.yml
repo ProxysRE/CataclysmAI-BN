@@ -11,6 +11,9 @@ on:
       - 'tarkov/tools/locations/run_native_probe.py'
       - 'tarkov/tools/locations/build_factory.py'
       - 'tarkov/tools/locations/build_factory_stack.py'
+      - 'tarkov/tools/locations/factory_volumes.py'
+      - 'tarkov/tests/locations/factory_volumes_test.py'
+      - 'tarkov/locations/factory_01/volume_rules.json'
       - 'tarkov/tools/locations/check_factory_stack.py'
       - 'tarkov/tools/locations/install_factory_stack_probe.py'
       - 'tarkov/tests/locations/bn_factory_stack_probe.cpp.inc'
@@ -64,6 +67,7 @@ jobs:
           python tarkov/tests/locations/factory_validation_test.py -v
           python tarkov/tools/locations/check_factory_stack.py --bn bn
           python tarkov/tests/locations/factory_stack_test.py -v
+          python tarkov/tests/locations/factory_volumes_test.py -v
       - name: Native dependencies
         run: |
           sudo apt-get update
