@@ -10,6 +10,16 @@ on:
       - 'tarkov/tools/locations/install_native_probe.py'
       - 'tarkov/tools/locations/run_native_probe.py'
       - 'tarkov/tools/locations/build_factory.py'
+      - 'tarkov/tools/locations/build_factory_stack.py'
+      - 'tarkov/tools/locations/check_factory_stack.py'
+      - 'tarkov/tools/locations/install_factory_stack_probe.py'
+      - 'tarkov/tests/locations/bn_factory_stack_probe.cpp.inc'
+      - 'tarkov/tests/locations/factory_stack_test.py'
+      - 'tarkov/mods/trkv_factory_stack_dev/**'
+      - 'tarkov/locations/factory_01/stack_geometry.json'
+      - 'tarkov/locations/factory_01/stack_manifest.json'
+      - 'tarkov/locations/factory_01/floor_blueprints.json'
+      - 'tarkov/locations/factory_01/vertical_plan.json'
       - 'tarkov/tools/locations/check_factory.py'
       - 'tarkov/tools/locations/install_factory_probe.py'
       - 'tarkov/tests/locations/bn_factory_probe.cpp.inc'
@@ -34,7 +44,7 @@ concurrency:
 jobs:
   linux-generation:
     runs-on: ubuntu-24.04
-    timeout-minutes: 100
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -52,6 +62,8 @@ jobs:
           python tarkov/tests/locations/native_probe_protocol_test.py -v
           python tarkov/tools/locations/check_factory.py --bn bn
           python tarkov/tests/locations/factory_validation_test.py -v
+          python tarkov/tools/locations/check_factory_stack.py --bn bn
+          python tarkov/tests/locations/factory_stack_test.py -v
       - name: Native dependencies
         run: |
           sudo apt-get update
@@ -70,6 +82,7 @@ jobs:
         run: |
           python tarkov/tools/locations/install_native_probe.py bn
           python tarkov/tools/locations/install_factory_probe.py bn
+          python tarkov/tools/locations/install_factory_stack_probe.py bn
       - name: Configure pinned BN
         run: >-
           cmake -S bn -B bn/build -G Ninja
@@ -98,6 +111,13 @@ jobs:
           SDL_VIDEODRIVER: offscreen
           SDL_AUDIODRIVER: dummy
         run: ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-factory-modcheck/' --check-mods trkv_factory_dev
+      - name: Load four-level Factory mod through the game executable
+        timeout-minutes: 10
+        working-directory: bn
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: ./build/bin/cataclysm-bn --userdir '${{ runner.temp }}/trkv-stack-modcheck/' --check-mods trkv_factory_stack_dev
       - name: Generate actual maps in three separate processes
         timeout-minutes: 35
         env:
@@ -114,6 +134,14 @@ jobs:
         run: >-
           python tarkov/tools/locations/run_native_probe.py --bn bn
           --exe bn/build/bin/cata_test --output factory-native-logs --location factory
+      - name: Generate four Factory levels and check paired stair graph
+        timeout-minutes: 35
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: >-
+          python tarkov/tools/locations/run_native_probe.py --bn bn
+          --exe bn/build/bin/cata_test --output factory-stack-native-logs --location factory-stack
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -121,7 +149,9 @@ jobs:
           path: |
             location-native-logs/
             factory-native-logs/
+            factory-stack-native-logs/
             bn/build/CMakeFiles/CMakeConfigureLog.yaml
             bn/config/debug.log
             ${{ runner.temp }}/trkv-loc-modcheck/
             ${{ runner.temp }}/trkv-factory-modcheck/
+            ${{ runner.temp }}/trkv-stack-modcheck/

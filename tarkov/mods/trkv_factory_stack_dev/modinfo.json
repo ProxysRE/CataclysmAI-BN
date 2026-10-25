@@ -1,0 +1,15 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "trkv_factory_stack_dev",
+    "name": "Тарков: Завод — многоэтажный макет",
+    "authors": [
+      "ProxysRE"
+    ],
+    "description": "Четыре уровня и парные лестницы по схеме Shebuka. Изолированный тест топологии, без рейда.",
+    "category": "content",
+    "dependencies": [
+      "bn"
+    ]
+  }
+]

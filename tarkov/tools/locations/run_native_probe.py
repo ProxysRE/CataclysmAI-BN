@@ -6,6 +6,7 @@ Executable build provenance remains the responsibility of the build pipeline.
 """
 import argparse
 import hashlib
+import importlib
 import json
 from pathlib import Path
 import subprocess
@@ -35,15 +36,22 @@ def validate_report(path, case=CASE):
 
 
 def run(bn, executable, output, seeds, location="industrial"):
-    if location not in ("industrial", "factory"):
-        raise ValueError("Unknown location probe")
-    factory = location == "factory"
-    mod_id = "trkv_factory_dev" if factory else "trkv_locations_dev"
-    test_name = "trkv_factory_constructor_test.cpp" if factory else "trkv_location_constructor_test.cpp"
-    source_name = "bn_factory_probe.cpp.inc" if factory else "bn_location_probe.cpp.inc"
-    fixture_name = "trkv_factory_fixture.inc" if factory else "trkv_location_fixture.inc"
-    case = "factory ground draft generates matching BN tiles" if factory else CASE
-    tag = "[trkv_factory]" if factory else "[trkv_locations]"
+    profiles = {
+        'industrial': ('trkv_locations_dev', 'trkv_location_constructor_test.cpp',
+                       'bn_location_probe.cpp.inc', 'trkv_location_fixture.inc', CASE,
+                       '[trkv_locations]', 'install_native_probe'),
+        'factory': ('trkv_factory_dev', 'trkv_factory_constructor_test.cpp',
+                    'bn_factory_probe.cpp.inc', 'trkv_factory_fixture.inc',
+                    'factory ground draft generates matching BN tiles', '[trkv_factory]',
+                    'install_factory_probe'),
+        'factory-stack': ('trkv_factory_stack_dev', 'trkv_factory_stack_constructor_test.cpp',
+                          'bn_factory_stack_probe.cpp.inc', 'trkv_factory_stack_fixture.inc',
+                          'factory stack generates matching levels and paired stairs',
+                          '[trkv_factory_stack]', 'install_factory_stack_probe'),
+    }
+    if location not in profiles:
+        raise ValueError('Unknown location probe')
+    mod_id, test_name, source_name, fixture_name, case, tag, installer = profiles[location]
     bn, executable, output = bn.resolve(), executable.resolve(), output.resolve()
     output.mkdir(parents=True,exist_ok=True)
     receipt=output/'location-native-receipt.json'
@@ -59,9 +67,8 @@ def run(bn, executable, output, seeds, location="industrial"):
     if (bn/'tests'/test_name).read_bytes() != (ROOT/'tests/locations'/source_name).read_bytes():
         raise ValueError('Installed test source differs')
     # This is a source-input check, not proof that an arbitrary executable was rebuilt.
-    from install_native_probe import BN_SHA, fixture
-    if factory:
-        from install_factory_probe import fixture
+    from install_native_probe import BN_SHA
+    fixture = importlib.import_module(installer).fixture
     if (bn/'tests'/fixture_name).read_text(encoding='utf-8') != fixture():
         raise ValueError('Installed fixture differs')
     sha=subprocess.check_output(['git','-C',str(bn),'rev-parse','HEAD'],text=True).strip()
@@ -99,6 +106,6 @@ if __name__=='__main__':
     p.add_argument('--exe',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--seeds',type=int,nargs='+',default=[20261025,20261026,20261027])
-    p.add_argument('--location',choices=['industrial','factory'],default='industrial')
+    p.add_argument('--location',choices=['industrial','factory','factory-stack'],default='industrial')
     a=p.parse_args()
     print(run(a.bn,a.exe,a.output,a.seeds,a.location))
