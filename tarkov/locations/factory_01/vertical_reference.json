@@ -1,0 +1,1638 @@
+{
+  "status": "reference_only",
+  "landings": [
+    {
+      "source_ref": "stair-1",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        39.1426,
+        95.2973,
+        3.0521,
+        11.2827
+      ]
+    },
+    {
+      "source_ref": "stair-2",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        23.5652,
+        114.287,
+        6.5965,
+        3.006
+      ]
+    },
+    {
+      "source_ref": "stair-3",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        23.7935,
+        120.316,
+        2.8739,
+        1.517
+      ]
+    },
+    {
+      "source_ref": "stair-4",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        28.3251,
+        75.1428,
+        1.4402,
+        3.0709
+      ]
+    },
+    {
+      "source_ref": "stair-7",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        75.1812,
+        95.2502,
+        9.078,
+        2.9672
+      ]
+    },
+    {
+      "source_ref": "stair-8",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        87.0874,
+        63.3964,
+        2.9758,
+        8.3085
+      ]
+    },
+    {
+      "source_ref": "stair-220",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        86.1828,
+        39.5518,
+        4.9597,
+        10.3352
+      ]
+    },
+    {
+      "source_ref": "stair-221",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        98.587,
+        37.8808,
+        2.931,
+        1.2648
+      ]
+    },
+    {
+      "source_ref": "stair-222",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        98.4578,
+        9.62181,
+        2.9422,
+        1.42359
+      ]
+    },
+    {
+      "source_ref": "stair-223",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        45.8568,
+        62.7733,
+        1.3624,
+        4.8857
+      ]
+    },
+    {
+      "source_ref": "stair-224",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        54.4139,
+        60.0327,
+        1.3622,
+        4.8857
+      ]
+    },
+    {
+      "source_ref": "stair-136",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        53.6835,
+        6.40033,
+        2.9323,
+        1.32034
+      ]
+    },
+    {
+      "source_ref": "stair-140",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ]
+    },
+    {
+      "source_ref": "stair-128",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-127",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-138",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        53.1803,
+        28.8471,
+        2.9557,
+        1.229
+      ]
+    },
+    {
+      "source_ref": "stair-139",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        75.299,
+        37.6569,
+        2.8779,
+        1.3571
+      ]
+    },
+    {
+      "source_ref": "stair-134",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        92.2973,
+        42.9477,
+        3.1411,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-143",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        0.147886,
+        71.7988,
+        1.41017,
+        2.9255
+      ]
+    },
+    {
+      "source_ref": "stair-1",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        39.1426,
+        95.2973,
+        3.0521,
+        11.2827
+      ]
+    },
+    {
+      "source_ref": "stair-2",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        23.5652,
+        114.287,
+        6.5965,
+        3.006
+      ]
+    },
+    {
+      "source_ref": "stair-3",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        23.7935,
+        120.316,
+        2.8739,
+        1.517
+      ]
+    },
+    {
+      "source_ref": "stair-4",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        28.3251,
+        75.1428,
+        1.4402,
+        3.0709
+      ]
+    },
+    {
+      "source_ref": "stair-7",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        75.1812,
+        95.2502,
+        9.078,
+        2.9672
+      ]
+    },
+    {
+      "source_ref": "stair-8",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        87.0874,
+        63.3964,
+        2.9758,
+        8.3085
+      ]
+    },
+    {
+      "source_ref": "stair-220",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        86.1828,
+        39.5518,
+        4.9597,
+        10.3352
+      ]
+    },
+    {
+      "source_ref": "stair-221",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        98.587,
+        37.8808,
+        2.931,
+        1.2648
+      ]
+    },
+    {
+      "source_ref": "stair-222",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        98.4578,
+        9.62181,
+        2.9422,
+        1.42359
+      ]
+    },
+    {
+      "source_ref": "stair-223",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        45.8568,
+        62.7733,
+        1.3624,
+        4.8857
+      ]
+    },
+    {
+      "source_ref": "stair-224",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        54.4139,
+        60.0327,
+        1.3622,
+        4.8857
+      ]
+    },
+    {
+      "source_ref": "stair-136",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        53.6835,
+        6.40033,
+        2.9323,
+        1.32034
+      ]
+    },
+    {
+      "source_ref": "stair-140",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ]
+    },
+    {
+      "source_ref": "stair-138",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        53.1803,
+        28.8471,
+        2.9557,
+        1.229
+      ]
+    },
+    {
+      "source_ref": "stair-139",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        75.299,
+        37.6569,
+        2.8779,
+        1.3571
+      ]
+    },
+    {
+      "source_ref": "stair-143",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "down",
+      "svg_bbox": [
+        0.147886,
+        71.7988,
+        1.41017,
+        2.9255
+      ]
+    },
+    {
+      "source_ref": "stair-69",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ]
+    },
+    {
+      "source_ref": "stair-96",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-97",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ]
+    },
+    {
+      "source_ref": "stair-100",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ]
+    },
+    {
+      "source_ref": "stair-101",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ]
+    },
+    {
+      "source_ref": "stair-129",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ]
+    },
+    {
+      "source_ref": "stair-62",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        25.3049,
+        25.5765,
+        2.7258,
+        4.1555
+      ]
+    },
+    {
+      "source_ref": "stair-127",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-128",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-63",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        24.7291,
+        87.3812,
+        2.9143,
+        1.2792
+      ]
+    },
+    {
+      "source_ref": "stair-130",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        24.7418,
+        72.3192,
+        2.9143,
+        1.2792
+      ]
+    },
+    {
+      "source_ref": "stair-131",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        82.6128,
+        42.6737,
+        1.453,
+        3.7298
+      ]
+    },
+    {
+      "source_ref": "stair-132",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        83.3833,
+        33.9564,
+        1.2252,
+        5.4587
+      ]
+    },
+    {
+      "source_ref": "stair-140",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ]
+    },
+    {
+      "source_ref": "stair-141",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        46.4488,
+        94.6592,
+        1.2787,
+        2.9043
+      ]
+    },
+    {
+      "source_ref": "stair-155",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        51.3337,
+        17.4393,
+        1.1721,
+        3.4477
+      ]
+    },
+    {
+      "source_ref": "stair-226",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        69.8078,
+        21.945,
+        1.1722,
+        3.6041
+      ]
+    },
+    {
+      "source_ref": "stair-135",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        12.0115,
+        65.0487,
+        3.2275,
+        1.3764
+      ]
+    },
+    {
+      "source_ref": "stair-62",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        25.3049,
+        25.5765,
+        2.7258,
+        4.1555
+      ]
+    },
+    {
+      "source_ref": "stair-63",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        24.7291,
+        87.3812,
+        2.9143,
+        1.2792
+      ]
+    },
+    {
+      "source_ref": "stair-130",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        24.7418,
+        72.3192,
+        2.9143,
+        1.2792
+      ]
+    },
+    {
+      "source_ref": "stair-131",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        82.6128,
+        42.6737,
+        1.453,
+        3.7298
+      ]
+    },
+    {
+      "source_ref": "stair-132",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        83.3833,
+        33.9564,
+        1.2252,
+        5.4587
+      ]
+    },
+    {
+      "source_ref": "stair-140",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ]
+    },
+    {
+      "source_ref": "stair-141",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        46.4488,
+        94.6592,
+        1.2787,
+        2.9043
+      ]
+    },
+    {
+      "source_ref": "stair-155",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        51.3337,
+        17.4393,
+        1.1721,
+        3.4477
+      ]
+    },
+    {
+      "source_ref": "stair-226",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        69.8078,
+        21.945,
+        1.1722,
+        3.6041
+      ]
+    },
+    {
+      "source_ref": "stair-135",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        12.0115,
+        65.0487,
+        3.2275,
+        1.3764
+      ]
+    },
+    {
+      "source_ref": "stair-134",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        92.2973,
+        42.9477,
+        3.1411,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-127",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-128",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-69",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ]
+    },
+    {
+      "source_ref": "stair-96",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-97",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ]
+    },
+    {
+      "source_ref": "stair-100",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ]
+    },
+    {
+      "source_ref": "stair-101",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ]
+    },
+    {
+      "source_ref": "stair-129",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "up",
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ]
+    },
+    {
+      "source_ref": "stair-127",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-128",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-69",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ]
+    },
+    {
+      "source_ref": "stair-96",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-97",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ]
+    },
+    {
+      "source_ref": "stair-100",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ]
+    },
+    {
+      "source_ref": "stair-101",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ]
+    },
+    {
+      "source_ref": "stair-129",
+      "layer": "Third_Floor",
+      "z": 2,
+      "direction": "down",
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ]
+    }
+  ],
+  "adjacent_level_candidates": [
+    {
+      "source_ref": "stair-1",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        39.1426,
+        95.2973,
+        3.0521,
+        11.2827
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-2",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        23.5652,
+        114.287,
+        6.5965,
+        3.006
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-3",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        23.7935,
+        120.316,
+        2.8739,
+        1.517
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-4",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        28.3251,
+        75.1428,
+        1.4402,
+        3.0709
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-7",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        75.1812,
+        95.2502,
+        9.078,
+        2.9672
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-8",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        87.0874,
+        63.3964,
+        2.9758,
+        8.3085
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-220",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        86.1828,
+        39.5518,
+        4.9597,
+        10.3352
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-221",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        98.587,
+        37.8808,
+        2.931,
+        1.2648
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-222",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        98.4578,
+        9.62181,
+        2.9422,
+        1.42359
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-223",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        45.8568,
+        62.7733,
+        1.3624,
+        4.8857
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-224",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        54.4139,
+        60.0327,
+        1.3622,
+        4.8857
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-136",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        53.6835,
+        6.40033,
+        2.9323,
+        1.32034
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-140",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-138",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        53.1803,
+        28.8471,
+        2.9557,
+        1.229
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-139",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        75.299,
+        37.6569,
+        2.8779,
+        1.3571
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-143",
+      "from_z": -1,
+      "to_z": 0,
+      "svg_bbox": [
+        0.147886,
+        71.7988,
+        1.41017,
+        2.9255
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": true
+    },
+    {
+      "source_ref": "stair-62",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        25.3049,
+        25.5765,
+        2.7258,
+        4.1555
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-63",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        24.7291,
+        87.3812,
+        2.9143,
+        1.2792
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-130",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        24.7418,
+        72.3192,
+        2.9143,
+        1.2792
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-131",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        82.6128,
+        42.6737,
+        1.453,
+        3.7298
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-132",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        83.3833,
+        33.9564,
+        1.2252,
+        5.4587
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-140",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        32.0531,
+        94.6163,
+        1.2787,
+        2.9043
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-141",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        46.4488,
+        94.6592,
+        1.2787,
+        2.9043
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-155",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        51.3337,
+        17.4393,
+        1.1721,
+        3.4477
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-226",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        69.8078,
+        21.945,
+        1.1722,
+        3.6041
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-135",
+      "from_z": 0,
+      "to_z": 1,
+      "svg_bbox": [
+        12.0115,
+        65.0487,
+        3.2275,
+        1.3764
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-127",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-128",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-69",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-96",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-97",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-100",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-101",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    },
+    {
+      "source_ref": "stair-129",
+      "from_z": 1,
+      "to_z": 2,
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ],
+      "status": "candidate_from_svg_not_runtime",
+      "lower_direction_inferred": false
+    }
+  ],
+  "ambiguous_shared_adjacent": [
+    {
+      "source_ref": "stair-128",
+      "from_z": -1,
+      "to_z": 0,
+      "lower_direction": "unlabeled",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-127",
+      "from_z": -1,
+      "to_z": 0,
+      "lower_direction": "unlabeled",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-69",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-96",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-97",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-100",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-101",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-129",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-127",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    },
+    {
+      "source_ref": "stair-128",
+      "from_z": 0,
+      "to_z": 1,
+      "lower_direction": "up",
+      "upper_direction": "up",
+      "status": "shared_geometry_direction_needs_review"
+    }
+  ],
+  "unpaired_or_multispan": [
+    {
+      "source_ref": "stair-128",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-127",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-134",
+      "layer": "Basement",
+      "z": -1,
+      "direction": "unlabeled",
+      "svg_bbox": [
+        92.2973,
+        42.9477,
+        3.1411,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-69",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        18.2137,
+        111.316,
+        2.7363,
+        6.069
+      ]
+    },
+    {
+      "source_ref": "stair-96",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        14.176,
+        69.4637,
+        2.7363,
+        5.8536
+      ]
+    },
+    {
+      "source_ref": "stair-97",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        52.0882,
+        93.4709,
+        2.7363,
+        6.0459
+      ]
+    },
+    {
+      "source_ref": "stair-100",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        70.3349,
+        93.4707,
+        2.7363,
+        6.0463
+      ]
+    },
+    {
+      "source_ref": "stair-101",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        90.8754,
+        21.8536,
+        5.8535,
+        2.7364
+      ]
+    },
+    {
+      "source_ref": "stair-129",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        46.6849,
+        43.5374,
+        2.7364,
+        6.0547
+      ]
+    },
+    {
+      "source_ref": "stair-127",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        23.9778,
+        39.7077,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-128",
+      "layer": "Ground_Floor",
+      "z": 0,
+      "direction": "up",
+      "svg_bbox": [
+        23.9778,
+        65.8672,
+        6.3573,
+        3.2048
+      ]
+    },
+    {
+      "source_ref": "stair-134",
+      "layer": "Second_Floor",
+      "z": 1,
+      "direction": "down",
+      "svg_bbox": [
+        92.2973,
+        42.9477,
+        3.1411,
+        5.8536
+      ]
+    }
+  ],
+  "warning": "Общий SVG ID подтверждает графическую связь; лестницы, шахты и промежуточные площадки требуют сверки в игре."
+}

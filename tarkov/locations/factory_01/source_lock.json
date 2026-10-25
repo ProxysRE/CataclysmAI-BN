@@ -1,0 +1,24 @@
+{
+  "source_url": "https://github.com/the-hideout/tarkov-dev-svg-maps/blob/5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178/Factory.svg",
+  "repository_commit": "5a8b6115d1c0cf56f2ebaac1a96fa5ae3074d178",
+  "file_last_commit": "81177ae3aa7757665548f6cb20cdbfb38929f738",
+  "file_last_changed": "2024-11-07",
+  "sha256": "c8e576ca7974e086b78151f9bff532b5a99b2fc4a130b080e5be030236bc07bd",
+  "author": "Shebuka",
+  "license": "CC-BY-NC-SA-4.0",
+  "retrieved": "2026-10-25",
+  "game_patch": "not_declared_by_svg",
+  "viewbox": [
+    0,
+    0,
+    130.81831,
+    141.23242
+  ],
+  "orientation": "SVG x-right/y-down; geographic north not established",
+  "source_unit_to_meters": "not_calibrated",
+  "limits": [
+    "Это снимок исходной схемы, не гарантия актуальности всех участков игры на 25.10.2026",
+    "Внешние дворы и поздние изменения требуют отдельной сверки",
+    "Силуэты не определяют материал, прозрачность и пулестойкость объектов"
+  ]
+}

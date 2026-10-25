@@ -1,0 +1,477 @@
+{
+  "coordinates": "SVG source units, not BN cells",
+  "landmarks": [
+    {
+      "name": "Офисный блок",
+      "source_name": "Office Building",
+      "source_position": [
+        21,
+        39
+      ],
+      "svg_position": [
+        28.16709631539045,
+        55.49127271796816
+      ],
+      "height_range": [
+        -1,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Главный офис",
+      "source_name": "Main Office",
+      "source_position": [
+        15.5,
+        39
+      ],
+      "svg_position": [
+        28.16709631539045,
+        60.946168131159965
+      ],
+      "height_range": [
+        6,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Комната под выбивание",
+      "source_name": "Breach Room",
+      "source_position": [
+        24.5,
+        39
+      ],
+      "svg_position": [
+        28.16709631539045,
+        52.01997563684609
+      ],
+      "height_range": [
+        6,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Закрытый офис",
+      "source_name": "Locked Office",
+      "source_position": [
+        30.5,
+        39
+      ],
+      "svg_position": [
+        28.16709631539045,
+        46.069180640636844
+      ],
+      "height_range": [
+        6,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Северная лестница",
+      "source_name": "North Stairs",
+      "source_position": [
+        35,
+        39
+      ],
+      "svg_position": [
+        28.16709631539045,
+        41.60608439347991
+      ],
+      "height_range": [
+        -1,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Южная лестница",
+      "source_name": "South Stairs",
+      "source_position": [
+        9,
+        39
+      ],
+      "svg_position": [
+        28.16709631539045,
+        67.39286271038667
+      ],
+      "height_range": [
+        -1,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Верхний переход",
+      "source_name": "Sky Bridge",
+      "source_position": [
+        34,
+        26
+      ],
+      "svg_position": [
+        41.06048547384383,
+        42.59788355951479
+      ],
+      "height_range": [
+        6,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Соединительный проход",
+      "source_name": "Connector",
+      "source_position": [
+        29.5,
+        17
+      ],
+      "svg_position": [
+        49.9866779681577,
+        47.06097980667173
+      ],
+      "height_range": [
+        -1,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Раздевалки",
+      "source_name": "Locker Rooms",
+      "source_position": [
+        29,
+        41
+      ],
+      "svg_position": [
+        26.1834979833207,
+        47.55687938968916
+      ],
+      "height_range": [
+        3,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Умывальники",
+      "source_name": "Sinks",
+      "source_position": [
+        15,
+        41
+      ],
+      "svg_position": [
+        26.1834979833207,
+        61.44206771417741
+      ],
+      "height_range": [
+        3,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Пролом",
+      "source_name": "Hole",
+      "source_position": [
+        20,
+        42
+      ],
+      "svg_position": [
+        25.19169881728582,
+        56.48307188400303
+      ],
+      "height_range": [
+        3,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Платформа",
+      "source_name": "Platform",
+      "source_position": [
+        -3,
+        37
+      ],
+      "svg_position": [
+        30.150694647460195,
+        79.29445270280515
+      ],
+      "height_range": [
+        -1,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Серверная",
+      "source_name": "Servers",
+      "source_position": [
+        -21,
+        27
+      ],
+      "svg_position": [
+        40.068686307808946,
+        97.1468376914329
+      ],
+      "height_range": [
+        3,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Медицинская палатка",
+      "source_name": "Med Tent",
+      "source_position": [
+        -18,
+        -29
+      ],
+      "svg_position": [
+        95.60943960576195,
+        94.17144019332828
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Силосы",
+      "source_name": "Silos",
+      "source_position": [
+        4.5,
+        10.5
+      ],
+      "svg_position": [
+        56.43337254738438,
+        71.85595895754359
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Разбитый вертолёт",
+      "source_name": "Heli Crash",
+      "source_position": [
+        30,
+        -8.5
+      ],
+      "svg_position": [
+        75.277556702047,
+        46.565080223654284
+      ],
+      "height_range": [
+        -1,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Яма",
+      "source_name": "Pit",
+      "source_position": [
+        -1,
+        16
+      ],
+      "svg_position": [
+        50.97847713419257,
+        77.3108543707354
+      ],
+      "height_range": [
+        -10000,
+        -2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Подземный тайник",
+      "source_name": "Underground Stash",
+      "source_position": [
+        -2,
+        -24.5
+      ],
+      "svg_position": [
+        91.146343358605,
+        78.3026535367703
+      ],
+      "height_range": [
+        -10000,
+        -2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Бункер Диких",
+      "source_name": "Scav Bunker",
+      "source_position": [
+        -20.5,
+        23
+      ],
+      "svg_position": [
+        44.035882971948446,
+        96.65093810841546
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Синие контейнеры",
+      "source_name": "Blue Containers",
+      "source_position": [
+        -18,
+        50
+      ],
+      "svg_position": [
+        17.25730548900682,
+        94.17144019332828
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Помещение с древесиной",
+      "source_name": "Wood Room",
+      "source_position": [
+        -45.5,
+        61
+      ],
+      "svg_position": [
+        6.347514662623201,
+        121.44591725928734
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Стеклянный коридор",
+      "source_name": "Glass Hall",
+      "source_position": [
+        68.25,
+        -20
+      ],
+      "svg_position": [
+        86.68324711144807,
+        8.628762122820328
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Котлы",
+      "source_name": "Boilers",
+      "source_position": [
+        56,
+        5
+      ],
+      "svg_position": [
+        61.888267960576194,
+        20.77830190674754
+      ],
+      "height_range": [
+        -1,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Насосная",
+      "source_name": "Pumping Station",
+      "source_position": [
+        41,
+        -11
+      ],
+      "svg_position": [
+        77.7570546171342,
+        35.655289397270664
+      ],
+      "height_range": [
+        -1,
+        5
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Восточные цеха",
+      "source_name": "East Halls",
+      "source_position": [
+        44,
+        -36
+      ],
+      "svg_position": [
+        102.55203376800607,
+        32.67989189916604
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Погрузчики",
+      "source_name": "Forklifts",
+      "source_position": [
+        66,
+        -42
+      ],
+      "svg_position": [
+        108.50282876421532,
+        10.860310246398797
+      ],
+      "height_range": [
+        -1,
+        2
+      ],
+      "status": "reference_label_not_runtime_poi"
+    },
+    {
+      "name": "Верхние балки",
+      "source_name": "Rafters",
+      "source_position": [
+        18,
+        4
+      ],
+      "svg_position": [
+        62.880067126611074,
+        58.466670216072785
+      ],
+      "height_range": [
+        6,
+        10000
+      ],
+      "status": "reference_label_not_runtime_poi"
+    }
+  ],
+  "registration_checks": [
+    {
+      "source_name": "North Stairs",
+      "source_ref": "stair-127",
+      "inside_reference_stair_bbox": true
+    },
+    {
+      "source_name": "South Stairs",
+      "source_ref": "stair-128",
+      "inside_reference_stair_bbox": true
+    }
+  ],
+  "transform_source": "https://github.com/the-hideout/tarkov-dev/blob/main/src/pages/map/index.jsx"
+}

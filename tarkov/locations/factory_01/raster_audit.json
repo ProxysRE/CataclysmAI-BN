@@ -1,0 +1,334 @@
+{
+  "status": "reference_study_not_runtime",
+  "renderer": {
+    "inkscape": "Inkscape 1.2.2 (b0a8486541, 2022-12-01)",
+    "pillow": "12.3.0",
+    "numpy": "2.3.5"
+  },
+  "sampling": {
+    "floor_or_ledge_area_fraction": 0.35,
+    "solid_area_fraction": 0.2,
+    "wall_area_fraction": 0.025,
+    "stairs_area_fraction": 0.2,
+    "neighbors": 4,
+    "automatic_passage_repair": false,
+    "integration": "exact source-space cell rectangles over raster alpha; outside source is zero"
+  },
+  "layers": [
+    {
+      "layer": "Basement",
+      "z": -1,
+      "name": "Подземная часть",
+      "scales": [
+        {
+          "svg_units_per_cell": 1.0,
+          "size": [
+            144,
+            144
+          ],
+          "blocks_24x24": 36,
+          "walkable_cells": 3535,
+          "components": 1,
+          "largest_components": [
+            3535
+          ],
+          "cells_by_class": {
+            "0": 17006,
+            "1": 3210,
+            "4": 325,
+            "2": 195
+          }
+        },
+        {
+          "svg_units_per_cell": 0.75,
+          "size": [
+            192,
+            192
+          ],
+          "blocks_24x24": 64,
+          "walkable_cells": 6206,
+          "components": 1,
+          "largest_components": [
+            6206
+          ],
+          "cells_by_class": {
+            "0": 30323,
+            "1": 5631,
+            "4": 575,
+            "2": 335
+          }
+        },
+        {
+          "svg_units_per_cell": 0.5,
+          "size": [
+            264,
+            288
+          ],
+          "blocks_24x24": 132,
+          "walkable_cells": 13794,
+          "components": 2,
+          "largest_components": [
+            13793,
+            1
+          ],
+          "cells_by_class": {
+            "0": 61524,
+            "1": 12539,
+            "4": 1255,
+            "2": 714
+          }
+        }
+      ]
+    },
+    {
+      "layer": "Ground_Floor",
+      "z": 0,
+      "name": "Основной этаж",
+      "scales": [
+        {
+          "svg_units_per_cell": 1.0,
+          "size": [
+            144,
+            144
+          ],
+          "blocks_24x24": 36,
+          "walkable_cells": 10135,
+          "components": 7,
+          "largest_components": [
+            9895,
+            72,
+            70,
+            66,
+            26,
+            5,
+            1
+          ],
+          "cells_by_class": {
+            "0": 9329,
+            "1": 9638,
+            "3": 323,
+            "2": 949,
+            "4": 497
+          }
+        },
+        {
+          "svg_units_per_cell": 0.75,
+          "size": [
+            192,
+            192
+          ],
+          "blocks_24x24": 64,
+          "walkable_cells": 18172,
+          "components": 6,
+          "largest_components": [
+            17523,
+            143,
+            136,
+            135,
+            125,
+            110
+          ],
+          "cells_by_class": {
+            "0": 16662,
+            "1": 17308,
+            "3": 451,
+            "2": 1579,
+            "4": 864
+          }
+        },
+        {
+          "svg_units_per_cell": 0.5,
+          "size": [
+            264,
+            288
+          ],
+          "blocks_24x24": 132,
+          "walkable_cells": 40932,
+          "components": 7,
+          "largest_components": [
+            40813,
+            113,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "cells_by_class": {
+            "0": 30984,
+            "1": 39081,
+            "3": 711,
+            "2": 3405,
+            "4": 1851
+          }
+        }
+      ]
+    },
+    {
+      "layer": "Second_Floor",
+      "z": 1,
+      "name": "Второй этаж",
+      "scales": [
+        {
+          "svg_units_per_cell": 1.0,
+          "size": [
+            144,
+            144
+          ],
+          "blocks_24x24": 36,
+          "walkable_cells": 1200,
+          "components": 11,
+          "largest_components": [
+            454,
+            307,
+            217,
+            88,
+            25,
+            21,
+            21,
+            21,
+            21,
+            18,
+            7
+          ],
+          "cells_by_class": {
+            "0": 19433,
+            "1": 920,
+            "4": 280,
+            "3": 29,
+            "2": 74
+          }
+        },
+        {
+          "svg_units_per_cell": 0.75,
+          "size": [
+            192,
+            192
+          ],
+          "blocks_24x24": 64,
+          "walkable_cells": 2042,
+          "components": 12,
+          "largest_components": [
+            777,
+            530,
+            359,
+            141,
+            42,
+            36,
+            36,
+            36,
+            32,
+            32,
+            13,
+            8
+          ],
+          "cells_by_class": {
+            "0": 34662,
+            "1": 1586,
+            "4": 456,
+            "3": 40,
+            "2": 120
+          }
+        },
+        {
+          "svg_units_per_cell": 0.5,
+          "size": [
+            264,
+            288
+          ],
+          "blocks_24x24": 132,
+          "walkable_cells": 4530,
+          "components": 11,
+          "largest_components": [
+            1818,
+            1202,
+            751,
+            296,
+            78,
+            76,
+            72,
+            72,
+            72,
+            72,
+            21
+          ],
+          "cells_by_class": {
+            "0": 71202,
+            "1": 3564,
+            "4": 966,
+            "3": 70,
+            "2": 230
+          }
+        }
+      ]
+    },
+    {
+      "layer": "Third_Floor",
+      "z": 2,
+      "name": "Третий этаж",
+      "scales": [
+        {
+          "svg_units_per_cell": 1.0,
+          "size": [
+            144,
+            144
+          ],
+          "blocks_24x24": 36,
+          "walkable_cells": 2290,
+          "components": 2,
+          "largest_components": [
+            2109,
+            181
+          ],
+          "cells_by_class": {
+            "0": 18419,
+            "1": 2115,
+            "4": 175,
+            "3": 27
+          }
+        },
+        {
+          "svg_units_per_cell": 0.75,
+          "size": [
+            192,
+            192
+          ],
+          "blocks_24x24": 64,
+          "walkable_cells": 3951,
+          "components": 3,
+          "largest_components": [
+            3585,
+            365,
+            1
+          ],
+          "cells_by_class": {
+            "0": 32876,
+            "1": 3657,
+            "4": 294,
+            "3": 37
+          }
+        },
+        {
+          "svg_units_per_cell": 0.5,
+          "size": [
+            264,
+            288
+          ],
+          "blocks_24x24": 132,
+          "walkable_cells": 8782,
+          "components": 2,
+          "largest_components": [
+            8063,
+            719
+          ],
+          "cells_by_class": {
+            "0": 67186,
+            "1": 8159,
+            "4": 623,
+            "3": 64
+          }
+        }
+      ]
+    }
+  ]
+}

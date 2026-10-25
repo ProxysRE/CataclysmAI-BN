@@ -5,6 +5,11 @@
 Попытка `apt-get update` завершилась ошибками `setgroups`/`seteuid`: зависимости
 не установлены. Ошибка окружения не является успешной проверкой карты.
 
+Позднее запущен отдельный `.github/workflows/tarkov-locations.yml`:
+[прогон 40187454931](https://github.com/ProxysRE/CataclysmAI-BN/actions/runs/40187454931).
+Статические проверки, зависимости, установка и CMake configure прошли;
+на момент записи идёт компиляция. Core и его workflows остаются отдельными.
+
 ## Что проверит probe
 
 Один testcase `[trkv_locations]` создаёт отдельный временный набор mapbuffer /
@@ -55,7 +60,8 @@ python tarkov/tools/locations/install_native_probe.py /path/to/pinned-bn
 core и не включать `trkv_raid_core`**. Собрать и игровой executable, и `cata_test`.
 На Windows использовать отдельную сборку с `cata_test-tiles` и игровым executable,
 с сохранением закреплённого BN и необходимых зависимостей из Windows workflow.
-Существующие workflows не меняются и сейчас этот probe не запускают.
+Существующие workflows core не меняются; новый отдельный workflow конструктора
+устанавливает и запускает этот probe на Linux. Windows-проверка пока не добавлена.
 
 При выключенной локализации нужен `LANGUAGES=none`; `LOCALIZE=OFF` недостаточно.
 Дополнительные требования сборки — в документах BN и workflow, их наличие

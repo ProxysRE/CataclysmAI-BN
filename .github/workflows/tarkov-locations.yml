@@ -5,8 +5,13 @@ on:
     branches: [ project/tarkov-locations-dev01 ]
     paths:
       - '.github/workflows/tarkov-locations.yml'
-      - 'tarkov/tools/locations/**'
-      - 'tarkov/tests/locations/**'
+      - 'tarkov/tools/locations/check_industrial.py'
+      - 'tarkov/tools/locations/build_industrial.py'
+      - 'tarkov/tools/locations/install_native_probe.py'
+      - 'tarkov/tools/locations/run_native_probe.py'
+      - 'tarkov/tests/locations/bn_location_probe.cpp.inc'
+      - 'tarkov/tests/locations/industrial_validation_test.py'
+      - 'tarkov/tests/locations/native_probe_protocol_test.py'
       - 'tarkov/mods/trkv_locations_dev/**'
       - 'tarkov/locations/industrial_01/manifest.json'
   workflow_dispatch:
