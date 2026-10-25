@@ -55,7 +55,7 @@ elseif test_data.stage == "npc_patrol_setup" then
     if not member then return false end
     decision_context.dimension = api.raid_id
     local handled, reason = package.loaded.trkv_decision.step_actor(member,
-      decision_context, actor, gapi.get_map(), api.now())
+      decision_context, actor, gapi.get_map(), api.now(), current.participants)
     test_data.patrol_moves_after = actor:get_moves()
     test_data.patrol_handled = handled
     test_data.patrol_reason = reason
@@ -462,6 +462,36 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage:match("^npc_squad_report_") then
+  local member = saved_actor()
+  local actor, donor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    local id = candidate:getID():get_value()
+    if id == test_data.actor_id then actor = candidate end
+    if id == test_data.report_donor_id then donor = candidate end
+  end
+  assert(actor and donor)
+  if test_data.stage == "npc_squad_report_setup" then
+    local sender = assert(participants.register(root.participants, state.sequence,
+      test_data.report_donor_id, member.side, member.squad, {}))
+    sender.perception = {}
+    local ctx = {phase = state.phase, at_raid = true, sequence = state.sequence, dimension = api.raid_id}
+    package.loaded.trkv_perception.observe_actor(sender.perception, ctx, donor, api.now(), 30)
+    assert(sender.perception.status == "visible")
+    member.perception, member.search, member.hearing, member.squad_memory = {}, {}, {}, nil
+    test_data.report_seen_at = sender.perception.contact.seen_at
+    test_data.report_position = sender.perception.contact.position
+  else
+    local memory = assert(member.squad_memory)
+    local report, goal = assert(memory.contact), assert(memory.search.goal)
+    assert(report.source == "squad" and report.sender == test_data.report_donor_id)
+    assert(report.seen_at == test_data.report_seen_at and report.expires_at == report.seen_at + 10)
+    assert(report.position.x == test_data.report_position.x and report.position.y == test_data.report_position.y)
+    assert(member.perception.contact == nil and member.perception.status == "none")
+    assert(member.decisions.action == "squad_search" and member.decisions.history[#member.decisions.history].source == "squad")
+    assert(goal.deadline == report.expires_at and goal.attempts == 1)
+    assert(memory.observed)
+  end
 elseif test_data.stage:match("^npc_cover_reload_") then
   local member, actor = saved_actor()
   for _, candidate in ipairs(gapi.get_all_npcs()) do

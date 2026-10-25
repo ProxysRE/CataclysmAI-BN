@@ -274,6 +274,13 @@ elseif test_data.stage == "cold_ai_checkpoint" then
     last_now = now, cooldown_until = now + 12, status = "reload_cover",
     goal = { position = copy_plain(goal), threat = { x = 402, y = 390, z = 0 },
       started_at = now, deadline = now + 8, attempts = 1, stalled = 1 } }
+  member.squad_memory = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
+    side = member.side, squad = member.squad, last_now = now, status = "remembered", observed = true,
+    contact = { source = "squad", sender = root.cold_expected.npc_ids[2], position = copy_plain(goal),
+      seen_at = now, expires_at = now + 10 },
+    search = { schema = 1, sequence = state.sequence, dimension = api.raid_id, observed = true,
+      status = "searching", goal = { position = copy_plain(goal), seen_at = now,
+        deadline = now + 10, attempts = 1, stalled = 0 } } }
   member.decisions = { schema = 1, sequence = state.sequence, dimension = api.raid_id,
     last_now = now, action = "visual_search", reason = "searching", handled = true,
     hearing_input = "new_region", refusals = { combat = "lost_contact" }, history = {} }
@@ -283,7 +290,7 @@ elseif test_data.stage == "cold_ai_checkpoint" then
       source = "visual_memory", repeats = i == 8 and 7 or 1 }
   end
   root.cold_expected.ai = {}
-  for _, name in ipairs({ "perception", "search", "hearing", "combat", "reload", "decisions" }) do
+  for _, name in ipairs({ "perception", "search", "hearing", "combat", "reload", "squad_memory", "decisions" }) do
     root.cold_expected.ai[name] = copy_plain(member[name])
   end
 elseif test_data.stage == "cold_ai_resumed" then
@@ -306,6 +313,8 @@ elseif test_data.stage == "cold_ai_resumed" then
     assert_equal_plain(expected.hearing.contact, member.hearing.contact)
     assert_equal_plain(expected.hearing.search, member.hearing.search)
     assert_equal_plain(expected.hearing.entry, member.hearing.entry)
+    assert_equal_plain(expected.squad_memory.contact, member.squad_memory.contact)
+    assert_equal_plain(expected.squad_memory.search, member.squad_memory.search)
   end
 elseif test_data.stage == "cold_ai_expired" then
   local member, expected = cold_ai_member(), assert(root.cold_expected.ai)
@@ -318,6 +327,7 @@ elseif test_data.stage == "cold_ai_expired" then
   assert(member.hearing.last_event == expected.hearing.last_event)
   assert(member.combat.goal == nil and member.decisions.action == "patrol" and member.decisions.handled)
   assert(member.reload.goal == nil and member.reload.status == "disabled")
+  assert(member.squad_memory.contact == nil and member.squad_memory.observed)
   assert(#member.decisions.history <= 8)
 elseif test_data.stage == "cold_npc_restored" then
   check_cold_ai()
@@ -369,7 +379,7 @@ elseif test_data.stage == "cold_read_cleanup" then
     for _, old_id in ipairs(root.cold_expected.npc_ids) do assert(new_id ~= old_id) end
     local fresh = root.participants.actors[string.format("%d", new_id)]
     assert(fresh.perception == nil and fresh.search == nil and fresh.hearing == nil)
-    assert(fresh.combat == nil and fresh.reload == nil and fresh.decisions == nil)
+    assert(fresh.combat == nil and fresh.reload == nil and fresh.decisions == nil and fresh.squad_memory == nil)
   end
   assert(gapi.get_map():get_ter_at(local_pos(15, 15)) == TerId.new("t_floor"):int_id())
   take_payload()

@@ -499,6 +499,33 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(guard->abs_pos() == idle_reload_position);
         CHECK(guard->primary_weapon().ammo_remaining() == 30);
         probe("npc_cover_reload_idle");
+        // A hidden receiver can investigate a real visible squadmate's personal
+        // contact, without reading the enemy's current hidden position itself.
+        guard->setpos(abs_to_bub(tripoint_abs_ms(400, 392, 0)));
+        auto* report_donor = g->find_npc(lane_blocker_id);
+        REQUIRE(report_donor != nullptr);
+        report_donor->setpos(abs_to_bub(tripoint_abs_ms(405, 392, 0)));
+        report_donor->set_attitude(NPCATT_KILL);
+        set_time(calendar::turn);
+        report_donor->regen_ai_cache();
+        REQUIRE(report_donor->sees(get_avatar()));
+        REQUIRE_FALSE(guard->sees(get_avatar()));
+        REQUIRE(guard->sees(*report_donor));
+        data["report_donor_id"] = lane_blocker_id.get_value();
+        probe("npc_squad_report_setup");
+        const auto report_origin = guard->abs_pos();
+        guard->set_moves(100);
+        guard->move();
+        CHECK(guard->get_moves() < 100);
+        CHECK(guard->abs_pos() != report_origin);
+        CHECK(guard->primary_weapon().ammo_remaining() == 30);
+        probe("npc_squad_report_started");
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        probe("npc_squad_report_restored");
         probe("npc_cover_reload_restore_wall");
         sounds::reset_sounds();
         player.set_all_parts_hp_to_max();

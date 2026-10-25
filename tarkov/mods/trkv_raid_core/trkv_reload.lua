@@ -99,6 +99,7 @@ function reload.step_actor(member, ctx, actor, map, now)
     ready = function() return actor:can_reload_empty_gun() end,
     idle_reload = function()
       if member.hearing and member.hearing.contact then return false end
+      if member.squad_memory and member.squad_memory.contact then return false end
       return actor:reload_without_visible_target()
     end,
     choose = function(p) return actor:choose_reload_cover(absolute(p)) end,

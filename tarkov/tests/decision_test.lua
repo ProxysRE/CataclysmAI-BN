@@ -5,6 +5,7 @@ package.loaded.trkv_patrol = dofile("tarkov/mods/trkv_raid_core/trkv_patrol.lua"
 package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.lua")
 package.loaded.trkv_combat = dofile("tarkov/mods/trkv_raid_core/trkv_combat.lua")
 package.loaded.trkv_reload = dofile("tarkov/mods/trkv_raid_core/trkv_reload.lua")
+package.loaded.trkv_squad = dofile("tarkov/mods/trkv_raid_core/trkv_squad.lua")
 local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 TripointAbsMs = { new = function(x, y, z) return { x = x, y = y, z = z } end }
 local map = { abs_to_bub = function(_, p) return p end }
@@ -226,3 +227,39 @@ ok, reason = decision.step_actor(member, ctx, actor, map, 720)
 assert(ok and reason == "idle_reloaded" and maintenance_calls == 1)
 assert(member.decisions.action == "reload" and member.perception.contact == nil and member.hearing.contact == nil)
 print("PASS fresh sound takes priority; reload resumes after contact expiry without vanilla fallback")
+
+-- A squad report is its own information source: it cannot become personal
+-- vision, authorize idle reload, bypass emergencies or open hidden fallback.
+member = { id = 1, side = "usec", squad = "alpha", loadout = "rifle_field_v1",
+  patrol = { sequence = 2, index = 1, route = {} } }
+local sender = { id = 2, side = "usec", squad = "alpha", patrol = {sequence = 2},
+  perception = {sequence = 2, dimension = "raid", status = "visible",
+    contact = {source = "vision", seen_at = 800, expires_at = 830, position = {x = 8, y = 2, z = 0}}} }
+local roster = {schema = 1, sequence = 2, closed = false, actors = {sender}}
+local buddy_pos = {x = 1, y = 0, z = 0}
+local buddy = {getID = function() return {get_value = function() return 2 end} end,
+  get_pos_ms = function() return buddy_pos end, is_dead = function() return false end}
+gapi = {get_all_npcs = function() return {buddy} end}
+origin, packet, visible = TripointAbsMs.new(0, 0, 0), "raid|800|14|18|0|combat", false
+actor.sees = function(_, q) return q == buddy_pos end
+actor.can_reload_empty_gun = function() return false end
+local calls_before = maintenance_calls
+ok, reason = decision.step_actor(member, ctx, actor, map, 800, roster)
+assert(ok and reason == "searching" and member.decisions.action == "squad_search")
+assert(member.decisions.history[#member.decisions.history].source == "squad")
+assert(member.perception.contact == nil and maintenance_calls == calls_before and origin.x == 8)
+local report_deadline, attempts = member.squad_memory.contact.expires_at, member.squad_memory.search.goal.attempts
+actor.avoid_immediate_danger = function() moves = moves - 100; return "field" end
+ok, reason = decision.step_actor(member, ctx, actor, map, 801, roster)
+assert(ok and reason == "escape_field" and member.squad_memory.search.goal.attempts == attempts)
+assert(member.squad_memory.contact.expires_at == report_deadline)
+actor.avoid_immediate_danger = function() return "" end
+-- An old sender cannot renew the report. Clear sound too; ownership still
+-- prevents a stale current_target from re-entering vanilla after expiry.
+packet = ""
+member.hearing = {}
+actor.reload_without_visible_target = function() return false end
+ok, reason = decision.step_actor(member, ctx, actor, map, 810, roster)
+assert(ok and reason == "wait_no_route" and member.squad_memory.contact == nil)
+assert(member.squad_memory.observed and member.perception.contact == nil)
+print("PASS squad report search priority, emergency interruption, maintenance guard and post-expiry hidden fallback ownership")

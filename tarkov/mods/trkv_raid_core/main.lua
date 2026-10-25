@@ -89,7 +89,7 @@ game.npc_ai_functions["TRKV_PATROL"] = function(actor)
   local member = participants.find(current_participants(), context, actor:getID():get_value())
   if not member then return false end
   context.dimension = api.raid_id
-  local handled = decision.step_actor(member, context, actor, gapi.get_map(), api.now())
+  local handled = decision.step_actor(member, context, actor, gapi.get_map(), api.now(), current_participants())
   return handled
 end
 

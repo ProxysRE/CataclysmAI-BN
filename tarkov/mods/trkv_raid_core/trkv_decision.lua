@@ -5,6 +5,7 @@ local hearing = require("trkv_hearing")
 local patrol = require("trkv_patrol")
 local combat = require("trkv_combat")
 local reload = require("trkv_reload")
+local squad = require("trkv_squad")
 local decision = {}
 
 -- Only transitions are retained. No actor references, hidden coordinates or
@@ -20,7 +21,8 @@ local function record(member, context, now, action, handled, reason, refusals)
   local last = history[#history]
   local source = member.perception and member.perception.status == "visible" and "vision" or
     (member.perception and member.perception.contact and "visual_memory" or
-    (member.hearing and member.hearing.contact and "sound" or "none"))
+    (member.squad_memory and member.squad_memory.contact and "squad" or
+    (member.hearing and member.hearing.contact and "sound" or "none")))
   if last and last.action == action and last.reason == reason and last.source == source then
     last.last_at, last.repeats = now, math.min((last.repeats or 1) + 1, 999)
   else
@@ -34,7 +36,7 @@ local function record(member, context, now, action, handled, reason, refusals)
   return handled, reason
 end
 
-function decision.step_actor(member, context, actor, map, now)
+function decision.step_actor(member, context, actor, map, now, roster)
   local refusals = {}
   local function finish(action, handled, reason)
     return record(member, context, now, action, handled, reason, refusals)
@@ -43,10 +45,15 @@ function decision.step_actor(member, context, actor, map, now)
       member.patrol.sequence ~= context.sequence then
     if member.combat then combat.cancel(member.combat, "inactive") end
     if member.reload then reload.cancel(member.reload, "inactive") end
+    if member.squad_memory then
+      member.squad_memory.contact, member.squad_memory.search = nil, nil
+      member.squad_memory.status = "inactive"
+    end
     return finish("inactive", false, "inactive")
   end
   member.perception, member.search = member.perception or {}, member.search or {}
   perception.observe_actor(member.perception, context, actor, now, 30)
+  squad.observe_actor(member, context, actor, roster, now)
   member.hearing = member.hearing or {}
   hearing.update(member.hearing, context, now, actor:get_value("trkv_heard_noise"))
   local hazard = actor:avoid_immediate_danger()
@@ -64,13 +71,17 @@ function decision.step_actor(member, context, actor, map, now)
   if handled then return finish("visual_search", handled, reason) end
   refusals.search = reason
   if member.perception.status ~= "visible" then
+    handled, reason = squad.step_actor(member, context, actor, map, now)
+    if handled then return finish("squad_search", handled, reason) end
+    refusals.squad = reason
     handled, reason = hearing.step_actor(member.hearing, context, actor, map, now)
     if handled then return finish("sound_search", handled, reason) end
     refusals.hearing = reason
   end
   -- Observation ownership survives an emergency that prevented search.step
   -- from ever running while the target was visible.
-  local controlled = (member.perception.observed or member.search.observed or member.hearing.observed) and
+  local controlled = (member.perception.observed or member.search.observed or member.hearing.observed or
+    (member.squad_memory and member.squad_memory.observed)) and
     member.perception.status ~= "visible"
   handled, reason = patrol.step_actor(member.patrol, context, actor, map, controlled)
   if controlled and not handled then
