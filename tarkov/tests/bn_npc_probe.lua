@@ -471,9 +471,15 @@ elseif test_data.stage:match("^npc_squad_waiter_") then
     local member = assert(participants.find(root.participants, context(), test_data.report_waiter_id))
     local memory = assert(member.squad_memory)
     assert(memory.contact and memory.contact.sender == test_data.report_donor_id)
-    assert(memory.waiting_for == test_data.actor_id and memory.contact.expires_at == test_data.report_seen_at + 10)
-    assert(member.decisions.action == "squad_search" and member.decisions.reason == "wait_for_investigator")
-    assert(member.perception.contact == nil and memory.search.goal == nil)
+    assert(memory.contact.expires_at == test_data.report_seen_at + 10)
+    assert(member.decisions.action == "squad_search" and member.perception.contact == nil)
+    if test_data.stage == "npc_squad_waiter_resumed" then
+      assert(memory.waiting_for == nil and member.decisions.reason == "searching")
+      assert(memory.search.goal.attempts == 1 and memory.search.goal.deadline == memory.contact.expires_at)
+    else
+      assert(memory.waiting_for == test_data.actor_id and member.decisions.reason == "wait_for_investigator")
+      assert(memory.search.goal == nil)
+    end
   end
 elseif test_data.stage:match("^npc_squad_report_") then
   local member = saved_actor()

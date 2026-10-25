@@ -520,12 +520,29 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         CHECK(guard->abs_pos() != report_origin);
         CHECK(guard->primary_weapon().ammo_remaining() == 30);
         probe("npc_squad_report_started");
-        auto& report_waiter = spawn_npc(abs_to_bub(tripoint_abs_ms(400, 394, 0)), "test_talker");
+        // Reuse the free staging point whose LOS to the donor was verified
+        // above. The investigator has just moved one step away from it.
+        REQUIRE(g->m.passable(abs_to_bub(report_origin)));
+        REQUIRE(g->critter_at(abs_to_bub(report_origin)) == nullptr);
+        auto& report_waiter = spawn_npc(abs_to_bub(report_origin), "test_talker");
         report_waiter.set_attitude(NPCATT_NULL);
         report_waiter.myclass = npc_class_id("TRKV_PATROL");
-        data["report_waiter_id"] = report_waiter.getID().get_value();
+        const auto report_waiter_id = report_waiter.getID();
+        data["report_waiter_id"] = report_waiter_id.get_value();
+        // spawn_npc calls load_npcs; resolve peers again and initialize this
+        // newly spawned observer before querying its sight.
+        guard = g->find_npc(first_id);
+        report_donor = g->find_npc(lane_blocker_id);
+        REQUIRE(guard != nullptr);
+        REQUIRE(report_donor != nullptr);
+        report_waiter.recalc_sight_limits();
+        set_time(calendar::turn);
+        REQUIRE(report_waiter.get_dimension() == raid_dim);
+        REQUIRE(report_waiter.abs_pos() == report_origin);
+        REQUIRE(rl_dist(report_waiter.bub_pos(), guard->bub_pos()) <= 1);
         REQUIRE(report_waiter.sees(*guard));
         REQUIRE(report_waiter.sees(*report_donor));
+        REQUIRE_FALSE(report_waiter.sees(get_avatar()));
         probe("npc_squad_waiter_setup");
         const auto waiter_position = report_waiter.abs_pos();
         report_waiter.set_moves(100);
@@ -540,6 +557,21 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         REQUIRE(guard != nullptr);
         probe("npc_squad_report_restored");
         probe("npc_squad_waiter_check");
+        // Losing local communication releases the task without extending the
+        // original report deadline. Resolve the waiting NPC after game::load.
+        auto* restored_waiter = g->find_npc(report_waiter_id);
+        REQUIRE(restored_waiter != nullptr);
+        const auto out_of_contact = abs_to_bub(tripoint_abs_ms(386, 386, 0));
+        REQUIRE(g->m.passable(out_of_contact));
+        guard->setpos(out_of_contact);
+        REQUIRE(rl_dist(guard->bub_pos(), restored_waiter->bub_pos()) > 12);
+        set_time(calendar::turn);
+        const auto resume_origin = restored_waiter->abs_pos();
+        restored_waiter->set_moves(100);
+        restored_waiter->move();
+        CHECK(restored_waiter->get_moves() < 100);
+        CHECK(restored_waiter->abs_pos() != resume_origin);
+        probe("npc_squad_waiter_resumed");
         probe("npc_cover_reload_restore_wall");
         sounds::reset_sounds();
         player.set_all_parts_hp_to_max();
