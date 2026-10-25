@@ -18,6 +18,7 @@ local function setup()
     moves = function() return box.moves end,
     wait = function() box.moves = box.moves - 100 end,
     move_to = function() if not box.blocked then box.x = box.x + 1; box.moves = box.moves - 100 end end,
+    failure = function() return "visible_target" end,
     reload = function(p)
       assert(p.x == 0)
       if box.fail_reload then return false end
@@ -44,6 +45,7 @@ assert(reload.step(state, ctx, memory, 100, api))
 box.fail_reload = true
 ok, reason = reload.step(state, ctx, memory, 101, api)
 assert(ok and reason == "reload_failed" and box.moves == 800 and state.goal == nil)
+assert(state.failure_reason == "visible_target")
 -- An unavailable route spends bounded waits; it cannot keep renewing a plan.
 ctx, memory, box, api = setup(); state = {}; box.blocked = true
 assert(reload.step(state, ctx, memory, 100, api))

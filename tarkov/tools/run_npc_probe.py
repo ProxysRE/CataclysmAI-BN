@@ -28,8 +28,9 @@ def run(bn: Path, executable: Path, output: Path) -> None:
         # on Windows too, while retaining the original failed process status.
         if report.exists():
             try:
-                for failure in ET.parse(report).iter("failure"):
-                    print(ET.tostring(failure, encoding="unicode")[:16000], flush=True)
+                for failure in ET.parse(report).iter():
+                    if failure.tag in ("failure", "error"):
+                        print(ET.tostring(failure, encoding="unicode")[:16000], flush=True)
             except (ET.ParseError, OSError) as error:
                 print("Could not read NPC failure report: " + str(error), flush=True)
         raise

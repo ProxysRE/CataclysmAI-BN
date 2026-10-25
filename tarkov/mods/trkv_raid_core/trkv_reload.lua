@@ -7,7 +7,7 @@ local function distance(a, b)
   return math.max(math.abs(a.x - b.x), math.abs(a.y - b.y))
 end
 function reload.cancel(state, reason)
-  state.goal, state.cooldown_until, state.last_now = nil, nil, nil
+  state.goal, state.cooldown_until, state.last_now, state.failure_reason = nil, nil, nil, nil
   state.status = reason
   return false, reason
 end
@@ -32,7 +32,7 @@ function reload.step(state, ctx, memory, now, api)
       -- A previous maneuver can be cancelled after an emergency. If already
       -- behind cover, do not force an empty gun back toward the remembered foe.
       if api.ready() and api.reload(contact.position) then
-        state.status = "reloaded"
+        state.status, state.failure_reason = "reloaded", nil
         return true, state.status
       end
       return false, "no_visible_threat"
@@ -44,7 +44,7 @@ function reload.step(state, ctx, memory, now, api)
     if not selected then return false, "no_cover" end
     goal = { position = copy(selected), threat = copy(contact.position), started_at = now,
       deadline = now + 8, attempts = 0, stalled = 0 }
-    state.goal = goal
+    state.goal, state.failure_reason = goal, nil
   end
   if now < goal.started_at or now >= goal.deadline or distance(goal.threat, contact.position) > 1 then
     state.goal, state.status = nil, "cancelled"; return false, state.status
@@ -55,6 +55,7 @@ function reload.step(state, ctx, memory, now, api)
   if api.at(goal.position) then
     local before = api.moves()
     local success = api.reload(contact.position)
+    state.failure_reason = not success and (api.failure and api.failure() or "unknown") or nil
     if api.moves() >= before then api.wait() end
     state.goal, state.status = nil, success and "reloaded" or "reload_failed"
     return true, state.status
@@ -87,6 +88,7 @@ function reload.step_actor(member, ctx, actor, map, now)
     moves = function() return actor:get_moves() end,
     move_to = function(p) actor:move_towards(map:abs_to_bub(absolute(p))) end,
     reload = function(p) return actor:reload_under_cover(absolute(p)) end,
+    failure = function() return actor:get_value("trkv_reload_result") end,
     wait = function() actor:set_moves(actor:get_moves() - 100) end,
   })
 end

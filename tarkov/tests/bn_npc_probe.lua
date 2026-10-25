@@ -479,6 +479,7 @@ elseif test_data.stage:match("^npc_cover_reload_") then
     assert(actor:can_reload_empty_gun())
     local selected = actor:choose_reload_cover(observed)
     assert(selected and actor:choose_reload_cover(observed, selected))
+    test_data.cover_selected = { x = selected.x, y = selected.y, z = selected.z }
     assert(not actor:reload_under_cover(observed), "Cannot reload under cover while still exposed")
     test_data.cover_reloaded = false
   elseif test_data.stage == "npc_cover_reload_restore_wall" then
@@ -503,7 +504,9 @@ elseif test_data.stage:match("^npc_cover_reload_") then
       assert(member.perception.contact.seen_at == test_data.cover_seen_at)
       test_data.cover_reloaded = true
     else
-      local goal = assert(member.reload.goal)
+      local goal = assert(member.reload.goal, "Cover reload terminated: status=" .. tostring(member.reload.status) ..
+        "; failure=" .. tostring(member.reload.failure_reason) ..
+        "; executor=" .. actor:get_value("trkv_reload_result") .. "; action=" .. tostring(member.decisions.action))
       assert(member.reload.status == "reload_cover" and goal.deadline == test_data.cover_deadline)
       assert(goal.position.x == test_data.cover_goal.x and goal.position.y == test_data.cover_goal.y)
     end

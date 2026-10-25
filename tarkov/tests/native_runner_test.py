@@ -97,6 +97,8 @@ class NativeGateTest(unittest.TestCase):
             for xml, expected in (
                 ('<testsuites><testcase><failure message="ammo mismatch">30 != 60</failure></testcase></testsuites>',
                  "ammo mismatch"),
+                ('<testsuites><testcase><error message="Lua failed">reload_failed: visible_target</error></testcase></testsuites>',
+                 "reload_failed: visible_target"),
                 ("<malformed", "Could not read NPC failure report"),
             ):
                 with self.subTest(xml=xml):

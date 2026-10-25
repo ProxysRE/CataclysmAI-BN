@@ -443,6 +443,11 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         const auto cover_moves_before = guard->get_moves();
         const auto cover_path_before = guard->path;
         probe("npc_cover_reload_choose");
+        const sol::table cover_selected = data["cover_selected"];
+        const auto cover_bubble = abs_to_bub(tripoint_abs_ms(cover_selected["x"].get<int>(),
+                                  cover_selected["y"].get<int>(), cover_selected["z"].get<int>()));
+        CHECK_FALSE(g->m.sees(get_avatar().bub_pos(), cover_bubble, 60));
+        CHECK_FALSE(g->m.sees(cover_bubble, get_avatar().bub_pos(), 60));
         CHECK(guard->get_moves() == cover_moves_before);
         CHECK(guard->path == cover_path_before);
         guard->set_moves(100);

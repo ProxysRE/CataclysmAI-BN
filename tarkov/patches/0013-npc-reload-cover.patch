@@ -1,7 +1,7 @@
 diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
 --- a/src/catalua_bindings_creature.cpp
 +++ b/src/catalua_bindings_creature.cpp
-@@ -1597,2 +1597,89 @@
+@@ -1597,2 +1597,110 @@
 +        DOC( "Whether the empty wielded gun can be reloaded from actual inventory." );
 +        luna::set_fx( ut, "can_reload_empty_gun", []( UT_CLASS & npchar ) -> bool {
 +            return !npchar.is_hallucination() && !npchar.in_vehicle &&
@@ -34,6 +34,7 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ||
 +                    !here.passable( candidate ) || here.dangerous_field_at( candidate ) ||
 +                    rl_dist( candidate, foe ) < 4 || here.sees( foe, candidate, 60 ) ||
++                    here.sees( candidate, foe, 60 ) ||
 +                    ( candidate != origin && g->critter_at( candidate ) != nullptr ) ) {
 +                    return std::nullopt;
 +                }
@@ -77,16 +78,36 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +            auto &here = get_map();
 +            const auto foe = abs_to_bub( observed );
 +            const Creature *target = npchar.current_target();
-+            if( !here.inbounds( foe ) || foe.z() != npchar.bub_pos().z() ||
-+                here.sees( foe, npchar.bub_pos(), 60 ) || here.dangerous_field_at( npchar.bub_pos() ) ||
-+                ( target && npchar.sees( *target ) ) || !npchar.primary_weapon().is_gun() ||
-+                npchar.primary_weapon().ammo_sufficient() || !npchar.can_reload_current() ||
-+                npchar.in_vehicle || npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++            const auto refuse = [&]( const std::string &reason ) {
++                npchar.set_value( "trkv_reload_result", reason );
 +                return false;
++            };
++            if( !here.inbounds( foe ) || foe.z() != npchar.bub_pos().z() ) {
++                return refuse( "invalid_threat_position" );
++            }
++            if( here.sees( foe, npchar.bub_pos(), 60 ) || here.sees( npchar.bub_pos(), foe, 60 ) ) {
++                return refuse( "exposed" );
++            }
++            if( here.dangerous_field_at( npchar.bub_pos() ) ) {
++                return refuse( "dangerous_field" );
++            }
++            if( target && npchar.sees( *target ) ) {
++                return refuse( "visible_target" );
++            }
++            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ) {
++                return refuse( "weapon_not_empty" );
++            }
++            if( !npchar.can_reload_current() ) {
++                return refuse( "no_ammunition" );
++            }
++            if( npchar.is_hallucination() || npchar.in_vehicle || npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++                return refuse( "disabled" );
 +            }
 +            const int before = npchar.get_moves();
 +            npchar.do_reload( npchar.primary_weapon() );
-+            return npchar.get_moves() < before;
++            const bool spent_moves = npchar.get_moves() < before;
++            npchar.set_value( "trkv_reload_result", spent_moves ? "reloaded" : "no_action" );
++            return spent_moves;
 +        } );
 +
          DOC( "Triggers the npc menu to open." );
