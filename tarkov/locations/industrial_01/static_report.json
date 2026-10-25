@@ -1,0 +1,483 @@
+{
+  "evidence": "static_only",
+  "bn_commit": "554950f3635f50ddd1d32c6e1b6e2bdee9842bd6",
+  "base_commit": "4add4eaaa9c4cbfd6b67deb77ebab95b8b404bc5",
+  "passable_doors_open": 4064,
+  "passable_doors_closed": 4048,
+  "entry_points": 16,
+  "exit_regions": 2,
+  "poi_count": 8,
+  "independent_routes": {
+    "west_only": 64,
+    "hall_only": 84
+  },
+  "spawn_pair_screen": [
+    {
+      "areas": [
+        "entry_nw",
+        "entry_ne"
+      ],
+      "static_los_clear": true,
+      "shortest_path_cells": 60,
+      "runtime_verified": false,
+      "allowed": false
+    },
+    {
+      "areas": [
+        "entry_nw",
+        "entry_sw"
+      ],
+      "static_los_clear": true,
+      "shortest_path_cells": 56,
+      "runtime_verified": false,
+      "allowed": false
+    },
+    {
+      "areas": [
+        "entry_nw",
+        "entry_se"
+      ],
+      "static_los_clear": true,
+      "shortest_path_cells": 110,
+      "runtime_verified": false,
+      "allowed": false
+    },
+    {
+      "areas": [
+        "entry_ne",
+        "entry_sw"
+      ],
+      "static_los_clear": true,
+      "shortest_path_cells": 108,
+      "runtime_verified": false,
+      "allowed": false
+    },
+    {
+      "areas": [
+        "entry_ne",
+        "entry_se"
+      ],
+      "static_los_clear": true,
+      "shortest_path_cells": 64,
+      "runtime_verified": false,
+      "allowed": false
+    },
+    {
+      "areas": [
+        "entry_sw",
+        "entry_se"
+      ],
+      "static_los_clear": true,
+      "shortest_path_cells": 65,
+      "runtime_verified": false,
+      "allowed": false
+    }
+  ],
+  "assets": {
+    "f_counter": {
+      "source": "data/json/furniture_and_terrain/furniture-surfaces.json",
+      "move_cost": null,
+      "move_cost_mod": 2,
+      "flags": [
+        "FLAMMABLE",
+        "FLAT_SURF",
+        "MOUNTABLE",
+        "ORGANIC",
+        "SHORT",
+        "TRANSPARENT"
+      ],
+      "open": null,
+      "light_emitted": null,
+      "coverage": 60,
+      "bash": {
+        "str_min": 12,
+        "str_max": 40,
+        "sound": "smash!",
+        "sound_fail": "whump.",
+        "items": [
+          {
+            "item": "2x4",
+            "count": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "nail",
+            "charges": [
+              4,
+              8
+            ]
+          },
+          {
+            "item": "splinter",
+            "count": [
+              5,
+              10
+            ]
+          }
+        ],
+        "ranged": {
+          "reduction": [
+            12,
+            12
+          ],
+          "destroy_threshold": 40,
+          "block_unaimed_chance": "50%"
+        }
+      }
+    },
+    "f_locker": {
+      "source": "data/json/furniture_and_terrain/furniture-storage.json",
+      "move_cost": null,
+      "move_cost_mod": -1,
+      "flags": [
+        "BLOCKSDOOR",
+        "CONTAINER",
+        "PLACE_ITEM"
+      ],
+      "open": null,
+      "light_emitted": null,
+      "coverage": 90,
+      "bash": {
+        "str_min": 12,
+        "str_max": 40,
+        "sound": "metal screeching!",
+        "sound_fail": "clang!",
+        "items": [
+          {
+            "item": "sheet_metal",
+            "count": 1
+          },
+          {
+            "item": "scrap",
+            "count": [
+              4,
+              8
+            ]
+          },
+          {
+            "item": "sheet_metal_small",
+            "count": [
+              4,
+              8
+            ]
+          },
+          {
+            "item": "pipe",
+            "count": [
+              0,
+              1
+            ]
+          }
+        ],
+        "ranged": {
+          "reduction": [
+            12,
+            12
+          ],
+          "destroy_threshold": 40
+        }
+      }
+    },
+    "f_olight_nogrid": {
+      "source": "data/json/furniture_and_terrain/furniture-appliances.json",
+      "move_cost": null,
+      "move_cost_mod": 0,
+      "flags": [
+        "EASY_DECONSTRUCT",
+        "LOCAL_LIGHT",
+        "L_ON",
+        "TRANSPARENT"
+      ],
+      "open": null,
+      "light_emitted": 120,
+      "coverage": null,
+      "bash": {
+        "str_min": 3,
+        "str_max": 20,
+        "sound": "glass breaking!",
+        "sound_fail": "clink!",
+        "items": [
+          {
+            "item": "glass_shard",
+            "count": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "cable",
+            "charges": [
+              0,
+              1
+            ]
+          },
+          {
+            "item": "scrap",
+            "charges": [
+              0,
+              1
+            ]
+          },
+          {
+            "item": "e_scrap",
+            "charges": [
+              0,
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "f_rack": {
+      "source": "data/json/furniture_and_terrain/furniture-storage.json",
+      "move_cost": null,
+      "move_cost_mod": -1,
+      "flags": [
+        "BLOCKSDOOR",
+        "FLAMMABLE_HARD",
+        "MOUNTABLE",
+        "PLACE_ITEM",
+        "TRANSPARENT"
+      ],
+      "open": null,
+      "light_emitted": null,
+      "coverage": 70,
+      "bash": {
+        "str_min": 6,
+        "str_max": 30,
+        "sound": "metal screeching!",
+        "sound_fail": "clang!",
+        "items": [
+          {
+            "item": "sheet_metal_small",
+            "count": 1
+          },
+          {
+            "item": "scrap",
+            "count": [
+              2,
+              8
+            ]
+          },
+          {
+            "item": "steel_chunk",
+            "count": [
+              2,
+              4
+            ]
+          },
+          {
+            "item": "sheet_metal_small",
+            "count": [
+              4,
+              8
+            ]
+          },
+          {
+            "item": "pipe",
+            "count": 1
+          }
+        ],
+        "ranged": {
+          "reduction": [
+            6,
+            6
+          ],
+          "destroy_threshold": 30,
+          "block_unaimed_chance": "50%"
+        }
+      }
+    },
+    "t_concrete_wall": {
+      "source": "data/json/furniture_and_terrain/terrain-walls.json",
+      "move_cost": 0,
+      "move_cost_mod": null,
+      "flags": [
+        "AUTO_WALL_SYMBOL",
+        "BLOCK_WIND",
+        "MINEABLE",
+        "NOITEM",
+        "NO_SCENT",
+        "SUPPORTS_ROOF",
+        "WALL"
+      ],
+      "open": null,
+      "light_emitted": null,
+      "coverage": 100,
+      "bash": {
+        "str_min": 70,
+        "str_max": 300,
+        "sound": "crash!",
+        "sound_fail": "whump!",
+        "ter_set": "t_reb_cage",
+        "items": [
+          {
+            "item": "rock",
+            "count": [
+              10,
+              22
+            ]
+          }
+        ],
+        "//": "Stone obstacles have double the expected reduction but lower destroy_threshold in return",
+        "ranged": {
+          "reduction": [
+            140,
+            140
+          ],
+          "destroy_threshold": 140
+        }
+      }
+    },
+    "t_door_c": {
+      "source": "data/json/furniture_and_terrain/terrain-doors.json",
+      "move_cost": 0,
+      "move_cost_mod": null,
+      "flags": [
+        "BARRICADABLE_DOOR",
+        "BLOCK_WIND",
+        "CONNECT_TO_WALL",
+        "DOOR",
+        "FLAMMABLE_ASH",
+        "NOITEM",
+        "NO_SCENT"
+      ],
+      "open": "t_door_o",
+      "light_emitted": null,
+      "coverage": 95,
+      "bash": {
+        "str_min": 10,
+        "str_max": 80,
+        "str_min_blocked": 15,
+        "str_max_blocked": 100,
+        "sound": "smash!",
+        "sound_fail": "whump!",
+        "ter_set": "t_door_b",
+        "items": [
+          {
+            "item": "2x4",
+            "prob": 25
+          },
+          {
+            "item": "wood_panel",
+            "prob": 10
+          },
+          {
+            "item": "splinter",
+            "count": [
+              1,
+              2
+            ]
+          },
+          {
+            "item": "nail",
+            "charges": [
+              0,
+              2
+            ]
+          }
+        ],
+        "ranged": {
+          "reduction": [
+            10,
+            10
+          ],
+          "destroy_threshold": 80
+        }
+      }
+    },
+    "t_pavement": {
+      "source": "data/json/furniture_and_terrain/terrain-floors-outdoors.json",
+      "move_cost": 2,
+      "move_cost_mod": null,
+      "flags": [
+        "FLAT",
+        "MINEABLE",
+        "ROAD",
+        "TRANSPARENT"
+      ],
+      "open": null,
+      "light_emitted": null,
+      "coverage": null,
+      "bash": {
+        "ter_set": "t_dirt",
+        "str_min": 50,
+        "str_max": 400,
+        "str_min_supported": 100,
+        "items": [
+          {
+            "item": "rock",
+            "count": [
+              2,
+              10
+            ]
+          },
+          {
+            "item": "rebar",
+            "count": [
+              0,
+              4
+            ]
+          }
+        ]
+      }
+    },
+    "t_thconc_floor": {
+      "source": "data/json/furniture_and_terrain/terrain-floors-indoor.json",
+      "move_cost": 2,
+      "move_cost_mod": null,
+      "flags": [
+        "COLLAPSES",
+        "FLAT",
+        "ROAD",
+        "SUPPORTS_ROOF",
+        "TRANSPARENT"
+      ],
+      "open": null,
+      "light_emitted": null,
+      "coverage": null,
+      "bash": {
+        "sound": "SMASH!",
+        "ter_set": "t_null",
+        "str_min": 100,
+        "str_max": 400,
+        "str_min_supported": 150,
+        "items": [
+          {
+            "item": "rock",
+            "count": [
+              5,
+              10
+            ]
+          },
+          {
+            "item": "scrap",
+            "count": [
+              5,
+              8
+            ]
+          },
+          {
+            "item": "rebar",
+            "count": [
+              0,
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "not_verified": [
+    "Загрузка JSON самим BN",
+    "Реальная генерация и стыки блоков",
+    "Поиск пути движком",
+    "Двери в движке",
+    "Освещение, крыша и внешний свет",
+    "Баллистика",
+    "Запуск на Windows",
+    "Визуальная оценка игроком"
+  ]
+}

@@ -1,0 +1,198 @@
+[
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_0_0",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_1_0",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_2_0",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_0_1",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_1_1",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_2_1",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_0_2",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_1_2",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "trkv_loc_industrial_01_2_2",
+    "name": "Промышленный узел: макет",
+    "sym": "I",
+    "color": "light_gray",
+    "see_cost": 0,
+    "mondensity": 0,
+    "flags": [
+      "NO_ROTATE"
+    ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "trkv_loc_industrial_01",
+    "overmaps": [
+      {
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_0_0"
+      },
+      {
+        "point": [
+          1,
+          0,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_1_0"
+      },
+      {
+        "point": [
+          2,
+          0,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_2_0"
+      },
+      {
+        "point": [
+          0,
+          1,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_0_1"
+      },
+      {
+        "point": [
+          1,
+          1,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_1_1"
+      },
+      {
+        "point": [
+          2,
+          1,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_2_1"
+      },
+      {
+        "point": [
+          0,
+          2,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_0_2"
+      },
+      {
+        "point": [
+          1,
+          2,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_1_2"
+      },
+      {
+        "point": [
+          2,
+          2,
+          0
+        ],
+        "overmap": "trkv_loc_industrial_01_2_2"
+      }
+    ],
+    "locations": [
+      "land"
+    ],
+    "occurrences": [
+      0,
+      0
+    ],
+    "flags": [
+      "CLASSIC"
+    ]
+  }
+]

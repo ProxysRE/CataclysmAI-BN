@@ -1,0 +1,15 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "trkv_locations_dev",
+    "name": "Тарков: экспериментальные локации",
+    "authors": [
+      "ProxysRE"
+    ],
+    "description": "Изолированный макет промышленного узла. Не подключает рейд или эвакуацию.",
+    "category": "content",
+    "dependencies": [
+      "bn"
+    ]
+  }
+]

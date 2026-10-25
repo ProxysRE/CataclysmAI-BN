@@ -1,0 +1,1714 @@
+{
+  "schema_version": 1,
+  "location_id": "industrial_01",
+  "version": "0.1.0",
+  "name": "Промышленный узел",
+  "base_commit": "4add4eaaa9c4cbfd6b67deb77ebab95b8b404bc5",
+  "bn_commit": "554950f3635f50ddd1d32c6e1b6e2bdee9842bd6",
+  "coordinates": {
+    "origin": "northwest",
+    "x": "east",
+    "y": "south",
+    "z": "up",
+    "areas": "min_inclusive_max_exclusive"
+  },
+  "size": [
+    72,
+    72
+  ],
+  "levels": [
+    0
+  ],
+  "blocks": [
+    {
+      "terrain_id": "trkv_loc_industrial_01_0_0",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_1_0",
+      "origin": [
+        24,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_2_0",
+      "origin": [
+        48,
+        0,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_0_1",
+      "origin": [
+        0,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_1_1",
+      "origin": [
+        24,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_2_1",
+      "origin": [
+        48,
+        24,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_0_2",
+      "origin": [
+        0,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_1_2",
+      "origin": [
+        24,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    },
+    {
+      "terrain_id": "trkv_loc_industrial_01_2_2",
+      "origin": [
+        48,
+        48,
+        0
+      ],
+      "size": [
+        24,
+        24
+      ]
+    }
+  ],
+  "zones": [
+    {
+      "id": "security",
+      "name": "Проходная",
+      "area": {
+        "min": [
+          3,
+          6,
+          0
+        ],
+        "max": [
+          20,
+          19,
+          1
+        ]
+      },
+      "neighbors": [
+        "lockers",
+        "north_link",
+        "service"
+      ],
+      "connections": [
+        "link_01",
+        "link_14",
+        "link_16"
+      ]
+    },
+    {
+      "id": "lockers",
+      "name": "Раздевалка",
+      "area": {
+        "min": [
+          3,
+          21,
+          0
+        ],
+        "max": [
+          20,
+          39,
+          1
+        ]
+      },
+      "neighbors": [
+        "maintenance",
+        "security",
+        "service"
+      ],
+      "connections": [
+        "link_02",
+        "link_14",
+        "link_15"
+      ]
+    },
+    {
+      "id": "maintenance",
+      "name": "Ремонтная мастерская",
+      "area": {
+        "min": [
+          3,
+          41,
+          0
+        ],
+        "max": [
+          20,
+          59,
+          1
+        ]
+      },
+      "neighbors": [
+        "loading",
+        "lockers",
+        "service"
+      ],
+      "connections": [
+        "link_03",
+        "link_15",
+        "link_20"
+      ]
+    },
+    {
+      "id": "service",
+      "name": "Служебная галерея",
+      "area": {
+        "min": [
+          21,
+          5,
+          0
+        ],
+        "max": [
+          27,
+          59,
+          1
+        ]
+      },
+      "neighbors": [
+        "assembly",
+        "crossing",
+        "loading",
+        "lockers",
+        "maintenance",
+        "north_link",
+        "production",
+        "security"
+      ],
+      "connections": [
+        "link_01",
+        "link_02",
+        "link_03",
+        "link_04",
+        "link_05",
+        "link_09",
+        "link_19",
+        "link_23"
+      ]
+    },
+    {
+      "id": "production",
+      "name": "Производственный зал",
+      "area": {
+        "min": [
+          28,
+          6,
+          0
+        ],
+        "max": [
+          49,
+          33,
+          1
+        ]
+      },
+      "neighbors": [
+        "crossing",
+        "north_link",
+        "service",
+        "stores"
+      ],
+      "connections": [
+        "link_04",
+        "link_06",
+        "link_10",
+        "link_17"
+      ]
+    },
+    {
+      "id": "assembly",
+      "name": "Участок сборки",
+      "area": {
+        "min": [
+          28,
+          38,
+          0
+        ],
+        "max": [
+          49,
+          59,
+          1
+        ]
+      },
+      "neighbors": [
+        "crossing",
+        "dispatch",
+        "loading",
+        "service"
+      ],
+      "connections": [
+        "link_07",
+        "link_09",
+        "link_11",
+        "link_21"
+      ]
+    },
+    {
+      "id": "crossing",
+      "name": "Поперечная связь",
+      "area": {
+        "min": [
+          21,
+          33,
+          0
+        ],
+        "max": [
+          50,
+          38,
+          1
+        ]
+      },
+      "neighbors": [
+        "assembly",
+        "production",
+        "service",
+        "sorting"
+      ],
+      "connections": [
+        "link_05",
+        "link_06",
+        "link_07",
+        "link_08"
+      ]
+    },
+    {
+      "id": "stores",
+      "name": "Склад сырья",
+      "area": {
+        "min": [
+          50,
+          6,
+          0
+        ],
+        "max": [
+          69,
+          22,
+          1
+        ]
+      },
+      "neighbors": [
+        "north_link",
+        "production",
+        "sorting"
+      ],
+      "connections": [
+        "link_10",
+        "link_12",
+        "link_18"
+      ]
+    },
+    {
+      "id": "sorting",
+      "name": "Сортировка",
+      "area": {
+        "min": [
+          50,
+          24,
+          0
+        ],
+        "max": [
+          69,
+          39,
+          1
+        ]
+      },
+      "neighbors": [
+        "crossing",
+        "dispatch",
+        "stores"
+      ],
+      "connections": [
+        "link_08",
+        "link_12",
+        "link_13"
+      ]
+    },
+    {
+      "id": "dispatch",
+      "name": "Экспедиция",
+      "area": {
+        "min": [
+          50,
+          41,
+          0
+        ],
+        "max": [
+          69,
+          59,
+          1
+        ]
+      },
+      "neighbors": [
+        "assembly",
+        "loading",
+        "sorting"
+      ],
+      "connections": [
+        "link_11",
+        "link_13",
+        "link_22"
+      ]
+    },
+    {
+      "id": "loading",
+      "name": "Погрузочный двор",
+      "area": {
+        "min": [
+          2,
+          60,
+          0
+        ],
+        "max": [
+          70,
+          70,
+          1
+        ]
+      },
+      "neighbors": [
+        "assembly",
+        "dispatch",
+        "maintenance",
+        "service"
+      ],
+      "connections": [
+        "link_20",
+        "link_21",
+        "link_22",
+        "link_23"
+      ]
+    },
+    {
+      "id": "north_link",
+      "name": "Северный проход",
+      "area": {
+        "min": [
+          2,
+          2,
+          0
+        ],
+        "max": [
+          70,
+          5,
+          1
+        ]
+      },
+      "neighbors": [
+        "production",
+        "security",
+        "service",
+        "stores"
+      ],
+      "connections": [
+        "link_16",
+        "link_17",
+        "link_18",
+        "link_19"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "link_01",
+      "zones": [
+        "security",
+        "service"
+      ],
+      "area": {
+        "min": [
+          20,
+          12,
+          0
+        ],
+        "max": [
+          21,
+          15,
+          1
+        ]
+      },
+      "kind": "mixed_door_opening"
+    },
+    {
+      "id": "link_02",
+      "zones": [
+        "lockers",
+        "service"
+      ],
+      "area": {
+        "min": [
+          20,
+          33,
+          0
+        ],
+        "max": [
+          21,
+          38,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_03",
+      "zones": [
+        "maintenance",
+        "service"
+      ],
+      "area": {
+        "min": [
+          20,
+          51,
+          0
+        ],
+        "max": [
+          21,
+          55,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_04",
+      "zones": [
+        "service",
+        "production"
+      ],
+      "area": {
+        "min": [
+          27,
+          12,
+          0
+        ],
+        "max": [
+          28,
+          15,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_05",
+      "zones": [
+        "service",
+        "crossing"
+      ],
+      "area": {
+        "min": [
+          24,
+          33,
+          0
+        ],
+        "max": [
+          25,
+          34,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_06",
+      "zones": [
+        "crossing",
+        "production"
+      ],
+      "area": {
+        "min": [
+          28,
+          32,
+          0
+        ],
+        "max": [
+          49,
+          34,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_07",
+      "zones": [
+        "crossing",
+        "assembly"
+      ],
+      "area": {
+        "min": [
+          28,
+          37,
+          0
+        ],
+        "max": [
+          49,
+          39,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_08",
+      "zones": [
+        "crossing",
+        "sorting"
+      ],
+      "area": {
+        "min": [
+          49,
+          33,
+          0
+        ],
+        "max": [
+          50,
+          38,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_09",
+      "zones": [
+        "assembly",
+        "service"
+      ],
+      "area": {
+        "min": [
+          27,
+          51,
+          0
+        ],
+        "max": [
+          28,
+          55,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_10",
+      "zones": [
+        "production",
+        "stores"
+      ],
+      "area": {
+        "min": [
+          49,
+          12,
+          0
+        ],
+        "max": [
+          50,
+          15,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_11",
+      "zones": [
+        "assembly",
+        "dispatch"
+      ],
+      "area": {
+        "min": [
+          49,
+          51,
+          0
+        ],
+        "max": [
+          50,
+          55,
+          1
+        ]
+      },
+      "kind": "mixed_door_opening"
+    },
+    {
+      "id": "link_12",
+      "zones": [
+        "stores",
+        "sorting"
+      ],
+      "area": {
+        "min": [
+          60,
+          22,
+          0
+        ],
+        "max": [
+          63,
+          24,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_13",
+      "zones": [
+        "sorting",
+        "dispatch"
+      ],
+      "area": {
+        "min": [
+          60,
+          39,
+          0
+        ],
+        "max": [
+          63,
+          41,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_14",
+      "zones": [
+        "security",
+        "lockers"
+      ],
+      "area": {
+        "min": [
+          8,
+          19,
+          0
+        ],
+        "max": [
+          11,
+          21,
+          1
+        ]
+      },
+      "kind": "doors"
+    },
+    {
+      "id": "link_15",
+      "zones": [
+        "lockers",
+        "maintenance"
+      ],
+      "area": {
+        "min": [
+          8,
+          39,
+          0
+        ],
+        "max": [
+          11,
+          41,
+          1
+        ]
+      },
+      "kind": "doors"
+    },
+    {
+      "id": "link_16",
+      "zones": [
+        "security",
+        "north_link"
+      ],
+      "area": {
+        "min": [
+          8,
+          5,
+          0
+        ],
+        "max": [
+          12,
+          6,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_17",
+      "zones": [
+        "production",
+        "north_link"
+      ],
+      "area": {
+        "min": [
+          34,
+          5,
+          0
+        ],
+        "max": [
+          40,
+          6,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_18",
+      "zones": [
+        "stores",
+        "north_link"
+      ],
+      "area": {
+        "min": [
+          59,
+          5,
+          0
+        ],
+        "max": [
+          64,
+          6,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_19",
+      "zones": [
+        "service",
+        "north_link"
+      ],
+      "area": {
+        "min": [
+          21,
+          4,
+          0
+        ],
+        "max": [
+          27,
+          6,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_20",
+      "zones": [
+        "maintenance",
+        "loading"
+      ],
+      "area": {
+        "min": [
+          8,
+          59,
+          0
+        ],
+        "max": [
+          12,
+          60,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_21",
+      "zones": [
+        "assembly",
+        "loading"
+      ],
+      "area": {
+        "min": [
+          34,
+          59,
+          0
+        ],
+        "max": [
+          40,
+          60,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_22",
+      "zones": [
+        "dispatch",
+        "loading"
+      ],
+      "area": {
+        "min": [
+          59,
+          59,
+          0
+        ],
+        "max": [
+          64,
+          60,
+          1
+        ]
+      },
+      "kind": "opening"
+    },
+    {
+      "id": "link_23",
+      "zones": [
+        "service",
+        "loading"
+      ],
+      "area": {
+        "min": [
+          21,
+          59,
+          0
+        ],
+        "max": [
+          27,
+          61,
+          1
+        ]
+      },
+      "kind": "opening"
+    }
+  ],
+  "spawn_areas": [
+    {
+      "id": "entry_nw",
+      "name": "Проходная",
+      "zone": "security",
+      "area": {
+        "min": [
+          4,
+          7,
+          0
+        ],
+        "max": [
+          10,
+          12,
+          1
+        ]
+      },
+      "capacity": 3,
+      "primary": [
+        [
+          5,
+          8,
+          0
+        ],
+        [
+          7,
+          8,
+          0
+        ],
+        [
+          5,
+          10,
+          0
+        ]
+      ],
+      "fallback": [
+        [
+          7,
+          10,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "entry_ne",
+      "name": "Северный склад",
+      "zone": "stores",
+      "area": {
+        "min": [
+          61,
+          7,
+          0
+        ],
+        "max": [
+          64,
+          12,
+          1
+        ]
+      },
+      "capacity": 3,
+      "primary": [
+        [
+          61,
+          8,
+          0
+        ],
+        [
+          63,
+          8,
+          0
+        ],
+        [
+          61,
+          10,
+          0
+        ]
+      ],
+      "fallback": [
+        [
+          63,
+          10,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "entry_sw",
+      "name": "Юго-западный двор",
+      "zone": "loading",
+      "area": {
+        "min": [
+          4,
+          63,
+          0
+        ],
+        "max": [
+          10,
+          69,
+          1
+        ]
+      },
+      "capacity": 3,
+      "primary": [
+        [
+          5,
+          64,
+          0
+        ],
+        [
+          7,
+          64,
+          0
+        ],
+        [
+          5,
+          67,
+          0
+        ]
+      ],
+      "fallback": [
+        [
+          7,
+          67,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "entry_se",
+      "name": "Юго-восточный двор",
+      "zone": "loading",
+      "area": {
+        "min": [
+          62,
+          63,
+          0
+        ],
+        "max": [
+          68,
+          69,
+          1
+        ]
+      },
+      "capacity": 3,
+      "primary": [
+        [
+          63,
+          64,
+          0
+        ],
+        [
+          65,
+          64,
+          0
+        ],
+        [
+          63,
+          67,
+          0
+        ]
+      ],
+      "fallback": [
+        [
+          65,
+          67,
+          0
+        ]
+      ]
+    }
+  ],
+  "spawn_pair_policy": "deny_unlisted",
+  "spawn_pairs": [
+    {
+      "areas": [
+        "entry_nw",
+        "entry_ne"
+      ],
+      "allowed": false,
+      "reason": "awaiting_engine_los"
+    },
+    {
+      "areas": [
+        "entry_nw",
+        "entry_sw"
+      ],
+      "allowed": false,
+      "reason": "awaiting_engine_los"
+    },
+    {
+      "areas": [
+        "entry_nw",
+        "entry_se"
+      ],
+      "allowed": false,
+      "reason": "awaiting_engine_los"
+    },
+    {
+      "areas": [
+        "entry_ne",
+        "entry_sw"
+      ],
+      "allowed": false,
+      "reason": "awaiting_engine_los"
+    },
+    {
+      "areas": [
+        "entry_ne",
+        "entry_se"
+      ],
+      "allowed": false,
+      "reason": "awaiting_engine_los"
+    },
+    {
+      "areas": [
+        "entry_sw",
+        "entry_se"
+      ],
+      "allowed": false,
+      "reason": "awaiting_engine_los"
+    }
+  ],
+  "extraction_areas": [
+    {
+      "id": "extract_west",
+      "name": "Служебный выход",
+      "zone": "maintenance",
+      "area": {
+        "min": [
+          4,
+          52,
+          0
+        ],
+        "max": [
+          9,
+          57,
+          1
+        ]
+      },
+      "approach": [
+        10,
+        53,
+        0
+      ],
+      "runtime_enabled": false
+    },
+    {
+      "id": "extract_east",
+      "name": "Ворота отгрузки",
+      "zone": "dispatch",
+      "area": {
+        "min": [
+          63,
+          52,
+          0
+        ],
+        "max": [
+          68,
+          57,
+          1
+        ]
+      },
+      "approach": [
+        61,
+        54,
+        0
+      ],
+      "runtime_enabled": false
+    }
+  ],
+  "pois": [
+    {
+      "id": "shift_log",
+      "name": "Журнал смен",
+      "zone": "security",
+      "position": [
+        16,
+        10,
+        0
+      ]
+    },
+    {
+      "id": "lockers",
+      "name": "Шкафчики рабочих",
+      "zone": "lockers",
+      "position": [
+        6,
+        26,
+        0
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "Ремонтный верстак",
+      "zone": "maintenance",
+      "position": [
+        9,
+        45,
+        0
+      ]
+    },
+    {
+      "id": "control",
+      "name": "Пост управления линией",
+      "zone": "production",
+      "position": [
+        38,
+        22,
+        0
+      ]
+    },
+    {
+      "id": "assembly",
+      "name": "Сборочный пост",
+      "zone": "assembly",
+      "position": [
+        38,
+        46,
+        0
+      ]
+    },
+    {
+      "id": "stock",
+      "name": "Учёт сырья",
+      "zone": "stores",
+      "position": [
+        61,
+        18,
+        0
+      ]
+    },
+    {
+      "id": "sorting",
+      "name": "Сортировочные стеллажи",
+      "zone": "sorting",
+      "position": [
+        60,
+        29,
+        0
+      ]
+    },
+    {
+      "id": "shipping",
+      "name": "Отгрузочные документы",
+      "zone": "dispatch",
+      "position": [
+        60,
+        45,
+        0
+      ]
+    }
+  ],
+  "loot_candidates": [
+    {
+      "id": "loot_001",
+      "position": [
+        4,
+        25,
+        0
+      ],
+      "furniture": "f_locker",
+      "interaction_from": [
+        5,
+        25,
+        0
+      ]
+    },
+    {
+      "id": "loot_002",
+      "position": [
+        4,
+        28,
+        0
+      ],
+      "furniture": "f_locker",
+      "interaction_from": [
+        5,
+        28,
+        0
+      ]
+    },
+    {
+      "id": "loot_003",
+      "position": [
+        7,
+        43,
+        0
+      ],
+      "furniture": "f_counter",
+      "interaction_from": [
+        8,
+        43,
+        0
+      ]
+    },
+    {
+      "id": "loot_004",
+      "position": [
+        54,
+        43,
+        0
+      ],
+      "furniture": "f_counter",
+      "interaction_from": [
+        55,
+        43,
+        0
+      ]
+    },
+    {
+      "id": "loot_005",
+      "position": [
+        53,
+        9,
+        0
+      ],
+      "furniture": "f_rack",
+      "interaction_from": [
+        54,
+        9,
+        0
+      ]
+    },
+    {
+      "id": "loot_006",
+      "position": [
+        53,
+        27,
+        0
+      ],
+      "furniture": "f_rack",
+      "interaction_from": [
+        54,
+        27,
+        0
+      ]
+    },
+    {
+      "id": "loot_007",
+      "position": [
+        65,
+        29,
+        0
+      ],
+      "furniture": "f_rack",
+      "interaction_from": [
+        66,
+        29,
+        0
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "position": [
+        20,
+        12,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        20,
+        13,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        8,
+        19,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        9,
+        19,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        10,
+        19,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        8,
+        20,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        9,
+        20,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        10,
+        20,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        8,
+        39,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        9,
+        39,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        10,
+        39,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        8,
+        40,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        9,
+        40,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        10,
+        40,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        49,
+        51,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    },
+    {
+      "position": [
+        49,
+        52,
+        0
+      ],
+      "terrain": "t_door_c",
+      "locked": false
+    }
+  ],
+  "lighting": [
+    {
+      "position": [
+        10,
+        15,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        24,
+        15,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        24,
+        36,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        24,
+        53,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        38,
+        10,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        38,
+        30,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        38,
+        41,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        38,
+        55,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        62,
+        16,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        59,
+        35,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        61,
+        48,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    },
+    {
+      "position": [
+        34,
+        64,
+        0
+      ],
+      "furniture": "f_olight_nogrid",
+      "power": "no_grid",
+      "runtime_verified": false
+    }
+  ],
+  "cover": [
+    {
+      "id": "concrete_piers",
+      "terrain": "t_concrete_wall",
+      "areas": [
+        {
+          "min": [
+            34,
+            15,
+            0
+          ],
+          "max": [
+            36,
+            19,
+            1
+          ]
+        },
+        {
+          "min": [
+            43,
+            25,
+            0
+          ],
+          "max": [
+            45,
+            29,
+            1
+          ]
+        },
+        {
+          "min": [
+            34,
+            43,
+            0
+          ],
+          "max": [
+            36,
+            47,
+            1
+          ]
+        },
+        {
+          "min": [
+            43,
+            53,
+            0
+          ],
+          "max": [
+            45,
+            57,
+            1
+          ]
+        }
+      ],
+      "blocks_movement": true,
+      "blocks_los": true,
+      "bullet_proof": "unverified"
+    },
+    {
+      "id": "racks",
+      "furniture": "f_rack",
+      "blocks_movement": true,
+      "blocks_los": false,
+      "bullet_proof": false
+    }
+  ],
+  "runtime_status": "not_integrated"
+}
