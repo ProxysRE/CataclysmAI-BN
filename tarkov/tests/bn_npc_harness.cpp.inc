@@ -461,6 +461,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         guard = g->find_npc(first_id);
         REQUIRE(guard != nullptr);
         probe("npc_cover_reload_restored");
+        CHECK(guard->primary_weapon().ammo_remaining() == 0);
+        CHECK(guard->can_reload_current());
         for (auto step = 0; step < 6; ++step) {
             guard->set_moves(100);
             guard->move();
@@ -470,6 +472,20 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
         REQUIRE(data["cover_reloaded"].get<bool>());
         CHECK(guard->primary_weapon().ammo_remaining() == 30);
+        // Once both contact memories expire, the owned controller still needs
+        // to reload an empty gun instead of walking its patrol indefinitely.
+        REQUIRE(guard->primary_weapon().ammo_consume(30, guard->bub_pos()) == 30);
+        auto idle_magazine = item::spawn("stanag30");
+        idle_magazine->ammo_set(itype_id("223"), 30);
+        guard->i_add(std::move(idle_magazine));
+        const auto idle_reload_position = guard->abs_pos();
+        set_time(calendar::turn + 31_turns);
+        guard->set_moves(100);
+        guard->move();
+        CHECK(guard->get_moves() < 100);
+        CHECK(guard->abs_pos() == idle_reload_position);
+        CHECK(guard->primary_weapon().ammo_remaining() == 30);
+        probe("npc_cover_reload_idle");
         probe("npc_cover_reload_restore_wall");
         sounds::reset_sounds();
         player.set_all_parts_hp_to_max();

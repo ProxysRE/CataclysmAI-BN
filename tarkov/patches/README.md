@@ -55,3 +55,10 @@ requires actual cover relative to the supplied observation and no currently
 visible selected target; inventory and move costs remain native. Lua owns
 the persistent approach and its budgets. This is not multi-threat safety
 or protection from bullet penetration. Native results are in VERIFICATION.md.
+
+
+0013's shared read-only cover evaluator also exposes reload_cover_status
+for a single committed point. Basic reload_without_visible_target is used
+only by the controller's no-fresh-contact branch after hazard handling;
+it does not guarantee absence of every threat. Recruits gain basic weapon
+maintenance but do not gain trained cover-approach selection.

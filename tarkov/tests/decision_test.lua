@@ -16,6 +16,7 @@ local target = { get_pos_ms = function() return p end,
 local origin = { x = 1, y = 2, z = 0 }
 local actor = {
   get_value = function() return "" end,
+  reload_without_visible_target = function() return false end,
   can_reload_empty_gun = function() return false end,
   choose_reload_cover = function() return nil end,
   choose_area_entry = function(_, low) return { x = low.x + 2, y = low.y + 2, z = low.z } end,
@@ -213,3 +214,15 @@ assert(ok and reason == "reloaded" and executed == 1 and member.reload.goal == n
 assert(member.perception.contact.position.x == 6 and member.decisions.action == "reload")
 assert(saved_deadline == 608)
 print("PASS controller reload priority and guarded reload after target becomes hidden")
+
+-- Fresh gunfire prevents no-contact maintenance even with a stale hidden cache.
+member = { loadout = "rifle_field_v1", patrol = { sequence = 2, index = 1, route = {} } }
+visible = false; packet = "raid|700|14|18|0|combat"
+local maintenance_calls = 0
+actor.reload_without_visible_target = function() maintenance_calls = maintenance_calls + 1; moves = moves - 250; return true end
+ok, reason = decision.step_actor(member, ctx, actor, map, 700)
+assert(ok and reason == "sound_searching" and maintenance_calls == 0)
+ok, reason = decision.step_actor(member, ctx, actor, map, 720)
+assert(ok and reason == "idle_reloaded" and maintenance_calls == 1)
+assert(member.decisions.action == "reload" and member.perception.contact == nil and member.hearing.contact == nil)
+print("PASS fresh sound takes priority; reload resumes after contact expiry without vanilla fallback")

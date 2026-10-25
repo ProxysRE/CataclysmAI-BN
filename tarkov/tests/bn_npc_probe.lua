@@ -481,7 +481,14 @@ elseif test_data.stage:match("^npc_cover_reload_") then
     assert(selected and actor:choose_reload_cover(observed, selected))
     test_data.cover_selected = { x = selected.x, y = selected.y, z = selected.z }
     assert(not actor:reload_under_cover(observed), "Cannot reload under cover while still exposed")
+    assert(not actor:reload_without_visible_target(), "Idle reload must reject a visible selected target")
     test_data.cover_reloaded = false
+  elseif test_data.stage == "npc_cover_reload_idle" then
+    assert(member.reload.status == "idle_reloaded" and member.reload.goal == nil)
+    assert(member.perception.status == "none" and member.perception.contact == nil and member.perception.observed)
+    assert(member.hearing.contact == nil)
+    assert(member.decisions.action == "reload" and member.decisions.reason == "idle_reloaded")
+    assert(actor:get_value("trkv_reload_result") == "idle_reloaded")
   elseif test_data.stage == "npc_cover_reload_restore_wall" then
     assert(map:set_ter_at(wall, TerId.new("t_floor"):int_id()))
   elseif test_data.stage == "npc_cover_reload_started" or test_data.stage == "npc_cover_reload_restored" then

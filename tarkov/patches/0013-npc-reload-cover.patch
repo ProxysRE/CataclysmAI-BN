@@ -1,7 +1,7 @@
 diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
 --- a/src/catalua_bindings_creature.cpp
 +++ b/src/catalua_bindings_creature.cpp
-@@ -1597,2 +1597,110 @@
+@@ -1597,2 +1597,165 @@
 +        DOC( "Whether the empty wielded gun can be reloaded from actual inventory." );
 +        luna::set_fx( ut, "can_reload_empty_gun", []( UT_CLASS & npchar ) -> bool {
 +            return !npchar.is_hallucination() && !npchar.in_vehicle &&
@@ -10,49 +10,61 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +                   npchar.can_reload_current();
 +        } );
 +
-+        DOC( "Choose or validate short terrain cover for reloading an empty gun. New plans require the current visible target; committed plans use only the supplied observed position. Does not move or reload." );
-+        luna::set_fx( ut, "choose_reload_cover", []( UT_CLASS & npchar, const tripoint_abs_ms & observed,
-+        sol::optional<tripoint_abs_ms> committed ) -> std::optional<tripoint_abs_ms> {
-+            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ||
-+                !npchar.can_reload_current() || npchar.in_vehicle ||
-+                npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
-+                return std::nullopt;
++        const auto evaluate_reload_cover = []( UT_CLASS & npchar, const tripoint_abs_ms & observed,
++        sol::optional<tripoint_abs_ms> committed, std::string &why ) -> std::optional<tripoint_abs_ms> {
++            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ) {
++                why = "weapon_not_empty"; return std::nullopt;
++            }
++            if( !npchar.can_reload_current() ) {
++                why = "no_ammunition"; return std::nullopt;
++            }
++            if( npchar.in_vehicle || npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++                why = "disabled"; return std::nullopt;
 +            }
 +            const Creature *target = npchar.current_target();
 +            if( !committed && ( !target || !npchar.sees( *target ) || target->abs_pos() != observed ) ) {
-+                return std::nullopt;
++                why = "no_visible_target"; return std::nullopt;
 +            }
 +            auto &here = get_map();
 +            const auto origin = npchar.bub_pos();
 +            const auto foe = abs_to_bub( observed );
 +            if( foe.z() != origin.z() || !here.inbounds( foe ) ||
 +                ( !committed && ( rl_dist( origin, foe ) < 4 || rl_dist( origin, foe ) > 12 ) ) ) {
-+                return std::nullopt;
++                why = "invalid_threat_range"; return std::nullopt;
 +            }
 +            const auto avoid = npchar.get_legacy_path_avoid();
 +            const auto score = [&]( const tripoint_bub_ms &candidate ) -> std::optional<int> {
-+                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ||
-+                    !here.passable( candidate ) || here.dangerous_field_at( candidate ) ||
-+                    rl_dist( candidate, foe ) < 4 || here.sees( foe, candidate, 60 ) ||
-+                    here.sees( candidate, foe, 60 ) ||
-+                    ( candidate != origin && g->critter_at( candidate ) != nullptr ) ) {
-+                    return std::nullopt;
++                if( !here.inbounds( candidate ) || candidate.z() != origin.z() ) {
++                    why = "invalid_cover_position"; return std::nullopt;
++                }
++                if( !here.passable( candidate ) || here.dangerous_field_at( candidate ) ) {
++                    why = "blocked_or_dangerous_cover"; return std::nullopt;
++                }
++                if( rl_dist( candidate, foe ) < 4 ) {
++                    why = "cover_too_close"; return std::nullopt;
++                }
++                if( here.sees( foe, candidate, 60 ) || here.sees( candidate, foe, 60 ) ) {
++                    why = "exposed_cover"; return std::nullopt;
++                }
++                if( candidate != origin && g->critter_at( candidate ) != nullptr ) {
++                    why = "occupied_cover"; return std::nullopt;
 +                }
 +                auto route = here.route( origin, candidate, npchar.get_legacy_pathfinding_settings( true ), avoid );
 +                if( candidate != origin && route.empty() ) {
-+                    return std::nullopt;
++                    why = "no_route"; return std::nullopt;
 +                }
 +                for( const auto &p : route ) {
 +                    if( p.z() != origin.z() || here.dangerous_field_at( p ) ) {
-+                        return std::nullopt;
++                        why = "unsafe_route"; return std::nullopt;
 +                    }
 +                }
 +                if( !route.empty() && route.front() == origin ) {
 +                    route.erase( route.begin() );
 +                }
 +                if( route.size() > 3 ) {
-+                    return std::nullopt;
++                    why = "route_too_long"; return std::nullopt;
 +                }
++                why = "valid";
 +                return 100 - 10 * static_cast<int>( route.size() );
 +            };
 +            if( committed ) {
@@ -71,6 +83,49 @@ diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.c
 +                }
 +            }
 +            return best;
++        };
++
++        DOC( "Choose or validate short reload cover without moving or reading a hidden target position." );
++        luna::set_fx( ut, "choose_reload_cover", [evaluate_reload_cover]( UT_CLASS & npchar,
++        const tripoint_abs_ms &observed, sol::optional<tripoint_abs_ms> committed ) -> std::optional<tripoint_abs_ms> {
++            std::string why;
++            return evaluate_reload_cover( npchar, observed, committed, why );
++        } );
++        DOC( "Explain validation of one committed reload-cover point without side effects." );
++        luna::set_fx( ut, "reload_cover_status", [evaluate_reload_cover]( UT_CLASS & npchar,
++        const tripoint_abs_ms &observed, const tripoint_abs_ms &committed ) -> std::string {
++            std::string why;
++            evaluate_reload_cover( npchar, observed, sol::optional<tripoint_abs_ms>( committed ), why );
++            return why;
++        } );
++
++        DOC( "Reload an empty gun from actual inventory without a currently visible selected target. Caller must have no fresh visual/sound contact and execute hazard avoidance first. Not a cover or all-threat safety guarantee." );
++        luna::set_fx( ut, "reload_without_visible_target", []( UT_CLASS & npchar ) -> bool {
++            const auto refuse = [&]( const std::string &reason ) {
++                npchar.set_value( "trkv_reload_result", reason );
++                return false;
++            };
++            const Creature *target = npchar.current_target();
++            if( target && npchar.sees( *target ) ) {
++                return refuse( "visible_target" );
++            }
++            if( get_map().dangerous_field_at( npchar.bub_pos() ) ) {
++                return refuse( "dangerous_field" );
++            }
++            if( npchar.is_hallucination() || npchar.in_vehicle || npchar.has_effect( efftype_id( "npc_run_away" ) ) ) {
++                return refuse( "disabled" );
++            }
++            if( !npchar.primary_weapon().is_gun() || npchar.primary_weapon().ammo_sufficient() ) {
++                return refuse( "weapon_not_empty" );
++            }
++            if( !npchar.can_reload_current() ) {
++                return refuse( "no_ammunition" );
++            }
++            const int before = npchar.get_moves();
++            npchar.do_reload( npchar.primary_weapon() );
++            const bool spent_moves = npchar.get_moves() < before;
++            npchar.set_value( "trkv_reload_result", spent_moves ? "idle_reloaded" : "no_action" );
++            return spent_moves;
 +        } );
 +
 +        DOC( "Reload the empty wielded gun using BN costs and inventory, only outside terrain LOS from the observed threat and with no currently visible selected target. Returns whether moves were spent." );

@@ -24,7 +24,13 @@ function reload.step(state, ctx, memory, now, api)
   local contact = memory.contact
   if memory.sequence ~= ctx.sequence or memory.dimension ~= ctx.dimension or not contact or
       now < contact.seen_at or now >= contact.expires_at then
-    state.goal, state.status = nil, "no_memory"; return false, state.status
+    state.goal, state.status = nil, "no_memory"
+    if memory.sequence == ctx.sequence and memory.dimension == ctx.dimension and
+        memory.status == "none" and not contact and api.idle_reload and api.idle_reload() then
+      state.status, state.failure_reason = "idle_reloaded", nil
+      return true, state.status
+    end
+    return false, state.status
   end
   local goal = state.goal
   if not goal then
@@ -37,6 +43,7 @@ function reload.step(state, ctx, memory, now, api)
       end
       return false, "no_visible_threat"
     end
+    if api.allow_cover == false then return false, "cover_disabled" end
     if not api.ready() then return false, "not_needed" end
     if now < (state.cooldown_until or 0) then return false, "cooldown" end
     state.cooldown_until = now + 12
@@ -50,6 +57,7 @@ function reload.step(state, ctx, memory, now, api)
     state.goal, state.status = nil, "cancelled"; return false, state.status
   end
   if not api.validate(contact.position, goal.position) then
+    state.failure_reason = api.cover_failure and api.cover_failure(contact.position, goal.position) or "unknown"
     state.goal, state.status = nil, "invalid_cover"; return false, state.status
   end
   if api.at(goal.position) then
@@ -73,16 +81,22 @@ function reload.step(state, ctx, memory, now, api)
 end
 function reload.step_actor(member, ctx, actor, map, now)
   local preset = member.loadout and loadouts.describe(member.loadout)
-  if not preset or preset.profile ~= "rifle_trained_v1" then
+  if not preset or (preset.profile ~= "rifle_trained_v1" and preset.profile ~= "rifle_recruit_v1") then
     if member.reload then return reload.cancel(member.reload, "disabled") end
     return false, "disabled"
   end
   member.reload = member.reload or {}
   local function absolute(p) return TripointAbsMs.new(p.x, p.y, p.z) end
   return reload.step(member.reload, ctx, member.perception, now, {
+    allow_cover = preset.profile == "rifle_trained_v1",
     ready = function() return actor:can_reload_empty_gun() end,
+    idle_reload = function()
+      if member.hearing and member.hearing.contact then return false end
+      return actor:reload_without_visible_target()
+    end,
     choose = function(p) return actor:choose_reload_cover(absolute(p)) end,
     validate = function(p, goal) return actor:choose_reload_cover(absolute(p), absolute(goal)) ~= nil end,
+    cover_failure = function(p, goal) return actor:reload_cover_status(absolute(p), absolute(goal)) end,
     at = function(p) return actor:get_pos_ms() == map:abs_to_bub(absolute(p)) end,
     position = function() return copy(actor:abs_pos()) end,
     moves = function() return actor:get_moves() end,
