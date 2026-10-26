@@ -27,7 +27,69 @@ local function record_hostile_group(dead_id)
   assert(state.encounter == "squad" and state.encounter_deployed and #gapi.get_all_npcs() == (dead_id and 2 or 3))
 end
 
-if test_data.stage == "npc_follower_enter" then
+if test_data.stage:match("^npc_pair_") then
+  if test_data.stage == "npc_pair_enter" then
+    assert(api.at_home() and game.mod_runtime.trkv_raid_core.depart("empty"))
+    root, state = game.mod_storage.trkv_raid_core, game.mod_storage.trkv_raid_core.raid
+    assert(api.at_raid() and #gapi.get_all_npcs() == 0)
+    local definitions = {
+      {template = "trkv_combat_field_tester", loadout = "rifle_field_v1", x = 402, y = 392},
+      {template = "trkv_combat_tester", loadout = "rifle_civilian_v1", x = 405, y = 391},
+    }
+    test_data.pair_ids = {}
+    for i, spec in ipairs(definitions) do
+      local actor = assert(gapi.spawn_npc_at(spec.template, TripointAbsMs.new(spec.x, spec.y, 0)))
+      local id = actor:getID():get_value()
+      local member = assert(participants.register(root.participants, state.sequence, id, "hostile_test", "natural_pair", {
+        {x = spec.x, y = spec.y, z = 0}, {x = spec.x, y = spec.y + 2, z = 0},
+      }))
+      member.loadout = spec.loadout
+      actor:set_value("trkv_loadout", spec.loadout)
+      test_data.pair_ids[i] = id
+      assert(member.combat == nil and member.reload == nil and member.cover == nil)
+    end
+    assert(test_data.pair_ids[1] < test_data.pair_ids[2])
+    test_data.pair_cover_actions, test_data.pair_arrived = 0, false
+  else
+    local ctx = context()
+    local shooter = assert(participants.find(root.participants, ctx, test_data.pair_ids[1]))
+    local mover = assert(participants.find(root.participants, ctx, test_data.pair_ids[2]))
+    if test_data.stage == "npc_pair_mover_started" then
+      local goal = assert(mover.combat.goal)
+      assert(goal.kind == "standoff" and goal.attempts == 1 and goal.stalled == 0)
+      assert(mover.decisions.action == "maneuver" and mover.perception.status == "visible")
+      test_data.pair_goal = {x = goal.position.x, y = goal.position.y, z = goal.position.z}
+      test_data.pair_deadline = goal.deadline
+      test_data.pair_seen_at = mover.perception.contact.seen_at
+    elseif test_data.stage == "npc_pair_cover" then
+      assert(shooter.cover and shooter.cover.buddy == mover.id)
+      assert(shooter.decisions.action == "cover" and shooter.combat.goal == nil)
+      assert(shooter.perception.status == "visible")
+      assert(shooter.cover.action == "cover_aim" or shooter.cover.action == "cover_fire")
+      test_data.pair_cover_action = shooter.cover.action
+      test_data.pair_cover_actions = test_data.pair_cover_actions + 1
+    elseif test_data.stage == "npc_pair_restored" then
+      local goal = assert(mover.combat.goal)
+      assert(goal.attempts == 1 and goal.deadline == test_data.pair_deadline)
+      assert(goal.position.x == test_data.pair_goal.x and goal.position.y == test_data.pair_goal.y and goal.position.z == test_data.pair_goal.z)
+      assert(mover.perception.contact.seen_at == test_data.pair_seen_at)
+      assert(shooter.cover and shooter.cover.buddy == mover.id and shooter.decisions.action == "cover")
+    elseif test_data.stage == "npc_pair_mover_progress" then
+      if mover.combat.status == "arrived" then
+        assert(mover.combat.goal == nil)
+        test_data.pair_arrived = true
+      else
+        local goal = assert(mover.combat.goal, "Natural mover lost its plan: " .. tostring(mover.combat.status))
+        assert(mover.decisions.action == "maneuver" and goal.attempts <= 4)
+        assert(goal.deadline == test_data.pair_deadline and goal.position.x == test_data.pair_goal.x and goal.position.y == test_data.pair_goal.y)
+      end
+    elseif test_data.stage == "npc_pair_finished" then
+      assert(test_data.pair_arrived and test_data.pair_cover_actions >= 1)
+      assert(mover.combat.goal == nil and mover.combat.status == "arrived")
+      assert(shooter.cover == nil and shooter.decisions.action ~= "cover")
+    else error("Unknown natural pair stage") end
+  end
+elseif test_data.stage == "npc_follower_enter" then
   assert(api.at_home() and state.phase == "home")
   assert(game.mod_runtime.trkv_raid_core.depart("empty"))
   assert(api.at_raid() and state.phase == "active" and state.encounter == "empty")

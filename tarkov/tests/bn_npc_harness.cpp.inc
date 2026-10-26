@@ -1563,4 +1563,100 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE(g->find_npc(follower_id) != nullptr);
     g->remove_npc_follower(follower_id);
 
+    // A separate fresh raid exercises two shipped profiles. Only placement,
+    // loadout and membership are arranged; no combat/reload goal is seeded.
+    probe("npc_pair_enter");
+    const sol::table pair_ids = data["pair_ids"];
+    const auto pair_shooter_id = character_id(pair_ids[1].get<int>());
+    const auto pair_mover_id = character_id(pair_ids[2].get<int>());
+    auto* pair_shooter = g->find_npc(pair_shooter_id);
+    auto* pair_mover = g->find_npc(pair_mover_id);
+    REQUIRE(pair_shooter != nullptr);
+    REQUIRE(pair_mover != nullptr);
+    REQUIRE(pair_shooter->abs_pos() == tripoint_abs_ms(402, 392, 0));
+    REQUIRE(pair_mover->abs_pos() == tripoint_abs_ms(405, 391, 0));
+    REQUIRE(pair_shooter->myclass == npc_class_id("TRKV_COMBAT_FIELD"));
+    REQUIRE(pair_mover->myclass == npc_class_id("TRKV_COMBAT_TEST"));
+    REQUIRE(pair_shooter->primary_weapon().typeId() == itype_id("m4a1"));
+    REQUIRE(pair_mover->primary_weapon().typeId() == itype_id("ar15"));
+    REQUIRE(pair_shooter->primary_weapon().ammo_remaining() == 30);
+    REQUIRE(pair_mover->primary_weapon().ammo_remaining() == 17);
+    REQUIRE(pair_shooter->get_skill_level(skill_id("rifle")) == 6);
+    REQUIRE(pair_mover->get_skill_level(skill_id("rifle")) == 6);
+    get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+    get_avatar().set_mutation(trait_id("DEBUG_NODMG"));
+    const auto pair_damage_guard = on_out_of_scope([&]() {
+        get_avatar().unset_mutation(trait_id("DEBUG_NODMG"));
+    });
+    pair_shooter->recalc_sight_limits();
+    pair_mover->recalc_sight_limits();
+    set_time(calendar::turn);
+    REQUIRE(pair_shooter->sees(get_avatar()));
+    REQUIRE(pair_mover->sees(get_avatar()));
+    REQUIRE(pair_shooter->sees(*pair_mover));
+    REQUIRE(pair_shooter->attitude_to(*pair_mover) != Attitude::A_HOSTILE);
+    const auto pair_mover_origin = pair_mover->abs_pos();
+    const auto pair_shooter_origin = pair_shooter->abs_pos();
+    pair_mover->set_moves(100);
+    pair_mover->move();
+    REQUIRE(pair_mover->get_moves() < 100);
+    REQUIRE(pair_mover->abs_pos() != pair_mover_origin);
+    probe("npc_pair_mover_started");
+    const auto run_pair_cover = [&]() {
+        const auto ammo = pair_shooter->primary_weapon().ammo_remaining();
+        const auto path = pair_shooter->path;
+        pair_shooter->set_moves(100);
+        pair_shooter->move();
+        REQUIRE(pair_shooter->get_moves() < 100);
+        CHECK(pair_shooter->abs_pos() == pair_shooter_origin);
+        CHECK(pair_shooter->path == path);
+        CHECK(pair_shooter->primary_weapon().ammo_remaining() <= ammo);
+        probe("npc_pair_cover");
+        if (data["pair_cover_action"].get<std::string>() == "cover_fire") {
+            CHECK(pair_shooter->primary_weapon().ammo_remaining() < ammo);
+        }
+    };
+    run_pair_cover();
+    const auto saved_pair_ammo = pair_shooter->primary_weapon().ammo_remaining();
+    const auto saved_mover_ammo = pair_mover->primary_weapon().ammo_remaining();
+    const auto saved_mover_position = pair_mover->abs_pos();
+    REQUIRE(g->save(false));
+    REQUIRE(g->load(saved_character));
+    cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+    pair_shooter = g->find_npc(pair_shooter_id);
+    pair_mover = g->find_npc(pair_mover_id);
+    REQUIRE(pair_shooter != nullptr);
+    REQUIRE(pair_mover != nullptr);
+    CHECK(pair_shooter->abs_pos() == pair_shooter_origin);
+    CHECK(pair_mover->abs_pos() == saved_mover_position);
+    CHECK(pair_shooter->primary_weapon().ammo_remaining() == saved_pair_ammo);
+    CHECK(pair_mover->primary_weapon().ammo_remaining() == saved_mover_ammo);
+    probe("npc_pair_restored");
+    const sol::table pair_goal = data["pair_goal"];
+    const auto pair_destination = tripoint_abs_ms(pair_goal["x"].get<int>(), pair_goal["y"].get<int>(), pair_goal["z"].get<int>());
+    for (auto step = 0; step < 6; ++step) {
+        set_time(calendar::turn + 1_turns);
+        const auto mover_before = pair_mover->abs_pos();
+        pair_mover->set_moves(100);
+        pair_mover->move();
+        REQUIRE(pair_mover->get_moves() < 100);
+        probe("npc_pair_mover_progress");
+        if (data["pair_arrived"].get<bool>()) {
+            // Arrival validation itself is free; ordinary combat may legally
+            // act afterward. Confirm where the actor began that decision.
+            CHECK(mover_before == pair_destination);
+            break;
+        }
+        CHECK(pair_mover->primary_weapon().ammo_remaining() == saved_mover_ammo);
+        run_pair_cover();
+    }
+    REQUIRE(data["pair_arrived"].get<bool>());
+    pair_shooter->set_moves(100);
+    pair_shooter->move();
+    REQUIRE(pair_shooter->get_moves() < 100);
+    probe("npc_pair_finished");
+    probe("npc_extract");
+    CHECK(g->find_npc(pair_shooter_id) == nullptr);
+    CHECK(g->find_npc(pair_mover_id) == nullptr);
+
 }
