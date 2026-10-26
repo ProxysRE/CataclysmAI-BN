@@ -36,8 +36,19 @@ if test_data.stage:match("^npc_pair_") then
       {template = "trkv_combat_field_tester", loadout = "rifle_field_v1", x = 402, y = 392},
       {template = "trkv_combat_tester", loadout = "rifle_civilian_v1", x = 404, y = 390},
     }
+    local reloading = test_data.pair_mode == "reload" or test_data.pair_mode == "reload_reverse"
+    if reloading then
+      local map = gapi.get_map()
+      for x = 400, 401 do
+        assert(map:set_ter_at(map:abs_to_bub(TripointAbsMs.new(x, 390, 0)), TerId.new("t_wall"):int_id()))
+      end
+      definitions[1].x, definitions[1].y = 405, 392
+      definitions[2] = {template = "trkv_combat_field_tester", loadout = "rifle_field_v1", x = 402, y = 392}
+    end
     test_data.pair_ids = {}
-    for i, spec in ipairs(definitions) do
+    local order = test_data.pair_mode == "reload_reverse" and {2, 1} or {1, 2}
+    for _, i in ipairs(order) do
+      local spec = definitions[i]
       local actor = assert(gapi.spawn_npc_at(spec.template, TripointAbsMs.new(spec.x, spec.y, 0)))
       local id = actor:getID():get_value()
       local member = assert(participants.register(root.participants, state.sequence, id, "hostile_test", "natural_pair", {
@@ -48,44 +59,56 @@ if test_data.stage:match("^npc_pair_") then
       test_data.pair_ids[i] = id
       assert(member.combat == nil and member.reload == nil and member.cover == nil)
     end
-    assert(test_data.pair_ids[1] < test_data.pair_ids[2])
+    assert((test_data.pair_ids[1] < test_data.pair_ids[2]) == (test_data.pair_mode ~= "reload_reverse"))
     test_data.pair_cover_actions, test_data.pair_arrived = 0, false
   else
     local ctx = context()
     local shooter = assert(participants.find(root.participants, ctx, test_data.pair_ids[1]))
     local mover = assert(participants.find(root.participants, ctx, test_data.pair_ids[2]))
+    local reloading = test_data.pair_mode == "reload" or test_data.pair_mode == "reload_reverse"
+    local plan = reloading and mover.reload or mover.combat
+    local finished = reloading and "reloaded" or "arrived"
     if test_data.stage == "npc_pair_mover_started" then
-      local goal = assert(mover.combat.goal)
-      assert(goal.kind == "standoff" and goal.attempts == 1 and goal.stalled == 0)
-      assert(mover.decisions.action == "maneuver" and mover.perception.status == "visible")
+      local goal = assert(plan and plan.goal, "No natural plan: " .. tostring(plan and plan.status))
+      assert((reloading or goal.kind == "standoff") and goal.attempts == 1 and goal.stalled == 0)
+      assert(mover.decisions.action == (reloading and "reload" or "maneuver") and mover.perception.status == "visible")
       test_data.pair_goal = {x = goal.position.x, y = goal.position.y, z = goal.position.z}
       test_data.pair_deadline = goal.deadline
+      test_data.pair_cooldown = plan.cooldown_until
       test_data.pair_seen_at = mover.perception.contact.seen_at
     elseif test_data.stage == "npc_pair_cover" then
       assert(shooter.cover and shooter.cover.buddy == mover.id)
-      assert(shooter.decisions.action == "cover" and shooter.combat.goal == nil)
+      assert(shooter.cover.kind == (reloading and "reload" or "combat"))
+      assert(shooter.decisions.action == "cover" and (not shooter.combat or shooter.combat.goal == nil))
       assert(shooter.perception.status == "visible")
       assert(shooter.cover.action == "cover_aim" or shooter.cover.action == "cover_fire")
       test_data.pair_cover_action = shooter.cover.action
       test_data.pair_cover_actions = test_data.pair_cover_actions + 1
     elseif test_data.stage == "npc_pair_restored" then
-      local goal = assert(mover.combat.goal)
+      local goal = assert(plan.goal)
       assert(goal.attempts == 1 and goal.deadline == test_data.pair_deadline)
       assert(goal.position.x == test_data.pair_goal.x and goal.position.y == test_data.pair_goal.y and goal.position.z == test_data.pair_goal.z)
       assert(mover.perception.contact.seen_at == test_data.pair_seen_at)
       assert(shooter.cover and shooter.cover.buddy == mover.id and shooter.decisions.action == "cover")
     elseif test_data.stage == "npc_pair_mover_progress" then
-      if mover.combat.status == "arrived" then
-        assert(mover.combat.goal == nil)
+      if plan.status == finished then
+        assert(plan.goal == nil)
         test_data.pair_arrived = true
       else
-        local goal = assert(mover.combat.goal, "Natural mover lost its plan: " .. tostring(mover.combat.status))
-        assert(mover.decisions.action == "maneuver" and goal.attempts <= 4)
+        local goal = assert(plan.goal, "Natural mover lost its plan: " .. tostring(plan.status))
+        assert(mover.decisions.action == (reloading and "reload" or "maneuver") and goal.attempts <= 4)
         assert(goal.deadline == test_data.pair_deadline and goal.position.x == test_data.pair_goal.x and goal.position.y == test_data.pair_goal.y)
       end
+    elseif test_data.stage == "npc_pair_interrupted" then
+      assert(plan.goal == nil and plan.status == "interrupted" and plan.cooldown_until == test_data.pair_cooldown)
+      assert(mover.decisions.action == "escape" and mover.decisions.reason == "escape_field")
+    elseif test_data.stage == "npc_pair_stopped" then
+      assert(shooter.cover == nil and shooter.decisions.action ~= "cover")
+      assert(shooter.decisions.refusals.cover == test_data.pair_stop_reason,
+        "Unexpected support refusal: " .. tostring(shooter.decisions.refusals.cover))
     elseif test_data.stage == "npc_pair_finished" then
       assert(test_data.pair_arrived and test_data.pair_cover_actions >= 1)
-      assert(mover.combat.goal == nil and mover.combat.status == "arrived")
+      assert(plan.goal == nil and plan.status == finished)
       assert(shooter.cover == nil and shooter.decisions.action ~= "cover")
     else error("Unknown natural pair stage") end
   end

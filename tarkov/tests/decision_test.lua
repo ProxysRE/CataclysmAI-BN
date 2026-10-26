@@ -174,10 +174,10 @@ end
 ok, reason = decision.step_actor(member, ctx, actor, map, 500)
 assert(ok and reason == "firing_lane" and member.combat.goal.kind == "firing_lane")
 assert(member.decisions.action == "maneuver" and lane_calls == 1)
-local lane_deadline, lane_attempts = member.combat.goal.deadline, member.combat.goal.attempts
+local lane_cooldown = member.combat.cooldown_until
 actor.avoid_immediate_danger = function() moves = moves - 100; return "field" end
 assert(decision.step_actor(member, ctx, actor, map, 501))
-assert(member.combat.goal.deadline == lane_deadline and member.combat.goal.attempts == lane_attempts)
+assert(member.combat.goal == nil and member.combat.status == "interrupted" and member.combat.cooldown_until == lane_cooldown)
 actor.avoid_immediate_danger = function() return "" end
 visible = false; p.x = 99
 ok, reason = decision.step_actor(member, ctx, actor, map, 502)
@@ -206,11 +206,12 @@ end
 ok, reason = decision.step_actor(member, ctx, actor, map, 600)
 assert(ok and reason == "reload_cover" and member.decisions.action == "reload")
 local saved_deadline = member.reload.goal.deadline
+local reload_cooldown = member.reload.cooldown_until
 visible = false; p.x = 99
 actor.avoid_immediate_danger = function() moves = moves - 100; return "explosive" end
 ok, reason = decision.step_actor(member, ctx, actor, map, 601)
-assert(ok and reason == "escape_explosive" and member.reload.goal.attempts == 1)
-assert(member.reload.goal.deadline == saved_deadline and executed == 0)
+assert(ok and reason == "escape_explosive" and member.reload.goal == nil)
+assert(member.reload.status == "interrupted" and member.reload.cooldown_until == reload_cooldown and executed == 0)
 actor.avoid_immediate_danger = function() return "" end
 ok, reason = decision.step_actor(member, ctx, actor, map, 602)
 assert(ok and reason == "reloaded" and executed == 1 and member.reload.goal == nil)
@@ -295,3 +296,22 @@ actor.reload_under_cover=function() moves=moves-350;return true end
 ok,reason=decision.step_actor(member,ctx,actor,map,902,support_roster)
 assert(ok and reason=="reloaded" and support_calls==1 and member.cover==nil)
 print("PASS support precedes optional maneuver and yields to hazards/own reload without competing movement plans")
+
+-- An emergency removes advertised movement goals immediately, without resetting
+-- their original cooldown or spending a second action after the escape.
+ctx.phase = "active"
+member = {patrol = {sequence = 2, route = {}},
+  combat = {goal = {deadline = 508}, cooldown_until = 512},
+  reload = {goal = {deadline = 508}, cooldown_until = 513, failure_reason = "old"},
+  cover = {buddy = 20}}
+visible = true; actor.current_target = function() return target end
+actor.avoid_immediate_danger = function() moves = moves - 100; return "field" end
+local before_escape = moves
+assert(decision.step_actor(member, ctx, actor, map, 500))
+assert(moves == before_escape - 100 and member.cover == nil)
+for _, name in ipairs({"combat", "reload"}) do
+  assert(member[name].goal == nil and member[name].status == "interrupted" and member[name].last_now == 500)
+end
+assert(member.combat.cooldown_until == 512 and member.reload.cooldown_until == 513)
+assert(member.reload.failure_reason == nil and member.decisions.action == "escape")
+print("PASS emergency stops advertised combat/reload goals, retains cooldown and owns exactly one action")

@@ -59,7 +59,17 @@ function decision.step_actor(member, context, actor, map, now, roster)
   member.hearing = member.hearing or {}
   hearing.update(member.hearing, context, now, actor:get_value("trkv_heard_noise"))
   local hazard = actor:avoid_immediate_danger()
-  if hazard ~= "" then return finish("escape", true, "escape_" .. hazard) end
+  if hazard ~= "" then
+    -- Escape invalidates movement intent immediately. Keep its cooldown so an
+    -- emergency does not rearm a new maneuver on the very next decision.
+    for _, name in ipairs({"combat", "reload"}) do
+      local plan = member[name]
+      if plan then
+        plan.goal, plan.status, plan.last_now, plan.failure_reason = nil, "interrupted", now, nil
+      end
+    end
+    return finish("escape", true, "escape_" .. hazard)
+  end
   local handled, reason = reload.step_actor(member, context, actor, map, now, roster)
   if handled then
     if member.combat then combat.cancel(member.combat, "reload_cover") end

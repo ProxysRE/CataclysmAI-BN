@@ -1563,6 +1563,28 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE(g->find_npc(follower_id) != nullptr);
     g->remove_npc_follower(follower_id);
 
+}
+
+static void run_tarkov_pair_probe(const std::string& mode) {
+    clear_all_state();
+    initialize_dimension_test_storage();
+    const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
+    disable_mapgen = false;
+    const auto cleanup = dimension_test_cleanup({
+        dimension_id("trkv_dev01_home"), dimension_id("trkv_dev01_raid")
+    });
+    auto& lua = DynamicDataLoader::get_instance().lua->lua;
+    auto data = lua.create_table();
+    lua.globals()["test_data"] = data;
+    data["stage"] = "home";
+    run_lua_test_script(lua, "trkv_integration_test.lua");
+    const auto probe = [&](const std::string& stage) {
+        data["stage"] = stage;
+        run_lua_test_script(lua, "trkv_npc_probe.lua");
+    };
+    const auto saved_character = save_t::from_save_id(get_avatar().get_save_id());
+    const bool reloading = mode == "reload" || mode == "reload_reverse";
+    data["pair_mode"] = mode;
     // A separate fresh raid exercises two shipped profiles. Only placement,
     // loadout and membership are arranged; no combat/reload goal is seeded.
     probe("npc_pair_enter");
@@ -1573,14 +1595,14 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     auto* pair_mover = g->find_npc(pair_mover_id);
     REQUIRE(pair_shooter != nullptr);
     REQUIRE(pair_mover != nullptr);
-    REQUIRE(pair_shooter->abs_pos() == tripoint_abs_ms(402, 392, 0));
-    REQUIRE(pair_mover->abs_pos() == tripoint_abs_ms(404, 390, 0));
+    REQUIRE(pair_shooter->abs_pos() == (reloading ? tripoint_abs_ms(405, 392, 0) : tripoint_abs_ms(402, 392, 0)));
+    REQUIRE(pair_mover->abs_pos() == (reloading ? tripoint_abs_ms(402, 392, 0) : tripoint_abs_ms(404, 390, 0)));
     REQUIRE(pair_shooter->myclass == npc_class_id("TRKV_COMBAT_FIELD"));
-    REQUIRE(pair_mover->myclass == npc_class_id("TRKV_COMBAT_TEST"));
+    REQUIRE(pair_mover->myclass == npc_class_id(reloading ? "TRKV_COMBAT_FIELD" : "TRKV_COMBAT_TEST"));
     REQUIRE(pair_shooter->primary_weapon().typeId() == itype_id("m4a1"));
-    REQUIRE(pair_mover->primary_weapon().typeId() == itype_id("ar15"));
+    REQUIRE(pair_mover->primary_weapon().typeId() == itype_id(reloading ? "m4a1" : "ar15"));
     REQUIRE(pair_shooter->primary_weapon().ammo_remaining() == 30);
-    REQUIRE(pair_mover->primary_weapon().ammo_remaining() == 17);
+    REQUIRE(pair_mover->primary_weapon().ammo_remaining() == (reloading ? 30 : 17));
     REQUIRE(pair_shooter->get_skill_level(skill_id("rifle")) == 6);
     REQUIRE(pair_mover->get_skill_level(skill_id("rifle")) == 6);
     get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
@@ -1588,6 +1610,11 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     const auto pair_damage_guard = on_out_of_scope([&]() {
         get_avatar().unset_mutation(trait_id("DEBUG_NODMG"));
     });
+    if (reloading) {
+        // Both rifles and spare magazines come from the shipped field preset.
+        REQUIRE(pair_mover->primary_weapon().ammo_consume(30, pair_mover->bub_pos()) == 30);
+        REQUIRE(pair_mover->can_reload_current());
+    }
     pair_shooter->recalc_sight_limits();
     pair_mover->recalc_sight_limits();
     set_time(calendar::turn);
@@ -1598,8 +1625,8 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     // Stay inside the native close-range gate with both square and circular
     // distance. The old (3,3) diagonal is range 4 with circular distance.
     const auto pair_range = rl_dist(pair_mover->bub_pos(), get_avatar().bub_pos());
-    REQUIRE(pair_range >= 2);
-    REQUIRE(pair_range <= 3);
+    REQUIRE(pair_range >= (reloading ? 4 : 2));
+    REQUIRE(pair_range <= (reloading ? 12 : 3));
     const auto pair_mover_origin = pair_mover->abs_pos();
     const auto pair_shooter_origin = pair_shooter->abs_pos();
     pair_mover->set_moves(100);
@@ -1622,6 +1649,62 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         }
     };
     run_pair_cover();
+    if (mode == "hazard") {
+        const auto fire_pos = pair_mover->bub_pos();
+        REQUIRE(g->m.add_field(fire_pos, fd_fire, 3, 0_turns, false));
+        const auto remove_fire = on_out_of_scope([&]() { g->m.remove_field(fire_pos, fd_fire); });
+        const auto ammo = pair_mover->primary_weapon().ammo_remaining();
+        pair_mover->set_moves(100);
+        pair_mover->move();
+        REQUIRE(pair_mover->get_moves() < 100);
+        CHECK(pair_mover->primary_weapon().ammo_remaining() == ammo);
+        probe("npc_pair_interrupted");
+        g->m.remove_field(fire_pos, fd_fire);
+        pair_shooter->set_moves(100);
+        pair_shooter->move();
+        REQUIRE(pair_shooter->get_moves() < 100);
+        data["pair_stop_reason"] = "no_local_peer";
+        probe("npc_pair_stopped");
+        return;
+    }
+    if (mode == "target_hidden" || mode == "buddy_hidden" || mode == "expired") {
+        if (mode == "target_hidden") {
+            get_avatar().set_mutation(trait_id("DEBUG_CLOAK"));
+            REQUIRE_FALSE(pair_shooter->sees(get_avatar()));
+            data["pair_stop_reason"] = "no_visible_contact";
+        } else if (mode == "buddy_hidden") {
+            pair_mover->set_mutation(trait_id("DEBUG_CLOAK"));
+            REQUIRE_FALSE(pair_shooter->sees(*pair_mover));
+            data["pair_stop_reason"] = "no_local_peer";
+        } else {
+            set_time(calendar::turn + 9_turns);
+            data["pair_stop_reason"] = "no_local_peer";
+        }
+        const auto restore_cloak = on_out_of_scope([&]() {
+            get_avatar().unset_mutation(trait_id("DEBUG_CLOAK"));
+            pair_mover->unset_mutation(trait_id("DEBUG_CLOAK"));
+        });
+        pair_shooter->set_moves(100);
+        pair_shooter->move();
+        REQUIRE(pair_shooter->get_moves() < 100);
+        probe("npc_pair_stopped");
+        if (mode != "expired") {
+            get_avatar().unset_mutation(trait_id("DEBUG_CLOAK"));
+            pair_mover->unset_mutation(trait_id("DEBUG_CLOAK"));
+            // Reacquisition can resume the still-valid original peer plan.
+            run_pair_cover();
+        }
+        return;
+    }
+    const auto mover_rounds = [&]() {
+        auto* fitted = pair_mover->primary_weapon().magazine_current();
+        int rounds = fitted ? fitted->ammo_remaining() : 0;
+        for (const auto* item : pair_mover->all_items(false)) {
+            if (item != fitted && item->typeId() == itype_id("stanag30")) { rounds += item->ammo_remaining(); }
+        }
+        return rounds;
+    };
+    if (reloading) { REQUIRE(mover_rounds() == 60); }
     const auto saved_pair_ammo = pair_shooter->primary_weapon().ammo_remaining();
     const auto saved_mover_ammo = pair_mover->primary_weapon().ammo_remaining();
     const auto saved_mover_position = pair_mover->abs_pos();
@@ -1656,6 +1739,10 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         run_pair_cover();
     }
     REQUIRE(data["pair_arrived"].get<bool>());
+    if (reloading) {
+        CHECK(pair_mover->primary_weapon().ammo_remaining() == 30);
+        CHECK(mover_rounds() == 60);
+    }
     pair_shooter->set_moves(100);
     pair_shooter->move();
     REQUIRE(pair_shooter->get_moves() < 100);
@@ -1663,5 +1750,32 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     probe("npc_extract");
     CHECK(g->find_npc(pair_shooter_id) == nullptr);
     CHECK(g->find_npc(pair_mover_id) == nullptr);
+}
 
+TEST_CASE("tarkov pair maneuver", "[tarkov_npc]") {
+    run_tarkov_pair_probe("maneuver");
+}
+
+TEST_CASE("tarkov pair target_hidden", "[tarkov_npc]") {
+    run_tarkov_pair_probe("target_hidden");
+}
+
+TEST_CASE("tarkov pair buddy_hidden", "[tarkov_npc]") {
+    run_tarkov_pair_probe("buddy_hidden");
+}
+
+TEST_CASE("tarkov pair expired", "[tarkov_npc]") {
+    run_tarkov_pair_probe("expired");
+}
+
+TEST_CASE("tarkov pair reload", "[tarkov_npc]") {
+    run_tarkov_pair_probe("reload");
+}
+
+TEST_CASE("tarkov pair reload_reverse", "[tarkov_npc]") {
+    run_tarkov_pair_probe("reload_reverse");
+}
+
+TEST_CASE("tarkov pair hazard", "[tarkov_npc]") {
+    run_tarkov_pair_probe("hazard");
 }

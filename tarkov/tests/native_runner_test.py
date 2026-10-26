@@ -48,6 +48,15 @@ class NativeGateTest(unittest.TestCase):
                 self.assertTrue(execute.call_args.kwargs["check"])
             self.assertFalse(report.exists())
 
+    def test_npc_probe_requires_every_independent_case(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            def incomplete(*args, **kwargs):
+                (root / "tarkov-npc.xml").write_text("<testsuites><testcase/></testsuites>")
+            with patch("run_npc_probe.subprocess.run", side_effect=incomplete):
+                with self.assertRaises(RuntimeError):
+                    run_npc(root, root / "test", root)
+
     def test_cold_restart_rejects_stale_or_missing_reports(self):
         with tempfile.TemporaryDirectory() as scratch:
             root = Path(scratch)
@@ -117,7 +126,7 @@ class NativeGateTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as scratch:
             root = Path(scratch)
             def success(*args, **kwargs):
-                (root / "tarkov-npc.xml").write_text("<testsuites><testcase/></testsuites>")
+                (root / "tarkov-npc.xml").write_text("<testsuites>" + "<testcase/>" * 8 + "</testsuites>")
             with patch.dict(os.environ, {}, clear=True):
                 with patch("run_npc_probe.subprocess.run", side_effect=success) as execute:
                     run_npc(root, root / "test", root)

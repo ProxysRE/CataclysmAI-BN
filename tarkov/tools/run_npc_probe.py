@@ -22,7 +22,7 @@ def run(bn: Path, executable: Path, output: Path) -> None:
     try:
         with log.open("w", encoding="utf-8") as stream:
             subprocess.run(command, cwd=bn, env=env, stdout=stream,
-                           stderr=subprocess.STDOUT, timeout=900, check=True)
+                           stderr=subprocess.STDOUT, timeout=1800, check=True)
     except subprocess.CalledProcessError:
         # The JUnit reporter writes assertions to XML, not stdout. Surface them
         # on Windows too, while retaining the original failed process status.
@@ -36,7 +36,9 @@ def run(bn: Path, executable: Path, output: Path) -> None:
         raise
     finally:
         print(log.read_text(encoding="utf-8", errors="replace")[-16000:], flush=True)
-    validate_report(report)
+    # Legacy lifecycle plus seven independent pair cases. Catch continues after
+    # a failed case, so one assertion cannot hide the other scenarios.
+    validate_report(report, expected_cases=8)
     print("PASS native NPC probe: " + str(report), flush=True)
 
 

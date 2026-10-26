@@ -12,10 +12,10 @@ from run_cold_restart import run as run_cold
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def validate_report(path: Path) -> None:
+def validate_report(path: Path, expected_cases: int = 1) -> None:
     document = ET.parse(path)
-    if len(document.findall(".//testcase")) != 1:
-        raise RuntimeError(f"Expected exactly one executed BN testcase: {path}")
+    if len(document.findall(".//testcase")) != expected_cases:
+        raise RuntimeError(f"Expected exactly {expected_cases} executed BN testcase(s): {path}")
     if any(document.findall(".//" + tag) for tag in ("failure", "error", "skipped")):
         raise RuntimeError(f"BN testcase failed or was skipped: {path}")
 
