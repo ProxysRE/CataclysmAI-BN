@@ -462,6 +462,26 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.contact == nil and heard.status == "none")
   assert(heard.search.status == "expired" and heard.search.goal.deadline == test_data.hearing_deadline)
   assert(heard.last_event == test_data.hearing_event)
+elseif test_data.stage:match("^npc_cover_fire_") then
+  local member = saved_actor()
+  if test_data.stage == "npc_cover_fire_setup" then
+    local buddy = assert(participants.register(root.participants, state.sequence, test_data.cover_fire_buddy_id,
+      member.side, member.squad, {}))
+    -- Seed the movement intent; the real cover executor/dispatch is exercised
+    -- below, not a complete natural two-actor maneuver.
+    local now = api.now()
+    buddy.combat = {schema = 1, sequence = state.sequence, dimension = api.raid_id, last_now = now,
+      goal = {position = {x = 405, y = 393, z = 0}, target = {x = 402, y = 388, z = 0},
+        started_at = now, deadline = now + 8, attempts = 1, stalled = 0}}
+    member.loadout, member.combat, member.reload = "rifle_field_v1", {}, {}
+  elseif test_data.stage == "npc_cover_fire_cleanup" then
+    root.participants.actors[string.format("%d", test_data.cover_fire_buddy_id)] = nil
+  else
+    assert(member.cover and member.cover.buddy == test_data.cover_fire_buddy_id)
+    assert(member.cover.action == "cover_aim" or member.cover.action == "cover_fire")
+    assert(member.decisions.action == "cover" and member.decisions.reason == member.cover.action)
+    assert(member.combat.goal == nil and member.perception.status == "visible")
+  end
 elseif test_data.stage:match("^npc_creature_visibility_") then
   local actor
   for _, candidate in ipairs(gapi.get_all_npcs()) do

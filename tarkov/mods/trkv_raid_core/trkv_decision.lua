@@ -6,6 +6,7 @@ local patrol = require("trkv_patrol")
 local combat = require("trkv_combat")
 local reload = require("trkv_reload")
 local squad = require("trkv_squad")
+local cover = require("trkv_cover")
 local decision = {}
 
 -- Only transitions are retained. No actor references, hidden coordinates or
@@ -37,6 +38,7 @@ local function record(member, context, now, action, handled, reason, refusals)
 end
 
 function decision.step_actor(member, context, actor, map, now, roster)
+  member.cover = nil
   local refusals = {}
   local function finish(action, handled, reason)
     return record(member, context, now, action, handled, reason, refusals)
@@ -64,6 +66,12 @@ function decision.step_actor(member, context, actor, map, now, roster)
     return finish("reload", handled, reason)
   end
   refusals.reload = reason
+  handled, reason = cover.step_actor(member, context, actor, now, roster)
+  if handled then
+    if member.combat then combat.cancel(member.combat, "covering_peer") end
+    return finish("cover", handled, reason)
+  end
+  refusals.cover = reason
   handled, reason = combat.step_actor(member, context, actor, map, now, roster)
   if handled then return finish("maneuver", handled, reason) end
   refusals.combat = reason

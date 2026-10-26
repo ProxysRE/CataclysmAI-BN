@@ -37,6 +37,8 @@ class PatchCheckoutTest(unittest.TestCase):
             ("0012-visible-npc-standoff-position.patch", {"src/catalua_bindings_creature.cpp": '"choose_standoff_position"'}),
             ("0013-npc-reload-cover.patch", {"src/catalua_bindings_creature.cpp": '"choose_reload_cover"'}),
             ("0014-creature-visibility-query.patch", {"src/catalua_bindings_creature.cpp": '"sees_creature"'}),
+            ("0015-controlled-cover-fire.patch", {"src/npc.h": "std::string cover_visible_target",
+             "src/npcmove.cpp": "std::string npc::cover_visible_target", "src/catalua_bindings_creature.cpp": "SET_FX_T( cover_visible_target"}),
         ):
             patch = (ROOT / "patches" / filename).read_bytes().replace(b"\r\n", b"\n")
             # Reconstruct original hunk contexts, including multi-file patches.

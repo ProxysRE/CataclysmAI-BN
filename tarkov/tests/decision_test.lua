@@ -7,6 +7,7 @@ package.loaded.trkv_loadouts = dofile("tarkov/mods/trkv_raid_core/trkv_loadouts.
 package.loaded.trkv_combat = dofile("tarkov/mods/trkv_raid_core/trkv_combat.lua")
 package.loaded.trkv_reload = dofile("tarkov/mods/trkv_raid_core/trkv_reload.lua")
 package.loaded.trkv_squad = dofile("tarkov/mods/trkv_raid_core/trkv_squad.lua")
+package.loaded.trkv_cover = dofile("tarkov/mods/trkv_raid_core/trkv_cover.lua")
 local decision = dofile("tarkov/mods/trkv_raid_core/trkv_decision.lua")
 TripointAbsMs = { new = function(x, y, z) return { x = x, y = y, z = z } end }
 local map = { abs_to_bub = function(_, p) return p end }
@@ -264,3 +265,33 @@ ok, reason = decision.step_actor(member, ctx, actor, map, 810, roster)
 assert(ok and reason == "wait_no_route" and member.squad_memory.contact == nil)
 assert(member.squad_memory.observed and member.perception.contact == nil)
 print("PASS squad report search priority, emergency interruption, maintenance guard and post-expiry hidden fallback ownership")
+
+-- Support owns the turn before an optional maneuver, while emergency and
+-- the shooter's own reload still take precedence over support.
+member={id=10,side="usec",squad="alpha",loadout="rifle_field_v1",patrol={sequence=2,index=1,route={}},
+  combat={goal={position={x=4,y=0,z=0}}}}
+local moving={id=20,side="usec",squad="alpha",patrol={sequence=2},
+  combat={schema=1,sequence=2,dimension="raid",last_now=900,
+    goal={target={x=8,y=2,z=0},position={x=6,y=3,z=0},started_at=900,deadline=908,attempts=1,stalled=0}}}
+local support_buddy={getID=function() return {get_value=function() return 20 end} end,
+  get_pos_ms=function() return {x=2,y=0,z=0} end,is_dead=function() return false end}
+local support_roster={sequence=2,closed=false,actors={moving}}
+gapi.get_all_npcs=function() return {support_buddy} end
+visible,p.x,p.y,packet=true,8,2,""
+actor.sees_creature=function() return true end
+actor.can_reload_empty_gun=function() return false end
+actor.choose_standoff_position=function() error("Support must precede maneuver") end
+local support_calls=0
+actor.cover_visible_target=function() support_calls=support_calls+1;moves=moves-100;return "cover_fire" end
+ok,reason=decision.step_actor(member,ctx,actor,map,900,support_roster)
+assert(ok and reason=="cover_fire" and member.decisions.action=="cover" and member.combat.goal==nil)
+actor.avoid_immediate_danger=function() moves=moves-100;return "field" end
+ok,reason=decision.step_actor(member,ctx,actor,map,901,support_roster)
+assert(ok and reason=="escape_field" and support_calls==1 and member.cover==nil)
+actor.avoid_immediate_danger=function() return "" end
+actor.can_reload_empty_gun=function() return true end
+actor.choose_reload_cover=function() return origin end
+actor.reload_under_cover=function() moves=moves-350;return true end
+ok,reason=decision.step_actor(member,ctx,actor,map,902,support_roster)
+assert(ok and reason=="reloaded" and support_calls==1 and member.cover==nil)
+print("PASS support precedes optional maneuver and yields to hazards/own reload without competing movement plans")

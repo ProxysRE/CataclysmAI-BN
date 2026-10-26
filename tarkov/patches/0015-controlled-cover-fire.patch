@@ -1,0 +1,70 @@
+diff --git a/src/npc.h b/src/npc.h
+--- a/src/npc.h
++++ b/src/npc.h
+@@ -1070,2 +1070,3 @@
+         npc_action method_of_attack();
++        std::string cover_visible_target( const tripoint_abs_ms &observed );
+ 
+diff --git a/src/npcmove.cpp b/src/npcmove.cpp
+--- a/src/npcmove.cpp
++++ b/src/npcmove.cpp
+@@ -1681,2 +1681,52 @@
++std::string npc::cover_visible_target( const tripoint_abs_ms &observed )
++{
++    Creature *target = current_target();
++    if( !target || !sees( *target ) || target->abs_pos() != observed ||
++        is_hallucination() || in_vehicle || has_effect( effect_npc_run_away ) ||
++        !cbm_active.is_null() || !primary_weapon().is_gun() ) {
++        return "";
++    }
++    map &here = get_map();
++    const auto origin = bub_pos();
++    const auto tar = target->bub_pos();
++    const int distance = rl_dist( origin, tar );
++    auto mode = primary_weapon().gun_current_mode();
++    if( origin.z() != tar.z() || distance < 4 || distance > 12 ||
++        here.dangerous_field_at( origin ) || !mode ||
++        item_funcs::shots_remaining( *this, *mode ) < mode.qty ||
++        mode->gun_range( true ) < distance || !here.sees( origin, tar, 60 ) ) {
++        return "";
++    }
++    for( const auto &p : here.find_clear_path( origin, tar ) ) {
++        if( p == origin || p == tar ) {
++            continue;
++        }
++        const Creature *blocker = g->critter_at( p );
++        if( here.impassable( p ) || ( blocker && sees( *blocker ) &&
++            attitude_to( *blocker ) != Attitude::A_HOSTILE ) ) {
++            return "";
++        }
++    }
++    if( !wont_hit_friend( tar, *mode, false ) ) {
++        return "";
++    }
++    npc_action action;
++    std::string result;
++    if( confident_gun_mode_range( mode, ranged::recoil_total( *this ) ) >= distance ) {
++        action = npc_shoot;
++        result = "cover_fire";
++    } else if( confident_gun_mode_range( mode, ranged::get_most_accurate_sight( *this, *mode ) ) >= distance &&
++               ranged::aim_per_move( *this, *mode, recoil ) > 0 ) {
++        action = npc_aim;
++        result = "cover_aim";
++    } else {
++        return "";
++    }
++    // Do not call method_of_attack: it can throw, wield or activate items
++    // before returning an action. Only these two in-place executors are allowed.
++    const auto before = get_moves();
++    execute_action( action );
++    return get_moves() < before ? result : "";
++}
+ npc_action npc::method_of_attack()
+ {
+diff --git a/src/catalua_bindings_creature.cpp b/src/catalua_bindings_creature.cpp
+--- a/src/catalua_bindings_creature.cpp
++++ b/src/catalua_bindings_creature.cpp
+@@ -1638,2 +1638,3 @@
+         SET_FX_T( can_move_to, bool( const tripoint_bub_ms &, bool ) const );
++        SET_FX_T( cover_visible_target, std::string( const tripoint_abs_ms & ) );
+ 

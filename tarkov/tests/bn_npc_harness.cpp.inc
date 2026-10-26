@@ -430,6 +430,23 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         restored_blocker->setpos(abs_to_bub(tripoint_abs_ms(405, 394, 0)));
         guard->setpos(abs_to_bub(tripoint_abs_ms(402, 392, 0)));
         get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
+        data["cover_fire_buddy_id"] = lane_blocker_id.get_value();
+        probe("npc_cover_fire_setup");
+        set_time(calendar::turn);
+        const auto support_position = guard->abs_pos();
+        const auto support_path = guard->path;
+        const auto support_ammo = guard->primary_weapon().ammo_remaining();
+        REQUIRE(support_ammo > 0);
+        for (auto step = 0; step < 12 && guard->primary_weapon().ammo_remaining() == support_ammo; ++step) {
+            guard->set_moves(100);
+            guard->move();
+            REQUIRE(guard->get_moves() < 100);
+            CHECK(guard->abs_pos() == support_position);
+            CHECK(guard->path == support_path);
+            probe("npc_cover_fire_action");
+        }
+        REQUIRE(guard->primary_weapon().ammo_remaining() < support_ammo);
+        probe("npc_cover_fire_cleanup");
         auto& reload_gun = guard->primary_weapon();
         const auto remaining_before_cover = reload_gun.ammo_remaining();
         REQUIRE(reload_gun.ammo_consume(remaining_before_cover, guard->bub_pos()) == remaining_before_cover);
