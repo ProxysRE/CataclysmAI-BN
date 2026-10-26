@@ -34,7 +34,7 @@ if test_data.stage:match("^npc_pair_") then
     assert(api.at_raid() and #gapi.get_all_npcs() == 0)
     local definitions = {
       {template = "trkv_combat_field_tester", loadout = "rifle_field_v1", x = 402, y = 392},
-      {template = "trkv_combat_tester", loadout = "rifle_civilian_v1", x = 405, y = 391},
+      {template = "trkv_combat_tester", loadout = "rifle_civilian_v1", x = 404, y = 390},
     }
     test_data.pair_ids = {}
     for i, spec in ipairs(definitions) do

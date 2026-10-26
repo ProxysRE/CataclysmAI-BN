@@ -1574,7 +1574,7 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE(pair_shooter != nullptr);
     REQUIRE(pair_mover != nullptr);
     REQUIRE(pair_shooter->abs_pos() == tripoint_abs_ms(402, 392, 0));
-    REQUIRE(pair_mover->abs_pos() == tripoint_abs_ms(405, 391, 0));
+    REQUIRE(pair_mover->abs_pos() == tripoint_abs_ms(404, 390, 0));
     REQUIRE(pair_shooter->myclass == npc_class_id("TRKV_COMBAT_FIELD"));
     REQUIRE(pair_mover->myclass == npc_class_id("TRKV_COMBAT_TEST"));
     REQUIRE(pair_shooter->primary_weapon().typeId() == itype_id("m4a1"));
@@ -1595,13 +1595,18 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
     REQUIRE(pair_mover->sees(get_avatar()));
     REQUIRE(pair_shooter->sees(*pair_mover));
     REQUIRE(pair_shooter->attitude_to(*pair_mover) != Attitude::A_HOSTILE);
+    // Stay inside the native close-range gate with both square and circular
+    // distance. The old (3,3) diagonal is range 4 with circular distance.
+    const auto pair_range = rl_dist(pair_mover->bub_pos(), get_avatar().bub_pos());
+    REQUIRE(pair_range >= 2);
+    REQUIRE(pair_range <= 3);
     const auto pair_mover_origin = pair_mover->abs_pos();
     const auto pair_shooter_origin = pair_shooter->abs_pos();
     pair_mover->set_moves(100);
     pair_mover->move();
     REQUIRE(pair_mover->get_moves() < 100);
-    REQUIRE(pair_mover->abs_pos() != pair_mover_origin);
     probe("npc_pair_mover_started");
+    REQUIRE(pair_mover->abs_pos() != pair_mover_origin);
     const auto run_pair_cover = [&]() {
         const auto ammo = pair_shooter->primary_weapon().ammo_remaining();
         const auto path = pair_shooter->path;
