@@ -1,0 +1,897 @@
+{
+  "schema_version": 1,
+  "parser": "UnityPy==1.25.4",
+  "files": {
+    "level528": {
+      "bytes": 15098556,
+      "sha256": "35e6a96c0691327f1a87e6743d07b7f36a31740223cff41ba2b8ec9b05797d77"
+    },
+    "sharedassets528.assets": {
+      "bytes": 8066992,
+      "sha256": "8497d2cac7cdbfe06423b6ff1820fe73c6a8e24257504adfed842cc76c715e7e"
+    },
+    "level529": {
+      "bytes": 20300500,
+      "sha256": "3bc4bba6fe5a100e9e99282595eceae211f0c60be0f289283c4448cafb797ace"
+    },
+    "sharedassets529.assets": {
+      "bytes": 4872744,
+      "sha256": "890c118ae76ad4dfcd0fd35014e591590396d393947c162415adad8de76bb725"
+    },
+    "sharedassets19.assets": {
+      "bytes": 19116544,
+      "sha256": "07fc3851e72173e0a6279c922c76547d2c6438b98387f1fc1ce2dc4c6d3c8807"
+    },
+    "sharedassets5.assets": {
+      "bytes": 56327340,
+      "sha256": "187a9f8915e17d706b65c5413390f4f9ff6d53b4669c78b0b864ce4f9e57b179"
+    },
+    "sharedassets21.assets": {
+      "bytes": 9696152,
+      "sha256": "f3eee60a17ecd04d63108385187973930a8e4050bb200cb3ace783a4640aa713"
+    },
+    "sharedassets171.assets": {
+      "bytes": 13547280,
+      "sha256": "69c26b8add4d74d45585d38f9f29a4268bcef62e67782b51508b4bef3d2c0628"
+    },
+    "sharedassets527.assets": {
+      "bytes": 15771212,
+      "sha256": "41cd9554cf42e271db24cac78cc557888f9a2df976c71b2a21d5f83c6a466f66"
+    },
+    "level527": {
+      "bytes": 15683076,
+      "sha256": "16fd42e10780173796ecc6d680e67e864a36e51b1b29bf1affc4306617c8be2a"
+    },
+    "sharedassets2.assets": {
+      "bytes": 35564752,
+      "sha256": "a896f81862bebdae2b7666e7e5552747a695194bb21c1072aa01cbd6885a5c7e"
+    },
+    "sharedassets22.assets": {
+      "bytes": 13333908,
+      "sha256": "0ef9fcd72df96b39ac1d16b84366cd560437b829d3448764adf755424871aa91"
+    },
+    "sharedassets43.assets": {
+      "bytes": 77968100,
+      "sha256": "faf1fbc1f3f00c381b7c6b348494fb2e344346e69a9a89ec79b4dc394fcbca16"
+    }
+  },
+  "scenes": {
+    "level528": {
+      "object_types": {
+        "PhysicMaterial": 69,
+        "GameObject": 34452,
+        "Transform": 34452,
+        "MeshRenderer": 14812,
+        "MeshFilter": 15639,
+        "MeshCollider": 11517,
+        "BoxCollider": 1041,
+        "RenderSettings": 1,
+        "Light": 48,
+        "LightmapSettings": 1,
+        "NavMeshSettings": 1,
+        "LODGroup": 6115,
+        "MonoBehaviour": 8468
+      },
+      "world_transforms_resolved": 34452,
+      "active_gameobjects": 30644,
+      "colliders": {
+        "MeshCollider:total": 11517,
+        "MeshCollider:active_enabled_nontrigger": 10857,
+        "mesh_reference:decoded_inline": 9092,
+        "eligible_mesh_reference:decoded_inline": 8501,
+        "mesh_reference:missing_mesh_file_or_object": 1771,
+        "eligible_mesh_reference:missing_mesh_file_or_object": 1715,
+        "mesh_reference:missing_vertex_stream": 654,
+        "eligible_mesh_reference:missing_vertex_stream": 641,
+        "BoxCollider:total": 1041,
+        "BoxCollider:active_enabled_nontrigger": 124
+      },
+      "eligible_mesh_references_by_file": {
+        "sharedassets5.assets": 2470,
+        "sharedassets528.assets": 1834,
+        "sharedassets171.assets": 1663,
+        "sharedassets19.assets": 1019,
+        "sharedassets2.assets": 817,
+        "sharedassets21.assets": 769,
+        "sharedassets9.assets": 304,
+        "sharedassets16.assets": 262,
+        "sharedassets22.assets": 259,
+        "sharedassets6.assets": 226,
+        "sharedassets43.assets": 225,
+        "sharedassets28.assets": 116,
+        "sharedassets13.assets": 104,
+        "sharedassets221.assets": 95,
+        "sharedassets71.assets": 89,
+        "sharedassets527.assets": 86,
+        "sharedassets235.assets": 72,
+        "sharedassets7.assets": 52,
+        "sharedassets475.assets": 51,
+        "sharedassets177.assets": 46,
+        "sharedassets149.assets": 42,
+        "sharedassets187.assets": 42,
+        "sharedassets11.assets": 29,
+        "sharedassets10.assets": 23,
+        "sharedassets30.assets": 19,
+        "sharedassets172.assets": 18,
+        "Library/unity default resources": 16,
+        "sharedassets79.assets": 15,
+        "sharedassets37.assets": 12,
+        "sharedassets193.assets": 11,
+        "sharedassets23.assets": 8,
+        "sharedassets91.assets": 8,
+        "sharedassets120.assets": 7,
+        "sharedassets76.assets": 6,
+        "sharedassets117.assets": 6,
+        "sharedassets188.assets": 6,
+        "sharedassets18.assets": 6,
+        "sharedassets133.assets": 4,
+        "sharedassets54.assets": 4,
+        "sharedassets72.assets": 4,
+        "sharedassets321.assets": 3,
+        "sharedassets12.assets": 2,
+        "sharedassets88.assets": 2,
+        "sharedassets161.assets": 2,
+        "sharedassets121.assets": 2,
+        "sharedassets203.assets": 1
+      },
+      "eligible_mesh_status_by_layer": {
+        "12:decoded_inline": 3824,
+        "18:decoded_inline": 3835,
+        "0:missing_mesh_file_or_object": 18,
+        "18:missing_mesh_file_or_object": 649,
+        "12:missing_vertex_stream": 624,
+        "12:missing_mesh_file_or_object": 996,
+        "21:missing_vertex_stream": 1,
+        "30:decoded_inline": 839,
+        "18:missing_vertex_stream": 16,
+        "30:missing_mesh_file_or_object": 50,
+        "9:missing_mesh_file_or_object": 2,
+        "0:decoded_inline": 3
+      },
+      "missing_mesh_references_by_file": {
+        "sharedassets9.assets": 304,
+        "sharedassets16.assets": 262,
+        "sharedassets6.assets": 226,
+        "sharedassets28.assets": 116,
+        "sharedassets13.assets": 104,
+        "sharedassets221.assets": 95,
+        "sharedassets71.assets": 89,
+        "sharedassets235.assets": 72,
+        "sharedassets7.assets": 52,
+        "sharedassets475.assets": 51,
+        "sharedassets177.assets": 46,
+        "sharedassets149.assets": 42,
+        "sharedassets187.assets": 42,
+        "sharedassets11.assets": 29,
+        "sharedassets10.assets": 23,
+        "sharedassets30.assets": 19,
+        "sharedassets172.assets": 18,
+        "Library/unity default resources": 16,
+        "sharedassets79.assets": 15,
+        "sharedassets37.assets": 12,
+        "sharedassets193.assets": 11,
+        "sharedassets23.assets": 8,
+        "sharedassets91.assets": 8,
+        "sharedassets120.assets": 7,
+        "sharedassets76.assets": 6,
+        "sharedassets117.assets": 6,
+        "sharedassets188.assets": 6,
+        "sharedassets18.assets": 6,
+        "sharedassets133.assets": 4,
+        "sharedassets54.assets": 4,
+        "sharedassets72.assets": 4,
+        "sharedassets321.assets": 3,
+        "sharedassets12.assets": 2,
+        "sharedassets88.assets": 2,
+        "sharedassets161.assets": 2,
+        "sharedassets121.assets": 2,
+        "sharedassets203.assets": 1
+      },
+      "streamed_mesh_references_by_file": {
+        "sharedassets171.assets": 234,
+        "sharedassets5.assets": 160,
+        "sharedassets528.assets": 80,
+        "sharedassets21.assets": 64,
+        "sharedassets2.assets": 48,
+        "sharedassets43.assets": 29,
+        "sharedassets22.assets": 25,
+        "sharedassets527.assets": 1
+      },
+      "stair_name_examples_not_validated_routes": [
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101193,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            60.486976623535156,
+            3.299665689468384,
+            13.5600004196167
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101194,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            60.487998962402344,
+            3.299665689468384,
+            -1.2290668487548828
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101195,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            50.486976623535156,
+            3.299665689468384,
+            13.5600004196167
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101196,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            50.486976623535156,
+            3.299665689468384,
+            4.560340881347656
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101197,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            60.486976623535156,
+            3.299665689468384,
+            4.560340881347656
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101198,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            50.486976623535156,
+            3.299665689468384,
+            -1.2290668487548828
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101199,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            50.486976623535156,
+            3.299665689468384,
+            7.770638942718506
+          ]
+        },
+        {
+          "object": "Metal_stairs_09_BALLISTIC_chainfence",
+          "component_path_id": 101200,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            60.486976623535156,
+            3.299665689468384,
+            7.770638942718506
+          ]
+        },
+        {
+          "object": "Metal_stairs_platform_07_BALLISTIC_chainfence",
+          "component_path_id": 101589,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -2.7779252529144287,
+            3.6438002586364746,
+            34.451683044433594
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_R_COLLIDER",
+          "component_path_id": 101590,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            6.377244204823111,
+            4.804752191492813,
+            35.02117700902008
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_R_COLLIDER",
+          "component_path_id": 101591,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            6.213768899440765,
+            1.2710302451308397,
+            34.917773395446495
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_R_COLLIDER",
+          "component_path_id": 101592,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            9.983400428059953,
+            1.271030308852456,
+            32.93199841505407
+          ]
+        }
+      ]
+    },
+    "level529": {
+      "object_types": {
+        "PhysicMaterial": 153,
+        "GameObject": 46083,
+        "Transform": 46083,
+        "MeshRenderer": 19194,
+        "MeshFilter": 19553,
+        "OcclusionPortal": 7,
+        "Rigidbody": 60,
+        "MeshCollider": 14827,
+        "BoxCollider": 115,
+        "RenderSettings": 1,
+        "CapsuleCollider": 8,
+        "LightmapSettings": 1,
+        "NavMeshSettings": 1,
+        "ParticleSystem": 108,
+        "ParticleSystemRenderer": 108,
+        "LODGroup": 7990,
+        "MonoBehaviour": 8987
+      },
+      "world_transforms_resolved": 46083,
+      "active_gameobjects": 42795,
+      "colliders": {
+        "MeshCollider:total": 14827,
+        "MeshCollider:active_enabled_nontrigger": 14534,
+        "mesh_reference:missing_mesh_file_or_object": 899,
+        "mesh_reference:decoded_inline": 13820,
+        "eligible_mesh_reference:decoded_inline": 13720,
+        "eligible_mesh_reference:missing_mesh_file_or_object": 708,
+        "mesh_reference:missing_vertex_stream": 108,
+        "eligible_mesh_reference:missing_vertex_stream": 106,
+        "BoxCollider:total": 115,
+        "BoxCollider:active_enabled_nontrigger": 50,
+        "CapsuleCollider:total": 8,
+        "CapsuleCollider:active_enabled_nontrigger": 8
+      },
+      "eligible_mesh_references_by_file": {
+        "sharedassets19.assets": 5614,
+        "sharedassets21.assets": 2773,
+        "sharedassets5.assets": 2141,
+        "sharedassets171.assets": 1774,
+        "sharedassets529.assets": 486,
+        "sharedassets22.assets": 387,
+        "sharedassets43.assets": 321,
+        "sharedassets527.assets": 291,
+        "sharedassets6.assets": 152,
+        "sharedassets28.assets": 43,
+        "sharedassets186.assets": 40,
+        "sharedassets9.assets": 36,
+        "sharedassets11.assets": 31,
+        "sharedassets118.assets": 28,
+        "sharedassets16.assets": 27,
+        "sharedassets120.assets": 26,
+        "sharedassets149.assets": 26,
+        "sharedassets30.assets": 24,
+        "sharedassets7.assets": 24,
+        "sharedassets106.assets": 22,
+        "sharedassets2.assets": 20,
+        "sharedassets221.assets": 20,
+        "sharedassets117.assets": 20,
+        "sharedassets528.assets": 19,
+        "sharedassets102.assets": 19,
+        "sharedassets77.assets": 16,
+        "sharedassets248.assets": 15,
+        "sharedassets335.assets": 14,
+        "sharedassets219.assets": 14,
+        "sharedassets23.assets": 12,
+        "sharedassets13.assets": 12,
+        "sharedassets161.assets": 8,
+        "sharedassets76.assets": 8,
+        "sharedassets71.assets": 8,
+        "sharedassets133.assets": 6,
+        "sharedassets157.assets": 6,
+        "sharedassets82.assets": 5,
+        "sharedassets187.assets": 5,
+        "sharedassets10.assets": 5,
+        "sharedassets259.assets": 4,
+        "sharedassets482.assets": 4,
+        "sharedassets121.assets": 4,
+        "sharedassets8.assets": 4,
+        "sharedassets235.assets": 3,
+        "sharedassets91.assets": 2,
+        "sharedassets104.assets": 2,
+        "sharedassets55.assets": 2,
+        "sharedassets79.assets": 2,
+        "sharedassets249.assets": 2,
+        "sharedassets363.assets": 2,
+        "sharedassets306.assets": 2,
+        "sharedassets201.assets": 2,
+        "sharedassets12.assets": 1
+      },
+      "eligible_mesh_status_by_layer": {
+        "12:decoded_inline": 7142,
+        "18:decoded_inline": 6438,
+        "12:missing_mesh_file_or_object": 431,
+        "9:missing_mesh_file_or_object": 5,
+        "18:missing_mesh_file_or_object": 271,
+        "12:missing_vertex_stream": 94,
+        "9:decoded_inline": 43,
+        "30:decoded_inline": 97,
+        "18:missing_vertex_stream": 12,
+        "30:missing_mesh_file_or_object": 1
+      },
+      "missing_mesh_references_by_file": {
+        "sharedassets6.assets": 152,
+        "sharedassets28.assets": 43,
+        "sharedassets186.assets": 40,
+        "sharedassets9.assets": 36,
+        "sharedassets11.assets": 31,
+        "sharedassets118.assets": 28,
+        "sharedassets16.assets": 27,
+        "sharedassets120.assets": 26,
+        "sharedassets149.assets": 26,
+        "sharedassets30.assets": 24,
+        "sharedassets7.assets": 24,
+        "sharedassets106.assets": 22,
+        "sharedassets221.assets": 20,
+        "sharedassets117.assets": 20,
+        "sharedassets102.assets": 19,
+        "sharedassets77.assets": 16,
+        "sharedassets248.assets": 15,
+        "sharedassets335.assets": 14,
+        "sharedassets219.assets": 14,
+        "sharedassets23.assets": 12,
+        "sharedassets13.assets": 12,
+        "sharedassets161.assets": 8,
+        "sharedassets76.assets": 8,
+        "sharedassets71.assets": 8,
+        "sharedassets133.assets": 6,
+        "sharedassets157.assets": 6,
+        "sharedassets82.assets": 5,
+        "sharedassets187.assets": 5,
+        "sharedassets10.assets": 5,
+        "sharedassets259.assets": 4,
+        "sharedassets482.assets": 4,
+        "sharedassets121.assets": 4,
+        "sharedassets8.assets": 4,
+        "sharedassets235.assets": 3,
+        "sharedassets91.assets": 2,
+        "sharedassets104.assets": 2,
+        "sharedassets55.assets": 2,
+        "sharedassets79.assets": 2,
+        "sharedassets249.assets": 2,
+        "sharedassets363.assets": 2,
+        "sharedassets306.assets": 2,
+        "sharedassets201.assets": 2,
+        "sharedassets12.assets": 1
+      },
+      "streamed_mesh_references_by_file": {
+        "sharedassets529.assets": 47,
+        "sharedassets5.assets": 40,
+        "sharedassets43.assets": 6,
+        "sharedassets528.assets": 5,
+        "sharedassets21.assets": 4,
+        "sharedassets2.assets": 2,
+        "sharedassets22.assets": 2
+      },
+      "stair_name_examples_not_validated_routes": [
+        {
+          "object": "Stairs_ramp_COLLIDER",
+          "component_path_id": 134453,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            55.1510009765625,
+            -2.664799928665161,
+            12.977999687194824
+          ]
+        },
+        {
+          "object": "Stepladder_03_COLLIDER",
+          "component_path_id": 137163,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -22.94399860752876,
+            -3.577799339595581,
+            -26.306018377887543
+          ]
+        },
+        {
+          "object": "Stepladder_03_COLLIDER",
+          "component_path_id": 137164,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            52.67564392089844,
+            -2.6748597621917725,
+            -22.72848129272461
+          ]
+        },
+        {
+          "object": "Stepladder_03_COLLIDER",
+          "component_path_id": 137165,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            38.782554626464844,
+            -2.6218278408050537,
+            -24.857507705688477
+          ]
+        },
+        {
+          "object": "Stepladder_03_COLLIDER",
+          "component_path_id": 137166,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -30.458011627197266,
+            -2.635200023651123,
+            36.44900131225586
+          ]
+        },
+        {
+          "object": "Chemical_Barrel_small_ladder_02_COLLIDER",
+          "component_path_id": 137197,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -2.304011344909668,
+            -2.565999984741211,
+            20.214000701904297
+          ]
+        },
+        {
+          "object": "Staircase_Ladder_04_COLLIDER",
+          "component_path_id": 139393,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            70.52462005615234,
+            -3.6228082180023193,
+            -28.850751876831055
+          ]
+        },
+        {
+          "object": "Stairs_ramp_BALLISTIC_metalthin",
+          "component_path_id": 141207,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            55.1510009765625,
+            -2.664799928665161,
+            12.977999687194824
+          ]
+        },
+        {
+          "object": "Chemical_Barrel_small_ladder_02_BALLISTIC_metalthin",
+          "component_path_id": 142310,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -2.304011344909668,
+            -2.565999984741211,
+            20.214000701904297
+          ]
+        },
+        {
+          "object": "Staircase_Ladder_04_BALLISTIC_concrete",
+          "component_path_id": 143592,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            70.52462005615234,
+            -3.6228082180023193,
+            -28.850751876831055
+          ]
+        },
+        {
+          "object": "Stairs_ramp_BALLISTIC_grate",
+          "component_path_id": 143642,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            55.1510009765625,
+            -2.664799928665161,
+            12.977999687194824
+          ]
+        },
+        {
+          "object": "Stepladder_03_BALLISTIC_woodthin",
+          "component_path_id": 143846,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            52.67564392089844,
+            -2.6748597621917725,
+            -22.72848129272461
+          ]
+        }
+      ]
+    },
+    "level527": {
+      "object_types": {
+        "PhysicMaterial": 4981,
+        "GameObject": 34592,
+        "Transform": 34592,
+        "MeshRenderer": 13657,
+        "MeshFilter": 13668,
+        "OcclusionPortal": 5,
+        "Rigidbody": 68,
+        "MeshCollider": 11030,
+        "BoxCollider": 292,
+        "RenderSettings": 1,
+        "LightmapSettings": 1,
+        "NavMeshSettings": 1,
+        "ParticleSystem": 134,
+        "ParticleSystemRenderer": 134,
+        "LODGroup": 5587,
+        "MonoBehaviour": 6993
+      },
+      "world_transforms_resolved": 34592,
+      "active_gameobjects": 27715,
+      "colliders": {
+        "MeshCollider:total": 11030,
+        "MeshCollider:active_enabled_nontrigger": 9515,
+        "mesh_reference:decoded_inline": 9608,
+        "eligible_mesh_reference:decoded_inline": 8093,
+        "mesh_reference:missing_vertex_stream": 375,
+        "eligible_mesh_reference:missing_vertex_stream": 375,
+        "mesh_reference:missing_mesh_file_or_object": 1047,
+        "eligible_mesh_reference:missing_mesh_file_or_object": 1047,
+        "BoxCollider:total": 292,
+        "BoxCollider:active_enabled_nontrigger": 99
+      },
+      "eligible_mesh_references_by_file": {
+        "sharedassets171.assets": 2844,
+        "sharedassets21.assets": 2376,
+        "sharedassets19.assets": 1344,
+        "sharedassets527.assets": 1202,
+        "sharedassets9.assets": 485,
+        "sharedassets5.assets": 420,
+        "sharedassets6.assets": 262,
+        "sharedassets22.assets": 212,
+        "sharedassets149.assets": 178,
+        "sharedassets43.assets": 62,
+        "sharedassets28.assets": 54,
+        "sharedassets230.assets": 20,
+        "sharedassets8.assets": 20,
+        "sharedassets2.assets": 8,
+        "sharedassets91.assets": 8,
+        "sharedassets7.assets": 8,
+        "sharedassets197.assets": 4,
+        "sharedassets120.assets": 3,
+        "sharedassets117.assets": 2,
+        "sharedassets126.assets": 2,
+        "sharedassets321.assets": 1
+      },
+      "eligible_mesh_status_by_layer": {
+        "18:decoded_inline": 4021,
+        "12:missing_vertex_stream": 348,
+        "12:decoded_inline": 3804,
+        "12:missing_mesh_file_or_object": 679,
+        "18:missing_mesh_file_or_object": 363,
+        "18:missing_vertex_stream": 24,
+        "9:decoded_inline": 38,
+        "4:decoded_inline": 4,
+        "30:decoded_inline": 226,
+        "30:missing_vertex_stream": 3,
+        "9:missing_mesh_file_or_object": 5
+      },
+      "missing_mesh_references_by_file": {
+        "sharedassets9.assets": 485,
+        "sharedassets6.assets": 262,
+        "sharedassets149.assets": 178,
+        "sharedassets28.assets": 54,
+        "sharedassets230.assets": 20,
+        "sharedassets8.assets": 20,
+        "sharedassets91.assets": 8,
+        "sharedassets7.assets": 8,
+        "sharedassets197.assets": 4,
+        "sharedassets120.assets": 3,
+        "sharedassets117.assets": 2,
+        "sharedassets126.assets": 2,
+        "sharedassets321.assets": 1
+      },
+      "streamed_mesh_references_by_file": {
+        "sharedassets527.assets": 142,
+        "sharedassets21.assets": 128,
+        "sharedassets171.assets": 89,
+        "sharedassets5.assets": 12,
+        "sharedassets2.assets": 4
+      },
+      "stair_name_examples_not_validated_routes": [
+        {
+          "object": "Metal_stairs_08_railing_R_COLLIDER",
+          "component_path_id": 102313,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            62.61061159449212,
+            0.4120020344960243,
+            -22.077862127391935
+          ]
+        },
+        {
+          "object": "Cistern_01_ladder_A_COLLIDER",
+          "component_path_id": 102483,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -6.5021281242370605,
+            -2.668904899997718,
+            18.70720958723431
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_L_BALLISTIC_metalthin",
+          "component_path_id": 102923,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            55.49242316796004,
+            0.4115469381015024,
+            -6.216950120827927
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_L_BALLISTIC_metalthin",
+          "component_path_id": 102924,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            63.916617906859656,
+            0.4120013581622486,
+            -22.077859225173384
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_R_BALLISTIC_metalthin",
+          "component_path_id": 102925,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            62.61061159449212,
+            0.4120020344960243,
+            -22.077862127391935
+          ]
+        },
+        {
+          "object": "Stairs_ramp_COLLIDER",
+          "component_path_id": 103831,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            56.51622772216797,
+            -0.8688660860061646,
+            -11.190047264099121
+          ]
+        },
+        {
+          "object": "Stairs_ramp_COLLIDER",
+          "component_path_id": 103832,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            56.506229400634766,
+            -0.8688660860061646,
+            -11.440047264099121
+          ]
+        },
+        {
+          "object": "Stairs_ramp_COLLIDER",
+          "component_path_id": 103833,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            63.04462814331055,
+            -0.8688660860061646,
+            -16.896390914916992
+          ]
+        },
+        {
+          "object": "Stairs_ramp_COLLIDER",
+          "component_path_id": 103834,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            63.05462646484375,
+            -0.8688660860061646,
+            -16.646390914916992
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_L_COLLIDER",
+          "component_path_id": 104186,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            55.49242316796004,
+            0.4115469381015024,
+            -6.216950120827927
+          ]
+        },
+        {
+          "object": "Metal_stairs_08_railing_L_COLLIDER",
+          "component_path_id": 104187,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            63.916617906859656,
+            0.4120013581622486,
+            -22.077859225173384
+          ]
+        },
+        {
+          "object": "Cistern_01_ladder_B_BALLISTIC_metalthin",
+          "component_path_id": 105162,
+          "type": "MeshCollider",
+          "transform_origin_unity_xyz": [
+            -4.3342599105833415,
+            -2.6689228914993706,
+            13.493222713638321
+          ]
+        }
+      ]
+    }
+  },
+  "mesh_files": {
+    "sharedassets528.assets": {
+      "meshes": 285,
+      "decoded_inline_meshes": 180,
+      "decoded_vertices": 113268,
+      "decoded_triangles": 85300,
+      "meshes_with_external_vertex_stream": 105
+    },
+    "sharedassets529.assets": {
+      "meshes": 757,
+      "decoded_inline_meshes": 607,
+      "decoded_vertices": 69145,
+      "decoded_triangles": 64352,
+      "meshes_with_external_vertex_stream": 150
+    },
+    "sharedassets19.assets": {
+      "meshes": 307,
+      "decoded_inline_meshes": 193,
+      "decoded_vertices": 292006,
+      "decoded_triangles": 215080,
+      "meshes_with_external_vertex_stream": 114
+    },
+    "sharedassets5.assets": {
+      "meshes": 3119,
+      "decoded_inline_meshes": 2126,
+      "decoded_vertices": 682585,
+      "decoded_triangles": 676765,
+      "meshes_with_external_vertex_stream": 993
+    },
+    "sharedassets21.assets": {
+      "meshes": 483,
+      "decoded_inline_meshes": 345,
+      "decoded_vertices": 143380,
+      "decoded_triangles": 138542,
+      "meshes_with_external_vertex_stream": 138
+    },
+    "sharedassets171.assets": {
+      "meshes": 1436,
+      "decoded_inline_meshes": 1272,
+      "decoded_vertices": 208375,
+      "decoded_triangles": 194117,
+      "meshes_with_external_vertex_stream": 164
+    },
+    "sharedassets527.assets": {
+      "meshes": 547,
+      "meshes_with_external_vertex_stream": 195,
+      "decoded_inline_meshes": 352,
+      "decoded_vertices": 236124,
+      "decoded_triangles": 207316
+    },
+    "sharedassets2.assets": {
+      "meshes": 1224,
+      "decoded_inline_meshes": 798,
+      "decoded_vertices": 476832,
+      "decoded_triangles": 351083,
+      "meshes_with_external_vertex_stream": 426
+    },
+    "sharedassets22.assets": {
+      "meshes": 837,
+      "meshes_with_external_vertex_stream": 202,
+      "decoded_inline_meshes": 635,
+      "decoded_vertices": 192155,
+      "decoded_triangles": 176720
+    },
+    "sharedassets43.assets": {
+      "meshes": 2715,
+      "decoded_inline_meshes": 1643,
+      "decoded_vertices": 899434,
+      "decoded_triangles": 928034,
+      "meshes_with_external_vertex_stream": 1072
+    }
+  },
+  "limits": [
+    "Only selected scenes; no complete Factory reconstruction",
+    "Custom MonoBehaviours not decoded",
+    "Active/enabled/nontrigger is not a player collision-layer test",
+    "No door state, runtime activation, navigation or BN grid conversion",
+    "Transform origins are not floor heights or collider centres"
+  ]
+}

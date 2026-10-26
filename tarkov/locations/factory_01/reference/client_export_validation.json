@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "evidence": "serialized_export_integrity_not_runtime_navigation",
+  "archive_sha256": "e4867d6287836e61e2770fe0c5f3e1c1637de9f9198990c82edd2d0fd66eeb98",
+  "scenes": 18,
+  "colliders": 53546,
+  "resolved_mesh_references": 48112,
+  "null_mesh_components": 2,
+  "unique_meshes": 2666,
+  "vertices": 749516,
+  "triangles": 985708,
+  "primitive_colliders": {
+    "BoxCollider": 5262,
+    "SphereCollider": 162,
+    "CapsuleCollider": 8
+  },
+  "eligible_by_layer_and_type": {
+    "29:BoxCollider": 72,
+    "12:MeshCollider": 23560,
+    "18:MeshCollider": 19093,
+    "30:MeshCollider": 1457,
+    "18:BoxCollider": 529,
+    "12:BoxCollider": 704,
+    "22:BoxCollider": 150,
+    "12:SphereCollider": 2,
+    "9:MeshCollider": 151,
+    "4:MeshCollider": 6,
+    "13:BoxCollider": 4,
+    "0:MeshCollider": 31,
+    "21:MeshCollider": 6,
+    "0:BoxCollider": 44,
+    "30:BoxCollider": 25,
+    "18:CapsuleCollider": 8,
+    "22:MeshCollider": 7
+  },
+  "prior_source_hashes_matched": 13,
+  "limits": [
+    "Does not prove custom behaviour, runtime activation or door states",
+    "Completeness concerns the explicitly selected scenes only",
+    "Day/night scenes must not be blindly overlaid for gameplay"
+  ]
+}
