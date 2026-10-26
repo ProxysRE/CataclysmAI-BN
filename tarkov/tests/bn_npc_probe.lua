@@ -464,6 +464,12 @@ elseif test_data.stage == "npc_hearing_expired" then
   assert(heard.last_event == test_data.hearing_event)
 elseif test_data.stage:match("^npc_cover_fire_") then
   local member = saved_actor()
+  local actor
+  for _, candidate in ipairs(gapi.get_all_npcs()) do
+    if candidate:getID():get_value() == test_data.actor_id then actor = candidate end
+  end
+  assert(actor)
+  local ctx = {phase = state.phase, at_raid = true, sequence = state.sequence, dimension = api.raid_id}
   if test_data.stage == "npc_cover_fire_setup" then
     local buddy = assert(participants.register(root.participants, state.sequence, test_data.cover_fire_buddy_id,
       member.side, member.squad, {}))
@@ -474,7 +480,22 @@ elseif test_data.stage:match("^npc_cover_fire_") then
       goal = {position = {x = 405, y = 393, z = 0}, target = {x = 402, y = 388, z = 0},
         started_at = now, deadline = now + 8, attempts = 1, stalled = 0}}
     member.loadout, member.combat, member.reload = "rifle_field_v1", {}, {}
+    package.loaded.trkv_perception.observe_actor(member.perception, ctx, actor, now, 30)
+  elseif test_data.stage == "npc_cover_fire_refuse" then
+    local observed = TripointAbsMs.new(402, test_data.cover_bad_snapshot and 389 or 388, 0)
+    assert(actor:cover_visible_target(observed) == "", "Unsafe cover executor must refuse without action")
+  elseif test_data.stage == "npc_cover_fire_expired_peer" then
+    local buddy = assert(participants.find(root.participants, context(), test_data.cover_fire_buddy_id))
+    local deadline, moves = buddy.combat.goal.deadline, actor:get_moves()
+    buddy.combat.goal.deadline = api.now()
+    assert(not package.loaded.trkv_cover.step_actor(member, ctx, actor, api.now(), root.participants))
+    assert(actor:get_moves() == moves and member.cover == nil)
+    buddy.combat.goal.deadline = deadline
   elseif test_data.stage == "npc_cover_fire_cleanup" then
+    local buddy = assert(participants.find(root.participants, context(), test_data.cover_fire_buddy_id))
+    buddy.combat.goal = nil
+    assert(not package.loaded.trkv_cover.step_actor(member, ctx, actor, api.now(), root.participants))
+    assert(member.cover == nil)
     root.participants.actors[string.format("%d", test_data.cover_fire_buddy_id)] = nil
   else
     assert(member.cover and member.cover.buddy == test_data.cover_fire_buddy_id)

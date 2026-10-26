@@ -431,8 +431,44 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
         guard->setpos(abs_to_bub(tripoint_abs_ms(402, 392, 0)));
         get_avatar().setpos(abs_to_bub(tripoint_abs_ms(402, 388, 0)));
         data["cover_fire_buddy_id"] = lane_blocker_id.get_value();
-        probe("npc_cover_fire_setup");
         set_time(calendar::turn);
+        guard->regen_ai_cache();
+        REQUIRE(guard->sees(get_avatar()));
+        probe("npc_cover_fire_setup");
+        const auto expect_cover_refusal = [&](const bool shifted_snapshot) {
+            data["cover_bad_snapshot"] = shifted_snapshot;
+            const auto position = guard->abs_pos();
+            const auto moves = guard->get_moves();
+            const auto path = guard->path;
+            const auto ammo = guard->primary_weapon().ammo_remaining();
+            probe("npc_cover_fire_refuse");
+            CHECK(guard->abs_pos() == position);
+            CHECK(guard->get_moves() == moves);
+            CHECK(guard->path == path);
+            CHECK(guard->primary_weapon().ammo_remaining() == ammo);
+        };
+        expect_cover_refusal(true);
+        {
+            get_avatar().set_mutation(trait_id("DEBUG_CLOAK"));
+            const auto restore_cover_visibility = on_out_of_scope([&]() {
+                get_avatar().unset_mutation(trait_id("DEBUG_CLOAK"));
+            });
+            REQUIRE(guard->sees(get_avatar().bub_pos()));
+            REQUIRE_FALSE(guard->sees(get_avatar()));
+            expect_cover_refusal(false);
+        }
+        const auto blocker_original = restored_blocker->abs_pos();
+        restored_blocker->setpos(abs_to_bub(tripoint_abs_ms(402, 390, 0)));
+        set_time(calendar::turn);
+        guard->regen_ai_cache();
+        REQUIRE(guard->sees(get_avatar()));
+        REQUIRE(guard->sees(*restored_blocker));
+        REQUIRE(guard->attitude_to(*restored_blocker) != Attitude::A_HOSTILE);
+        expect_cover_refusal(false);
+        restored_blocker->setpos(abs_to_bub(blocker_original));
+        set_time(calendar::turn);
+        guard->regen_ai_cache();
+        probe("npc_cover_fire_expired_peer");
         const auto support_position = guard->abs_pos();
         const auto support_path = guard->path;
         const auto support_ammo = guard->primary_weapon().ammo_remaining();
@@ -446,10 +482,28 @@ TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_np
             probe("npc_cover_fire_action");
         }
         REQUIRE(guard->primary_weapon().ammo_remaining() < support_ammo);
+        const auto support_remaining = guard->primary_weapon().ammo_remaining();
+        REQUIRE(g->save(false));
+        REQUIRE(g->load(saved_character));
+        cata::run_on_every_x_hooks(*DynamicDataLoader::get_instance().lua);
+        guard = g->find_npc(first_id);
+        REQUIRE(guard != nullptr);
+        CHECK(guard->abs_pos() == support_position);
+        CHECK(guard->primary_weapon().ammo_remaining() == support_remaining);
+        probe("npc_cover_fire_action");
+        const auto cleanup_moves = guard->get_moves();
+        const auto cleanup_path = guard->path;
         probe("npc_cover_fire_cleanup");
+        CHECK(guard->get_moves() == cleanup_moves);
+        CHECK(guard->abs_pos() == support_position);
+        CHECK(guard->path == cleanup_path);
+        CHECK(guard->primary_weapon().ammo_remaining() == support_remaining);
         auto& reload_gun = guard->primary_weapon();
         const auto remaining_before_cover = reload_gun.ammo_remaining();
         REQUIRE(reload_gun.ammo_consume(remaining_before_cover, guard->bub_pos()) == remaining_before_cover);
+        guard->regen_ai_cache();
+        REQUIRE(guard->sees(get_avatar()));
+        expect_cover_refusal(false);
         auto cover_magazine = item::spawn("stanag30");
         cover_magazine->ammo_set(itype_id("223"), 30);
         guard->i_add(std::move(cover_magazine));
