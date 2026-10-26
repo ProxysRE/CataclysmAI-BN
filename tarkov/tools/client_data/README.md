@@ -78,3 +78,42 @@ optional baseline checks source identity. It rejects incomplete exports.
 python tarkov/tools/client_data/validate_factory_export.py factory_collision_export.zip --baseline tarkov/locations/factory_01/reference/client_structure_audit.json --output validated.json
 python tarkov/tests/locations/client_export_validation_test.py -v
 ```
+
+## Support and clearance model
+
+`probe_factory_supports.py` reads a validated export and the day scene plan
+produced by `analyze_factory_space.py`. It samples the office and laboratory
+regions using every selected day scene, including adjoining shared geometry.
+It uses the serialized Player collision mask, active/enabled non-trigger flags,
+world transforms and upward-facing surfaces. Coincident supports retain their
+source identities; the region scene is preferred for display only.
+
+The model uses a square standing body, five foot samples, bounded step height,
+continuous triangle coverage along five foot traces, and a swept box through
+each cardinal connection. Triangle/box separation and closed-mesh containment
+reject blocked space, including thin walls between clear endpoints. Convex Mesh
+components use mathematical vertex hulls. Sphere/Capsule components use
+conservative box proxies for obstruction only and cannot supply supports.
+
+```sh
+python -m pip install numpy scipy matplotlib
+python tarkov/tools/client_data/probe_factory_supports.py factory_collision_export.zip --scene-plan tarkov/locations/factory_01/client_space/scene_plan.json --output factory_support_study --pitch 0.25
+python tarkov/tools/client_data/preview_factory_supports.py factory_support_study/support_probe.json --output factory_support_study/supports.png
+python tarkov/tests/locations/client_support_test.py -v
+```
+
+Outputs must be new. The JSON records the archive hash, dependency versions,
+model parameters, candidate nodes, edges, source components and connected sets.
+The preview groups three dense height bands per region; these are display bands,
+not assigned BN floors. A support may belong to a table, roof or isolated ledge.
+
+This is an offline geometry experiment. The provisional body dimensions, finite
+region and grid resolution can split real routes or miss narrow ones. Five foot
+traces do not prove support over the entire footprint. Mathematical convex hulls,
+full matrix transforms of boxes (especially under shear), and conservative
+primitive proxies do not reproduce PhysX cooking/controller behavior exactly.
+Open meshes receive surface checks without invented solid volumes. Door states,
+runtime collision overrides and active scenes outside the export remain
+unverified. Disconnected sets must be investigated before accepting stairs;
+neither connected sets nor compilation establish Unity or BN playability.
+Unity Y is not a BN z-level, and grid pitch does not establish a BN tile scale.
