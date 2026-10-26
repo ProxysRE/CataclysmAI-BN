@@ -113,14 +113,14 @@ jobs:
           python3 tarkov/tools/run_cold_restart.py bn
           python3 tarkov/tools/run_cold_restart.py bn --encounter varied
       - name: Run isolated NPC lifecycle, patrol and combat probe
-        timeout-minutes: 15
+        timeout-minutes: 45
         run: >-
           python3 tarkov/tools/run_npc_probe.py bn
           --executable bn/build/bin/cata_test --output .
       - name: Print runtime diagnostics
         if: always()
         run: |
-          for log in bn/config/debug.log bn/user/config/debug.log tarkov-runtime.xml tarkov-cold-*.xml tarkov-npc.xml tarkov-npc.log; do
+          for log in bn/config/debug.log bn/user/config/debug.log tarkov-runtime.xml tarkov-cold-*.xml tarkov-npc*.xml tarkov-npc*.log; do
             if [ -f "$log" ]; then
               echo "Log: $log"
               tail -n 180 "$log"
@@ -132,8 +132,8 @@ jobs:
           name: Tarkov_DEV0.1_runtime_logs
           path: |
             tarkov-runtime.xml
-            tarkov-npc.xml
-            tarkov-npc.log
+            tarkov-npc*.xml
+            tarkov-npc*.log
             tarkov-cold-*.xml
             tarkov-cold-*.log
             bn/build/CMakeFiles/CMakeConfigureLog.yaml

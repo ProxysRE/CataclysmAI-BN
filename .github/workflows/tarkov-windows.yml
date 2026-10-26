@@ -155,7 +155,7 @@ jobs:
           --game-executable bn/build-windows/bin/cataclysm-bn-tiles.exe
           --output releases/windows-runtime
       - name: Run Windows NPC lifecycle, patrol and combat probe
-        timeout-minutes: 15
+        timeout-minutes: 45
         env:
           PYTHONIOENCODING: utf-8
         run: >-

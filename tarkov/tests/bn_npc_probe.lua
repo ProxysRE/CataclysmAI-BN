@@ -99,6 +99,19 @@ if test_data.stage:match("^npc_pair_") then
         assert(mover.decisions.action == (reloading and "reload" or "maneuver") and goal.attempts <= 4)
         assert(goal.deadline == test_data.pair_deadline and goal.position.x == test_data.pair_goal.x and goal.position.y == test_data.pair_goal.y)
       end
+    elseif test_data.stage == "npc_pair_reacquired" then
+      assert(shooter.perception.status == "visible")
+      assert(plan.goal and plan.goal.deadline == test_data.pair_deadline)
+      assert(plan.goal.position.x == test_data.pair_goal.x and plan.goal.position.y == test_data.pair_goal.y)
+      test_data.pair_reacquired_cover = shooter.decisions.action == "cover"
+      if test_data.pair_reacquired_cover then
+        assert(shooter.cover and shooter.cover.buddy == mover.id)
+        test_data.pair_cover_action = shooter.cover.action
+      else
+        assert(shooter.cover == nil and shooter.decisions.refusals.cover == "no_firing_solution")
+        assert(test_data.pair_reacquire_range < 4 or test_data.pair_reacquire_range > 12,
+          "Support refused inside its firing range after reacquisition")
+      end
     elseif test_data.stage == "npc_pair_interrupted" then
       assert(plan.goal == nil and plan.status == "interrupted" and plan.cooldown_until == test_data.pair_cooldown)
       assert(mover.decisions.action == "escape" and mover.decisions.reason == "escape_field")

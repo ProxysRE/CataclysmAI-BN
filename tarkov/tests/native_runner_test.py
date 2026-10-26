@@ -11,7 +11,7 @@ from contextlib import redirect_stdout
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from run_native_checks import run, validate_report
-from run_npc_probe import run as run_npc
+from run_npc_probe import run_case as run_npc, run as run_npc_suite, CASES
 from run_cold_restart import run as run_cold
 
 
@@ -44,18 +44,41 @@ class NativeGateTest(unittest.TestCase):
                 with self.assertRaises(FileNotFoundError):
                     run_npc(root, root / "test", root)
                 command = execute.call_args.args[0]
-                self.assertIn("[tarkov_npc]", command)
+                self.assertIn("[tarkov_npc_legacy]", command)
                 self.assertTrue(execute.call_args.kwargs["check"])
             self.assertFalse(report.exists())
 
-    def test_npc_probe_requires_every_independent_case(self):
+    def test_npc_suite_isolates_all_cases_and_continues_after_failure(self):
         with tempfile.TemporaryDirectory() as scratch:
             root = Path(scratch)
-            def incomplete(*args, **kwargs):
-                (root / "tarkov-npc.xml").write_text("<testsuites><testcase/></testsuites>")
-            with patch("run_npc_probe.subprocess.run", side_effect=incomplete):
-                with self.assertRaises(RuntimeError):
-                    run_npc(root, root / "test", root)
+            commands = []
+            def execute(command, **kwargs):
+                commands.append(command)
+                report = Path(command[command.index("--out") + 1])
+                if len(commands) == 1:
+                    report.write_text('<testsuites><testcase><failure message="first failed"/></testcase></testsuites>')
+                    raise subprocess.CalledProcessError(1, command)
+                report.write_text("<testsuites><testcase/></testsuites>")
+            with patch("run_npc_probe.subprocess.run", side_effect=execute), redirect_stdout(io.StringIO()):
+                with self.assertRaisesRegex(RuntimeError, "1/8"):
+                    run_npc_suite(root, root / "test", root)
+            self.assertEqual(len(commands), len(CASES))
+            self.assertEqual(len({c[c.index("--out") + 1] for c in commands}), len(CASES))
+            for command, (tag, suffix) in zip(commands, CASES):
+                self.assertIn(tag, command)
+                self.assertTrue((root / f"tarkov-npc{suffix}.xml").exists())
+
+    def test_npc_suite_rejects_missing_report_and_clears_all_stale_results(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            root = Path(scratch)
+            for _, suffix in CASES:
+                (root / f"tarkov-npc{suffix}.xml").write_text("<testsuites><testcase/></testsuites>")
+            with patch("run_npc_probe.subprocess.run") as execute, redirect_stdout(io.StringIO()):
+                with self.assertRaisesRegex(RuntimeError, "8/8"):
+                    run_npc_suite(root, root / "test", root)
+                self.assertEqual(execute.call_count, len(CASES))
+            for _, suffix in CASES:
+                self.assertFalse((root / f"tarkov-npc{suffix}.xml").exists())
 
     def test_cold_restart_rejects_stale_or_missing_reports(self):
         with tempfile.TemporaryDirectory() as scratch:
@@ -126,7 +149,7 @@ class NativeGateTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as scratch:
             root = Path(scratch)
             def success(*args, **kwargs):
-                (root / "tarkov-npc.xml").write_text("<testsuites>" + "<testcase/>" * 8 + "</testsuites>")
+                (root / "tarkov-npc.xml").write_text("<testsuites><testcase/></testsuites>")
             with patch.dict(os.environ, {}, clear=True):
                 with patch("run_npc_probe.subprocess.run", side_effect=success) as execute:
                     run_npc(root, root / "test", root)

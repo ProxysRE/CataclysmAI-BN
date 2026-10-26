@@ -21,7 +21,7 @@ struct trkv_npc_spawn_probe {
 };
 
 // Test-only first step of layer 2. Does not spawn opponents in normal player raids.
-TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc]") {
+TEST_CASE("tarkov NPC survives reload and is removed by raid reset", "[tarkov_npc_legacy]") {
     clear_all_state();
     initialize_dimension_test_storage();
     const auto restore_mapgen = restore_on_out_of_scope<bool>(disable_mapgen);
@@ -1691,8 +1691,24 @@ static void run_tarkov_pair_probe(const std::string& mode) {
         if (mode != "expired") {
             get_avatar().unset_mutation(trait_id("DEBUG_CLOAK"));
             pair_mover->unset_mutation(trait_id("DEBUG_CLOAK"));
-            // Reacquisition can resume the still-valid original peer plan.
-            run_pair_cover();
+            // The actor may have legitimately moved during the interruption.
+            // Reacquisition refreshes vision; short range can refuse stationary
+            // support and hand the decision to the ordinary combat controller.
+            const auto before = pair_shooter->abs_pos();
+            const auto path = pair_shooter->path;
+            const auto ammo = pair_shooter->primary_weapon().ammo_remaining();
+            data["pair_reacquire_range"] = rl_dist(pair_shooter->bub_pos(), get_avatar().bub_pos());
+            pair_shooter->set_moves(100);
+            pair_shooter->move();
+            REQUIRE(pair_shooter->get_moves() < 100);
+            probe("npc_pair_reacquired");
+            if (data["pair_reacquired_cover"].get<bool>()) {
+                CHECK(pair_shooter->abs_pos() == before);
+                CHECK(pair_shooter->path == path);
+                if (data["pair_cover_action"].get<std::string>() == "cover_fire") {
+                    CHECK(pair_shooter->primary_weapon().ammo_remaining() < ammo);
+                }
+            }
         }
         return;
     }
@@ -1752,30 +1768,30 @@ static void run_tarkov_pair_probe(const std::string& mode) {
     CHECK(g->find_npc(pair_mover_id) == nullptr);
 }
 
-TEST_CASE("tarkov pair maneuver", "[tarkov_npc]") {
+TEST_CASE("tarkov pair maneuver", "[tarkov_pair_maneuver]") {
     run_tarkov_pair_probe("maneuver");
 }
 
-TEST_CASE("tarkov pair target_hidden", "[tarkov_npc]") {
+TEST_CASE("tarkov pair target_hidden", "[tarkov_pair_target_hidden]") {
     run_tarkov_pair_probe("target_hidden");
 }
 
-TEST_CASE("tarkov pair buddy_hidden", "[tarkov_npc]") {
+TEST_CASE("tarkov pair buddy_hidden", "[tarkov_pair_buddy_hidden]") {
     run_tarkov_pair_probe("buddy_hidden");
 }
 
-TEST_CASE("tarkov pair expired", "[tarkov_npc]") {
+TEST_CASE("tarkov pair expired", "[tarkov_pair_expired]") {
     run_tarkov_pair_probe("expired");
 }
 
-TEST_CASE("tarkov pair reload", "[tarkov_npc]") {
+TEST_CASE("tarkov pair reload", "[tarkov_pair_reload]") {
     run_tarkov_pair_probe("reload");
 }
 
-TEST_CASE("tarkov pair reload_reverse", "[tarkov_npc]") {
+TEST_CASE("tarkov pair reload_reverse", "[tarkov_pair_reload_reverse]") {
     run_tarkov_pair_probe("reload_reverse");
 }
 
-TEST_CASE("tarkov pair hazard", "[tarkov_npc]") {
+TEST_CASE("tarkov pair hazard", "[tarkov_pair_hazard]") {
     run_tarkov_pair_probe("hazard");
 }
