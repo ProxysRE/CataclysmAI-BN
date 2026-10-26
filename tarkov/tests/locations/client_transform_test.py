@@ -2,7 +2,9 @@
 import importlib.util
 import math
 from pathlib import Path
+import tempfile
 import unittest
+import zipfile
 
 MODULE = Path(__file__).resolve().parents[2] / 'tools/client_data/audit_factory_scenes.py'
 SPEC = importlib.util.spec_from_file_location('scene_audit', MODULE)
@@ -19,6 +21,26 @@ def transform(go, parent=0, position=(0,0,0), scale=(1,1,1), rotation=(0,0,0,1))
 
 
 class TransformTests(unittest.TestCase):
+    def test_dependency_archives_reject_duplicate_source_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            a, b = Path(directory)/'a.zip', Path(directory)/'b.zip'
+            with zipfile.ZipFile(a,'w') as z:
+                z.writestr('level528',b'scene')
+            with zipfile.ZipFile(b,'w') as z:
+                z.writestr('sharedassets5.assets',b'meshes')
+            self.assertEqual([n for n,_ in audit.selected_files([a,b])],
+                             ['level528','sharedassets5.assets'])
+            with self.assertRaisesRegex(ValueError,'Duplicate selected file'):
+                list(audit.selected_files([a,a]))
+
+    def test_selected_file_names_cannot_escape_flat_archive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            a = Path(directory)/'a.zip'
+            with zipfile.ZipFile(a,'w') as z:
+                z.writestr('../level528',b'scene')
+            with self.assertRaisesRegex(ValueError,'Expected flat ZIP'):
+                list(audit.selected_files([a]))
+
     def test_parent_rotation_scale_and_translation(self):
         # Parent turns local +X into world -Z, with a two-unit X scale.
         s = math.sqrt(0.5)

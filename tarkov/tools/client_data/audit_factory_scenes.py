@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import re
 import zipfile
 
 
@@ -67,23 +68,27 @@ def hierarchy(transforms, objects):
     return cache
 
 
-def audit(source):
+def selected_files(sources):
+    """Keep ZIP boundaries explicit; never silently overwrite a source file."""
+    seen = set()
+    for source in sources:
+        with zipfile.ZipFile(source) as archive:
+            for name in archive.namelist():
+                if not re.fullmatch(r'(?:level\d+|sharedassets\d+\.assets)', name):
+                    raise ValueError('Expected flat ZIP of selected level/sharedassets files: ' + name)
+                if name in seen:
+                    raise ValueError('Duplicate selected file: ' + name)
+                seen.add(name)
+                yield name, archive.read(name)
+
+
+def audit(source, dependencies=()):
     import UnityPy
     from UnityPy.helpers.MeshHelper import MeshHandler
     if UnityPy.__version__ != '1.25.4':
         raise RuntimeError('Use UnityPy==1.25.4 for reproducible parsing')
-    archive = zipfile.ZipFile(source)
-    names = archive.namelist()
-    if len(names) != len(set(names)):
-        raise ValueError('Duplicate ZIP entries')
     environments, provenance, meshes, mesh_stats = {}, {}, {}, {}
-    for name in names:
-        if '/' in name or '\\' in name:
-            raise ValueError('Expected flat ZIP of selected level/sharedassets files')
-        if not (name.startswith('level') or
-                (name.startswith('sharedassets') and name.endswith('.assets'))):
-            raise ValueError('Unexpected selected file: ' + name)
-        raw = archive.read(name)
+    for name, raw in selected_files([source, *dependencies]):
         environments[name] = UnityPy.load(raw)
         provenance[name] = {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
         stats = collections.Counter()
@@ -129,7 +134,8 @@ def audit(source):
                 colliders.append((obj.path_id, typ, data, obj.assets_file))
         worlds = hierarchy(transforms, objects)
         go_transforms = {t['m_GameObject']['m_PathID']: pid for pid,t in transforms.items()}
-        states, dependencies = collections.Counter(), collections.Counter()
+        states, references = collections.Counter(), collections.Counter()
+        layers, missing, streamed = collections.Counter(), collections.Counter(), collections.Counter()
         examples = []
         for pid, typ, c, asset in colliders:
             gid = c['m_GameObject']['m_PathID']
@@ -150,7 +156,12 @@ def audit(source):
                 states['mesh_reference:' + status] += 1
                 if eligible:
                     states['eligible_mesh_reference:' + status] += 1
-                    dependencies[target] += 1
+                    references[target] += 1
+                    layers[str(objects[gid]['m_Layer']) + ':' + status] += 1
+                    if status == 'missing_mesh_file_or_object':
+                        missing[target] += 1
+                    elif status == 'missing_vertex_stream':
+                        streamed[target] += 1
             go = objects[gid]
             if eligible and len(examples) < 12 and any(k in go['m_Name'].lower() for k in ('stair','ladder')):
                 examples.append({'object':go['m_Name'],'component_path_id':pid,
@@ -158,7 +169,10 @@ def audit(source):
         scenes[name] = {'object_types':dict(types), 'world_transforms_resolved':len(worlds),
                         'active_gameobjects':sum(a for _,a in worlds.values()),
                         'colliders':dict(states),
-                        'eligible_mesh_references_by_file':dict(dependencies.most_common()),
+                        'eligible_mesh_references_by_file':dict(references.most_common()),
+                        'eligible_mesh_status_by_layer':dict(layers),
+                        'missing_mesh_references_by_file':dict(missing.most_common()),
+                        'streamed_mesh_references_by_file':dict(streamed.most_common()),
                         'stair_name_examples_not_validated_routes':examples}
     return {'schema_version':1,'parser':'UnityPy==1.25.4','files':provenance,
             'scenes':scenes,'mesh_files':mesh_stats,
@@ -172,9 +186,10 @@ def audit(source):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('zip',type=Path)
+    parser.add_argument('--dependency-zip',type=Path,action='append',default=[])
     parser.add_argument('--output',required=True,type=Path)
     args = parser.parse_args()
-    result = audit(args.zip)
+    result = audit(args.zip,args.dependency_zip)
     with args.output.open('x',encoding='utf-8') as out:
         json.dump(result,out,ensure_ascii=False,indent=2)
         out.write('\n')
